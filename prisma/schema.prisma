@@ -1,0 +1,446 @@
+// Maths Journey UK — data model
+// Dev/demo uses SQLite for zero-config setup. The schema is Postgres-compatible;
+// switch `provider = "postgresql"` and set DATABASE_URL to a Postgres connection
+// string (e.g. Supabase) for production. See DOCUMENTATION.md.
+//
+// SQLite has no native enum type, so fields that would otherwise be Prisma
+// enums are plain Strings constrained by the TypeScript union types in
+// src/lib/types.ts and validated with zod at every API boundary — switching
+// the datasource to postgresql lets these be upgraded to native enums.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ---------------------------------------------------------------------------
+// Adults & authentication
+// ---------------------------------------------------------------------------
+
+/// AdultRole: "PARENT" | "TEACHER" | "ADMIN"
+model AdultUser {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  fullName     String
+  role         String   @default("PARENT")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  consentGivenAt DateTime? // parental / responsible-adult consent timestamp (ICO Children's Code)
+  marketingOptIn Boolean  @default(false)
+
+  children     ChildProfile[]
+  learningGoals LearningGoal[]
+  auditLogs    AdminAuditLog[]
+
+  @@index([role])
+}
+
+// ---------------------------------------------------------------------------
+// Learner (child) profiles — PIN-based, no learner email required
+// ---------------------------------------------------------------------------
+
+/// FontMode: "STANDARD" | "DYSLEXIC"
+/// Pathway: "CORE" | "FOUNDATION" | "HIGHER"
+model ChildProfile {
+  id            String   @id @default(cuid())
+  ownerId       String
+  owner         AdultUser @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  displayName   String
+  avatarKey     String   @default("fox")
+  pinHash       String   // bcrypt hash of a 4-digit PIN, scoped to the owning adult account
+  currentYearId String
+  currentYear   SchoolYear @relation(fields: [currentYearId], references: [id])
+  pathway       String   @default("CORE") // relevant from Year 10 (Foundation/Higher); CORE elsewhere
+  fontMode      String   @default("STANDARD")
+  highContrast  Boolean  @default(false)
+  reducedMotion Boolean  @default(false)
+  soundMuted    Boolean  @default(false)
+  audioVolume   Int      @default(80)
+  readAloud     Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  levelUnlocks     LevelUnlock[]
+  practiceAttempts PracticeAttempt[]
+  assessmentAttempts AssessmentAttempt[]
+  objectiveMastery  ObjectiveMastery[]
+  misconceptionLogs MisconceptionLog[]
+  achievements      Achievement[]
+  learningGoals     LearningGoal[]
+  progressReports   ProgressReport[]
+  sessionLogs       LearningSessionLog[]
+
+  @@index([ownerId])
+}
+
+// ---------------------------------------------------------------------------
+// Curriculum structure: School years -> Levels -> Learning objectives -> Lessons
+// ---------------------------------------------------------------------------
+
+model SchoolYear {
+  id          String   @id @default(cuid())
+  yearNumber  Int      @unique // 1-10
+  title       String   // e.g. "Year 4"
+  keyStage    String   // "KS1" | "KS2" | "KS3" | "KS4"
+  summary     String
+  minAge      Int
+  maxAge      Int
+  themeStage  String   // visual maturity band: "playful" | "adventure" | "gameinspired" | "mature"
+
+  levels      Level[]
+  children    ChildProfile[]
+}
+
+/// ContentStatus: "SCAFFOLDED" | "COMPLETE"
+/// SCAFFOLDED = curriculum metadata + objectives defined, full lesson/question
+/// content not yet authored (shown as "Coming soon" to learners, never presented
+/// as a playable level). COMPLETE = fully authored & validated, safe to serve.
+model Level {
+  id           String   @id @default(cuid())
+  schoolYearId String
+  schoolYear   SchoolYear @relation(fields: [schoolYearId], references: [id], onDelete: Cascade)
+  levelNumber  Int        // 1-10 within the year
+  title        String
+  summary      String
+  isMixedMastery Boolean  @default(false) // true for level 10 of each year
+  status       String   @default("SCAFFOLDED")
+  pathway      String?      // set only for Year 10 topic variants; null = applies to all pathways
+
+  objectives   LearningObjective[]
+  lessons      Lesson[]
+  questionTemplates QuestionTemplate[]
+  unlocks      LevelUnlock[]
+  assessmentAttempts AssessmentAttempt[]
+  practiceAttempts PracticeAttempt[]
+
+  @@unique([schoolYearId, levelNumber])
+  @@index([status])
+}
+
+model LearningObjective {
+  id          String   @id @default(cuid())
+  levelId     String
+  level       Level    @relation(fields: [levelId], references: [id], onDelete: Cascade)
+  code        String   // curriculum reference code, e.g. "Y4-NPV-1"
+  description String   // child-facing plain-language objective
+  dfeReference String? // National Curriculum programme-of-study citation
+
+  lessons     LessonObjective[]
+  templates   QuestionTemplate[]
+  mastery     ObjectiveMastery[]
+
+  @@unique([levelId, code])
+}
+
+model Lesson {
+  id          String   @id @default(cuid())
+  levelId     String
+  level       Level    @relation(fields: [levelId], references: [id], onDelete: Cascade)
+  order       Int
+  title       String
+  concept     String        // one concept per mini-lesson
+  explanationMd String      // plain-language explanation (markdown)
+  representation String     // "concrete" | "pictorial" | "abstract" | "cpa" (uses all three)
+  visualAid   String        // e.g. "ten-frame" | "number-line" | "bar-model" | "clock" | "coins" | "array"
+  workedExamples String     // WorkedExample[] serialised as a JSON string
+  audioScript String?       // narration script for optional read-aloud
+  ageBandStyle String       @default("playful") // matches SchoolYear.themeStage
+
+  objectives  LessonObjective[]
+
+  @@unique([levelId, order])
+}
+
+model LessonObjective {
+  lessonId    String
+  lesson      Lesson  @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  objectiveId String
+  objective   LearningObjective @relation(fields: [objectiveId], references: [id], onDelete: Cascade)
+
+  @@id([lessonId, objectiveId])
+}
+
+// ---------------------------------------------------------------------------
+// Question templates & generated (deterministic) question instances
+// ---------------------------------------------------------------------------
+
+/// QuestionType: "MULTIPLE_CHOICE" | "NUMBER_ENTRY" | "MISSING_NUMBER" | "ORDERING"
+/// | "MATCHING" | "DRAG_DROP" | "NUMBER_LINE" | "VISUAL_COUNT" | "SHAPE_ID"
+/// | "CLOCK_READ" | "MONEY" | "WORD_PROBLEM" | "MULTI_STEP" | "TRUE_FALSE"
+/// | "GRAPH_INTERPRETATION" | "ALGEBRA" | "GEOMETRY" | "REASONING_EXPLAIN"
+/// DifficultyBand: "FLUENCY" | "APPLICATION" | "REASONING"
+//
+// A template is a deterministic generator function identified by `generatorKey`,
+// registered in src/lib/questionEngine/templates. Prisma stores metadata + tags;
+// the actual generation/validation logic lives in code, never in the database,
+// so answers are always computed by pure deterministic maths (see spec §7).
+model QuestionTemplate {
+  id            String   @id @default(cuid())
+  levelId       String
+  level         Level    @relation(fields: [levelId], references: [id], onDelete: Cascade)
+  objectiveId   String
+  objective     LearningObjective @relation(fields: [objectiveId], references: [id])
+  generatorKey  String   // unique key into the code registry, e.g. "y1l3.addWithin10.basic"
+  questionType  String
+  difficulty    String
+  misconceptionTags String // comma-separated MisconceptionTag codes this template can probe
+  minVariations Int      @default(150)
+  isActive      Boolean  @default(true) // admin can disable an inaccurate question template
+  reviewedBy    String?
+  reviewedAt    DateTime?
+  version       Int      @default(1)
+  createdAt     DateTime @default(now())
+
+  generatedLog  GeneratedQuestionLog[]
+
+  @@unique([levelId, generatorKey])
+  @@index([levelId, isActive])
+}
+
+// Every question instance actually served is logged (seed + resolved payload)
+// so it can be replayed identically for review, analytics ("frequently missed
+// questions") and to guarantee the stored answer key, never an AI call, is what
+// graded the learner.
+model GeneratedQuestionLog {
+  id           String   @id @default(cuid())
+  templateId   String
+  template     QuestionTemplate @relation(fields: [templateId], references: [id], onDelete: Cascade)
+  seed         Int
+  prompt       String
+  questionType String
+  difficulty   String
+  choicesJson  String?  // serialised ChoiceOption[] for choice-based types
+  visualAidJson String? // serialised VisualAid for the renderer
+  correctAnswer String
+  acceptableAnswers String? // comma-separated alternative accepted representations
+  explanationSteps String // serialised string[] (JSON)
+  hints        String   // serialised string[] (JSON)
+  misconceptionTag String?
+  timesServed  Int      @default(0)
+  timesCorrectFirstTry Int @default(0)
+  timesIncorrectFirstTry Int @default(0)
+  createdAt    DateTime @default(now())
+
+  practiceAnswers   PracticeAnswer[]
+  assessmentAnswers AssessmentAnswer[]
+
+  @@unique([templateId, seed])
+  @@index([templateId])
+}
+
+// ---------------------------------------------------------------------------
+// Practice (guided & independent)
+// ---------------------------------------------------------------------------
+
+/// PracticeMode: "GUIDED" | "INDEPENDENT" | "REVISION"
+model PracticeAttempt {
+  id          String   @id @default(cuid())
+  childId     String
+  child       ChildProfile @relation(fields: [childId], references: [id], onDelete: Cascade)
+  levelId     String
+  level       Level    @relation(fields: [levelId], references: [id])
+  mode        String
+  startedAt   DateTime @default(now())
+  completedAt DateTime?
+  totalQuestions Int
+  correctCount   Int      @default(0)
+  hintsUsed      Int      @default(0)
+
+  answers     PracticeAnswer[]
+
+  @@index([childId, levelId, mode])
+}
+
+model PracticeAnswer {
+  id            String   @id @default(cuid())
+  attemptId     String
+  attempt       PracticeAttempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  position      Int      // 0-based slot in this attempt's question sequence
+  questionLogId String
+  questionLog   GeneratedQuestionLog @relation(fields: [questionLogId], references: [id])
+  givenAnswer   String
+  isCorrect     Boolean
+  hintsUsed     Int      @default(0)
+  attemptNumber Int      @default(1) // 1st try, 2nd try (scaffolded) within this question
+  misconceptionTag String?
+  answeredAt    DateTime @default(now())
+
+  @@index([attemptId])
+  @@index([attemptId, position])
+}
+
+// ---------------------------------------------------------------------------
+// Mastery Challenge (40-question, 4-round scored assessment)
+// ---------------------------------------------------------------------------
+
+/// AssessmentStatus: "IN_PROGRESS" | "PAUSED" | "SUBMITTED"
+model AssessmentAttempt {
+  id            String   @id @default(cuid())
+  childId       String
+  child         ChildProfile @relation(fields: [childId], references: [id], onDelete: Cascade)
+  levelId       String
+  level         Level    @relation(fields: [levelId], references: [id])
+  pathway       String   @default("CORE")
+  status        String   @default("IN_PROGRESS")
+  totalQuestions Int     @default(40)
+  currentRound  Int      @default(1) // 1-4
+  startedAt     DateTime @default(now())
+  submittedAt   DateTime?
+  correctFirstAttempt Int @default(0)
+  scorePercentage Float?
+  passed        Boolean?
+  attemptNumber Int      // nth attempt at this level for this child
+
+  answers       AssessmentAnswer[]
+
+  @@index([childId, levelId])
+}
+
+model AssessmentAnswer {
+  id            String   @id @default(cuid())
+  attemptId     String
+  attempt       AssessmentAttempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  questionLogId String
+  questionLog   GeneratedQuestionLog @relation(fields: [questionLogId], references: [id])
+  roundNumber   Int      // 1-4
+  positionInRound Int    // 1-10
+  givenAnswer   String?
+  isCorrect     Boolean?
+  isFirstAttemptScored Boolean @default(true) // only the first submitted answer ever counts
+  locked        Boolean  @default(false) // true once submitted — immutable thereafter
+  answeredAt    DateTime?
+
+  @@unique([attemptId, roundNumber, positionInRound])
+  @@index([attemptId])
+}
+
+// ---------------------------------------------------------------------------
+// Progression, mastery & misconceptions
+// ---------------------------------------------------------------------------
+
+model LevelUnlock {
+  id          String   @id @default(cuid())
+  childId     String
+  child       ChildProfile @relation(fields: [childId], references: [id], onDelete: Cascade)
+  levelId     String
+  level       Level    @relation(fields: [levelId], references: [id])
+  unlockedAt  DateTime @default(now())
+  unlockedByAssessmentId String? // audit trail: which passing attempt unlocked this
+
+  @@unique([childId, levelId]) // a level can never be unlocked twice for the same child
+}
+
+/// MasteryStatus: "NOT_STARTED" | "DEVELOPING" | "SECURE" | "MASTERED"
+model ObjectiveMastery {
+  id            String   @id @default(cuid())
+  childId       String
+  child         ChildProfile @relation(fields: [childId], references: [id], onDelete: Cascade)
+  objectiveId   String
+  objective     LearningObjective @relation(fields: [objectiveId], references: [id])
+  status        String   @default("DEVELOPING")
+  firstAttemptAccuracy Float  @default(0)
+  totalAttempts Int      @default(0)
+  totalCorrect  Int      @default(0)
+  hintsUsed     Int      @default(0)
+  lastPracticedAt DateTime?
+  nextSpacedReviewAt DateTime?
+
+  @@unique([childId, objectiveId])
+}
+
+model MisconceptionLog {
+  id          String   @id @default(cuid())
+  childId     String
+  child       ChildProfile @relation(fields: [childId], references: [id], onDelete: Cascade)
+  tag         String   // MisconceptionTag code, e.g. "PLACE_VALUE_COLUMN_SWAP"
+  objectiveId String?
+  levelId     String?
+  context     String   // human-readable note of where this arose
+  createdAt   DateTime @default(now())
+
+  @@index([childId, tag])
+}
+
+// ---------------------------------------------------------------------------
+// Motivation: achievements, goals, sessions
+// ---------------------------------------------------------------------------
+
+model Achievement {
+  id          String   @id @default(cuid())
+  childId     String
+  child       ChildProfile @relation(fields: [childId], references: [id], onDelete: Cascade)
+  key         String   // e.g. "first_level_passed", "year1_complete", "5_day_streak"
+  title       String
+  description String
+  iconKey     String
+  earnedAt    DateTime @default(now())
+  certificateAvailable Boolean @default(false)
+
+  @@unique([childId, key])
+}
+
+model LearningGoal {
+  id          String   @id @default(cuid())
+  childId     String
+  child       ChildProfile @relation(fields: [childId], references: [id], onDelete: Cascade)
+  setByAdultId String
+  setByAdult  AdultUser @relation(fields: [setByAdultId], references: [id])
+  description String
+  targetType  String   // "levels_per_week" | "minutes_per_week" | "objective_focus"
+  targetValue Int
+  periodStart DateTime
+  periodEnd   DateTime
+  achievedValue Int    @default(0)
+  createdAt   DateTime @default(now())
+
+  @@index([childId])
+}
+
+model LearningSessionLog {
+  id          String   @id @default(cuid())
+  childId     String
+  child       ChildProfile @relation(fields: [childId], references: [id], onDelete: Cascade)
+  startedAt   DateTime @default(now())
+  endedAt     DateTime?
+  durationSeconds Int  @default(0)
+  activityType String  // "lesson" | "guided" | "independent" | "mastery" | "revision"
+
+  @@index([childId, startedAt])
+}
+
+// ---------------------------------------------------------------------------
+// Progress reports (parent/teacher downloadable snapshots)
+// ---------------------------------------------------------------------------
+
+model ProgressReport {
+  id          String   @id @default(cuid())
+  childId     String
+  child       ChildProfile @relation(fields: [childId], references: [id], onDelete: Cascade)
+  periodLabel String   // "September 2026" | "Autumn Term 2026" | "Year to date"
+  generatedAt DateTime @default(now())
+  summaryJson String   // frozen snapshot serialised as a JSON string: levels completed, scores, strengths, misconceptions, time spent
+
+  @@index([childId])
+}
+
+// ---------------------------------------------------------------------------
+// Administration & content governance
+// ---------------------------------------------------------------------------
+
+model AdminAuditLog {
+  id          String   @id @default(cuid())
+  adminId     String
+  admin       AdultUser @relation(fields: [adminId], references: [id])
+  action      String   // "publish_level" | "disable_template" | "edit_lesson" | "import_questions" ...
+  entityType  String
+  entityId    String
+  detail      String?
+  createdAt   DateTime @default(now())
+
+  @@index([adminId, createdAt])
+}
