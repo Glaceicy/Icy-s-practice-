@@ -1,10 +1,12 @@
 // Maths Journey UK — data model
 // Uses PostgreSQL (e.g. Supabase) so the app can run as a real hosted
 // deployment (Vercel + Supabase), not just a local SQLite file. Set
-// DATABASE_URL to your Postgres connection string. See DOCUMENTATION.md and
-// README.md "Deploying so it's reachable from any device" for setup steps.
-// (SQLite is still fine for isolated local-only development — just change
-// `provider` back to "sqlite" and point DATABASE_URL at a local file — but
+// DATABASE_URL (pooled, for the running app) and DIRECT_URL (unpooled, for
+// schema pushes/migrations) to the two connection strings Supabase's
+// "Connect" panel provides. See DOCUMENTATION.md and README.md "Deploying
+// so it's reachable from any device" for setup steps. (SQLite is still fine
+// for isolated local-only development — just change `provider` back to
+// "sqlite", point DATABASE_URL at a local file, and remove directUrl — but
 // enum-shaped fields are plain Strings, constrained by the TypeScript union
 // types in src/lib/types.ts and validated with zod at every API boundary,
 // specifically so the schema works unchanged under either provider.)
@@ -14,8 +16,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 // ---------------------------------------------------------------------------

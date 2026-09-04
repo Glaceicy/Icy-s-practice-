@@ -17,9 +17,15 @@ project is the easiest option — see "Deploying so it's reachable from any
 device" below for exact steps). Create a `.env` file in the project root:
 
 ```
-DATABASE_URL="<your Postgres connection string>"
+DATABASE_URL="<your Postgres pooled connection string>"
+DIRECT_URL="<your Postgres direct (unpooled) connection string>"
 AUTH_SECRET="<any long random string>"
 ```
+
+(Supabase's "Connect" panel gives you both `DATABASE_URL` and `DIRECT_URL`
+directly — `DATABASE_URL` is used by the running app, `DIRECT_URL` is used
+only for `prisma db push`/`migrate`, since schema changes don't work
+reliably through a connection pooler.)
 
 Then:
 
@@ -89,16 +95,19 @@ team as Next.js).
 ### 1. Create the database (Supabase)
 
 1. Go to https://supabase.com, sign up (free), and create a new project.
-2. Once it's ready, go to **Project Settings → Database → Connection string**
-   and copy the **URI** under "Connection pooling" (it looks like
-   `postgresql://postgres.xxxx:[YOUR-PASSWORD]@aws-...pooler.supabase.com:6543/postgres`).
-   Replace `[YOUR-PASSWORD]` with the database password you set when creating
-   the project.
+2. Once it's ready, click **Connect** (top of the project dashboard), choose
+   **ORM → Prisma**, and scroll to the step showing your `.env` values. Copy
+   both:
+   - `DATABASE_URL` (pooled, port 6543, `?pgbouncer=true`)
+   - `DIRECT_URL` (direct, port 5432)
+
+   Replace `[YOUR-PASSWORD]` in both with the database password you set when
+   creating the project.
 
 ### 2. Point the app at it and load the starter data
 
-On your own computer, in the project folder, update your `.env` file's
-`DATABASE_URL` to that Supabase connection string, then run:
+On your own computer, in the project folder, update your `.env` file with
+both of those values, then run:
 
 ```bash
 npm run db:push
@@ -113,7 +122,8 @@ into your new cloud database — the same database the deployed app will use.
 1. Go to https://vercel.com, sign up (free), and choose **"Import Project"**
    from your GitHub account, selecting this repository and branch.
 2. Under **Environment Variables**, add:
-   - `DATABASE_URL` — the same Supabase connection string from step 1
+   - `DATABASE_URL` — the same pooled connection string from step 1
+   - `DIRECT_URL` — the same direct connection string from step 1
    - `AUTH_SECRET` — any long random string (e.g. generate one at
      https://generate-secret.vercel.app/32)
 3. Click **Deploy**. After a couple of minutes you'll get a public URL like
