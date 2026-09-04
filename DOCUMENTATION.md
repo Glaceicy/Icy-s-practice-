@@ -145,7 +145,7 @@ and every year's journey map). This satisfies "the complete curriculum-
 objective structure" from the final delivery requirements.
 
 **Fully authored** (lessons + a validated, ≥150-variation-per-template
-question bank, playable end to end) — **8 of the 100 levels**:
+question bank, playable end to end) — **9 of the 100 levels**:
 
 | Level | Templates | Why this one |
 | --- | --- | --- |
@@ -155,10 +155,11 @@ question bank, playable end to end) — **8 of the 100 levels**:
 | Year 4, Level 1 | 15 | Proves the engine at upper-KS2 depth |
 | Year 5, Level 1 | 27 | Place value to 1,000,000, rounding and negative numbers in context |
 | Year 5, Level 2 | 21 | Formal addition/subtraction, estimating with rounding, multi-step problems |
+| Year 5, Level 3 | 20 | Formal multiplication, division with remainders, multiplying/dividing by 10/100/1,000 |
 | Year 7, Level 1 | 15 | Proves the engine at KS3 depth (negative numbers) |
 | Year 10, Level 1 | 15 | Proves the engine at KS4/GCSE depth, including Foundation/Higher pathway-tagged templates |
 
-Every one of these 8 levels' templates is individually verified (by
+Every one of these 9 levels' templates is individually verified (by
 `tests/questionEngine.test.ts`) to generate at least 150 distinct, valid
 variations, exactly as spec §7 requires per level; the first three meet the
 full ≥30-template bar from spec §7, the rest ship at 15-27 templates each
@@ -171,7 +172,7 @@ actually reaching them — see the commit history for progress; the table
 above and `COMPLETE_LEVEL_KEYS` in `src/lib/questionEngine/templates/all.ts`
 are always the source of truth for exactly which levels are live.
 
-**The other 92 levels** have their objectives fully defined but no lessons
+**The other 91 levels** have their objectives fully defined but no lessons
 or question templates yet (`Level.status = "SCAFFOLDED"` in the database).
 The app **never presents a scaffolded level as playable**: the journey map
 shows it as unlocked-but-"Coming soon" once a child reaches it, and the
@@ -188,7 +189,7 @@ further code changes required.
 
 **Do not read "60,000+ combined question variations already exist" from
 this number of templates alone** — that combinatorial count is real (proven
-per-template by the tests) but only for these 8 levels; it is not a claim
+per-template by the tests) but only for these 9 levels; it is not a claim
 that all 100 levels are populated.
 
 ## 7. Curriculum sequence and DfE alignment

@@ -22,7 +22,7 @@ export const year5: SchoolYearDef = {
       { code: "Y5-L2-2", description: "Use rounding to check answers and determine levels of accuracy.", dfeReference: "Y5 Addition & subtraction: use rounding to check answers" },
       { code: "Y5-L2-3", description: "Solve multi-step addition and subtraction problems, deciding which operations and methods to use.", dfeReference: "Y5 Addition & subtraction: solve multi-step problems" }
     ]},
-    { levelNumber: 3, title: "Multiplication and division", summary: "By the end of this level, you will multiply and divide numbers using formal written methods.", isMixedMastery: false, status: "SCAFFOLDED", pathway: null, objectives: [
+    { levelNumber: 3, title: "Multiplication and division", summary: "By the end of this level, you will multiply and divide numbers using formal written methods.", isMixedMastery: false, status: "COMPLETE", pathway: null, objectives: [
       { code: "Y5-L3-1", description: "Multiply numbers up to 4 digits by a one- or two-digit number using a formal written method.", dfeReference: "Y5 Multiplication & division: formal written method" },
       { code: "Y5-L3-2", description: "Divide numbers up to 4 digits by a one-digit number, interpreting remainders appropriately.", dfeReference: "Y5 Multiplication & division: divide, interpreting remainders" },
       { code: "Y5-L3-3", description: "Multiply and divide whole numbers by 10, 100 and 1,000.", dfeReference: "Y5 Multiplication & division: multiply/divide by 10, 100, 1000" }

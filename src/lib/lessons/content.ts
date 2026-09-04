@@ -352,6 +352,56 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       audioScript: "Break multi-step problems into small pieces, and solve them one step at a time."
     }
   ],
+  Y5L3: [
+    {
+      order: 1,
+      title: "Multiplying up to 4-digit numbers",
+      concept: "Using a formal written method to multiply a 4-digit number by a 1- or 2-digit number",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y5-L3-1"],
+      explanationMd:
+        "To multiply a big number by a two-digit number, split the two-digit number into tens and ones, multiply by each part separately, then add the results together.",
+      workedExamples: [
+        { problem: "2,345 x 23 = ?", steps: ["2,345 x 20 = 46,900.", "2,345 x 3 = 7,035.", "46,900 + 7,035 = 53,935."], answer: "53,935" }
+      ],
+      audioScript: "Splitting the multiplier into tens and ones turns one hard multiplication into two easier ones."
+    },
+    {
+      order: 2,
+      title: "Dividing with remainders",
+      concept: "Dividing up to 4-digit numbers by a 1-digit number, and deciding what to do with a remainder",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y5-L3-2"],
+      explanationMd:
+        "Not every division comes out exactly — sometimes there's an amount left over, called the **remainder**. What you do with a remainder depends on the question: sometimes you round up (you need one more of something), sometimes you round down (a partly-full group doesn't count), and sometimes the remainder itself is the answer.",
+      workedExamples: [
+        { problem: "138 pupils are going on a trip. Each minibus holds 25 pupils. How many minibuses are needed?", steps: ["138 ÷ 25 = 5 remainder 13.", "13 pupils still need seats, so one more minibus is needed."], answer: "6 minibuses" },
+        { problem: "A baker has 138 eggs and puts 25 in each box. How many full boxes can be made?", steps: ["138 ÷ 25 = 5 remainder 13.", "The 13 leftover eggs can't make another full box."], answer: "5 full boxes" }
+      ],
+      audioScript: "Always read the question carefully to decide whether to round the remainder up, round it down, or use it directly."
+    },
+    {
+      order: 3,
+      title: "Multiplying and dividing by 10, 100 and 1,000",
+      concept: "Understanding how digits shift place value columns when multiplying or dividing by powers of 10",
+      representation: "pictorial",
+      visualAid: "array",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y5-L3-3"],
+      explanationMd:
+        "Multiplying by 10 shifts every digit one column to the left; by 100, two columns; by 1,000, three columns. Dividing does the reverse, shifting digits to the right.\n\n" +
+        "The digits themselves don't change — only their place value does.",
+      workedExamples: [
+        { problem: "34 x 100 = ?", steps: ["Shift every digit two columns to the left.", "34 becomes 3,400."], answer: "3,400" },
+        { problem: "5,600 ÷ 100 = ?", steps: ["Shift every digit two columns to the right.", "5,600 becomes 56."], answer: "56" }
+      ],
+      audioScript: "Watch how the digits slide across the columns when we multiply or divide by 10, 100 or 1,000."
+    }
+  ],
   Y10L1: [
     {
       order: 1,
