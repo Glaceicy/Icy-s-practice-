@@ -27,7 +27,7 @@ export const year5: SchoolYearDef = {
       { code: "Y5-L3-2", description: "Divide numbers up to 4 digits by a one-digit number, interpreting remainders appropriately.", dfeReference: "Y5 Multiplication & division: divide, interpreting remainders" },
       { code: "Y5-L3-3", description: "Multiply and divide whole numbers by 10, 100 and 1,000.", dfeReference: "Y5 Multiplication & division: multiply/divide by 10, 100, 1000" }
     ]},
-    { levelNumber: 4, title: "Factors, multiples, primes, squares and cubes", summary: "By the end of this level, you will identify factors, multiples, prime, square and cube numbers.", isMixedMastery: false, status: "SCAFFOLDED", pathway: null, objectives: [
+    { levelNumber: 4, title: "Factors, multiples, primes, squares and cubes", summary: "By the end of this level, you will identify factors, multiples, prime, square and cube numbers.", isMixedMastery: false, status: "COMPLETE", pathway: null, objectives: [
       { code: "Y5-L4-1", description: "Identify multiples and factors, including finding all factor pairs of a number.", dfeReference: "Y5 Multiplication & division: identify multiples and factors" },
       { code: "Y5-L4-2", description: "Know and use the vocabulary of prime numbers and establish whether a number up to 100 is prime.", dfeReference: "Y5 Multiplication & division: prime numbers" },
       { code: "Y5-L4-3", description: "Recognise and use square numbers and cube numbers and their notation.", dfeReference: "Y5 Multiplication & division: square and cube numbers" }

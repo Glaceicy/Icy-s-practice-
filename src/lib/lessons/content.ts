@@ -402,6 +402,59 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       audioScript: "Watch how the digits slide across the columns when we multiply or divide by 10, 100 or 1,000."
     }
   ],
+  Y5L4: [
+    {
+      order: 1,
+      title: "Factors and multiples",
+      concept: "Finding factor pairs of a number and identifying multiples",
+      representation: "abstract",
+      visualAid: "array",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y5-L4-1"],
+      explanationMd:
+        "A **factor** of a number divides into it exactly, with nothing left over. A **multiple** of a number is what you get when you count up in steps of that number — the results of its times table.\n\n" +
+        "Numbers often have several factors, arranged in **factor pairs** that multiply together to make the original number.",
+      workedExamples: [
+        { problem: "Find all the factor pairs of 24.", steps: ["1 x 24", "2 x 12", "3 x 8", "4 x 6"], answer: "1&24, 2&12, 3&8, 4&6" },
+        { problem: "Is 45 a multiple of 9?", steps: ["45 ÷ 9 = 5, with no remainder."], answer: "Yes" }
+      ],
+      audioScript: "Factors divide in exactly; multiples are what you land on when you count up in steps."
+    },
+    {
+      order: 2,
+      title: "Prime and composite numbers",
+      concept: "Establishing whether a number up to 100 is prime",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y5-L4-2"],
+      explanationMd:
+        "A **prime number** has exactly two factors: 1 and itself. A **composite number** has more than two factors. Remember — 1 itself is neither prime nor composite!\n\n" +
+        "To check if a number is prime, try dividing it by every whole number from 2 up to its square root. If none divide in exactly, it's prime.",
+      workedExamples: [
+        { problem: "Is 29 prime?", steps: ["Try dividing by 2, 3, 5 (up to √29 ≈ 5.4).", "None divide in exactly."], answer: "Yes, 29 is prime" },
+        { problem: "Is 51 prime?", steps: ["51 ÷ 3 = 17, exactly.", "51 has factors other than 1 and itself."], answer: "No, 51 is composite" }
+      ],
+      audioScript: "Every prime number has exactly two factors. Let's practise spotting them up to 100."
+    },
+    {
+      order: 3,
+      title: "Square and cube numbers",
+      concept: "Recognising and calculating square numbers (n²) and cube numbers (n³)",
+      representation: "pictorial",
+      visualAid: "array",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y5-L4-3"],
+      explanationMd:
+        "A **square number** comes from multiplying a whole number by itself, written with a small 2 (e.g. 5² = 5 x 5 = 25). A **cube number** comes from multiplying a whole number by itself twice more, written with a small 3 (e.g. 5³ = 5 x 5 x 5 = 125).\n\n" +
+        "Square numbers can be arranged into a square array; cube numbers into a cube shape.",
+      workedExamples: [
+        { problem: "What is 6²?", steps: ["6 x 6 = 36."], answer: "36" },
+        { problem: "What is 4³?", steps: ["4 x 4 = 16.", "16 x 4 = 64."], answer: "64" }
+      ],
+      audioScript: "Squaring multiplies a number by itself once; cubing multiplies it by itself twice."
+    }
+  ],
   Y10L1: [
     {
       order: 1,
