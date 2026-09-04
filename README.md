@@ -12,13 +12,22 @@ versus scaffolded for a future authoring pass.
 
 ## Quick start
 
-Requirements: Node.js 20+.
+Requirements: Node.js 20+, and a Postgres database (a free [Supabase](https://supabase.com)
+project is the easiest option — see "Deploying so it's reachable from any
+device" below for exact steps). Create a `.env` file in the project root:
+
+```
+DATABASE_URL="<your Postgres connection string>"
+AUTH_SECRET="<any long random string>"
+```
+
+Then:
 
 ```bash
 npm install
-npm run db:push     # creates the local SQLite database from the schema
-npm run db:seed      # seeds the curriculum, lessons, question bank and demo accounts
-npm run dev           # http://localhost:3000
+npm run db:push       # creates the database tables from the schema
+npm run db:seed        # seeds the curriculum, lessons, question bank and demo accounts
+npm run dev             # http://localhost:3000
 ```
 
 Run the automated tests:
@@ -68,19 +77,63 @@ tests/                       Vitest unit/integration tests
 scripts/                     End-to-end verification scripts
 ```
 
-## Production deployment notes
+## Deploying so it's reachable from any device
 
-- **Database**: dev uses SQLite for a zero-config `npm install && npm run dev`.
-  The schema is Postgres-compatible — switch `provider = "sqlite"` to
-  `"postgresql"` in `prisma/schema.prisma`, set `DATABASE_URL` to your
-  Postgres/Supabase connection string, and re-run `prisma db push` (or set up
-  `prisma migrate` for versioned migrations). SQLite has no native enum type,
-  so enum-shaped fields are typed `String` with the allowed values documented
-  in comments — switching to Postgres lets you promote these to native enums
-  if desired.
-- **Secrets**: set `AUTH_SECRET` to a long random string in production
-  (session JWTs are signed with it). The app refuses to start signing
-  sessions with the development fallback secret when `NODE_ENV=production`.
+Running `npm run dev` on your own computer only serves the app on that one
+machine (`localhost`) — fine for building/testing, but a child on another
+device (tablet, another PC, a phone) can't reach it unless it's actually
+hosted. This sets up a real, always-on deployment using two free services:
+**Supabase** (the database) and **Vercel** (runs the app, built by the same
+team as Next.js).
+
+### 1. Create the database (Supabase)
+
+1. Go to https://supabase.com, sign up (free), and create a new project.
+2. Once it's ready, go to **Project Settings → Database → Connection string**
+   and copy the **URI** under "Connection pooling" (it looks like
+   `postgresql://postgres.xxxx:[YOUR-PASSWORD]@aws-...pooler.supabase.com:6543/postgres`).
+   Replace `[YOUR-PASSWORD]` with the database password you set when creating
+   the project.
+
+### 2. Point the app at it and load the starter data
+
+On your own computer, in the project folder, update your `.env` file's
+`DATABASE_URL` to that Supabase connection string, then run:
+
+```bash
+npm run db:push
+npm run db:seed
+```
+
+This creates all the tables and loads the curriculum/demo accounts straight
+into your new cloud database — the same database the deployed app will use.
+
+### 3. Deploy the app (Vercel)
+
+1. Go to https://vercel.com, sign up (free), and choose **"Import Project"**
+   from your GitHub account, selecting this repository and branch.
+2. Under **Environment Variables**, add:
+   - `DATABASE_URL` — the same Supabase connection string from step 1
+   - `AUTH_SECRET` — any long random string (e.g. generate one at
+     https://generate-secret.vercel.app/32)
+3. Click **Deploy**. After a couple of minutes you'll get a public URL like
+   `https://your-project.vercel.app`.
+
+That URL works from any device, anywhere — no need for your own computer to
+stay on. Sign in there the same way as locally (demo accounts in the table
+above, or create a fresh adult account and child profiles).
+
+**Note on demo accounts in production:** the seeded demo accounts (§"Demo
+accounts") use a publicly-known password. Fine for trying things out, but
+before sharing the real URL with your family, either change that password or
+just register a fresh adult account of your own and use that instead.
+
+### Other production notes
+
+- **Secrets**: the app refuses to start signing sessions with the
+  development fallback `AUTH_SECRET` when `NODE_ENV=production` — Vercel
+  sets `NODE_ENV=production` automatically, so step 3's `AUTH_SECRET`
+  environment variable is required, not optional.
 - **PWA**: `public/manifest.json` and `public/sw.js` provide an installable
   shell with an offline-resilient static cache; API/data routes are
   deliberately excluded from the cache so learning progress is never served

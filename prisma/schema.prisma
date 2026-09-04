@@ -1,19 +1,20 @@
 // Maths Journey UK — data model
-// Dev/demo uses SQLite for zero-config setup. The schema is Postgres-compatible;
-// switch `provider = "postgresql"` and set DATABASE_URL to a Postgres connection
-// string (e.g. Supabase) for production. See DOCUMENTATION.md.
-//
-// SQLite has no native enum type, so fields that would otherwise be Prisma
-// enums are plain Strings constrained by the TypeScript union types in
-// src/lib/types.ts and validated with zod at every API boundary — switching
-// the datasource to postgresql lets these be upgraded to native enums.
+// Uses PostgreSQL (e.g. Supabase) so the app can run as a real hosted
+// deployment (Vercel + Supabase), not just a local SQLite file. Set
+// DATABASE_URL to your Postgres connection string. See DOCUMENTATION.md and
+// README.md "Deploying so it's reachable from any device" for setup steps.
+// (SQLite is still fine for isolated local-only development — just change
+// `provider` back to "sqlite" and point DATABASE_URL at a local file — but
+// enum-shaped fields are plain Strings, constrained by the TypeScript union
+// types in src/lib/types.ts and validated with zod at every API boundary,
+// specifically so the schema works unchanged under either provider.)
 
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 

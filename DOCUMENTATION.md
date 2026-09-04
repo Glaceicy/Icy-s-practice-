@@ -17,9 +17,10 @@ additional `SchoolYear` sets without a schema change.
 
 - **Framework**: Next.js 14 (App Router), React 18, TypeScript (strict mode).
 - **Styling**: Tailwind CSS.
-- **Database**: Prisma ORM; SQLite for zero-config local development,
-  Postgres-compatible for production (see README "Production deployment
-  notes").
+- **Database**: Prisma ORM targeting PostgreSQL (e.g. Supabase) so the same
+  database backs both local development and a real hosted deployment — see
+  README "Deploying so it's reachable from any device". SQLite also works
+  for isolated local-only work (switch `provider` back to `"sqlite"`).
 - **Auth**: Adults authenticate with email/password (bcrypt-hashed,
   12 rounds) and a signed, httpOnly JWT session cookie (`jose`). Children
   never have their own credentials or email address — they select an avatar
