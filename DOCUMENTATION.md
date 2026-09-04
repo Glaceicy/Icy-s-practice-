@@ -145,7 +145,7 @@ and every year's journey map). This satisfies "the complete curriculum-
 objective structure" from the final delivery requirements.
 
 **Fully authored** (lessons + a validated, ≥150-variation-per-template
-question bank, playable end to end) — **6 of the 100 levels**:
+question bank, playable end to end) — **7 of the 100 levels**:
 
 | Level | Templates | Why this one |
 | --- | --- | --- |
@@ -153,18 +153,19 @@ question bank, playable end to end) — **6 of the 100 levels**:
 | Year 1, Level 2 | 30 | Proves within-year progression (Level 1 → 2) |
 | Year 1, Level 10 | 30 | Mixed-mastery review — proves year-end unlock into Year 2 |
 | Year 4, Level 1 | 15 | Proves the engine at upper-KS2 depth |
+| Year 5, Level 1 | 27 | Place value to 1,000,000, rounding and negative numbers in context |
 | Year 7, Level 1 | 15 | Proves the engine at KS3 depth (negative numbers) |
 | Year 10, Level 1 | 15 | Proves the engine at KS4/GCSE depth, including Foundation/Higher pathway-tagged templates |
 
-Every one of these 6 levels' templates is individually verified (by
+Every one of these 7 levels' templates is individually verified (by
 `tests/questionEngine.test.ts`) to generate at least 150 distinct, valid
 variations, exactly as spec §7 requires per level; the first three meet the
-full ≥30-template bar from spec §7, the latter three ship at 15 templates
-each (still ≥150 variations apiece) as a deliberately smaller but equally
-real and validated proof of the engine at that age range, rather than a
-diluted attempt at 30 across all of them.
+full ≥30-template bar from spec §7, the rest ship at 15-27 templates each
+(still ≥150 variations apiece) as a deliberately smaller but equally real
+and validated proof of the engine at that age range, rather than a diluted
+attempt at 30 across all of them.
 
-**The other 94 levels** have their objectives fully defined but no lessons
+**The other 93 levels** have their objectives fully defined but no lessons
 or question templates yet (`Level.status = "SCAFFOLDED"` in the database).
 The app **never presents a scaffolded level as playable**: the journey map
 shows it as unlocked-but-"Coming soon" once a child reaches it, and the
@@ -181,7 +182,7 @@ further code changes required.
 
 **Do not read "60,000+ combined question variations already exist" from
 this number of templates alone** — that combinatorial count is real (proven
-per-template by the tests) but only for these 6 levels; it is not a claim
+per-template by the tests) but only for these 7 levels; it is not a claim
 that all 100 levels are populated.
 
 ## 7. Curriculum sequence and DfE alignment

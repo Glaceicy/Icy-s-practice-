@@ -1,7 +1,8 @@
 import type { SchoolYearDef } from "./types";
 
-// Year 5 (ages 9-10, KS2). Curriculum metadata/objectives defined; full lesson
-// and question content scaffolded for future authoring (see DOCUMENTATION.md).
+// Year 5 (ages 9-10, KS2). Level 1 is fully authored (lessons, practice,
+// 40-question mastery bank); levels 2-10 are scaffolded (curriculum metadata
+// only — see questionEngine/templates/all.ts COMPLETE_LEVEL_KEYS).
 export const year5: SchoolYearDef = {
   yearNumber: 5,
   title: "Year 5",
@@ -11,7 +12,7 @@ export const year5: SchoolYearDef = {
   maxAge: 10,
   themeStage: "adventure",
   levels: [
-    { levelNumber: 1, title: "Place value to 1,000,000, rounding and negative numbers", summary: "By the end of this level, you will read, write and round numbers to 1,000,000, including negative numbers.", isMixedMastery: false, status: "SCAFFOLDED", pathway: null, objectives: [
+    { levelNumber: 1, title: "Place value to 1,000,000, rounding and negative numbers", summary: "By the end of this level, you will read, write and round numbers to 1,000,000, including negative numbers.", isMixedMastery: false, status: "COMPLETE", pathway: null, objectives: [
       { code: "Y5-L1-1", description: "Read, write, order and compare numbers to at least 1,000,000.", dfeReference: "Y5 Number & place value: read/write/order/compare numbers to 1,000,000" },
       { code: "Y5-L1-2", description: "Round any number up to 1,000,000 to a required degree of accuracy.", dfeReference: "Y5 Number & place value: round any number up to 1,000,000" },
       { code: "Y5-L1-3", description: "Interpret negative numbers in context, counting forwards and backwards through zero.", dfeReference: "Y5 Number & place value: interpret negative numbers in context" }

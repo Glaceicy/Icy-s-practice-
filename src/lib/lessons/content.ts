@@ -250,6 +250,59 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       audioScript: "Same signs give a positive answer. Different signs give a negative answer. Let's practise."
     }
   ],
+  Y5L1: [
+    {
+      order: 1,
+      title: "Place value in six-digit numbers",
+      concept: "Understanding hundred thousands, ten thousands and thousands in numbers up to 1,000,000",
+      representation: "pictorial",
+      visualAid: "array",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y5-L1-1"],
+      explanationMd:
+        "A six-digit number like 342,856 has **hundred thousands**, **ten thousands**, **thousands**, **hundreds**, **tens** and **ones** columns. Each column is worth ten times the one to its right.\n\n" +
+        "To compare two large numbers, always start from the left — the column with the biggest value — and work across until the digits differ.",
+      workedExamples: [
+        { problem: "What is the value of the 4 in 342,856?", steps: ["The 4 is in the ten-thousands column.", "So it is worth 4 ten thousands, or 40,000."], answer: "40,000" },
+        { problem: "Which is bigger, 458,120 or 458,999?", steps: ["Both start 458, so those columns match.", "Compare the next digit: 1 vs 9.", "9 is bigger."], answer: "458,999" }
+      ],
+      audioScript: "Big numbers are just more columns! Let's break a six-digit number down column by column."
+    },
+    {
+      order: 2,
+      title: "Rounding large numbers",
+      concept: "Rounding any number up to 1,000,000 to the nearest 10, 100, 1,000, 10,000 or 100,000",
+      representation: "abstract",
+      visualAid: "number-line",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y5-L1-2"],
+      explanationMd:
+        "To round to a given accuracy, find the digit in the place just after the one you're rounding to. 5 or more rounds up; less than 5 rounds down — every digit after the rounding point becomes zero.\n\n" +
+        "The bigger the number, the more it matters to round sensibly — rounding to the nearest 10,000 or 100,000 gives a quick, useful estimate.",
+      workedExamples: [
+        { problem: "Round 583,240 to the nearest 10,000.", steps: ["Look at the thousands digit: 3.", "3 is less than 5, so round down.", "The ten-thousands digit stays as 8."], answer: "580,000" },
+        { problem: "Round 726,500 to the nearest 100,000.", steps: ["Look at the ten-thousands digit: 2.", "2 is less than 5, so round down."], answer: "700,000" }
+      ],
+      audioScript: "Rounding big numbers works exactly the same way as small ones — just find the right column to check."
+    },
+    {
+      order: 3,
+      title: "Negative numbers and counting through zero",
+      concept: "Interpreting negative numbers in context and counting forwards and backwards across zero",
+      representation: "pictorial",
+      visualAid: "number-line",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y5-L1-3"],
+      explanationMd:
+        "Negative numbers show up in real life — temperatures below freezing, or floors below ground in a car park. On a number line, they sit to the left of zero.\n\n" +
+        "When counting forwards or backwards through zero, remember there is no '-0' — counting up from -1 goes straight to 0, then 1.",
+      workedExamples: [
+        { problem: "The temperature was -3°C and rose by 5°C. What is it now?", steps: ["Start at -3.", "Count up 5: -2, -1, 0, 1, 2.", "Land on 2."], answer: "2°C" },
+        { problem: "A lift is on floor 2 and goes down 5 floors. What floor is it on?", steps: ["Start at floor 2.", "Count down 5: 1, 0, -1, -2, -3.", "Land on floor -3 (3 floors below ground)."], answer: "-3" }
+      ],
+      audioScript: "Negative numbers aren't scary — they're just numbers below zero. Let's count through zero together."
+    }
+  ],
   Y10L1: [
     {
       order: 1,
