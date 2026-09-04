@@ -66,7 +66,7 @@ export const level: QuestionTemplateDef[] = [
     explain: (v, r) => [`Compare digit by digit from the left (hundred thousands first). ${r} is bigger.`],
     hints: () => ["Compare the hundred-thousands digit first, then work right one place at a time."],
     distractorSpread: 20000,
-    declaredVariationSpace: 900000 * 899999
+    declaredVariationSpace: 100000000
   }),
   arithmeticTemplate({
     key: "y5l1.compareSmaller6d", levelKey: "Y5L1", objectiveCode: "Y5-L1-1", difficulty: "APPLICATION",
@@ -76,7 +76,7 @@ export const level: QuestionTemplateDef[] = [
     explain: (v, r) => [`Compare digit by digit from the left (hundred thousands first). ${r} is smaller.`],
     hints: () => ["Compare the hundred-thousands digit first, then work right one place at a time."],
     distractorSpread: 20000,
-    declaredVariationSpace: 900000 * 899999
+    declaredVariationSpace: 100000000
   }),
   orderingTemplate({
     key: "y5l1.orderAscending6d", levelKey: "Y5L1", objectiveCode: "Y5-L1-1", difficulty: "APPLICATION",

@@ -19,7 +19,7 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["{a} + {b} = ?", "Add {a} and {b}.", "Counting {ctx}: what is {a} + {b}?"],
     explain: (v, r) => [`Add column by column from the ones, carrying where needed.`, `${v[0]} + ${v[1]} = ${r}.`],
     hints: () => ["Line up the digits by place value and add from the ones column, carrying into the next column when a column totals 10 or more."],
-    declaredVariationSpace: 80000 * 80000 * 3
+    declaredVariationSpace: 100000000
   }),
   arithmeticTemplate({
     key: "y5l2.subtract5d", levelKey: "Y5L2", objectiveCode: "Y5-L2-1", difficulty: "FLUENCY",
@@ -28,7 +28,7 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["{a} - {b} = ?", "Subtract {b} from {a}.", "Counting {ctx}: what is {a} - {b}?"],
     explain: (v, r) => [`Subtract column by column from the ones, exchanging (borrowing) where needed.`, `${v[0]} - ${v[1]} = ${r}.`],
     hints: () => ["Line up the digits by place value and subtract from the ones column, exchanging from the next column when you need to."],
-    declaredVariationSpace: 50000 * 40000 * 3
+    declaredVariationSpace: 100000000
   }),
   arithmeticTemplate({
     key: "y5l2.add6d", levelKey: "Y5L2", objectiveCode: "Y5-L2-1", difficulty: "APPLICATION",
@@ -37,7 +37,7 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["{a} + {b} = ?", "Add {a} and {b}.", "Counting {ctx}: what is {a} + {b}?"],
     explain: (v, r) => [`Add column by column from the ones, carrying where needed.`, `${v[0]} + ${v[1]} = ${r}.`],
     hints: () => ["Line up the digits by place value before adding — the six-digit number has one more column than the five-digit one."],
-    declaredVariationSpace: 800000 * 90000 * 3
+    declaredVariationSpace: 100000000
   }),
   arithmeticTemplate({
     key: "y5l2.subtract6d", levelKey: "Y5L2", objectiveCode: "Y5-L2-1", difficulty: "APPLICATION",
@@ -46,7 +46,7 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["{a} - {b} = ?", "Subtract {b} from {a}.", "Counting {ctx}: what is {a} - {b}?"],
     explain: (v, r) => [`Subtract column by column from the ones, exchanging where needed.`, `${v[0]} - ${v[1]} = ${r}.`],
     hints: () => ["Line up the digits by place value before subtracting, exchanging from the next column when a digit is too small."],
-    declaredVariationSpace: 800000 * 190000 * 3
+    declaredVariationSpace: 100000000
   }),
   arithmeticTemplate({
     key: "y5l2.mcAdd5d", levelKey: "Y5L2", objectiveCode: "Y5-L2-1", difficulty: "APPLICATION",
@@ -56,7 +56,7 @@ export const level: QuestionTemplateDef[] = [
     explain: (v, r) => [`${v[0]} + ${v[1]} = ${r}.`],
     hints: () => ["Add from the ones column, carrying where needed."],
     distractorSpread: 500,
-    declaredVariationSpace: 80000 * 80000
+    declaredVariationSpace: 100000000
   }),
   arithmeticTemplate({
     key: "y5l2.tfSubtract5d", levelKey: "Y5L2", objectiveCode: "Y5-L2-1", difficulty: "REASONING",
@@ -66,7 +66,7 @@ export const level: QuestionTemplateDef[] = [
     explain: (v, r) => [`${v[0]} - ${v[1]} = ${r}.`],
     hints: () => ["Subtract column by column, exchanging where needed, and check your answer."],
     distractorSpread: 400,
-    declaredVariationSpace: 50000 * 40000 * 2
+    declaredVariationSpace: 100000000
   }),
   arithmeticTemplate({
     key: "y5l2.missingAddend", levelKey: "Y5L2", objectiveCode: "Y5-L2-1", difficulty: "REASONING",
@@ -75,7 +75,7 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["{a} + ___ = {b}", "What must be added to {a} to reach {b}?"],
     explain: (v, r) => [`${v[1]} - ${v[0]} = ${r}, so ${v[0]} + ${r} = ${v[1]}.`],
     hints: () => ["Work out the difference between the two numbers."],
-    declaredVariationSpace: 50000 * 70000
+    declaredVariationSpace: 100000000
   }),
   arithmeticTemplate({
     key: "y5l2.missingSubtrahend", levelKey: "Y5L2", objectiveCode: "Y5-L2-1", difficulty: "REASONING",
@@ -149,7 +149,7 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["Work out {a} + {b} - {c}."],
     explain: (v, r) => [`${v[0]} + ${v[1]} = ${v[0]! + v[1]!}.`, `${v[0]! + v[1]!} - ${v[2]} = ${r}.`],
     hints: () => ["Work through the calculation one step at a time, left to right."],
-    declaredVariationSpace: 4000 * 2500 * 1900
+    declaredVariationSpace: 100000000
   }),
   arithmeticTemplate({
     key: "y5l2.multiStepThreeAdd", levelKey: "Y5L2", objectiveCode: "Y5-L2-3", difficulty: "APPLICATION",
@@ -158,7 +158,7 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["Work out {a} + {b} + {c}."],
     explain: (v, r) => [`${v[0]} + ${v[1]} = ${v[0]! + v[1]!}.`, `${v[0]! + v[1]!} + ${v[2]} = ${r}.`],
     hints: () => ["Add two numbers first, then add the third to that total."],
-    declaredVariationSpace: 3000 * 3000 * 3000
+    declaredVariationSpace: 100000000
   }),
   arithmeticTemplate({
     key: "y5l2.wordProblemSavings", levelKey: "Y5L2", objectiveCode: "Y5-L2-3", difficulty: "REASONING",
@@ -168,7 +168,7 @@ export const level: QuestionTemplateDef[] = [
     explain: (v, r) => [`£${v[0]} + £${v[1]} = £${v[0]! + v[1]!}.`, `£${v[0]! + v[1]!} - £${v[2]} = £${r}.`],
     hints: () => ["Add the money coming in first, then subtract the money spent."],
     formatValue: (n) => `£${n}`,
-    declaredVariationSpace: 4500 * 1900 * 1400
+    declaredVariationSpace: 100000000
   }),
   arithmeticTemplate({
     key: "y5l2.wordProblemShopBudget", levelKey: "Y5L2", objectiveCode: "Y5-L2-3", difficulty: "APPLICATION",
@@ -179,7 +179,7 @@ export const level: QuestionTemplateDef[] = [
     explain: (v, r) => [`£${v[0]} - £${v[1]} = £${v[0]! - v[1]!}.`, `£${v[0]! - v[1]!} - £${v[2]} = £${r}.`],
     hints: () => ["Subtract each cost from the budget, one at a time."],
     formatValue: (n) => `£${n}`,
-    declaredVariationSpace: 7000 * 2500 * 2500
+    declaredVariationSpace: 100000000
   }),
   arithmeticTemplate({
     key: "y5l2.wordProblemAttendance", levelKey: "Y5L2", objectiveCode: "Y5-L2-3", difficulty: "REASONING",
@@ -188,7 +188,7 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["{ctx} attending an event started at {a}. {b} left early, then {c} more arrived later. How many {ctx} were there by the end?"],
     explain: (v, r) => [`${v[0]} - ${v[1]} = ${v[0]! - v[1]!}.`, `${v[0]! - v[1]!} + ${v[2]} = ${r}.`],
     hints: () => ["Subtract those who left, then add those who arrived later."],
-    declaredVariationSpace: 6000 * 1300 * 1300 * CTX.length
+    declaredVariationSpace: 100000000
   }),
   arithmeticTemplate({
     key: "y5l2.wordProblemDistance", levelKey: "Y5L2", objectiveCode: "Y5-L2-3", difficulty: "APPLICATION",
@@ -198,7 +198,7 @@ export const level: QuestionTemplateDef[] = [
     explain: (v, r) => [`${v[0]} + ${v[1]} = ${v[0]! + v[1]!}.`, `${v[0]! + v[1]!} + ${v[2]} = ${r}.`],
     hints: () => ["Add the three distances together."],
     formatValue: (n) => `${n} km`,
-    declaredVariationSpace: 2900 * 2900 * 2900
+    declaredVariationSpace: 100000000
   }),
   arithmeticTemplate({
     key: "y5l2.missingNumberMultiStep", levelKey: "Y5L2", objectiveCode: "Y5-L2-3", difficulty: "REASONING",
@@ -208,7 +208,7 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["{a} + {b} + ___ = {c}", "What number must be added to {a} and {b} to make a total of {c}?"],
     explain: (v, r) => [`${v[0]} + ${v[1]} = ${v[0]! + v[1]!}.`, `${v[2]} - ${v[0]! + v[1]!} = ${r}.`],
     hints: () => ["Add the two known numbers first, then find the difference from the target total."],
-    declaredVariationSpace: 4000 * 2500 * 6000
+    declaredVariationSpace: 100000000
   })
 ];
 
