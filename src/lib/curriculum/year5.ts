@@ -17,7 +17,7 @@ export const year5: SchoolYearDef = {
       { code: "Y5-L1-2", description: "Round any number up to 1,000,000 to a required degree of accuracy.", dfeReference: "Y5 Number & place value: round any number up to 1,000,000" },
       { code: "Y5-L1-3", description: "Interpret negative numbers in context, counting forwards and backwards through zero.", dfeReference: "Y5 Number & place value: interpret negative numbers in context" }
     ]},
-    { levelNumber: 2, title: "Addition, subtraction and multi-step problems", summary: "By the end of this level, you will add and subtract large numbers and solve multi-step problems.", isMixedMastery: false, status: "SCAFFOLDED", pathway: null, objectives: [
+    { levelNumber: 2, title: "Addition, subtraction and multi-step problems", summary: "By the end of this level, you will add and subtract large numbers and solve multi-step problems.", isMixedMastery: false, status: "COMPLETE", pathway: null, objectives: [
       { code: "Y5-L2-1", description: "Add and subtract whole numbers with more than 4 digits using formal written methods.", dfeReference: "Y5 Addition & subtraction: formal written methods" },
       { code: "Y5-L2-2", description: "Use rounding to check answers and determine levels of accuracy.", dfeReference: "Y5 Addition & subtraction: use rounding to check answers" },
       { code: "Y5-L2-3", description: "Solve multi-step addition and subtraction problems, deciding which operations and methods to use.", dfeReference: "Y5 Addition & subtraction: solve multi-step problems" }

@@ -303,6 +303,55 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       audioScript: "Negative numbers aren't scary — they're just numbers below zero. Let's count through zero together."
     }
   ],
+  Y5L2: [
+    {
+      order: 1,
+      title: "Adding and subtracting large numbers",
+      concept: "Using formal written (column) methods to add and subtract numbers with 5 or more digits",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y5-L2-1"],
+      explanationMd:
+        "For numbers this big, line the digits up by place value in columns, then add or subtract starting from the ones column.\n\n" +
+        "When a column adds up to 10 or more, **carry** the extra ten into the next column. When a digit is too small to subtract from, **exchange** (borrow) one from the column to its left.",
+      workedExamples: [
+        { problem: "34,782 + 18,946 = ?", steps: ["Add the ones: 2 + 6 = 8.", "Add the tens, hundreds, thousands and ten-thousands, carrying where needed."], answer: "53,728" },
+        { problem: "62,150 - 27,483 = ?", steps: ["Subtract from the ones column, exchanging from the next column whenever a digit is too small."], answer: "34,667" }
+      ],
+      audioScript: "Big numbers, same method — line up the columns and work through them one at a time."
+    },
+    {
+      order: 2,
+      title: "Estimating with rounding",
+      concept: "Rounding numbers before adding or subtracting to check whether an answer is reasonable",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y5-L2-2"],
+      explanationMd:
+        "Before doing a big calculation, it helps to **estimate** the answer first by rounding each number, often to the nearest 1,000. If your exact answer is nowhere near your estimate, you know to check your working.",
+      workedExamples: [
+        { problem: "Estimate 4,832 + 2,957 by rounding to the nearest 1,000.", steps: ["4,832 rounds to 5,000.", "2,957 rounds to 3,000.", "5,000 + 3,000 = 8,000."], answer: "about 8,000" }
+      ],
+      audioScript: "Rounding first gives us a quick sense-check before working out the exact answer."
+    },
+    {
+      order: 3,
+      title: "Multi-step problems",
+      concept: "Deciding which operations to use, and in which order, to solve a problem with more than one step",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y5-L2-3"],
+      explanationMd:
+        "Some problems need more than one step — read carefully to work out what happens first, second, and so on. Working left to right through the problem usually keeps things clear.",
+      workedExamples: [
+        { problem: "A shop had £3,200. It earned £1,450, then spent £900 on stock. How much does it have now?", steps: ["£3,200 + £1,450 = £4,650.", "£4,650 - £900 = £3,750."], answer: "£3,750" }
+      ],
+      audioScript: "Break multi-step problems into small pieces, and solve them one step at a time."
+    }
+  ],
   Y10L1: [
     {
       order: 1,
