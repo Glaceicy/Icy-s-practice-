@@ -1,10 +1,12 @@
 import type { SchoolYearDef } from "./types";
 
-// Year 1 (ages 5-6, KS1) — FLAGSHIP YEAR: fully authored (lessons, practice,
-// 40-question mastery banks) across all 10 levels. Objectives are grounded in
-// the DfE National Curriculum in England: Mathematics programmes of study,
-// Key Stage 1, Year 1 (number & place value; addition & subtraction;
-// multiplication & division; fractions; measurement; geometry).
+// Year 1 (ages 5-6, KS1). Levels 1, 2 and 10 are fully authored (lessons,
+// practice, 40-question mastery banks); levels 3-9 are scaffolded (curriculum
+// metadata only, content not yet written — see questionEngine/templates/all.ts
+// COMPLETE_LEVEL_KEYS). Objectives are grounded in the DfE National Curriculum
+// in England: Mathematics programmes of study, Key Stage 1, Year 1 (number &
+// place value; addition & subtraction; multiplication & division; fractions;
+// measurement; geometry).
 export const year1: SchoolYearDef = {
   yearNumber: 1,
   title: "Year 1",
@@ -45,7 +47,7 @@ export const year1: SchoolYearDef = {
       title: "Addition and subtraction within 10",
       summary: "By the end of this level, you will be able to add and subtract numbers within 10.",
       isMixedMastery: false,
-      status: "COMPLETE",
+      status: "SCAFFOLDED",
       pathway: null,
       objectives: [
         { code: "Y1-L3-1", description: "Read, write and understand addition (+) and subtraction (-) and equals (=) signs.", dfeReference: "Y1 Addition & subtraction: read/write/interpret statements using +, - and =" },
@@ -58,7 +60,7 @@ export const year1: SchoolYearDef = {
       title: "Addition and subtraction within 20",
       summary: "By the end of this level, you will be able to add and subtract two numbers within 20.",
       isMixedMastery: false,
-      status: "COMPLETE",
+      status: "SCAFFOLDED",
       pathway: null,
       objectives: [
         { code: "Y1-L4-1", description: "Add two numbers within 20, including crossing 10.", dfeReference: "Y1 Addition & subtraction: add one-digit and two-digit numbers to 20" },
@@ -71,7 +73,7 @@ export const year1: SchoolYearDef = {
       title: "Number bonds, missing numbers and simple problems",
       summary: "By the end of this level, you will know your number bonds to 10 and 20 and be able to find missing numbers.",
       isMixedMastery: false,
-      status: "COMPLETE",
+      status: "SCAFFOLDED",
       pathway: null,
       objectives: [
         { code: "Y1-L5-1", description: "Recall number bonds to 10 and related subtraction facts.", dfeReference: "Y1 Addition & subtraction: represent and use number bonds within 20" },
@@ -84,7 +86,7 @@ export const year1: SchoolYearDef = {
       title: "Early multiplication and division through grouping and sharing",
       summary: "By the end of this level, you will be able to group and share small amounts of objects equally.",
       isMixedMastery: false,
-      status: "COMPLETE",
+      status: "SCAFFOLDED",
       pathway: null,
       objectives: [
         { code: "Y1-L6-1", description: "Solve grouping problems using pictures and objects (e.g. how many groups of 2).", dfeReference: "Y1 Multiplication & division: solve one-step problems using concrete objects and arrays" },
@@ -97,7 +99,7 @@ export const year1: SchoolYearDef = {
       title: "Finding halves and quarters",
       summary: "By the end of this level, you will be able to find a half and a quarter of shapes and amounts.",
       isMixedMastery: false,
-      status: "COMPLETE",
+      status: "SCAFFOLDED",
       pathway: null,
       objectives: [
         { code: "Y1-L7-1", description: "Recognise and find a half of an object, shape or quantity.", dfeReference: "Y1 Fractions: recognise, find and name a half" },
@@ -110,7 +112,7 @@ export const year1: SchoolYearDef = {
       title: "Length, height, mass, capacity, time and money",
       summary: "By the end of this level, you will be able to compare and measure using everyday units and tell the time to the hour and half hour.",
       isMixedMastery: false,
-      status: "COMPLETE",
+      status: "SCAFFOLDED",
       pathway: null,
       objectives: [
         { code: "Y1-L8-1", description: "Compare and describe length, height, weight and capacity using everyday language.", dfeReference: "Y1 Measurement: compare, describe and solve practical problems for lengths, mass and capacity" },
@@ -123,7 +125,7 @@ export const year1: SchoolYearDef = {
       title: "2D shapes, 3D shapes, position and direction",
       summary: "By the end of this level, you will be able to name common shapes and describe position and direction.",
       isMixedMastery: false,
-      status: "COMPLETE",
+      status: "SCAFFOLDED",
       pathway: null,
       objectives: [
         { code: "Y1-L9-1", description: "Recognise and name common 2D shapes, including circles, triangles, squares and rectangles.", dfeReference: "Y1 Geometry: recognise and name common 2D shapes" },
