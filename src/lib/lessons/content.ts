@@ -455,6 +455,59 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       audioScript: "Squaring multiplies a number by itself once; cubing multiplies it by itself twice."
     }
   ],
+  Y5L5: [
+    {
+      order: 1,
+      title: "Comparing and ordering fractions",
+      concept: "Comparing fractions with the same or related denominators",
+      representation: "pictorial",
+      visualAid: "fraction-diagram",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y5-L5-1"],
+      explanationMd:
+        "When two fractions have the **same denominator**, just compare their numerators — the bigger numerator makes the bigger fraction.\n\n" +
+        "When denominators are related (one is a multiple of the other), first convert them to the same denominator by multiplying the numerator and denominator by the same amount, then compare.",
+      workedExamples: [
+        { problem: "Which is bigger, 3/8 or 5/8?", steps: ["Same denominator, so compare numerators.", "5 > 3."], answer: "5/8" },
+        { problem: "Which is bigger, 1/4 or 3/8?", steps: ["Convert 1/4 to eighths: 1/4 = 2/8.", "Compare 2/8 and 3/8.", "3 > 2."], answer: "3/8" }
+      ],
+      audioScript: "Same denominator? Just compare the numerators. Different denominator? Convert first, then compare."
+    },
+    {
+      order: 2,
+      title: "Adding and subtracting fractions",
+      concept: "Adding and subtracting fractions with the same denominator, including mixed numbers",
+      representation: "abstract",
+      visualAid: "fraction-diagram",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y5-L5-2"],
+      explanationMd:
+        "When fractions share a denominator, add or subtract just the numerators — the denominator stays the same.\n\n" +
+        "For mixed numbers, convert each one to an **improper fraction** first (multiply the whole number by the denominator, then add the numerator), then add or subtract as normal.",
+      workedExamples: [
+        { problem: "2/5 + 1/5 = ?", steps: ["Add the numerators: 2 + 1 = 3.", "Keep the denominator: 5."], answer: "3/5" },
+        { problem: "1 1/4 + 2 2/4 = ?", steps: ["Convert: 1 1/4 = 5/4, 2 2/4 = 10/4.", "Add: 5 + 10 = 15."], answer: "15/4" }
+      ],
+      audioScript: "The denominator tells us the size of the pieces — it doesn't change when we add or subtract."
+    },
+    {
+      order: 3,
+      title: "Multiplying fractions by whole numbers",
+      concept: "Multiplying proper fractions and mixed numbers by a whole number",
+      representation: "abstract",
+      visualAid: "fraction-diagram",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y5-L5-3"],
+      explanationMd:
+        "To multiply a fraction by a whole number, multiply just the **numerator** by that whole number — the denominator stays the same.\n\n" +
+        "For a mixed number, convert it to an improper fraction first, then multiply.",
+      workedExamples: [
+        { problem: "2/5 x 3 = ?", steps: ["Multiply the numerator: 2 x 3 = 6.", "Keep the denominator: 5."], answer: "6/5" },
+        { problem: "1 1/2 x 4 = ?", steps: ["Convert: 1 1/2 = 3/2.", "Multiply: 3 x 4 = 12."], answer: "12/2" }
+      ],
+      audioScript: "Multiplying a fraction by a whole number only changes the numerator."
+    }
+  ],
   Y10L1: [
     {
       order: 1,

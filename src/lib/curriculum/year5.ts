@@ -32,7 +32,7 @@ export const year5: SchoolYearDef = {
       { code: "Y5-L4-2", description: "Know and use the vocabulary of prime numbers and establish whether a number up to 100 is prime.", dfeReference: "Y5 Multiplication & division: prime numbers" },
       { code: "Y5-L4-3", description: "Recognise and use square numbers and cube numbers and their notation.", dfeReference: "Y5 Multiplication & division: square and cube numbers" }
     ]},
-    { levelNumber: 5, title: "Fractions and mixed numbers", summary: "By the end of this level, you will compare, add and subtract fractions, including mixed numbers.", isMixedMastery: false, status: "SCAFFOLDED", pathway: null, objectives: [
+    { levelNumber: 5, title: "Fractions and mixed numbers", summary: "By the end of this level, you will compare, add and subtract fractions, including mixed numbers.", isMixedMastery: false, status: "COMPLETE", pathway: null, objectives: [
       { code: "Y5-L5-1", description: "Compare and order fractions whose denominators are multiples of the same number.", dfeReference: "Y5 Fractions: compare/order fractions" },
       { code: "Y5-L5-2", description: "Add and subtract fractions with the same denominator, including mixed numbers.", dfeReference: "Y5 Fractions: add/subtract fractions and mixed numbers" },
       { code: "Y5-L5-3", description: "Multiply proper fractions and mixed numbers by whole numbers.", dfeReference: "Y5 Fractions: multiply proper fractions/mixed numbers by whole numbers" }
