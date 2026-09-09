@@ -1022,6 +1022,59 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       audioScript: "Keep adding the same step size from zero, and you'll build the whole multiples pattern."
     }
   ],
+  Y3L2: [
+    {
+      order: 1,
+      title: "Adding and subtracting mentally",
+      concept: "Adding and subtracting a three-digit number and ones, tens or hundreds in your head",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "playful",
+      objectiveCodes: ["Y3-L2-1"],
+      explanationMd:
+        "When you add or subtract ones, tens or hundreds to a three-digit number, only one digit changes (unless it carries over).\n\n" +
+        "Adding ones changes the ones digit; adding tens changes the tens digit; adding hundreds changes the hundreds digit.",
+      workedExamples: [
+        { problem: "What is 342 + 6?", steps: ["Only the ones digit changes: 2 + 6 = 8."], answer: "348" },
+        { problem: "What is 342 + 50?", steps: ["Only the tens digit changes: 4 + 5 = 9."], answer: "392" }
+      ],
+      audioScript: "Spot which column is changing — ones, tens, or hundreds — and you can often do it in your head."
+    },
+    {
+      order: 2,
+      title: "Column addition and subtraction",
+      concept: "Using the formal written column method to add and subtract larger numbers, carrying and borrowing where needed",
+      representation: "pictorial",
+      visualAid: "none",
+      ageBandStyle: "playful",
+      objectiveCodes: ["Y3-L2-2"],
+      explanationMd:
+        "In column addition, line up the ones, tens and hundreds, then add each column from the right. If a column adds to 10 or more, **carry** 1 into the next column.\n\n" +
+        "In column subtraction, if a digit is too small to subtract from, **borrow** 1 from the column to its left.",
+      workedExamples: [
+        { problem: "What is 358 + 276?", steps: ["8 + 6 = 14, write 4, carry 1.", "5 + 7 + 1 = 13, write 3, carry 1.", "3 + 2 + 1 = 6."], answer: "634" },
+        { problem: "What is 542 - 168?", steps: ["2 - 8 needs borrowing: 12 - 8 = 4.", "3 - 6 needs borrowing: 13 - 6 = 7.", "4 - 1 = 3."], answer: "374" }
+      ],
+      audioScript: "Always start from the ones column on the right, and carry or borrow whenever a column doesn't fit."
+    },
+    {
+      order: 3,
+      title: "Estimating and checking with inverse operations",
+      concept: "Estimating an answer by rounding first, and checking a calculation using the inverse operation",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "playful",
+      objectiveCodes: ["Y3-L2-3"],
+      explanationMd:
+        "Before doing a written calculation, it helps to **estimate** the answer by rounding each number to the nearest 100 first — this helps you spot a mistake later.\n\n" +
+        "You can also **check** an answer using the inverse operation: if 250 + 180 = 430, then 430 - 180 should equal 250.",
+      workedExamples: [
+        { problem: "Estimate 387 + 512 by rounding to the nearest 100.", steps: ["387 rounds to 400.", "512 rounds to 500."], answer: "900" },
+        { problem: "Check that 260 + 340 = 600 using the inverse.", steps: ["600 - 340 = 260, which matches the first number."], answer: "Correct" }
+      ],
+      audioScript: "Round first to get a sensible estimate, and use the opposite operation afterwards to check your work."
+    }
+  ],
   Y6L1: [
     {
       order: 1,

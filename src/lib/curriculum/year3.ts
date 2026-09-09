@@ -1,7 +1,7 @@
 import type { SchoolYearDef } from "./types";
 
-// Year 3 (ages 7-8, KS2). Level 1 is fully authored (lessons, practice,
-// 40-question mastery bank); levels 2-10 are scaffolded (curriculum
+// Year 3 (ages 7-8, KS2). Levels 1-2 are fully authored (lessons, practice,
+// 40-question mastery banks); levels 3-10 are scaffolded (curriculum
 // metadata only — see questionEngine/templates/all.ts COMPLETE_LEVEL_KEYS).
 export const year3: SchoolYearDef = {
   yearNumber: 3,
@@ -17,7 +17,7 @@ export const year3: SchoolYearDef = {
       { code: "Y3-L1-2", description: "Compare and order numbers up to 1,000.", dfeReference: "Y3 Number & place value: compare and order numbers up to 1000" },
       { code: "Y3-L1-3", description: "Count from 0 in multiples of 4, 8, 50 and 100.", dfeReference: "Y3 Number & place value: count from 0 in multiples of 4, 8, 50, 100" }
     ]},
-    { levelNumber: 2, title: "Written addition and subtraction", summary: "By the end of this level, you will add and subtract numbers using columns.", isMixedMastery: false, status: "SCAFFOLDED", pathway: null, objectives: [
+    { levelNumber: 2, title: "Written addition and subtraction", summary: "By the end of this level, you will add and subtract numbers using columns.", isMixedMastery: false, status: "COMPLETE", pathway: null, objectives: [
       { code: "Y3-L2-1", description: "Add and subtract numbers mentally, including a three-digit number and ones/tens/hundreds.", dfeReference: "Y3 Addition & subtraction: add/subtract mentally" },
       { code: "Y3-L2-2", description: "Use formal written column methods for addition and subtraction.", dfeReference: "Y3 Addition & subtraction: written methods, columnar addition and subtraction" },
       { code: "Y3-L2-3", description: "Estimate and check answers using inverse operations.", dfeReference: "Y3 Addition & subtraction: estimate and use inverse operations to check" }
