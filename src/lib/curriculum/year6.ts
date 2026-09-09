@@ -1,7 +1,7 @@
 import type { SchoolYearDef } from "./types";
 
-// Year 6 (ages 10-11, KS2). Level 1 is fully authored (lessons, practice,
-// 40-question mastery bank); levels 2-10 are scaffolded (curriculum
+// Year 6 (ages 10-11, KS2). Levels 1-2 are fully authored (lessons, practice,
+// 40-question mastery banks); levels 3-10 are scaffolded (curriculum
 // metadata only — see questionEngine/templates/all.ts COMPLETE_LEVEL_KEYS).
 export const year6: SchoolYearDef = {
   yearNumber: 6,
@@ -17,7 +17,7 @@ export const year6: SchoolYearDef = {
       { code: "Y6-L1-2", description: "Round any whole number to a required degree of accuracy.", dfeReference: "Y6 Number & place value: round any whole number" },
       { code: "Y6-L1-3", description: "Use negative numbers in context, and calculate intervals across zero.", dfeReference: "Y6 Number & place value: use negative numbers in context" }
     ]},
-    { levelNumber: 2, title: "The four operations and multi-step problems", summary: "By the end of this level, you will use all four operations to solve multi-step problems.", isMixedMastery: false, status: "SCAFFOLDED", pathway: null, objectives: [
+    { levelNumber: 2, title: "The four operations and multi-step problems", summary: "By the end of this level, you will use all four operations to solve multi-step problems.", isMixedMastery: false, status: "COMPLETE", pathway: null, objectives: [
       { code: "Y6-L2-1", description: "Multiply multi-digit numbers up to 4 digits by a two-digit number using a formal written method.", dfeReference: "Y6 Multiplication & division: formal written method" },
       { code: "Y6-L2-2", description: "Divide numbers up to 4 digits by a two-digit number, interpreting remainders.", dfeReference: "Y6 Multiplication & division: long division" },
       { code: "Y6-L2-3", description: "Solve problems involving all four operations, using estimation to check answers.", dfeReference: "Y6 Addition, subtraction, multiplication & division: solve problems" }

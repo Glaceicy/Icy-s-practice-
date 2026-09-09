@@ -1125,6 +1125,58 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       audioScript: "Crossing zero doesn't change the method — just add the distance below zero to the distance above it."
     }
   ],
+  Y6L2: [
+    {
+      order: 1,
+      title: "Multiplying by a two-digit number",
+      concept: "Using the formal written method to multiply a large number by a two-digit number",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y6-L2-1"],
+      explanationMd:
+        "To multiply by a two-digit number, split it into tens and ones. Multiply by the ones first, then by the tens, then add the two results together.\n\n" +
+        "For example, to work out 234 x 26, work out 234 x 6 and 234 x 20 separately, then add them.",
+      workedExamples: [
+        { problem: "What is 234 x 26?", steps: ["234 x 6 = 1,404.", "234 x 20 = 4,680.", "1,404 + 4,680 = 6,084."], answer: "6,084" }
+      ],
+      audioScript: "Split the two-digit number into tens and ones, multiply by each part separately, then add the results."
+    },
+    {
+      order: 2,
+      title: "Dividing by a two-digit number and remainders",
+      concept: "Using long division to divide by a two-digit number, and deciding how to interpret a remainder",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y6-L2-2"],
+      explanationMd:
+        "When a division doesn't divide exactly, there's a **remainder** left over. What you do with the remainder depends on the question: sometimes you round up (like needing an extra coach), sometimes you round down (like counting complete teams), and sometimes the remainder itself is the answer.\n\n" +
+        "Always read the context carefully to decide which is sensible.",
+      workedExamples: [
+        { problem: "163 people need seats on minibuses that hold 25 each. How many minibuses are needed?", steps: ["163 ÷ 25 = 6 remainder 13.", "An extra minibus is needed for the 13 left over."], answer: "7" },
+        { problem: "How many complete teams of 12 can be made from 100 players?", steps: ["100 ÷ 12 = 8 remainder 4.", "Only complete teams count."], answer: "8" }
+      ],
+      audioScript: "The remainder isn't always ignored — think about what makes sense for the real situation in the question."
+    },
+    {
+      order: 3,
+      title: "Multi-step problems and estimating to check",
+      concept: "Solving problems that combine several operations, and using estimation to check the answer is sensible",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y6-L2-3"],
+      explanationMd:
+        "Some problems need **more than one operation** — read carefully to work out what happens first, second, and so on.\n\n" +
+        "Before or after solving, it's good practice to **estimate** by rounding the numbers, so you can spot if your exact answer looks wrong.",
+      workedExamples: [
+        { problem: "A shop had 340 bottles. They received 8 boxes of 24 bottles, then sold 95. How many bottles are left?", steps: ["8 x 24 = 192.", "340 + 192 = 532.", "532 - 95 = 437."], answer: "437" },
+        { problem: "Estimate 812 x 48 by rounding first.", steps: ["812 rounds to 800.", "48 rounds to 50."], answer: "40,000" }
+      ],
+      audioScript: "Break a multi-step problem down one operation at a time, and use a rounded estimate to sanity-check your final answer."
+    }
+  ],
   Y8L1: [
     {
       order: 1,
