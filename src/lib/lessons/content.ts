@@ -1125,6 +1125,59 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       audioScript: "Same base: multiplying adds the powers, dividing subtracts them, and a power of a power multiplies them."
     }
   ],
+  Y9L1: [
+    {
+      order: 1,
+      title: "Standard form",
+      concept: "Writing very large or very small numbers as A x 10^n",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y9-L1-1"],
+      explanationMd:
+        "**Standard form** writes a number as A x 10^n, where A is between 1 and 10 (but never 10 itself), and n tells you how many places to move the decimal point.\n\n" +
+        "It's especially useful for very large numbers (like the distance to a star) or very small ones, without writing lots of zeros.",
+      workedExamples: [
+        { problem: "Write 4.5 x 10^6 as an ordinary number.", steps: ["Move the decimal point 6 places right."], answer: "4,500,000" },
+        { problem: "Write 730,000 in standard form.", steps: ["The first non-zero digit is 7.", "Count how many places the point moves: 5."], answer: "7.3 x 10^5" }
+      ],
+      audioScript: "The mantissa is always a number from 1 up to (but not including) 10 — that's the rule that makes standard form work."
+    },
+    {
+      order: 2,
+      title: "Index laws with negative and fractional indices",
+      concept: "Extending the index laws to negative indices (reciprocals) and fractional indices (roots)",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y9-L1-2"],
+      explanationMd:
+        "A **negative index** means 'one over': a^-n = 1/(a^n). A **fractional index** means 'take a root': a^(1/2) is the square root of a, and a^(1/3) is the cube root.\n\n" +
+        "The same laws you know for whole-number powers (add when multiplying, subtract when dividing) still apply.",
+      workedExamples: [
+        { problem: "Write 2^-3 as a fraction.", steps: ["2^-3 = 1/2^3 = 1/8."], answer: "1/8" },
+        { problem: "What is 27^(1/3)?", steps: ["This means the cube root of 27.", "3 x 3 x 3 = 27."], answer: "3" }
+      ],
+      audioScript: "Negative means 'flip it into a fraction'; a fractional power means 'take that root' instead of multiplying."
+    },
+    {
+      order: 3,
+      title: "Significant figures and estimating",
+      concept: "Rounding numbers to a given number of significant figures and using rounding to estimate calculations",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y9-L1-3"],
+      explanationMd:
+        "A **significant figure** is a digit that contributes to a number's precision, starting from the first non-zero digit. Rounding to a given number of significant figures keeps that many digits and rounds the rest away.\n\n" +
+        "You can estimate the answer to a calculation by rounding each number to 1 significant figure first, then working it out.",
+      workedExamples: [
+        { problem: "Round 4,872 to 2 significant figures.", steps: ["Keep the first two digits: 4 and 8.", "Look at the next digit (7) to round up."], answer: "4,900" },
+        { problem: "Estimate 38 x 21 by rounding each number to 1 significant figure.", steps: ["38 rounds to 40.", "21 rounds to 20."], answer: "800" }
+      ],
+      audioScript: "Count significant figures from the first non-zero digit, and use rounded numbers to get a quick, sensible estimate."
+    }
+  ],
   Y10L1: [
     {
       order: 1,

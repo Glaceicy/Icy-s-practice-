@@ -1,7 +1,9 @@
 import type { SchoolYearDef } from "./types";
 
-// Year 9 (ages 13-14, KS3, pre-GCSE). Curriculum metadata/objectives defined;
-// full lesson/question content scaffolded for future authoring pass.
+// Year 9 (ages 13-14, KS3, pre-GCSE). Level 1 is fully authored (lessons,
+// practice, 40-question mastery bank); levels 2-10 are scaffolded
+// (curriculum metadata only — see questionEngine/templates/all.ts
+// COMPLETE_LEVEL_KEYS).
 export const year9: SchoolYearDef = {
   yearNumber: 9,
   title: "Year 9",
@@ -11,7 +13,7 @@ export const year9: SchoolYearDef = {
   maxAge: 14,
   themeStage: "mature",
   levels: [
-    { levelNumber: 1, title: "Standard form, indices, roots and number accuracy", summary: "By the end of this level, you will use standard form and index laws with accuracy.", isMixedMastery: false, status: "SCAFFOLDED", pathway: null, objectives: [
+    { levelNumber: 1, title: "Standard form, indices, roots and number accuracy", summary: "By the end of this level, you will use standard form and index laws with accuracy.", isMixedMastery: false, status: "COMPLETE", pathway: null, objectives: [
       { code: "Y9-L1-1", description: "Interpret and write numbers in standard form (A x 10^n).", dfeReference: "KS3 Number: interpret/write standard form" },
       { code: "Y9-L1-2", description: "Use the laws of indices, including negative and fractional indices.", dfeReference: "KS3 Number: laws of indices" },
       { code: "Y9-L1-3", description: "Round to a given number of significant figures and estimate answers.", dfeReference: "KS3 Number: round to significant figures" }
