@@ -42,7 +42,7 @@ export const year5: SchoolYearDef = {
       { code: "Y5-L6-2", description: "Recognise the per cent symbol and understand percentage as parts per hundred.", dfeReference: "Y5 Percentages: recognise % and parts per hundred" },
       { code: "Y5-L6-3", description: "Round decimals with two decimal places to the nearest whole number and one decimal place.", dfeReference: "Y5 Decimals: round decimals with 2dp" }
     ]},
-    { levelNumber: 7, title: "Measurement, perimeter, area and volume", summary: "By the end of this level, you will calculate area, perimeter and volume using formulae.", isMixedMastery: false, status: "SCAFFOLDED", pathway: null, objectives: [
+    { levelNumber: 7, title: "Measurement, perimeter, area and volume", summary: "By the end of this level, you will calculate area, perimeter and volume using formulae.", isMixedMastery: false, status: "COMPLETE", pathway: null, objectives: [
       { code: "Y5-L7-1", description: "Calculate the area of rectangles and estimate area of irregular shapes.", dfeReference: "Y5 Measurement: calculate area of rectangles" },
       { code: "Y5-L7-2", description: "Estimate volume and capacity using cubes and standard units.", dfeReference: "Y5 Measurement: estimate volume and capacity" },
       { code: "Y5-L7-3", description: "Convert between different units of metric measure.", dfeReference: "Y5 Measurement: convert between units of metric measure" }

@@ -561,6 +561,58 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       audioScript: "Rounding decimals works just like rounding whole numbers — just check the right digit."
     }
   ],
+  Y5L7: [
+    {
+      order: 1,
+      title: "Area and perimeter of rectangles",
+      concept: "Calculating the area and perimeter of rectangles, and estimating the area of irregular shapes",
+      representation: "pictorial",
+      visualAid: "array",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y5-L7-1"],
+      explanationMd:
+        "**Area** measures the amount of surface a shape covers, in square units (like m²). For a rectangle: area = length x width.\n\n" +
+        "**Perimeter** measures the distance all the way around the outside, in units (like m). For a rectangle: perimeter = 2 x (length + width).\n\n" +
+        "For an irregular (L-shaped) area, split it into rectangles, find each area, then add them together.",
+      workedExamples: [
+        { problem: "A rectangle is 6 m by 4 m. Find its area and perimeter.", steps: ["Area = 6 x 4 = 24 m².", "Perimeter = 2 x (6 + 4) = 20 m."], answer: "Area 24 m², perimeter 20 m" }
+      ],
+      audioScript: "Area covers the inside of a shape; perimeter measures the distance around the outside."
+    },
+    {
+      order: 2,
+      title: "Volume and capacity",
+      concept: "Estimating volume using unit cubes and estimating everyday capacities",
+      representation: "concrete",
+      visualAid: "array",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y5-L7-2"],
+      explanationMd:
+        "**Volume** measures how much space a 3D shape takes up, in cubic units (like cm³). For a cuboid: volume = length x width x height.\n\n" +
+        "**Capacity** measures how much a container can hold, usually in millilitres (ml) or litres (l). Knowing everyday capacities (a teaspoon holds about 5 ml, a kettle about 1.5 l) helps you estimate sensibly.",
+      workedExamples: [
+        { problem: "A cuboid box is 5 cm by 3 cm by 2 cm. What is its volume?", steps: ["Volume = 5 x 3 x 2 = 30 cm³."], answer: "30 cm³" }
+      ],
+      audioScript: "Volume is like area but for 3D shapes — multiply all three dimensions together."
+    },
+    {
+      order: 3,
+      title: "Converting metric units",
+      concept: "Converting between millimetres, centimetres, metres and kilometres, and between grams/kilograms and litres/millilitres",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y5-L7-3"],
+      explanationMd:
+        "Metric units are all connected by powers of 10: 10 mm = 1 cm, 100 cm = 1 m, 1,000 m = 1 km, 1,000 g = 1 kg, 1,000 ml = 1 l.\n\n" +
+        "To convert to a smaller unit, multiply. To convert to a bigger unit, divide.",
+      workedExamples: [
+        { problem: "Convert 350 cm to m.", steps: ["100 cm = 1 m.", "350 ÷ 100 = 3.5."], answer: "3.5 m" },
+        { problem: "Convert 2 kg to g.", steps: ["1 kg = 1,000 g.", "2 x 1,000 = 2,000."], answer: "2,000 g" }
+      ],
+      audioScript: "Going to a smaller unit means multiplying; going to a bigger unit means dividing."
+    }
+  ],
   Y10L1: [
     {
       order: 1,
