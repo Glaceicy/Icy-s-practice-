@@ -1230,6 +1230,59 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       audioScript: "Same base: multiplying adds the powers, dividing subtracts them, and a power of a power multiplies them."
     }
   ],
+  Y8L2: [
+    {
+      order: 1,
+      title: "Percentage increase and decrease",
+      concept: "Finding a percentage increase or decrease, and finding what percentage change occurred",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "gameinspired",
+      objectiveCodes: ["Y8-L2-1"],
+      explanationMd:
+        "To increase or decrease by a percentage: work out that percentage of the original amount first, then add it on (increase) or take it away (decrease).\n\n" +
+        "To find the percentage change itself, divide the change by the original amount, then multiply by 100.",
+      workedExamples: [
+        { problem: "Increase £200 by 15%.", steps: ["15% of 200 = 30.", "200 + 30 = 230."], answer: "£230" },
+        { problem: "A price rose from £80 to £100. What percentage increase is this?", steps: ["The increase is £20.", "20 ÷ 80 x 100 = 25."], answer: "25%" }
+      ],
+      audioScript: "Always compare the change to the ORIGINAL amount, not the new amount, when finding a percentage change."
+    },
+    {
+      order: 2,
+      title: "Percentages over 100%",
+      concept: "Understanding that a percentage greater than 100% represents more than the whole original amount",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "gameinspired",
+      objectiveCodes: ["Y8-L2-2"],
+      explanationMd:
+        "A percentage over 100% means more than the whole amount — 150% of something is one and a half times as much.\n\n" +
+        "You can convert between a percentage over 100% and a decimal the same way as any other percentage: divide by 100.",
+      workedExamples: [
+        { problem: "Write 175% as a decimal.", steps: ["175 ÷ 100 = 1.75."], answer: "1.75" },
+        { problem: "What is 120% of 50?", steps: ["120% = 1.2.", "1.2 x 50 = 60."], answer: "60" }
+      ],
+      audioScript: "Don't be thrown by percentages bigger than 100% — the method for finding them is exactly the same, just with a bigger multiplier."
+    },
+    {
+      order: 3,
+      title: "Fractions and percentages of amounts",
+      concept: "Finding a fraction or a percentage of an amount, and working backwards to find the whole",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "gameinspired",
+      objectiveCodes: ["Y8-L2-3"],
+      explanationMd:
+        "To find a fraction of an amount, divide by the denominator, then multiply by the numerator. To find a percentage of an amount, divide by 100, then multiply by the percentage.\n\n" +
+        "You can also work backwards: if you know a part and the fraction or percentage it represents, you can find the whole amount.",
+      workedExamples: [
+        { problem: "What is 3/5 of 40?", steps: ["40 ÷ 5 = 8.", "8 x 3 = 24."], answer: "24" },
+        { problem: "20% of a number is 14. What is the number?", steps: ["14 ÷ 20 = 0.7.", "0.7 x 100 = 70."], answer: "70" }
+      ],
+      audioScript: "Whichever direction you're working — finding the part, or finding the whole — divide first, then multiply."
+    }
+  ],
   Y9L1: [
     {
       order: 1,

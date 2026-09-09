@@ -1,8 +1,9 @@
 import type { SchoolYearDef } from "./types";
 
-// Year 8 (ages 12-13, KS3). Level 1 is fully authored (lessons, practice,
-// 40-question mastery bank); levels 2-10 are scaffolded (curriculum
-// metadata only — see questionEngine/templates/all.ts COMPLETE_LEVEL_KEYS).
+// Year 8 (ages 12-13, KS3). Levels 1-2 are fully authored (lessons,
+// practice, 40-question mastery banks); levels 3-10 are scaffolded
+// (curriculum metadata only — see questionEngine/templates/all.ts
+// COMPLETE_LEVEL_KEYS).
 export const year8: SchoolYearDef = {
   yearNumber: 8,
   title: "Year 8",
@@ -17,7 +18,7 @@ export const year8: SchoolYearDef = {
       { code: "Y8-L1-2", description: "Recognise and use relationships between operations, including inverse operations.", dfeReference: "KS3 Number: recognise/use relationships between operations" },
       { code: "Y8-L1-3", description: "Use index laws to simplify numerical expressions.", dfeReference: "KS3 Number: use standard units of measure and related concepts" }
     ]},
-    { levelNumber: 2, title: "Fractions, percentages and percentage change", summary: "By the end of this level, you will calculate percentage increase, decrease and change.", isMixedMastery: false, status: "SCAFFOLDED", pathway: null, objectives: [
+    { levelNumber: 2, title: "Fractions, percentages and percentage change", summary: "By the end of this level, you will calculate percentage increase, decrease and change.", isMixedMastery: false, status: "COMPLETE", pathway: null, objectives: [
       { code: "Y8-L2-1", description: "Interpret percentage increase and decrease, and percentage change.", dfeReference: "KS3 Ratio & proportion: percentage increase/decrease/change" },
       { code: "Y8-L2-2", description: "Work with percentages greater than 100%.", dfeReference: "KS3 Ratio & proportion: percentages greater than 100%" },
       { code: "Y8-L2-3", description: "Solve problems involving fractions and percentages of amounts.", dfeReference: "KS3 Number/Ratio & proportion: solve problems" }
