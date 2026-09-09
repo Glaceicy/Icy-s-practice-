@@ -666,6 +666,56 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       audioScript: "Once you know one side and one angle of a rectangle, the properties tell you the rest."
     }
   ],
+  Y5L9: [
+    {
+      order: 1,
+      title: "Reading line graphs",
+      concept: "Solving comparison, sum and difference problems using a line graph",
+      representation: "pictorial",
+      visualAid: "graph",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y5-L9-1"],
+      explanationMd:
+        "A line graph shows how a value changes — read the point for each label to find its value, then compare, add or subtract as the question asks.\n\n" +
+        "The **range** is the difference between the highest and lowest values on the graph.",
+      workedExamples: [
+        { problem: "A graph shows 12 books on Monday and 18 on Tuesday. How many more on Tuesday?", steps: ["18 - 12 = 6."], answer: "6 more" }
+      ],
+      audioScript: "Find each point on the graph, read its value, then work out what the question is asking."
+    },
+    {
+      order: 2,
+      title: "Tables and timetables",
+      concept: "Reading and interpreting information from tables, including bus and train timetables",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y5-L9-2"],
+      explanationMd:
+        "A table organises information into rows and columns. A timetable is a special kind of table showing times — find the row or column that matches what you're looking for.\n\n" +
+        "To find the next departure after a certain time, look for the first time in the list that is later than your arrival time.",
+      workedExamples: [
+        { problem: "A bus timetable shows 09:15, 09:45, 10:15. You arrive at 09:20. What's the next bus?", steps: ["09:15 has already gone.", "The next one after 09:20 is 09:45."], answer: "09:45" }
+      ],
+      audioScript: "Scan along the table until you find the row or time that answers the question."
+    },
+    {
+      order: 3,
+      title: "24-hour clock durations",
+      concept: "Calculating how long a journey takes using 24-hour clock times",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y5-L9-3"],
+      explanationMd:
+        "The 24-hour clock counts hours from 00:00 (midnight) to 23:59, avoiding the need for am/pm. To find a duration, count the minutes from the start time to the end time.\n\n" +
+        "To add a duration to a time, add the minutes and carry over into hours once you reach 60.",
+      workedExamples: [
+        { problem: "A train leaves at 14:35 and the journey takes 50 minutes. What time does it arrive?", steps: ["14:35 + 25 minutes = 15:00.", "15:00 + 25 more minutes = 15:25."], answer: "15:25" }
+      ],
+      audioScript: "Break a duration into steps if it helps — get to the next whole hour first, then add what's left."
+    }
+  ],
   Y10L1: [
     {
       order: 1,

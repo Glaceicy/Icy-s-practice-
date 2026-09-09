@@ -52,7 +52,7 @@ export const year5: SchoolYearDef = {
       { code: "Y5-L8-2", description: "Identify, describe and represent the position of a shape following reflection or translation.", dfeReference: "Y5 Geometry: reflection and translation" },
       { code: "Y5-L8-3", description: "Use the properties of rectangles to deduce related facts and find missing lengths and angles.", dfeReference: "Y5 Geometry: use properties of rectangles" }
     ]},
-    { levelNumber: 9, title: "Statistics, line graphs and timetables", summary: "By the end of this level, you will read line graphs, tables and timetables.", isMixedMastery: false, status: "SCAFFOLDED", pathway: null, objectives: [
+    { levelNumber: 9, title: "Statistics, line graphs and timetables", summary: "By the end of this level, you will read line graphs, tables and timetables.", isMixedMastery: false, status: "COMPLETE", pathway: null, objectives: [
       { code: "Y5-L9-1", description: "Solve comparison, sum and difference problems using information presented in a line graph.", dfeReference: "Y5 Statistics: solve problems using line graphs" },
       { code: "Y5-L9-2", description: "Complete, read and interpret information in tables, including timetables.", dfeReference: "Y5 Statistics: complete/read/interpret tables including timetables" },
       { code: "Y5-L9-3", description: "Calculate durations using 24-hour clock timetables.", dfeReference: "Y5 Measurement/Statistics: 24-hour clock and timetables" }
