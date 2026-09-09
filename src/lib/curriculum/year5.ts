@@ -47,7 +47,7 @@ export const year5: SchoolYearDef = {
       { code: "Y5-L7-2", description: "Estimate volume and capacity using cubes and standard units.", dfeReference: "Y5 Measurement: estimate volume and capacity" },
       { code: "Y5-L7-3", description: "Convert between different units of metric measure.", dfeReference: "Y5 Measurement: convert between units of metric measure" }
     ]},
-    { levelNumber: 8, title: "Angles, shapes, coordinates and transformations", summary: "By the end of this level, you will measure angles and reflect/translate shapes.", isMixedMastery: false, status: "SCAFFOLDED", pathway: null, objectives: [
+    { levelNumber: 8, title: "Angles, shapes, coordinates and transformations", summary: "By the end of this level, you will measure angles and reflect/translate shapes.", isMixedMastery: false, status: "COMPLETE", pathway: null, objectives: [
       { code: "Y5-L8-1", description: "Know angles are measured in degrees; estimate and compare acute, obtuse and reflex angles.", dfeReference: "Y5 Geometry: know angles are measured in degrees" },
       { code: "Y5-L8-2", description: "Identify, describe and represent the position of a shape following reflection or translation.", dfeReference: "Y5 Geometry: reflection and translation" },
       { code: "Y5-L8-3", description: "Use the properties of rectangles to deduce related facts and find missing lengths and angles.", dfeReference: "Y5 Geometry: use properties of rectangles" }

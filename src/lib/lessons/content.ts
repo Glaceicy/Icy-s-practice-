@@ -613,6 +613,59 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       audioScript: "Going to a smaller unit means multiplying; going to a bigger unit means dividing."
     }
   ],
+  Y5L8: [
+    {
+      order: 1,
+      title: "Types of angle",
+      concept: "Measuring angles in degrees and classifying them as acute, right, obtuse or reflex",
+      representation: "pictorial",
+      visualAid: "none",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y5-L8-1"],
+      explanationMd:
+        "Angles are measured in **degrees** (°). A full turn is 360°.\n\n" +
+        "**Acute**: less than 90°. **Right angle**: exactly 90°. **Obtuse**: between 90° and 180°. **Reflex**: more than 180°.\n\n" +
+        "Angles on a straight line always add up to 180°; angles around a point always add up to 360°.",
+      workedExamples: [
+        { problem: "What type of angle is 130°?", steps: ["130° is between 90° and 180°."], answer: "Obtuse" },
+        { problem: "Two angles on a straight line are 65° and ___°.", steps: ["180 - 65 = 115."], answer: "115°" }
+      ],
+      audioScript: "Acute is small and sharp, obtuse is wide, and reflex is more than a straight line."
+    },
+    {
+      order: 2,
+      title: "Reflection and translation",
+      concept: "Describing and finding the new position of a point after a translation or reflection",
+      representation: "pictorial",
+      visualAid: "coordinate-grid",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y5-L8-2"],
+      explanationMd:
+        "A **translation** slides a point without turning or flipping it — moving right/left changes the x-coordinate, moving up/down changes the y-coordinate.\n\n" +
+        "A **reflection** flips a point across a mirror line. Reflecting in a vertical line only changes the x-coordinate; reflecting in a horizontal line only changes the y-coordinate. The mirror line is always the same distance from the point and its reflection.",
+      workedExamples: [
+        { problem: "Point (2, 3) is translated 4 right and 1 up.", steps: ["x: 2 + 4 = 6.", "y: 3 + 1 = 4."], answer: "(6, 4)" },
+        { problem: "Point (1, 5) is reflected in the vertical line x = 4.", steps: ["The point is 3 to the left of the line.", "The reflection is 3 to the right of the line: 4 + 3 = 7.", "The y-coordinate stays the same."], answer: "(7, 5)" }
+      ],
+      audioScript: "Translating slides a point; reflecting flips it across a mirror line, the same distance on the other side."
+    },
+    {
+      order: 3,
+      title: "Properties of rectangles",
+      concept: "Using the properties of a rectangle (opposite sides equal, all angles 90°) to find missing lengths and angles",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y5-L8-3"],
+      explanationMd:
+        "A rectangle always has **opposite sides equal in length** and **all four angles equal to 90°**. Knowing this lets you work out missing measurements without needing to see the whole shape.\n\n" +
+        "The angles inside any four-sided shape always add up to 360°.",
+      workedExamples: [
+        { problem: "A rectangle has a perimeter of 30 cm and one side of 8 cm. What is the adjacent side?", steps: ["Half the perimeter = 15 cm.", "15 - 8 = 7 cm."], answer: "7 cm" }
+      ],
+      audioScript: "Once you know one side and one angle of a rectangle, the properties tell you the rest."
+    }
+  ],
   Y10L1: [
     {
       order: 1,
