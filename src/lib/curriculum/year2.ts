@@ -1,9 +1,10 @@
 import type { SchoolYearDef } from "./types";
 
-// Year 2 (ages 6-7, KS1). Curriculum metadata and objectives are fully defined;
-// full lesson/question content is scheduled for a future authoring pass (see
-// DOCUMENTATION.md "Content coverage status") — levels are shown to learners
-// as "Coming soon" rather than presented as playable with placeholder content.
+// Year 2 (ages 6-7, KS1). Level 1 is fully authored (lessons, practice,
+// 40-question mastery bank); levels 2-10 are scaffolded (curriculum metadata
+// only — see questionEngine/templates/all.ts COMPLETE_LEVEL_KEYS). Levels
+// without content are shown to learners as "Coming soon" rather than
+// presented as playable with placeholder content.
 export const year2: SchoolYearDef = {
   yearNumber: 2,
   title: "Year 2",
@@ -17,7 +18,7 @@ export const year2: SchoolYearDef = {
       levelNumber: 1,
       title: "Place value and numbers to 100",
       summary: "By the end of this level, you will understand tens and ones in numbers up to 100.",
-      isMixedMastery: false, status: "SCAFFOLDED", pathway: null,
+      isMixedMastery: false, status: "COMPLETE", pathway: null,
       objectives: [
         { code: "Y2-L1-1", description: "Recognise the place value of each digit in a two-digit number (tens, ones).", dfeReference: "Y2 Number & place value: recognise place value of each digit" },
         { code: "Y2-L1-2", description: "Compare and order numbers to 100 using <, > and =.", dfeReference: "Y2 Number & place value: compare and order numbers using symbols" },

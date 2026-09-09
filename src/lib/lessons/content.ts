@@ -766,6 +766,58 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       audioScript: "This is your chance to show everything you've learned about shapes, measures and data this year."
     }
   ],
+  Y2L1: [
+    {
+      order: 1,
+      title: "Tens and ones",
+      concept: "Understanding that a two-digit number is made of tens and ones",
+      representation: "concrete",
+      visualAid: "ten-frame",
+      ageBandStyle: "playful",
+      objectiveCodes: ["Y2-L1-1"],
+      explanationMd:
+        "Every two-digit number has a **tens digit** (the first digit) and a **ones digit** (the second digit). For example, 47 has 4 tens and 7 ones.\n\n" +
+        "You can build any two-digit number by counting groups of ten, then adding the leftover ones.",
+      workedExamples: [
+        { problem: "How many tens and ones make 63?", steps: ["6 groups of ten = 60.", "3 left over."], answer: "6 tens, 3 ones" }
+      ],
+      audioScript: "The first digit tells us the tens, the second digit tells us the ones."
+    },
+    {
+      order: 2,
+      title: "Comparing with <, > and =",
+      concept: "Using the symbols < (less than), > (greater than) and = (equal to) to compare numbers",
+      representation: "pictorial",
+      visualAid: "number-line",
+      ageBandStyle: "playful",
+      objectiveCodes: ["Y2-L1-2"],
+      explanationMd:
+        "The **<** symbol means 'is less than' and **>** means 'is greater than' — the symbol always points at the smaller number.\n\n" +
+        "To compare two numbers, look at the tens digit first. If the tens match, compare the ones digit.",
+      workedExamples: [
+        { problem: "Which symbol goes here: 34 ___ 52?", steps: ["3 tens is less than 5 tens."], answer: "<" },
+        { problem: "Which symbol goes here: 78 ___ 78?", steps: ["Both numbers are the same."], answer: "=" }
+      ],
+      audioScript: "The symbol always points towards the smaller number, like a hungry alligator eating the bigger one!"
+    },
+    {
+      order: 3,
+      title: "Counting in steps",
+      concept: "Counting forwards in steps of 2, 3, 5 and 10 from any starting number",
+      representation: "pictorial",
+      visualAid: "number-line",
+      ageBandStyle: "playful",
+      objectiveCodes: ["Y2-L1-3"],
+      explanationMd:
+        "You don't have to start counting in steps from zero — you can count in 2s, 3s, 5s or 10s starting from **any** number.\n\n" +
+        "When counting in 10s, only the tens digit changes each time; the ones digit stays the same.",
+      workedExamples: [
+        { problem: "Count on in 3s from 8: 8, ___, ___, ___", steps: ["8 + 3 = 11.", "11 + 3 = 14.", "14 + 3 = 17."], answer: "11, 14, 17" },
+        { problem: "What is 47 + 10?", steps: ["Only the tens digit changes: 4 becomes 5."], answer: "57" }
+      ],
+      audioScript: "You can start a counting pattern from any number — just keep adding the same step size each time."
+    }
+  ],
   Y10L1: [
     {
       order: 1,
