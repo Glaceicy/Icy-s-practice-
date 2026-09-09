@@ -1336,6 +1336,59 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       audioScript: "Count significant figures from the first non-zero digit, and use rounded numbers to get a quick, sensible estimate."
     }
   ],
+  Y9L2: [
+    {
+      order: 1,
+      title: "Direct and inverse proportion",
+      concept: "Distinguishing between quantities that increase together (direct) and quantities where one increases as the other decreases (inverse)",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y9-L2-1"],
+      explanationMd:
+        "In **direct proportion**, both quantities scale together — double one, and the other doubles too (like cost and quantity bought).\n\n" +
+        "In **inverse proportion**, one quantity increases as the other decreases — double the workers, and the job takes half the time.",
+      workedExamples: [
+        { problem: "6 pens cost £3. How much do 10 pens cost?", steps: ["£3 ÷ 6 = £0.50 per pen.", "£0.50 x 10 = £5."], answer: "£5" },
+        { problem: "4 painters take 12 days to paint a building. How long would 8 painters take?", steps: ["4 x 12 = 48 painter-days of work.", "48 ÷ 8 = 6 days."], answer: "6 days" }
+      ],
+      audioScript: "Ask yourself: if one quantity goes up, does the other go up too (direct), or does it go down (inverse)?"
+    },
+    {
+      order: 2,
+      title: "Compound measures",
+      concept: "Using the formulae for speed, density and pressure, which combine two other measurements",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y9-L2-2"],
+      explanationMd:
+        "A **compound measure** combines two quantities: speed = distance ÷ time, density = mass ÷ volume, and pressure = force ÷ area.\n\n" +
+        "You can rearrange each formula to find any of the three quantities, as long as you know the other two.",
+      workedExamples: [
+        { problem: "A cyclist travels 45 miles in 3 hours. What is their average speed?", steps: ["45 ÷ 3 = 15."], answer: "15 mph" },
+        { problem: "An object has a mass of 80g and a volume of 20cm³. What is its density?", steps: ["80 ÷ 20 = 4."], answer: "4 g/cm³" }
+      ],
+      audioScript: "All three compound measures use the same shape of formula: one quantity divided by another."
+    },
+    {
+      order: 3,
+      title: "Growth and decay",
+      concept: "Setting up and solving problems where a quantity grows or shrinks by a percentage, possibly over several steps",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y9-L2-3"],
+      explanationMd:
+        "**Growth** means a quantity increases by a percentage; **decay** means it decreases. Over several time periods, apply the percentage change again each time — this is called compound growth or decay.\n\n" +
+        "Always apply the percentage to the most recent value, not the original starting value.",
+      workedExamples: [
+        { problem: "A population of 200 grows by 10% each year. What is it after 2 years?", steps: ["Year 1: 200 + 10% = 220.", "Year 2: 220 + 10% = 242."], answer: "242" },
+        { problem: "A car worth £8,000 loses 25% of its value in a year. What is it worth after one year?", steps: ["25% of 8,000 = 2,000.", "8,000 - 2,000 = 6,000."], answer: "£6,000" }
+      ],
+      audioScript: "For growth or decay over several years, apply the percentage change to the newest value each time, not the original."
+    }
+  ],
   Y10L1: [
     {
       order: 1,

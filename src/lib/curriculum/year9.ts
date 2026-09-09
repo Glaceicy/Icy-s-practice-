@@ -1,9 +1,9 @@
 import type { SchoolYearDef } from "./types";
 
-// Year 9 (ages 13-14, KS3, pre-GCSE). Level 1 is fully authored (lessons,
-// practice, 40-question mastery bank); levels 2-10 are scaffolded
-// (curriculum metadata only — see questionEngine/templates/all.ts
-// COMPLETE_LEVEL_KEYS).
+// Year 9 (ages 13-14, KS3, pre-GCSE). Levels 1-2 are fully authored
+// (lessons, practice, 40-question mastery banks); levels 3-10 are
+// scaffolded (curriculum metadata only — see
+// questionEngine/templates/all.ts COMPLETE_LEVEL_KEYS).
 export const year9: SchoolYearDef = {
   yearNumber: 9,
   title: "Year 9",
@@ -18,7 +18,7 @@ export const year9: SchoolYearDef = {
       { code: "Y9-L1-2", description: "Use the laws of indices, including negative and fractional indices.", dfeReference: "KS3 Number: laws of indices" },
       { code: "Y9-L1-3", description: "Round to a given number of significant figures and estimate answers.", dfeReference: "KS3 Number: round to significant figures" }
     ]},
-    { levelNumber: 2, title: "Proportion, rates and compound measures", summary: "By the end of this level, you will solve problems involving direct and inverse proportion.", isMixedMastery: false, status: "SCAFFOLDED", pathway: null, objectives: [
+    { levelNumber: 2, title: "Proportion, rates and compound measures", summary: "By the end of this level, you will solve problems involving direct and inverse proportion.", isMixedMastery: false, status: "COMPLETE", pathway: null, objectives: [
       { code: "Y9-L2-1", description: "Solve problems involving direct and inverse proportion, including graphical and algebraic representations.", dfeReference: "KS3 Ratio & proportion: direct and inverse proportion" },
       { code: "Y9-L2-2", description: "Interpret and use compound measures, including speed, density and pressure.", dfeReference: "KS3 Ratio & proportion: compound measures" },
       { code: "Y9-L2-3", description: "Set up, solve and interpret answers in growth and decay problems.", dfeReference: "KS3 Ratio & proportion: growth and decay" }

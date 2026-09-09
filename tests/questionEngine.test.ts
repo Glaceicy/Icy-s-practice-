@@ -79,6 +79,6 @@ describe("question selection (guided / independent / mastery)", () => {
   });
 
   it("throws a clear error for a level with no published question bank", () => {
-    expect(() => pickQuestions({ levelKey: "Y8L3", pathway: "CORE", count: 10, selectionSeed: 1 })).toThrow(/not yet published/);
+    expect(() => pickQuestions({ levelKey: "Y9L3", pathway: "CORE", count: 10, selectionSeed: 1 })).toThrow(/not yet published/);
   });
 });
