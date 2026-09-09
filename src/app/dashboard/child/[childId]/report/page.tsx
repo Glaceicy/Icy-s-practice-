@@ -83,9 +83,47 @@ export default async function ProgressReportPage({ params }: { params: { childId
           </table>
         </section>
 
+        <section className="mt-4">
+          <h2 className="font-bold text-brand-800">Recent activity</h2>
+          <table className="mt-2 w-full border-collapse text-sm">
+            <thead>
+              <tr className="border-b text-left text-slate-500">
+                <th className="py-1">Date</th>
+                <th className="py-1">Activity</th>
+                <th className="py-1">Level</th>
+                <th className="py-1">Score</th>
+                <th className="py-1">Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              {summary.recentActivity.length === 0 ? (
+                <tr>
+                  <td colSpan={5} className="py-1 text-slate-500">
+                    No completed practice sessions yet.
+                  </td>
+                </tr>
+              ) : (
+                summary.recentActivity.map((a) => (
+                  <tr key={a.id} className="border-b">
+                    <td className="py-1">{a.completedAt.toLocaleDateString("en-GB", { day: "numeric", month: "short" })}</td>
+                    <td className="py-1">{MODE_LABELS[a.mode] ?? a.mode}</td>
+                    <td className="py-1">
+                      Y{a.yearNumber} L{a.levelNumber}: {a.levelTitle}
+                    </td>
+                    <td className="py-1">
+                      {a.correctCount}/{a.totalQuestions}
+                    </td>
+                    <td className="py-1">{a.minutes} min</td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </section>
+
         <p className="mt-8 text-xs text-slate-400">
           This report summarises learning activity recorded within Maths Journey UK. Time-spent figures are estimated from session
-          start/end timestamps.
+          start/end timestamps, capped at 60 minutes per session so an idle or paused session can't inflate the total.
         </p>
       </article>
     </main>
@@ -100,3 +138,9 @@ function ReportStat({ label, value }: { label: string; value: number | string })
     </div>
   );
 }
+
+const MODE_LABELS: Record<string, string> = {
+  GUIDED: "Guided practice",
+  INDEPENDENT: "Independent practice",
+  REVISION: "Revision"
+};

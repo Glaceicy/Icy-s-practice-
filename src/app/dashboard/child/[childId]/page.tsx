@@ -103,6 +103,32 @@ export default async function ChildDashboardPage({ params }: { params: { childId
       </section>
 
       <section className="mt-6 rounded-xl2 border bg-white p-5 shadow-sm">
+        <h2 className="font-bold text-brand-800">Recent activity</h2>
+        <p className="mt-1 text-xs text-slate-500">Every practice session your child has completed, most recent first.</p>
+        {summary.recentActivity.length === 0 ? (
+          <p className="mt-2 text-sm text-slate-500">No completed practice sessions yet.</p>
+        ) : (
+          <ul className="mt-3 space-y-2 text-sm text-slate-700">
+            {summary.recentActivity.map((a) => (
+              <li key={a.id} className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 border-b pb-2 last:border-0 last:pb-0">
+                <span>
+                  <span className="font-semibold">{MODE_LABELS[a.mode] ?? a.mode}</span> &middot; Year {a.yearNumber}, Level {a.levelNumber}: {a.levelTitle}
+                </span>
+                <span className="flex items-center gap-3 text-xs text-slate-500">
+                  <span>
+                    {a.correctCount}/{a.totalQuestions} correct
+                  </span>
+                  {a.hintsUsed > 0 && <span>{a.hintsUsed} hint{a.hintsUsed === 1 ? "" : "s"}</span>}
+                  <span>~{a.minutes} min</span>
+                  <span>{a.completedAt.toLocaleDateString("en-GB", { day: "numeric", month: "short" })}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+
+      <section className="mt-6 rounded-xl2 border bg-white p-5 shadow-sm">
         <h2 className="font-bold text-brand-800">Reset a practice activity</h2>
         <p className="mt-1 text-xs text-slate-500">Clears in-progress guided/independent practice for an unlocked level so your child can start fresh.</p>
         <ul className="mt-3 space-y-2">
@@ -197,3 +223,9 @@ function Stat({ label, value }: { label: string; value: number }) {
     </div>
   );
 }
+
+const MODE_LABELS: Record<string, string> = {
+  GUIDED: "Guided practice",
+  INDEPENDENT: "Independent practice",
+  REVISION: "Revision"
+};

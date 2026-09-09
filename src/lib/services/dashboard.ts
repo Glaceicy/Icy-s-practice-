@@ -16,7 +16,28 @@ export interface ChildSummary {
   developing: Array<{ description: string; status: string }>;
   topMisconceptions: Array<{ label: string; count: number }>;
   recentAttempts: Array<{ id: string; levelTitle: string; yearNumber: number; levelNumber: number; scorePercentage: number | null; passed: boolean | null; submittedAt: Date | null }>;
+  recentActivity: Array<{
+    id: string;
+    levelTitle: string;
+    yearNumber: number;
+    levelNumber: number;
+    mode: string;
+    correctCount: number;
+    totalQuestions: number;
+    hintsUsed: number;
+    startedAt: Date;
+    completedAt: Date;
+    minutes: number;
+  }>;
 }
+
+// A single practice/mastery attempt's recorded start/end can span far more
+// wall-clock time than the child was actually engaged (mastery challenges
+// can be paused and resumed later; a practice attempt can simply be left
+// open in a browser tab). Capping each attempt's contribution at a generous
+// hour prevents one abandoned/idle session from wildly inflating the
+// "minutes spent learning" figure parents see.
+const MAX_MINUTES_PER_ATTEMPT = 60;
 
 export async function getChildSummary(childId: string): Promise<ChildSummary> {
   const child = await prisma.childProfile.findUniqueOrThrow({ where: { id: childId }, include: { currentYear: true } });
@@ -28,7 +49,11 @@ export async function getChildSummary(childId: string): Promise<ChildSummary> {
       include: { level: { include: { schoolYear: true } } },
       orderBy: { submittedAt: "desc" }
     }),
-    prisma.practiceAttempt.findMany({ where: { childId, completedAt: { not: null } } }),
+    prisma.practiceAttempt.findMany({
+      where: { childId, completedAt: { not: null } },
+      include: { level: { include: { schoolYear: true } } },
+      orderBy: { completedAt: "desc" }
+    }),
     prisma.objectiveMastery.findMany({ where: { childId }, include: { objective: true } }),
     prisma.misconceptionLog.groupBy({ by: ["tag"], where: { childId }, _count: { tag: true }, orderBy: { _count: { tag: "desc" } }, take: 5 })
   ]);
@@ -37,12 +62,17 @@ export async function getChildSummary(childId: string): Promise<ChildSummary> {
   const scores = submittedAttempts.filter((a) => a.scorePercentage !== null).map((a) => a.scorePercentage!);
   const averageScorePercentage = scores.length > 0 ? scores.reduce((a, b) => a + b, 0) / scores.length : null;
 
+  function cappedMinutes(startedAt: Date, endedAt: Date): number {
+    const raw = (endedAt.getTime() - startedAt.getTime()) / 60000;
+    return Math.max(0, Math.min(raw, MAX_MINUTES_PER_ATTEMPT));
+  }
+
   let minutesSpent = 0;
   for (const a of submittedAttempts) {
-    if (a.submittedAt) minutesSpent += (a.submittedAt.getTime() - a.startedAt.getTime()) / 60000;
+    if (a.submittedAt) minutesSpent += cappedMinutes(a.startedAt, a.submittedAt);
   }
   for (const p of practiceAttempts) {
-    if (p.completedAt) minutesSpent += (p.completedAt.getTime() - p.startedAt.getTime()) / 60000;
+    if (p.completedAt) minutesSpent += cappedMinutes(p.startedAt, p.completedAt);
   }
 
   const strengths = masteryRecords
@@ -76,6 +106,19 @@ export async function getChildSummary(childId: string): Promise<ChildSummary> {
       scorePercentage: a.scorePercentage,
       passed: a.passed,
       submittedAt: a.submittedAt
+    })),
+    recentActivity: practiceAttempts.slice(0, 15).map((p) => ({
+      id: p.id,
+      levelTitle: p.level.title,
+      yearNumber: p.level.schoolYear.yearNumber,
+      levelNumber: p.level.levelNumber,
+      mode: p.mode,
+      correctCount: p.correctCount,
+      totalQuestions: p.totalQuestions,
+      hintsUsed: p.hintsUsed,
+      startedAt: p.startedAt,
+      completedAt: p.completedAt!,
+      minutes: Math.round(cappedMinutes(p.startedAt, p.completedAt!))
     }))
   };
 }
