@@ -25,6 +25,7 @@ export default function MasterySession({ attemptId, childId, levelId }: { attemp
   const [mode, setMode] = useState<ViewMode>("loading");
   const [justFinishedRound, setJustFinishedRound] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [submitting, setSubmitting] = useState(false);
 
   const refresh = useCallback(async () => {
     const s = await getMasteryStateAction(attemptId);
@@ -53,10 +54,11 @@ export default function MasterySession({ attemptId, childId, levelId }: { attemp
   }, [refresh]);
 
   async function handleAnswer(answer: string) {
-    if (!state || !question) return;
+    if (!state || !question || submitting) return;
     const nextSlot = state.slots.find((sl) => !sl.locked);
     if (!nextSlot) return;
     setError(null);
+    setSubmitting(true);
     try {
       const result = await submitMasteryAnswerAction(attemptId, nextSlot.roundNumber, nextSlot.positionInRound, answer);
       if (!result.isCorrect) {
@@ -71,6 +73,8 @@ export default function MasterySession({ attemptId, childId, levelId }: { attemp
       await refresh();
     } catch (e) {
       setError(e instanceof Error ? e.message : "Something went wrong. Please try again.");
+    } finally {
+      setSubmitting(false);
     }
   }
 
@@ -193,7 +197,7 @@ export default function MasterySession({ attemptId, childId, levelId }: { attemp
       <div className="rounded-xl2 border bg-white p-6 shadow-sm" data-testid="question-card" data-log-id={question.logId}>
         <p className="text-xl font-semibold text-slate-800">{question.prompt}</p>
         <div className="mt-4">
-          <QuestionInput question={question} disabled={!!support} onSubmit={handleAnswer} />
+          <QuestionInput question={question} disabled={!!support || submitting} onSubmit={handleAnswer} />
         </div>
       </div>
 

@@ -113,7 +113,11 @@ export async function getChildSummary(childId: string): Promise<ChildSummary> {
       yearNumber: p.level.schoolYear.yearNumber,
       levelNumber: p.level.levelNumber,
       mode: p.mode,
-      correctCount: p.correctCount,
+      // Clamp defensively: a handful of attempts recorded before the
+      // double-submission guard existed can have correctCount above
+      // totalQuestions (see submitPracticeAnswer in practice.ts) — display
+      // those sanely rather than needing a data migration.
+      correctCount: Math.min(p.correctCount, p.totalQuestions),
       totalQuestions: p.totalQuestions,
       hintsUsed: p.hintsUsed,
       startedAt: p.startedAt,

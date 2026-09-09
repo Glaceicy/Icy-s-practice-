@@ -143,6 +143,20 @@ export async function submitPracticeAnswer(params: {
   hintsUsed: number;
 }): Promise<PracticeAnswerResult> {
   const { childId, attemptId, position, logId, givenAnswer, hintsUsed } = params;
+
+  // A slot that's already been answered correctly is done — a duplicate
+  // submission (double-tap, a slow network causing a client retry, two
+  // browser tabs) must be a safe no-op rather than double-counting the
+  // question. This is the authoritative guard: the client also disables the
+  // submit button while a request is in flight, but that alone cannot be
+  // trusted, since the client is never the source of truth here.
+  const alreadyAnsweredCorrectly = await prisma.practiceAnswer.findFirst({ where: { attemptId, position, isCorrect: true } });
+  if (alreadyAnsweredCorrectly) {
+    const attempt = await prisma.practiceAttempt.findUniqueOrThrow({ where: { id: attemptId }, include: { answers: true } });
+    const completed = new Set(attempt.answers.filter((a) => a.isCorrect).map((a) => a.position));
+    return { isCorrect: true, support: null, attemptComplete: completed.size >= attempt.totalQuestions };
+  }
+
   const log = await prisma.generatedQuestionLog.findUniqueOrThrow({ where: { id: logId }, include: { template: true } });
   const isCorrect = gradeAnswer(givenAnswer, log.correctAnswer, log.acceptableAnswers);
   const attemptNumber = (await prisma.practiceAnswer.count({ where: { attemptId, position } })) + 1;

@@ -26,6 +26,7 @@ export default function PracticeSession({
   const [hintShown, setHintShown] = useState(false);
   const [loading, setLoading] = useState(true);
   const [celebrating, setCelebrating] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -42,18 +43,23 @@ export default function PracticeSession({
   }, [load]);
 
   async function handleAnswer(answer: string) {
-    if (!state?.question) return;
-    const result = await submitPracticeAnswerAction(attemptId, state.position, state.question.logId, answer, hintsUsed);
-    if (result.isCorrect) {
-      setCelebrating(true);
-      window.setTimeout(() => setCelebrating(false), 900);
-      if (result.attemptComplete) {
-        router.push(nextHref);
-        return;
+    if (!state?.question || submitting) return;
+    setSubmitting(true);
+    try {
+      const result = await submitPracticeAnswerAction(attemptId, state.position, state.question.logId, answer, hintsUsed);
+      if (result.isCorrect) {
+        setCelebrating(true);
+        window.setTimeout(() => setCelebrating(false), 900);
+        if (result.attemptComplete) {
+          router.push(nextHref);
+          return;
+        }
+        await load();
+      } else {
+        setSupport(result.support);
       }
-      await load();
-    } else {
-      setSupport(result.support);
+    } finally {
+      setSubmitting(false);
     }
   }
 
@@ -116,7 +122,7 @@ export default function PracticeSession({
         )}
 
         <div className="mt-4">
-          <QuestionInput question={state.question} disabled={false} onSubmit={handleAnswer} />
+          <QuestionInput question={state.question} disabled={submitting} onSubmit={handleAnswer} />
         </div>
       </div>
 
