@@ -919,6 +919,57 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       audioScript: "Break a two-step problem into two smaller, one-step problems, and solve them one at a time."
     }
   ],
+  Y2L4: [
+    {
+      order: 1,
+      title: "The 2, 5 and 10 times tables",
+      concept: "Recalling multiplication facts for the 2, 5 and 10 times tables",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "playful",
+      objectiveCodes: ["Y2-L4-1"],
+      explanationMd:
+        "The **2 times table** is just doubling. The **10 times table** is the number with a zero on the end. The **5 times table** always ends in 0 or 5.\n\n" +
+        "The more of these facts you know instantly, the quicker you'll be at multiplying and dividing.",
+      workedExamples: [
+        { problem: "What is 6 x 5?", steps: ["Half of 6 x 10 = 60.", "Half of 60 is 30."], answer: "30" }
+      ],
+      audioScript: "Doubling, adding a zero, and counting in fives — three quick tricks for these three tables."
+    },
+    {
+      order: 2,
+      title: "Multiplication as an array",
+      concept: "Representing a multiplication fact as rows and columns of objects",
+      representation: "pictorial",
+      visualAid: "array",
+      ageBandStyle: "playful",
+      objectiveCodes: ["Y2-L4-2"],
+      explanationMd:
+        "An **array** is objects arranged in equal rows and columns. Counting the rows and how many are in each row shows you the multiplication fact.\n\n" +
+        "For example, 4 rows of 5 dots is the same as 4 x 5 = 20.",
+      workedExamples: [
+        { problem: "An array has 3 rows of 5. How many altogether?", steps: ["3 rows x 5 in each row."], answer: "15" }
+      ],
+      audioScript: "Rows go across, and each row has the same number in it — count the rows, then multiply."
+    },
+    {
+      order: 3,
+      title: "Dividing by sharing and grouping",
+      concept: "Solving division problems by sharing into equal groups, or by making groups of a fixed size",
+      representation: "concrete",
+      visualAid: "counters",
+      ageBandStyle: "playful",
+      objectiveCodes: ["Y2-L4-3"],
+      explanationMd:
+        "**Sharing** means splitting a total equally between a number of people, one at a time, to find how many each person gets.\n\n" +
+        "**Grouping** means finding how many equal-sized groups fit into a total. Both are division, just thought about in two different ways.",
+      workedExamples: [
+        { problem: "20 stickers are shared equally between 5 friends. How many does each friend get?", steps: ["20 ÷ 5 = 4."], answer: "4" },
+        { problem: "20 stickers are put into groups of 5. How many groups are there?", steps: ["20 ÷ 5 = 4 groups."], answer: "4" }
+      ],
+      audioScript: "Sharing asks 'how many each?'. Grouping asks 'how many groups?'. Both use the same division fact."
+    }
+  ],
   Y10L1: [
     {
       order: 1,

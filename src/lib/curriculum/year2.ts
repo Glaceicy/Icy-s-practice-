@@ -1,7 +1,7 @@
 import type { SchoolYearDef } from "./types";
 
-// Year 2 (ages 6-7, KS1). Levels 1-3 are fully authored (lessons, practice,
-// 40-question mastery banks); levels 4-10 are scaffolded (curriculum
+// Year 2 (ages 6-7, KS1). Levels 1-4 are fully authored (lessons, practice,
+// 40-question mastery banks); levels 5-10 are scaffolded (curriculum
 // metadata only — see questionEngine/templates/all.ts COMPLETE_LEVEL_KEYS).
 // Levels without content are shown to learners as "Coming soon" rather than
 // presented as playable with placeholder content.
@@ -51,7 +51,7 @@ export const year2: SchoolYearDef = {
       levelNumber: 4,
       title: "Multiplication and division using 2, 5 and 10",
       summary: "By the end of this level, you will know the 2, 5 and 10 times tables.",
-      isMixedMastery: false, status: "SCAFFOLDED", pathway: null,
+      isMixedMastery: false, status: "COMPLETE", pathway: null,
       objectives: [
         { code: "Y2-L4-1", description: "Recall and use multiplication facts for the 2, 5 and 10 times tables.", dfeReference: "Y2 Multiplication & division: recall 2, 5 and 10 times tables" },
         { code: "Y2-L4-2", description: "Use arrays to represent multiplication.", dfeReference: "Y2 Multiplication & division: show using arrays" },
