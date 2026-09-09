@@ -818,6 +818,56 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       audioScript: "You can start a counting pattern from any number — just keep adding the same step size each time."
     }
   ],
+  Y2L2: [
+    {
+      order: 1,
+      title: "Number facts to 20",
+      concept: "Recalling addition and subtraction facts to 20 fluently",
+      representation: "concrete",
+      visualAid: "counters",
+      ageBandStyle: "playful",
+      objectiveCodes: ["Y2-L2-1"],
+      explanationMd:
+        "Knowing your number facts to 20 by heart — without having to count on your fingers — helps everything else in maths feel quicker and easier.\n\n" +
+        "**Number bonds to 20** are pairs of numbers that add together to make 20, like 12 and 8, or 15 and 5.",
+      workedExamples: [
+        { problem: "What number bonds with 13 to make 20?", steps: ["20 - 13 = 7."], answer: "7" }
+      ],
+      audioScript: "The more of these facts you know instantly, the faster and more confident you'll be with bigger numbers."
+    },
+    {
+      order: 2,
+      title: "Related facts",
+      concept: "Using a known fact (like 7+3=10) to work out a related fact (like 70+30=100)",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "playful",
+      objectiveCodes: ["Y2-L2-2"],
+      explanationMd:
+        "If you know a small number fact, you can use it to work out a much bigger one instantly! If 7 + 3 = 10, then 70 + 30 = 100 — the digits are exactly the same, just ten times bigger.\n\n" +
+        "This works for subtraction too: if 9 - 4 = 5, then 90 - 40 = 50.",
+      workedExamples: [
+        { problem: "If 6 + 4 = 10, what is 60 + 40?", steps: ["Same digits, ten times bigger."], answer: "100" }
+      ],
+      audioScript: "Spot the small fact hiding inside the big one, and the big calculation becomes easy."
+    },
+    {
+      order: 3,
+      title: "Using a number line to add and subtract",
+      concept: "Adding and subtracting mentally by picturing jumps on a number line",
+      representation: "pictorial",
+      visualAid: "number-line",
+      ageBandStyle: "playful",
+      objectiveCodes: ["Y2-L2-3"],
+      explanationMd:
+        "A number line helps you add or subtract in your head. To add, jump forwards. To subtract, jump backwards.\n\n" +
+        "A useful trick is **bridging through 10**: split your jump into two parts — first jump to the next multiple of 10, then jump the rest of the way.",
+      workedExamples: [
+        { problem: "8 + 5 using bridging: 8 + 2 = 10, then 10 + 3 = ?", steps: ["8 + 2 = 10.", "10 + 3 = 13."], answer: "13" }
+      ],
+      audioScript: "Picture the number line in your head — jump to a friendly multiple of 10 first, then finish the jump."
+    }
+  ],
   Y10L1: [
     {
       order: 1,

@@ -1,9 +1,9 @@
 import type { SchoolYearDef } from "./types";
 
-// Year 2 (ages 6-7, KS1). Level 1 is fully authored (lessons, practice,
-// 40-question mastery bank); levels 2-10 are scaffolded (curriculum metadata
-// only — see questionEngine/templates/all.ts COMPLETE_LEVEL_KEYS). Levels
-// without content are shown to learners as "Coming soon" rather than
+// Year 2 (ages 6-7, KS1). Levels 1-2 are fully authored (lessons, practice,
+// 40-question mastery banks); levels 3-10 are scaffolded (curriculum
+// metadata only — see questionEngine/templates/all.ts COMPLETE_LEVEL_KEYS).
+// Levels without content are shown to learners as "Coming soon" rather than
 // presented as playable with placeholder content.
 export const year2: SchoolYearDef = {
   yearNumber: 2,
@@ -29,7 +29,7 @@ export const year2: SchoolYearDef = {
       levelNumber: 2,
       title: "Addition and subtraction facts",
       summary: "By the end of this level, you will recall addition and subtraction facts to 20.",
-      isMixedMastery: false, status: "SCAFFOLDED", pathway: null,
+      isMixedMastery: false, status: "COMPLETE", pathway: null,
       objectives: [
         { code: "Y2-L2-1", description: "Recall and use addition and subtraction facts to 20 fluently.", dfeReference: "Y2 Addition & subtraction: recall and use number bonds to 20" },
         { code: "Y2-L2-2", description: "Derive related facts (e.g. 7+3=10, so 70+30=100).", dfeReference: "Y2 Addition & subtraction: derive and use related facts to 100" },
