@@ -57,7 +57,7 @@ export const year5: SchoolYearDef = {
       { code: "Y5-L9-2", description: "Complete, read and interpret information in tables, including timetables.", dfeReference: "Y5 Statistics: complete/read/interpret tables including timetables" },
       { code: "Y5-L9-3", description: "Calculate durations using 24-hour clock timetables.", dfeReference: "Y5 Measurement/Statistics: 24-hour clock and timetables" }
     ]},
-    { levelNumber: 10, title: "Year 5 mixed mastery", summary: "By the end of this level, you will confidently use everything you have learned in Year 5.", isMixedMastery: true, status: "SCAFFOLDED", pathway: null, objectives: [
+    { levelNumber: 10, title: "Year 5 mixed mastery", summary: "By the end of this level, you will confidently use everything you have learned in Year 5.", isMixedMastery: true, status: "COMPLETE", pathway: null, objectives: [
       { code: "Y5-L10-1", description: "Use place value, negative numbers and the four operations with large numbers.", dfeReference: "Y5 Number & Addition/subtraction (mixed review)" },
       { code: "Y5-L10-2", description: "Apply factors, multiples, fractions, decimals and percentages in problems.", dfeReference: "Y5 Multiplication/division, Fractions, Decimals & Percentages (mixed review)" },
       { code: "Y5-L10-3", description: "Use area, volume, angles, transformations and statistics accurately.", dfeReference: "Y5 Measurement, Geometry & Statistics (mixed review)" }

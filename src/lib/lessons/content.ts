@@ -716,6 +716,56 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       audioScript: "Break a duration into steps if it helps — get to the next whole hour first, then add what's left."
     }
   ],
+  Y5L10: [
+    {
+      order: 1,
+      title: "Number review: place value, negatives and the four operations",
+      concept: "Bringing together place value, negative numbers, and formal addition/subtraction/multiplication/division with large numbers",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y5-L10-1"],
+      explanationMd:
+        "This level pulls together everything from Year 5's number work: reading and comparing numbers to 1,000,000, working with negative numbers, and using formal written methods for all four operations.\n\n" +
+        "When in doubt, go back to the basics: compare digit by digit from the left, remember negative numbers count down through zero, and line up place value columns carefully for column methods.",
+      workedExamples: [
+        { problem: "Round 583,240 to the nearest 10,000.", steps: ["Look at the thousands digit: 3.", "Round down."], answer: "580,000" }
+      ],
+      audioScript: "Everything from this term's number work comes together here — take your time and use the methods you've practised."
+    },
+    {
+      order: 2,
+      title: "Review: factors, fractions, decimals and percentages",
+      concept: "Applying factors, multiples, primes, fractions, decimals and percentages together",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y5-L10-2"],
+      explanationMd:
+        "This level mixes questions on factors and multiples, prime numbers, square numbers, comparing and adding fractions, comparing and rounding decimals, and percentages as parts per hundred.\n\n" +
+        "Remember the key links: a percentage is just a fraction out of 100, and decimals are fractions written using place value columns.",
+      workedExamples: [
+        { problem: "Is 51 prime?", steps: ["51 ÷ 3 = 17, exactly.", "It has factors other than 1 and itself."], answer: "No, 51 is composite" }
+      ],
+      audioScript: "Fractions, decimals and percentages are all closely connected — use whichever way of thinking helps most."
+    },
+    {
+      order: 3,
+      title: "Review: measurement, geometry and statistics",
+      concept: "Applying area, volume, unit conversion, angles, coordinate transformations and graph/table reading",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y5-L10-3"],
+      explanationMd:
+        "This level mixes questions on the area and volume of rectangles/cuboids, converting between metric units, classifying angles, translating points on a grid, and reading line graphs, tables and timetables.\n\n" +
+        "For any measurement or geometry question, think about which formula or property applies before calculating.",
+      workedExamples: [
+        { problem: "A cuboid is 4 cm by 3 cm by 5 cm. What is its volume?", steps: ["4 x 3 x 5 = 60."], answer: "60 cm³" }
+      ],
+      audioScript: "This is your chance to show everything you've learned about shapes, measures and data this year."
+    }
+  ],
   Y10L1: [
     {
       order: 1,

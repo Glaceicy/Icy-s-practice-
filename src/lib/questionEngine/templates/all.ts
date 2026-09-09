@@ -12,6 +12,7 @@ import y5l6 from "./year5/level6";
 import y5l7 from "./year5/level7";
 import y5l8 from "./year5/level8";
 import y5l9 from "./year5/level9";
+import y5l10 from "./year5/level10";
 import y7l1 from "./year7/level1";
 import y10l1 from "./year10/level1";
 
@@ -38,9 +39,10 @@ export function loadAllTemplates(): void {
   registerTemplates("Y5L7", y5l7);
   registerTemplates("Y5L8", y5l8);
   registerTemplates("Y5L9", y5l9);
+  registerTemplates("Y5L10", y5l10);
   registerTemplates("Y7L1", y7l1);
   registerTemplates("Y10L1", y10l1);
   loaded = true;
 }
 
-export const COMPLETE_LEVEL_KEYS = ["Y1L1", "Y1L2", "Y1L10", "Y4L1", "Y5L1", "Y5L2", "Y5L3", "Y5L4", "Y5L5", "Y5L6", "Y5L7", "Y5L8", "Y5L9", "Y7L1", "Y10L1"] as const;
+export const COMPLETE_LEVEL_KEYS = ["Y1L1", "Y1L2", "Y1L10", "Y4L1", "Y5L1", "Y5L2", "Y5L3", "Y5L4", "Y5L5", "Y5L6", "Y5L7", "Y5L8", "Y5L9", "Y5L10", "Y7L1", "Y10L1"] as const;
