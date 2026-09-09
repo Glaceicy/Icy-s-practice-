@@ -1,7 +1,7 @@
 import type { SchoolYearDef } from "./types";
 
-// Year 2 (ages 6-7, KS1). Levels 1-2 are fully authored (lessons, practice,
-// 40-question mastery banks); levels 3-10 are scaffolded (curriculum
+// Year 2 (ages 6-7, KS1). Levels 1-3 are fully authored (lessons, practice,
+// 40-question mastery banks); levels 4-10 are scaffolded (curriculum
 // metadata only — see questionEngine/templates/all.ts COMPLETE_LEVEL_KEYS).
 // Levels without content are shown to learners as "Coming soon" rather than
 // presented as playable with placeholder content.
@@ -40,7 +40,7 @@ export const year2: SchoolYearDef = {
       levelNumber: 3,
       title: "Adding and subtracting two-digit numbers",
       summary: "By the end of this level, you will add and subtract two-digit numbers.",
-      isMixedMastery: false, status: "SCAFFOLDED", pathway: null,
+      isMixedMastery: false, status: "COMPLETE", pathway: null,
       objectives: [
         { code: "Y2-L3-1", description: "Add a two-digit number and ones.", dfeReference: "Y2 Addition & subtraction: a two-digit number and ones" },
         { code: "Y2-L3-2", description: "Add and subtract two two-digit numbers.", dfeReference: "Y2 Addition & subtraction: two two-digit numbers" },

@@ -868,6 +868,57 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       audioScript: "Picture the number line in your head — jump to a friendly multiple of 10 first, then finish the jump."
     }
   ],
+  Y2L3: [
+    {
+      order: 1,
+      title: "Adding a two-digit number and ones",
+      concept: "Adding a single-digit number of ones onto a two-digit number",
+      representation: "pictorial",
+      visualAid: "number-line",
+      ageBandStyle: "playful",
+      objectiveCodes: ["Y2-L3-1"],
+      explanationMd:
+        "When you add ones onto a two-digit number, only the ones digit changes (unless it goes past a multiple of ten).\n\n" +
+        "You can picture this as a small jump forwards on a number line, starting from the two-digit number.",
+      workedExamples: [
+        { problem: "What is 34 + 5?", steps: ["Keep the 3 tens.", "4 ones + 5 ones = 9 ones."], answer: "39" }
+      ],
+      audioScript: "Adding a few ones is just a small hop forward — the tens digit usually stays exactly the same."
+    },
+    {
+      order: 2,
+      title: "Adding and subtracting two two-digit numbers",
+      concept: "Adding or subtracting two two-digit numbers by working with tens and ones separately",
+      representation: "concrete",
+      visualAid: "ten-frame",
+      ageBandStyle: "playful",
+      objectiveCodes: ["Y2-L3-2"],
+      explanationMd:
+        "To add two two-digit numbers, add the tens together, then add the ones together, then combine the two totals.\n\n" +
+        "Subtracting works the same way — but always start with the bigger number.",
+      workedExamples: [
+        { problem: "What is 34 + 25?", steps: ["30 + 20 = 50.", "4 + 5 = 9.", "50 + 9 = 59."], answer: "59" },
+        { problem: "What is 68 - 23?", steps: ["60 - 20 = 40.", "8 - 3 = 5.", "40 + 5 = 45."], answer: "45" }
+      ],
+      audioScript: "Split each number into its tens and ones, work with each part separately, then put your answer back together."
+    },
+    {
+      order: 3,
+      title: "Two-step word problems",
+      concept: "Solving word problems that need two additions/subtractions to reach the answer",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "playful",
+      objectiveCodes: ["Y2-L3-3"],
+      explanationMd:
+        "Some word problems need **two steps** to solve. Read carefully to work out what happens first, and what happens second.\n\n" +
+        "It often helps to work out the answer after the first step before moving on to the second step.",
+      workedExamples: [
+        { problem: "Amy has 20 stickers. She gets 15 more, then gives away 8. How many does she have now?", steps: ["20 + 15 = 35.", "35 - 8 = 27."], answer: "27" }
+      ],
+      audioScript: "Break a two-step problem into two smaller, one-step problems, and solve them one at a time."
+    }
+  ],
   Y10L1: [
     {
       order: 1,
