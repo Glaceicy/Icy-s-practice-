@@ -1,7 +1,8 @@
 import type { SchoolYearDef } from "./types";
 
-// Year 3 (ages 7-8, KS2). Curriculum metadata/objectives defined; full lesson
-// and question content scaffolded for future authoring (see DOCUMENTATION.md).
+// Year 3 (ages 7-8, KS2). Level 1 is fully authored (lessons, practice,
+// 40-question mastery bank); levels 2-10 are scaffolded (curriculum
+// metadata only — see questionEngine/templates/all.ts COMPLETE_LEVEL_KEYS).
 export const year3: SchoolYearDef = {
   yearNumber: 3,
   title: "Year 3",
@@ -11,7 +12,7 @@ export const year3: SchoolYearDef = {
   maxAge: 8,
   themeStage: "playful",
   levels: [
-    { levelNumber: 1, title: "Place value and numbers to 1,000", summary: "By the end of this level, you will understand hundreds, tens and ones to 1,000.", isMixedMastery: false, status: "SCAFFOLDED", pathway: null, objectives: [
+    { levelNumber: 1, title: "Place value and numbers to 1,000", summary: "By the end of this level, you will understand hundreds, tens and ones to 1,000.", isMixedMastery: false, status: "COMPLETE", pathway: null, objectives: [
       { code: "Y3-L1-1", description: "Recognise the place value of each digit in a three-digit number.", dfeReference: "Y3 Number & place value: recognise place value of each digit (H,T,O)" },
       { code: "Y3-L1-2", description: "Compare and order numbers up to 1,000.", dfeReference: "Y3 Number & place value: compare and order numbers up to 1000" },
       { code: "Y3-L1-3", description: "Count from 0 in multiples of 4, 8, 50 and 100.", dfeReference: "Y3 Number & place value: count from 0 in multiples of 4, 8, 50, 100" }

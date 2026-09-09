@@ -970,6 +970,58 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       audioScript: "Sharing asks 'how many each?'. Grouping asks 'how many groups?'. Both use the same division fact."
     }
   ],
+  Y3L1: [
+    {
+      order: 1,
+      title: "Hundreds, tens and ones",
+      concept: "Understanding that a three-digit number is made of hundreds, tens and ones",
+      representation: "concrete",
+      visualAid: "ten-frame",
+      ageBandStyle: "playful",
+      objectiveCodes: ["Y3-L1-1"],
+      explanationMd:
+        "Every three-digit number has a **hundreds digit** (the first digit), a **tens digit** (the middle digit) and a **ones digit** (the last digit). For example, 347 has 3 hundreds, 4 tens and 7 ones.\n\n" +
+        "You can build any three-digit number by counting groups of a hundred, then groups of ten, then adding the leftover ones.",
+      workedExamples: [
+        { problem: "How many hundreds, tens and ones make 528?", steps: ["5 groups of a hundred = 500.", "2 groups of ten = 20.", "8 left over."], answer: "5 hundreds, 2 tens, 8 ones" }
+      ],
+      audioScript: "The first digit tells us the hundreds, the middle digit tells us the tens, and the last digit tells us the ones."
+    },
+    {
+      order: 2,
+      title: "Comparing numbers to 1,000",
+      concept: "Using the symbols < (less than), > (greater than) and = (equal to) to compare numbers up to 1,000",
+      representation: "pictorial",
+      visualAid: "number-line",
+      ageBandStyle: "playful",
+      objectiveCodes: ["Y3-L1-2"],
+      explanationMd:
+        "To compare two three-digit numbers, look at the hundreds digit first. If the hundreds match, compare the tens digit. If those match too, compare the ones digit.\n\n" +
+        "The **<** symbol means 'is less than' and **>** means 'is greater than' — the symbol always points at the smaller number.",
+      workedExamples: [
+        { problem: "Which symbol goes here: 342 ___ 521?", steps: ["3 hundreds is less than 5 hundreds."], answer: "<" },
+        { problem: "Which symbol goes here: 618 ___ 615?", steps: ["Both have 6 hundreds and 1 ten.", "8 ones is more than 5 ones."], answer: ">" }
+      ],
+      audioScript: "Compare column by column, starting with the biggest place value — hundreds first, then tens, then ones."
+    },
+    {
+      order: 3,
+      title: "Counting in multiples from 0",
+      concept: "Counting forwards from 0 in multiples of 4, 8, 50 and 100",
+      representation: "pictorial",
+      visualAid: "number-line",
+      ageBandStyle: "playful",
+      objectiveCodes: ["Y3-L1-3"],
+      explanationMd:
+        "A counting pattern that starts at 0 and always jumps by the same amount produces a list of **multiples**. Counting in 4s from 0 gives 0, 4, 8, 12, 16...\n\n" +
+        "Counting in 50s or 100s from 0 is quick because only the first digit or two change each time.",
+      workedExamples: [
+        { problem: "Count on in 8s from 0: 0, 8, ___, ___", steps: ["0 + 8 = 8.", "8 + 8 = 16.", "16 + 8 = 24."], answer: "16, 24" },
+        { problem: "What comes after 350 when counting in 50s?", steps: ["350 + 50 = 400."], answer: "400" }
+      ],
+      audioScript: "Keep adding the same step size from zero, and you'll build the whole multiples pattern."
+    }
+  ],
   Y10L1: [
     {
       order: 1,
