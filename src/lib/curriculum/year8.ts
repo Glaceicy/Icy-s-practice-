@@ -1,7 +1,8 @@
 import type { SchoolYearDef } from "./types";
 
-// Year 8 (ages 12-13, KS3). Curriculum metadata/objectives defined; full
-// lesson/question content scaffolded for future authoring pass.
+// Year 8 (ages 12-13, KS3). Level 1 is fully authored (lessons, practice,
+// 40-question mastery bank); levels 2-10 are scaffolded (curriculum
+// metadata only — see questionEngine/templates/all.ts COMPLETE_LEVEL_KEYS).
 export const year8: SchoolYearDef = {
   yearNumber: 8,
   title: "Year 8",
@@ -11,7 +12,7 @@ export const year8: SchoolYearDef = {
   maxAge: 13,
   themeStage: "gameinspired",
   levels: [
-    { levelNumber: 1, title: "Number skills, powers, roots and index notation", summary: "By the end of this level, you will use powers, roots and index laws confidently.", isMixedMastery: false, status: "SCAFFOLDED", pathway: null, objectives: [
+    { levelNumber: 1, title: "Number skills, powers, roots and index notation", summary: "By the end of this level, you will use powers, roots and index laws confidently.", isMixedMastery: false, status: "COMPLETE", pathway: null, objectives: [
       { code: "Y8-L1-1", description: "Use integer powers and associated real roots (square, cube and higher).", dfeReference: "KS3 Number: use integer powers and associated real roots" },
       { code: "Y8-L1-2", description: "Recognise and use relationships between operations, including inverse operations.", dfeReference: "KS3 Number: recognise/use relationships between operations" },
       { code: "Y8-L1-3", description: "Use index laws to simplify numerical expressions.", dfeReference: "KS3 Number: use standard units of measure and related concepts" }

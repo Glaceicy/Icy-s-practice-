@@ -20,6 +20,7 @@ import y2l4 from "./year2/level4";
 import y3l1 from "./year3/level1";
 import y6l1 from "./year6/level1";
 import y7l1 from "./year7/level1";
+import y8l1 from "./year8/level1";
 import y10l1 from "./year10/level1";
 
 // Levels with a fully authored, validated question bank (>=15 templates,
@@ -53,8 +54,9 @@ export function loadAllTemplates(): void {
   registerTemplates("Y3L1", y3l1);
   registerTemplates("Y6L1", y6l1);
   registerTemplates("Y7L1", y7l1);
+  registerTemplates("Y8L1", y8l1);
   registerTemplates("Y10L1", y10l1);
   loaded = true;
 }
 
-export const COMPLETE_LEVEL_KEYS = ["Y1L1", "Y1L2", "Y1L10", "Y2L1", "Y2L2", "Y2L3", "Y2L4", "Y3L1", "Y4L1", "Y5L1", "Y5L2", "Y5L3", "Y5L4", "Y5L5", "Y5L6", "Y5L7", "Y5L8", "Y5L9", "Y5L10", "Y6L1", "Y7L1", "Y10L1"] as const;
+export const COMPLETE_LEVEL_KEYS = ["Y1L1", "Y1L2", "Y1L10", "Y2L1", "Y2L2", "Y2L3", "Y2L4", "Y3L1", "Y4L1", "Y5L1", "Y5L2", "Y5L3", "Y5L4", "Y5L5", "Y5L6", "Y5L7", "Y5L8", "Y5L9", "Y5L10", "Y6L1", "Y7L1", "Y8L1", "Y10L1"] as const;

@@ -1072,6 +1072,59 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       audioScript: "Crossing zero doesn't change the method — just add the distance below zero to the distance above it."
     }
   ],
+  Y8L1: [
+    {
+      order: 1,
+      title: "Powers and roots",
+      concept: "Using integer powers (squares, cubes and higher) and their inverse real roots",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "gameinspired",
+      objectiveCodes: ["Y8-L1-1"],
+      explanationMd:
+        "A **power** tells you how many times to multiply a number by itself. 5^3 (5 cubed) means 5 x 5 x 5 = 125.\n\n" +
+        "A **root** undoes a power. The square root of 49 is 7, because 7 x 7 = 49. The cube root of 125 is 5, because 5 x 5 x 5 = 125.",
+      workedExamples: [
+        { problem: "What is 6^2?", steps: ["6 x 6 = 36."], answer: "36" },
+        { problem: "What is the square root of 81?", steps: ["9 x 9 = 81."], answer: "9" }
+      ],
+      audioScript: "Powers build a number up by repeated multiplication; roots work backwards to find what was multiplied."
+    },
+    {
+      order: 2,
+      title: "Inverse operations",
+      concept: "Recognising how pairs of operations undo each other",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "gameinspired",
+      objectiveCodes: ["Y8-L1-2"],
+      explanationMd:
+        "Every operation has an **inverse** that undoes it: addition and subtraction undo each other, multiplication and division undo each other, and squaring and square rooting undo each other.\n\n" +
+        "You can use an inverse operation to check an answer, or to find a missing number in a calculation.",
+      workedExamples: [
+        { problem: "If 8 x 7 = 56, what does 56 ÷ 7 equal?", steps: ["Division undoes multiplication."], answer: "8" },
+        { problem: "Solve 15 + ___ = 40.", steps: ["Use subtraction, the inverse of addition: 40 - 15."], answer: "25" }
+      ],
+      audioScript: "Whenever you're stuck on a missing number, ask yourself: what's the inverse of this operation?"
+    },
+    {
+      order: 3,
+      title: "Index laws",
+      concept: "Using the laws of indices to simplify expressions with the same base",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "gameinspired",
+      objectiveCodes: ["Y8-L1-3"],
+      explanationMd:
+        "When the base is the same, there are shortcut rules: **multiplying** powers means you **add** the indices, **dividing** means you **subtract** them, and raising a power **to another power** means you **multiply** them.\n\n" +
+        "Any non-zero number raised to the power of 0 always equals 1.",
+      workedExamples: [
+        { problem: "Simplify 3^4 x 3^2.", steps: ["Add the indices: 4 + 2 = 6."], answer: "3^6" },
+        { problem: "Simplify 5^7 ÷ 5^3.", steps: ["Subtract the indices: 7 - 3 = 4."], answer: "5^4" }
+      ],
+      audioScript: "Same base: multiplying adds the powers, dividing subtracts them, and a power of a power multiplies them."
+    }
+  ],
   Y10L1: [
     {
       order: 1,
