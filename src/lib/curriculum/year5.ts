@@ -37,7 +37,7 @@ export const year5: SchoolYearDef = {
       { code: "Y5-L5-2", description: "Add and subtract fractions with the same denominator, including mixed numbers.", dfeReference: "Y5 Fractions: add/subtract fractions and mixed numbers" },
       { code: "Y5-L5-3", description: "Multiply proper fractions and mixed numbers by whole numbers.", dfeReference: "Y5 Fractions: multiply proper fractions/mixed numbers by whole numbers" }
     ]},
-    { levelNumber: 6, title: "Decimals and percentages", summary: "By the end of this level, you will convert between fractions, decimals and percentages.", isMixedMastery: false, status: "SCAFFOLDED", pathway: null, objectives: [
+    { levelNumber: 6, title: "Decimals and percentages", summary: "By the end of this level, you will convert between fractions, decimals and percentages.", isMixedMastery: false, status: "COMPLETE", pathway: null, objectives: [
       { code: "Y5-L6-1", description: "Read, write, order and compare numbers with up to three decimal places.", dfeReference: "Y5 Decimals: read/write/order/compare with up to 3dp" },
       { code: "Y5-L6-2", description: "Recognise the per cent symbol and understand percentage as parts per hundred.", dfeReference: "Y5 Percentages: recognise % and parts per hundred" },
       { code: "Y5-L6-3", description: "Round decimals with two decimal places to the nearest whole number and one decimal place.", dfeReference: "Y5 Decimals: round decimals with 2dp" }

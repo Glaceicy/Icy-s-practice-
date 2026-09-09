@@ -508,6 +508,59 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       audioScript: "Multiplying a fraction by a whole number only changes the numerator."
     }
   ],
+  Y5L6: [
+    {
+      order: 1,
+      title: "Reading and comparing decimals",
+      concept: "Reading, writing, ordering and comparing decimals with up to three decimal places",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y5-L6-1"],
+      explanationMd:
+        "A decimal like 3.482 has tenths, hundredths and thousandths columns after the decimal point — each one worth ten times less than the one before it.\n\n" +
+        "**Watch out:** more decimal digits doesn't mean a bigger number! 0.4 is actually bigger than 0.25, even though 0.25 has more digits — write both with the same number of decimal places (0.40 vs 0.25) to compare fairly.",
+      workedExamples: [
+        { problem: "Which is bigger, 0.4 or 0.25?", steps: ["Write 0.4 with two decimal places: 0.40.", "Compare 0.40 and 0.25.", "40 is bigger than 25."], answer: "0.4" },
+        { problem: "What is the hundredths digit in 5.638?", steps: ["The digits after the point are tenths (6), hundredths (3), thousandths (8)."], answer: "3" }
+      ],
+      audioScript: "More digits after the point doesn't mean a bigger number — always line up the decimal places before comparing."
+    },
+    {
+      order: 2,
+      title: "Percentages as parts per hundred",
+      concept: "Understanding the % symbol as meaning 'out of 100'",
+      representation: "pictorial",
+      visualAid: "array",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y5-L6-2"],
+      explanationMd:
+        "The **%** symbol always means **'out of 100'**. If a 100-square grid has 60 squares shaded, that's 60%, or 60/100.\n\n" +
+        "Some percentages simplify to easy fractions: 50% = 1/2, 25% = 1/4, 10% = 1/10.",
+      workedExamples: [
+        { problem: "A survey of 100 people found 35 like tea best. What percentage is that?", steps: ["35 out of 100 is 35%."], answer: "35%" },
+        { problem: "Write 25% as a fraction in its simplest form.", steps: ["25% = 25/100.", "Divide top and bottom by 25.", "25/100 = 1/4."], answer: "1/4" }
+      ],
+      audioScript: "Per cent always means out of 100 — that's the easiest way to remember what the % symbol is telling you."
+    },
+    {
+      order: 3,
+      title: "Rounding decimals",
+      concept: "Rounding a decimal with two decimal places to the nearest whole number or one decimal place",
+      representation: "abstract",
+      visualAid: "number-line",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y5-L6-3"],
+      explanationMd:
+        "To round a decimal, find the digit just after the place you're rounding to. 5 or more rounds up; less than 5 rounds down.\n\n" +
+        "Rounding to the nearest whole number: check the tenths digit. Rounding to one decimal place: check the hundredths digit.",
+      workedExamples: [
+        { problem: "Round 4.67 to the nearest whole number.", steps: ["Look at the tenths digit: 6.", "6 is 5 or more, so round up."], answer: "5" },
+        { problem: "Round 4.67 to one decimal place.", steps: ["Look at the hundredths digit: 7.", "7 is 5 or more, so round the tenths digit up."], answer: "4.7" }
+      ],
+      audioScript: "Rounding decimals works just like rounding whole numbers — just check the right digit."
+    }
+  ],
   Y10L1: [
     {
       order: 1,
