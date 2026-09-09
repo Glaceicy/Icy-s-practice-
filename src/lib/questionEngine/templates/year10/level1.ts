@@ -168,7 +168,7 @@ export const level: QuestionTemplateDef[] = [
     key: "y10l1.wordProblemBounds", levelKey: "Y10L1", objectiveCode: "Y10-L1-1", difficulty: "REASONING",
     misconceptionTags: ["BOUNDS_HALF_UNIT_ERROR"], type: "WORD_PROBLEM",
     ranges: [[50, 300]], compute: (v) => v[0]! + 0.5,
-    promptTemplates: ["A plank of wood measures {a} cm to the nearest centimetre. What is the maximum possible length it could actually be?"],
+    promptTemplates: ["A plank of wood measures {a} to the nearest centimetre. What is the maximum possible length it could actually be?"],
     explain: (v, r) => [`The true length could be up to half a centimetre more: ${v[0]} + 0.5 = ${r} cm.`],
     hints: () => ["The maximum possible value is half a unit above the rounded measurement."],
     formatValue: (n) => `${n} cm`,

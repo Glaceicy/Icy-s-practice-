@@ -194,7 +194,7 @@ export const level: QuestionTemplateDef[] = [
     key: "y5l2.wordProblemDistance", levelKey: "Y5L2", objectiveCode: "Y5-L2-3", difficulty: "APPLICATION",
     misconceptionTags: ["ADDITION_MISCOUNT"], type: "WORD_PROBLEM",
     ranges: [[100, 3000], [100, 3000], [100, 3000]], compute: (v) => v[0]! + v[1]! + v[2]!,
-    promptTemplates: ["A delivery van drove {a} km, then {b} km, then {c} km. What was the total distance driven?"],
+    promptTemplates: ["A delivery van drove {a}, then {b}, then {c}. What was the total distance driven?"],
     explain: (v, r) => [`${v[0]} + ${v[1]} = ${v[0]! + v[1]!}.`, `${v[0]! + v[1]!} + ${v[2]} = ${r}.`],
     hints: () => ["Add the three distances together."],
     formatValue: (n) => `${n} km`,

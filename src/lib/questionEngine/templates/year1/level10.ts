@@ -188,7 +188,8 @@ export const level: QuestionTemplateDef[] = [
     key: "y1l10.coinTotal", levelKey: "Y1L10", objectiveCode: "Y1-L10-3", difficulty: "APPLICATION",
     misconceptionTags: ["MONEY_COIN_VALUE_CONFUSION"], type: "MONEY",
     ranges: [[1, 10], [1, 10]], compute: (v) => v[0]! * 2 + v[1]! * 5,
-    promptTemplates: ["You have {a} 2p coins and {b} 5p coins. How much money is that?", "A purse has {a} 2p coins and {b} 5p coins inside. What is the total value?"],
+    derive: (v) => ({ count2p: v[0]!, count5p: v[1]! }),
+    promptTemplates: ["You have {count2p} 2p coins and {count5p} 5p coins. How much money is that?", "A purse has {count2p} 2p coins and {count5p} 5p coins inside. What is the total value?"],
     explain: (v, r) => [`${v[0]} x 2p = ${v[0]! * 2}p.`, `${v[1]} x 5p = ${v[1]! * 5}p.`, `${v[0]! * 2}p + ${v[1]! * 5}p = ${r}p.`],
     hints: () => ["Add up the coins group by group."],
     formatValue: (n) => `${n}p`,
@@ -199,7 +200,8 @@ export const level: QuestionTemplateDef[] = [
     key: "y1l10.mcCoinTotal", levelKey: "Y1L10", objectiveCode: "Y1-L10-3", difficulty: "APPLICATION",
     misconceptionTags: ["MONEY_COIN_VALUE_CONFUSION"], type: "MULTIPLE_CHOICE",
     ranges: [[1, 6], [1, 6]], compute: (v) => v[0]! * 1 + v[1]! * 10,
-    promptTemplates: ["You have {a} 1p coins and {b} 10p coins. How much altogether?"],
+    derive: (v) => ({ count1p: v[0]!, count10p: v[1]! }),
+    promptTemplates: ["You have {count1p} 1p coins and {count10p} 10p coins. How much altogether?"],
     explain: (v, r) => [`${v[0]}p + ${v[1]! * 10}p = ${r}p.`],
     hints: () => ["Count the 10p coins first, then add the 1p coins."],
     formatValue: (n) => `${n}p`,
@@ -211,8 +213,8 @@ export const level: QuestionTemplateDef[] = [
     misconceptionTags: ["MONEY_COIN_VALUE_CONFUSION"], type: "WORD_PROBLEM",
     ranges: [[2, 30], [1, 25]], constraint: (v) => v[1]! < v[0]!, compute: (v) => v[0]! - v[1]!,
     promptTemplates: [
-      "Priya has {a}p and spends {b}p on sweets. How many pence does she have left?",
-      "Ben starts with {a}p in his money box and spends {b}p on a toy. How much does he have left?"
+      "Priya has {a} and spends {b} on sweets. How many pence does she have left?",
+      "Ben starts with {a} in his money box and spends {b} on a toy. How much does he have left?"
     ],
     explain: (v, r) => [`${v[0]}p - ${v[1]}p = ${r}p.`],
     hints: () => ["Subtract what was spent from the starting amount."],
@@ -262,9 +264,10 @@ export const level: QuestionTemplateDef[] = [
     misconceptionTags: ["CLOCK_HOUR_MINUTE_HAND_CONFUSION"], type: "WORD_PROBLEM",
     ranges: [[1, 9], [1, 2]], constraint: (v) => v[0]! + v[1]! <= 12, compute: (v) => v[0]! + v[1]!,
     contextPool: ["film", "lesson", "football match", "art class", "walk", "swimming lesson", "story time", "bus journey"],
+    derive: (v) => ({ start: v[0]!, duration: v[1]! }),
     promptTemplates: [
-      "A {ctx} starts at {a} o'clock and lasts {b} hour(s). What time does it finish?",
-      "A {ctx} begins at {a} o'clock. It lasts {b} hour(s). What time does it end?"
+      "A {ctx} starts at {start} o'clock and lasts {duration} hour(s). What time does it finish?",
+      "A {ctx} begins at {start} o'clock. It lasts {duration} hour(s). What time does it end?"
     ],
     explain: (v, r) => [`${v[0]} o'clock plus ${v[1]} hour(s) is ${r} o'clock.`],
     hints: () => ["Add the number of hours to the start time."],
