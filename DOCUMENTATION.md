@@ -82,7 +82,7 @@ native enums without changing application code.
   are valid permutations/mappings, etc.), and empirically verifies each
   template reaches at least 150 distinct, valid variations by sampling 1,500
   seeds. Every registered template is covered by this check in
-  `tests/questionEngine.test.ts` — **484 tests, all passing.**
+  `tests/questionEngine.test.ts` — **506 tests, all passing.**
 - **Balanced difficulty.** `pickQuestions()` in `registry.ts` selects
   questions in roughly a 30% fluency / 40% application / 30% reasoning split
   by default (configurable), matching spec §7.
@@ -145,7 +145,7 @@ and every year's journey map). This satisfies "the complete curriculum-
 objective structure" from the final delivery requirements.
 
 **Fully authored** (lessons + a validated, ≥150-variation-per-template
-question bank, playable end to end) — **21 of the 100 levels**:
+question bank, playable end to end) — **22 of the 100 levels**:
 
 | Level | Templates | Why this one |
 | --- | --- | --- |
@@ -168,10 +168,11 @@ question bank, playable end to end) — **21 of the 100 levels**:
 | Year 2, Level 3 | 21 | Adding a two-digit number and ones, adding/subtracting two two-digit numbers, two-step word problems |
 | Year 2, Level 4 | 21 | The 2, 5 and 10 times tables, multiplication as an array, division by sharing and grouping |
 | Year 3, Level 1 | 21 | Hundreds/tens/ones place value to 1,000, comparing/ordering, counting from 0 in multiples of 4/8/50/100 |
+| Year 6, Level 1 | 21 | Place value/ordering to 10,000,000, rounding to any degree of accuracy, negative numbers and intervals across zero |
 | Year 7, Level 1 | 15 | Proves the engine at KS3 depth (negative numbers) |
 | Year 10, Level 1 | 15 | Proves the engine at KS4/GCSE depth, including Foundation/Higher pathway-tagged templates |
 
-Every one of these 21 levels' templates is individually verified (by
+Every one of these 22 levels' templates is individually verified (by
 `tests/questionEngine.test.ts`) to generate at least 150 distinct, valid
 variations, exactly as spec §7 requires per level; the first three meet the
 full ≥30-template bar from spec §7, the rest ship at 15-27 templates each
@@ -184,7 +185,7 @@ actually reaching them — see the commit history for progress; the table
 above and `COMPLETE_LEVEL_KEYS` in `src/lib/questionEngine/templates/all.ts`
 are always the source of truth for exactly which levels are live.
 
-**The other 79 levels** have their objectives fully defined but no lessons
+**The other 78 levels** have their objectives fully defined but no lessons
 or question templates yet (`Level.status = "SCAFFOLDED"` in the database).
 The app **never presents a scaffolded level as playable**: the journey map
 shows it as unlocked-but-"Coming soon" once a child reaches it, and the
@@ -201,7 +202,7 @@ further code changes required.
 
 **Do not read "60,000+ combined question variations already exist" from
 this number of templates alone** — that combinatorial count is real (proven
-per-template by the tests) but only for these 21 levels; it is not a claim
+per-template by the tests) but only for these 22 levels; it is not a claim
 that all 100 levels are populated.
 
 ## 7. Curriculum sequence and DfE alignment

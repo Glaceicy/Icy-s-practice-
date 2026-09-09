@@ -1022,6 +1022,56 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       audioScript: "Keep adding the same step size from zero, and you'll build the whole multiples pattern."
     }
   ],
+  Y6L1: [
+    {
+      order: 1,
+      title: "Numbers to 10,000,000",
+      concept: "Reading, writing, ordering and comparing numbers up to ten million",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y6-L1-1"],
+      explanationMd:
+        "A seven-digit number has a **millions digit** (the first digit), then hundred thousands, ten thousands, thousands, hundreds, tens and ones — the same place-value pattern just extended further left.\n\n" +
+        "To compare two large numbers, compare digit by digit from the left: millions first, then hundred thousands, and so on.",
+      workedExamples: [
+        { problem: "Which is bigger: 4,582,910 or 4,529,988?", steps: ["Both have 4 million.", "5 hundred thousand is the same.", "8 ten thousand is more than 2 ten thousand."], answer: "4,582,910" }
+      ],
+      audioScript: "Compare column by column from the left, starting with the millions — the same trick you already use for smaller numbers."
+    },
+    {
+      order: 2,
+      title: "Rounding to any degree of accuracy",
+      concept: "Rounding a whole number to the nearest 10, 100, 1,000 or any other required place value",
+      representation: "abstract",
+      visualAid: "number-line",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y6-L1-2"],
+      explanationMd:
+        "Rounding to 'a required degree of accuracy' means the question tells you which place value to round to. Look at the digit **one place smaller** than that — 5 or more rounds up, less than 5 rounds down.\n\n" +
+        "The same rule works whether you're rounding to the nearest 10 or the nearest million.",
+      workedExamples: [
+        { problem: "Round 3,647,208 to the nearest 100,000.", steps: ["Look at the ten-thousands digit: 4.", "4 is less than 5, so round down."], answer: "3,600,000" }
+      ],
+      audioScript: "Find the place value you're rounding to, check the digit just after it, and round up or down from there."
+    },
+    {
+      order: 3,
+      title: "Negative numbers and intervals across zero",
+      concept: "Using negative numbers in context and calculating the interval between a negative and a positive value",
+      representation: "pictorial",
+      visualAid: "number-line",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y6-L1-3"],
+      explanationMd:
+        "An **interval across zero** is the total distance between a negative number and a positive number. Add how far below zero you started to how far above zero you ended.\n\n" +
+        "For example, from -8°C to 15°C, the interval is 8 (up to zero) + 15 (up to 15) = 23 degrees.",
+      workedExamples: [
+        { problem: "The temperature rose from -6°C to 9°C. What was the interval?", steps: ["6 (up to zero) + 9 (up to 9)."], answer: "15°C" }
+      ],
+      audioScript: "Crossing zero doesn't change the method — just add the distance below zero to the distance above it."
+    }
+  ],
   Y10L1: [
     {
       order: 1,

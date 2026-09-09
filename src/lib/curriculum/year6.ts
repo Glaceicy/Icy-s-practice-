@@ -1,7 +1,8 @@
 import type { SchoolYearDef } from "./types";
 
-// Year 6 (ages 10-11, KS2). Curriculum metadata/objectives defined; full lesson
-// and question content scaffolded for future authoring (see DOCUMENTATION.md).
+// Year 6 (ages 10-11, KS2). Level 1 is fully authored (lessons, practice,
+// 40-question mastery bank); levels 2-10 are scaffolded (curriculum
+// metadata only — see questionEngine/templates/all.ts COMPLETE_LEVEL_KEYS).
 export const year6: SchoolYearDef = {
   yearNumber: 6,
   title: "Year 6",
@@ -11,7 +12,7 @@ export const year6: SchoolYearDef = {
   maxAge: 11,
   themeStage: "adventure",
   levels: [
-    { levelNumber: 1, title: "Place value, rounding and negative numbers", summary: "By the end of this level, you will use place value confidently with very large and negative numbers.", isMixedMastery: false, status: "SCAFFOLDED", pathway: null, objectives: [
+    { levelNumber: 1, title: "Place value, rounding and negative numbers", summary: "By the end of this level, you will use place value confidently with very large and negative numbers.", isMixedMastery: false, status: "COMPLETE", pathway: null, objectives: [
       { code: "Y6-L1-1", description: "Read, write, order and compare numbers up to 10,000,000.", dfeReference: "Y6 Number & place value: numbers up to 10,000,000" },
       { code: "Y6-L1-2", description: "Round any whole number to a required degree of accuracy.", dfeReference: "Y6 Number & place value: round any whole number" },
       { code: "Y6-L1-3", description: "Use negative numbers in context, and calculate intervals across zero.", dfeReference: "Y6 Number & place value: use negative numbers in context" }
