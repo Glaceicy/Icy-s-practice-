@@ -9,14 +9,16 @@ export default async function AdminOverviewPage() {
   const adult = await prisma.adultUser.findUniqueOrThrow({ where: { id: session.adultId } });
   if (adult.role !== "ADMIN") redirect("/profiles");
 
-  const [years, levels, completeLevels, templates, activeTemplates, logs, misconceptions] = await Promise.all([
+  const [years, levels, completeLevels, templates, activeTemplates, logs, misconceptions, adultUsers, childProfiles] = await Promise.all([
     prisma.schoolYear.count(),
     prisma.level.count(),
     prisma.level.count({ where: { status: "COMPLETE" } }),
     prisma.questionTemplate.count(),
     prisma.questionTemplate.count({ where: { isActive: true } }),
     prisma.generatedQuestionLog.count(),
-    prisma.misconceptionLog.count()
+    prisma.misconceptionLog.count(),
+    prisma.adultUser.count(),
+    prisma.childProfile.count()
   ]);
 
   return (
@@ -37,9 +39,15 @@ export default async function AdminOverviewPage() {
         <Stat label="Active templates" value={activeTemplates} />
         <Stat label="Generated question variations logged" value={logs} />
         <Stat label="Misconceptions logged" value={misconceptions} />
+        <Stat label="Adult accounts" value={adultUsers} />
+        <Stat label="Child profiles" value={childProfiles} />
       </div>
 
       <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <Link href="/admin/users" className="rounded-xl2 border bg-white p-5 shadow-sm hover:border-brand-400">
+          <h2 className="font-bold text-brand-800">All users</h2>
+          <p className="mt-1 text-sm text-slate-600">Every registered adult account and their children, across every family on this app.</p>
+        </Link>
         <Link href="/admin/questions" className="rounded-xl2 border bg-white p-5 shadow-sm hover:border-brand-400">
           <h2 className="font-bold text-brand-800">Question bank review</h2>
           <p className="mt-1 text-sm text-slate-600">Review templates, disable inaccurate questions, see frequently-missed questions.</p>
