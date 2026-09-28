@@ -5,6 +5,7 @@ import { prisma } from "@/lib/db";
 import { getWrongAnswersForPracticeAttempt } from "@/lib/services/practice";
 import ChildTopBar from "@/components/ChildTopBar";
 import WrongAnswerReviewPanel from "@/components/WrongAnswerReviewPanel";
+import Mascot from "@/components/illustrations/Mascot";
 
 const NEXT_STEP: Record<string, { href: (childId: string, levelId: string) => string; label: string }> = {
   GUIDED: { href: (childId, levelId) => `/learn/${childId}/level/${levelId}/independent`, label: "Start independent practice" },
@@ -26,9 +27,9 @@ export default async function PracticeSummaryPage({ params }: { params: { childI
       <ChildTopBar child={child} />
 
       <div className="mt-6 rounded-xl2 border-2 border-leaf-500 bg-leaf-50 p-8 text-center shadow-sm">
-        <p className="text-5xl" aria-hidden="true">
-          🎉
-        </p>
+        <div className="flex justify-center">
+          <Mascot mood="cheer" className="h-24 w-24 animate-pop-in" />
+        </div>
         <h1 className="mt-2 text-2xl font-extrabold text-brand-800">{modeLabel} complete!</h1>
         <p className="mt-3 text-4xl font-bold text-brand-700">
           {attempt.correctCount} / {attempt.totalQuestions}

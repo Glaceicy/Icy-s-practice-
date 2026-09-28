@@ -4,6 +4,7 @@ import { getAdultSession } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { logoutAction } from "@/lib/actions/auth";
 import ProfilePinCard from "@/components/ProfilePinCard";
+import Mascot from "@/components/illustrations/Mascot";
 
 export default async function ProfilesPage() {
   const session = await getAdultSession();
@@ -19,9 +20,12 @@ export default async function ProfilesPage() {
   return (
     <main className="mx-auto min-h-screen max-w-4xl px-6 py-12">
       <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-brand-800">Who&rsquo;s learning today?</h1>
-          <p className="mt-1 text-sm text-slate-600">Signed in as {adult.fullName} ({adult.role.toLowerCase()})</p>
+        <div className="flex items-center gap-4">
+          <Mascot mood="wave" className="h-16 w-16 flex-none animate-pop-in" />
+          <div>
+            <h1 className="text-2xl font-bold text-brand-800">Who&rsquo;s learning today?</h1>
+            <p className="mt-1 text-sm text-slate-600">Signed in as {adult.fullName} ({adult.role.toLowerCase()})</p>
+          </div>
         </div>
         <div className="flex gap-3 text-sm">
           <Link href="/dashboard" className="rounded-lg border px-4 py-2 font-semibold text-brand-700 hover:bg-brand-50">

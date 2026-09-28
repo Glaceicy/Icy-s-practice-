@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { assertChildAccess } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import ChildTopBar from "@/components/ChildTopBar";
+import Mascot from "@/components/illustrations/Mascot";
 
 export default async function LevelOverviewPage({ params }: { params: { childId: string; levelId: string } }) {
   const { child } = await assertChildAccess(params.childId);
@@ -57,10 +58,15 @@ export default async function LevelOverviewPage({ params }: { params: { childId:
     <main className="mx-auto min-h-screen max-w-3xl px-6 py-10">
       <ChildTopBar child={child} />
 
-      <p className="mt-6 text-sm font-semibold uppercase tracking-wide text-brand-600">
-        {level.schoolYear.title} &middot; Level {level.levelNumber}
-      </p>
-      <h1 className="text-3xl font-extrabold text-brand-800">{level.title}</h1>
+      <div className="mt-6 flex items-center gap-4">
+        <Mascot mood="wave" className="h-20 w-20 flex-none animate-pop-in" />
+        <div>
+          <p className="text-sm font-semibold uppercase tracking-wide text-brand-600">
+            {level.schoolYear.title} &middot; Level {level.levelNumber}
+          </p>
+          <h1 className="text-3xl font-extrabold text-brand-800">{level.title}</h1>
+        </div>
+      </div>
       <p className="mt-2 text-slate-700">{level.summary}</p>
 
       <section aria-labelledby="objectives-heading" className="mt-8 rounded-xl2 border bg-white p-6 shadow-sm">

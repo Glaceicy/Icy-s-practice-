@@ -7,6 +7,7 @@ import { nextLevelRef } from "@/lib/curriculum";
 import { getWrongAnswersForMasteryAttempt } from "@/lib/services/mastery";
 import ChildTopBar from "@/components/ChildTopBar";
 import WrongAnswerReviewPanel from "@/components/WrongAnswerReviewPanel";
+import Mascot from "@/components/illustrations/Mascot";
 
 export default async function ResultsPage({ params }: { params: { childId: string; levelId: string; attemptId: string } }) {
   const { child } = await assertChildAccess(params.childId);
@@ -36,9 +37,9 @@ export default async function ResultsPage({ params }: { params: { childId: strin
       <ChildTopBar child={child} />
 
       <div className={`mt-6 rounded-xl2 p-8 text-center shadow-sm ${attempt.passed ? "bg-leaf-50 border-2 border-leaf-500" : "bg-brand-50 border-2 border-brand-300"}`}>
-        <p className="text-5xl" aria-hidden="true">
-          {attempt.passed ? "🏆" : "🌟"}
-        </p>
+        <div className="flex justify-center">
+          <Mascot mood={attempt.passed ? "trophy" : "think"} className="h-24 w-24 animate-pop-in" />
+        </div>
         <h1 className="mt-2 text-2xl font-extrabold text-brand-800">{attempt.passed ? "Fantastic! You passed!" : "You're nearly there!"}</h1>
         <p className="mt-3 text-4xl font-bold text-brand-700">
           {attempt.correctFirstAttempt} / {attempt.totalQuestions}

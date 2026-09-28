@@ -16,6 +16,7 @@ import QuestionInput from "./QuestionInput";
 import WrongAnswerCard, { type WrongAnswerSupportView } from "./WrongAnswerCard";
 import WrongAnswerReviewPanel from "./WrongAnswerReviewPanel";
 import Scratchpad from "./Scratchpad";
+import Mascot from "./illustrations/Mascot";
 
 type ViewMode = "loading" | "paused" | "question" | "round-complete" | "ready-to-submit" | "submitting";
 
@@ -136,9 +137,9 @@ export default function MasterySession({ attemptId, childId, levelId }: { attemp
     const remaining = state.totalQuestions - justFinishedRound * 10;
     return (
       <div className="rounded-xl2 border bg-white p-8 text-center shadow-sm">
-        <p className="text-4xl" aria-hidden="true">
-          🎉
-        </p>
+        <div className="flex justify-center">
+          <Mascot mood="cheer" className="h-20 w-20 animate-pop-in" />
+        </div>
         <h2 className="mt-2 text-xl font-bold text-brand-800">Round {justFinishedRound} complete!</h2>
         <p className="mt-2 text-slate-600">{remaining} question(s) remaining in this Mastery Challenge.</p>
         <p className="mt-1 text-sm text-slate-500">Feel free to take a short movement or rest break before continuing.</p>
