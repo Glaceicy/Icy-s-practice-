@@ -15,6 +15,7 @@ import type { StoredQuestionView } from "@/lib/services/questionLog";
 import QuestionInput from "./QuestionInput";
 import WrongAnswerCard, { type WrongAnswerSupportView } from "./WrongAnswerCard";
 import WrongAnswerReviewPanel from "./WrongAnswerReviewPanel";
+import Scratchpad from "./Scratchpad";
 
 type ViewMode = "loading" | "paused" | "question" | "round-complete" | "ready-to-submit" | "submitting";
 
@@ -195,11 +196,10 @@ export default function MasterySession({ attemptId, childId, levelId }: { attemp
         </div>
       </div>
 
-      {hasWrongAnswers && (
-        <div className="mb-4">
-          <WrongAnswerReviewPanel attemptId={attemptId} kind="mastery" hasWrongAnswers={hasWrongAnswers} />
-        </div>
-      )}
+      <div className="mb-4 flex flex-wrap gap-3">
+        <Scratchpad />
+        {hasWrongAnswers && <WrongAnswerReviewPanel attemptId={attemptId} kind="mastery" hasWrongAnswers={hasWrongAnswers} />}
+      </div>
 
       {error && <p className="mb-3 rounded-lg bg-berry-50 p-3 text-sm text-berry-600">{error}</p>}
 

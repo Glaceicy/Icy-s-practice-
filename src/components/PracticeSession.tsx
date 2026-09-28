@@ -6,6 +6,7 @@ import { fetchNextPracticeQuestionAction, submitPracticeAnswerAction, type Pract
 import QuestionInput from "./QuestionInput";
 import WrongAnswerCard, { type WrongAnswerSupportView } from "./WrongAnswerCard";
 import WrongAnswerReviewPanel from "./WrongAnswerReviewPanel";
+import Scratchpad from "./Scratchpad";
 
 export default function PracticeSession({
   attemptId,
@@ -94,11 +95,10 @@ export default function PracticeSession({
         </div>
       </div>
 
-      {hasWrongAnswers && (
-        <div className="mb-4">
-          <WrongAnswerReviewPanel attemptId={attemptId} kind="practice" hasWrongAnswers={hasWrongAnswers} />
-        </div>
-      )}
+      <div className="mb-4 flex flex-wrap gap-3">
+        <Scratchpad />
+        {hasWrongAnswers && <WrongAnswerReviewPanel attemptId={attemptId} kind="practice" hasWrongAnswers={hasWrongAnswers} />}
+      </div>
 
       {celebrating && (
         <p className="mb-3 text-center text-lg font-bold text-leaf-600" aria-live="polite">
