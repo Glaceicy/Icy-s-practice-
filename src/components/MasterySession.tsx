@@ -14,6 +14,7 @@ import {
 import type { StoredQuestionView } from "@/lib/services/questionLog";
 import QuestionInput from "./QuestionInput";
 import WrongAnswerCard, { type WrongAnswerSupportView } from "./WrongAnswerCard";
+import WrongAnswerReviewPanel from "./WrongAnswerReviewPanel";
 
 type ViewMode = "loading" | "paused" | "question" | "round-complete" | "ready-to-submit" | "submitting";
 
@@ -26,6 +27,7 @@ export default function MasterySession({ attemptId, childId, levelId }: { attemp
   const [justFinishedRound, setJustFinishedRound] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [hasWrongAnswers, setHasWrongAnswers] = useState(false);
 
   const refresh = useCallback(async () => {
     const s = await getMasteryStateAction(attemptId);
@@ -63,6 +65,7 @@ export default function MasterySession({ attemptId, childId, levelId }: { attemp
       const result = await submitMasteryAnswerAction(attemptId, nextSlot.roundNumber, nextSlot.positionInRound, answer);
       if (!result.isCorrect) {
         setSupport(result.support);
+        setHasWrongAnswers(true);
         return;
       }
       if (result.roundComplete && nextSlot.positionInRound === 10) {
@@ -191,6 +194,12 @@ export default function MasterySession({ attemptId, childId, levelId }: { attemp
           <div className="h-2 rounded-full bg-brand-500 transition-[width]" style={{ width: `${progress}%` }} />
         </div>
       </div>
+
+      {hasWrongAnswers && (
+        <div className="mb-4">
+          <WrongAnswerReviewPanel attemptId={attemptId} kind="mastery" hasWrongAnswers={hasWrongAnswers} />
+        </div>
+      )}
 
       {error && <p className="mb-3 rounded-lg bg-berry-50 p-3 text-sm text-berry-600">{error}</p>}
 

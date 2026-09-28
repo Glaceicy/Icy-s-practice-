@@ -2,7 +2,7 @@ import { prisma } from "@/lib/db";
 import { pickQuestions } from "@/lib/questionEngine/registry";
 import { seedFor } from "@/lib/questionEngine/rng";
 import { hashSeed } from "@/lib/questionEngine/rng";
-import { ensureQuestionLog, gradeAnswer, getTemplateDef, getDisabledTemplateKeys } from "./questionLog";
+import { ensureQuestionLog, gradeAnswer, getTemplateDef, getDisabledTemplateKeys, toWrongAnswerReviewItem, type WrongAnswerReviewItem } from "./questionLog";
 import { recordObjectiveProgress, recordMisconception } from "./objectives";
 import { buildWrongAnswerSupport, type WrongAnswerSupport } from "./misconception";
 import { GUIDED_PRACTICE_QUESTIONS, INDEPENDENT_PRACTICE_MIN_QUESTIONS, REVISION_MIN_QUESTIONS } from "@/lib/scoring";
@@ -220,4 +220,26 @@ export async function submitPracticeAnswer(params: {
   }
 
   return { isCorrect, support, attemptComplete };
+}
+
+/** Every question the child has answered wrong so far in this attempt, one
+ * entry per question position (not per submission) — if a position was
+ * retried, only their final wrong try before eventually getting it right is
+ * shown, since that's the attempt worth reviewing. Usable both mid-session
+ * (spec: "review wrong answers at any time") and on an end-of-session
+ * summary once the attempt is complete. */
+export async function getWrongAnswersForPracticeAttempt(attemptId: string): Promise<WrongAnswerReviewItem[]> {
+  const rows = await prisma.practiceAnswer.findMany({
+    where: { attemptId, isCorrect: false },
+    include: { questionLog: true },
+    orderBy: [{ position: "asc" }, { attemptNumber: "desc" }]
+  });
+  const seenPositions = new Set<number>();
+  const items: WrongAnswerReviewItem[] = [];
+  for (const row of rows) {
+    if (seenPositions.has(row.position)) continue;
+    seenPositions.add(row.position);
+    items.push(toWrongAnswerReviewItem(row.questionLog, row.givenAnswer, row.answeredAt));
+  }
+  return items;
 }

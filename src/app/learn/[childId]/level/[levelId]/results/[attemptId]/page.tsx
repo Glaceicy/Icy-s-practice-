@@ -4,7 +4,9 @@ import { assertChildAccess } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { MASTERY_PASS_CORRECT, MASTERY_TOTAL_QUESTIONS } from "@/lib/scoring";
 import { nextLevelRef } from "@/lib/curriculum";
+import { getWrongAnswersForMasteryAttempt } from "@/lib/services/mastery";
 import ChildTopBar from "@/components/ChildTopBar";
+import WrongAnswerReviewPanel from "@/components/WrongAnswerReviewPanel";
 
 export default async function ResultsPage({ params }: { params: { childId: string; levelId: string; attemptId: string } }) {
   const { child } = await assertChildAccess(params.childId);
@@ -27,6 +29,7 @@ export default async function ResultsPage({ params }: { params: { childId: strin
   }
 
   const next = nextLevelRef(attempt.level.schoolYear.yearNumber, attempt.level.levelNumber);
+  const wrongAnswers = await getWrongAnswersForMasteryAttempt(attempt.id);
 
   return (
     <main className="mx-auto min-h-screen max-w-2xl px-6 py-10">
@@ -71,6 +74,16 @@ export default async function ResultsPage({ params }: { params: { childId: strin
               </li>
             ))}
           </ul>
+        </section>
+      )}
+
+      {wrongAnswers.length > 0 && (
+        <section className="mt-6 rounded-xl2 border bg-white p-6 text-center shadow-sm">
+          <h2 className="font-bold text-brand-800">Want to look back at the tricky ones?</h2>
+          <p className="mt-1 text-sm text-slate-600">See every question you missed, with the correct answer and explanation.</p>
+          <div className="mt-3 flex justify-center">
+            <WrongAnswerReviewPanel items={wrongAnswers} triggerLabel={`📋 Review ${wrongAnswers.length} tricky question${wrongAnswers.length === 1 ? "" : "s"}`} />
+          </div>
         </section>
       )}
 

@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/db";
 import { pickQuestions } from "@/lib/questionEngine/registry";
 import { hashSeed } from "@/lib/questionEngine/rng";
-import { ensureQuestionLog, gradeAnswer, logToView, getDisabledTemplateKeys, type StoredQuestionView } from "./questionLog";
+import { ensureQuestionLog, gradeAnswer, logToView, getDisabledTemplateKeys, toWrongAnswerReviewItem, type StoredQuestionView, type WrongAnswerReviewItem } from "./questionLog";
 import { recordObjectiveProgress, recordMisconception } from "./objectives";
 import { buildWrongAnswerSupport, type WrongAnswerSupport } from "./misconception";
 import { MASTERY_QUESTIONS_PER_ROUND, MASTERY_TOTAL_QUESTIONS, computeScorePercentage, isMasteryPass, roundNumberForQuestionIndex, positionInRoundForQuestionIndex } from "@/lib/scoring";
@@ -255,4 +255,18 @@ export async function finalizeMasteryAttempt(childId: string, attemptId: string)
   }
 
   return { correctFirstAttempt, scorePercentage, passed, unlockedNext, weakObjectives: Array.from(weakObjectiveMap.values()) };
+}
+
+/** Every question the child has answered wrong so far in this Mastery
+ * Challenge attempt — usable both mid-challenge (spec: "review wrong
+ * answers at any time") and on the results screen once submitted. Each
+ * slot is answered at most once (locked immediately, no retries), so there
+ * is no deduplication to do here, unlike practice attempts. */
+export async function getWrongAnswersForMasteryAttempt(attemptId: string): Promise<WrongAnswerReviewItem[]> {
+  const rows = await prisma.assessmentAnswer.findMany({
+    where: { attemptId, isCorrect: false },
+    include: { questionLog: true },
+    orderBy: [{ roundNumber: "asc" }, { positionInRound: "asc" }]
+  });
+  return rows.map((row) => toWrongAnswerReviewItem(row.questionLog, row.givenAnswer ?? "", row.answeredAt));
 }

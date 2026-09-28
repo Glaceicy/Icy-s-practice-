@@ -119,6 +119,53 @@ export function logToView(log: {
   };
 }
 
+export interface WrongAnswerReviewItem {
+  prompt: string;
+  givenAnswerDisplay: string;
+  correctAnswerDisplay: string;
+  explanationSteps: string[];
+  visualAid?: { kind: string; data: Record<string, unknown> };
+  answeredAt: Date | null;
+}
+
+/** Choice-based question types store the choice id (e.g. "opt2"), not its
+ * label, in givenAnswer/correctAnswer — resolve it back to the label a child
+ * actually saw and picked, so a review screen reads like a real answer
+ * rather than an opaque id. Every other type's answer is already the
+ * human-readable value, so it passes through unchanged. */
+function resolveAnswerDisplay(answer: string, questionType: string, choicesJson: string | null): string {
+  if ((questionType === "MULTIPLE_CHOICE" || questionType === "TRUE_FALSE") && choicesJson) {
+    const choices: Array<{ id: string; label: string }> = JSON.parse(choicesJson);
+    return choices.find((c) => c.id === answer)?.label ?? answer;
+  }
+  return answer;
+}
+
+/** Builds a review-friendly view of one wrong answer — safe to show only
+ * after the question has already been graded (unlike StoredQuestionView,
+ * this deliberately includes the correct answer and explanation). */
+export function toWrongAnswerReviewItem(
+  log: {
+    prompt: string;
+    questionType: string;
+    choicesJson: string | null;
+    visualAidJson: string | null;
+    correctAnswer: string;
+    explanationSteps: string;
+  },
+  givenAnswer: string,
+  answeredAt: Date | null
+): WrongAnswerReviewItem {
+  return {
+    prompt: log.prompt,
+    givenAnswerDisplay: resolveAnswerDisplay(givenAnswer, log.questionType, log.choicesJson),
+    correctAnswerDisplay: resolveAnswerDisplay(log.correctAnswer, log.questionType, log.choicesJson),
+    explanationSteps: JSON.parse(log.explanationSteps),
+    visualAid: log.visualAidJson ? JSON.parse(log.visualAidJson) : undefined,
+    answeredAt
+  };
+}
+
 function normaliseAnswer(raw: string): string {
   return raw.trim().toLowerCase().replace(/\s+/g, " ");
 }

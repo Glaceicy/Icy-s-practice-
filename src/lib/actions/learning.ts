@@ -6,6 +6,7 @@ import {
   getExcludedKeysForChild,
   getNextPracticeQuestion,
   getWeakObjectiveCodes,
+  getWrongAnswersForPracticeAttempt,
   startPracticeAttempt,
   submitPracticeAnswer,
   type NextPracticeQuestion,
@@ -15,6 +16,7 @@ import {
   getActiveOrNewMasteryAttempt,
   getMasteryQuestionView,
   getMasteryState,
+  getWrongAnswersForMasteryAttempt,
   finalizeMasteryAttempt,
   pauseMasteryAttempt,
   resumeMasteryAttempt,
@@ -22,7 +24,7 @@ import {
   type FinalizeResult,
   type MasteryAnswerResult
 } from "@/lib/services/mastery";
-import { logToView, type StoredQuestionView } from "@/lib/services/questionLog";
+import { logToView, type StoredQuestionView, type WrongAnswerReviewItem } from "@/lib/services/questionLog";
 import type { Pathway, PracticeMode } from "@/lib/types";
 
 async function levelContext(levelId: string) {
@@ -96,6 +98,13 @@ export async function submitPracticeAnswerAction(
   const attempt = await prisma.practiceAttempt.findUniqueOrThrow({ where: { id: attemptId } });
   if (attempt.childId !== child.id) throw new Error("FORBIDDEN");
   return submitPracticeAnswer({ childId: child.id, attemptId, position, logId, givenAnswer, hintsUsed });
+}
+
+export async function getWrongAnswersForPracticeAttemptAction(attemptId: string): Promise<WrongAnswerReviewItem[]> {
+  const { child } = await requireActiveChild();
+  const attempt = await prisma.practiceAttempt.findUniqueOrThrow({ where: { id: attemptId } });
+  if (attempt.childId !== child.id) throw new Error("FORBIDDEN");
+  return getWrongAnswersForPracticeAttempt(attemptId);
 }
 
 // ---------------------------------------------------------------------------
@@ -192,4 +201,11 @@ export async function finalizeMasteryAction(attemptId: string): Promise<Finalize
   const attempt = await prisma.assessmentAttempt.findUniqueOrThrow({ where: { id: attemptId } });
   if (attempt.childId !== child.id) throw new Error("FORBIDDEN");
   return finalizeMasteryAttempt(child.id, attemptId);
+}
+
+export async function getWrongAnswersForMasteryAttemptAction(attemptId: string): Promise<WrongAnswerReviewItem[]> {
+  const { child } = await requireActiveChild();
+  const attempt = await prisma.assessmentAttempt.findUniqueOrThrow({ where: { id: attemptId } });
+  if (attempt.childId !== child.id) throw new Error("FORBIDDEN");
+  return getWrongAnswersForMasteryAttempt(attemptId);
 }

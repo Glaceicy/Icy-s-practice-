@@ -31,7 +31,7 @@ export default async function RevisionPage({ params }: { params: { childId: stri
       )}
 
       <div className="mt-6">
-        <PracticeSession attemptId={attemptId} childId={child.id} levelId={level.id} mode="REVISION" nextHref={`/learn/${child.id}/level/${level.id}/mastery`} />
+        <PracticeSession attemptId={attemptId} childId={child.id} levelId={level.id} mode="REVISION" />
       </div>
     </main>
   );

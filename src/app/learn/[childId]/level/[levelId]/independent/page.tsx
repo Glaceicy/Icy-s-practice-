@@ -18,7 +18,7 @@ export default async function IndependentPracticePage({ params }: { params: { ch
       <h1 className="mt-6 text-2xl font-bold text-brand-800">Independent practice: {level.title}</h1>
       <p className="mt-1 text-sm text-slate-600">Have a go on your own. When you&rsquo;re ready, the Mastery Challenge is next.</p>
       <div className="mt-6">
-        <PracticeSession attemptId={attemptId} childId={child.id} levelId={level.id} mode="INDEPENDENT" nextHref={`/learn/${child.id}/level/${level.id}/mastery`} />
+        <PracticeSession attemptId={attemptId} childId={child.id} levelId={level.id} mode="INDEPENDENT" />
       </div>
     </main>
   );

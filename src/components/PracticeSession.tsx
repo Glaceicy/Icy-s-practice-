@@ -5,19 +5,18 @@ import { useRouter } from "next/navigation";
 import { fetchNextPracticeQuestionAction, submitPracticeAnswerAction, type PracticeQuestionPayload } from "@/lib/actions/learning";
 import QuestionInput from "./QuestionInput";
 import WrongAnswerCard, { type WrongAnswerSupportView } from "./WrongAnswerCard";
+import WrongAnswerReviewPanel from "./WrongAnswerReviewPanel";
 
 export default function PracticeSession({
   attemptId,
   childId,
   levelId,
-  mode,
-  nextHref
+  mode
 }: {
   attemptId: string;
   childId: string;
   levelId: string;
   mode: "GUIDED" | "INDEPENDENT" | "REVISION";
-  nextHref: string;
 }) {
   const router = useRouter();
   const [state, setState] = useState<PracticeQuestionPayload | null>(null);
@@ -27,6 +26,7 @@ export default function PracticeSession({
   const [loading, setLoading] = useState(true);
   const [celebrating, setCelebrating] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [hasWrongAnswers, setHasWrongAnswers] = useState(false);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -51,12 +51,13 @@ export default function PracticeSession({
         setCelebrating(true);
         window.setTimeout(() => setCelebrating(false), 900);
         if (result.attemptComplete) {
-          router.push(nextHref);
+          router.push(`/learn/${childId}/level/${levelId}/practice-summary/${attemptId}`);
           return;
         }
         await load();
       } else {
         setSupport(result.support);
+        setHasWrongAnswers(true);
       }
     } finally {
       setSubmitting(false);
@@ -92,6 +93,12 @@ export default function PracticeSession({
           <div className="h-2 rounded-full bg-brand-500 transition-[width]" style={{ width: `${progress}%` }} />
         </div>
       </div>
+
+      {hasWrongAnswers && (
+        <div className="mb-4">
+          <WrongAnswerReviewPanel attemptId={attemptId} kind="practice" hasWrongAnswers={hasWrongAnswers} />
+        </div>
+      )}
 
       {celebrating && (
         <p className="mb-3 text-center text-lg font-bold text-leaf-600" aria-live="polite">
