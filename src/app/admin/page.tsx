@@ -4,6 +4,7 @@ import { getAdultSession } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { getLocale } from "@/lib/i18n/locale";
 import { translate } from "@/lib/i18n/translate";
+import SyncContentButton from "@/components/SyncContentButton";
 
 export default async function AdminOverviewPage() {
   const session = await getAdultSession();
@@ -34,6 +35,10 @@ export default async function AdminOverviewPage() {
         </Link>
       </div>
       <p className="mt-1 text-sm text-slate-600">{t("adminOverview.signedInAs", { name: adult.fullName })}</p>
+
+      <div className="mt-4">
+        <SyncContentButton />
+      </div>
 
       <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3">
         <Stat label={t("adminOverview.schoolYears")} value={years} />

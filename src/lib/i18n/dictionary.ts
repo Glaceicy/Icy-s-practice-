@@ -448,6 +448,11 @@ export const dictionary = {
       importing: "Importing…",
       updatedCount: "{count} template(s) updated.",
       errorCount: "{count} row(s) had errors."
+    },
+    syncContent: {
+      button: "🔄 Sync curriculum & lessons from code",
+      syncing: "Syncing…",
+      result: "{years} years, {levels} levels, {objectives} objectives, {lessons} lessons synced."
     }
   },
   fr: {
@@ -893,6 +898,11 @@ export const dictionary = {
       importing: "Importation…",
       updatedCount: "{count} modèle(s) mis à jour.",
       errorCount: "{count} ligne(s) en erreur."
+    },
+    syncContent: {
+      button: "🔄 Synchroniser le programme et les leçons depuis le code",
+      syncing: "Synchronisation…",
+      result: "{years} années, {levels} niveaux, {objectives} objectifs, {lessons} leçons synchronisés."
     }
   }
 } as const;

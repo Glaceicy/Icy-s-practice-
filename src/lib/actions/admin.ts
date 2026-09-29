@@ -3,6 +3,7 @@
 import { z } from "zod";
 import { prisma } from "@/lib/db";
 import { requireAdult } from "@/lib/auth";
+import { syncCurriculumFromCode, syncLessonsFromCode } from "@/lib/services/curriculumSync";
 
 async function requireAdminRole() {
   const adult = await requireAdult();
@@ -88,6 +89,36 @@ export async function importTemplateGovernanceAction(fileContent: string, format
   });
 
   return { updated, errors };
+}
+
+export interface ContentSyncResult {
+  years: number;
+  levels: number;
+  objectives: number;
+  lessons: number;
+}
+
+/** Re-applies the code-authored curriculum and lesson content (including any
+ * new French translations) onto the already-seeded database — every write is
+ * an idempotent upsert keyed by natural key (year/level number, objective
+ * code, lesson order), so this is always safe to re-run and never creates
+ * duplicates or touches unrelated data (child progress, accounts, etc). This
+ * is the self-service way to push a content-only update after a deploy,
+ * without needing direct database access or a schema migration. */
+export async function syncContentFromCodeAction(): Promise<ContentSyncResult> {
+  const admin = await requireAdminRole();
+  const curriculumResult = await syncCurriculumFromCode(prisma);
+  const lessonsResult = await syncLessonsFromCode(prisma);
+  await prisma.adminAuditLog.create({
+    data: {
+      adminId: admin.id,
+      action: "sync_content_from_code",
+      entityType: "Curriculum",
+      entityId: "bulk",
+      detail: `${curriculumResult.years} years, ${curriculumResult.levels} levels, ${curriculumResult.objectives} objectives, ${lessonsResult.lessons} lessons`
+    }
+  });
+  return { ...curriculumResult, ...lessonsResult };
 }
 
 function parseCsv(content: string): Array<Record<string, string>> {

@@ -1,124 +1,22 @@
 /* eslint-disable no-console */
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
-import { curriculum } from "../src/lib/curriculum";
 import { COMPLETE_LEVEL_KEYS, loadAllTemplates } from "../src/lib/questionEngine/templates/all";
 import { getTemplatesForLevel } from "../src/lib/questionEngine/registry";
+import { syncCurriculumFromCode, syncLessonsFromCode } from "../src/lib/services/curriculumSync";
 
 const prisma = new PrismaClient();
 
 async function seedCurriculum() {
   console.log("Seeding curriculum: 10 school years, 100 levels, learning objectives...");
-  for (const yearDef of curriculum) {
-    const schoolYear = await prisma.schoolYear.upsert({
-      where: { yearNumber: yearDef.yearNumber },
-      create: {
-        yearNumber: yearDef.yearNumber,
-        title: yearDef.title,
-        keyStage: yearDef.keyStage,
-        summary: yearDef.summary,
-        minAge: yearDef.minAge,
-        maxAge: yearDef.maxAge,
-        themeStage: yearDef.themeStage
-      },
-      update: {
-        title: yearDef.title,
-        keyStage: yearDef.keyStage,
-        summary: yearDef.summary,
-        minAge: yearDef.minAge,
-        maxAge: yearDef.maxAge,
-        themeStage: yearDef.themeStage
-      }
-    });
-
-    for (const levelDef of yearDef.levels) {
-      const level = await prisma.level.upsert({
-        where: { schoolYearId_levelNumber: { schoolYearId: schoolYear.id, levelNumber: levelDef.levelNumber } },
-        create: {
-          schoolYearId: schoolYear.id,
-          levelNumber: levelDef.levelNumber,
-          title: levelDef.title,
-          summary: levelDef.summary,
-          isMixedMastery: levelDef.isMixedMastery,
-          status: levelDef.status,
-          pathway: levelDef.pathway
-        },
-        update: {
-          title: levelDef.title,
-          summary: levelDef.summary,
-          isMixedMastery: levelDef.isMixedMastery,
-          status: levelDef.status,
-          pathway: levelDef.pathway
-        }
-      });
-
-      for (const objectiveDef of levelDef.objectives) {
-        await prisma.learningObjective.upsert({
-          where: { levelId_code: { levelId: level.id, code: objectiveDef.code } },
-          create: {
-            levelId: level.id,
-            code: objectiveDef.code,
-            description: objectiveDef.description,
-            dfeReference: objectiveDef.dfeReference
-          },
-          update: {
-            description: objectiveDef.description,
-            dfeReference: objectiveDef.dfeReference
-          }
-        });
-      }
-    }
-  }
-  console.log("Curriculum seeded.");
+  const { years, levels, objectives } = await syncCurriculumFromCode(prisma);
+  console.log(`Curriculum seeded: ${years} years, ${levels} levels, ${objectives} objectives.`);
 }
 
 async function seedLessons() {
   console.log("Seeding mini-lessons for flagship complete levels...");
-  const { lessonsByLevelKey } = await import("../src/lib/lessons/content");
-  for (const [levelKey, lessons] of Object.entries(lessonsByLevelKey)) {
-    const [yearStr, levelStr] = levelKey.replace("Y", "").split("L");
-    const yearNumber = Number(yearStr);
-    const levelNumber = Number(levelStr);
-    const level = await prisma.level.findFirst({ where: { schoolYear: { yearNumber }, levelNumber } });
-    if (!level) continue;
-    for (const lesson of lessons) {
-      const created = await prisma.lesson.upsert({
-        where: { levelId_order: { levelId: level.id, order: lesson.order } },
-        create: {
-          levelId: level.id,
-          order: lesson.order,
-          title: lesson.title,
-          concept: lesson.concept,
-          explanationMd: lesson.explanationMd,
-          representation: lesson.representation,
-          visualAid: lesson.visualAid,
-          workedExamples: JSON.stringify(lesson.workedExamples),
-          audioScript: lesson.audioScript,
-          ageBandStyle: lesson.ageBandStyle
-        },
-        update: {
-          title: lesson.title,
-          concept: lesson.concept,
-          explanationMd: lesson.explanationMd,
-          representation: lesson.representation,
-          visualAid: lesson.visualAid,
-          workedExamples: JSON.stringify(lesson.workedExamples),
-          audioScript: lesson.audioScript,
-          ageBandStyle: lesson.ageBandStyle
-        }
-      });
-      for (const objectiveCode of lesson.objectiveCodes) {
-        const objective = await prisma.learningObjective.findFirst({ where: { levelId: level.id, code: objectiveCode } });
-        if (!objective) continue;
-        await prisma.lessonObjective.upsert({
-          where: { lessonId_objectiveId: { lessonId: created.id, objectiveId: objective.id } },
-          create: { lessonId: created.id, objectiveId: objective.id },
-          update: {}
-        });
-      }
-    }
-  }
-  console.log("Lessons seeded.");
+  const { lessons } = await syncLessonsFromCode(prisma);
+  console.log(`Lessons seeded: ${lessons}.`);
 }
 
 async function warmQuestionBank() {
