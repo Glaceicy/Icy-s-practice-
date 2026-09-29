@@ -7,6 +7,7 @@ import type { QuestionTemplateDef } from "../../types";
 // three-digit number and ones/tens/hundreds, Y3-L2-2 formal written column
 // methods, Y3-L2-3 estimating and checking using inverse operations).
 const CTX = ["stars", "sweets", "apples", "cars", "stickers", "marbles", "buttons", "shells"];
+const CTX_FR = ["étoiles", "bonbons", "pommes", "voitures", "autocollants", "billes", "boutons", "coquillages"];
 
 export const level: QuestionTemplateDef[] = [
   // --- Y3-L2-1: add/subtract mentally, a three-digit number and ones/tens/hundreds ---
@@ -17,7 +18,13 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["{a} + {b} = ?", "Counting {ctx}: what is {a} + {b}?"],
     explain: (v, r) => [`${v[0]} + ${v[1]} = ${r}.`],
     hints: () => ["Add the ones on to the three-digit number."],
-    declaredVariationSpace: 800 * 9 * 2 * CTX.length
+    declaredVariationSpace: 800 * 9 * 2 * CTX.length,
+    fr: {
+      contextPool: CTX_FR,
+      promptTemplates: ["{a} + {b} = ?", "En comptant les {ctx} : combien font {a} + {b} ?"],
+      explain: (v, r) => [`${v[0]} + ${v[1]} = ${r}.`],
+      hints: () => ["Ajoute les unités au nombre à trois chiffres."]
+    }
   }),
   arithmeticTemplate({
     key: "y3l2.subtractOnesFromThreeDigit", levelKey: "Y3L2", objectiveCode: "Y3-L2-1", difficulty: "FLUENCY",
@@ -26,7 +33,13 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["{a} - {b} = ?", "Counting {ctx}: what is {a} - {b}?"],
     explain: (v, r) => [`${v[0]} - ${v[1]} = ${r}.`],
     hints: () => ["Take the ones away from the three-digit number."],
-    declaredVariationSpace: 900 * 9 * 2 * CTX.length
+    declaredVariationSpace: 900 * 9 * 2 * CTX.length,
+    fr: {
+      contextPool: CTX_FR,
+      promptTemplates: ["{a} - {b} = ?", "En comptant les {ctx} : combien font {a} - {b} ?"],
+      explain: (v, r) => [`${v[0]} - ${v[1]} = ${r}.`],
+      hints: () => ["Retire les unités du nombre à trois chiffres."]
+    }
   }),
   arithmeticTemplate({
     key: "y3l2.addThreeDigitAndTens", levelKey: "Y3L2", objectiveCode: "Y3-L2-1", difficulty: "FLUENCY",
@@ -36,7 +49,13 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["{a} + {bTens} = ?", "Counting {ctx}: what is {a} + {bTens}?"],
     explain: (v, r) => [`${v[0]} + ${v[1]! * 10} = ${r}.`],
     hints: () => ["Add the tens on to the three-digit number — the ones digit stays the same."],
-    declaredVariationSpace: 791 * 9 * 2 * CTX.length
+    declaredVariationSpace: 791 * 9 * 2 * CTX.length,
+    fr: {
+      contextPool: CTX_FR,
+      promptTemplates: ["{a} + {bTens} = ?", "En comptant les {ctx} : combien font {a} + {bTens} ?"],
+      explain: (v, r) => [`${v[0]} + ${v[1]! * 10} = ${r}.`],
+      hints: () => ["Ajoute les dizaines au nombre à trois chiffres — le chiffre des unités ne change pas."]
+    }
   }),
   arithmeticTemplate({
     key: "y3l2.subtractTensFromThreeDigit", levelKey: "Y3L2", objectiveCode: "Y3-L2-1", difficulty: "FLUENCY",
@@ -46,7 +65,13 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["{a} - {bTens} = ?", "Counting {ctx}: what is {a} - {bTens}?"],
     explain: (v, r) => [`${v[0]} - ${v[1]! * 10} = ${r}.`],
     hints: () => ["Take the tens away from the three-digit number — the ones digit stays the same."],
-    declaredVariationSpace: 810 * 9 * 2 * CTX.length
+    declaredVariationSpace: 810 * 9 * 2 * CTX.length,
+    fr: {
+      contextPool: CTX_FR,
+      promptTemplates: ["{a} - {bTens} = ?", "En comptant les {ctx} : combien font {a} - {bTens} ?"],
+      explain: (v, r) => [`${v[0]} - ${v[1]! * 10} = ${r}.`],
+      hints: () => ["Retire les dizaines du nombre à trois chiffres — le chiffre des unités ne change pas."]
+    }
   }),
   arithmeticTemplate({
     key: "y3l2.addThreeDigitAndHundreds", levelKey: "Y3L2", objectiveCode: "Y3-L2-1", difficulty: "APPLICATION",
@@ -56,7 +81,13 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["{a} + {bHundreds} = ?", "Counting {ctx}: what is {a} + {bHundreds}?"],
     explain: (v, r) => [`${v[0]} + ${v[1]! * 100} = ${r}.`],
     hints: () => ["Add the hundreds on — the tens and ones digits stay the same."],
-    declaredVariationSpace: 100 * 8 * 2 * CTX.length
+    declaredVariationSpace: 100 * 8 * 2 * CTX.length,
+    fr: {
+      contextPool: CTX_FR,
+      promptTemplates: ["{a} + {bHundreds} = ?", "En comptant les {ctx} : combien font {a} + {bHundreds} ?"],
+      explain: (v, r) => [`${v[0]} + ${v[1]! * 100} = ${r}.`],
+      hints: () => ["Ajoute les centaines — les chiffres des dizaines et des unités ne changent pas."]
+    }
   }),
   arithmeticTemplate({
     key: "y3l2.missingAddendMental", levelKey: "Y3L2", objectiveCode: "Y3-L2-1", difficulty: "APPLICATION",
@@ -66,7 +97,13 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["{a} + ___ = {c}", "Counting {ctx}: {a} + ___ = {c}"],
     explain: (v, r) => [`${v[0]! + v[1]!} - ${v[0]} = ${r}.`],
     hints: () => ["Work out the difference between the two numbers."],
-    declaredVariationSpace: 800 * 99 * 2 * CTX.length
+    declaredVariationSpace: 800 * 99 * 2 * CTX.length,
+    fr: {
+      contextPool: CTX_FR,
+      promptTemplates: ["{a} + ___ = {c}", "En comptant les {ctx} : {a} + ___ = {c}"],
+      explain: (v, r) => [`${v[0]! + v[1]!} - ${v[0]} = ${r}.`],
+      hints: () => ["Calcule la différence entre les deux nombres."]
+    }
   }),
   arithmeticTemplate({
     key: "y3l2.wordProblemMentalAddSubtract", levelKey: "Y3L2", objectiveCode: "Y3-L2-1", difficulty: "APPLICATION",
@@ -75,7 +112,13 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["There are {a} {ctx} in a warehouse. {b} more are delivered. How many {ctx} are there now?"],
     explain: (v, r) => [`${v[0]} + ${v[1]} = ${r}.`],
     hints: () => ["Add the two amounts together mentally."],
-    declaredVariationSpace: 800 * 99 * CTX.length
+    declaredVariationSpace: 800 * 99 * CTX.length,
+    fr: {
+      contextPool: CTX_FR,
+      promptTemplates: ["Il y a {a} {ctx} dans un entrepôt. {b} de plus sont livrés. Combien y a-t-il de {ctx} maintenant ?"],
+      explain: (v, r) => [`${v[0]} + ${v[1]} = ${r}.`],
+      hints: () => ["Additionne mentalement les deux quantités."]
+    }
   }),
 
   // --- Y3-L2-2: use formal written column methods for addition and subtraction ---
@@ -86,7 +129,12 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["{a} + {b} = ?", "Use the column method: {a} + {b} = ?"],
     explain: (v, r) => [`${v[0]} + ${v[1]} = ${r}. Add ones, then tens, then hundreds, carrying where needed.`],
     hints: () => ["Line up the ones, tens and hundreds columns, then add from the right."],
-    declaredVariationSpace: 800 * 800 * 2
+    declaredVariationSpace: 800 * 800 * 2,
+    fr: {
+      promptTemplates: ["{a} + {b} = ?", "Utilise la méthode en colonnes : {a} + {b} = ?"],
+      explain: (v, r) => [`${v[0]} + ${v[1]} = ${r}. Additionne les unités, puis les dizaines, puis les centaines, en retenant si besoin.`],
+      hints: () => ["Aligne les colonnes des unités, des dizaines et des centaines, puis additionne en partant de la droite."]
+    }
   }),
   arithmeticTemplate({
     key: "y3l2.subtractTwoThreeDigit", levelKey: "Y3L2", objectiveCode: "Y3-L2-2", difficulty: "FLUENCY",
@@ -95,7 +143,12 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["{a} - {b} = ?", "Use the column method: {a} - {b} = ?"],
     explain: (v, r) => [`${v[0]} - ${v[1]} = ${r}. Subtract ones, then tens, then hundreds, borrowing where needed.`],
     hints: () => ["Line up the ones, tens and hundreds columns, then subtract from the right."],
-    declaredVariationSpace: 800 * 800 * 2
+    declaredVariationSpace: 800 * 800 * 2,
+    fr: {
+      promptTemplates: ["{a} - {b} = ?", "Utilise la méthode en colonnes : {a} - {b} = ?"],
+      explain: (v, r) => [`${v[0]} - ${v[1]} = ${r}. Soustrais les unités, puis les dizaines, puis les centaines, en empruntant si besoin.`],
+      hints: () => ["Aligne les colonnes des unités, des dizaines et des centaines, puis soustrais en partant de la droite."]
+    }
   }),
   arithmeticTemplate({
     key: "y3l2.addTwoThreeDigitWithCarry", levelKey: "Y3L2", objectiveCode: "Y3-L2-2", difficulty: "APPLICATION",
@@ -104,7 +157,12 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["{a} + {b} = ? (You will need to carry.)"],
     explain: (v, r) => [`${v[0]! % 10} + ${v[1]! % 10} = ${(v[0]! % 10) + (v[1]! % 10)}, so carry 1 into the tens column. ${v[0]} + ${v[1]} = ${r}.`],
     hints: () => ["When the ones add up to 10 or more, carry 1 into the tens column."],
-    declaredVariationSpace: 800 * 800
+    declaredVariationSpace: 800 * 800,
+    fr: {
+      promptTemplates: ["{a} + {b} = ? (Tu devras retenir.)"],
+      explain: (v, r) => [`${v[0]! % 10} + ${v[1]! % 10} = ${(v[0]! % 10) + (v[1]! % 10)}, donc retiens 1 dans la colonne des dizaines. ${v[0]} + ${v[1]} = ${r}.`],
+      hints: () => ["Quand les unités totalisent 10 ou plus, retiens 1 dans la colonne des dizaines."]
+    }
   }),
   arithmeticTemplate({
     key: "y3l2.subtractTwoThreeDigitWithBorrow", levelKey: "Y3L2", objectiveCode: "Y3-L2-2", difficulty: "APPLICATION",
