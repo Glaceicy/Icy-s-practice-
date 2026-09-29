@@ -4,6 +4,8 @@ import { getAdultSession } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { toggleTemplateActiveAction, markTemplateReviewedAction } from "@/lib/actions/admin";
 import { misconceptionLabel } from "@/lib/types";
+import { getLocale } from "@/lib/i18n/locale";
+import { translate } from "@/lib/i18n/translate";
 
 export default async function AdminQuestionsPage() {
   const session = await getAdultSession();
@@ -32,23 +34,26 @@ export default async function AdminQuestionsPage() {
     await markTemplateReviewedAction(String(formData.get("templateId")));
   }
 
+  const locale = await getLocale();
+  const t = (key: string, vars?: Record<string, string | number>) => translate(locale, key, vars);
+
   return (
     <main className="mx-auto min-h-screen max-w-5xl px-6 py-10">
       <Link href="/admin" className="text-sm font-semibold text-brand-700 underline">
-        ← Admin overview
+        {t("adminQuestions.backToOverview")}
       </Link>
-      <h1 className="mt-2 text-2xl font-bold text-brand-800">Question bank review</h1>
+      <h1 className="mt-2 text-2xl font-bold text-brand-800">{t("adminQuestions.title")}</h1>
 
       {frequentlyMissed.length > 0 && (
         <section className="mt-6 rounded-xl2 border bg-amber-50 p-5">
-          <h2 className="font-bold text-amber-800">Frequently answered incorrectly</h2>
+          <h2 className="font-bold text-amber-800">{t("adminQuestions.frequentlyMissed")}</h2>
           <ul className="mt-2 space-y-1 text-sm text-amber-900">
             {frequentlyMissed.map((log) => (
               <li key={log.id} className="flex justify-between gap-2">
                 <span>
                   {log.prompt} <span className="text-amber-600">({log.template.generatorKey})</span>
                 </span>
-                <span className="flex-none font-semibold">{log.timesIncorrectFirstTry} wrong</span>
+                <span className="flex-none font-semibold">{t("adminQuestions.wrongCount", { count: log.timesIncorrectFirstTry })}</span>
               </li>
             ))}
           </ul>
@@ -59,46 +64,46 @@ export default async function AdminQuestionsPage() {
         <table className="w-full min-w-[900px] text-left text-sm">
           <thead className="border-b bg-slate-50 text-xs uppercase text-slate-500">
             <tr>
-              <th className="p-3">Level</th>
-              <th className="p-3">Generator key</th>
-              <th className="p-3">Objective</th>
-              <th className="p-3">Type</th>
-              <th className="p-3">Difficulty</th>
-              <th className="p-3">Misconceptions</th>
-              <th className="p-3">Reviewed</th>
-              <th className="p-3">Status</th>
-              <th className="p-3">Actions</th>
+              <th className="p-3">{t("adminQuestions.colLevel")}</th>
+              <th className="p-3">{t("adminQuestions.colGeneratorKey")}</th>
+              <th className="p-3">{t("adminQuestions.colObjective")}</th>
+              <th className="p-3">{t("adminQuestions.colType")}</th>
+              <th className="p-3">{t("adminQuestions.colDifficulty")}</th>
+              <th className="p-3">{t("adminQuestions.colMisconceptions")}</th>
+              <th className="p-3">{t("adminQuestions.colReviewed")}</th>
+              <th className="p-3">{t("adminQuestions.colStatus")}</th>
+              <th className="p-3">{t("adminQuestions.colActions")}</th>
             </tr>
           </thead>
           <tbody>
-            {templates.map((t) => (
-              <tr key={t.id} className="border-b last:border-0">
+            {templates.map((tpl) => (
+              <tr key={tpl.id} className="border-b last:border-0">
                 <td className="p-3">
-                  Y{t.level.schoolYear.yearNumber}L{t.level.levelNumber}
+                  Y{tpl.level.schoolYear.yearNumber}L{tpl.level.levelNumber}
                 </td>
-                <td className="p-3 font-mono text-xs">{t.generatorKey}</td>
-                <td className="p-3 text-xs">{t.objective.code}</td>
-                <td className="p-3 text-xs">{t.questionType}</td>
-                <td className="p-3 text-xs">{t.difficulty}</td>
-                <td className="p-3 text-xs">{t.misconceptionTags.split(",").map(misconceptionLabel).join(", ")}</td>
-                <td className="p-3 text-xs">{t.reviewedBy ? `${t.reviewedBy}` : "—"}</td>
+                <td className="p-3 font-mono text-xs">{tpl.generatorKey}</td>
+                <td className="p-3 text-xs">{tpl.objective.code}</td>
+                <td className="p-3 text-xs">{tpl.questionType}</td>
+                <td className="p-3 text-xs">{tpl.difficulty}</td>
+                <td className="p-3 text-xs">{tpl.misconceptionTags.split(",").map(misconceptionLabel).join(", ")}</td>
+                <td className="p-3 text-xs">{tpl.reviewedBy ? `${tpl.reviewedBy}` : "—"}</td>
                 <td className="p-3">
-                  <span className={`rounded-full px-2 py-1 text-xs font-semibold ${t.isActive ? "bg-leaf-100 text-leaf-700" : "bg-berry-100 text-berry-700"}`}>
-                    {t.isActive ? "Active" : "Disabled"}
+                  <span className={`rounded-full px-2 py-1 text-xs font-semibold ${tpl.isActive ? "bg-leaf-100 text-leaf-700" : "bg-berry-100 text-berry-700"}`}>
+                    {tpl.isActive ? t("adminQuestions.active") : t("adminQuestions.disabled")}
                   </span>
                 </td>
                 <td className="p-3">
                   <div className="flex gap-2">
                     <form action={toggle}>
-                      <input type="hidden" name="templateId" value={t.id} />
+                      <input type="hidden" name="templateId" value={tpl.id} />
                       <button type="submit" className="rounded border px-2 py-1 text-xs font-semibold hover:bg-slate-50">
-                        {t.isActive ? "Disable" : "Enable"}
+                        {tpl.isActive ? t("adminQuestions.disable") : t("adminQuestions.enable")}
                       </button>
                     </form>
                     <form action={review}>
-                      <input type="hidden" name="templateId" value={t.id} />
+                      <input type="hidden" name="templateId" value={tpl.id} />
                       <button type="submit" className="rounded border px-2 py-1 text-xs font-semibold hover:bg-slate-50">
-                        Mark reviewed
+                        {t("adminQuestions.markReviewed")}
                       </button>
                     </form>
                   </div>

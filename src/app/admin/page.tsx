@@ -2,6 +2,8 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getAdultSession } from "@/lib/auth";
 import { prisma } from "@/lib/db";
+import { getLocale } from "@/lib/i18n/locale";
+import { translate } from "@/lib/i18n/translate";
 
 export default async function AdminOverviewPage() {
   const session = await getAdultSession();
@@ -20,45 +22,47 @@ export default async function AdminOverviewPage() {
     prisma.adultUser.count(),
     prisma.childProfile.count()
   ]);
+  const locale = await getLocale();
+  const t = (key: string, vars?: Record<string, string | number>) => translate(locale, key, vars);
 
   return (
     <main className="mx-auto min-h-screen max-w-4xl px-6 py-10">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-brand-800">Curriculum &amp; question administration</h1>
+        <h1 className="text-2xl font-bold text-brand-800">{t("adminOverview.title")}</h1>
         <Link href="/profiles" className="text-sm font-semibold text-brand-700 underline">
-          Back to profiles
+          {t("adminOverview.backToProfiles")}
         </Link>
       </div>
-      <p className="mt-1 text-sm text-slate-600">Signed in as {adult.fullName} (Administrator)</p>
+      <p className="mt-1 text-sm text-slate-600">{t("adminOverview.signedInAs", { name: adult.fullName })}</p>
 
       <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3">
-        <Stat label="School years" value={years} />
-        <Stat label="Levels (of 100)" value={levels} />
-        <Stat label="Content-complete levels" value={completeLevels} />
-        <Stat label="Question templates" value={templates} />
-        <Stat label="Active templates" value={activeTemplates} />
-        <Stat label="Generated question variations logged" value={logs} />
-        <Stat label="Misconceptions logged" value={misconceptions} />
-        <Stat label="Adult accounts" value={adultUsers} />
-        <Stat label="Child profiles" value={childProfiles} />
+        <Stat label={t("adminOverview.schoolYears")} value={years} />
+        <Stat label={t("adminOverview.levelsOf100")} value={levels} />
+        <Stat label={t("adminOverview.contentCompleteLevels")} value={completeLevels} />
+        <Stat label={t("adminOverview.questionTemplates")} value={templates} />
+        <Stat label={t("adminOverview.activeTemplates")} value={activeTemplates} />
+        <Stat label={t("adminOverview.loggedVariations")} value={logs} />
+        <Stat label={t("adminOverview.misconceptionsLogged")} value={misconceptions} />
+        <Stat label={t("adminOverview.adultAccounts")} value={adultUsers} />
+        <Stat label={t("adminOverview.childProfiles")} value={childProfiles} />
       </div>
 
       <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
         <Link href="/admin/users" className="rounded-xl2 border bg-white p-5 shadow-sm hover:border-brand-400">
-          <h2 className="font-bold text-brand-800">All users</h2>
-          <p className="mt-1 text-sm text-slate-600">Every registered adult account and their children, across every family on this app.</p>
+          <h2 className="font-bold text-brand-800">{t("adminOverview.allUsersTitle")}</h2>
+          <p className="mt-1 text-sm text-slate-600">{t("adminOverview.allUsersBody")}</p>
         </Link>
         <Link href="/admin/questions" className="rounded-xl2 border bg-white p-5 shadow-sm hover:border-brand-400">
-          <h2 className="font-bold text-brand-800">Question bank review</h2>
-          <p className="mt-1 text-sm text-slate-600">Review templates, disable inaccurate questions, see frequently-missed questions.</p>
+          <h2 className="font-bold text-brand-800">{t("adminOverview.questionReviewTitle")}</h2>
+          <p className="mt-1 text-sm text-slate-600">{t("adminOverview.questionReviewBody")}</p>
         </Link>
         <Link href="/admin/import-export" className="rounded-xl2 border bg-white p-5 shadow-sm hover:border-brand-400">
-          <h2 className="font-bold text-brand-800">Import / export</h2>
-          <p className="mt-1 text-sm text-slate-600">Export the question bank as CSV/JSON, or bulk-import review/publish decisions.</p>
+          <h2 className="font-bold text-brand-800">{t("adminOverview.importExportTitle")}</h2>
+          <p className="mt-1 text-sm text-slate-600">{t("adminOverview.importExportBody")}</p>
         </Link>
         <Link href="/admin/curriculum" className="rounded-xl2 border bg-white p-5 shadow-sm hover:border-brand-400">
-          <h2 className="font-bold text-brand-800">Curriculum structure</h2>
-          <p className="mt-1 text-sm text-slate-600">Every school year and level, with content status and learning objectives.</p>
+          <h2 className="font-bold text-brand-800">{t("adminOverview.curriculumTitle")}</h2>
+          <p className="mt-1 text-sm text-slate-600">{t("adminOverview.curriculumBody")}</p>
         </Link>
       </div>
     </main>
