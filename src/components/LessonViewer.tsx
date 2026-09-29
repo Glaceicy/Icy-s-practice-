@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import ReadAloudButton from "./ReadAloudButton";
 import VisualAidRenderer from "./VisualAidRenderer";
+import { useT } from "./I18nProvider";
 
 export interface LessonViewModel {
   order: number;
@@ -30,15 +31,14 @@ export default function LessonViewer({
   const [exampleIndex, setExampleIndex] = useState(0);
   const [differentExplanation, setDifferentExplanation] = useState(false);
   const example = lesson.workedExamples[exampleIndex % lesson.workedExamples.length]!;
+  const t = useT();
 
   const isLast = lesson.order >= lessonCount;
   const nextHref = isLast ? `/learn/${childId}/level/${levelId}/guided` : `/learn/${childId}/level/${levelId}/lesson/${lesson.order + 1}`;
 
   return (
     <article className={`rounded-xl2 border bg-white p-6 shadow-sm ${reducedMotion ? "" : "animate-pop-in"}`}>
-      <p className="text-xs font-semibold uppercase tracking-wide text-brand-600">
-        Lesson {lesson.order} of {lessonCount}
-      </p>
+      <p className="text-xs font-semibold uppercase tracking-wide text-brand-600">{t("lessonViewer.lessonOf", { order: lesson.order, total: lessonCount })}</p>
       <h1 className="mt-1 text-2xl font-extrabold text-brand-800">{lesson.title}</h1>
 
       <div className="mt-4 flex justify-center">
@@ -58,26 +58,26 @@ export default function LessonViewer({
           onClick={() => setDifferentExplanation((v) => !v)}
           className="touch-target rounded-lg border border-brand-300 px-3 py-2 text-sm font-semibold text-brand-700 hover:bg-brand-50"
         >
-          {differentExplanation ? "Show the original explanation" : "Explain this differently"}
+          {differentExplanation ? t("lessonViewer.showOriginal") : t("lessonViewer.explainDifferently")}
         </button>
       </div>
 
       <div className="mt-6 rounded-lg bg-brand-50 p-4">
-        <h2 className="font-bold text-brand-800">Worked example</h2>
+        <h2 className="font-bold text-brand-800">{t("lessonViewer.workedExample")}</h2>
         <p className="mt-1 font-medium">{example.problem}</p>
         <ol className="mt-2 list-decimal space-y-1 pl-5 text-sm text-slate-700">
           {example.steps.map((step, i) => (
             <li key={i}>{step}</li>
           ))}
         </ol>
-        <p className="mt-2 font-semibold text-brand-700">Answer: {example.answer}</p>
+        <p className="mt-2 font-semibold text-brand-700">{t("lessonViewer.answerLabel", { answer: example.answer })}</p>
         {lesson.workedExamples.length > 1 && (
           <button
             type="button"
             onClick={() => setExampleIndex((i) => i + 1)}
             className="touch-target mt-3 rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-700"
           >
-            Show me another example
+            {t("lessonViewer.anotherExample")}
           </button>
         )}
       </div>
@@ -85,13 +85,13 @@ export default function LessonViewer({
       <div className="mt-8 flex justify-between">
         {lesson.order > 1 ? (
           <Link href={`/learn/${childId}/level/${levelId}/lesson/${lesson.order - 1}`} className="touch-target rounded-lg border px-4 py-2 font-semibold text-slate-600 hover:bg-slate-50">
-            ← Replay previous
+            {t("lessonViewer.replayPrevious")}
           </Link>
         ) : (
           <span />
         )}
         <Link href={nextHref} className="touch-target rounded-lg bg-brand-600 px-5 py-2 font-semibold text-white hover:bg-brand-700">
-          {isLast ? "Start guided practice →" : "Next lesson →"}
+          {isLast ? t("lessonViewer.startGuidedPractice") : t("lessonViewer.nextLesson")}
         </Link>
       </div>
     </article>

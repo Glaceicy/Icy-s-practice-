@@ -2,6 +2,7 @@ import Link from "next/link";
 import { assertChildAccess } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import ChildTopBar from "@/components/ChildTopBar";
+import { translate } from "@/lib/i18n/translate";
 
 const ICONS: Record<string, string> = { star: "⭐", trophy: "🏆" };
 
@@ -13,15 +14,18 @@ export default async function AchievementsPage({ params }: { params: { childId: 
     include: { level: { include: { schoolYear: true } } },
     orderBy: { submittedAt: "asc" }
   });
+  const locale = child.locale === "fr" ? "fr" : "en";
+  const t = (key: string, vars?: Record<string, string | number>) => translate(locale, key, vars);
+  const dateLocale = locale === "fr" ? "fr-FR" : "en-GB";
 
   return (
     <main className="mx-auto min-h-screen max-w-3xl px-6 py-10">
       <ChildTopBar child={child} />
-      <h1 className="mt-6 text-2xl font-bold text-brand-800">🏆 Your trophy area</h1>
-      <p className="mt-1 text-sm text-slate-600">Every star here celebrates learning, improvement and persistence &mdash; not how much time you&rsquo;ve spent.</p>
+      <h1 className="mt-6 text-2xl font-bold text-brand-800">{t("achievements.heading")}</h1>
+      <p className="mt-1 text-sm text-slate-600">{t("achievements.subtitle")}</p>
 
       {achievements.length === 0 ? (
-        <p className="mt-8 text-slate-500">No achievements yet &mdash; pass your first Mastery Challenge to earn one!</p>
+        <p className="mt-8 text-slate-500">{t("achievements.noneYet")}</p>
       ) : (
         <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
           {achievements.map((a) => (
@@ -31,10 +35,10 @@ export default async function AchievementsPage({ params }: { params: { childId: 
               </p>
               <h2 className="mt-1 font-bold text-brand-800">{a.title}</h2>
               <p className="mt-1 text-sm text-slate-600">{a.description}</p>
-              <p className="mt-2 text-xs text-slate-400">{new Date(a.earnedAt).toLocaleDateString("en-GB")}</p>
+              <p className="mt-2 text-xs text-slate-400">{new Date(a.earnedAt).toLocaleDateString(dateLocale)}</p>
               {a.certificateAvailable && (
                 <Link href={`/learn/${child.id}/achievements/${a.id}/certificate`} className="mt-3 inline-block text-sm font-semibold text-brand-700 underline">
-                  View / print certificate
+                  {t("achievements.viewCertificate")}
                 </Link>
               )}
             </div>
@@ -42,17 +46,15 @@ export default async function AchievementsPage({ params }: { params: { childId: 
         </div>
       )}
 
-      <h2 className="mt-10 text-lg font-bold text-brand-800">Completed levels</h2>
+      <h2 className="mt-10 text-lg font-bold text-brand-800">{t("achievements.completedLevels")}</h2>
       {passedAttempts.length === 0 ? (
-        <p className="mt-2 text-slate-500">No levels completed yet.</p>
+        <p className="mt-2 text-slate-500">{t("achievements.noLevelsYet")}</p>
       ) : (
         <ol className="mt-3 space-y-1 text-sm text-slate-700">
           {passedAttempts.map((a) => (
             <li key={a.id} className="flex justify-between rounded-lg bg-white px-4 py-2 shadow-sm">
-              <span>
-                {a.level.schoolYear.title}, Level {a.level.levelNumber}: {a.level.title}
-              </span>
-              <span className="text-slate-400">{new Date(a.submittedAt!).toLocaleDateString("en-GB")}</span>
+              <span>{t("achievements.levelLine", { year: a.level.schoolYear.title, number: a.level.levelNumber, title: a.level.title })}</span>
+              <span className="text-slate-400">{new Date(a.submittedAt!).toLocaleDateString(dateLocale)}</span>
             </li>
           ))}
         </ol>

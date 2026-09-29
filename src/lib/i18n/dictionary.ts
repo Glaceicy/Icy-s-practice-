@@ -235,6 +235,37 @@ export const dictionary = {
       startRevision: "Start personalised revision",
       backToLevel: "Back to level overview",
       continueJourney: "Continue your journey"
+    },
+    readAloud: {
+      stop: "Stop reading",
+      read: "Read aloud"
+    },
+    lessonViewer: {
+      lessonOf: "Lesson {order} of {total}",
+      showOriginal: "Show the original explanation",
+      explainDifferently: "Explain this differently",
+      workedExample: "Worked example",
+      answerLabel: "Answer: {answer}",
+      anotherExample: "Show me another example",
+      replayPrevious: "← Replay previous",
+      startGuidedPractice: "Start guided practice →",
+      nextLesson: "Next lesson →"
+    },
+    achievements: {
+      heading: "🏆 Your trophy area",
+      subtitle: "Every star here celebrates learning, improvement and persistence — not how much time you've spent.",
+      noneYet: "No achievements yet — pass your first Mastery Challenge to earn one!",
+      viewCertificate: "View / print certificate",
+      completedLevels: "Completed levels",
+      noLevelsYet: "No levels completed yet.",
+      levelLine: "{year}, Level {number}: {title}"
+    },
+    certificate: {
+      brand: "Maths Journey UK",
+      title: "Certificate of Achievement",
+      certifiesThat: "This certifies that",
+      awarded: "Awarded {date}",
+      printOrSave: "Print or save as PDF"
     }
   },
   fr: {
@@ -467,6 +498,37 @@ export const dictionary = {
       startRevision: "Commencer la révision personnalisée",
       backToLevel: "Retour à l’aperçu du niveau",
       continueJourney: "Continuer votre parcours"
+    },
+    readAloud: {
+      stop: "Arrêter la lecture",
+      read: "Lire à voix haute"
+    },
+    lessonViewer: {
+      lessonOf: "Leçon {order} sur {total}",
+      showOriginal: "Afficher l’explication originale",
+      explainDifferently: "Expliquer autrement",
+      workedExample: "Exemple résolu",
+      answerLabel: "Réponse : {answer}",
+      anotherExample: "Montrez-moi un autre exemple",
+      replayPrevious: "← Revoir la précédente",
+      startGuidedPractice: "Commencer l’entraînement guidé →",
+      nextLesson: "Leçon suivante →"
+    },
+    achievements: {
+      heading: "🏆 Votre vitrine à trophées",
+      subtitle: "Chaque étoile ici célèbre l’apprentissage, les progrès et la persévérance — pas le temps passé.",
+      noneYet: "Pas encore de récompense — réussissez votre premier Défi de Maîtrise pour en gagner une !",
+      viewCertificate: "Voir / imprimer le certificat",
+      completedLevels: "Niveaux terminés",
+      noLevelsYet: "Aucun niveau terminé pour l’instant.",
+      levelLine: "{year}, Niveau {number} : {title}"
+    },
+    certificate: {
+      brand: "Maths Journey UK",
+      title: "Certificat de réussite",
+      certifiesThat: "Ceci certifie que",
+      awarded: "Décerné le {date}",
+      printOrSave: "Imprimer ou enregistrer en PDF"
     }
   }
 } as const;
