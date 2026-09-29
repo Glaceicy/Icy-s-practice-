@@ -19,6 +19,11 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["Drag these numbers into order, smallest first."],
     explain: () => ["On a number line, numbers further left are smaller — negative numbers are smaller than positive numbers."],
     hints: () => ["Negative numbers are always smaller than positive numbers. Compare negatives by how far below zero they are."],
+    fr: {
+      promptTemplates: ["Fais glisser ces nombres dans l'ordre, du plus petit au plus grand."],
+      explain: () => ["Sur une droite numérique, les nombres les plus à gauche sont les plus petits — les nombres négatifs sont plus petits que les nombres positifs."],
+      hints: () => ["Les nombres négatifs sont toujours plus petits que les nombres positifs. Compare les nombres négatifs selon leur distance en dessous de zéro."]
+    },
     declaredVariationSpace: 200000
   }),
   arithmeticTemplate({
@@ -28,6 +33,11 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["Which number is greater, {a} or {b}?"],
     explain: (v, r) => [`${r} is further to the right on the number line, so it is greater.`],
     hints: () => ["A number further right on the number line is always greater."],
+    fr: {
+      promptTemplates: ["Quel nombre est le plus grand, {a} ou {b} ?"],
+      explain: (v, r) => [`${r} est plus à droite sur la droite numérique, donc il est plus grand.`],
+      hints: () => ["Un nombre plus à droite sur la droite numérique est toujours plus grand."]
+    },
     distractorSpread: 6,
     declaredVariationSpace: 40 * 39
   }),
@@ -38,6 +48,11 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["{a} + {b} = ?", "Work out {a} + ({b})."],
     explain: (v, r) => [`${v[0]} + ${v[1]} = ${r}.`, "Adding a negative number moves left on the number line; adding a positive moves right."],
     hints: () => ["Picture a number line. Start at the first number and move according to the sign of the second."],
+    fr: {
+      promptTemplates: ["{a} + {b} = ?", "Calcule {a} + ({b})."],
+      explain: (v, r) => [`${v[0]} + ${v[1]} = ${r}.`, "Ajouter un nombre négatif déplace vers la gauche sur la droite numérique ; ajouter un nombre positif déplace vers la droite."],
+      hints: () => ["Imagine une droite numérique. Pars du premier nombre et déplace-toi selon le signe du second."]
+    },
     visualAid: (v) => visuals.numberLine(-25, 25, v[0]! + v[1]!, v[0]!),
     declaredVariationSpace: 41 * 41 * 2
   }),
@@ -48,6 +63,11 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["{a} - (-{b}) = ?", "Work out {a} minus negative {b}."],
     explain: (v, r) => [`Subtracting a negative is the same as adding: ${v[0]} - (-${v[1]}) = ${v[0]} + ${v[1]} = ${r}.`],
     hints: () => ["Two minus signs together become a plus sign."],
+    fr: {
+      promptTemplates: ["{a} - (-{b}) = ?", "Calcule {a} moins moins {b}."],
+      explain: (v, r) => [`Soustraire un négatif revient à additionner : ${v[0]} - (-${v[1]}) = ${v[0]} + ${v[1]} = ${r}.`],
+      hints: () => ["Deux signes moins ensemble deviennent un signe plus."]
+    },
     declaredVariationSpace: 31 * 20 * 2
   }),
   arithmeticTemplate({
@@ -57,6 +77,11 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["(-{a}) + (-{b}) = ?", "Work out -{a} + -{b}."],
     explain: (v, r) => [`Adding two negative numbers: -${v[0]} + -${v[1]} = ${r}.`],
     hints: () => ["Adding two negative numbers makes the answer more negative."],
+    fr: {
+      promptTemplates: ["(-{a}) + (-{b}) = ?", "Calcule -{a} + -{b}."],
+      explain: (v, r) => [`Additionner deux nombres négatifs : -${v[0]} + -${v[1]} = ${r}.`],
+      hints: () => ["Additionner deux nombres négatifs rend le résultat plus négatif."]
+    },
     declaredVariationSpace: 25 * 25 * 2
   }),
   arithmeticTemplate({
@@ -68,6 +93,11 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["{a} x {b} = ?"],
     explain: (v, r) => [`Same signs multiply to a positive answer; different signs multiply to a negative answer.`, `The answer is ${r}.`],
     hints: () => ["Same signs give a positive answer; different signs give a negative answer."],
+    fr: {
+      promptTemplates: ["{a} x {b} = ?"],
+      explain: (v, r) => [`Des signes identiques multipliés donnent un résultat positif ; des signes différents donnent un résultat négatif.`, `Le résultat est ${r}.`],
+      hints: () => ["Des signes identiques donnent un résultat positif ; des signes différents donnent un résultat négatif."]
+    },
     distractorSpread: 10,
     declaredVariationSpace: 12 * 12 * 4
   }),
@@ -80,6 +110,11 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["{a} ÷ {b} = ?"],
     explain: (v, r) => [`Same signs divide to a positive answer; different signs divide to a negative answer.`, `The answer is ${r}.`],
     hints: () => ["Same signs give a positive answer; different signs give a negative answer."],
+    fr: {
+      promptTemplates: ["{a} ÷ {b} = ?"],
+      explain: (v, r) => [`Des signes identiques divisés donnent un résultat positif ; des signes différents donnent un résultat négatif.`, `Le résultat est ${r}.`],
+      hints: () => ["Des signes identiques donnent un résultat positif ; des signes différents donnent un résultat négatif."]
+    },
     declaredVariationSpace: 12 * 12 * 4
   }),
   arithmeticTemplate({
@@ -95,6 +130,17 @@ export const level: QuestionTemplateDef[] = [
     ],
     explain: (v) => [`Count from zero to reach ${v[0]}, moving left for negative or right for positive.`],
     hints: () => ["Count the marks from zero, noting whether you move left (negative) or right (positive)."],
+    fr: {
+      promptTemplates: [
+        "Quel nombre la flèche indique-t-elle sur la droite numérique ?",
+        "Lis la droite numérique. Quel nombre la flèche montre-t-elle ?",
+        "Quel nombre entier le pointeur indique-t-il sur cette droite numérique ?",
+        "Quel nombre entier est marqué par la flèche sur cette droite numérique ?",
+        "Identifie le nombre indiqué par la flèche sur la droite numérique."
+      ],
+      explain: (v) => [`Compte à partir de zéro pour atteindre ${v[0]}, en allant vers la gauche pour les négatifs ou vers la droite pour les positifs.`],
+      hints: () => ["Compte les graduations à partir de zéro, en notant si tu vas vers la gauche (négatif) ou vers la droite (positif)."]
+    },
     visualAid: (v) => visuals.numberLine(-20, 20, v[0]!),
     declaredVariationSpace: 41 * 5
   }),
@@ -105,6 +151,11 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["Between {a} and {b}, the greater number is", "Comparing {a} and {b}, the larger value is"],
     explain: (v, r) => [`${r} is greater — it is further right on the number line.`],
     hints: () => ["The number further right on the number line is greater."],
+    fr: {
+      promptTemplates: ["Entre {a} et {b}, le nombre le plus grand est", "En comparant {a} et {b}, la plus grande valeur est"],
+      explain: (v, r) => [`${r} est plus grand — il est plus à droite sur la droite numérique.`],
+      hints: () => ["Le nombre le plus à droite sur la droite numérique est le plus grand."]
+    },
     distractorSpread: 8,
     declaredVariationSpace: 40 * 39 * 2
   }),
@@ -115,6 +166,11 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["The temperature in {ctx} was {a}. It then fell by {b}. What is the new temperature?"],
     explain: (v, r) => [`${v[0]} - ${v[1]} = ${r}.`, "Falling means subtracting."],
     hints: () => ["A fall in temperature means you subtract."],
+    fr: {
+      promptTemplates: ["La température à {ctx} était de {a}. Elle a ensuite baissé de {b}. Quelle est la nouvelle température ?"],
+      explain: (v, r) => [`${v[0]} - ${v[1]} = ${r}.`, "Une baisse signifie qu'il faut soustraire."],
+      hints: () => ["Une baisse de température signifie qu'il faut soustraire."]
+    },
     formatValue: (n) => `${n}°C`,
     declaredVariationSpace: 21 * 15 * CITIES.length
   }),
@@ -125,6 +181,11 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["The temperature in {ctx} was {a} overnight. By midday it had risen by {b}. What is the midday temperature?"],
     explain: (v, r) => [`${v[0]} + ${v[1]} = ${r}.`, "A rise means you add."],
     hints: () => ["A rise in temperature means you add."],
+    fr: {
+      promptTemplates: ["La température à {ctx} était de {a} pendant la nuit. À midi, elle avait augmenté de {b}. Quelle est la température à midi ?"],
+      explain: (v, r) => [`${v[0]} + ${v[1]} = ${r}.`, "Une hausse signifie qu'il faut additionner."],
+      hints: () => ["Une hausse de température signifie qu'il faut additionner."]
+    },
     formatValue: (n) => `${n}°C`,
     declaredVariationSpace: 21 * 15 * CITIES.length
   }),
@@ -135,6 +196,11 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["{a} + ___ = {b}", "What must be added to {a} to reach {b}?"],
     explain: (v, r) => [`${v[1]} - ${v[0]} = ${r}, so ${v[0]} + ${r} = ${v[1]}.`],
     hints: () => ["Find the difference between the two numbers, keeping track of direction."],
+    fr: {
+      promptTemplates: ["{a} + ___ = {b}", "Que faut-il ajouter à {a} pour obtenir {b} ?"],
+      explain: (v, r) => [`${v[1]} - ${v[0]} = ${r}, donc ${v[0]} + ${r} = ${v[1]}.`],
+      hints: () => ["Trouve la différence entre les deux nombres, en gardant trace de la direction."]
+    },
     declaredVariationSpace: 41 * 41 * 2
   }),
   categoricalPoolTemplate({
@@ -159,6 +225,27 @@ export const level: QuestionTemplateDef[] = [
         hints: ["Same signs give positive; different signs give negative."]
       };
     },
+    fr: {
+      translate: (drawn, picked) => {
+        const match = drawn.prompt.match(/^(-?\d+) is being (?:multiplied|divided) by (-?\d+)\./);
+        const a = match ? match[1] : "";
+        const b = match ? match[2] : "";
+        const opFr = picked.op === "multiplying" ? "multiplié" : "divisé";
+        const opFrPast = picked.op === "multiplying" ? "multipliés" : "divisés";
+        const signsFr = picked.signs === "same" ? "identiques" : "différents";
+        return {
+          prompt: `${a} est ${opFr} par ${b}. Ces deux nombres ont des signes ${signsFr}. Quel est le signe du résultat ?`,
+          correctLabel: picked.signs === "same" ? "Positif" : "Négatif",
+          distractorLabels: [picked.signs === "same" ? "Négatif" : "Positif", "Toujours zéro"],
+          explanationSteps: [
+            picked.signs === "same"
+              ? `Deux nombres de même signe, ${opFrPast}, donnent un résultat positif.`
+              : `Deux nombres de signes différents, ${opFrPast}, donnent un résultat négatif.`
+          ],
+          hints: ["Des signes identiques donnent un résultat positif ; des signes différents donnent un résultat négatif."]
+        };
+      }
+    },
     declaredVariationSpace: 2 * 2 * 11 * 11 * 2
   }),
   arithmeticTemplate({
@@ -169,6 +256,11 @@ export const level: QuestionTemplateDef[] = [
     derive: (v) => ({ decimal: (v[0]! / 10).toFixed(1) }),
     explain: (v, r) => [`${(v[0]! / 10).toFixed(1)} rounds to ${r}.`],
     hints: () => ["Look at the first decimal place to decide whether to round up or down."],
+    fr: {
+      promptTemplates: ["Arrondis {decimal} au nombre entier le plus proche."],
+      explain: (v, r) => [`${(v[0]! / 10).toFixed(1)} s'arrondit à ${r}.`],
+      hints: () => ["Regarde la première décimale pour décider s'il faut arrondir vers le haut ou vers le bas."]
+    },
     declaredVariationSpace: 1000
   }),
   arithmeticTemplate({
@@ -178,6 +270,11 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["Work out {a} + {b} - {c}."],
     explain: (v, r) => [`${v[0]} + ${v[1]} = ${v[0]! + v[1]!}.`, `${v[0]! + v[1]!} - ${v[2]} = ${r}.`],
     hints: () => ["Work through the calculation from left to right."],
+    fr: {
+      promptTemplates: ["Calcule {a} + {b} - {c}."],
+      explain: (v, r) => [`${v[0]} + ${v[1]} = ${v[0]! + v[1]!}.`, `${v[0]! + v[1]!} - ${v[2]} = ${r}.`],
+      hints: () => ["Effectue le calcul de gauche à droite."]
+    },
     declaredVariationSpace: 21 * 10 * 10
   })
 ];

@@ -179,12 +179,15 @@ export function arithmeticTemplate(opts: ArithmeticTemplateOptions): QuestionTem
     }
 
     if (opts.type === "TRUE_FALSE") {
+      const trueLabel = locale === "fr" ? "Vrai" : "True";
+      const falseLabel = locale === "fr" ? "Faux" : "False";
+      const trueOrFalse = locale === "fr" ? "Vrai ou faux ?" : "True or false?";
       const showFalse = rng.chance(opts.falseStatementRate ?? 0.5);
       const shownValue = showFalse
         ? fmt(numericDistractors(rng, result, 1, opts.distractorSpread ?? 3)[0] ?? result + 1)
         : fmt(result);
-      const statementPrompt = `${prompt.replace(/\?\s*$/, "")} ${shownValue}. True or false?`;
-      const { choices, correctId } = buildChoices(rng, showFalse ? "False" : "True", [showFalse ? "True" : "False"]);
+      const statementPrompt = `${prompt.replace(/\?\s*$/, "")} ${shownValue}. ${trueOrFalse}`;
+      const { choices, correctId } = buildChoices(rng, showFalse ? falseLabel : trueLabel, [showFalse ? trueLabel : falseLabel]);
       return {
         templateKey: opts.key, seed, type: opts.type, difficulty: opts.difficulty,
         prompt: statementPrompt, visualAid, choices, correctAnswer: correctId,
