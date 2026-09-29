@@ -248,7 +248,12 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["Estimate {a} - {b} by rounding each number to the nearest 100 first."],
     explain: (v, r) => [`${v[0]} rounds to ${Math.round(v[0]! / 100) * 100}. ${v[1]} rounds to ${Math.round(v[1]! / 100) * 100}. ${Math.round(v[0]! / 100) * 100} - ${Math.round(v[1]! / 100) * 100} = ${r}.`],
     hints: () => ["Round each number to the nearest 100 before subtracting."],
-    declaredVariationSpace: 700 * 700
+    declaredVariationSpace: 700 * 700,
+    fr: {
+      promptTemplates: ["Estime {a} - {b} en arrondissant d'abord chaque nombre à la centaine près."],
+      explain: (v, r) => [`${v[0]} s'arrondit à ${Math.round(v[0]! / 100) * 100}. ${v[1]} s'arrondit à ${Math.round(v[1]! / 100) * 100}. ${Math.round(v[0]! / 100) * 100} - ${Math.round(v[1]! / 100) * 100} = ${r}.`],
+      hints: () => ["Arrondis chaque nombre à la centaine près avant de soustraire."]
+    }
   }),
   categoricalPoolTemplate({
     key: "y3l2.inverseCheckAddition", levelKey: "Y3L2", objectiveCode: "Y3-L2-3", difficulty: "REASONING",
@@ -266,6 +271,20 @@ export const level: QuestionTemplateDef[] = [
         explanationSteps: [`${c} - ${b} = ${a}, the inverse of adding ${b}.`],
         hints: ["Subtraction is the inverse of addition."]
       };
+    },
+    fr: {
+      translate: (drawn) => {
+        const m = drawn.prompt.match(/^Since (-?\d+) \+ (-?\d+) = (-?\d+), \3 - \2 = (-?\d+)\./);
+        const [a, b, c, shownA] = m ? m.slice(1) : ["", "", "", ""];
+        const isTrueCase = drawn.correctLabel === "True";
+        return {
+          prompt: `Puisque ${a} + ${b} = ${c}, ${c} - ${b} = ${shownA}. Vrai ou faux ?`,
+          correctLabel: isTrueCase ? "Vrai" : "Faux",
+          distractorLabels: [isTrueCase ? "Faux" : "Vrai"],
+          explanationSteps: [`${c} - ${b} = ${a}, l'inverse de l'addition de ${b}.`],
+          hints: ["La soustraction est l'opération inverse de l'addition."]
+        };
+      }
     },
     declaredVariationSpace: 800 * 800 * 2
   }),
@@ -287,6 +306,20 @@ export const level: QuestionTemplateDef[] = [
         hints: ["Addition is the inverse of subtraction."]
       };
     },
+    fr: {
+      translate: (drawn) => {
+        const m = drawn.prompt.match(/^Since (-?\d+) - (-?\d+) = (-?\d+), \3 \+ \2 = (-?\d+)\./);
+        const [a, b, c, shownA] = m ? m.slice(1) : ["", "", "", ""];
+        const isTrueCase = drawn.correctLabel === "True";
+        return {
+          prompt: `Puisque ${a} - ${b} = ${c}, ${c} + ${b} = ${shownA}. Vrai ou faux ?`,
+          correctLabel: isTrueCase ? "Vrai" : "Faux",
+          distractorLabels: [isTrueCase ? "Faux" : "Vrai"],
+          explanationSteps: [`${c} + ${b} = ${a}, l'inverse de la soustraction de ${b}.`],
+          hints: ["L'addition est l'opération inverse de la soustraction."]
+        };
+      }
+    },
     declaredVariationSpace: 800 * 800 * 2
   }),
   arithmeticTemplate({
@@ -297,7 +330,13 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["{a} + ___ = {c}. Use the inverse operation (subtraction) to find the missing number.", "Counting {ctx}: {a} + ___ = {c}"],
     explain: (v, r) => [`${v[0]! + v[1]!} - ${v[0]} = ${r}.`],
     hints: () => ["Subtract the known number from the total to undo the addition."],
-    declaredVariationSpace: 800 * 899 * 2 * CTX.length
+    declaredVariationSpace: 800 * 899 * 2 * CTX.length,
+    fr: {
+      contextPool: CTX_FR,
+      promptTemplates: ["{a} + ___ = {c}. Utilise l'opération inverse (la soustraction) pour trouver le nombre manquant.", "En comptant les {ctx} : {a} + ___ = {c}"],
+      explain: (v, r) => [`${v[0]! + v[1]!} - ${v[0]} = ${r}.`],
+      hints: () => ["Soustrais le nombre connu du total pour annuler l'addition."]
+    }
   }),
   categoricalPoolTemplate({
     key: "y3l2.mcEstimateSum", levelKey: "Y3L2", objectiveCode: "Y3-L2-3", difficulty: "APPLICATION",
@@ -315,6 +354,19 @@ export const level: QuestionTemplateDef[] = [
         hints: ["Round each number to the nearest 100 before adding."]
       };
     },
+    fr: {
+      translate: (drawn) => {
+        const m = drawn.prompt.match(/^Which is the best estimate for (-?\d+) \+ (-?\d+), rounding each to the nearest 100\?/);
+        const [a, b] = m ? m.slice(1) : ["", ""];
+        const aNum = Number(a);
+        const bNum = Number(b);
+        return {
+          prompt: `Quelle est la meilleure estimation de ${a} + ${b}, en arrondissant chacun à la centaine près ?`,
+          explanationSteps: [`${a} s'arrondit à ${Math.round(aNum / 100) * 100}. ${b} s'arrondit à ${Math.round(bNum / 100) * 100}. Leur somme est ${Math.round(aNum / 100) * 100 + Math.round(bNum / 100) * 100}.`],
+          hints: ["Arrondis chaque nombre à la centaine près avant d'additionner."]
+        };
+      }
+    },
     declaredVariationSpace: 800 * 800
   }),
   arithmeticTemplate({
@@ -325,7 +377,12 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["A bricklayer used {a} bricks to build one wall, then some more to build a second wall, using {c} bricks in total. To check this, work out {c} - {a}. How many bricks were used for the second wall?"],
     explain: (v, r) => [`${v[0]! + v[1]!} - ${v[0]} = ${r}, using the inverse operation (subtraction) to check the total.`],
     hints: () => ["Subtract the known amount from the total to find the missing amount."],
-    declaredVariationSpace: 400 * 400
+    declaredVariationSpace: 400 * 400,
+    fr: {
+      promptTemplates: ["Un maçon a utilisé {a} briques pour construire un mur, puis quelques briques de plus pour un second mur, utilisant {c} briques au total. Pour vérifier, calcule {c} - {a}. Combien de briques ont été utilisées pour le second mur ?"],
+      explain: (v, r) => [`${v[0]! + v[1]!} - ${v[0]} = ${r}, en utilisant l'opération inverse (la soustraction) pour vérifier le total.`],
+      hints: () => ["Soustrais la quantité connue du total pour trouver la quantité manquante."]
+    }
   })
 ];
 

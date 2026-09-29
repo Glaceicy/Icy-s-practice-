@@ -15,6 +15,29 @@ function classifyAngle(deg: number): string {
   return "Reflex";
 }
 const ANGLE_CATEGORIES = ["Acute", "Right angle", "Obtuse", "Reflex"];
+const ANGLE_CATEGORIES_FR: Record<string, string> = {
+  Acute: "Aigu",
+  "Right angle": "Angle droit",
+  Obtuse: "Obtus",
+  Reflex: "Rentrant"
+};
+/** French text for the classic "an angle of X° is <claim>" sentence used by
+ * classifyAngle's category names in prose (lowercase, or "a right angle"). */
+function angleCategoryProseFr(category: string): string {
+  if (category === "Right angle") return "un angle droit";
+  if (category === "Acute") return "aigu";
+  if (category === "Obtuse") return "obtus";
+  return "rentrant";
+}
+/** Translates a translation-vector label like "3 right and 2 up" or
+ * "3 left and 2 down" into French, purely from its text — no rng access. */
+function translateVectorLabel(label: string): string {
+  const m = label.match(/^(\d+) (right|left) and (\d+) (up|down)$/);
+  if (!m) return label;
+  const [, n1, dir1, n2, dir2] = m;
+  const dirFr = (d: string) => (d === "right" ? "vers la droite" : d === "left" ? "vers la gauche" : d === "up" ? "vers le haut" : "vers le bas");
+  return `${n1} ${dirFr(dir1!)} et ${n2} ${dirFr(dir2!)}`;
+}
 
 export const level: QuestionTemplateDef[] = [
   // --- Y5-L8-1: angles are measured in degrees; estimate/compare acute, obtuse, reflex ---
@@ -35,6 +58,20 @@ export const level: QuestionTemplateDef[] = [
         ],
         hints: ["Acute: less than 90°. Right: exactly 90°. Obtuse: between 90° and 180°. Reflex: more than 180°."]
       };
+    },
+    fr: {
+      translate: (drawn) => {
+        const m = drawn.prompt.match(/^An angle measures (\d+)°\. What type of angle is it\?$/);
+        const deg = m ? Number(m[1]) : 0;
+        const explanation = deg === 90 ? `${deg}° est exactement un angle droit.` : deg < 90 ? `${deg}° est inférieur à 90°, donc c'est un angle aigu.` : deg < 180 ? `${deg}° est compris entre 90° et 180°, donc c'est un angle obtus.` : `${deg}° est supérieur à 180°, donc c'est un angle rentrant.`;
+        return {
+          prompt: `Un angle mesure ${deg}°. Quel type d'angle est-ce ?`,
+          correctLabel: ANGLE_CATEGORIES_FR[drawn.correctLabel] ?? drawn.correctLabel,
+          distractorLabels: drawn.distractorLabels.map((d) => ANGLE_CATEGORIES_FR[d] ?? d),
+          explanationSteps: [explanation],
+          hints: ["Aigu : moins de 90°. Droit : exactement 90°. Obtus : entre 90° et 180°. Rentrant : plus de 180°."]
+        };
+      }
     },
     declaredVariationSpace: 358
   }),
@@ -57,6 +94,18 @@ export const level: QuestionTemplateDef[] = [
         hints: ["Compare the two numbers directly — the bigger number of degrees is the bigger angle."]
       };
     },
+    fr: {
+      translate: (drawn) => {
+        const m = drawn.prompt.match(/^Which angle is bigger, (\d+°) or (\d+°)\?$/);
+        const labelA = m ? m[1] : "";
+        const labelB = m ? m[2] : "";
+        return {
+          prompt: `Quel angle est le plus grand, ${labelA} ou ${labelB} ?`,
+          explanationSteps: [`${drawn.correctLabel} est l'angle le plus grand.`],
+          hints: ["Compare directement les deux nombres — le plus grand nombre de degrés est le plus grand angle."]
+        };
+      }
+    },
     declaredVariationSpace: 359 * 358
   }),
   categoricalPoolTemplate({
@@ -76,6 +125,23 @@ export const level: QuestionTemplateDef[] = [
         hints: ["Acute: less than 90°. Right: exactly 90°. Obtuse: between 90° and 180°. Reflex: more than 180°."]
       };
     },
+    fr: {
+      translate: (drawn) => {
+        const m = drawn.prompt.match(/^An angle of (\d+)° is (.+)\.$/);
+        const deg = m ? Number(m[1]) : 0;
+        const claimedText = m ? m[2]! : "";
+        const claimedFr = claimedText === "a right angle" ? "un angle droit" : claimedText === "acute" ? "aigu" : claimedText === "obtuse" ? "obtus" : claimedText === "reflex" ? "rentrant" : claimedText;
+        const correctCategory = classifyAngle(deg);
+        const isTrue = drawn.correctLabel === "True";
+        return {
+          prompt: `Un angle de ${deg}° est ${claimedFr}.`,
+          correctLabel: isTrue ? "Vrai" : "Faux",
+          distractorLabels: [isTrue ? "Faux" : "Vrai"],
+          explanationSteps: [`${deg}° est en fait ${angleCategoryProseFr(correctCategory)}.`],
+          hints: ["Aigu : moins de 90°. Droit : exactement 90°. Obtus : entre 90° et 180°. Rentrant : plus de 180°."]
+        };
+      }
+    },
     declaredVariationSpace: 358 * 4 * 2
   }),
   orderingTemplate({
@@ -89,6 +155,11 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["Drag these angles into order, smallest first."],
     explain: () => ["Compare the number of degrees directly."],
     hints: () => ["Which angle has the fewest degrees?"],
+    fr: {
+      promptTemplates: ["Fais glisser ces angles dans l'ordre, du plus petit au plus grand."],
+      explain: () => ["Compare directement le nombre de degrés."],
+      hints: () => ["Quel angle a le moins de degrés ?"]
+    },
     declaredVariationSpace: 500000
   }),
   arithmeticTemplate({
@@ -98,6 +169,11 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["Two angles on a straight line are {a}° and ___°. What is the missing angle, in degrees?"],
     explain: (v, r) => [`Angles on a straight line add up to 180°. 180 - ${v[0]} = ${r}.`],
     hints: () => ["Angles on a straight line always add up to 180°."],
+    fr: {
+      promptTemplates: ["Deux angles sur une droite mesurent {a}° et ___°. Quel est l'angle manquant, en degrés ?"],
+      explain: (v, r) => [`Les angles sur une droite totalisent 180°. 180 - ${v[0]} = ${r}.`],
+      hints: () => ["Les angles sur une droite totalisent toujours 180°."]
+    },
     declaredVariationSpace: 161
   }),
   arithmeticTemplate({
@@ -108,6 +184,11 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["Three angles meet at a point: {a}°, {b}° and ___°. What is the missing angle, in degrees?"],
     explain: (v, r) => [`Angles around a point add up to 360°. 360 - ${v[0]} - ${v[1]} = ${r}.`],
     hints: () => ["Angles around a point always add up to 360°."],
+    fr: {
+      promptTemplates: ["Trois angles se rencontrent en un point : {a}°, {b}° et ___°. Quel est l'angle manquant, en degrés ?"],
+      explain: (v, r) => [`Les angles autour d'un point totalisent 360°. 360 - ${v[0]} - ${v[1]} = ${r}.`],
+      hints: () => ["Les angles autour d'un point totalisent toujours 360°."]
+    },
     declaredVariationSpace: 161 * 161
   }),
   arithmeticTemplate({
@@ -117,6 +198,11 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["Two angles on a straight line are {a}° and ___°. What is the missing angle?"],
     explain: (v, r) => [`180 - ${v[0]} = ${r}.`],
     hints: () => ["Angles on a straight line add up to 180°."],
+    fr: {
+      promptTemplates: ["Deux angles sur une droite mesurent {a}° et ___°. Quel est l'angle manquant ?"],
+      explain: (v, r) => [`180 - ${v[0]} = ${r}.`],
+      hints: () => ["Les angles sur une droite totalisent 180°."]
+    },
     distractorSpread: 15,
     declaredVariationSpace: 161
   }),
@@ -140,6 +226,20 @@ export const level: QuestionTemplateDef[] = [
         hints: ["Moving right adds to the x-coordinate; moving up adds to the y-coordinate."]
       };
     },
+    fr: {
+      translate: (drawn) => {
+        const m = drawn.prompt.match(/^Point \((\d+), (\d+)\) is translated (\d+) right and (\d+) up\. What are its new coordinates\?$/);
+        const x = m ? m[1] : "";
+        const y = m ? m[2] : "";
+        const dx = m ? m[3] : "";
+        const dy = m ? m[4] : "";
+        return {
+          prompt: `Le point (${x}, ${y}) est translaté de ${dx} vers la droite et ${dy} vers le haut. Quelles sont ses nouvelles coordonnées ?`,
+          explanationSteps: [`Se déplacer vers la droite augmente la coordonnée x ; se déplacer vers le haut augmente la coordonnée y : (${x}+${dx}, ${y}+${dy}) = ${drawn.correctLabel}.`],
+          hints: ["Se déplacer vers la droite ajoute à la coordonnée x ; se déplacer vers le haut ajoute à la coordonnée y."]
+        };
+      }
+    },
     declaredVariationSpace: 9 * 9 * 5 * 5
   }),
   categoricalPoolTemplate({
@@ -159,6 +259,20 @@ export const level: QuestionTemplateDef[] = [
         explanationSteps: [`Moving left subtracts from the x-coordinate; moving down subtracts from the y-coordinate: (${x}-${dx}, ${y}-${dy}) = ${correct}.`],
         hints: ["Moving left subtracts from the x-coordinate; moving down subtracts from the y-coordinate."]
       };
+    },
+    fr: {
+      translate: (drawn) => {
+        const m = drawn.prompt.match(/^Point \((\d+), (\d+)\) is translated (\d+) left and (\d+) down\. What are its new coordinates\?$/);
+        const x = m ? m[1] : "";
+        const y = m ? m[2] : "";
+        const dx = m ? m[3] : "";
+        const dy = m ? m[4] : "";
+        return {
+          prompt: `Le point (${x}, ${y}) est translaté de ${dx} vers la gauche et ${dy} vers le bas. Quelles sont ses nouvelles coordonnées ?`,
+          explanationSteps: [`Se déplacer vers la gauche soustrait de la coordonnée x ; se déplacer vers le bas soustrait de la coordonnée y : (${x}-${dx}, ${y}-${dy}) = ${drawn.correctLabel}.`],
+          hints: ["Se déplacer vers la gauche soustrait de la coordonnée x ; se déplacer vers le bas soustrait de la coordonnée y."]
+        };
+      }
     },
     declaredVariationSpace: 9 * 9 * 5 * 5
   }),
@@ -180,6 +294,20 @@ export const level: QuestionTemplateDef[] = [
         hints: ["Reflecting in a vertical line only changes the x-coordinate; the y-coordinate stays the same."]
       };
     },
+    fr: {
+      translate: (drawn) => {
+        const m = drawn.prompt.match(/^Point \((\d+), (\d+)\) is reflected in the vertical line x = (\d+)\. What are the new coordinates\?$/);
+        const x = m ? Number(m[1]) : 0;
+        const y = m ? m[2] : "";
+        const k = m ? Number(m[3]) : 0;
+        const reflectedX = 2 * k - x;
+        return {
+          prompt: `Le point (${x}, ${y}) est réfléchi par rapport à la droite verticale x = ${k}. Quelles sont les nouvelles coordonnées ?`,
+          explanationSteps: [`Le point est à ${k - x} à gauche de la droite miroir, donc son reflet est à ${k - x} à droite : x = ${k} + ${k - x} = ${reflectedX}. La coordonnée y ne change pas.`],
+          hints: ["Réfléchir par rapport à une droite verticale ne change que la coordonnée x ; la coordonnée y reste la même."]
+        };
+      }
+    },
     declaredVariationSpace: 11 * 6 * 11
   }),
   categoricalPoolTemplate({
@@ -199,6 +327,20 @@ export const level: QuestionTemplateDef[] = [
         explanationSteps: [`The point is ${k - y} below the mirror line, so its reflection is ${k - y} above: y = ${k} + ${k - y} = ${reflectedY}. The x-coordinate doesn't change.`],
         hints: ["Reflecting in a horizontal line only changes the y-coordinate; the x-coordinate stays the same."]
       };
+    },
+    fr: {
+      translate: (drawn) => {
+        const m = drawn.prompt.match(/^Point \((\d+), (\d+)\) is reflected in the horizontal line y = (\d+)\. What are the new coordinates\?$/);
+        const x = m ? m[1] : "";
+        const y = m ? Number(m[2]) : 0;
+        const k = m ? Number(m[3]) : 0;
+        const reflectedY = 2 * k - y;
+        return {
+          prompt: `Le point (${x}, ${y}) est réfléchi par rapport à la droite horizontale y = ${k}. Quelles sont les nouvelles coordonnées ?`,
+          explanationSteps: [`Le point est à ${k - y} en dessous de la droite miroir, donc son reflet est à ${k - y} au-dessus : y = ${k} + ${k - y} = ${reflectedY}. La coordonnée x ne change pas.`],
+          hints: ["Réfléchir par rapport à une droite horizontale ne change que la coordonnée y ; la coordonnée x reste la même."]
+        };
+      }
     },
     declaredVariationSpace: 11 * 6 * 11
   }),
@@ -223,6 +365,25 @@ export const level: QuestionTemplateDef[] = [
         hints: ["Moving right adds to the x-coordinate; moving up adds to the y-coordinate."]
       };
     },
+    fr: {
+      translate: (drawn) => {
+        const m = drawn.prompt.match(/^Point \((\d+), (\d+)\) translated (\d+) right and (\d+) up becomes \((\d+), (\d+)\)\.$/);
+        const x = m ? Number(m[1]) : 0;
+        const y = m ? Number(m[2]) : 0;
+        const dx = m ? Number(m[3]) : 0;
+        const dy = m ? Number(m[4]) : 0;
+        const shownX = m ? m[5] : "";
+        const shownY = m ? m[6] : "";
+        const isTrue = drawn.correctLabel === "True";
+        return {
+          prompt: `Le point (${x}, ${y}) translaté de ${dx} vers la droite et ${dy} vers le haut devient (${shownX}, ${shownY}).`,
+          correctLabel: isTrue ? "Vrai" : "Faux",
+          distractorLabels: [isTrue ? "Faux" : "Vrai"],
+          explanationSteps: [`(${x}, ${y}) translaté de ${dx} vers la droite et ${dy} vers le haut devient (${x + dx}, ${y + dy}).`],
+          hints: ["Se déplacer vers la droite ajoute à la coordonnée x ; se déplacer vers le haut ajoute à la coordonnée y."]
+        };
+      }
+    },
     declaredVariationSpace: 9 * 9 * 5 * 5 * 2
   }),
   categoricalPoolTemplate({
@@ -245,6 +406,24 @@ export const level: QuestionTemplateDef[] = [
         hints: ["Compare the x-coordinates to find the sideways movement, and the y-coordinates to find the up/down movement."]
       };
     },
+    fr: {
+      translate: (drawn) => {
+        const m = drawn.prompt.match(/^A point moves from \((\d+), (\d+)\) to \((\d+), (\d+)\)\. How was it translated\?$/);
+        const x = m ? m[1] : "";
+        const y = m ? m[2] : "";
+        const x2 = m ? m[3] : "";
+        const y2 = m ? m[4] : "";
+        const dx = m ? Number(m[3]) - Number(m[1]) : 0;
+        const dy = m ? Number(m[4]) - Number(m[2]) : 0;
+        return {
+          prompt: `Un point se déplace de (${x}, ${y}) à (${x2}, ${y2}). Comment a-t-il été translaté ?`,
+          correctLabel: translateVectorLabel(drawn.correctLabel),
+          distractorLabels: drawn.distractorLabels.map(translateVectorLabel),
+          explanationSteps: [`La coordonnée x a augmenté de ${dx} (${x} à ${x2}) et la coordonnée y a augmenté de ${dy} (${y} à ${y2}).`],
+          hints: ["Compare les coordonnées x pour trouver le déplacement horizontal, et les coordonnées y pour trouver le déplacement vertical."]
+        };
+      }
+    },
     declaredVariationSpace: 7 * 7 * 5 * 5
   }),
   categoricalPoolTemplate({
@@ -265,6 +444,20 @@ export const level: QuestionTemplateDef[] = [
         hints: ["Add the rightward movement to the x-coordinate and the upward movement to the y-coordinate."]
       };
     },
+    fr: {
+      translate: (drawn) => {
+        const m = drawn.prompt.match(/^A robot starts at \((\d+), (\d+)\) on a grid\. It moves (\d+) squares right and (\d+) squares up\. What are its new coordinates\?$/);
+        const x = m ? m[1] : "";
+        const y = m ? m[2] : "";
+        const dx = m ? m[3] : "";
+        const dy = m ? m[4] : "";
+        return {
+          prompt: `Un robot part de (${x}, ${y}) sur une grille. Il se déplace de ${dx} cases vers la droite et ${dy} cases vers le haut. Quelles sont ses nouvelles coordonnées ?`,
+          explanationSteps: [`(${x}+${dx}, ${y}+${dy}) = ${drawn.correctLabel}.`],
+          hints: ["Ajoute le déplacement vers la droite à la coordonnée x et le déplacement vers le haut à la coordonnée y."]
+        };
+      }
+    },
     declaredVariationSpace: 9 * 9 * 5 * 5
   }),
 
@@ -279,6 +472,14 @@ export const level: QuestionTemplateDef[] = [
     ],
     explain: (v, r) => [`In a rectangle, opposite sides are always equal, so the opposite side is also ${r} cm.`],
     hints: () => ["Opposite sides of a rectangle are always the same length."],
+    fr: {
+      promptTemplates: [
+        "Un rectangle a un côté de {a} cm. Les côtés opposés d'un rectangle sont égaux — quelle est la longueur du côté opposé ?",
+        "Un côté d'un rectangle mesure {a} cm. Sachant que les côtés opposés sont égaux, quelle est la longueur du côté opposé ?"
+      ],
+      explain: (v, r) => [`Dans un rectangle, les côtés opposés sont toujours égaux, donc le côté opposé mesure aussi ${r} cm.`],
+      hints: () => ["Les côtés opposés d'un rectangle sont toujours de la même longueur."]
+    },
     declaredVariationSpace: 99 * 2
   }),
   arithmeticTemplate({
@@ -289,6 +490,11 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["A rectangle has a perimeter of {perimeter} cm. Using the fact that opposite sides are equal, if one side is {len} cm, what is the length of an adjacent side?"],
     explain: (v, r) => [`Half the perimeter is ${v[0]! + r}. Subtract the known side: ${v[0]! + r} - ${v[0]} = ${r}.`],
     hints: () => ["Halve the perimeter to get the sum of one length and one width, then subtract the known side."],
+    fr: {
+      promptTemplates: ["Un rectangle a un périmètre de {perimeter} cm. Sachant que les côtés opposés sont égaux, si un côté mesure {len} cm, quelle est la longueur d'un côté adjacent ?"],
+      explain: (v, r) => [`La moitié du périmètre est ${v[0]! + r}. Soustrais le côté connu : ${v[0]! + r} - ${v[0]} = ${r}.`],
+      hints: () => ["Divise le périmètre par deux pour obtenir la somme d'une longueur et d'une largeur, puis soustrais le côté connu."]
+    },
     declaredVariationSpace: 19 * 19
   }),
   arithmeticTemplate({
@@ -299,6 +505,11 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["A four-sided shape has angles of {a}°, {b}°, {c}° and ___°. What is the missing angle, in degrees?"],
     explain: (v, r) => [`Angles in a four-sided shape add up to 360°. 360 - ${v[0]} - ${v[1]} - ${v[2]} = ${r}.`],
     hints: () => ["The angles in any four-sided shape add up to 360°."],
+    fr: {
+      promptTemplates: ["Une figure à quatre côtés a des angles de {a}°, {b}°, {c}° et ___°. Quel est l'angle manquant, en degrés ?"],
+      explain: (v, r) => [`Les angles d'une figure à quatre côtés totalisent 360°. 360 - ${v[0]} - ${v[1]} - ${v[2]} = ${r}.`],
+      hints: () => ["Les angles de n'importe quelle figure à quatre côtés totalisent 360°."]
+    },
     declaredVariationSpace: 121 * 121
   }),
   arithmeticTemplate({
@@ -309,6 +520,11 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["A rectangle has an area of {area} cm² and one side of {len} cm. What is the length of the other side?"],
     explain: (v, r) => [`${v[0]! * r} ÷ ${v[0]} = ${r}.`],
     hints: () => ["Divide the area by the known side to find the missing side."],
+    fr: {
+      promptTemplates: ["Un rectangle a une aire de {area} cm² et un côté de {len} cm. Quelle est la longueur de l'autre côté ?"],
+      explain: (v, r) => [`${v[0]! * r} ÷ ${v[0]} = ${r}.`],
+      hints: () => ["Divise l'aire par le côté connu pour trouver le côté manquant."]
+    },
     declaredVariationSpace: 14 * 14
   }),
   arithmeticTemplate({
@@ -318,6 +534,11 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["A rectangle has sides of {a} cm and {b} cm. Since opposite sides are equal, what is its perimeter?"],
     explain: (v, r) => [`Perimeter = 2 x (${v[0]} + ${v[1]}) = ${r}.`],
     hints: () => ["Add the two given side lengths, then double the total."],
+    fr: {
+      promptTemplates: ["Un rectangle a des côtés de {a} cm et {b} cm. Puisque les côtés opposés sont égaux, quel est son périmètre ?"],
+      explain: (v, r) => [`Périmètre = 2 x (${v[0]} + ${v[1]}) = ${r}.`],
+      hints: () => ["Additionne les deux longueurs données, puis double le total."]
+    },
     distractorSpread: 10,
     declaredVariationSpace: 29 * 29
   }),
@@ -336,6 +557,21 @@ export const level: QuestionTemplateDef[] = [
         hints: ["Opposite sides of a rectangle are always the same length."]
       };
     },
+    fr: {
+      translate: (drawn) => {
+        const m = drawn.prompt.match(/^A rectangle has one side of (\d+) cm\. The side directly opposite it is (\d+) cm\.$/);
+        const a = m ? m[1] : "";
+        const b = m ? m[2] : "";
+        const isTrue = drawn.correctLabel === "True";
+        return {
+          prompt: `Un rectangle a un côté de ${a} cm. Le côté directement opposé mesure ${b} cm.`,
+          correctLabel: isTrue ? "Vrai" : "Faux",
+          distractorLabels: [isTrue ? "Faux" : "Vrai"],
+          explanationSteps: [`Les côtés opposés d'un rectangle sont toujours égaux, donc le côté opposé doit mesurer ${a} cm.`],
+          hints: ["Les côtés opposés d'un rectangle sont toujours de la même longueur."]
+        };
+      }
+    },
     declaredVariationSpace: 50 * 10 * 2
   }),
   arithmeticTemplate({
@@ -346,6 +582,11 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["A rectangular picture frame is {len} cm by {wid} cm. Because opposite sides of a rectangle are equal, how much wood in total is needed to make the frame?"],
     explain: (v, r) => [`Perimeter = 2 x (${v[0]} + ${v[1]}) = ${r}.`],
     hints: () => ["Add the length and width, then double the total to find the total distance around."],
+    fr: {
+      promptTemplates: ["Un cadre photo rectangulaire mesure {len} cm sur {wid} cm. Puisque les côtés opposés d'un rectangle sont égaux, quelle quantité de bois est nécessaire au total pour fabriquer le cadre ?"],
+      explain: (v, r) => [`Périmètre = 2 x (${v[0]} + ${v[1]}) = ${r}.`],
+      hints: () => ["Additionne la longueur et la largeur, puis double le total pour trouver la distance totale autour."]
+    },
     declaredVariationSpace: 29 * 29
   })
 ];

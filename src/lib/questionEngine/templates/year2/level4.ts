@@ -8,6 +8,7 @@ import type { QuestionTemplateDef } from "../../types";
 // tables, Y2-L4-2 representing multiplication with arrays, Y2-L4-3
 // division by sharing and grouping).
 const CTX = ["stars", "sweets", "apples", "cars", "stickers", "marbles", "buttons", "shells"];
+const CTX_FR = ["étoiles", "bonbons", "pommes", "voitures", "autocollants", "billes", "boutons", "coquillages"];
 
 export const level: QuestionTemplateDef[] = [
   // --- Y2-L4-1: recall and use multiplication facts for 2, 5 and 10 ---
@@ -18,6 +19,12 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["Counting {ctx} in 2s: what is {a} x 2?", "{a} groups of 2 {ctx}. How many {ctx} altogether?"],
     explain: (v, r) => [`${v[0]} x 2 = ${r}.`],
     hints: () => ["Double the number."],
+    fr: {
+      contextPool: CTX_FR,
+      promptTemplates: ["En comptant les {ctx} de 2 en 2 : combien font {a} x 2 ?", "{a} groupes de 2 {ctx}. Combien de {ctx} au total ?"],
+      explain: (v, r) => [`${v[0]} x 2 = ${r}.`],
+      hints: () => ["Double le nombre."]
+    },
     declaredVariationSpace: 12 * 2 * CTX.length
   }),
   arithmeticTemplate({
@@ -27,6 +34,12 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["Counting {ctx} in 5s: what is {a} x 5?", "{a} groups of 5 {ctx}. How many {ctx} altogether?"],
     explain: (v, r) => [`${v[0]} x 5 = ${r}.`],
     hints: () => ["Count on in 5s, or halve the x10 fact."],
+    fr: {
+      contextPool: CTX_FR,
+      promptTemplates: ["En comptant les {ctx} de 5 en 5 : combien font {a} x 5 ?", "{a} groupes de 5 {ctx}. Combien de {ctx} au total ?"],
+      explain: (v, r) => [`${v[0]} x 5 = ${r}.`],
+      hints: () => ["Compte de 5 en 5, ou prends la moitié du résultat x10."]
+    },
     declaredVariationSpace: 12 * 2 * CTX.length
   }),
   arithmeticTemplate({
@@ -36,6 +49,12 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["Counting {ctx} in 10s: what is {a} x 10?", "{a} groups of 10 {ctx}. How many {ctx} altogether?"],
     explain: (v, r) => [`${v[0]} x 10 = ${r}.`],
     hints: () => ["Write the number, then put a zero on the end."],
+    fr: {
+      contextPool: CTX_FR,
+      promptTemplates: ["En comptant les {ctx} de 10 en 10 : combien font {a} x 10 ?", "{a} groupes de 10 {ctx}. Combien de {ctx} au total ?"],
+      explain: (v, r) => [`${v[0]} x 10 = ${r}.`],
+      hints: () => ["Écris le nombre, puis ajoute un zéro à la fin."]
+    },
     declaredVariationSpace: 12 * 2 * CTX.length
   }),
   arithmeticTemplate({
@@ -46,6 +65,12 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["Counting {ctx} in 2s: 2 x ___ = {product}", "Each group has 2 {ctx}. How many groups make {product} {ctx} in total?"],
     explain: (v, r) => [`${v[0]! * 2} ÷ 2 = ${r}.`],
     hints: () => ["Think: 2 times what number gives this total?"],
+    fr: {
+      contextPool: CTX_FR,
+      promptTemplates: ["En comptant les {ctx} de 2 en 2 : 2 x ___ = {product}", "Chaque groupe a 2 {ctx}. Combien de groupes font {product} {ctx} au total ?"],
+      explain: (v, r) => [`${v[0]! * 2} ÷ 2 = ${r}.`],
+      hints: () => ["Réfléchis : 2 fois quel nombre donne ce total ?"]
+    },
     declaredVariationSpace: 12 * 2 * CTX.length
   }),
   arithmeticTemplate({
@@ -56,6 +81,12 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["Counting {ctx} in 10s: ___ x 10 = {product}", "Each group has 10 {ctx}. How many groups make {product} {ctx} in total?"],
     explain: (v, r) => [`${v[0]! * 10} ÷ 10 = ${r}.`],
     hints: () => ["Think: what number times 10 gives this total?"],
+    fr: {
+      contextPool: CTX_FR,
+      promptTemplates: ["En comptant les {ctx} de 10 en 10 : ___ x 10 = {product}", "Chaque groupe a 10 {ctx}. Combien de groupes font {product} {ctx} au total ?"],
+      explain: (v, r) => [`${v[0]! * 10} ÷ 10 = ${r}.`],
+      hints: () => ["Réfléchis : quel nombre multiplié par 10 donne ce total ?"]
+    },
     declaredVariationSpace: 12 * 2 * CTX.length
   }),
   categoricalPoolTemplate({
@@ -73,6 +104,19 @@ export const level: QuestionTemplateDef[] = [
         explanationSteps: [`${table} x ${n} = ${product}.`],
         hints: ["Use the times table you know, or count on in equal steps."]
       };
+    },
+    fr: {
+      translate: (drawn) => {
+        const match = drawn.prompt.match(/^What is (\d+) x (\d+)\?$/);
+        const table = match ? match[1]! : "";
+        const n = match ? match[2]! : "";
+        const product = drawn.correctLabel;
+        return {
+          prompt: `Combien font ${table} x ${n} ?`,
+          explanationSteps: [`${table} x ${n} = ${product}.`],
+          hints: ["Utilise la table de multiplication que tu connais, ou compte par pas égaux."]
+        };
+      }
     },
     declaredVariationSpace: 3 * 20
   }),
@@ -93,6 +137,22 @@ export const level: QuestionTemplateDef[] = [
         hints: ["Work out the fact and check it against the statement."]
       };
     },
+    fr: {
+      translate: (drawn) => {
+        const match = drawn.prompt.match(/^(\d+) x (\d+) = (-?\d+)\. True or false\?$/);
+        const table = match ? match[1]! : "";
+        const n = match ? match[2]! : "";
+        const shown = match ? match[3]! : "";
+        const truth = drawn.correctLabel === "True";
+        return {
+          prompt: `${table} x ${n} = ${shown}. Vrai ou faux ?`,
+          correctLabel: truth ? "Vrai" : "Faux",
+          distractorLabels: [truth ? "Faux" : "Vrai"],
+          explanationSteps: [`${table} x ${n} = ${Number(table) * Number(n)}.`],
+          hints: ["Effectue le calcul et vérifie-le par rapport à l'énoncé."]
+        };
+      }
+    },
     declaredVariationSpace: 3 * 20 * 2
   }),
 
@@ -105,6 +165,12 @@ export const level: QuestionTemplateDef[] = [
     explain: (v, r) => [`${v[0]} rows of 2 = ${r}.`],
     hints: () => ["Multiply the number of rows by the number in each row."],
     visualAid: (v) => visuals.array(v[0]!, 2),
+    fr: {
+      contextPool: CTX_FR,
+      promptTemplates: ["Un tableau a {a} rangées de 2 {ctx}. Combien de {ctx} au total ?", "En comptant les {ctx} dans un tableau de {a} rangées et 2 colonnes : combien de {ctx} au total ?"],
+      explain: (v, r) => [`${v[0]} rangées de 2 = ${r}.`],
+      hints: () => ["Multiplie le nombre de rangées par le nombre dans chaque rangée."]
+    },
     declaredVariationSpace: 12 * 2 * CTX.length
   }),
   arithmeticTemplate({
@@ -115,6 +181,12 @@ export const level: QuestionTemplateDef[] = [
     explain: (v, r) => [`${v[0]} rows of 5 = ${r}.`],
     hints: () => ["Multiply the number of rows by the number in each row."],
     visualAid: (v) => visuals.array(v[0]!, 5),
+    fr: {
+      contextPool: CTX_FR,
+      promptTemplates: ["Un tableau a {a} rangées de 5 {ctx}. Combien de {ctx} au total ?", "En comptant les {ctx} dans un tableau de {a} rangées et 5 colonnes : combien de {ctx} au total ?"],
+      explain: (v, r) => [`${v[0]} rangées de 5 = ${r}.`],
+      hints: () => ["Multiplie le nombre de rangées par le nombre dans chaque rangée."]
+    },
     declaredVariationSpace: 12 * 2 * CTX.length
   }),
   arithmeticTemplate({
@@ -125,6 +197,12 @@ export const level: QuestionTemplateDef[] = [
     explain: (v, r) => [`${v[0]} rows of 10 = ${r}.`],
     hints: () => ["Multiply the number of rows by the number in each row."],
     visualAid: (v) => visuals.array(v[0]!, 10),
+    fr: {
+      contextPool: CTX_FR,
+      promptTemplates: ["Un tableau a {a} rangées de 10 {ctx}. Combien de {ctx} au total ?", "En comptant les {ctx} dans un tableau de {a} rangées et 10 colonnes : combien de {ctx} au total ?"],
+      explain: (v, r) => [`${v[0]} rangées de 10 = ${r}.`],
+      hints: () => ["Multiplie le nombre de rangées par le nombre dans chaque rangée."]
+    },
     declaredVariationSpace: 12 * 2 * CTX.length
   }),
   arithmeticTemplate({
@@ -135,6 +213,12 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["An array has ___ rows of 5 {ctx}, making {product} {ctx} in total. How many rows?", "How many rows of 5 {ctx} are needed to make {product} {ctx}?"],
     explain: (v, r) => [`${v[0]! * 5} ÷ 5 = ${r} rows.`],
     hints: () => ["Divide the total by the number in each row."],
+    fr: {
+      contextPool: CTX_FR,
+      promptTemplates: ["Un tableau a ___ rangées de 5 {ctx}, ce qui fait {product} {ctx} au total. Combien de rangées ?", "Combien de rangées de 5 {ctx} faut-il pour faire {product} {ctx} ?"],
+      explain: (v, r) => [`${v[0]! * 5} ÷ 5 = ${r} rangées.`],
+      hints: () => ["Divise le total par le nombre dans chaque rangée."]
+    },
     declaredVariationSpace: 12 * 2 * CTX.length
   }),
   categoricalPoolTemplate({
@@ -153,6 +237,19 @@ export const level: QuestionTemplateDef[] = [
         hints: ["Multiply the number of rows by the number in each row."],
         visualAid: visuals.array(rows, table)
       };
+    },
+    fr: {
+      translate: (drawn) => {
+        const match = drawn.prompt.match(/^An array has (\d+) rows of (\d+)\. How many altogether\?$/);
+        const rows = match ? match[1]! : "";
+        const table = match ? match[2]! : "";
+        const product = drawn.correctLabel;
+        return {
+          prompt: `Un tableau a ${rows} rangées de ${table}. Combien y en a-t-il au total ?`,
+          explanationSteps: [`${rows} rangées de ${table} = ${product}.`],
+          hints: ["Multiplie le nombre de rangées par le nombre dans chaque rangée."]
+        };
+      }
     },
     declaredVariationSpace: 3 * 20
   }),
@@ -174,6 +271,22 @@ export const level: QuestionTemplateDef[] = [
         visualAid: visuals.array(rows, table)
       };
     },
+    fr: {
+      translate: (drawn) => {
+        const match = drawn.prompt.match(/^An array of (\d+) rows of (\d+) has (-?\d+) altogether\. True or false\?$/);
+        const rows = match ? match[1]! : "";
+        const table = match ? match[2]! : "";
+        const shown = match ? match[3]! : "";
+        const truth = drawn.correctLabel === "True";
+        return {
+          prompt: `Un tableau de ${rows} rangées de ${table} a ${shown} au total. Vrai ou faux ?`,
+          correctLabel: truth ? "Vrai" : "Faux",
+          distractorLabels: [truth ? "Faux" : "Vrai"],
+          explanationSteps: [`${rows} rangées de ${table} = ${Number(rows) * Number(table)}.`],
+          hints: ["Multiplie le nombre de rangées par le nombre dans chaque rangée."]
+        };
+      }
+    },
     declaredVariationSpace: 3 * 20 * 2
   }),
   arithmeticTemplate({
@@ -184,6 +297,12 @@ export const level: QuestionTemplateDef[] = [
     explain: (v, r) => [`${v[0]} rows of 2 = ${r}.`],
     hints: () => ["Multiply the number of rows by the number in each row."],
     visualAid: (v) => visuals.array(v[0]!, 2),
+    fr: {
+      contextPool: CTX_FR,
+      promptTemplates: ["Un jardinier plante des {ctx} en {a} rangées de 2. Combien de {ctx} y a-t-il au total ?", "Il y a {a} rangées de 2 {ctx} dans une exposition. Combien de {ctx} au total ?"],
+      explain: (v, r) => [`${v[0]} rangées de 2 = ${r}.`],
+      hints: () => ["Multiplie le nombre de rangées par le nombre dans chaque rangée."]
+    },
     declaredVariationSpace: 12 * 2 * CTX.length
   }),
 
@@ -196,6 +315,12 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["Sharing {ctx} equally: {dividend} {ctx} shared between 2 people is how many each?", "{dividend} ÷ 2 = ? (counting {ctx})"],
     explain: (v, r) => [`${v[0]! * 2} ÷ 2 = ${r}.`],
     hints: () => ["Share the total equally between 2 groups."],
+    fr: {
+      contextPool: CTX_FR,
+      promptTemplates: ["En partageant les {ctx} équitablement : {dividend} {ctx} partagés entre 2 personnes, combien chacun ?", "{dividend} ÷ 2 = ? (en comptant les {ctx})"],
+      explain: (v, r) => [`${v[0]! * 2} ÷ 2 = ${r}.`],
+      hints: () => ["Partage le total équitablement entre 2 groupes."]
+    },
     declaredVariationSpace: 12 * 2 * CTX.length
   }),
   arithmeticTemplate({
@@ -206,6 +331,12 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["Sharing {ctx} equally: {dividend} {ctx} shared between 5 people is how many each?", "{dividend} ÷ 5 = ? (counting {ctx})"],
     explain: (v, r) => [`${v[0]! * 5} ÷ 5 = ${r}.`],
     hints: () => ["Share the total equally between 5 groups."],
+    fr: {
+      contextPool: CTX_FR,
+      promptTemplates: ["En partageant les {ctx} équitablement : {dividend} {ctx} partagés entre 5 personnes, combien chacun ?", "{dividend} ÷ 5 = ? (en comptant les {ctx})"],
+      explain: (v, r) => [`${v[0]! * 5} ÷ 5 = ${r}.`],
+      hints: () => ["Partage le total équitablement entre 5 groupes."]
+    },
     declaredVariationSpace: 12 * 2 * CTX.length
   }),
   arithmeticTemplate({
@@ -216,6 +347,12 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["Sharing {ctx} equally: {dividend} {ctx} shared between 10 people is how many each?", "{dividend} ÷ 10 = ? (counting {ctx})"],
     explain: (v, r) => [`${v[0]! * 10} ÷ 10 = ${r}.`],
     hints: () => ["Share the total equally between 10 groups."],
+    fr: {
+      contextPool: CTX_FR,
+      promptTemplates: ["En partageant les {ctx} équitablement : {dividend} {ctx} partagés entre 10 personnes, combien chacun ?", "{dividend} ÷ 10 = ? (en comptant les {ctx})"],
+      explain: (v, r) => [`${v[0]! * 10} ÷ 10 = ${r}.`],
+      hints: () => ["Partage le total équitablement entre 10 groupes."]
+    },
     declaredVariationSpace: 12 * 2 * CTX.length
   }),
   arithmeticTemplate({
@@ -226,6 +363,12 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["There are {total} {ctx}, put into groups of 5. How many groups can be made?", "If {total} {ctx} are grouped into 5s, how many groups are there?"],
     explain: (v, r) => [`${v[0]! * 5} ÷ 5 = ${r} groups.`],
     hints: () => ["Count how many groups of 5 fit into the total."],
+    fr: {
+      contextPool: CTX_FR,
+      promptTemplates: ["Il y a {total} {ctx}, réparti(e)s en groupes de 5. Combien de groupes peut-on faire ?", "Si {total} {ctx} sont regroupés par 5, combien de groupes y a-t-il ?"],
+      explain: (v, r) => [`${v[0]! * 5} ÷ 5 = ${r} groupes.`],
+      hints: () => ["Compte combien de groupes de 5 entrent dans le total."]
+    },
     declaredVariationSpace: 12 * 2 * CTX.length
   }),
   categoricalPoolTemplate({
@@ -244,6 +387,19 @@ export const level: QuestionTemplateDef[] = [
         explanationSteps: [`${dividend} ÷ ${divisor} = ${quotient}.`],
         hints: ["Think about how many equal groups of the divisor make the total."]
       };
+    },
+    fr: {
+      translate: (drawn) => {
+        const match = drawn.prompt.match(/^What is (\d+) ÷ (\d+)\?$/);
+        const dividend = match ? match[1]! : "";
+        const divisor = match ? match[2]! : "";
+        const quotient = drawn.correctLabel;
+        return {
+          prompt: `Combien font ${dividend} ÷ ${divisor} ?`,
+          explanationSteps: [`${dividend} ÷ ${divisor} = ${quotient}.`],
+          hints: ["Réfléchis à combien de groupes égaux du diviseur forment le total."]
+        };
+      }
     },
     declaredVariationSpace: 3 * 20
   }),
@@ -265,6 +421,22 @@ export const level: QuestionTemplateDef[] = [
         hints: ["Work out the fact and check it against the statement."]
       };
     },
+    fr: {
+      translate: (drawn) => {
+        const match = drawn.prompt.match(/^(\d+) ÷ (\d+) = (-?\d+)\. True or false\?$/);
+        const dividend = match ? match[1]! : "";
+        const divisor = match ? match[2]! : "";
+        const shown = match ? match[3]! : "";
+        const truth = drawn.correctLabel === "True";
+        return {
+          prompt: `${dividend} ÷ ${divisor} = ${shown}. Vrai ou faux ?`,
+          correctLabel: truth ? "Vrai" : "Faux",
+          distractorLabels: [truth ? "Faux" : "Vrai"],
+          explanationSteps: [`${dividend} ÷ ${divisor} = ${Number(dividend) / Number(divisor)}.`],
+          hints: ["Effectue le calcul et vérifie-le par rapport à l'énoncé."]
+        };
+      }
+    },
     declaredVariationSpace: 3 * 20 * 2
   }),
   arithmeticTemplate({
@@ -275,6 +447,12 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["{dividend} {ctx} are shared equally among 10 children. How many does each child get?", "Sharing {dividend} {ctx} equally among 10 friends, how many does each friend get?"],
     explain: (v, r) => [`${v[0]! * 10} ÷ 10 = ${r}.`],
     hints: () => ["Share the total equally between 10 people."],
+    fr: {
+      contextPool: CTX_FR,
+      promptTemplates: ["{dividend} {ctx} sont partagés équitablement entre 10 enfants. Combien chacun en reçoit-il ?", "En partageant {dividend} {ctx} équitablement entre 10 amis, combien chacun en reçoit-il ?"],
+      explain: (v, r) => [`${v[0]! * 10} ÷ 10 = ${r}.`],
+      hints: () => ["Partage le total équitablement entre 10 personnes."]
+    },
     declaredVariationSpace: 12 * 2 * CTX.length
   })
 ];

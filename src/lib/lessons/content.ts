@@ -164,101 +164,151 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
     {
       order: 1,
       title: "Putting it together: number and calculation",
+      titleFr: "Faisons le point : nombres et calculs",
       concept: "Reviewing counting, number bonds and addition/subtraction within 20",
+      conceptFr: "Réviser le comptage, les compléments à un nombre et l'addition/soustraction jusqu'à 20",
       representation: "cpa",
       visualAid: "bar-model",
       ageBandStyle: "playful",
       objectiveCodes: ["Y1-L10-1"],
       explanationMd:
         "This year you have learned to count, compare and calculate with numbers to 20 (and beyond!). A bar model can help you see a whole being split into two parts, whichever operation you need.",
+      explanationMdFr:
+        "Cette année, tu as appris à compter, comparer et calculer avec des nombres jusqu'à 20 (et même au-delà !). Un modèle en barres peut t'aider à voir un tout séparé en deux parties, quelle que soit l'opération dont tu as besoin.",
       workedExamples: [
         { problem: "8 + 5 = ?", steps: ["Draw a bar for 8 and a bar for 5 next to it.", "Count on from 8: 9, 10, 11, 12, 13."], answer: "13" }
       ],
-      audioScript: "Let's remember everything we know about numbers this year."
+      workedExamplesFr: [
+        { problem: "8 + 5 = ?", steps: ["Dessine une barre pour 8 et une barre pour 5 à côté.", "Compte à partir de 8 : 9, 10, 11, 12, 13."], answer: "13" }
+      ],
+      audioScript: "Let's remember everything we know about numbers this year.",
+      audioScriptFr: "Rappelons-nous tout ce que nous savons sur les nombres cette année."
     },
     {
       order: 2,
       title: "Putting it together: grouping, sharing and fractions",
+      titleFr: "Faisons le point : groupements, partages et fractions",
       concept: "Reviewing early multiplication/division and halves/quarters",
+      conceptFr: "Réviser les débuts de la multiplication/division et les moitiés/quarts",
       representation: "cpa",
       visualAid: "array",
       ageBandStyle: "playful",
       objectiveCodes: ["Y1-L10-2"],
       explanationMd:
         "Grouping and sharing help us understand multiplication and division. Halving and quartering split an amount into equal parts.",
+      explanationMdFr:
+        "Grouper et partager nous aident à comprendre la multiplication et la division. Couper en moitiés ou en quarts sépare une quantité en parts égales.",
       workedExamples: [
         { problem: "Share 8 apples equally between 2 friends.", steps: ["Give one apple at a time to each friend.", "Keep going until none are left."], answer: "4 each" }
       ],
-      audioScript: "Sharing equally is an important skill — let's practise it together."
+      workedExamplesFr: [
+        { problem: "Partage 8 pommes équitablement entre 2 amis.", steps: ["Donne une pomme à la fois à chaque ami.", "Continue jusqu'à ce qu'il n'en reste plus."], answer: "4 chacun" }
+      ],
+      audioScript: "Sharing equally is an important skill — let's practise it together.",
+      audioScriptFr: "Partager équitablement est une compétence importante — entraînons-nous ensemble."
     },
     {
       order: 3,
       title: "Putting it together: measuring, money, time and shape",
+      titleFr: "Faisons le point : mesures, argent, temps et formes",
       concept: "Reviewing measurement, money, time and shape knowledge from across the year",
+      conceptFr: "Réviser les connaissances sur les mesures, l'argent, le temps et les formes vues durant l'année",
       representation: "cpa",
       visualAid: "clock",
       ageBandStyle: "playful",
       objectiveCodes: ["Y1-L10-3"],
       explanationMd:
         "You have learned to compare lengths and weights, recognise coins, tell the time to the hour and half hour, and name 2D and 3D shapes.",
+      explanationMdFr:
+        "Tu as appris à comparer des longueurs et des poids, à reconnaître des pièces, à lire l'heure juste et demie, et à nommer des formes en 2D et en 3D.",
       workedExamples: [
         { problem: "What time does a clock show when both hands point straight up?", steps: ["The hour hand and minute hand both point to 12."], answer: "12 o'clock" }
       ],
-      audioScript: "Let's put together everything we know about measuring, money, time and shapes."
+      workedExamplesFr: [
+        { problem: "Quelle heure montre une horloge quand les deux aiguilles pointent tout droit vers le haut ?", steps: ["La petite aiguille et la grande aiguille pointent toutes les deux vers 12."], answer: "12 heures" }
+      ],
+      audioScript: "Let's put together everything we know about measuring, money, time and shapes.",
+      audioScriptFr: "Rassemblons tout ce que nous savons sur les mesures, l'argent, le temps et les formes."
     }
   ],
   Y4L1: [
     {
       order: 1,
       title: "Thousands, hundreds, tens and ones",
+      titleFr: "Les milliers, les centaines, les dizaines et les unités",
       concept: "Understanding place value in four-digit numbers",
+      conceptFr: "Comprendre la valeur de position dans les nombres à quatre chiffres",
       representation: "pictorial",
       visualAid: "array",
       ageBandStyle: "adventure",
       objectiveCodes: ["Y4-L1-1"],
       explanationMd:
         "A four-digit number like 3,482 has a **thousands**, **hundreds**, **tens** and **ones** digit. Each place is worth ten times the place to its right.",
+      explanationMdFr:
+        "Un nombre à quatre chiffres comme 3 482 a un chiffre des **milliers**, des **centaines**, des **dizaines** et des **unités**. Chaque position vaut dix fois la position à sa droite.",
       workedExamples: [
         { problem: "What is the value of the 4 in 3,482?", steps: ["The 4 is in the hundreds column.", "So it is worth 4 hundreds."], answer: "400" }
       ],
-      audioScript: "Each digit's position tells us its value. Let's break down some four-digit numbers together."
+      workedExamplesFr: [
+        { problem: "Quelle est la valeur du 4 dans 3 482 ?", steps: ["Le 4 est dans la colonne des centaines.", "Il vaut donc 4 centaines."], answer: "400" }
+      ],
+      audioScript: "Each digit's position tells us its value. Let's break down some four-digit numbers together.",
+      audioScriptFr: "La position de chaque chiffre nous indique sa valeur. Décomposons ensemble des nombres à quatre chiffres."
     },
     {
       order: 2,
       title: "Rounding to 10, 100 and 1,000",
+      titleFr: "Arrondir à la dizaine, à la centaine et au millier",
       concept: "Rounding numbers to the nearest 10, 100 or 1,000",
+      conceptFr: "Arrondir des nombres à la dizaine, à la centaine ou au millier le plus proche",
       representation: "abstract",
       visualAid: "number-line",
       ageBandStyle: "adventure",
       objectiveCodes: ["Y4-L1-2"],
       explanationMd:
         "To round, find the digit in the place you're rounding to, then look at the digit just after it. 5 or more rounds up; less than 5 rounds down.",
+      explanationMdFr:
+        "Pour arrondir, trouve le chiffre à la position à laquelle tu arrondis, puis regarde le chiffre juste après. 5 ou plus arrondit vers le haut ; moins de 5 arrondit vers le bas.",
       workedExamples: [
         { problem: "Round 2,847 to the nearest 100.", steps: ["Look at the tens digit: 4.", "4 is less than 5, so round down.", "The hundreds digit stays as 8."], answer: "2,800" }
       ],
-      audioScript: "Rounding helps us estimate. Let's practise rounding some big numbers."
+      workedExamplesFr: [
+        { problem: "Arrondis 2 847 à la centaine la plus proche.", steps: ["Regarde le chiffre des dizaines : 4.", "4 est inférieur à 5, donc on arrondit vers le bas.", "Le chiffre des centaines reste 8."], answer: "2 800" }
+      ],
+      audioScript: "Rounding helps us estimate. Let's practise rounding some big numbers.",
+      audioScriptFr: "Arrondir nous aide à estimer. Entraînons-nous à arrondir de grands nombres."
     },
     {
       order: 3,
       title: "Counting in 6s, 7s, 9s, 25s and 1,000s",
+      titleFr: "Compter de 6 en 6, de 7 en 7, de 9 en 9, de 25 en 25 et de 1 000 en 1 000",
       concept: "Extending skip counting to less familiar step sizes",
+      conceptFr: "Étendre le comptage par bonds à des pas moins familiers",
       representation: "abstract",
       visualAid: "number-line",
       ageBandStyle: "adventure",
       objectiveCodes: ["Y4-L1-3"],
       explanationMd:
         "Just like counting in 2s, 5s and 10s, we can count in any step size — even 6s, 7s, 9s or 25s. Add the step size each time.",
+      explanationMdFr:
+        "Tout comme compter de 2 en 2, de 5 en 5 et de 10 en 10, on peut compter par n'importe quel pas — même de 6 en 6, de 7 en 7, de 9 en 9 ou de 25 en 25. Ajoute le pas à chaque fois.",
       workedExamples: [
         { problem: "Count in 25s: 0, 25, 50, ___", steps: ["Add 25 to 50."], answer: "75" }
       ],
-      audioScript: "Let's try counting in some trickier step sizes."
+      workedExamplesFr: [
+        { problem: "Compte de 25 en 25 : 0, 25, 50, ___", steps: ["Ajoute 25 à 50."], answer: "75" }
+      ],
+      audioScript: "Let's try counting in some trickier step sizes.",
+      audioScriptFr: "Essayons de compter avec des pas un peu plus difficiles."
     }
   ],
   Y7L1: [
     {
       order: 1,
       title: "Ordering positive and negative integers",
+      titleFr: "Ordonner les nombres entiers positifs et négatifs",
       concept: "Placing positive and negative numbers on a number line and comparing them",
+      conceptFr: "Placer des nombres positifs et négatifs sur une droite numérique et les comparer",
       representation: "pictorial",
       visualAid: "number-line",
       ageBandStyle: "gameinspired",
@@ -266,15 +316,24 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "On a number line, numbers increase from left to right. Negative numbers are less than zero — the further left, the smaller the number.\n\n" +
         "So -8 is smaller than -3, even though 8 is bigger than 3 as a positive number!",
+      explanationMdFr:
+        "Sur une droite numérique, les nombres augmentent de gauche à droite. Les nombres négatifs sont inférieurs à zéro — plus on va vers la gauche, plus le nombre est petit.\n\n" +
+        "Ainsi, -8 est plus petit que -3, même si 8 est plus grand que 3 en tant que nombre positif !",
       workedExamples: [
         { problem: "Which is greater, -5 or -2?", steps: ["-2 is closer to zero (further right) than -5.", "Further right means greater."], answer: "-2" }
       ],
-      audioScript: "Remember: on a number line, further right always means greater — even for negative numbers."
+      workedExamplesFr: [
+        { problem: "Lequel est le plus grand, -5 ou -2 ?", steps: ["-2 est plus proche de zéro (plus à droite) que -5.", "Plus à droite veut dire plus grand."], answer: "-2" }
+      ],
+      audioScript: "Remember: on a number line, further right always means greater — even for negative numbers.",
+      audioScriptFr: "Souviens-toi : sur une droite numérique, plus à droite veut toujours dire plus grand — même pour les nombres négatifs."
     },
     {
       order: 2,
       title: "Adding and subtracting negative numbers",
+      titleFr: "Additionner et soustraire des nombres négatifs",
       concept: "Using a number line to add and subtract with negative numbers",
+      conceptFr: "Utiliser une droite numérique pour additionner et soustraire avec des nombres négatifs",
       representation: "pictorial",
       visualAid: "number-line",
       ageBandStyle: "gameinspired",
@@ -282,34 +341,53 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "Adding a positive number moves right on the number line. Adding a negative number (or subtracting a positive) moves left.\n\n" +
         "Subtracting a negative number is the same as adding — the two minus signs combine into a plus.",
+      explanationMdFr:
+        "Ajouter un nombre positif fait avancer vers la droite sur la droite numérique. Ajouter un nombre négatif (ou soustraire un nombre positif) fait avancer vers la gauche.\n\n" +
+        "Soustraire un nombre négatif revient à additionner — les deux signes moins se combinent en un plus.",
       workedExamples: [
         { problem: "-3 + 5 = ?", steps: ["Start at -3.", "Move 5 steps right.", "Land on 2."], answer: "2" },
         { problem: "4 - (-6) = ?", steps: ["Subtracting a negative becomes adding.", "4 + 6 = 10."], answer: "10" }
       ],
-      audioScript: "Two minus signs next to each other always become a plus. Let's see why on the number line."
+      workedExamplesFr: [
+        { problem: "-3 + 5 = ?", steps: ["Commence à -3.", "Avance de 5 pas vers la droite.", "Arrive sur 2."], answer: "2" },
+        { problem: "4 - (-6) = ?", steps: ["Soustraire un nombre négatif devient une addition.", "4 + 6 = 10."], answer: "10" }
+      ],
+      audioScript: "Two minus signs next to each other always become a plus. Let's see why on the number line.",
+      audioScriptFr: "Deux signes moins l'un à côté de l'autre deviennent toujours un plus. Voyons pourquoi sur la droite numérique."
     },
     {
       order: 3,
       title: "Multiplying and dividing negative numbers",
+      titleFr: "Multiplier et diviser des nombres négatifs",
       concept: "Applying the same-sign/different-sign rule for multiplying and dividing",
+      conceptFr: "Appliquer la règle des signes identiques/différents pour multiplier et diviser",
       representation: "abstract",
       visualAid: "none",
       ageBandStyle: "gameinspired",
       objectiveCodes: ["Y7-L1-2"],
       explanationMd:
         "When multiplying or dividing: if the two signs are the **same**, the answer is **positive**. If the signs are **different**, the answer is **negative**.",
+      explanationMdFr:
+        "Quand on multiplie ou on divise : si les deux signes sont **identiques**, le résultat est **positif**. Si les signes sont **différents**, le résultat est **négatif**.",
       workedExamples: [
         { problem: "-4 x -3 = ?", steps: ["Same signs (both negative).", "4 x 3 = 12.", "Answer is positive."], answer: "12" },
         { problem: "-4 x 3 = ?", steps: ["Different signs.", "4 x 3 = 12.", "Answer is negative."], answer: "-12" }
       ],
-      audioScript: "Same signs give a positive answer. Different signs give a negative answer. Let's practise."
+      workedExamplesFr: [
+        { problem: "-4 x -3 = ?", steps: ["Signes identiques (tous deux négatifs).", "4 x 3 = 12.", "Le résultat est positif."], answer: "12" },
+        { problem: "-4 x 3 = ?", steps: ["Signes différents.", "4 x 3 = 12.", "Le résultat est négatif."], answer: "-12" }
+      ],
+      audioScript: "Same signs give a positive answer. Different signs give a negative answer. Let's practise.",
+      audioScriptFr: "Des signes identiques donnent un résultat positif. Des signes différents donnent un résultat négatif. Entraînons-nous."
     }
   ],
   Y5L1: [
     {
       order: 1,
       title: "Place value in six-digit numbers",
+      titleFr: "La valeur de position dans les nombres à six chiffres",
       concept: "Understanding hundred thousands, ten thousands and thousands in numbers up to 1,000,000",
+      conceptFr: "Comprendre les centaines de mille, les dizaines de mille et les milliers dans des nombres jusqu'à 1 000 000",
       representation: "pictorial",
       visualAid: "array",
       ageBandStyle: "adventure",
@@ -317,16 +395,26 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "A six-digit number like 342,856 has **hundred thousands**, **ten thousands**, **thousands**, **hundreds**, **tens** and **ones** columns. Each column is worth ten times the one to its right.\n\n" +
         "To compare two large numbers, always start from the left — the column with the biggest value — and work across until the digits differ.",
+      explanationMdFr:
+        "Un nombre à six chiffres comme 342 856 a des colonnes des **centaines de mille**, **dizaines de mille**, **milliers**, **centaines**, **dizaines** et **unités**. Chaque colonne vaut dix fois celle à sa droite.\n\n" +
+        "Pour comparer deux grands nombres, commence toujours par la gauche — la colonne de plus grande valeur — et avance jusqu'à ce que les chiffres soient différents.",
       workedExamples: [
         { problem: "What is the value of the 4 in 342,856?", steps: ["The 4 is in the ten-thousands column.", "So it is worth 4 ten thousands, or 40,000."], answer: "40,000" },
         { problem: "Which is bigger, 458,120 or 458,999?", steps: ["Both start 458, so those columns match.", "Compare the next digit: 1 vs 9.", "9 is bigger."], answer: "458,999" }
       ],
-      audioScript: "Big numbers are just more columns! Let's break a six-digit number down column by column."
+      workedExamplesFr: [
+        { problem: "Quelle est la valeur du 4 dans 342 856 ?", steps: ["Le 4 est dans la colonne des dizaines de mille.", "Il vaut donc 4 dizaines de mille, soit 40 000."], answer: "40 000" },
+        { problem: "Lequel est le plus grand, 458 120 ou 458 999 ?", steps: ["Les deux commencent par 458, ces colonnes sont donc identiques.", "Compare le chiffre suivant : 1 contre 9.", "9 est plus grand."], answer: "458 999" }
+      ],
+      audioScript: "Big numbers are just more columns! Let's break a six-digit number down column by column.",
+      audioScriptFr: "Les grands nombres, ce sont juste plus de colonnes ! Décomposons ensemble un nombre à six chiffres, colonne par colonne."
     },
     {
       order: 2,
       title: "Rounding large numbers",
+      titleFr: "Arrondir de grands nombres",
       concept: "Rounding any number up to 1,000,000 to the nearest 10, 100, 1,000, 10,000 or 100,000",
+      conceptFr: "Arrondir n'importe quel nombre jusqu'à 1 000 000 à la dizaine, la centaine, le millier, la dizaine de mille ou la centaine de mille la plus proche",
       representation: "abstract",
       visualAid: "number-line",
       ageBandStyle: "adventure",
@@ -334,16 +422,26 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "To round to a given accuracy, find the digit in the place just after the one you're rounding to. 5 or more rounds up; less than 5 rounds down — every digit after the rounding point becomes zero.\n\n" +
         "The bigger the number, the more it matters to round sensibly — rounding to the nearest 10,000 or 100,000 gives a quick, useful estimate.",
+      explanationMdFr:
+        "Pour arrondir à une précision donnée, trouve le chiffre juste après la position à laquelle tu arrondis. 5 ou plus arrondit vers le haut ; moins de 5 arrondit vers le bas — chaque chiffre après le point d'arrondi devient zéro.\n\n" +
+        "Plus le nombre est grand, plus il est important d'arrondir judicieusement — arrondir à la dizaine de mille ou à la centaine de mille la plus proche donne une estimation rapide et utile.",
       workedExamples: [
         { problem: "Round 583,240 to the nearest 10,000.", steps: ["Look at the thousands digit: 3.", "3 is less than 5, so round down.", "The ten-thousands digit stays as 8."], answer: "580,000" },
         { problem: "Round 726,500 to the nearest 100,000.", steps: ["Look at the ten-thousands digit: 2.", "2 is less than 5, so round down."], answer: "700,000" }
       ],
-      audioScript: "Rounding big numbers works exactly the same way as small ones — just find the right column to check."
+      workedExamplesFr: [
+        { problem: "Arrondis 583 240 à la dizaine de mille la plus proche.", steps: ["Regarde le chiffre des milliers : 3.", "3 est inférieur à 5, donc on arrondit vers le bas.", "Le chiffre des dizaines de mille reste 8."], answer: "580 000" },
+        { problem: "Arrondis 726 500 à la centaine de mille la plus proche.", steps: ["Regarde le chiffre des dizaines de mille : 2.", "2 est inférieur à 5, donc on arrondit vers le bas."], answer: "700 000" }
+      ],
+      audioScript: "Rounding big numbers works exactly the same way as small ones — just find the right column to check.",
+      audioScriptFr: "Arrondir de grands nombres fonctionne exactement de la même façon que pour les petits — il suffit de trouver la bonne colonne à vérifier."
     },
     {
       order: 3,
       title: "Negative numbers and counting through zero",
+      titleFr: "Les nombres négatifs et compter en passant par zéro",
       concept: "Interpreting negative numbers in context and counting forwards and backwards across zero",
+      conceptFr: "Interpréter des nombres négatifs en contexte et compter en avant et en arrière en passant par zéro",
       representation: "pictorial",
       visualAid: "number-line",
       ageBandStyle: "adventure",
@@ -351,18 +449,28 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "Negative numbers show up in real life — temperatures below freezing, or floors below ground in a car park. On a number line, they sit to the left of zero.\n\n" +
         "When counting forwards or backwards through zero, remember there is no '-0' — counting up from -1 goes straight to 0, then 1.",
+      explanationMdFr:
+        "Les nombres négatifs apparaissent dans la vie réelle — des températures en dessous de zéro, ou des étages sous le niveau du sol dans un parking. Sur une droite numérique, ils se situent à gauche de zéro.\n\n" +
+        "Quand on compte en avant ou en arrière en passant par zéro, souviens-toi qu'il n'existe pas de « -0 » — compter à partir de -1 va directement à 0, puis à 1.",
       workedExamples: [
         { problem: "The temperature was -3°C and rose by 5°C. What is it now?", steps: ["Start at -3.", "Count up 5: -2, -1, 0, 1, 2.", "Land on 2."], answer: "2°C" },
         { problem: "A lift is on floor 2 and goes down 5 floors. What floor is it on?", steps: ["Start at floor 2.", "Count down 5: 1, 0, -1, -2, -3.", "Land on floor -3 (3 floors below ground)."], answer: "-3" }
       ],
-      audioScript: "Negative numbers aren't scary — they're just numbers below zero. Let's count through zero together."
+      workedExamplesFr: [
+        { problem: "La température était de -3°C et a augmenté de 5°C. Quelle est-elle maintenant ?", steps: ["Commence à -3.", "Compte 5 de plus : -2, -1, 0, 1, 2.", "Arrive sur 2."], answer: "2°C" },
+        { problem: "Un ascenseur est à l'étage 2 et descend de 5 étages. À quel étage se trouve-t-il ?", steps: ["Commence à l'étage 2.", "Compte 5 en arrière : 1, 0, -1, -2, -3.", "Arrive à l'étage -3 (3 étages sous le sol)."], answer: "-3" }
+      ],
+      audioScript: "Negative numbers aren't scary — they're just numbers below zero. Let's count through zero together.",
+      audioScriptFr: "Les nombres négatifs ne sont pas effrayants — ce sont juste des nombres en dessous de zéro. Comptons ensemble en passant par zéro."
     }
   ],
   Y5L2: [
     {
       order: 1,
       title: "Adding and subtracting large numbers",
+      titleFr: "Additionner et soustraire de grands nombres",
       concept: "Using formal written (column) methods to add and subtract numbers with 5 or more digits",
+      conceptFr: "Utiliser des méthodes écrites formelles (en colonnes) pour additionner et soustraire des nombres de 5 chiffres ou plus",
       representation: "abstract",
       visualAid: "none",
       ageBandStyle: "adventure",
@@ -370,79 +478,122 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "For numbers this big, line the digits up by place value in columns, then add or subtract starting from the ones column.\n\n" +
         "When a column adds up to 10 or more, **carry** the extra ten into the next column. When a digit is too small to subtract from, **exchange** (borrow) one from the column to its left.",
+      explanationMdFr:
+        "Pour des nombres aussi grands, aligne les chiffres par valeur de position en colonnes, puis additionne ou soustrais en commençant par la colonne des unités.\n\n" +
+        "Quand une colonne totalise 10 ou plus, **retiens** la dizaine en trop dans la colonne suivante. Quand un chiffre est trop petit pour qu'on puisse soustraire, **échange** (emprunte) une unité de la colonne à sa gauche.",
       workedExamples: [
         { problem: "34,782 + 18,946 = ?", steps: ["Add the ones: 2 + 6 = 8.", "Add the tens, hundreds, thousands and ten-thousands, carrying where needed."], answer: "53,728" },
         { problem: "62,150 - 27,483 = ?", steps: ["Subtract from the ones column, exchanging from the next column whenever a digit is too small."], answer: "34,667" }
       ],
-      audioScript: "Big numbers, same method — line up the columns and work through them one at a time."
+      workedExamplesFr: [
+        { problem: "34 782 + 18 946 = ?", steps: ["Additionne les unités : 2 + 6 = 8.", "Additionne les dizaines, les centaines, les milliers et les dizaines de mille, en retenant quand nécessaire."], answer: "53 728" },
+        { problem: "62 150 - 27 483 = ?", steps: ["Soustrais à partir de la colonne des unités, en échangeant depuis la colonne suivante chaque fois qu'un chiffre est trop petit."], answer: "34 667" }
+      ],
+      audioScript: "Big numbers, same method — line up the columns and work through them one at a time.",
+      audioScriptFr: "Grands nombres, même méthode — aligne les colonnes et traite-les une par une."
     },
     {
       order: 2,
       title: "Estimating with rounding",
+      titleFr: "Estimer en arrondissant",
       concept: "Rounding numbers before adding or subtracting to check whether an answer is reasonable",
+      conceptFr: "Arrondir des nombres avant d'additionner ou de soustraire pour vérifier qu'un résultat est raisonnable",
       representation: "abstract",
       visualAid: "none",
       ageBandStyle: "adventure",
       objectiveCodes: ["Y5-L2-2"],
       explanationMd:
         "Before doing a big calculation, it helps to **estimate** the answer first by rounding each number, often to the nearest 1,000. If your exact answer is nowhere near your estimate, you know to check your working.",
+      explanationMdFr:
+        "Avant de faire un grand calcul, il est utile d'**estimer** d'abord le résultat en arrondissant chaque nombre, souvent au millier le plus proche. Si ton résultat exact est très éloigné de ton estimation, tu sais qu'il faut vérifier ton travail.",
       workedExamples: [
         { problem: "Estimate 4,832 + 2,957 by rounding to the nearest 1,000.", steps: ["4,832 rounds to 5,000.", "2,957 rounds to 3,000.", "5,000 + 3,000 = 8,000."], answer: "about 8,000" }
       ],
-      audioScript: "Rounding first gives us a quick sense-check before working out the exact answer."
+      workedExamplesFr: [
+        { problem: "Estime 4 832 + 2 957 en arrondissant au millier le plus proche.", steps: ["4 832 s'arrondit à 5 000.", "2 957 s'arrondit à 3 000.", "5 000 + 3 000 = 8 000."], answer: "environ 8 000" }
+      ],
+      audioScript: "Rounding first gives us a quick sense-check before working out the exact answer.",
+      audioScriptFr: "Arrondir d'abord nous donne une vérification rapide avant de calculer le résultat exact."
     },
     {
       order: 3,
       title: "Multi-step problems",
+      titleFr: "Les problèmes à plusieurs étapes",
       concept: "Deciding which operations to use, and in which order, to solve a problem with more than one step",
+      conceptFr: "Décider quelles opérations utiliser, et dans quel ordre, pour résoudre un problème à plusieurs étapes",
       representation: "abstract",
       visualAid: "none",
       ageBandStyle: "adventure",
       objectiveCodes: ["Y5-L2-3"],
       explanationMd:
         "Some problems need more than one step — read carefully to work out what happens first, second, and so on. Working left to right through the problem usually keeps things clear.",
+      explanationMdFr:
+        "Certains problèmes nécessitent plus d'une étape — lis attentivement pour comprendre ce qui se passe d'abord, ensuite, et ainsi de suite. Traiter le problème de gauche à droite permet généralement d'y voir clair.",
       workedExamples: [
         { problem: "A shop had £3,200. It earned £1,450, then spent £900 on stock. How much does it have now?", steps: ["£3,200 + £1,450 = £4,650.", "£4,650 - £900 = £3,750."], answer: "£3,750" }
       ],
-      audioScript: "Break multi-step problems into small pieces, and solve them one step at a time."
+      workedExamplesFr: [
+        { problem: "Un magasin avait 3 200 £. Il a gagné 1 450 £, puis dépensé 900 £ en stock. Combien lui reste-t-il maintenant ?", steps: ["3 200 £ + 1 450 £ = 4 650 £.", "4 650 £ - 900 £ = 3 750 £."], answer: "3 750 £" }
+      ],
+      audioScript: "Break multi-step problems into small pieces, and solve them one step at a time.",
+      audioScriptFr: "Découpe les problèmes à plusieurs étapes en petits morceaux, et résous-les une étape à la fois."
     }
   ],
   Y5L3: [
     {
       order: 1,
       title: "Multiplying up to 4-digit numbers",
+      titleFr: "Multiplier des nombres jusqu'à 4 chiffres",
       concept: "Using a formal written method to multiply a 4-digit number by a 1- or 2-digit number",
+      conceptFr: "Utiliser une méthode écrite formelle pour multiplier un nombre à 4 chiffres par un nombre à 1 ou 2 chiffres",
       representation: "abstract",
       visualAid: "none",
       ageBandStyle: "adventure",
       objectiveCodes: ["Y5-L3-1"],
       explanationMd:
         "To multiply a big number by a two-digit number, split the two-digit number into tens and ones, multiply by each part separately, then add the results together.",
+      explanationMdFr:
+        "Pour multiplier un grand nombre par un nombre à deux chiffres, sépare le nombre à deux chiffres en dizaines et unités, multiplie par chaque partie séparément, puis additionne les résultats.",
       workedExamples: [
         { problem: "2,345 x 23 = ?", steps: ["2,345 x 20 = 46,900.", "2,345 x 3 = 7,035.", "46,900 + 7,035 = 53,935."], answer: "53,935" }
       ],
-      audioScript: "Splitting the multiplier into tens and ones turns one hard multiplication into two easier ones."
+      workedExamplesFr: [
+        { problem: "2 345 x 23 = ?", steps: ["2 345 x 20 = 46 900.", "2 345 x 3 = 7 035.", "46 900 + 7 035 = 53 935."], answer: "53 935" }
+      ],
+      audioScript: "Splitting the multiplier into tens and ones turns one hard multiplication into two easier ones.",
+      audioScriptFr: "Séparer le multiplicateur en dizaines et unités transforme une multiplication difficile en deux plus faciles."
     },
     {
       order: 2,
       title: "Dividing with remainders",
+      titleFr: "Diviser avec des restes",
       concept: "Dividing up to 4-digit numbers by a 1-digit number, and deciding what to do with a remainder",
+      conceptFr: "Diviser des nombres jusqu'à 4 chiffres par un nombre à 1 chiffre, et décider quoi faire d'un reste",
       representation: "abstract",
       visualAid: "none",
       ageBandStyle: "adventure",
       objectiveCodes: ["Y5-L3-2"],
       explanationMd:
         "Not every division comes out exactly — sometimes there's an amount left over, called the **remainder**. What you do with a remainder depends on the question: sometimes you round up (you need one more of something), sometimes you round down (a partly-full group doesn't count), and sometimes the remainder itself is the answer.",
+      explanationMdFr:
+        "Toutes les divisions ne tombent pas juste — il reste parfois une quantité, appelée le **reste**. Ce que tu fais du reste dépend de la question : parfois tu arrondis vers le haut (il te faut un de plus), parfois tu arrondis vers le bas (un groupe pas tout à fait complet ne compte pas), et parfois le reste lui-même est la réponse.",
       workedExamples: [
         { problem: "138 pupils are going on a trip. Each minibus holds 25 pupils. How many minibuses are needed?", steps: ["138 ÷ 25 = 5 remainder 13.", "13 pupils still need seats, so one more minibus is needed."], answer: "6 minibuses" },
         { problem: "A baker has 138 eggs and puts 25 in each box. How many full boxes can be made?", steps: ["138 ÷ 25 = 5 remainder 13.", "The 13 leftover eggs can't make another full box."], answer: "5 full boxes" }
       ],
-      audioScript: "Always read the question carefully to decide whether to round the remainder up, round it down, or use it directly."
+      workedExamplesFr: [
+        { problem: "138 élèves partent en sortie scolaire. Chaque minibus peut accueillir 25 élèves. Combien de minibus faut-il ?", steps: ["138 ÷ 25 = 5 reste 13.", "13 élèves ont encore besoin d'une place, donc il faut un minibus de plus."], answer: "6 minibus" },
+        { problem: "Un boulanger a 138 œufs et en met 25 par boîte. Combien de boîtes complètes peut-il faire ?", steps: ["138 ÷ 25 = 5 reste 13.", "Les 13 œufs restants ne peuvent pas faire une boîte complète de plus."], answer: "5 boîtes complètes" }
+      ],
+      audioScript: "Always read the question carefully to decide whether to round the remainder up, round it down, or use it directly.",
+      audioScriptFr: "Lis toujours la question attentivement pour décider s'il faut arrondir le reste vers le haut, vers le bas, ou l'utiliser directement."
     },
     {
       order: 3,
       title: "Multiplying and dividing by 10, 100 and 1,000",
+      titleFr: "Multiplier et diviser par 10, 100 et 1 000",
       concept: "Understanding how digits shift place value columns when multiplying or dividing by powers of 10",
+      conceptFr: "Comprendre comment les chiffres se décalent de colonne de valeur de position quand on multiplie ou divise par des puissances de 10",
       representation: "pictorial",
       visualAid: "array",
       ageBandStyle: "adventure",
@@ -450,18 +601,28 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "Multiplying by 10 shifts every digit one column to the left; by 100, two columns; by 1,000, three columns. Dividing does the reverse, shifting digits to the right.\n\n" +
         "The digits themselves don't change — only their place value does.",
+      explanationMdFr:
+        "Multiplier par 10 décale chaque chiffre d'une colonne vers la gauche ; par 100, de deux colonnes ; par 1 000, de trois colonnes. Diviser fait l'inverse, en décalant les chiffres vers la droite.\n\n" +
+        "Les chiffres eux-mêmes ne changent pas — seule leur valeur de position change.",
       workedExamples: [
         { problem: "34 x 100 = ?", steps: ["Shift every digit two columns to the left.", "34 becomes 3,400."], answer: "3,400" },
         { problem: "5,600 ÷ 100 = ?", steps: ["Shift every digit two columns to the right.", "5,600 becomes 56."], answer: "56" }
       ],
-      audioScript: "Watch how the digits slide across the columns when we multiply or divide by 10, 100 or 1,000."
+      workedExamplesFr: [
+        { problem: "34 x 100 = ?", steps: ["Décale chaque chiffre de deux colonnes vers la gauche.", "34 devient 3 400."], answer: "3 400" },
+        { problem: "5 600 ÷ 100 = ?", steps: ["Décale chaque chiffre de deux colonnes vers la droite.", "5 600 devient 56."], answer: "56" }
+      ],
+      audioScript: "Watch how the digits slide across the columns when we multiply or divide by 10, 100 or 1,000.",
+      audioScriptFr: "Observe comment les chiffres glissent d'une colonne à l'autre quand on multiplie ou divise par 10, 100 ou 1 000."
     }
   ],
   Y5L4: [
     {
       order: 1,
       title: "Factors and multiples",
+      titleFr: "Les diviseurs et les multiples",
       concept: "Finding factor pairs of a number and identifying multiples",
+      conceptFr: "Trouver les paires de diviseurs d'un nombre et identifier des multiples",
       representation: "abstract",
       visualAid: "array",
       ageBandStyle: "adventure",
@@ -469,16 +630,26 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "A **factor** of a number divides into it exactly, with nothing left over. A **multiple** of a number is what you get when you count up in steps of that number — the results of its times table.\n\n" +
         "Numbers often have several factors, arranged in **factor pairs** that multiply together to make the original number.",
+      explanationMdFr:
+        "Un **diviseur** d'un nombre le divise exactement, sans rien laisser de reste. Un **multiple** d'un nombre est ce qu'on obtient en comptant par bonds de ce nombre — les résultats de sa table de multiplication.\n\n" +
+        "Les nombres ont souvent plusieurs diviseurs, organisés en **paires de diviseurs** qui se multiplient pour donner le nombre de départ.",
       workedExamples: [
         { problem: "Find all the factor pairs of 24.", steps: ["1 x 24", "2 x 12", "3 x 8", "4 x 6"], answer: "1&24, 2&12, 3&8, 4&6" },
         { problem: "Is 45 a multiple of 9?", steps: ["45 ÷ 9 = 5, with no remainder."], answer: "Yes" }
       ],
-      audioScript: "Factors divide in exactly; multiples are what you land on when you count up in steps."
+      workedExamplesFr: [
+        { problem: "Trouve toutes les paires de diviseurs de 24.", steps: ["1 x 24", "2 x 12", "3 x 8", "4 x 6"], answer: "1 et 24, 2 et 12, 3 et 8, 4 et 6" },
+        { problem: "45 est-il un multiple de 9 ?", steps: ["45 ÷ 9 = 5, sans reste."], answer: "Oui" }
+      ],
+      audioScript: "Factors divide in exactly; multiples are what you land on when you count up in steps.",
+      audioScriptFr: "Les diviseurs divisent exactement ; les multiples sont les nombres sur lesquels on arrive en comptant par bonds."
     },
     {
       order: 2,
       title: "Prime and composite numbers",
+      titleFr: "Les nombres premiers et composés",
       concept: "Establishing whether a number up to 100 is prime",
+      conceptFr: "Déterminer si un nombre jusqu'à 100 est premier",
       representation: "abstract",
       visualAid: "none",
       ageBandStyle: "adventure",
@@ -486,16 +657,26 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "A **prime number** has exactly two factors: 1 and itself. A **composite number** has more than two factors. Remember — 1 itself is neither prime nor composite!\n\n" +
         "To check if a number is prime, try dividing it by every whole number from 2 up to its square root. If none divide in exactly, it's prime.",
+      explanationMdFr:
+        "Un **nombre premier** a exactement deux diviseurs : 1 et lui-même. Un **nombre composé** a plus de deux diviseurs. Attention — 1 lui-même n'est ni premier ni composé !\n\n" +
+        "Pour vérifier si un nombre est premier, essaie de le diviser par chaque nombre entier de 2 jusqu'à sa racine carrée. Si aucun ne divise exactement, il est premier.",
       workedExamples: [
         { problem: "Is 29 prime?", steps: ["Try dividing by 2, 3, 5 (up to √29 ≈ 5.4).", "None divide in exactly."], answer: "Yes, 29 is prime" },
         { problem: "Is 51 prime?", steps: ["51 ÷ 3 = 17, exactly.", "51 has factors other than 1 and itself."], answer: "No, 51 is composite" }
       ],
-      audioScript: "Every prime number has exactly two factors. Let's practise spotting them up to 100."
+      workedExamplesFr: [
+        { problem: "29 est-il premier ?", steps: ["Essaie de diviser par 2, 3, 5 (jusqu'à √29 ≈ 5,4).", "Aucun ne divise exactement."], answer: "Oui, 29 est premier" },
+        { problem: "51 est-il premier ?", steps: ["51 ÷ 3 = 17, exactement.", "51 a des diviseurs autres que 1 et lui-même."], answer: "Non, 51 est composé" }
+      ],
+      audioScript: "Every prime number has exactly two factors. Let's practise spotting them up to 100.",
+      audioScriptFr: "Chaque nombre premier a exactement deux diviseurs. Entraînons-nous à les repérer jusqu'à 100."
     },
     {
       order: 3,
       title: "Square and cube numbers",
+      titleFr: "Les nombres carrés et cubes",
       concept: "Recognising and calculating square numbers (n²) and cube numbers (n³)",
+      conceptFr: "Reconnaître et calculer des nombres carrés (n²) et des nombres cubes (n³)",
       representation: "pictorial",
       visualAid: "array",
       ageBandStyle: "adventure",
@@ -503,18 +684,28 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "A **square number** comes from multiplying a whole number by itself, written with a small 2 (e.g. 5² = 5 x 5 = 25). A **cube number** comes from multiplying a whole number by itself twice more, written with a small 3 (e.g. 5³ = 5 x 5 x 5 = 125).\n\n" +
         "Square numbers can be arranged into a square array; cube numbers into a cube shape.",
+      explanationMdFr:
+        "Un **nombre carré** vient de la multiplication d'un nombre entier par lui-même, écrit avec un petit 2 (par ex. 5² = 5 x 5 = 25). Un **nombre cube** vient de la multiplication d'un nombre entier par lui-même deux fois de plus, écrit avec un petit 3 (par ex. 5³ = 5 x 5 x 5 = 125).\n\n" +
+        "Les nombres carrés peuvent être disposés en un quadrillage carré ; les nombres cubes en forme de cube.",
       workedExamples: [
         { problem: "What is 6²?", steps: ["6 x 6 = 36."], answer: "36" },
         { problem: "What is 4³?", steps: ["4 x 4 = 16.", "16 x 4 = 64."], answer: "64" }
       ],
-      audioScript: "Squaring multiplies a number by itself once; cubing multiplies it by itself twice."
+      workedExamplesFr: [
+        { problem: "Que vaut 6² ?", steps: ["6 x 6 = 36."], answer: "36" },
+        { problem: "Que vaut 4³ ?", steps: ["4 x 4 = 16.", "16 x 4 = 64."], answer: "64" }
+      ],
+      audioScript: "Squaring multiplies a number by itself once; cubing multiplies it by itself twice.",
+      audioScriptFr: "Élever au carré multiplie un nombre par lui-même une fois ; élever au cube le multiplie par lui-même deux fois."
     }
   ],
   Y5L5: [
     {
       order: 1,
       title: "Comparing and ordering fractions",
+      titleFr: "Comparer et ordonner des fractions",
       concept: "Comparing fractions with the same or related denominators",
+      conceptFr: "Comparer des fractions ayant le même dénominateur ou des dénominateurs liés",
       representation: "pictorial",
       visualAid: "fraction-diagram",
       ageBandStyle: "adventure",
@@ -522,16 +713,26 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "When two fractions have the **same denominator**, just compare their numerators — the bigger numerator makes the bigger fraction.\n\n" +
         "When denominators are related (one is a multiple of the other), first convert them to the same denominator by multiplying the numerator and denominator by the same amount, then compare.",
+      explanationMdFr:
+        "Quand deux fractions ont le **même dénominateur**, il suffit de comparer leurs numérateurs — le plus grand numérateur donne la plus grande fraction.\n\n" +
+        "Quand les dénominateurs sont liés (l'un est un multiple de l'autre), convertis-les d'abord au même dénominateur en multipliant le numérateur et le dénominateur par le même nombre, puis compare.",
       workedExamples: [
         { problem: "Which is bigger, 3/8 or 5/8?", steps: ["Same denominator, so compare numerators.", "5 > 3."], answer: "5/8" },
         { problem: "Which is bigger, 1/4 or 3/8?", steps: ["Convert 1/4 to eighths: 1/4 = 2/8.", "Compare 2/8 and 3/8.", "3 > 2."], answer: "3/8" }
       ],
-      audioScript: "Same denominator? Just compare the numerators. Different denominator? Convert first, then compare."
+      workedExamplesFr: [
+        { problem: "Laquelle est la plus grande, 3/8 ou 5/8 ?", steps: ["Même dénominateur, donc compare les numérateurs.", "5 > 3."], answer: "5/8" },
+        { problem: "Laquelle est la plus grande, 1/4 ou 3/8 ?", steps: ["Convertis 1/4 en huitièmes : 1/4 = 2/8.", "Compare 2/8 et 3/8.", "3 > 2."], answer: "3/8" }
+      ],
+      audioScript: "Same denominator? Just compare the numerators. Different denominator? Convert first, then compare.",
+      audioScriptFr: "Même dénominateur ? Compare simplement les numérateurs. Dénominateur différent ? Convertis d'abord, puis compare."
     },
     {
       order: 2,
       title: "Adding and subtracting fractions",
+      titleFr: "Additionner et soustraire des fractions",
       concept: "Adding and subtracting fractions with the same denominator, including mixed numbers",
+      conceptFr: "Additionner et soustraire des fractions de même dénominateur, y compris des nombres mixtes",
       representation: "abstract",
       visualAid: "fraction-diagram",
       ageBandStyle: "adventure",
@@ -539,16 +740,26 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "When fractions share a denominator, add or subtract just the numerators — the denominator stays the same.\n\n" +
         "For mixed numbers, convert each one to an **improper fraction** first (multiply the whole number by the denominator, then add the numerator), then add or subtract as normal.",
+      explanationMdFr:
+        "Quand des fractions ont le même dénominateur, additionne ou soustrais seulement les numérateurs — le dénominateur reste le même.\n\n" +
+        "Pour les nombres mixtes, convertis chacun en **fraction impropre** d'abord (multiplie le nombre entier par le dénominateur, puis ajoute le numérateur), puis additionne ou soustrais normalement.",
       workedExamples: [
         { problem: "2/5 + 1/5 = ?", steps: ["Add the numerators: 2 + 1 = 3.", "Keep the denominator: 5."], answer: "3/5" },
         { problem: "1 1/4 + 2 2/4 = ?", steps: ["Convert: 1 1/4 = 5/4, 2 2/4 = 10/4.", "Add: 5 + 10 = 15."], answer: "15/4" }
       ],
-      audioScript: "The denominator tells us the size of the pieces — it doesn't change when we add or subtract."
+      workedExamplesFr: [
+        { problem: "2/5 + 1/5 = ?", steps: ["Additionne les numérateurs : 2 + 1 = 3.", "Garde le dénominateur : 5."], answer: "3/5" },
+        { problem: "1 1/4 + 2 2/4 = ?", steps: ["Convertis : 1 1/4 = 5/4, 2 2/4 = 10/4.", "Additionne : 5 + 10 = 15."], answer: "15/4" }
+      ],
+      audioScript: "The denominator tells us the size of the pieces — it doesn't change when we add or subtract.",
+      audioScriptFr: "Le dénominateur nous indique la taille des parts — il ne change pas quand on additionne ou soustrait."
     },
     {
       order: 3,
       title: "Multiplying fractions by whole numbers",
+      titleFr: "Multiplier des fractions par des nombres entiers",
       concept: "Multiplying proper fractions and mixed numbers by a whole number",
+      conceptFr: "Multiplier des fractions propres et des nombres mixtes par un nombre entier",
       representation: "abstract",
       visualAid: "fraction-diagram",
       ageBandStyle: "adventure",
@@ -556,18 +767,28 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "To multiply a fraction by a whole number, multiply just the **numerator** by that whole number — the denominator stays the same.\n\n" +
         "For a mixed number, convert it to an improper fraction first, then multiply.",
+      explanationMdFr:
+        "Pour multiplier une fraction par un nombre entier, multiplie seulement le **numérateur** par ce nombre entier — le dénominateur reste le même.\n\n" +
+        "Pour un nombre mixte, convertis-le d'abord en fraction impropre, puis multiplie.",
       workedExamples: [
         { problem: "2/5 x 3 = ?", steps: ["Multiply the numerator: 2 x 3 = 6.", "Keep the denominator: 5."], answer: "6/5" },
         { problem: "1 1/2 x 4 = ?", steps: ["Convert: 1 1/2 = 3/2.", "Multiply: 3 x 4 = 12."], answer: "12/2" }
       ],
-      audioScript: "Multiplying a fraction by a whole number only changes the numerator."
+      workedExamplesFr: [
+        { problem: "2/5 x 3 = ?", steps: ["Multiplie le numérateur : 2 x 3 = 6.", "Garde le dénominateur : 5."], answer: "6/5" },
+        { problem: "1 1/2 x 4 = ?", steps: ["Convertis : 1 1/2 = 3/2.", "Multiplie : 3 x 4 = 12."], answer: "12/2" }
+      ],
+      audioScript: "Multiplying a fraction by a whole number only changes the numerator.",
+      audioScriptFr: "Multiplier une fraction par un nombre entier ne change que le numérateur."
     }
   ],
   Y5L6: [
     {
       order: 1,
       title: "Reading and comparing decimals",
+      titleFr: "Lire et comparer des nombres décimaux",
       concept: "Reading, writing, ordering and comparing decimals with up to three decimal places",
+      conceptFr: "Lire, écrire, ordonner et comparer des nombres décimaux avec jusqu'à trois décimales",
       representation: "abstract",
       visualAid: "none",
       ageBandStyle: "adventure",
@@ -575,16 +796,26 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "A decimal like 3.482 has tenths, hundredths and thousandths columns after the decimal point — each one worth ten times less than the one before it.\n\n" +
         "**Watch out:** more decimal digits doesn't mean a bigger number! 0.4 is actually bigger than 0.25, even though 0.25 has more digits — write both with the same number of decimal places (0.40 vs 0.25) to compare fairly.",
+      explanationMdFr:
+        "Un nombre décimal comme 3,482 a des colonnes des dixièmes, centièmes et millièmes après la virgule — chacune valant dix fois moins que la précédente.\n\n" +
+        "**Attention :** avoir plus de décimales ne veut pas dire un nombre plus grand ! 0,4 est en fait plus grand que 0,25, même si 0,25 a plus de chiffres — écris les deux avec le même nombre de décimales (0,40 contre 0,25) pour comparer équitablement.",
       workedExamples: [
         { problem: "Which is bigger, 0.4 or 0.25?", steps: ["Write 0.4 with two decimal places: 0.40.", "Compare 0.40 and 0.25.", "40 is bigger than 25."], answer: "0.4" },
         { problem: "What is the hundredths digit in 5.638?", steps: ["The digits after the point are tenths (6), hundredths (3), thousandths (8)."], answer: "3" }
       ],
-      audioScript: "More digits after the point doesn't mean a bigger number — always line up the decimal places before comparing."
+      workedExamplesFr: [
+        { problem: "Lequel est le plus grand, 0,4 ou 0,25 ?", steps: ["Écris 0,4 avec deux décimales : 0,40.", "Compare 0,40 et 0,25.", "40 est plus grand que 25."], answer: "0,4" },
+        { problem: "Quel est le chiffre des centièmes dans 5,638 ?", steps: ["Les chiffres après la virgule sont les dixièmes (6), les centièmes (3), les millièmes (8)."], answer: "3" }
+      ],
+      audioScript: "More digits after the point doesn't mean a bigger number — always line up the decimal places before comparing.",
+      audioScriptFr: "Avoir plus de chiffres après la virgule ne veut pas dire un nombre plus grand — aligne toujours les décimales avant de comparer."
     },
     {
       order: 2,
       title: "Percentages as parts per hundred",
+      titleFr: "Les pourcentages comme parts sur cent",
       concept: "Understanding the % symbol as meaning 'out of 100'",
+      conceptFr: "Comprendre que le symbole % signifie « sur 100 »",
       representation: "pictorial",
       visualAid: "array",
       ageBandStyle: "adventure",
@@ -592,16 +823,26 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "The **%** symbol always means **'out of 100'**. If a 100-square grid has 60 squares shaded, that's 60%, or 60/100.\n\n" +
         "Some percentages simplify to easy fractions: 50% = 1/2, 25% = 1/4, 10% = 1/10.",
+      explanationMdFr:
+        "Le symbole **%** veut toujours dire **« sur 100 »**. Si une grille de 100 carrés a 60 carrés coloriés, c'est 60 %, soit 60/100.\n\n" +
+        "Certains pourcentages se simplifient en fractions simples : 50 % = 1/2, 25 % = 1/4, 10 % = 1/10.",
       workedExamples: [
         { problem: "A survey of 100 people found 35 like tea best. What percentage is that?", steps: ["35 out of 100 is 35%."], answer: "35%" },
         { problem: "Write 25% as a fraction in its simplest form.", steps: ["25% = 25/100.", "Divide top and bottom by 25.", "25/100 = 1/4."], answer: "1/4" }
       ],
-      audioScript: "Per cent always means out of 100 — that's the easiest way to remember what the % symbol is telling you."
+      workedExamplesFr: [
+        { problem: "Un sondage auprès de 100 personnes montre que 35 préfèrent le thé. Quel pourcentage cela représente-t-il ?", steps: ["35 sur 100, c'est 35 %."], answer: "35 %" },
+        { problem: "Écris 25 % sous forme de fraction irréductible.", steps: ["25 % = 25/100.", "Divise le haut et le bas par 25.", "25/100 = 1/4."], answer: "1/4" }
+      ],
+      audioScript: "Per cent always means out of 100 — that's the easiest way to remember what the % symbol is telling you.",
+      audioScriptFr: "Pour cent veut toujours dire sur 100 — c'est le moyen le plus simple de te souvenir de ce que signifie le symbole %."
     },
     {
       order: 3,
       title: "Rounding decimals",
+      titleFr: "Arrondir des nombres décimaux",
       concept: "Rounding a decimal with two decimal places to the nearest whole number or one decimal place",
+      conceptFr: "Arrondir un nombre décimal à deux décimales au nombre entier le plus proche ou à une décimale",
       representation: "abstract",
       visualAid: "number-line",
       ageBandStyle: "adventure",
@@ -609,18 +850,28 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "To round a decimal, find the digit just after the place you're rounding to. 5 or more rounds up; less than 5 rounds down.\n\n" +
         "Rounding to the nearest whole number: check the tenths digit. Rounding to one decimal place: check the hundredths digit.",
+      explanationMdFr:
+        "Pour arrondir un nombre décimal, trouve le chiffre juste après la position à laquelle tu arrondis. 5 ou plus arrondit vers le haut ; moins de 5 arrondit vers le bas.\n\n" +
+        "Arrondir au nombre entier le plus proche : vérifie le chiffre des dixièmes. Arrondir à une décimale : vérifie le chiffre des centièmes.",
       workedExamples: [
         { problem: "Round 4.67 to the nearest whole number.", steps: ["Look at the tenths digit: 6.", "6 is 5 or more, so round up."], answer: "5" },
         { problem: "Round 4.67 to one decimal place.", steps: ["Look at the hundredths digit: 7.", "7 is 5 or more, so round the tenths digit up."], answer: "4.7" }
       ],
-      audioScript: "Rounding decimals works just like rounding whole numbers — just check the right digit."
+      workedExamplesFr: [
+        { problem: "Arrondis 4,67 au nombre entier le plus proche.", steps: ["Regarde le chiffre des dixièmes : 6.", "6 est 5 ou plus, donc on arrondit vers le haut."], answer: "5" },
+        { problem: "Arrondis 4,67 à une décimale.", steps: ["Regarde le chiffre des centièmes : 7.", "7 est 5 ou plus, donc on arrondit le chiffre des dixièmes vers le haut."], answer: "4,7" }
+      ],
+      audioScript: "Rounding decimals works just like rounding whole numbers — just check the right digit.",
+      audioScriptFr: "Arrondir des nombres décimaux fonctionne comme arrondir des nombres entiers — il suffit de vérifier le bon chiffre."
     }
   ],
   Y5L7: [
     {
       order: 1,
       title: "Area and perimeter of rectangles",
+      titleFr: "L'aire et le périmètre des rectangles",
       concept: "Calculating the area and perimeter of rectangles, and estimating the area of irregular shapes",
+      conceptFr: "Calculer l'aire et le périmètre de rectangles, et estimer l'aire de formes irrégulières",
       representation: "pictorial",
       visualAid: "array",
       ageBandStyle: "adventure",
@@ -629,15 +880,25 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
         "**Area** measures the amount of surface a shape covers, in square units (like m²). For a rectangle: area = length x width.\n\n" +
         "**Perimeter** measures the distance all the way around the outside, in units (like m). For a rectangle: perimeter = 2 x (length + width).\n\n" +
         "For an irregular (L-shaped) area, split it into rectangles, find each area, then add them together.",
+      explanationMdFr:
+        "L'**aire** mesure la quantité de surface qu'une forme couvre, en unités carrées (comme le m²). Pour un rectangle : aire = longueur x largeur.\n\n" +
+        "Le **périmètre** mesure la distance tout autour de l'extérieur, en unités (comme le m). Pour un rectangle : périmètre = 2 x (longueur + largeur).\n\n" +
+        "Pour une aire irrégulière (en forme de L), sépare-la en rectangles, trouve chaque aire, puis additionne-les.",
       workedExamples: [
         { problem: "A rectangle is 6 m by 4 m. Find its area and perimeter.", steps: ["Area = 6 x 4 = 24 m².", "Perimeter = 2 x (6 + 4) = 20 m."], answer: "Area 24 m², perimeter 20 m" }
       ],
-      audioScript: "Area covers the inside of a shape; perimeter measures the distance around the outside."
+      workedExamplesFr: [
+        { problem: "Un rectangle mesure 6 m sur 4 m. Trouve son aire et son périmètre.", steps: ["Aire = 6 x 4 = 24 m².", "Périmètre = 2 x (6 + 4) = 20 m."], answer: "Aire 24 m², périmètre 20 m" }
+      ],
+      audioScript: "Area covers the inside of a shape; perimeter measures the distance around the outside.",
+      audioScriptFr: "L'aire couvre l'intérieur d'une forme ; le périmètre mesure la distance autour de l'extérieur."
     },
     {
       order: 2,
       title: "Volume and capacity",
+      titleFr: "Le volume et la contenance",
       concept: "Estimating volume using unit cubes and estimating everyday capacities",
+      conceptFr: "Estimer un volume à l'aide de cubes unités et estimer des contenances du quotidien",
       representation: "concrete",
       visualAid: "array",
       ageBandStyle: "adventure",
@@ -645,15 +906,24 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "**Volume** measures how much space a 3D shape takes up, in cubic units (like cm³). For a cuboid: volume = length x width x height.\n\n" +
         "**Capacity** measures how much a container can hold, usually in millilitres (ml) or litres (l). Knowing everyday capacities (a teaspoon holds about 5 ml, a kettle about 1.5 l) helps you estimate sensibly.",
+      explanationMdFr:
+        "Le **volume** mesure l'espace occupé par une forme en 3D, en unités cubiques (comme le cm³). Pour un pavé droit : volume = longueur x largeur x hauteur.\n\n" +
+        "La **contenance** mesure ce qu'un récipient peut contenir, généralement en millilitres (ml) ou en litres (l). Connaître des contenances du quotidien (une cuillère à café contient environ 5 ml, une bouilloire environ 1,5 l) t'aide à estimer judicieusement.",
       workedExamples: [
         { problem: "A cuboid box is 5 cm by 3 cm by 2 cm. What is its volume?", steps: ["Volume = 5 x 3 x 2 = 30 cm³."], answer: "30 cm³" }
       ],
-      audioScript: "Volume is like area but for 3D shapes — multiply all three dimensions together."
+      workedExamplesFr: [
+        { problem: "Une boîte en forme de pavé droit mesure 5 cm sur 3 cm sur 2 cm. Quel est son volume ?", steps: ["Volume = 5 x 3 x 2 = 30 cm³."], answer: "30 cm³" }
+      ],
+      audioScript: "Volume is like area but for 3D shapes — multiply all three dimensions together.",
+      audioScriptFr: "Le volume, c'est comme l'aire mais pour des formes en 3D — multiplie les trois dimensions ensemble."
     },
     {
       order: 3,
       title: "Converting metric units",
+      titleFr: "Convertir les unités métriques",
       concept: "Converting between millimetres, centimetres, metres and kilometres, and between grams/kilograms and litres/millilitres",
+      conceptFr: "Convertir entre millimètres, centimètres, mètres et kilomètres, et entre grammes/kilogrammes et litres/millilitres",
       representation: "abstract",
       visualAid: "none",
       ageBandStyle: "adventure",
@@ -661,18 +931,28 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "Metric units are all connected by powers of 10: 10 mm = 1 cm, 100 cm = 1 m, 1,000 m = 1 km, 1,000 g = 1 kg, 1,000 ml = 1 l.\n\n" +
         "To convert to a smaller unit, multiply. To convert to a bigger unit, divide.",
+      explanationMdFr:
+        "Les unités métriques sont toutes liées par des puissances de 10 : 10 mm = 1 cm, 100 cm = 1 m, 1 000 m = 1 km, 1 000 g = 1 kg, 1 000 ml = 1 l.\n\n" +
+        "Pour convertir vers une unité plus petite, multiplie. Pour convertir vers une unité plus grande, divise.",
       workedExamples: [
         { problem: "Convert 350 cm to m.", steps: ["100 cm = 1 m.", "350 ÷ 100 = 3.5."], answer: "3.5 m" },
         { problem: "Convert 2 kg to g.", steps: ["1 kg = 1,000 g.", "2 x 1,000 = 2,000."], answer: "2,000 g" }
       ],
-      audioScript: "Going to a smaller unit means multiplying; going to a bigger unit means dividing."
+      workedExamplesFr: [
+        { problem: "Convertis 350 cm en m.", steps: ["100 cm = 1 m.", "350 ÷ 100 = 3,5."], answer: "3,5 m" },
+        { problem: "Convertis 2 kg en g.", steps: ["1 kg = 1 000 g.", "2 x 1 000 = 2 000."], answer: "2 000 g" }
+      ],
+      audioScript: "Going to a smaller unit means multiplying; going to a bigger unit means dividing.",
+      audioScriptFr: "Passer à une unité plus petite veut dire multiplier ; passer à une unité plus grande veut dire diviser."
     }
   ],
   Y5L8: [
     {
       order: 1,
       title: "Types of angle",
+      titleFr: "Les types d'angles",
       concept: "Measuring angles in degrees and classifying them as acute, right, obtuse or reflex",
+      conceptFr: "Mesurer des angles en degrés et les classer en aigus, droits, obtus ou rentrants",
       representation: "pictorial",
       visualAid: "none",
       ageBandStyle: "adventure",
@@ -681,16 +961,27 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
         "Angles are measured in **degrees** (°). A full turn is 360°.\n\n" +
         "**Acute**: less than 90°. **Right angle**: exactly 90°. **Obtuse**: between 90° and 180°. **Reflex**: more than 180°.\n\n" +
         "Angles on a straight line always add up to 180°; angles around a point always add up to 360°.",
+      explanationMdFr:
+        "Les angles se mesurent en **degrés** (°). Un tour complet fait 360°.\n\n" +
+        "**Aigu** : moins de 90°. **Angle droit** : exactement 90°. **Obtus** : entre 90° et 180°. **Rentrant** : plus de 180°.\n\n" +
+        "Les angles sur une droite font toujours 180° en tout ; les angles autour d'un point font toujours 360° en tout.",
       workedExamples: [
         { problem: "What type of angle is 130°?", steps: ["130° is between 90° and 180°."], answer: "Obtuse" },
         { problem: "Two angles on a straight line are 65° and ___°.", steps: ["180 - 65 = 115."], answer: "115°" }
       ],
-      audioScript: "Acute is small and sharp, obtuse is wide, and reflex is more than a straight line."
+      workedExamplesFr: [
+        { problem: "Quel type d'angle est 130° ?", steps: ["130° est compris entre 90° et 180°."], answer: "Obtus" },
+        { problem: "Deux angles sur une droite mesurent 65° et ___°.", steps: ["180 - 65 = 115."], answer: "115°" }
+      ],
+      audioScript: "Acute is small and sharp, obtuse is wide, and reflex is more than a straight line.",
+      audioScriptFr: "L'angle aigu est petit et pointu, l'angle obtus est large, et l'angle rentrant dépasse une ligne droite."
     },
     {
       order: 2,
       title: "Reflection and translation",
+      titleFr: "La réflexion et la translation",
       concept: "Describing and finding the new position of a point after a translation or reflection",
+      conceptFr: "Décrire et trouver la nouvelle position d'un point après une translation ou une réflexion",
       representation: "pictorial",
       visualAid: "coordinate-grid",
       ageBandStyle: "adventure",
@@ -698,16 +989,26 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "A **translation** slides a point without turning or flipping it — moving right/left changes the x-coordinate, moving up/down changes the y-coordinate.\n\n" +
         "A **reflection** flips a point across a mirror line. Reflecting in a vertical line only changes the x-coordinate; reflecting in a horizontal line only changes the y-coordinate. The mirror line is always the same distance from the point and its reflection.",
+      explanationMdFr:
+        "Une **translation** fait glisser un point sans le tourner ni le retourner — se déplacer à droite/gauche change la coordonnée x, se déplacer en haut/bas change la coordonnée y.\n\n" +
+        "Une **réflexion** retourne un point de l'autre côté d'une ligne miroir. Une réflexion selon une ligne verticale ne change que la coordonnée x ; une réflexion selon une ligne horizontale ne change que la coordonnée y. La ligne miroir est toujours à la même distance du point et de son image.",
       workedExamples: [
         { problem: "Point (2, 3) is translated 4 right and 1 up.", steps: ["x: 2 + 4 = 6.", "y: 3 + 1 = 4."], answer: "(6, 4)" },
         { problem: "Point (1, 5) is reflected in the vertical line x = 4.", steps: ["The point is 3 to the left of the line.", "The reflection is 3 to the right of the line: 4 + 3 = 7.", "The y-coordinate stays the same."], answer: "(7, 5)" }
       ],
-      audioScript: "Translating slides a point; reflecting flips it across a mirror line, the same distance on the other side."
+      workedExamplesFr: [
+        { problem: "Le point (2, 3) est translaté de 4 vers la droite et 1 vers le haut.", steps: ["x : 2 + 4 = 6.", "y : 3 + 1 = 4."], answer: "(6, 4)" },
+        { problem: "Le point (1, 5) est réfléchi selon la ligne verticale x = 4.", steps: ["Le point est à 3 à gauche de la ligne.", "L'image est à 3 à droite de la ligne : 4 + 3 = 7.", "La coordonnée y reste la même."], answer: "(7, 5)" }
+      ],
+      audioScript: "Translating slides a point; reflecting flips it across a mirror line, the same distance on the other side.",
+      audioScriptFr: "Une translation fait glisser un point ; une réflexion le retourne de l'autre côté d'une ligne miroir, à la même distance."
     },
     {
       order: 3,
       title: "Properties of rectangles",
+      titleFr: "Les propriétés des rectangles",
       concept: "Using the properties of a rectangle (opposite sides equal, all angles 90°) to find missing lengths and angles",
+      conceptFr: "Utiliser les propriétés d'un rectangle (côtés opposés égaux, tous les angles à 90°) pour trouver des longueurs et des angles manquants",
       representation: "abstract",
       visualAid: "none",
       ageBandStyle: "adventure",
@@ -715,17 +1016,26 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "A rectangle always has **opposite sides equal in length** and **all four angles equal to 90°**. Knowing this lets you work out missing measurements without needing to see the whole shape.\n\n" +
         "The angles inside any four-sided shape always add up to 360°.",
+      explanationMdFr:
+        "Un rectangle a toujours des **côtés opposés de même longueur** et **quatre angles tous égaux à 90°**. Le savoir te permet de trouver des mesures manquantes sans avoir besoin de voir toute la forme.\n\n" +
+        "Les angles à l'intérieur de n'importe quelle forme à quatre côtés font toujours 360° en tout.",
       workedExamples: [
         { problem: "A rectangle has a perimeter of 30 cm and one side of 8 cm. What is the adjacent side?", steps: ["Half the perimeter = 15 cm.", "15 - 8 = 7 cm."], answer: "7 cm" }
       ],
-      audioScript: "Once you know one side and one angle of a rectangle, the properties tell you the rest."
+      workedExamplesFr: [
+        { problem: "Un rectangle a un périmètre de 30 cm et un côté de 8 cm. Quel est le côté adjacent ?", steps: ["La moitié du périmètre = 15 cm.", "15 - 8 = 7 cm."], answer: "7 cm" }
+      ],
+      audioScript: "Once you know one side and one angle of a rectangle, the properties tell you the rest.",
+      audioScriptFr: "Une fois que tu connais un côté et un angle d'un rectangle, les propriétés te donnent le reste."
     }
   ],
   Y5L9: [
     {
       order: 1,
       title: "Reading line graphs",
+      titleFr: "Lire des graphiques linéaires",
       concept: "Solving comparison, sum and difference problems using a line graph",
+      conceptFr: "Résoudre des problèmes de comparaison, de somme et de différence à l'aide d'un graphique linéaire",
       representation: "pictorial",
       visualAid: "graph",
       ageBandStyle: "adventure",
@@ -733,15 +1043,24 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "A line graph shows how a value changes — read the point for each label to find its value, then compare, add or subtract as the question asks.\n\n" +
         "The **range** is the difference between the highest and lowest values on the graph.",
+      explanationMdFr:
+        "Un graphique linéaire montre comment une valeur change — lis le point pour chaque étiquette pour trouver sa valeur, puis compare, additionne ou soustrais selon ce que demande la question.\n\n" +
+        "L'**étendue** est la différence entre la plus grande et la plus petite valeur du graphique.",
       workedExamples: [
         { problem: "A graph shows 12 books on Monday and 18 on Tuesday. How many more on Tuesday?", steps: ["18 - 12 = 6."], answer: "6 more" }
       ],
-      audioScript: "Find each point on the graph, read its value, then work out what the question is asking."
+      workedExamplesFr: [
+        { problem: "Un graphique montre 12 livres lundi et 18 mardi. Combien de plus mardi ?", steps: ["18 - 12 = 6."], answer: "6 de plus" }
+      ],
+      audioScript: "Find each point on the graph, read its value, then work out what the question is asking.",
+      audioScriptFr: "Trouve chaque point sur le graphique, lis sa valeur, puis détermine ce que demande la question."
     },
     {
       order: 2,
       title: "Tables and timetables",
+      titleFr: "Les tableaux et les horaires",
       concept: "Reading and interpreting information from tables, including bus and train timetables",
+      conceptFr: "Lire et interpréter des informations dans des tableaux, y compris des horaires de bus et de train",
       representation: "abstract",
       visualAid: "none",
       ageBandStyle: "adventure",
@@ -749,15 +1068,24 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "A table organises information into rows and columns. A timetable is a special kind of table showing times — find the row or column that matches what you're looking for.\n\n" +
         "To find the next departure after a certain time, look for the first time in the list that is later than your arrival time.",
+      explanationMdFr:
+        "Un tableau organise l'information en lignes et en colonnes. Un horaire est un type particulier de tableau montrant des heures — trouve la ligne ou la colonne qui correspond à ce que tu cherches.\n\n" +
+        "Pour trouver le prochain départ après une certaine heure, cherche la première heure de la liste qui est plus tardive que ton heure d'arrivée.",
       workedExamples: [
         { problem: "A bus timetable shows 09:15, 09:45, 10:15. You arrive at 09:20. What's the next bus?", steps: ["09:15 has already gone.", "The next one after 09:20 is 09:45."], answer: "09:45" }
       ],
-      audioScript: "Scan along the table until you find the row or time that answers the question."
+      workedExamplesFr: [
+        { problem: "Un horaire de bus indique 09:15, 09:45, 10:15. Tu arrives à 09:20. Quel est le prochain bus ?", steps: ["09:15 est déjà passé.", "Le prochain après 09:20 est 09:45."], answer: "09:45" }
+      ],
+      audioScript: "Scan along the table until you find the row or time that answers the question.",
+      audioScriptFr: "Parcours le tableau jusqu'à trouver la ligne ou l'heure qui répond à la question."
     },
     {
       order: 3,
       title: "24-hour clock durations",
+      titleFr: "Les durées sur l'horloge de 24 heures",
       concept: "Calculating how long a journey takes using 24-hour clock times",
+      conceptFr: "Calculer la durée d'un trajet en utilisant des heures au format 24 heures",
       representation: "abstract",
       visualAid: "none",
       ageBandStyle: "adventure",
@@ -765,17 +1093,26 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "The 24-hour clock counts hours from 00:00 (midnight) to 23:59, avoiding the need for am/pm. To find a duration, count the minutes from the start time to the end time.\n\n" +
         "To add a duration to a time, add the minutes and carry over into hours once you reach 60.",
+      explanationMdFr:
+        "L'horloge de 24 heures compte les heures de 00:00 (minuit) à 23:59, sans avoir besoin du matin/après-midi. Pour trouver une durée, compte les minutes de l'heure de départ à l'heure de fin.\n\n" +
+        "Pour ajouter une durée à une heure, additionne les minutes et reporte-les en heures une fois que tu atteins 60.",
       workedExamples: [
         { problem: "A train leaves at 14:35 and the journey takes 50 minutes. What time does it arrive?", steps: ["14:35 + 25 minutes = 15:00.", "15:00 + 25 more minutes = 15:25."], answer: "15:25" }
       ],
-      audioScript: "Break a duration into steps if it helps — get to the next whole hour first, then add what's left."
+      workedExamplesFr: [
+        { problem: "Un train part à 14:35 et le trajet dure 50 minutes. À quelle heure arrive-t-il ?", steps: ["14:35 + 25 minutes = 15:00.", "15:00 + 25 minutes de plus = 15:25."], answer: "15:25" }
+      ],
+      audioScript: "Break a duration into steps if it helps — get to the next whole hour first, then add what's left.",
+      audioScriptFr: "Découpe une durée en étapes si ça aide — arrive d'abord à l'heure ronde suivante, puis ajoute ce qui reste."
     }
   ],
   Y5L10: [
     {
       order: 1,
       title: "Number review: place value, negatives and the four operations",
+      titleFr: "Révision des nombres : valeur de position, négatifs et les quatre opérations",
       concept: "Bringing together place value, negative numbers, and formal addition/subtraction/multiplication/division with large numbers",
+      conceptFr: "Rassembler la valeur de position, les nombres négatifs, et les méthodes formelles d'addition/soustraction/multiplication/division avec de grands nombres",
       representation: "abstract",
       visualAid: "none",
       ageBandStyle: "adventure",
@@ -783,15 +1120,24 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "This level pulls together everything from Year 5's number work: reading and comparing numbers to 1,000,000, working with negative numbers, and using formal written methods for all four operations.\n\n" +
         "When in doubt, go back to the basics: compare digit by digit from the left, remember negative numbers count down through zero, and line up place value columns carefully for column methods.",
+      explanationMdFr:
+        "Ce niveau rassemble tout le travail sur les nombres de l'année 5 : lire et comparer des nombres jusqu'à 1 000 000, travailler avec des nombres négatifs, et utiliser des méthodes écrites formelles pour les quatre opérations.\n\n" +
+        "En cas de doute, reviens aux bases : compare chiffre par chiffre à partir de la gauche, souviens-toi que les nombres négatifs descendent en passant par zéro, et aligne soigneusement les colonnes de valeur de position pour les méthodes en colonnes.",
       workedExamples: [
         { problem: "Round 583,240 to the nearest 10,000.", steps: ["Look at the thousands digit: 3.", "Round down."], answer: "580,000" }
       ],
-      audioScript: "Everything from this term's number work comes together here — take your time and use the methods you've practised."
+      workedExamplesFr: [
+        { problem: "Arrondis 583 240 à la dizaine de mille la plus proche.", steps: ["Regarde le chiffre des milliers : 3.", "Arrondis vers le bas."], answer: "580 000" }
+      ],
+      audioScript: "Everything from this term's number work comes together here — take your time and use the methods you've practised.",
+      audioScriptFr: "Tout le travail sur les nombres de ce trimestre se rassemble ici — prends ton temps et utilise les méthodes que tu as pratiquées."
     },
     {
       order: 2,
       title: "Review: factors, fractions, decimals and percentages",
+      titleFr: "Révision : diviseurs, fractions, décimaux et pourcentages",
       concept: "Applying factors, multiples, primes, fractions, decimals and percentages together",
+      conceptFr: "Appliquer ensemble diviseurs, multiples, nombres premiers, fractions, décimaux et pourcentages",
       representation: "abstract",
       visualAid: "none",
       ageBandStyle: "adventure",
@@ -799,15 +1145,24 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "This level mixes questions on factors and multiples, prime numbers, square numbers, comparing and adding fractions, comparing and rounding decimals, and percentages as parts per hundred.\n\n" +
         "Remember the key links: a percentage is just a fraction out of 100, and decimals are fractions written using place value columns.",
+      explanationMdFr:
+        "Ce niveau mélange des questions sur les diviseurs et multiples, les nombres premiers, les nombres carrés, comparer et additionner des fractions, comparer et arrondir des décimaux, et les pourcentages en tant que parts sur cent.\n\n" +
+        "Souviens-toi des liens essentiels : un pourcentage est juste une fraction sur 100, et les décimaux sont des fractions écrites à l'aide de colonnes de valeur de position.",
       workedExamples: [
         { problem: "Is 51 prime?", steps: ["51 ÷ 3 = 17, exactly.", "It has factors other than 1 and itself."], answer: "No, 51 is composite" }
       ],
-      audioScript: "Fractions, decimals and percentages are all closely connected — use whichever way of thinking helps most."
+      workedExamplesFr: [
+        { problem: "51 est-il premier ?", steps: ["51 ÷ 3 = 17, exactement.", "Il a des diviseurs autres que 1 et lui-même."], answer: "Non, 51 est composé" }
+      ],
+      audioScript: "Fractions, decimals and percentages are all closely connected — use whichever way of thinking helps most.",
+      audioScriptFr: "Fractions, décimaux et pourcentages sont tous étroitement liés — utilise la façon de penser qui t'aide le plus."
     },
     {
       order: 3,
       title: "Review: measurement, geometry and statistics",
+      titleFr: "Révision : mesures, géométrie et statistiques",
       concept: "Applying area, volume, unit conversion, angles, coordinate transformations and graph/table reading",
+      conceptFr: "Appliquer l'aire, le volume, la conversion d'unités, les angles, les transformations de coordonnées et la lecture de graphiques/tableaux",
       representation: "abstract",
       visualAid: "none",
       ageBandStyle: "adventure",
@@ -815,17 +1170,26 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "This level mixes questions on the area and volume of rectangles/cuboids, converting between metric units, classifying angles, translating points on a grid, and reading line graphs, tables and timetables.\n\n" +
         "For any measurement or geometry question, think about which formula or property applies before calculating.",
+      explanationMdFr:
+        "Ce niveau mélange des questions sur l'aire et le volume de rectangles/pavés droits, la conversion entre unités métriques, la classification d'angles, la translation de points sur un quadrillage, et la lecture de graphiques linéaires, tableaux et horaires.\n\n" +
+        "Pour toute question de mesure ou de géométrie, réfléchis à quelle formule ou propriété s'applique avant de calculer.",
       workedExamples: [
         { problem: "A cuboid is 4 cm by 3 cm by 5 cm. What is its volume?", steps: ["4 x 3 x 5 = 60."], answer: "60 cm³" }
       ],
-      audioScript: "This is your chance to show everything you've learned about shapes, measures and data this year."
+      workedExamplesFr: [
+        { problem: "Un pavé droit mesure 4 cm sur 3 cm sur 5 cm. Quel est son volume ?", steps: ["4 x 3 x 5 = 60."], answer: "60 cm³" }
+      ],
+      audioScript: "This is your chance to show everything you've learned about shapes, measures and data this year.",
+      audioScriptFr: "C'est ta chance de montrer tout ce que tu as appris sur les formes, les mesures et les données cette année."
     }
   ],
   Y2L1: [
     {
       order: 1,
       title: "Tens and ones",
+      titleFr: "Les dizaines et les unités",
       concept: "Understanding that a two-digit number is made of tens and ones",
+      conceptFr: "Comprendre qu'un nombre à deux chiffres est composé de dizaines et d'unités",
       representation: "concrete",
       visualAid: "ten-frame",
       ageBandStyle: "playful",
@@ -833,15 +1197,24 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "Every two-digit number has a **tens digit** (the first digit) and a **ones digit** (the second digit). For example, 47 has 4 tens and 7 ones.\n\n" +
         "You can build any two-digit number by counting groups of ten, then adding the leftover ones.",
+      explanationMdFr:
+        "Chaque nombre à deux chiffres a un **chiffre des dizaines** (le premier chiffre) et un **chiffre des unités** (le second chiffre). Par exemple, 47 a 4 dizaines et 7 unités.\n\n" +
+        "Tu peux construire n'importe quel nombre à deux chiffres en comptant des groupes de dix, puis en ajoutant les unités restantes.",
       workedExamples: [
         { problem: "How many tens and ones make 63?", steps: ["6 groups of ten = 60.", "3 left over."], answer: "6 tens, 3 ones" }
       ],
-      audioScript: "The first digit tells us the tens, the second digit tells us the ones."
+      workedExamplesFr: [
+        { problem: "Combien de dizaines et d'unités font 63 ?", steps: ["6 groupes de dix = 60.", "3 de reste."], answer: "6 dizaines, 3 unités" }
+      ],
+      audioScript: "The first digit tells us the tens, the second digit tells us the ones.",
+      audioScriptFr: "Le premier chiffre nous indique les dizaines, le second chiffre nous indique les unités."
     },
     {
       order: 2,
       title: "Comparing with <, > and =",
+      titleFr: "Comparer avec <, > et =",
       concept: "Using the symbols < (less than), > (greater than) and = (equal to) to compare numbers",
+      conceptFr: "Utiliser les symboles < (inférieur à), > (supérieur à) et = (égal à) pour comparer des nombres",
       representation: "pictorial",
       visualAid: "number-line",
       ageBandStyle: "playful",
@@ -849,16 +1222,26 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "The **<** symbol means 'is less than' and **>** means 'is greater than' — the symbol always points at the smaller number.\n\n" +
         "To compare two numbers, look at the tens digit first. If the tens match, compare the ones digit.",
+      explanationMdFr:
+        "Le symbole **<** veut dire « est inférieur à » et **>** veut dire « est supérieur à » — le symbole pointe toujours vers le nombre le plus petit.\n\n" +
+        "Pour comparer deux nombres, regarde d'abord le chiffre des dizaines. Si les dizaines sont identiques, compare le chiffre des unités.",
       workedExamples: [
         { problem: "Which symbol goes here: 34 ___ 52?", steps: ["3 tens is less than 5 tens."], answer: "<" },
         { problem: "Which symbol goes here: 78 ___ 78?", steps: ["Both numbers are the same."], answer: "=" }
       ],
-      audioScript: "The symbol always points towards the smaller number, like a hungry alligator eating the bigger one!"
+      workedExamplesFr: [
+        { problem: "Quel symbole va ici : 34 ___ 52 ?", steps: ["3 dizaines, c'est moins que 5 dizaines."], answer: "<" },
+        { problem: "Quel symbole va ici : 78 ___ 78 ?", steps: ["Les deux nombres sont identiques."], answer: "=" }
+      ],
+      audioScript: "The symbol always points towards the smaller number, like a hungry alligator eating the bigger one!",
+      audioScriptFr: "Le symbole pointe toujours vers le plus petit nombre, comme un alligator affamé qui dévore le plus grand !"
     },
     {
       order: 3,
       title: "Counting in steps",
+      titleFr: "Compter par bonds",
       concept: "Counting forwards in steps of 2, 3, 5 and 10 from any starting number",
+      conceptFr: "Compter en avant par bonds de 2, 3, 5 et 10 à partir de n'importe quel nombre de départ",
       representation: "pictorial",
       visualAid: "number-line",
       ageBandStyle: "playful",
@@ -866,18 +1249,28 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "You don't have to start counting in steps from zero — you can count in 2s, 3s, 5s or 10s starting from **any** number.\n\n" +
         "When counting in 10s, only the tens digit changes each time; the ones digit stays the same.",
+      explanationMdFr:
+        "Tu n'es pas obligé de commencer à compter par bonds à partir de zéro — tu peux compter de 2 en 2, de 3 en 3, de 5 en 5 ou de 10 en 10 en partant de **n'importe quel** nombre.\n\n" +
+        "Quand on compte de 10 en 10, seul le chiffre des dizaines change à chaque fois ; le chiffre des unités reste le même.",
       workedExamples: [
         { problem: "Count on in 3s from 8: 8, ___, ___, ___", steps: ["8 + 3 = 11.", "11 + 3 = 14.", "14 + 3 = 17."], answer: "11, 14, 17" },
         { problem: "What is 47 + 10?", steps: ["Only the tens digit changes: 4 becomes 5."], answer: "57" }
       ],
-      audioScript: "You can start a counting pattern from any number — just keep adding the same step size each time."
+      workedExamplesFr: [
+        { problem: "Compte de 3 en 3 à partir de 8 : 8, ___, ___, ___", steps: ["8 + 3 = 11.", "11 + 3 = 14.", "14 + 3 = 17."], answer: "11, 14, 17" },
+        { problem: "Que vaut 47 + 10 ?", steps: ["Seul le chiffre des dizaines change : 4 devient 5."], answer: "57" }
+      ],
+      audioScript: "You can start a counting pattern from any number — just keep adding the same step size each time.",
+      audioScriptFr: "Tu peux commencer un schéma de comptage à partir de n'importe quel nombre — continue simplement à ajouter le même pas à chaque fois."
     }
   ],
   Y2L2: [
     {
       order: 1,
       title: "Number facts to 20",
+      titleFr: "Les faits numériques jusqu'à 20",
       concept: "Recalling addition and subtraction facts to 20 fluently",
+      conceptFr: "Se rappeler avec aisance des faits d'addition et de soustraction jusqu'à 20",
       representation: "concrete",
       visualAid: "counters",
       ageBandStyle: "playful",
@@ -885,15 +1278,24 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "Knowing your number facts to 20 by heart — without having to count on your fingers — helps everything else in maths feel quicker and easier.\n\n" +
         "**Number bonds to 20** are pairs of numbers that add together to make 20, like 12 and 8, or 15 and 5.",
+      explanationMdFr:
+        "Connaître par cœur tes faits numériques jusqu'à 20 — sans avoir besoin de compter sur tes doigts — rend tout le reste des maths plus rapide et plus facile.\n\n" +
+        "Les **compléments à 20** sont des paires de nombres qui s'additionnent pour faire 20, comme 12 et 8, ou 15 et 5.",
       workedExamples: [
         { problem: "What number bonds with 13 to make 20?", steps: ["20 - 13 = 7."], answer: "7" }
       ],
-      audioScript: "The more of these facts you know instantly, the faster and more confident you'll be with bigger numbers."
+      workedExamplesFr: [
+        { problem: "Quel nombre complète 13 pour faire 20 ?", steps: ["20 - 13 = 7."], answer: "7" }
+      ],
+      audioScript: "The more of these facts you know instantly, the faster and more confident you'll be with bigger numbers.",
+      audioScriptFr: "Plus tu connais ces faits instantanément, plus tu seras rapide et confiant avec de plus grands nombres."
     },
     {
       order: 2,
       title: "Related facts",
+      titleFr: "Les faits liés",
       concept: "Using a known fact (like 7+3=10) to work out a related fact (like 70+30=100)",
+      conceptFr: "Utiliser un fait connu (comme 7+3=10) pour trouver un fait lié (comme 70+30=100)",
       representation: "abstract",
       visualAid: "none",
       ageBandStyle: "playful",
@@ -901,15 +1303,24 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "If you know a small number fact, you can use it to work out a much bigger one instantly! If 7 + 3 = 10, then 70 + 30 = 100 — the digits are exactly the same, just ten times bigger.\n\n" +
         "This works for subtraction too: if 9 - 4 = 5, then 90 - 40 = 50.",
+      explanationMdFr:
+        "Si tu connais un petit fait numérique, tu peux l'utiliser pour trouver instantanément un fait bien plus grand ! Si 7 + 3 = 10, alors 70 + 30 = 100 — les chiffres sont exactement les mêmes, juste dix fois plus grands.\n\n" +
+        "Cela fonctionne aussi pour la soustraction : si 9 - 4 = 5, alors 90 - 40 = 50.",
       workedExamples: [
         { problem: "If 6 + 4 = 10, what is 60 + 40?", steps: ["Same digits, ten times bigger."], answer: "100" }
       ],
-      audioScript: "Spot the small fact hiding inside the big one, and the big calculation becomes easy."
+      workedExamplesFr: [
+        { problem: "Si 6 + 4 = 10, que vaut 60 + 40 ?", steps: ["Mêmes chiffres, dix fois plus grand."], answer: "100" }
+      ],
+      audioScript: "Spot the small fact hiding inside the big one, and the big calculation becomes easy.",
+      audioScriptFr: "Repère le petit fait caché à l'intérieur du grand, et le grand calcul devient facile."
     },
     {
       order: 3,
       title: "Using a number line to add and subtract",
+      titleFr: "Utiliser une droite numérique pour additionner et soustraire",
       concept: "Adding and subtracting mentally by picturing jumps on a number line",
+      conceptFr: "Additionner et soustraire mentalement en imaginant des bonds sur une droite numérique",
       representation: "pictorial",
       visualAid: "number-line",
       ageBandStyle: "playful",
@@ -917,17 +1328,26 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "A number line helps you add or subtract in your head. To add, jump forwards. To subtract, jump backwards.\n\n" +
         "A useful trick is **bridging through 10**: split your jump into two parts — first jump to the next multiple of 10, then jump the rest of the way.",
+      explanationMdFr:
+        "Une droite numérique t'aide à additionner ou soustraire de tête. Pour additionner, saute en avant. Pour soustraire, saute en arrière.\n\n" +
+        "Une astuce utile est de **passer par 10** : sépare ton saut en deux parties — saute d'abord jusqu'au prochain multiple de 10, puis termine le saut.",
       workedExamples: [
         { problem: "8 + 5 using bridging: 8 + 2 = 10, then 10 + 3 = ?", steps: ["8 + 2 = 10.", "10 + 3 = 13."], answer: "13" }
       ],
-      audioScript: "Picture the number line in your head — jump to a friendly multiple of 10 first, then finish the jump."
+      workedExamplesFr: [
+        { problem: "8 + 5 en passant par 10 : 8 + 2 = 10, puis 10 + 3 = ?", steps: ["8 + 2 = 10.", "10 + 3 = 13."], answer: "13" }
+      ],
+      audioScript: "Picture the number line in your head — jump to a friendly multiple of 10 first, then finish the jump.",
+      audioScriptFr: "Imagine la droite numérique dans ta tête — saute d'abord jusqu'à un multiple de 10 facile, puis termine le saut."
     }
   ],
   Y2L3: [
     {
       order: 1,
       title: "Adding a two-digit number and ones",
+      titleFr: "Additionner un nombre à deux chiffres et des unités",
       concept: "Adding a single-digit number of ones onto a two-digit number",
+      conceptFr: "Ajouter un nombre d'unités à un chiffre à un nombre à deux chiffres",
       representation: "pictorial",
       visualAid: "number-line",
       ageBandStyle: "playful",
@@ -935,15 +1355,24 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "When you add ones onto a two-digit number, only the ones digit changes (unless it goes past a multiple of ten).\n\n" +
         "You can picture this as a small jump forwards on a number line, starting from the two-digit number.",
+      explanationMdFr:
+        "Quand tu ajoutes des unités à un nombre à deux chiffres, seul le chiffre des unités change (sauf s'il dépasse un multiple de dix).\n\n" +
+        "Tu peux imaginer cela comme un petit saut en avant sur une droite numérique, en partant du nombre à deux chiffres.",
       workedExamples: [
         { problem: "What is 34 + 5?", steps: ["Keep the 3 tens.", "4 ones + 5 ones = 9 ones."], answer: "39" }
       ],
-      audioScript: "Adding a few ones is just a small hop forward — the tens digit usually stays exactly the same."
+      workedExamplesFr: [
+        { problem: "Que vaut 34 + 5 ?", steps: ["Garde les 3 dizaines.", "4 unités + 5 unités = 9 unités."], answer: "39" }
+      ],
+      audioScript: "Adding a few ones is just a small hop forward — the tens digit usually stays exactly the same.",
+      audioScriptFr: "Ajouter quelques unités, c'est juste un petit saut en avant — le chiffre des dizaines reste généralement exactement le même."
     },
     {
       order: 2,
       title: "Adding and subtracting two two-digit numbers",
+      titleFr: "Additionner et soustraire deux nombres à deux chiffres",
       concept: "Adding or subtracting two two-digit numbers by working with tens and ones separately",
+      conceptFr: "Additionner ou soustraire deux nombres à deux chiffres en travaillant séparément les dizaines et les unités",
       representation: "concrete",
       visualAid: "ten-frame",
       ageBandStyle: "playful",
@@ -951,16 +1380,26 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "To add two two-digit numbers, add the tens together, then add the ones together, then combine the two totals.\n\n" +
         "Subtracting works the same way — but always start with the bigger number.",
+      explanationMdFr:
+        "Pour additionner deux nombres à deux chiffres, additionne d'abord les dizaines ensemble, puis les unités ensemble, puis combine les deux totaux.\n\n" +
+        "La soustraction fonctionne de la même façon — mais commence toujours par le plus grand nombre.",
       workedExamples: [
         { problem: "What is 34 + 25?", steps: ["30 + 20 = 50.", "4 + 5 = 9.", "50 + 9 = 59."], answer: "59" },
         { problem: "What is 68 - 23?", steps: ["60 - 20 = 40.", "8 - 3 = 5.", "40 + 5 = 45."], answer: "45" }
       ],
-      audioScript: "Split each number into its tens and ones, work with each part separately, then put your answer back together."
+      workedExamplesFr: [
+        { problem: "Que vaut 34 + 25 ?", steps: ["30 + 20 = 50.", "4 + 5 = 9.", "50 + 9 = 59."], answer: "59" },
+        { problem: "Que vaut 68 - 23 ?", steps: ["60 - 20 = 40.", "8 - 3 = 5.", "40 + 5 = 45."], answer: "45" }
+      ],
+      audioScript: "Split each number into its tens and ones, work with each part separately, then put your answer back together.",
+      audioScriptFr: "Sépare chaque nombre en dizaines et unités, travaille chaque partie séparément, puis rassemble ta réponse."
     },
     {
       order: 3,
       title: "Two-step word problems",
+      titleFr: "Les problèmes en deux étapes",
       concept: "Solving word problems that need two additions/subtractions to reach the answer",
+      conceptFr: "Résoudre des problèmes qui nécessitent deux additions/soustractions pour arriver à la réponse",
       representation: "abstract",
       visualAid: "none",
       ageBandStyle: "playful",
@@ -968,17 +1407,26 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "Some word problems need **two steps** to solve. Read carefully to work out what happens first, and what happens second.\n\n" +
         "It often helps to work out the answer after the first step before moving on to the second step.",
+      explanationMdFr:
+        "Certains problèmes nécessitent **deux étapes** pour être résolus. Lis attentivement pour comprendre ce qui se passe d'abord, et ce qui se passe ensuite.\n\n" +
+        "Il est souvent utile de calculer le résultat après la première étape avant de passer à la seconde étape.",
       workedExamples: [
         { problem: "Amy has 20 stickers. She gets 15 more, then gives away 8. How many does she have now?", steps: ["20 + 15 = 35.", "35 - 8 = 27."], answer: "27" }
       ],
-      audioScript: "Break a two-step problem into two smaller, one-step problems, and solve them one at a time."
+      workedExamplesFr: [
+        { problem: "Amy a 20 autocollants. Elle en reçoit 15 de plus, puis en donne 8. Combien en a-t-elle maintenant ?", steps: ["20 + 15 = 35.", "35 - 8 = 27."], answer: "27" }
+      ],
+      audioScript: "Break a two-step problem into two smaller, one-step problems, and solve them one at a time.",
+      audioScriptFr: "Découpe un problème en deux étapes en deux petits problèmes à une étape, et résous-les un par un."
     }
   ],
   Y2L4: [
     {
       order: 1,
       title: "The 2, 5 and 10 times tables",
+      titleFr: "Les tables de multiplication de 2, de 5 et de 10",
       concept: "Recalling multiplication facts for the 2, 5 and 10 times tables",
+      conceptFr: "Se rappeler les faits de multiplication des tables de 2, de 5 et de 10",
       representation: "abstract",
       visualAid: "none",
       ageBandStyle: "playful",
@@ -986,15 +1434,24 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "The **2 times table** is just doubling. The **10 times table** is the number with a zero on the end. The **5 times table** always ends in 0 or 5.\n\n" +
         "The more of these facts you know instantly, the quicker you'll be at multiplying and dividing.",
+      explanationMdFr:
+        "La **table de 2**, c'est juste doubler. La **table de 10**, c'est le nombre avec un zéro à la fin. La **table de 5** se termine toujours par 0 ou 5.\n\n" +
+        "Plus tu connais ces faits instantanément, plus tu seras rapide pour multiplier et diviser.",
       workedExamples: [
         { problem: "What is 6 x 5?", steps: ["Half of 6 x 10 = 60.", "Half of 60 is 30."], answer: "30" }
       ],
-      audioScript: "Doubling, adding a zero, and counting in fives — three quick tricks for these three tables."
+      workedExamplesFr: [
+        { problem: "Que vaut 6 x 5 ?", steps: ["La moitié de 6 x 10 = 60.", "La moitié de 60 est 30."], answer: "30" }
+      ],
+      audioScript: "Doubling, adding a zero, and counting in fives — three quick tricks for these three tables.",
+      audioScriptFr: "Doubler, ajouter un zéro, et compter de cinq en cinq — trois astuces rapides pour ces trois tables."
     },
     {
       order: 2,
       title: "Multiplication as an array",
+      titleFr: "La multiplication en tant que quadrillage",
       concept: "Representing a multiplication fact as rows and columns of objects",
+      conceptFr: "Représenter un fait de multiplication sous forme de lignes et de colonnes d'objets",
       representation: "pictorial",
       visualAid: "array",
       ageBandStyle: "playful",
@@ -1002,15 +1459,24 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "An **array** is objects arranged in equal rows and columns. Counting the rows and how many are in each row shows you the multiplication fact.\n\n" +
         "For example, 4 rows of 5 dots is the same as 4 x 5 = 20.",
+      explanationMdFr:
+        "Un **quadrillage** est un ensemble d'objets disposés en lignes et colonnes égales. Compter les lignes et le nombre d'objets dans chaque ligne te montre le fait de multiplication.\n\n" +
+        "Par exemple, 4 lignes de 5 points, c'est la même chose que 4 x 5 = 20.",
       workedExamples: [
         { problem: "An array has 3 rows of 5. How many altogether?", steps: ["3 rows x 5 in each row."], answer: "15" }
       ],
-      audioScript: "Rows go across, and each row has the same number in it — count the rows, then multiply."
+      workedExamplesFr: [
+        { problem: "Un quadrillage a 3 lignes de 5. Combien y en a-t-il en tout ?", steps: ["3 lignes x 5 dans chaque ligne."], answer: "15" }
+      ],
+      audioScript: "Rows go across, and each row has the same number in it — count the rows, then multiply.",
+      audioScriptFr: "Les lignes vont d'un côté à l'autre, et chaque ligne contient le même nombre — compte les lignes, puis multiplie."
     },
     {
       order: 3,
       title: "Dividing by sharing and grouping",
+      titleFr: "Diviser par partage et par groupement",
       concept: "Solving division problems by sharing into equal groups, or by making groups of a fixed size",
+      conceptFr: "Résoudre des problèmes de division en partageant en groupes égaux, ou en formant des groupes de taille fixe",
       representation: "concrete",
       visualAid: "counters",
       ageBandStyle: "playful",
@@ -1018,18 +1484,28 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "**Sharing** means splitting a total equally between a number of people, one at a time, to find how many each person gets.\n\n" +
         "**Grouping** means finding how many equal-sized groups fit into a total. Both are division, just thought about in two different ways.",
+      explanationMdFr:
+        "**Partager** veut dire séparer un total équitablement entre un certain nombre de personnes, un à la fois, pour trouver combien chaque personne reçoit.\n\n" +
+        "**Grouper** veut dire trouver combien de groupes de taille égale tiennent dans un total. Les deux sont de la division, simplement pensée de deux façons différentes.",
       workedExamples: [
         { problem: "20 stickers are shared equally between 5 friends. How many does each friend get?", steps: ["20 ÷ 5 = 4."], answer: "4" },
         { problem: "20 stickers are put into groups of 5. How many groups are there?", steps: ["20 ÷ 5 = 4 groups."], answer: "4" }
       ],
-      audioScript: "Sharing asks 'how many each?'. Grouping asks 'how many groups?'. Both use the same division fact."
+      workedExamplesFr: [
+        { problem: "20 autocollants sont partagés équitablement entre 5 amis. Combien chaque ami reçoit-il ?", steps: ["20 ÷ 5 = 4."], answer: "4" },
+        { problem: "20 autocollants sont mis en groupes de 5. Combien y a-t-il de groupes ?", steps: ["20 ÷ 5 = 4 groupes."], answer: "4" }
+      ],
+      audioScript: "Sharing asks 'how many each?'. Grouping asks 'how many groups?'. Both use the same division fact.",
+      audioScriptFr: "Partager demande « combien chacun ? ». Grouper demande « combien de groupes ? ». Les deux utilisent le même fait de division."
     }
   ],
   Y3L1: [
     {
       order: 1,
       title: "Hundreds, tens and ones",
+      titleFr: "Les centaines, les dizaines et les unités",
       concept: "Understanding that a three-digit number is made of hundreds, tens and ones",
+      conceptFr: "Comprendre qu'un nombre à trois chiffres est composé de centaines, de dizaines et d'unités",
       representation: "concrete",
       visualAid: "ten-frame",
       ageBandStyle: "playful",
@@ -1037,15 +1513,24 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "Every three-digit number has a **hundreds digit** (the first digit), a **tens digit** (the middle digit) and a **ones digit** (the last digit). For example, 347 has 3 hundreds, 4 tens and 7 ones.\n\n" +
         "You can build any three-digit number by counting groups of a hundred, then groups of ten, then adding the leftover ones.",
+      explanationMdFr:
+        "Chaque nombre à trois chiffres a un **chiffre des centaines** (le premier chiffre), un **chiffre des dizaines** (le chiffre du milieu) et un **chiffre des unités** (le dernier chiffre). Par exemple, 347 a 3 centaines, 4 dizaines et 7 unités.\n\n" +
+        "Tu peux construire n'importe quel nombre à trois chiffres en comptant des groupes de cent, puis des groupes de dix, puis en ajoutant les unités restantes.",
       workedExamples: [
         { problem: "How many hundreds, tens and ones make 528?", steps: ["5 groups of a hundred = 500.", "2 groups of ten = 20.", "8 left over."], answer: "5 hundreds, 2 tens, 8 ones" }
       ],
-      audioScript: "The first digit tells us the hundreds, the middle digit tells us the tens, and the last digit tells us the ones."
+      workedExamplesFr: [
+        { problem: "Combien de centaines, de dizaines et d'unités font 528 ?", steps: ["5 groupes de cent = 500.", "2 groupes de dix = 20.", "8 de reste."], answer: "5 centaines, 2 dizaines, 8 unités" }
+      ],
+      audioScript: "The first digit tells us the hundreds, the middle digit tells us the tens, and the last digit tells us the ones.",
+      audioScriptFr: "Le premier chiffre nous indique les centaines, le chiffre du milieu nous indique les dizaines, et le dernier chiffre nous indique les unités."
     },
     {
       order: 2,
       title: "Comparing numbers to 1,000",
+      titleFr: "Comparer des nombres jusqu'à 1 000",
       concept: "Using the symbols < (less than), > (greater than) and = (equal to) to compare numbers up to 1,000",
+      conceptFr: "Utiliser les symboles < (inférieur à), > (supérieur à) et = (égal à) pour comparer des nombres jusqu'à 1 000",
       representation: "pictorial",
       visualAid: "number-line",
       ageBandStyle: "playful",
@@ -1053,16 +1538,26 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "To compare two three-digit numbers, look at the hundreds digit first. If the hundreds match, compare the tens digit. If those match too, compare the ones digit.\n\n" +
         "The **<** symbol means 'is less than' and **>** means 'is greater than' — the symbol always points at the smaller number.",
+      explanationMdFr:
+        "Pour comparer deux nombres à trois chiffres, regarde d'abord le chiffre des centaines. Si les centaines sont identiques, compare le chiffre des dizaines. Si celles-ci sont identiques aussi, compare le chiffre des unités.\n\n" +
+        "Le symbole **<** veut dire « est inférieur à » et **>** veut dire « est supérieur à » — le symbole pointe toujours vers le nombre le plus petit.",
       workedExamples: [
         { problem: "Which symbol goes here: 342 ___ 521?", steps: ["3 hundreds is less than 5 hundreds."], answer: "<" },
         { problem: "Which symbol goes here: 618 ___ 615?", steps: ["Both have 6 hundreds and 1 ten.", "8 ones is more than 5 ones."], answer: ">" }
       ],
-      audioScript: "Compare column by column, starting with the biggest place value — hundreds first, then tens, then ones."
+      workedExamplesFr: [
+        { problem: "Quel symbole va ici : 342 ___ 521 ?", steps: ["3 centaines, c'est moins que 5 centaines."], answer: "<" },
+        { problem: "Quel symbole va ici : 618 ___ 615 ?", steps: ["Les deux ont 6 centaines et 1 dizaine.", "8 unités, c'est plus que 5 unités."], answer: ">" }
+      ],
+      audioScript: "Compare column by column, starting with the biggest place value — hundreds first, then tens, then ones.",
+      audioScriptFr: "Compare colonne par colonne, en commençant par la plus grande valeur de position — les centaines d'abord, puis les dizaines, puis les unités."
     },
     {
       order: 3,
       title: "Counting in multiples from 0",
+      titleFr: "Compter en multiples à partir de 0",
       concept: "Counting forwards from 0 in multiples of 4, 8, 50 and 100",
+      conceptFr: "Compter en avant à partir de 0 en multiples de 4, 8, 50 et 100",
       representation: "pictorial",
       visualAid: "number-line",
       ageBandStyle: "playful",
@@ -1070,18 +1565,28 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "A counting pattern that starts at 0 and always jumps by the same amount produces a list of **multiples**. Counting in 4s from 0 gives 0, 4, 8, 12, 16...\n\n" +
         "Counting in 50s or 100s from 0 is quick because only the first digit or two change each time.",
+      explanationMdFr:
+        "Un schéma de comptage qui commence à 0 et saute toujours de la même quantité produit une liste de **multiples**. Compter de 4 en 4 à partir de 0 donne 0, 4, 8, 12, 16...\n\n" +
+        "Compter de 50 en 50 ou de 100 en 100 à partir de 0 est rapide car seuls le premier chiffre ou les deux premiers changent à chaque fois.",
       workedExamples: [
         { problem: "Count on in 8s from 0: 0, 8, ___, ___", steps: ["0 + 8 = 8.", "8 + 8 = 16.", "16 + 8 = 24."], answer: "16, 24" },
         { problem: "What comes after 350 when counting in 50s?", steps: ["350 + 50 = 400."], answer: "400" }
       ],
-      audioScript: "Keep adding the same step size from zero, and you'll build the whole multiples pattern."
+      workedExamplesFr: [
+        { problem: "Compte de 8 en 8 à partir de 0 : 0, 8, ___, ___", steps: ["0 + 8 = 8.", "8 + 8 = 16.", "16 + 8 = 24."], answer: "16, 24" },
+        { problem: "Que vient après 350 en comptant de 50 en 50 ?", steps: ["350 + 50 = 400."], answer: "400" }
+      ],
+      audioScript: "Keep adding the same step size from zero, and you'll build the whole multiples pattern.",
+      audioScriptFr: "Continue à ajouter le même pas à partir de zéro, et tu construiras tout le schéma des multiples."
     }
   ],
   Y3L2: [
     {
       order: 1,
       title: "Adding and subtracting mentally",
+      titleFr: "Additionner et soustraire mentalement",
       concept: "Adding and subtracting a three-digit number and ones, tens or hundreds in your head",
+      conceptFr: "Additionner et soustraire de tête un nombre à trois chiffres et des unités, des dizaines ou des centaines",
       representation: "abstract",
       visualAid: "none",
       ageBandStyle: "playful",
@@ -1089,16 +1594,26 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "When you add or subtract ones, tens or hundreds to a three-digit number, only one digit changes (unless it carries over).\n\n" +
         "Adding ones changes the ones digit; adding tens changes the tens digit; adding hundreds changes the hundreds digit.",
+      explanationMdFr:
+        "Quand tu additionnes ou soustrais des unités, des dizaines ou des centaines à un nombre à trois chiffres, un seul chiffre change (sauf s'il y a une retenue).\n\n" +
+        "Ajouter des unités change le chiffre des unités ; ajouter des dizaines change le chiffre des dizaines ; ajouter des centaines change le chiffre des centaines.",
       workedExamples: [
         { problem: "What is 342 + 6?", steps: ["Only the ones digit changes: 2 + 6 = 8."], answer: "348" },
         { problem: "What is 342 + 50?", steps: ["Only the tens digit changes: 4 + 5 = 9."], answer: "392" }
       ],
-      audioScript: "Spot which column is changing — ones, tens, or hundreds — and you can often do it in your head."
+      workedExamplesFr: [
+        { problem: "Que vaut 342 + 6 ?", steps: ["Seul le chiffre des unités change : 2 + 6 = 8."], answer: "348" },
+        { problem: "Que vaut 342 + 50 ?", steps: ["Seul le chiffre des dizaines change : 4 + 5 = 9."], answer: "392" }
+      ],
+      audioScript: "Spot which column is changing — ones, tens, or hundreds — and you can often do it in your head.",
+      audioScriptFr: "Repère quelle colonne change — unités, dizaines ou centaines — et tu pourras souvent le faire de tête."
     },
     {
       order: 2,
       title: "Column addition and subtraction",
+      titleFr: "L'addition et la soustraction en colonnes",
       concept: "Using the formal written column method to add and subtract larger numbers, carrying and borrowing where needed",
+      conceptFr: "Utiliser la méthode écrite formelle en colonnes pour additionner et soustraire de plus grands nombres, avec retenues et emprunts si nécessaire",
       representation: "pictorial",
       visualAid: "none",
       ageBandStyle: "playful",
@@ -1106,16 +1621,26 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "In column addition, line up the ones, tens and hundreds, then add each column from the right. If a column adds to 10 or more, **carry** 1 into the next column.\n\n" +
         "In column subtraction, if a digit is too small to subtract from, **borrow** 1 from the column to its left.",
+      explanationMdFr:
+        "Dans l'addition en colonnes, aligne les unités, les dizaines et les centaines, puis additionne chaque colonne en partant de la droite. Si une colonne totalise 10 ou plus, **retiens** 1 dans la colonne suivante.\n\n" +
+        "Dans la soustraction en colonnes, si un chiffre est trop petit pour qu'on puisse soustraire, **emprunte** 1 à la colonne à sa gauche.",
       workedExamples: [
         { problem: "What is 358 + 276?", steps: ["8 + 6 = 14, write 4, carry 1.", "5 + 7 + 1 = 13, write 3, carry 1.", "3 + 2 + 1 = 6."], answer: "634" },
         { problem: "What is 542 - 168?", steps: ["2 - 8 needs borrowing: 12 - 8 = 4.", "3 - 6 needs borrowing: 13 - 6 = 7.", "4 - 1 = 3."], answer: "374" }
       ],
-      audioScript: "Always start from the ones column on the right, and carry or borrow whenever a column doesn't fit."
+      workedExamplesFr: [
+        { problem: "Que vaut 358 + 276 ?", steps: ["8 + 6 = 14, écris 4, retiens 1.", "5 + 7 + 1 = 13, écris 3, retiens 1.", "3 + 2 + 1 = 6."], answer: "634" },
+        { problem: "Que vaut 542 - 168 ?", steps: ["2 - 8 nécessite un emprunt : 12 - 8 = 4.", "3 - 6 nécessite un emprunt : 13 - 6 = 7.", "4 - 1 = 3."], answer: "374" }
+      ],
+      audioScript: "Always start from the ones column on the right, and carry or borrow whenever a column doesn't fit.",
+      audioScriptFr: "Commence toujours par la colonne des unités à droite, et retiens ou emprunte chaque fois qu'une colonne ne suffit pas."
     },
     {
       order: 3,
       title: "Estimating and checking with inverse operations",
+      titleFr: "Estimer et vérifier avec les opérations inverses",
       concept: "Estimating an answer by rounding first, and checking a calculation using the inverse operation",
+      conceptFr: "Estimer un résultat en arrondissant d'abord, et vérifier un calcul à l'aide de l'opération inverse",
       representation: "abstract",
       visualAid: "none",
       ageBandStyle: "playful",
@@ -1123,18 +1648,28 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "Before doing a written calculation, it helps to **estimate** the answer by rounding each number to the nearest 100 first — this helps you spot a mistake later.\n\n" +
         "You can also **check** an answer using the inverse operation: if 250 + 180 = 430, then 430 - 180 should equal 250.",
+      explanationMdFr:
+        "Avant de faire un calcul écrit, il est utile d'**estimer** le résultat en arrondissant d'abord chaque nombre à la centaine la plus proche — cela t'aide à repérer une erreur plus tard.\n\n" +
+        "Tu peux aussi **vérifier** un résultat à l'aide de l'opération inverse : si 250 + 180 = 430, alors 430 - 180 devrait égaler 250.",
       workedExamples: [
         { problem: "Estimate 387 + 512 by rounding to the nearest 100.", steps: ["387 rounds to 400.", "512 rounds to 500."], answer: "900" },
         { problem: "Check that 260 + 340 = 600 using the inverse.", steps: ["600 - 340 = 260, which matches the first number."], answer: "Correct" }
       ],
-      audioScript: "Round first to get a sensible estimate, and use the opposite operation afterwards to check your work."
+      workedExamplesFr: [
+        { problem: "Estime 387 + 512 en arrondissant à la centaine la plus proche.", steps: ["387 s'arrondit à 400.", "512 s'arrondit à 500."], answer: "900" },
+        { problem: "Vérifie que 260 + 340 = 600 à l'aide de l'inverse.", steps: ["600 - 340 = 260, ce qui correspond au premier nombre."], answer: "Correct" }
+      ],
+      audioScript: "Round first to get a sensible estimate, and use the opposite operation afterwards to check your work.",
+      audioScriptFr: "Arrondis d'abord pour obtenir une estimation raisonnable, puis utilise l'opération opposée pour vérifier ton travail."
     }
   ],
   Y6L1: [
     {
       order: 1,
       title: "Numbers to 10,000,000",
+      titleFr: "Les nombres jusqu'à 10 000 000",
       concept: "Reading, writing, ordering and comparing numbers up to ten million",
+      conceptFr: "Lire, écrire, ordonner et comparer des nombres jusqu'à dix millions",
       representation: "abstract",
       visualAid: "none",
       ageBandStyle: "adventure",
@@ -1142,15 +1677,24 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "A seven-digit number has a **millions digit** (the first digit), then hundred thousands, ten thousands, thousands, hundreds, tens and ones — the same place-value pattern just extended further left.\n\n" +
         "To compare two large numbers, compare digit by digit from the left: millions first, then hundred thousands, and so on.",
+      explanationMdFr:
+        "Un nombre à sept chiffres a un **chiffre des millions** (le premier chiffre), puis les centaines de mille, les dizaines de mille, les milliers, les centaines, les dizaines et les unités — le même schéma de valeur de position, juste étendu plus loin vers la gauche.\n\n" +
+        "Pour comparer deux grands nombres, compare chiffre par chiffre à partir de la gauche : les millions d'abord, puis les centaines de mille, et ainsi de suite.",
       workedExamples: [
         { problem: "Which is bigger: 4,582,910 or 4,529,988?", steps: ["Both have 4 million.", "5 hundred thousand is the same.", "8 ten thousand is more than 2 ten thousand."], answer: "4,582,910" }
       ],
-      audioScript: "Compare column by column from the left, starting with the millions — the same trick you already use for smaller numbers."
+      workedExamplesFr: [
+        { problem: "Lequel est le plus grand : 4 582 910 ou 4 529 988 ?", steps: ["Les deux ont 4 millions.", "5 centaines de mille sont identiques.", "8 dizaines de mille, c'est plus que 2 dizaines de mille."], answer: "4 582 910" }
+      ],
+      audioScript: "Compare column by column from the left, starting with the millions — the same trick you already use for smaller numbers.",
+      audioScriptFr: "Compare colonne par colonne à partir de la gauche, en commençant par les millions — la même astuce que tu utilises déjà pour les plus petits nombres."
     },
     {
       order: 2,
       title: "Rounding to any degree of accuracy",
+      titleFr: "Arrondir à n'importe quel degré de précision",
       concept: "Rounding a whole number to the nearest 10, 100, 1,000 or any other required place value",
+      conceptFr: "Arrondir un nombre entier à la dizaine, la centaine, le millier ou toute autre valeur de position demandée",
       representation: "abstract",
       visualAid: "number-line",
       ageBandStyle: "adventure",
@@ -1158,15 +1702,24 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "Rounding to 'a required degree of accuracy' means the question tells you which place value to round to. Look at the digit **one place smaller** than that — 5 or more rounds up, less than 5 rounds down.\n\n" +
         "The same rule works whether you're rounding to the nearest 10 or the nearest million.",
+      explanationMdFr:
+        "Arrondir à « un degré de précision demandé » veut dire que la question t'indique à quelle valeur de position arrondir. Regarde le chiffre **une position plus petite** que celle-ci — 5 ou plus arrondit vers le haut, moins de 5 arrondit vers le bas.\n\n" +
+        "La même règle fonctionne que tu arrondisses à la dizaine la plus proche ou au million le plus proche.",
       workedExamples: [
         { problem: "Round 3,647,208 to the nearest 100,000.", steps: ["Look at the ten-thousands digit: 4.", "4 is less than 5, so round down."], answer: "3,600,000" }
       ],
-      audioScript: "Find the place value you're rounding to, check the digit just after it, and round up or down from there."
+      workedExamplesFr: [
+        { problem: "Arrondis 3 647 208 à la centaine de mille la plus proche.", steps: ["Regarde le chiffre des dizaines de mille : 4.", "4 est inférieur à 5, donc on arrondit vers le bas."], answer: "3 600 000" }
+      ],
+      audioScript: "Find the place value you're rounding to, check the digit just after it, and round up or down from there.",
+      audioScriptFr: "Trouve la valeur de position à laquelle tu arrondis, vérifie le chiffre juste après, et arrondis vers le haut ou vers le bas."
     },
     {
       order: 3,
       title: "Negative numbers and intervals across zero",
+      titleFr: "Les nombres négatifs et les intervalles à travers zéro",
       concept: "Using negative numbers in context and calculating the interval between a negative and a positive value",
+      conceptFr: "Utiliser des nombres négatifs en contexte et calculer l'intervalle entre une valeur négative et une valeur positive",
       representation: "pictorial",
       visualAid: "number-line",
       ageBandStyle: "adventure",
@@ -1174,17 +1727,26 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "An **interval across zero** is the total distance between a negative number and a positive number. Add how far below zero you started to how far above zero you ended.\n\n" +
         "For example, from -8°C to 15°C, the interval is 8 (up to zero) + 15 (up to 15) = 23 degrees.",
+      explanationMdFr:
+        "Un **intervalle à travers zéro** est la distance totale entre un nombre négatif et un nombre positif. Additionne la distance en dessous de zéro où tu as commencé à la distance au-dessus de zéro où tu as fini.\n\n" +
+        "Par exemple, de -8°C à 15°C, l'intervalle est 8 (jusqu'à zéro) + 15 (jusqu'à 15) = 23 degrés.",
       workedExamples: [
         { problem: "The temperature rose from -6°C to 9°C. What was the interval?", steps: ["6 (up to zero) + 9 (up to 9)."], answer: "15°C" }
       ],
-      audioScript: "Crossing zero doesn't change the method — just add the distance below zero to the distance above it."
+      workedExamplesFr: [
+        { problem: "La température est passée de -6°C à 9°C. Quel était l'intervalle ?", steps: ["6 (jusqu'à zéro) + 9 (jusqu'à 9)."], answer: "15°C" }
+      ],
+      audioScript: "Crossing zero doesn't change the method — just add the distance below zero to the distance above it.",
+      audioScriptFr: "Passer par zéro ne change pas la méthode — additionne simplement la distance en dessous de zéro à la distance au-dessus."
     }
   ],
   Y6L2: [
     {
       order: 1,
       title: "Multiplying by a two-digit number",
+      titleFr: "Multiplier par un nombre à deux chiffres",
       concept: "Using the formal written method to multiply a large number by a two-digit number",
+      conceptFr: "Utiliser la méthode écrite formelle pour multiplier un grand nombre par un nombre à deux chiffres",
       representation: "abstract",
       visualAid: "none",
       ageBandStyle: "adventure",
@@ -1192,15 +1754,24 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "To multiply by a two-digit number, split it into tens and ones. Multiply by the ones first, then by the tens, then add the two results together.\n\n" +
         "For example, to work out 234 x 26, work out 234 x 6 and 234 x 20 separately, then add them.",
+      explanationMdFr:
+        "Pour multiplier par un nombre à deux chiffres, sépare-le en dizaines et unités. Multiplie d'abord par les unités, puis par les dizaines, puis additionne les deux résultats.\n\n" +
+        "Par exemple, pour calculer 234 x 26, calcule 234 x 6 et 234 x 20 séparément, puis additionne-les.",
       workedExamples: [
         { problem: "What is 234 x 26?", steps: ["234 x 6 = 1,404.", "234 x 20 = 4,680.", "1,404 + 4,680 = 6,084."], answer: "6,084" }
       ],
-      audioScript: "Split the two-digit number into tens and ones, multiply by each part separately, then add the results."
+      workedExamplesFr: [
+        { problem: "Que vaut 234 x 26 ?", steps: ["234 x 6 = 1 404.", "234 x 20 = 4 680.", "1 404 + 4 680 = 6 084."], answer: "6 084" }
+      ],
+      audioScript: "Split the two-digit number into tens and ones, multiply by each part separately, then add the results.",
+      audioScriptFr: "Sépare le nombre à deux chiffres en dizaines et unités, multiplie par chaque partie séparément, puis additionne les résultats."
     },
     {
       order: 2,
       title: "Dividing by a two-digit number and remainders",
+      titleFr: "Diviser par un nombre à deux chiffres et les restes",
       concept: "Using long division to divide by a two-digit number, and deciding how to interpret a remainder",
+      conceptFr: "Utiliser la division posée pour diviser par un nombre à deux chiffres, et décider comment interpréter un reste",
       representation: "abstract",
       visualAid: "none",
       ageBandStyle: "adventure",
@@ -1208,16 +1779,26 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "When a division doesn't divide exactly, there's a **remainder** left over. What you do with the remainder depends on the question: sometimes you round up (like needing an extra coach), sometimes you round down (like counting complete teams), and sometimes the remainder itself is the answer.\n\n" +
         "Always read the context carefully to decide which is sensible.",
+      explanationMdFr:
+        "Quand une division ne tombe pas juste, il reste un **reste**. Ce que tu en fais dépend de la question : parfois tu arrondis vers le haut (comme avoir besoin d'un car en plus), parfois tu arrondis vers le bas (comme compter des équipes complètes), et parfois le reste lui-même est la réponse.\n\n" +
+        "Lis toujours le contexte attentivement pour décider ce qui est sensé.",
       workedExamples: [
         { problem: "163 people need seats on minibuses that hold 25 each. How many minibuses are needed?", steps: ["163 ÷ 25 = 6 remainder 13.", "An extra minibus is needed for the 13 left over."], answer: "7" },
         { problem: "How many complete teams of 12 can be made from 100 players?", steps: ["100 ÷ 12 = 8 remainder 4.", "Only complete teams count."], answer: "8" }
       ],
-      audioScript: "The remainder isn't always ignored — think about what makes sense for the real situation in the question."
+      workedExamplesFr: [
+        { problem: "163 personnes ont besoin de places dans des minibus qui accueillent 25 personnes chacun. Combien de minibus faut-il ?", steps: ["163 ÷ 25 = 6 reste 13.", "Un minibus supplémentaire est nécessaire pour les 13 restants."], answer: "7" },
+        { problem: "Combien d'équipes complètes de 12 peut-on former avec 100 joueurs ?", steps: ["100 ÷ 12 = 8 reste 4.", "Seules les équipes complètes comptent."], answer: "8" }
+      ],
+      audioScript: "The remainder isn't always ignored — think about what makes sense for the real situation in the question.",
+      audioScriptFr: "Le reste n'est pas toujours ignoré — réfléchis à ce qui a du sens pour la situation réelle de la question."
     },
     {
       order: 3,
       title: "Multi-step problems and estimating to check",
+      titleFr: "Les problèmes à plusieurs étapes et l'estimation pour vérifier",
       concept: "Solving problems that combine several operations, and using estimation to check the answer is sensible",
+      conceptFr: "Résoudre des problèmes qui combinent plusieurs opérations, et utiliser l'estimation pour vérifier qu'un résultat est raisonnable",
       representation: "abstract",
       visualAid: "none",
       ageBandStyle: "adventure",
@@ -1225,18 +1806,28 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "Some problems need **more than one operation** — read carefully to work out what happens first, second, and so on.\n\n" +
         "Before or after solving, it's good practice to **estimate** by rounding the numbers, so you can spot if your exact answer looks wrong.",
+      explanationMdFr:
+        "Certains problèmes nécessitent **plus d'une opération** — lis attentivement pour comprendre ce qui se passe d'abord, ensuite, et ainsi de suite.\n\n" +
+        "Avant ou après avoir résolu, c'est une bonne pratique d'**estimer** en arrondissant les nombres, pour pouvoir repérer si ton résultat exact semble faux.",
       workedExamples: [
         { problem: "A shop had 340 bottles. They received 8 boxes of 24 bottles, then sold 95. How many bottles are left?", steps: ["8 x 24 = 192.", "340 + 192 = 532.", "532 - 95 = 437."], answer: "437" },
         { problem: "Estimate 812 x 48 by rounding first.", steps: ["812 rounds to 800.", "48 rounds to 50."], answer: "40,000" }
       ],
-      audioScript: "Break a multi-step problem down one operation at a time, and use a rounded estimate to sanity-check your final answer."
+      workedExamplesFr: [
+        { problem: "Un magasin avait 340 bouteilles. Il a reçu 8 boîtes de 24 bouteilles, puis en a vendu 95. Combien de bouteilles reste-t-il ?", steps: ["8 x 24 = 192.", "340 + 192 = 532.", "532 - 95 = 437."], answer: "437" },
+        { problem: "Estime 812 x 48 en arrondissant d'abord.", steps: ["812 s'arrondit à 800.", "48 s'arrondit à 50."], answer: "40 000" }
+      ],
+      audioScript: "Break a multi-step problem down one operation at a time, and use a rounded estimate to sanity-check your final answer.",
+      audioScriptFr: "Décompose un problème à plusieurs étapes une opération à la fois, et utilise une estimation arrondie pour vérifier ton résultat final."
     }
   ],
   Y8L1: [
     {
       order: 1,
       title: "Powers and roots",
+      titleFr: "Les puissances et les racines",
       concept: "Using integer powers (squares, cubes and higher) and their inverse real roots",
+      conceptFr: "Utiliser des puissances entières (carrés, cubes et plus) et leurs racines réelles inverses",
       representation: "abstract",
       visualAid: "none",
       ageBandStyle: "gameinspired",
@@ -1244,16 +1835,26 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "A **power** tells you how many times to multiply a number by itself. 5^3 (5 cubed) means 5 x 5 x 5 = 125.\n\n" +
         "A **root** undoes a power. The square root of 49 is 7, because 7 x 7 = 49. The cube root of 125 is 5, because 5 x 5 x 5 = 125.",
+      explanationMdFr:
+        "Une **puissance** t'indique combien de fois multiplier un nombre par lui-même. 5^3 (5 au cube) veut dire 5 x 5 x 5 = 125.\n\n" +
+        "Une **racine** annule une puissance. La racine carrée de 49 est 7, car 7 x 7 = 49. La racine cubique de 125 est 5, car 5 x 5 x 5 = 125.",
       workedExamples: [
         { problem: "What is 6^2?", steps: ["6 x 6 = 36."], answer: "36" },
         { problem: "What is the square root of 81?", steps: ["9 x 9 = 81."], answer: "9" }
       ],
-      audioScript: "Powers build a number up by repeated multiplication; roots work backwards to find what was multiplied."
+      workedExamplesFr: [
+        { problem: "Que vaut 6^2 ?", steps: ["6 x 6 = 36."], answer: "36" },
+        { problem: "Quelle est la racine carrée de 81 ?", steps: ["9 x 9 = 81."], answer: "9" }
+      ],
+      audioScript: "Powers build a number up by repeated multiplication; roots work backwards to find what was multiplied.",
+      audioScriptFr: "Les puissances construisent un nombre par multiplication répétée ; les racines fonctionnent à l'envers pour retrouver ce qui a été multiplié."
     },
     {
       order: 2,
       title: "Inverse operations",
+      titleFr: "Les opérations inverses",
       concept: "Recognising how pairs of operations undo each other",
+      conceptFr: "Reconnaître comment des paires d'opérations s'annulent mutuellement",
       representation: "abstract",
       visualAid: "none",
       ageBandStyle: "gameinspired",
@@ -1261,16 +1862,26 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "Every operation has an **inverse** that undoes it: addition and subtraction undo each other, multiplication and division undo each other, and squaring and square rooting undo each other.\n\n" +
         "You can use an inverse operation to check an answer, or to find a missing number in a calculation.",
+      explanationMdFr:
+        "Chaque opération a une **inverse** qui l'annule : l'addition et la soustraction s'annulent mutuellement, la multiplication et la division s'annulent mutuellement, et élever au carré et prendre la racine carrée s'annulent mutuellement.\n\n" +
+        "Tu peux utiliser une opération inverse pour vérifier un résultat, ou pour trouver un nombre manquant dans un calcul.",
       workedExamples: [
         { problem: "If 8 x 7 = 56, what does 56 ÷ 7 equal?", steps: ["Division undoes multiplication."], answer: "8" },
         { problem: "Solve 15 + ___ = 40.", steps: ["Use subtraction, the inverse of addition: 40 - 15."], answer: "25" }
       ],
-      audioScript: "Whenever you're stuck on a missing number, ask yourself: what's the inverse of this operation?"
+      workedExamplesFr: [
+        { problem: "Si 8 x 7 = 56, que vaut 56 ÷ 7 ?", steps: ["La division annule la multiplication."], answer: "8" },
+        { problem: "Résous 15 + ___ = 40.", steps: ["Utilise la soustraction, l'inverse de l'addition : 40 - 15."], answer: "25" }
+      ],
+      audioScript: "Whenever you're stuck on a missing number, ask yourself: what's the inverse of this operation?",
+      audioScriptFr: "Chaque fois que tu bloques sur un nombre manquant, demande-toi : quelle est l'inverse de cette opération ?"
     },
     {
       order: 3,
       title: "Index laws",
+      titleFr: "Les lois des indices",
       concept: "Using the laws of indices to simplify expressions with the same base",
+      conceptFr: "Utiliser les lois des indices pour simplifier des expressions ayant la même base",
       representation: "abstract",
       visualAid: "none",
       ageBandStyle: "gameinspired",
@@ -1278,18 +1889,28 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "When the base is the same, there are shortcut rules: **multiplying** powers means you **add** the indices, **dividing** means you **subtract** them, and raising a power **to another power** means you **multiply** them.\n\n" +
         "Any non-zero number raised to the power of 0 always equals 1.",
+      explanationMdFr:
+        "Quand la base est la même, il existe des règles rapides : **multiplier** des puissances signifie **additionner** les indices, **diviser** signifie les **soustraire**, et élever une puissance **à une autre puissance** signifie les **multiplier**.\n\n" +
+        "Tout nombre non nul élevé à la puissance 0 vaut toujours 1.",
       workedExamples: [
         { problem: "Simplify 3^4 x 3^2.", steps: ["Add the indices: 4 + 2 = 6."], answer: "3^6" },
         { problem: "Simplify 5^7 ÷ 5^3.", steps: ["Subtract the indices: 7 - 3 = 4."], answer: "5^4" }
       ],
-      audioScript: "Same base: multiplying adds the powers, dividing subtracts them, and a power of a power multiplies them."
+      workedExamplesFr: [
+        { problem: "Simplifie 3^4 x 3^2.", steps: ["Additionne les indices : 4 + 2 = 6."], answer: "3^6" },
+        { problem: "Simplifie 5^7 ÷ 5^3.", steps: ["Soustrais les indices : 7 - 3 = 4."], answer: "5^4" }
+      ],
+      audioScript: "Same base: multiplying adds the powers, dividing subtracts them, and a power of a power multiplies them.",
+      audioScriptFr: "Même base : multiplier additionne les puissances, diviser les soustrait, et une puissance d'une puissance les multiplie."
     }
   ],
   Y8L2: [
     {
       order: 1,
       title: "Percentage increase and decrease",
+      titleFr: "L'augmentation et la diminution en pourcentage",
       concept: "Finding a percentage increase or decrease, and finding what percentage change occurred",
+      conceptFr: "Trouver une augmentation ou une diminution en pourcentage, et trouver quel changement en pourcentage a eu lieu",
       representation: "abstract",
       visualAid: "none",
       ageBandStyle: "gameinspired",
@@ -1297,16 +1918,26 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "To increase or decrease by a percentage: work out that percentage of the original amount first, then add it on (increase) or take it away (decrease).\n\n" +
         "To find the percentage change itself, divide the change by the original amount, then multiply by 100.",
+      explanationMdFr:
+        "Pour augmenter ou diminuer d'un pourcentage : calcule d'abord ce pourcentage de la quantité de départ, puis ajoute-le (augmentation) ou retire-le (diminution).\n\n" +
+        "Pour trouver le changement en pourcentage lui-même, divise le changement par la quantité de départ, puis multiplie par 100.",
       workedExamples: [
         { problem: "Increase £200 by 15%.", steps: ["15% of 200 = 30.", "200 + 30 = 230."], answer: "£230" },
         { problem: "A price rose from £80 to £100. What percentage increase is this?", steps: ["The increase is £20.", "20 ÷ 80 x 100 = 25."], answer: "25%" }
       ],
-      audioScript: "Always compare the change to the ORIGINAL amount, not the new amount, when finding a percentage change."
+      workedExamplesFr: [
+        { problem: "Augmente 200 £ de 15 %.", steps: ["15 % de 200 = 30.", "200 + 30 = 230."], answer: "230 £" },
+        { problem: "Un prix est passé de 80 £ à 100 £. Quelle augmentation en pourcentage cela représente-t-il ?", steps: ["L'augmentation est de 20 £.", "20 ÷ 80 x 100 = 25."], answer: "25 %" }
+      ],
+      audioScript: "Always compare the change to the ORIGINAL amount, not the new amount, when finding a percentage change.",
+      audioScriptFr: "Compare toujours le changement à la quantité DE DÉPART, pas à la nouvelle quantité, quand tu trouves un changement en pourcentage."
     },
     {
       order: 2,
       title: "Percentages over 100%",
+      titleFr: "Les pourcentages supérieurs à 100 %",
       concept: "Understanding that a percentage greater than 100% represents more than the whole original amount",
+      conceptFr: "Comprendre qu'un pourcentage supérieur à 100 % représente plus que la quantité de départ entière",
       representation: "abstract",
       visualAid: "none",
       ageBandStyle: "gameinspired",
@@ -1314,16 +1945,26 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "A percentage over 100% means more than the whole amount — 150% of something is one and a half times as much.\n\n" +
         "You can convert between a percentage over 100% and a decimal the same way as any other percentage: divide by 100.",
+      explanationMdFr:
+        "Un pourcentage supérieur à 100 % signifie plus que la quantité entière — 150 % de quelque chose, c'est une fois et demie plus.\n\n" +
+        "Tu peux convertir entre un pourcentage supérieur à 100 % et un décimal de la même façon que n'importe quel autre pourcentage : divise par 100.",
       workedExamples: [
         { problem: "Write 175% as a decimal.", steps: ["175 ÷ 100 = 1.75."], answer: "1.75" },
         { problem: "What is 120% of 50?", steps: ["120% = 1.2.", "1.2 x 50 = 60."], answer: "60" }
       ],
-      audioScript: "Don't be thrown by percentages bigger than 100% — the method for finding them is exactly the same, just with a bigger multiplier."
+      workedExamplesFr: [
+        { problem: "Écris 175 % sous forme de décimal.", steps: ["175 ÷ 100 = 1,75."], answer: "1,75" },
+        { problem: "Que vaut 120 % de 50 ?", steps: ["120 % = 1,2.", "1,2 x 50 = 60."], answer: "60" }
+      ],
+      audioScript: "Don't be thrown by percentages bigger than 100% — the method for finding them is exactly the same, just with a bigger multiplier.",
+      audioScriptFr: "Ne te laisse pas déstabiliser par des pourcentages supérieurs à 100 % — la méthode pour les trouver est exactement la même, juste avec un multiplicateur plus grand."
     },
     {
       order: 3,
       title: "Fractions and percentages of amounts",
+      titleFr: "Les fractions et les pourcentages de quantités",
       concept: "Finding a fraction or a percentage of an amount, and working backwards to find the whole",
+      conceptFr: "Trouver une fraction ou un pourcentage d'une quantité, et remonter pour trouver le tout",
       representation: "abstract",
       visualAid: "none",
       ageBandStyle: "gameinspired",
@@ -1331,18 +1972,28 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "To find a fraction of an amount, divide by the denominator, then multiply by the numerator. To find a percentage of an amount, divide by 100, then multiply by the percentage.\n\n" +
         "You can also work backwards: if you know a part and the fraction or percentage it represents, you can find the whole amount.",
+      explanationMdFr:
+        "Pour trouver une fraction d'une quantité, divise par le dénominateur, puis multiplie par le numérateur. Pour trouver un pourcentage d'une quantité, divise par 100, puis multiplie par le pourcentage.\n\n" +
+        "Tu peux aussi remonter : si tu connais une partie et la fraction ou le pourcentage qu'elle représente, tu peux trouver la quantité entière.",
       workedExamples: [
         { problem: "What is 3/5 of 40?", steps: ["40 ÷ 5 = 8.", "8 x 3 = 24."], answer: "24" },
         { problem: "20% of a number is 14. What is the number?", steps: ["14 ÷ 20 = 0.7.", "0.7 x 100 = 70."], answer: "70" }
       ],
-      audioScript: "Whichever direction you're working — finding the part, or finding the whole — divide first, then multiply."
+      workedExamplesFr: [
+        { problem: "Que vaut 3/5 de 40 ?", steps: ["40 ÷ 5 = 8.", "8 x 3 = 24."], answer: "24" },
+        { problem: "20 % d'un nombre valent 14. Quel est ce nombre ?", steps: ["14 ÷ 20 = 0,7.", "0,7 x 100 = 70."], answer: "70" }
+      ],
+      audioScript: "Whichever direction you're working — finding the part, or finding the whole — divide first, then multiply.",
+      audioScriptFr: "Quelle que soit la direction dans laquelle tu travailles — trouver la partie ou trouver le tout — divise d'abord, puis multiplie."
     }
   ],
   Y9L1: [
     {
       order: 1,
       title: "Standard form",
+      titleFr: "La notation scientifique",
       concept: "Writing very large or very small numbers as A x 10^n",
+      conceptFr: "Écrire des nombres très grands ou très petits sous la forme A x 10^n",
       representation: "abstract",
       visualAid: "none",
       ageBandStyle: "mature",
@@ -1350,16 +2001,26 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "**Standard form** writes a number as A x 10^n, where A is between 1 and 10 (but never 10 itself), and n tells you how many places to move the decimal point.\n\n" +
         "It's especially useful for very large numbers (like the distance to a star) or very small ones, without writing lots of zeros.",
+      explanationMdFr:
+        "La **notation scientifique** écrit un nombre sous la forme A x 10^n, où A est compris entre 1 et 10 (mais jamais 10 lui-même), et n indique de combien de positions déplacer la virgule.\n\n" +
+        "Elle est particulièrement utile pour des nombres très grands (comme la distance jusqu'à une étoile) ou très petits, sans avoir à écrire beaucoup de zéros.",
       workedExamples: [
         { problem: "Write 4.5 x 10^6 as an ordinary number.", steps: ["Move the decimal point 6 places right."], answer: "4,500,000" },
         { problem: "Write 730,000 in standard form.", steps: ["The first non-zero digit is 7.", "Count how many places the point moves: 5."], answer: "7.3 x 10^5" }
       ],
-      audioScript: "The mantissa is always a number from 1 up to (but not including) 10 — that's the rule that makes standard form work."
+      workedExamplesFr: [
+        { problem: "Écris 4,5 x 10^6 sous forme de nombre ordinaire.", steps: ["Déplace la virgule de 6 positions vers la droite."], answer: "4 500 000" },
+        { problem: "Écris 730 000 en notation scientifique.", steps: ["Le premier chiffre non nul est 7.", "Compte de combien de positions la virgule se déplace : 5."], answer: "7,3 x 10^5" }
+      ],
+      audioScript: "The mantissa is always a number from 1 up to (but not including) 10 — that's the rule that makes standard form work.",
+      audioScriptFr: "La mantisse est toujours un nombre compris entre 1 et 10 (sans jamais atteindre 10) — c'est la règle qui fait fonctionner la notation scientifique."
     },
     {
       order: 2,
       title: "Index laws with negative and fractional indices",
+      titleFr: "Les lois des indices avec des indices négatifs et fractionnaires",
       concept: "Extending the index laws to negative indices (reciprocals) and fractional indices (roots)",
+      conceptFr: "Étendre les lois des indices aux indices négatifs (inverses) et aux indices fractionnaires (racines)",
       representation: "abstract",
       visualAid: "none",
       ageBandStyle: "mature",
@@ -1367,16 +2028,26 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "A **negative index** means 'one over': a^-n = 1/(a^n). A **fractional index** means 'take a root': a^(1/2) is the square root of a, and a^(1/3) is the cube root.\n\n" +
         "The same laws you know for whole-number powers (add when multiplying, subtract when dividing) still apply.",
+      explanationMdFr:
+        "Un **indice négatif** signifie « un sur » : a^-n = 1/(a^n). Un **indice fractionnaire** signifie « prendre une racine » : a^(1/2) est la racine carrée de a, et a^(1/3) est la racine cubique.\n\n" +
+        "Les mêmes lois que tu connais pour les puissances entières (additionner en multipliant, soustraire en divisant) s'appliquent toujours.",
       workedExamples: [
         { problem: "Write 2^-3 as a fraction.", steps: ["2^-3 = 1/2^3 = 1/8."], answer: "1/8" },
         { problem: "What is 27^(1/3)?", steps: ["This means the cube root of 27.", "3 x 3 x 3 = 27."], answer: "3" }
       ],
-      audioScript: "Negative means 'flip it into a fraction'; a fractional power means 'take that root' instead of multiplying."
+      workedExamplesFr: [
+        { problem: "Écris 2^-3 sous forme de fraction.", steps: ["2^-3 = 1/2^3 = 1/8."], answer: "1/8" },
+        { problem: "Que vaut 27^(1/3) ?", steps: ["Cela signifie la racine cubique de 27.", "3 x 3 x 3 = 27."], answer: "3" }
+      ],
+      audioScript: "Negative means 'flip it into a fraction'; a fractional power means 'take that root' instead of multiplying.",
+      audioScriptFr: "Négatif veut dire « transformer en fraction » ; une puissance fractionnaire veut dire « prendre cette racine » au lieu de multiplier."
     },
     {
       order: 3,
       title: "Significant figures and estimating",
+      titleFr: "Les chiffres significatifs et l'estimation",
       concept: "Rounding numbers to a given number of significant figures and using rounding to estimate calculations",
+      conceptFr: "Arrondir des nombres à un nombre donné de chiffres significatifs et utiliser l'arrondi pour estimer des calculs",
       representation: "abstract",
       visualAid: "none",
       ageBandStyle: "mature",
@@ -1384,18 +2055,28 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "A **significant figure** is a digit that contributes to a number's precision, starting from the first non-zero digit. Rounding to a given number of significant figures keeps that many digits and rounds the rest away.\n\n" +
         "You can estimate the answer to a calculation by rounding each number to 1 significant figure first, then working it out.",
+      explanationMdFr:
+        "Un **chiffre significatif** est un chiffre qui contribue à la précision d'un nombre, en commençant par le premier chiffre non nul. Arrondir à un nombre donné de chiffres significatifs garde ce nombre de chiffres et arrondit le reste.\n\n" +
+        "Tu peux estimer le résultat d'un calcul en arrondissant d'abord chaque nombre à 1 chiffre significatif, puis en le calculant.",
       workedExamples: [
         { problem: "Round 4,872 to 2 significant figures.", steps: ["Keep the first two digits: 4 and 8.", "Look at the next digit (7) to round up."], answer: "4,900" },
         { problem: "Estimate 38 x 21 by rounding each number to 1 significant figure.", steps: ["38 rounds to 40.", "21 rounds to 20."], answer: "800" }
       ],
-      audioScript: "Count significant figures from the first non-zero digit, and use rounded numbers to get a quick, sensible estimate."
+      workedExamplesFr: [
+        { problem: "Arrondis 4 872 à 2 chiffres significatifs.", steps: ["Garde les deux premiers chiffres : 4 et 8.", "Regarde le chiffre suivant (7) pour arrondir vers le haut."], answer: "4 900" },
+        { problem: "Estime 38 x 21 en arrondissant chaque nombre à 1 chiffre significatif.", steps: ["38 s'arrondit à 40.", "21 s'arrondit à 20."], answer: "800" }
+      ],
+      audioScript: "Count significant figures from the first non-zero digit, and use rounded numbers to get a quick, sensible estimate.",
+      audioScriptFr: "Compte les chiffres significatifs à partir du premier chiffre non nul, et utilise des nombres arrondis pour obtenir une estimation rapide et raisonnable."
     }
   ],
   Y9L2: [
     {
       order: 1,
       title: "Direct and inverse proportion",
+      titleFr: "La proportionnalité directe et inverse",
       concept: "Distinguishing between quantities that increase together (direct) and quantities where one increases as the other decreases (inverse)",
+      conceptFr: "Distinguer les quantités qui augmentent ensemble (directe) des quantités où l'une augmente quand l'autre diminue (inverse)",
       representation: "abstract",
       visualAid: "none",
       ageBandStyle: "mature",
@@ -1403,16 +2084,26 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "In **direct proportion**, both quantities scale together — double one, and the other doubles too (like cost and quantity bought).\n\n" +
         "In **inverse proportion**, one quantity increases as the other decreases — double the workers, and the job takes half the time.",
+      explanationMdFr:
+        "En **proportionnalité directe**, les deux quantités varient ensemble — double l'une, et l'autre double aussi (comme le coût et la quantité achetée).\n\n" +
+        "En **proportionnalité inverse**, une quantité augmente quand l'autre diminue — double le nombre d'ouvriers, et le travail prend deux fois moins de temps.",
       workedExamples: [
         { problem: "6 pens cost £3. How much do 10 pens cost?", steps: ["£3 ÷ 6 = £0.50 per pen.", "£0.50 x 10 = £5."], answer: "£5" },
         { problem: "4 painters take 12 days to paint a building. How long would 8 painters take?", steps: ["4 x 12 = 48 painter-days of work.", "48 ÷ 8 = 6 days."], answer: "6 days" }
       ],
-      audioScript: "Ask yourself: if one quantity goes up, does the other go up too (direct), or does it go down (inverse)?"
+      workedExamplesFr: [
+        { problem: "6 stylos coûtent 3 £. Combien coûtent 10 stylos ?", steps: ["3 £ ÷ 6 = 0,50 £ par stylo.", "0,50 £ x 10 = 5 £."], answer: "5 £" },
+        { problem: "4 peintres mettent 12 jours à peindre un bâtiment. Combien de temps mettraient 8 peintres ?", steps: ["4 x 12 = 48 jours-peintre de travail.", "48 ÷ 8 = 6 jours."], answer: "6 jours" }
+      ],
+      audioScript: "Ask yourself: if one quantity goes up, does the other go up too (direct), or does it go down (inverse)?",
+      audioScriptFr: "Demande-toi : si une quantité augmente, l'autre augmente-t-elle aussi (directe), ou diminue-t-elle (inverse) ?"
     },
     {
       order: 2,
       title: "Compound measures",
+      titleFr: "Les grandeurs composées",
       concept: "Using the formulae for speed, density and pressure, which combine two other measurements",
+      conceptFr: "Utiliser les formules de la vitesse, de la masse volumique et de la pression, qui combinent deux autres mesures",
       representation: "abstract",
       visualAid: "none",
       ageBandStyle: "mature",
@@ -1420,16 +2111,26 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "A **compound measure** combines two quantities: speed = distance ÷ time, density = mass ÷ volume, and pressure = force ÷ area.\n\n" +
         "You can rearrange each formula to find any of the three quantities, as long as you know the other two.",
+      explanationMdFr:
+        "Une **grandeur composée** combine deux quantités : vitesse = distance ÷ temps, masse volumique = masse ÷ volume, et pression = force ÷ aire.\n\n" +
+        "Tu peux réarranger chaque formule pour trouver n'importe laquelle des trois quantités, du moment que tu connais les deux autres.",
       workedExamples: [
         { problem: "A cyclist travels 45 miles in 3 hours. What is their average speed?", steps: ["45 ÷ 3 = 15."], answer: "15 mph" },
         { problem: "An object has a mass of 80g and a volume of 20cm³. What is its density?", steps: ["80 ÷ 20 = 4."], answer: "4 g/cm³" }
       ],
-      audioScript: "All three compound measures use the same shape of formula: one quantity divided by another."
+      workedExamplesFr: [
+        { problem: "Un cycliste parcourt 45 miles en 3 heures. Quelle est sa vitesse moyenne ?", steps: ["45 ÷ 3 = 15."], answer: "15 mph" },
+        { problem: "Un objet a une masse de 80 g et un volume de 20 cm³. Quelle est sa masse volumique ?", steps: ["80 ÷ 20 = 4."], answer: "4 g/cm³" }
+      ],
+      audioScript: "All three compound measures use the same shape of formula: one quantity divided by another.",
+      audioScriptFr: "Les trois grandeurs composées utilisent la même forme de formule : une quantité divisée par une autre."
     },
     {
       order: 3,
       title: "Growth and decay",
+      titleFr: "La croissance et la décroissance",
       concept: "Setting up and solving problems where a quantity grows or shrinks by a percentage, possibly over several steps",
+      conceptFr: "Mettre en place et résoudre des problèmes où une quantité augmente ou diminue d'un pourcentage, éventuellement sur plusieurs étapes",
       representation: "abstract",
       visualAid: "none",
       ageBandStyle: "mature",
@@ -1437,74 +2138,115 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "**Growth** means a quantity increases by a percentage; **decay** means it decreases. Over several time periods, apply the percentage change again each time — this is called compound growth or decay.\n\n" +
         "Always apply the percentage to the most recent value, not the original starting value.",
+      explanationMdFr:
+        "La **croissance** signifie qu'une quantité augmente d'un pourcentage ; la **décroissance** signifie qu'elle diminue. Sur plusieurs périodes, applique le changement en pourcentage à nouveau à chaque fois — on appelle cela la croissance ou décroissance composée.\n\n" +
+        "Applique toujours le pourcentage à la valeur la plus récente, pas à la valeur de départ d'origine.",
       workedExamples: [
         { problem: "A population of 200 grows by 10% each year. What is it after 2 years?", steps: ["Year 1: 200 + 10% = 220.", "Year 2: 220 + 10% = 242."], answer: "242" },
         { problem: "A car worth £8,000 loses 25% of its value in a year. What is it worth after one year?", steps: ["25% of 8,000 = 2,000.", "8,000 - 2,000 = 6,000."], answer: "£6,000" }
       ],
-      audioScript: "For growth or decay over several years, apply the percentage change to the newest value each time, not the original."
+      workedExamplesFr: [
+        { problem: "Une population de 200 augmente de 10 % chaque année. Que vaut-elle après 2 ans ?", steps: ["Année 1 : 200 + 10 % = 220.", "Année 2 : 220 + 10 % = 242."], answer: "242" },
+        { problem: "Une voiture valant 8 000 £ perd 25 % de sa valeur en un an. Combien vaut-elle après un an ?", steps: ["25 % de 8 000 = 2 000.", "8 000 - 2 000 = 6 000."], answer: "6 000 £" }
+      ],
+      audioScript: "For growth or decay over several years, apply the percentage change to the newest value each time, not the original.",
+      audioScriptFr: "Pour une croissance ou décroissance sur plusieurs années, applique le changement en pourcentage à la valeur la plus récente à chaque fois, pas à celle de départ."
     }
   ],
   Y10L1: [
     {
       order: 1,
       title: "Upper and lower bounds",
+      titleFr: "Les bornes supérieures et inférieures",
       concept: "Finding the range of possible true values behind a rounded measurement",
+      conceptFr: "Trouver l'étendue des valeurs réelles possibles derrière une mesure arrondie",
       representation: "abstract",
       visualAid: "number-line",
       ageBandStyle: "mature",
       objectiveCodes: ["Y10-L1-1"],
       explanationMd:
         "When a measurement is rounded, the true value could be anywhere within half a unit either side. This gives an **upper bound** and a **lower bound**.",
+      explanationMdFr:
+        "Quand une mesure est arrondie, la valeur réelle pourrait se situer n'importe où dans une demi-unité de chaque côté. Cela donne une **borne supérieure** et une **borne inférieure**.",
       workedExamples: [
         { problem: "A length is 34 cm to the nearest cm. Find the bounds.", steps: ["Half a unit is 0.5 cm.", "Lower bound: 34 - 0.5 = 33.5 cm.", "Upper bound: 34 + 0.5 = 34.5 cm."], answer: "33.5 cm to 34.5 cm" }
       ],
-      audioScript: "Rounded measurements hide a small range of possible true values — let's find the bounds."
+      workedExamplesFr: [
+        { problem: "Une longueur est de 34 cm au cm près. Trouve les bornes.", steps: ["Une demi-unité est 0,5 cm.", "Borne inférieure : 34 - 0,5 = 33,5 cm.", "Borne supérieure : 34 + 0,5 = 34,5 cm."], answer: "de 33,5 cm à 34,5 cm" }
+      ],
+      audioScript: "Rounded measurements hide a small range of possible true values — let's find the bounds.",
+      audioScriptFr: "Les mesures arrondies cachent une petite étendue de valeurs réelles possibles — trouvons les bornes."
     },
     {
       order: 2,
       title: "Laws of indices",
+      titleFr: "Les lois des indices",
       concept: "Using the multiplication, division and power laws of indices",
+      conceptFr: "Utiliser les lois de multiplication, de division et de puissance des indices",
       representation: "abstract",
       visualAid: "algebra-tile",
       ageBandStyle: "mature",
       objectiveCodes: ["Y10-L1-2"],
       explanationMd:
         "When multiplying powers of the same base, **add** the indices. When dividing, **subtract** them. When raising a power to a power, **multiply** them.",
+      explanationMdFr:
+        "Quand on multiplie des puissances de même base, **additionne** les indices. Quand on divise, **soustrais**-les. Quand on élève une puissance à une puissance, **multiplie**-les.",
       workedExamples: [
         { problem: "3^4 x 3^2 = ?", steps: ["Same base, multiplying.", "Add the indices: 4 + 2 = 6."], answer: "3^6" },
         { problem: "(2^3)^2 = ?", steps: ["Power of a power.", "Multiply the indices: 3 x 2 = 6."], answer: "2^6" }
       ],
-      audioScript: "Same base, multiplying: add the powers. Let's work through the index laws together."
+      workedExamplesFr: [
+        { problem: "3^4 x 3^2 = ?", steps: ["Même base, on multiplie.", "Additionne les indices : 4 + 2 = 6."], answer: "3^6" },
+        { problem: "(2^3)^2 = ?", steps: ["Puissance d'une puissance.", "Multiplie les indices : 3 x 2 = 6."], answer: "2^6" }
+      ],
+      audioScript: "Same base, multiplying: add the powers. Let's work through the index laws together.",
+      audioScriptFr: "Même base, en multipliant : additionne les puissances. Travaillons ensemble les lois des indices."
     },
     {
       order: 3,
       title: "Standard form",
+      titleFr: "La notation scientifique",
       concept: "Writing very large or very small numbers as A x 10^n",
+      conceptFr: "Écrire des nombres très grands ou très petits sous la forme A x 10^n",
       representation: "abstract",
       visualAid: "none",
       ageBandStyle: "mature",
       objectiveCodes: ["Y10-L1-3"],
       explanationMd:
         "Standard form writes a number as A x 10^n, where A is between 1 and 10. This is a compact way to write very large or very small numbers.",
+      explanationMdFr:
+        "La notation scientifique écrit un nombre sous la forme A x 10^n, où A est compris entre 1 et 10. C'est une façon compacte d'écrire des nombres très grands ou très petits.",
       workedExamples: [
         { problem: "Write 45,000 in standard form.", steps: ["Move the decimal point until one non-zero digit remains before it: 4.5.", "Count how many places it moved: 4.", "45,000 = 4.5 x 10^4."], answer: "4.5 x 10^4" }
       ],
-      audioScript: "Standard form is a tidy way to write very big or very small numbers."
+      workedExamplesFr: [
+        { problem: "Écris 45 000 en notation scientifique.", steps: ["Déplace la virgule jusqu'à ce qu'il reste un seul chiffre non nul avant elle : 4,5.", "Compte de combien de positions elle s'est déplacée : 4.", "45 000 = 4,5 x 10^4."], answer: "4,5 x 10^4" }
+      ],
+      audioScript: "Standard form is a tidy way to write very big or very small numbers.",
+      audioScriptFr: "La notation scientifique est une façon soignée d'écrire des nombres très grands ou très petits."
     },
     {
       order: 4,
       title: "Simplifying surds (Higher)",
+      titleFr: "Simplifier les racines (niveau avancé)",
       concept: "Simplifying square roots into the form a√b",
+      conceptFr: "Simplifier des racines carrées sous la forme a√b",
       representation: "abstract",
       visualAid: "none",
       ageBandStyle: "mature",
       objectiveCodes: ["Y10-L1-4"],
       explanationMd:
         "A surd is a root that doesn't simplify to a whole number, like √12. We simplify by finding the largest square number that divides in.",
+      explanationMdFr:
+        "Une racine irrationnelle est une racine qui ne se simplifie pas en un nombre entier, comme √12. On simplifie en trouvant le plus grand nombre carré qui divise l'intérieur.",
       workedExamples: [
         { problem: "Simplify √12.", steps: ["12 = 4 x 3, and 4 is a square number.", "√12 = √4 x √3 = 2√3."], answer: "2√3" }
       ],
-      audioScript: "Look for the largest square factor hiding inside the surd."
+      workedExamplesFr: [
+        { problem: "Simplifie √12.", steps: ["12 = 4 x 3, et 4 est un nombre carré.", "√12 = √4 x √3 = 2√3."], answer: "2√3" }
+      ],
+      audioScript: "Look for the largest square factor hiding inside the surd.",
+      audioScriptFr: "Cherche le plus grand facteur carré caché à l'intérieur de la racine."
     }
   ]
 };

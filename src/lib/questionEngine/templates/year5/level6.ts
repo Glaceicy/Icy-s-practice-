@@ -12,6 +12,7 @@ import type { QuestionTemplateDef } from "../../types";
 // display, via the fmt*dp helpers below — this avoids floating-point
 // arithmetic entirely, so there is never a ".300000004"-style artifact.
 const CTX = ["people", "trees", "books", "tickets", "bricks", "seeds", "coins", "stars"];
+const CTX_FR = ["personnes", "arbres", "livres", "billets", "briques", "graines", "pièces", "étoiles"];
 
 function fmt1dp(tenths: number): string {
   const whole = Math.floor(tenths / 10);
@@ -56,6 +57,18 @@ export const level: QuestionTemplateDef[] = [
         hints: ["Compare the whole number part first, then the tenths, then the hundredths, then the thousandths."]
       };
     },
+    fr: {
+      translate: (drawn) => {
+        const m = drawn.prompt.match(/^Which is bigger, ([\d.]+) or ([\d.]+)\?$/);
+        const labelA = m ? m[1] : "";
+        const labelB = m ? m[2] : "";
+        return {
+          prompt: `Lequel est le plus grand, ${labelA} ou ${labelB} ?`,
+          explanationSteps: [`Compare chiffre par chiffre après la virgule, en commençant par les dixièmes. ${drawn.correctLabel} est le plus grand.`],
+          hints: ["Compare d'abord la partie entière, puis les dixièmes, puis les centièmes, puis les millièmes."]
+        };
+      }
+    },
     declaredVariationSpace: 9999 * 9998
   }),
   categoricalPoolTemplate({
@@ -80,6 +93,18 @@ export const level: QuestionTemplateDef[] = [
         hints: ["Write both decimals with the same number of decimal places before comparing (add a zero if needed)."]
       };
     },
+    fr: {
+      translate: (drawn) => {
+        const m = drawn.prompt.match(/^Which is bigger, (0\.\d) or (0\.\d{2})\?$/);
+        const shortLabel = m ? m[1] : "";
+        const longLabel = m ? m[2] : "";
+        return {
+          prompt: `Lequel est le plus grand, ${shortLabel} ou ${longLabel} ?`,
+          explanationSteps: [`${shortLabel} = ${shortLabel}0 lorsqu'il est écrit avec deux décimales. En comparant ${shortLabel}0 et ${longLabel}, on voit que ${drawn.correctLabel} est plus grand — avoir plus de chiffres après la virgule ne signifie pas que le nombre est plus grand.`],
+          hints: ["Écris les deux nombres décimaux avec le même nombre de décimales avant de les comparer (ajoute un zéro si besoin)."]
+        };
+      }
+    },
     declaredVariationSpace: 9 * 90 * 20
   }),
   orderingTemplate({
@@ -93,6 +118,11 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["Drag these decimals into order, smallest first."],
     explain: () => ["Compare the whole number part first, then the tenths digit, then the hundredths digit."],
     hints: () => ["Which decimal has the smallest whole number part? If they're the same, compare the tenths digit."],
+    fr: {
+      promptTemplates: ["Fais glisser ces nombres décimaux dans l'ordre, du plus petit au plus grand."],
+      explain: () => ["Compare d'abord la partie entière, puis le chiffre des dixièmes, puis celui des centièmes."],
+      hints: () => ["Quel nombre décimal a la plus petite partie entière ? S'ils sont égaux, compare le chiffre des dixièmes."]
+    },
     declaredVariationSpace: 500000
   }),
   categoricalPoolTemplate({
@@ -111,6 +141,21 @@ export const level: QuestionTemplateDef[] = [
         hints: ["Compare the whole number part first, then the decimal digits from left to right."]
       };
     },
+    fr: {
+      translate: (drawn) => {
+        const m = drawn.prompt.match(/^([\d.]+) is greater than ([\d.]+)\.$/);
+        const a = m ? m[1] : "";
+        const b = m ? m[2] : "";
+        const isTrue = drawn.correctLabel === "True";
+        return {
+          prompt: `${a} est plus grand que ${b}.`,
+          correctLabel: isTrue ? "Vrai" : "Faux",
+          distractorLabels: [isTrue ? "Faux" : "Vrai"],
+          explanationSteps: [isTrue ? `${a} est plus grand, donc l'affirmation est vraie.` : `${a} n'est pas plus grand que ${b}, donc l'affirmation est fausse.`],
+          hints: ["Compare d'abord la partie entière, puis les chiffres après la virgule de gauche à droite."]
+        };
+      }
+    },
     declaredVariationSpace: 999 * 998 * 2
   }),
   arithmeticTemplate({
@@ -125,6 +170,16 @@ export const level: QuestionTemplateDef[] = [
     ],
     explain: (v, r) => [`The first digit after the decimal point in ${fmt2dp(v[0]!)} is the tenths digit: ${r}.`],
     hints: () => ["The tenths digit is the first digit right after the decimal point."],
+    fr: {
+      contextPool: CTX_FR,
+      promptTemplates: [
+        "Dans le nombre décimal {decimal}, quelle est la valeur du chiffre des dixièmes (le premier chiffre après la virgule) ?",
+        "Quel chiffre se trouve à la place des dixièmes dans {decimal} ?",
+        "En comptant les {ctx} : quel est le chiffre des dixièmes de {decimal} ?"
+      ],
+      explain: (v, r) => [`Le premier chiffre après la virgule dans ${fmt2dp(v[0]!)} est le chiffre des dixièmes : ${r}.`],
+      hints: () => ["Le chiffre des dixièmes est le premier chiffre juste après la virgule."]
+    },
     declaredVariationSpace: 999 * 3
   }),
   arithmeticTemplate({
@@ -139,6 +194,16 @@ export const level: QuestionTemplateDef[] = [
     ],
     explain: (v, r) => [`The second digit after the decimal point in ${fmt2dp(v[0]!)} is the hundredths digit: ${r}.`],
     hints: () => ["The hundredths digit is the second digit after the decimal point."],
+    fr: {
+      contextPool: CTX_FR,
+      promptTemplates: [
+        "Dans le nombre décimal {decimal}, quelle est la valeur du chiffre des centièmes (le deuxième chiffre après la virgule) ?",
+        "Quel chiffre se trouve à la place des centièmes dans {decimal} ?",
+        "En comptant les {ctx} : quel est le chiffre des centièmes de {decimal} ?"
+      ],
+      explain: (v, r) => [`Le deuxième chiffre après la virgule dans ${fmt2dp(v[0]!)} est le chiffre des centièmes : ${r}.`],
+      hints: () => ["Le chiffre des centièmes est le deuxième chiffre après la virgule."]
+    },
     declaredVariationSpace: 999 * 3
   }),
   arithmeticTemplate({
@@ -153,6 +218,16 @@ export const level: QuestionTemplateDef[] = [
     ],
     explain: (v, r) => [`The third digit after the decimal point in ${fmt3dp(v[0]!)} is the thousandths digit: ${r}.`],
     hints: () => ["The thousandths digit is the third digit after the decimal point."],
+    fr: {
+      contextPool: CTX_FR,
+      promptTemplates: [
+        "Dans le nombre décimal {decimal}, quelle est la valeur du chiffre des millièmes (le troisième chiffre après la virgule) ?",
+        "Quel chiffre se trouve à la place des millièmes dans {decimal} ?",
+        "En comptant les {ctx} : quel est le chiffre des millièmes de {decimal} ?"
+      ],
+      explain: (v, r) => [`Le troisième chiffre après la virgule dans ${fmt3dp(v[0]!)} est le chiffre des millièmes : ${r}.`],
+      hints: () => ["Le chiffre des millièmes est le troisième chiffre après la virgule."]
+    },
     declaredVariationSpace: 9999 * 3
   }),
 
@@ -165,6 +240,11 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["{pct}% = ?/100", "Write {pct}% as a fraction out of 100."],
     explain: (v, r) => [`${v[0]}% means ${v[0]} out of 100, written as the fraction ${r}.`],
     hints: () => ["Per cent means 'out of 100' — the percentage is always the numerator over 100."],
+    fr: {
+      promptTemplates: ["{pct}% = ?/100", "Écris {pct}% sous forme de fraction sur 100."],
+      explain: (v, r) => [`${v[0]}% signifie ${v[0]} sur 100, écrit sous forme de fraction ${r}.`],
+      hints: () => ["Pour cent signifie « sur 100 » — le pourcentage est toujours le numérateur sur 100."]
+    },
     declaredVariationSpace: 99 * 2
   }),
   categoricalPoolTemplate({
@@ -183,6 +263,21 @@ export const level: QuestionTemplateDef[] = [
         hints: ["Per cent always means 'out of 100', whatever number comes before the % sign."]
       };
     },
+    fr: {
+      translate: (drawn) => {
+        const m = drawn.prompt.match(/^(\d+)% means \d+ parts out of (\d+)\.$/);
+        const a = m ? m[1] : "";
+        const shownDenom = m ? m[2] : "";
+        const isTrue = drawn.correctLabel === "True";
+        return {
+          prompt: `${a} % signifie ${a} parts sur ${shownDenom}.`,
+          correctLabel: isTrue ? "Vrai" : "Faux",
+          distractorLabels: [isTrue ? "Faux" : "Vrai"],
+          explanationSteps: [`Le symbole % signifie toujours « sur 100 », donc ${a} % correspond à ${a} parts sur 100.`],
+          hints: ["Pour cent signifie toujours « sur 100 », quel que soit le nombre devant le signe %."]
+        };
+      }
+    },
     declaredVariationSpace: 99 * 2 * 2
   }),
   arithmeticTemplate({
@@ -197,6 +292,15 @@ export const level: QuestionTemplateDef[] = [
     ],
     explain: (v, r) => [`${v[0]} shaded out of 100 total squares is ${r}.`],
     hints: () => ["The percentage shaded is just the number of shaded squares, since there are 100 squares in total."],
+    fr: {
+      promptTemplates: [
+        "Une grille de 10x10 a {count} cases sur 100 coloriées. Quel pourcentage est colorié ?",
+        "Sur une grille de 10x10 de 100 cases, {count} sont coloriées. Quel pourcentage cela représente-t-il ?",
+        "{count} cases sur une grille de 100 cases sont coloriées. Quel pourcentage est colorié ?"
+      ],
+      explain: (v, r) => [`${v[0]} coloriées sur 100 cases au total, cela fait ${r}.`],
+      hints: () => ["Le pourcentage colorié est simplement le nombre de cases coloriées, puisqu'il y a 100 cases au total."]
+    },
     distractorSpread: 10,
     declaredVariationSpace: 99 * 3
   }),
@@ -220,6 +324,17 @@ export const level: QuestionTemplateDef[] = [
         hints: ["Write the percentage as a fraction over 100, then simplify by dividing top and bottom by the same number."]
       };
     },
+    fr: {
+      translate: (drawn) => {
+        const m = drawn.prompt.match(/^Write (\d+)% as a fraction in its simplest form\.$/);
+        const pct = m ? m[1] : "";
+        return {
+          prompt: `Écris ${pct}% sous forme de fraction irréductible.`,
+          explanationSteps: [`${pct}% = ${pct}/100, ce qui se simplifie en ${drawn.correctLabel}.`],
+          hints: ["Écris le pourcentage sous forme de fraction sur 100, puis simplifie en divisant le haut et le bas par le même nombre."]
+        };
+      }
+    },
     declaredVariationSpace: 8 * 500
   }),
   categoricalPoolTemplate({
@@ -241,6 +356,20 @@ export const level: QuestionTemplateDef[] = [
         hints: ["A percentage is just another way of writing a fraction out of 100."]
       };
     },
+    fr: {
+      translate: (drawn) => {
+        const m = drawn.prompt.match(/^Which is bigger, (\d+%) or (\d+\/100)\?$/);
+        const labelA = m?.[1] ?? "";
+        const labelB = m?.[2] ?? "";
+        const a = labelA.replace("%", "");
+        const b = labelB.replace("/100", "");
+        return {
+          prompt: `Lequel est le plus grand, ${labelA} ou ${labelB} ?`,
+          explanationSteps: [`${labelA} signifie ${a} sur 100. En comparant ${a} sur 100 et ${b} sur 100, on voit que ${drawn.correctLabel} est le plus grand.`],
+          hints: ["Un pourcentage est simplement une autre façon d'écrire une fraction sur 100."]
+        };
+      }
+    },
     declaredVariationSpace: 99 * 98
   }),
   arithmeticTemplate({
@@ -255,6 +384,15 @@ export const level: QuestionTemplateDef[] = [
     ],
     explain: (v, r) => [`100 - ${v[0]} = ${100 - v[0]!}, so ${r} of the grid is not shaded.`],
     hints: () => ["Subtract the shaded percentage from 100%."],
+    fr: {
+      promptTemplates: [
+        "{count} cases sur 100 dans une grille sont coloriées. Quel pourcentage n'est PAS colorié ?",
+        "Dans une grille de 100 cases, {count} sont coloriées. Quel pourcentage de la grille reste non colorié ?",
+        "Une grille de 100 cases a {count} cases coloriées. Quel pourcentage reste vierge ?"
+      ],
+      explain: (v, r) => [`100 - ${v[0]} = ${100 - v[0]!}, donc ${r} de la grille n'est pas colorié.`],
+      hints: () => ["Soustrais le pourcentage colorié de 100 %."]
+    },
     distractorSpread: 10,
     declaredVariationSpace: 99 * 3
   }),
@@ -267,6 +405,12 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["In a survey of 100 people, {count} said they {ctx}. What percentage is that?"],
     explain: (v, r) => [`${v[0]} out of 100 people is ${r}.`],
     hints: () => ["A number out of 100 converts directly to a percentage."],
+    fr: {
+      contextPool: ["préfèrent la glace au chocolat", "préfèrent le football aux autres sports", "vont à l'école à pied", "ont un animal de compagnie à la maison", "lisent tous les jours", "jouent d'un instrument de musique"],
+      promptTemplates: ["Dans un sondage auprès de 100 personnes, {count} ont dit qu'elles {ctx}. Quel pourcentage cela représente-t-il ?"],
+      explain: (v, r) => [`${v[0]} sur 100 personnes, cela fait ${r}.`],
+      hints: () => ["Un nombre sur 100 se convertit directement en pourcentage."]
+    },
     declaredVariationSpace: 99 * 6
   }),
 
@@ -279,6 +423,12 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["Round {decimal} to the nearest whole number.", "What is {decimal} rounded to the nearest whole number?", "Counting {ctx}: round {decimal} to the nearest whole number."],
     explain: (v, r) => [`Look at the tenths digit of ${fmt2dp(v[0]!)}.`, `${fmt2dp(v[0]!)} rounds to ${r}.`],
     hints: () => ["If the tenths digit is 5 or more, round up; otherwise round down."],
+    fr: {
+      contextPool: CTX_FR,
+      promptTemplates: ["Arrondis {decimal} au nombre entier le plus proche.", "Combien fait {decimal} arrondi au nombre entier le plus proche ?", "En comptant les {ctx} : arrondis {decimal} au nombre entier le plus proche."],
+      explain: (v, r) => [`Regarde le chiffre des dixièmes de ${fmt2dp(v[0]!)}.`, `${fmt2dp(v[0]!)} arrondi donne ${r}.`],
+      hints: () => ["Si le chiffre des dixièmes est 5 ou plus, arrondis vers le haut ; sinon vers le bas."]
+    },
     declaredVariationSpace: 999 * 3
   }),
   arithmeticTemplate({
@@ -290,6 +440,12 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["Round {decimal} to the nearest tenth (one decimal place).", "What is {decimal} rounded to one decimal place?", "Counting {ctx}: round {decimal} to the nearest tenth."],
     explain: (v, r) => [`Look at the hundredths digit of ${fmt2dp(v[0]!)}.`, `${fmt2dp(v[0]!)} rounds to ${r}.`],
     hints: () => ["If the hundredths digit is 5 or more, round the tenths digit up; otherwise leave it."],
+    fr: {
+      contextPool: CTX_FR,
+      promptTemplates: ["Arrondis {decimal} au dixième près (une décimale).", "Combien fait {decimal} arrondi à une décimale ?", "En comptant les {ctx} : arrondis {decimal} au dixième près."],
+      explain: (v, r) => [`Regarde le chiffre des centièmes de ${fmt2dp(v[0]!)}.`, `${fmt2dp(v[0]!)} arrondi donne ${r}.`],
+      hints: () => ["Si le chiffre des centièmes est 5 ou plus, arrondis le chiffre des dixièmes vers le haut ; sinon laisse-le tel quel."]
+    },
     declaredVariationSpace: 999 * 3
   }),
   arithmeticTemplate({
@@ -300,6 +456,11 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["What is {decimal} rounded to the nearest whole number?"],
     explain: (v, r) => [`${fmt2dp(v[0]!)} rounds to ${r}.`],
     hints: () => ["Look at the tenths digit to decide whether to round up or down."],
+    fr: {
+      promptTemplates: ["Combien fait {decimal} arrondi au nombre entier le plus proche ?"],
+      explain: (v, r) => [`${fmt2dp(v[0]!)} arrondi donne ${r}.`],
+      hints: () => ["Regarde le chiffre des dixièmes pour décider s'il faut arrondir vers le haut ou vers le bas."]
+    },
     distractorSpread: 2,
     declaredVariationSpace: 999
   }),
@@ -318,6 +479,21 @@ export const level: QuestionTemplateDef[] = [
         explanationSteps: [`${fmt2dp(n)} rounds to ${correctRounded}.`],
         hints: ["Look at the tenths digit to decide whether to round up or down."]
       };
+    },
+    fr: {
+      translate: (drawn) => {
+        const m = drawn.prompt.match(/^([\d.]+) rounded to the nearest whole number is (-?\d+)\.$/);
+        const decimal = m?.[1] ?? "";
+        const shown = m?.[2] ?? "";
+        const isTrue = drawn.correctLabel === "True";
+        return {
+          prompt: `${decimal} arrondi au nombre entier le plus proche donne ${shown}.`,
+          correctLabel: isTrue ? "Vrai" : "Faux",
+          distractorLabels: [isTrue ? "Faux" : "Vrai"],
+          explanationSteps: [`${decimal} arrondi donne ${Math.round(parseFloat(decimal))}.`],
+          hints: ["Regarde le chiffre des dixièmes pour décider s'il faut arrondir vers le haut ou vers le bas."]
+        };
+      }
     },
     declaredVariationSpace: 999 * 2
   }),
@@ -349,6 +525,17 @@ export const level: QuestionTemplateDef[] = [
         hints: ["Look at the hundredths digit to decide whether to round the tenths digit up or down."]
       };
     },
+    fr: {
+      translate: (drawn) => {
+        const m = drawn.prompt.match(/^What is ([\d.]+) rounded to one decimal place\?$/);
+        const decimal = m ? m[1] : "";
+        return {
+          prompt: `Combien fait ${decimal} arrondi à une décimale ?`,
+          explanationSteps: [`${decimal} arrondi donne ${drawn.correctLabel}.`],
+          hints: ["Regarde le chiffre des centièmes pour décider s'il faut arrondir le chiffre des dixièmes vers le haut ou vers le bas."]
+        };
+      }
+    },
     declaredVariationSpace: 999
   }),
   arithmeticTemplate({
@@ -360,6 +547,12 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["{ctx} measures {decimal} m. Rounded to the nearest whole metre, how long is it?"],
     explain: (v, r) => [`${fmt2dp(v[0]!)} rounds to ${r} m.`],
     hints: () => ["Look at the tenths digit to decide the rounding direction."],
+    fr: {
+      contextPool: ["Un ruban", "Une allée de jardin", "Un morceau de corde", "Un rideau", "Une planche de bois", "Une écharpe"],
+      promptTemplates: ["{ctx} mesure {decimal} m. Arrondi au mètre entier le plus proche, quelle est sa longueur ?"],
+      explain: (v, r) => [`${fmt2dp(v[0]!)} arrondi donne ${r} m.`],
+      hints: () => ["Regarde le chiffre des dixièmes pour décider du sens de l'arrondi."]
+    },
     declaredVariationSpace: 900 * 6
   }),
   arithmeticTemplate({
@@ -372,6 +565,12 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["{ctx} weighs {decimal} kg. Rounded to the nearest tenth of a kilogram, what is its weight?"],
     explain: (v, r) => [`${fmt2dp(v[0]!)} rounds to ${r} kg.`],
     hints: () => ["Look at the hundredths digit to decide whether to round the tenths digit up or down."],
+    fr: {
+      contextPool: ["Un sac de farine", "Un colis", "Un sac de pommes", "Un chiot", "Une boîte de céréales", "Un sac de riz"],
+      promptTemplates: ["{ctx} pèse {decimal} kg. Arrondi au dixième de kilogramme près, quel est son poids ?"],
+      explain: (v, r) => [`${fmt2dp(v[0]!)} arrondi donne ${r} kg.`],
+      hints: () => ["Regarde le chiffre des centièmes pour décider si le chiffre des dixièmes doit être arrondi vers le haut ou vers le bas."]
+    },
     declaredVariationSpace: 900 * 6
   })
 ];

@@ -6,6 +6,7 @@ import type { QuestionTemplateDef } from "../../types";
 // covering all three objectives (Y5-L4-1 factors/multiples, Y5-L4-2 primes
 // up to 100, Y5-L4-3 square and cube numbers).
 const CTX = ["people", "trees", "books", "tickets", "bricks", "seeds", "coins", "stars"];
+const CTX_FR = ["personnes", "arbres", "livres", "billets", "briques", "graines", "pièces", "étoiles"];
 
 function isPrimeNum(n: number): boolean {
   if (n < 2) return false;
@@ -34,6 +35,21 @@ export const level: QuestionTemplateDef[] = [
         hints: ["A multiple of a number is what you get when you count up in steps of that number."]
       };
     },
+    fr: {
+      translate: (drawn) => {
+        const match = drawn.prompt.match(/^(\d+) is a multiple of (\d+)\./);
+        const a = match ? match[1]! : "";
+        const base = match ? match[2]! : "";
+        const truth = drawn.correctLabel === "True";
+        return {
+          prompt: `${a} est un multiple de ${base}.`,
+          correctLabel: truth ? "Vrai" : "Faux",
+          distractorLabels: [truth ? "Faux" : "Vrai"],
+          explanationSteps: [truth ? `${a} ÷ ${base} = ${Number(a) / Number(base)}, sans reste, donc ${a} est un multiple de ${base}.` : `${a} ÷ ${base} laisse un reste, donc ${a} n'est pas un multiple de ${base}.`],
+          hints: ["Un multiple d'un nombre est ce que l'on obtient en comptant par pas de ce nombre."]
+        };
+      }
+    },
     declaredVariationSpace: 19 * 14 * 2
   }),
   categoricalPoolTemplate({
@@ -54,6 +70,21 @@ export const level: QuestionTemplateDef[] = [
         hints: ["A factor divides exactly into a number, leaving no remainder."]
       };
     },
+    fr: {
+      translate: (drawn) => {
+        const match = drawn.prompt.match(/^(\d+) is a factor of (\d+)\./);
+        const testValue = match ? match[1]! : "";
+        const product = match ? match[2]! : "";
+        const truth = drawn.correctLabel === "True";
+        return {
+          prompt: `${testValue} est un facteur de ${product}.`,
+          correctLabel: truth ? "Vrai" : "Faux",
+          distractorLabels: [truth ? "Faux" : "Vrai"],
+          explanationSteps: [truth ? `${product} ÷ ${testValue} = ${Number(product) / Number(testValue)}, sans reste, donc ${testValue} est un facteur de ${product}.` : `${product} ne se divise pas exactement par ${testValue}, donc ce n'est pas un facteur.`],
+          hints: ["Un facteur divise exactement un nombre, sans laisser de reste."]
+        };
+      }
+    },
     declaredVariationSpace: 19 * 14 * 2
   }),
   arithmeticTemplate({
@@ -69,6 +100,11 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["How many factors does {a} have (including 1 and {a} itself)?", "Count the factors of {a}, including 1 and {a} itself."],
     explain: (v, r) => [`Listing every number from 1 to ${v[0]} that divides exactly into ${v[0]} gives ${r} factors.`],
     hints: () => ["Check every whole number from 1 up to the number itself to see if it divides exactly."],
+    fr: {
+      promptTemplates: ["Combien de facteurs {a} a-t-il (y compris 1 et {a} lui-même) ?", "Compte les facteurs de {a}, y compris 1 et {a} lui-même."],
+      explain: (v, r) => [`En listant tous les nombres de 1 à ${v[0]} qui divisent exactement ${v[0]}, on obtient ${r} facteurs.`],
+      hints: () => ["Vérifie chaque nombre entier de 1 jusqu'au nombre lui-même pour voir s'il divise exactement."]
+    },
     declaredVariationSpace: 200 * 2
   }),
   arithmeticTemplate({
@@ -79,6 +115,11 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["{a} x ___ = {product}. What is the missing factor?", "One factor pair of {product} is {a} and ___. What is the missing factor?"],
     explain: (v, r) => [`${v[0]! * r} ÷ ${v[0]} = ${r}, so the missing factor is ${r}.`],
     hints: (v) => [`Divide the product by ${v[0]} to find the other factor.`],
+    fr: {
+      promptTemplates: ["{a} x ___ = {product}. Quel est le facteur manquant ?", "Une paire de facteurs de {product} est {a} et ___. Quel est le facteur manquant ?"],
+      explain: (v, r) => [`${v[0]! * r} ÷ ${v[0]} = ${r}, donc le facteur manquant est ${r}.`],
+      hints: (v) => [`Divise le produit par ${v[0]} pour trouver l'autre facteur.`]
+    },
     declaredVariationSpace: 19 * 19 * 2
   }),
   categoricalPoolTemplate({
@@ -115,6 +156,18 @@ export const level: QuestionTemplateDef[] = [
         hints: [`Check which number divides exactly by ${base}.`]
       };
     },
+    fr: {
+      translate: (drawn) => {
+        const match = drawn.prompt.match(/multiple of (\d+)\?$/);
+        const base = match ? match[1]! : "";
+        const correct = drawn.correctLabel;
+        return {
+          prompt: `Lequel de ces nombres est un multiple de ${base} ?`,
+          explanationSteps: [`${correct} ÷ ${base} = ${Number(correct) / Number(base)}, sans reste.`],
+          hints: [`Vérifie quel nombre se divise exactement par ${base}.`]
+        };
+      }
+    },
     declaredVariationSpace: 13 * 9 * 200
   }),
   categoricalPoolTemplate({
@@ -148,6 +201,18 @@ export const level: QuestionTemplateDef[] = [
         hints: [`Check which number divides exactly into ${product}.`]
       };
     },
+    fr: {
+      translate: (drawn) => {
+        const match = drawn.prompt.match(/factor of (\d+)\?$/);
+        const product = match ? match[1]! : "";
+        const factor = drawn.correctLabel;
+        return {
+          prompt: `Lequel de ces nombres est un facteur de ${product} ?`,
+          explanationSteps: [`${product} ÷ ${factor} = ${Number(product) / Number(factor)}, sans reste.`],
+          hints: [`Vérifie quel nombre divise exactement ${product}.`]
+        };
+      }
+    },
     declaredVariationSpace: 14 * 11 * 400
   }),
 
@@ -167,6 +232,19 @@ export const level: QuestionTemplateDef[] = [
         hints: ["A prime number has exactly two factors: 1 and itself."]
       };
     },
+    fr: {
+      translate: (drawn) => {
+        const match = drawn.prompt.match(/\d+/);
+        const n = match ? match[0] : "";
+        const truth = drawn.correctLabel === "True";
+        const prompt = drawn.prompt.startsWith("The number") ? `Le nombre ${n} est premier.` : `${n} est un nombre premier.`;
+        return {
+          prompt,
+          explanationSteps: [truth ? `${n} a exactement deux facteurs, 1 et ${n}, donc il est premier.` : `${n} a des facteurs autres que 1 et lui-même, donc il n'est pas premier.`],
+          hints: ["Un nombre premier a exactement deux facteurs : 1 et lui-même."]
+        };
+      }
+    },
     declaredVariationSpace: 99 * 2 * 2
   }),
   categoricalPoolTemplate({
@@ -183,6 +261,19 @@ export const level: QuestionTemplateDef[] = [
         explanationSteps: [truth ? `${n} has factors other than just 1 and itself, so it is composite.` : `${n} has exactly two factors, 1 and itself, so it is prime, not composite.`],
         hints: ["A composite number has more than two factors; a prime number has exactly two."]
       };
+    },
+    fr: {
+      translate: (drawn) => {
+        const match = drawn.prompt.match(/\d+/);
+        const n = match ? match[0] : "";
+        const truth = drawn.correctLabel === "True";
+        const prompt = drawn.prompt.startsWith("The number") ? `Le nombre ${n} est composé.` : `${n} est un nombre composé (il a plus de deux facteurs).`;
+        return {
+          prompt,
+          explanationSteps: [truth ? `${n} a des facteurs autres que 1 et lui-même, donc il est composé.` : `${n} a exactement deux facteurs, 1 et lui-même, donc il est premier, pas composé.`],
+          hints: ["Un nombre composé a plus de deux facteurs ; un nombre premier en a exactement deux."]
+        };
+      }
     },
     declaredVariationSpace: 97 * 2 * 2
   }),
@@ -201,6 +292,16 @@ export const level: QuestionTemplateDef[] = [
         hints: ["A prime number has exactly two factors: 1 and itself."]
       };
     },
+    fr: {
+      translate: (drawn) => {
+        const prime = drawn.correctLabel;
+        return {
+          prompt: "Lequel de ces nombres est premier ?",
+          explanationSteps: [`${prime} a exactement deux facteurs, 1 et ${prime}, donc c'est le nombre premier.`],
+          hints: ["Un nombre premier a exactement deux facteurs : 1 et lui-même."]
+        };
+      }
+    },
     declaredVariationSpace: PRIMES_TO_100.length * 50000
   }),
   categoricalPoolTemplate({
@@ -218,6 +319,16 @@ export const level: QuestionTemplateDef[] = [
         hints: ["Every other number listed has exactly two factors — find the one that has more."]
       };
     },
+    fr: {
+      translate: (drawn) => {
+        const composite = drawn.correctLabel;
+        return {
+          prompt: "Lequel de ces nombres N'est PAS premier ?",
+          explanationSteps: [`${composite} a des facteurs autres que 1 et lui-même, donc il n'est pas premier.`],
+          hints: ["Chaque autre nombre de la liste a exactement deux facteurs — trouve celui qui en a plus."]
+        };
+      }
+    },
     declaredVariationSpace: COMPOSITES_TO_100.length * 15000
   }),
   arithmeticTemplate({
@@ -232,6 +343,11 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["How many prime numbers are there from 1 up to {a}?", "Counting from 1 to {a}, how many of the numbers are prime?"],
     explain: (v, r) => [`Checking every number from 2 up to ${v[0]} for exactly two factors gives ${r} prime numbers.`],
     hints: () => ["Remember 1 is not prime — start checking from 2."],
+    fr: {
+      promptTemplates: ["Combien de nombres premiers y a-t-il de 1 jusqu'à {a} ?", "En comptant de 1 à {a}, combien de ces nombres sont premiers ?"],
+      explain: (v, r) => [`En vérifiant chaque nombre de 2 à ${v[0]} pour exactement deux facteurs, on obtient ${r} nombres premiers.`],
+      hints: () => ["N'oublie pas que 1 n'est pas premier — commence à vérifier à partir de 2."]
+    },
     declaredVariationSpace: 91 * 2
   }),
 
@@ -243,6 +359,12 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["What is {a} squared (written {a}²)?", "{a}² = ?", "Counting {ctx}: what is {a} squared?"],
     explain: (v, r) => [`${v[0]} squared means ${v[0]} x ${v[0]} = ${r}.`],
     hints: () => ["Squaring a number means multiplying it by itself."],
+    fr: {
+      contextPool: CTX_FR,
+      promptTemplates: ["Que vaut {a} au carré (noté {a}²) ?", "{a}² = ?", "En comptant les {ctx} : que vaut {a} au carré ?"],
+      explain: (v, r) => [`${v[0]} au carré signifie ${v[0]} x ${v[0]} = ${r}.`],
+      hints: () => ["Élever un nombre au carré signifie le multiplier par lui-même."]
+    },
     declaredVariationSpace: 20 * 3 * CTX.length
   }),
   arithmeticTemplate({
@@ -252,6 +374,12 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["What is {a} cubed (written {a}³)?", "{a}³ = ?", "Counting {ctx}: what is {a} cubed?"],
     explain: (v, r) => [`${v[0]} cubed means ${v[0]} x ${v[0]} x ${v[0]} = ${r}.`],
     hints: () => ["Cubing a number means multiplying it by itself, then by itself again."],
+    fr: {
+      contextPool: CTX_FR,
+      promptTemplates: ["Que vaut {a} au cube (noté {a}³) ?", "{a}³ = ?", "En comptant les {ctx} : que vaut {a} au cube ?"],
+      explain: (v, r) => [`${v[0]} au cube signifie ${v[0]} x ${v[0]} x ${v[0]} = ${r}.`],
+      hints: () => ["Élever un nombre au cube signifie le multiplier par lui-même, puis encore par lui-même."]
+    },
     declaredVariationSpace: 20 * 3 * CTX.length
   }),
   arithmeticTemplate({
@@ -261,6 +389,11 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["What is {a} squared?", "What is {a}²?"],
     explain: (v, r) => [`${v[0]} x ${v[0]} = ${r}.`],
     hints: () => ["Multiply the number by itself."],
+    fr: {
+      promptTemplates: ["Que vaut {a} au carré ?", "Que vaut {a}² ?"],
+      explain: (v, r) => [`${v[0]} x ${v[0]} = ${r}.`],
+      hints: () => ["Multiplie le nombre par lui-même."]
+    },
     distractorSpread: 10,
     declaredVariationSpace: 25 * 2
   }),
@@ -271,6 +404,11 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["What is {a} cubed?", "What is {a}³?"],
     explain: (v, r) => [`${v[0]} x ${v[0]} x ${v[0]} = ${r}.`],
     hints: () => ["Multiply the number by itself, then by itself again."],
+    fr: {
+      promptTemplates: ["Que vaut {a} au cube ?", "Que vaut {a}³ ?"],
+      explain: (v, r) => [`${v[0]} x ${v[0]} x ${v[0]} = ${r}.`],
+      hints: () => ["Multiplie le nombre par lui-même, puis encore par lui-même."]
+    },
     distractorSpread: 15,
     declaredVariationSpace: 15 * 2
   }),
@@ -289,6 +427,19 @@ export const level: QuestionTemplateDef[] = [
         hints: ["A square number is what you get from multiplying a whole number by itself."]
       };
     },
+    fr: {
+      translate: (drawn) => {
+        const match = drawn.prompt.match(/^(\d+)/);
+        const n = match ? Number(match[1]) : 0;
+        const root = Math.round(Math.sqrt(n));
+        const truth = drawn.correctLabel === "True";
+        return {
+          prompt: `${n} est un nombre carré.`,
+          explanationSteps: [truth ? `${root} x ${root} = ${n}, donc ${n} est un nombre carré.` : `Aucun nombre entier multiplié par lui-même ne donne ${n}, donc ce n'est pas un nombre carré.`],
+          hints: ["Un nombre carré est ce que l'on obtient en multipliant un nombre entier par lui-même."]
+        };
+      }
+    },
     declaredVariationSpace: 400 * 2
   }),
   categoricalPoolTemplate({
@@ -306,6 +457,19 @@ export const level: QuestionTemplateDef[] = [
         hints: ["A cube number is what you get from multiplying a whole number by itself, then by itself again."]
       };
     },
+    fr: {
+      translate: (drawn) => {
+        const match = drawn.prompt.match(/^(\d+)/);
+        const n = match ? Number(match[1]) : 0;
+        const root = Math.round(Math.cbrt(n));
+        const truth = drawn.correctLabel === "True";
+        return {
+          prompt: `${n} est un nombre cube.`,
+          explanationSteps: [truth ? `${root} x ${root} x ${root} = ${n}, donc ${n} est un nombre cube.` : `Aucun nombre entier au cube ne donne ${n}, donc ce n'est pas un nombre cube.`],
+          hints: ["Un nombre cube est ce que l'on obtient en multipliant un nombre entier par lui-même, puis encore par lui-même."]
+        };
+      }
+    },
     declaredVariationSpace: 1000 * 2
   }),
   arithmeticTemplate({
@@ -316,6 +480,12 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["___² = {square}. What number, squared, gives {square}?", "Counting {ctx}: what number squared makes {square}?"],
     explain: (v, r) => [`${r} x ${r} = ${r * r}, so the missing number is ${r}.`],
     hints: () => ["Think of a number that multiplied by itself gives the target."],
+    fr: {
+      contextPool: CTX_FR,
+      promptTemplates: ["___² = {square}. Quel nombre, au carré, donne {square} ?", "En comptant les {ctx} : quel nombre au carré donne {square} ?"],
+      explain: (v, r) => [`${r} x ${r} = ${r * r}, donc le nombre manquant est ${r}.`],
+      hints: () => ["Pense à un nombre qui, multiplié par lui-même, donne le nombre cible."]
+    },
     declaredVariationSpace: 20 * 2 * CTX.length
   }),
   arithmeticTemplate({
@@ -326,6 +496,12 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["___³ = {cube}. What number, cubed, gives {cube}?", "Counting {ctx}: what number cubed makes {cube}?"],
     explain: (v, r) => [`${r} x ${r} x ${r} = ${r * r * r}, so the missing number is ${r}.`],
     hints: () => ["Think of a number that multiplied by itself twice gives the target."],
+    fr: {
+      contextPool: CTX_FR,
+      promptTemplates: ["___³ = {cube}. Quel nombre, au cube, donne {cube} ?", "En comptant les {ctx} : quel nombre au cube donne {cube} ?"],
+      explain: (v, r) => [`${r} x ${r} x ${r} = ${r * r * r}, donc le nombre manquant est ${r}.`],
+      hints: () => ["Pense à un nombre qui, multiplié deux fois par lui-même, donne le nombre cible."]
+    },
     declaredVariationSpace: 20 * 2 * CTX.length
   }),
   arithmeticTemplate({
@@ -336,6 +512,12 @@ export const level: QuestionTemplateDef[] = [
     explain: (v, r) => [`Area of a square = side x side = ${v[0]} x ${v[0]} = ${r}.`],
     hints: () => ["The area of a square is the side length multiplied by itself."],
     formatValue: (n) => `${n} m²`,
+    fr: {
+      contextPool: ["jardin", "tapis", "carreau", "champ", "aire de jeux", "affiche", "cadre photo", "patio"],
+      promptTemplates: ["Une surface carrée (par exemple : {ctx}) a des côtés de {a} m. Quelle est son aire ?"],
+      explain: (v, r) => [`Aire d'un carré = côté x côté = ${v[0]} x ${v[0]} = ${r}.`],
+      hints: () => ["L'aire d'un carré est la longueur du côté multipliée par elle-même."]
+    },
     declaredVariationSpace: 24 * 8
   }),
   arithmeticTemplate({
@@ -346,6 +528,12 @@ export const level: QuestionTemplateDef[] = [
     explain: (v, r) => [`Volume of a cube = side x side x side = ${v[0]} x ${v[0]} x ${v[0]} = ${r}.`],
     hints: () => ["The volume of a cube is the side length multiplied by itself twice."],
     formatValue: (n) => `${n} cm³`,
+    fr: {
+      contextPool: ["boîte de rangement", "boîte cadeau", "caisse en bois", "conteneur", "bloc d'emballage", "coffre à jouets", "boîte en fer", "carton"],
+      promptTemplates: ["Un objet cubique (par exemple : {ctx}) a des côtés de {a} cm. Quel est son volume ?"],
+      explain: (v, r) => [`Volume d'un cube = côté x côté x côté = ${v[0]} x ${v[0]} x ${v[0]} = ${r}.`],
+      hints: () => ["Le volume d'un cube est la longueur du côté multipliée deux fois par elle-même."]
+    },
     declaredVariationSpace: 24 * 8
   })
 ];
