@@ -1,21 +1,26 @@
 import Link from "next/link";
 import LoginForm from "@/components/LoginForm";
+import { getLocale } from "@/lib/i18n/locale";
+import { translate } from "@/lib/i18n/translate";
 
-export default function LoginPage() {
+export default async function LoginPage() {
+  const locale = await getLocale();
+  const t = (key: string) => translate(locale, key);
+
   return (
     <main className="mx-auto flex min-h-screen max-w-md flex-col justify-center px-6 py-16">
-      <h1 className="text-2xl font-bold text-brand-800">Sign in</h1>
-      <p className="mt-2 text-sm text-slate-600">Sign in to your parent or teacher account.</p>
+      <h1 className="text-2xl font-bold text-brand-800">{t("login.title")}</h1>
+      <p className="mt-2 text-sm text-slate-600">{t("login.subtitle")}</p>
       <div className="mt-8 rounded-xl2 border bg-white p-6 shadow-sm">
         <LoginForm />
       </div>
       <p className="mt-6 rounded-lg bg-brand-50 p-4 text-center text-sm text-slate-700">
-        Demo account: <strong>parent.demo@mathsjourney.example</strong> / <strong>Demo!Password123</strong>
+        {t("login.demoAccountLabel")} <strong>parent.demo@mathsjourney.example</strong> / <strong>Demo!Password123</strong>
       </p>
       <p className="mt-4 text-center text-sm text-slate-600">
-        New here?{" "}
+        {t("login.newHere")}{" "}
         <Link href="/register" className="font-semibold text-brand-700 underline">
-          Create an account
+          {t("login.createAccountLink")}
         </Link>
       </p>
     </main>

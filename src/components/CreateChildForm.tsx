@@ -4,6 +4,7 @@ import { useFormState, useFormStatus } from "react-dom";
 import { createChildAction } from "@/lib/actions/children";
 import type { FormState } from "@/lib/actions/auth";
 import { AVATAR_KEYS } from "@/lib/types";
+import { useT } from "./I18nProvider";
 
 const AVATAR_EMOJI: Record<string, string> = {
   fox: "🦊",
@@ -20,19 +21,21 @@ const initialState: FormState = {};
 
 function SubmitButton() {
   const { pending } = useFormStatus();
+  const t = useT();
   return (
     <button
       type="submit"
       disabled={pending}
       className="touch-target w-full rounded-xl2 bg-brand-600 px-6 py-3 text-lg font-semibold text-white shadow hover:bg-brand-700 disabled:opacity-60"
     >
-      {pending ? "Creating profile..." : "Create profile"}
+      {pending ? t("newProfile.submitting") : t("newProfile.submit")}
     </button>
   );
 }
 
 export default function CreateChildForm({ years }: { years: Array<{ yearNumber: number; title: string; summary: string }> }) {
   const [state, formAction] = useFormState(createChildAction, initialState);
+  const t = useT();
 
   return (
     <form action={formAction} className="space-y-6" noValidate>
@@ -44,14 +47,14 @@ export default function CreateChildForm({ years }: { years: Array<{ yearNumber: 
 
       <div>
         <label htmlFor="displayName" className="block text-sm font-medium text-slate-700">
-          Child&rsquo;s first name (or nickname)
+          {t("newProfile.nameLabel")}
         </label>
         <input id="displayName" name="displayName" required maxLength={60} className="mt-1 w-full touch-target rounded-lg border border-slate-300 px-4 py-3" />
         {state.fieldErrors?.displayName && <p className="mt-1 text-sm text-berry-600">{state.fieldErrors.displayName}</p>}
       </div>
 
       <fieldset>
-        <legend className="text-sm font-medium text-slate-700">Choose an avatar</legend>
+        <legend className="text-sm font-medium text-slate-700">{t("newProfile.chooseAvatar")}</legend>
         <div className="mt-2 grid grid-cols-4 gap-3">
           {AVATAR_KEYS.map((key, i) => (
             <label key={key} className="flex cursor-pointer flex-col items-center gap-1 rounded-lg border p-3 has-[:checked]:border-brand-500 has-[:checked]:bg-brand-50">
@@ -67,7 +70,7 @@ export default function CreateChildForm({ years }: { years: Array<{ yearNumber: 
 
       <div>
         <label htmlFor="yearNumber" className="block text-sm font-medium text-slate-700">
-          Starting school year
+          {t("newProfile.startingYearLabel")}
         </label>
         <select id="yearNumber" name="yearNumber" defaultValue={1} className="mt-1 w-full touch-target rounded-lg border border-slate-300 px-4 py-3">
           {years.map((y) => (
@@ -76,26 +79,24 @@ export default function CreateChildForm({ years }: { years: Array<{ yearNumber: 
             </option>
           ))}
         </select>
-        <p className="mt-1 text-xs text-slate-500">
-          Your child will start at Level 1 of this year and progress sequentially &mdash; they cannot skip ahead of a locked level.
-        </p>
+        <p className="mt-1 text-xs text-slate-500">{t("newProfile.startingYearHelp")}</p>
       </div>
 
       <div>
         <label htmlFor="pathway" className="block text-sm font-medium text-slate-700">
-          Year 10 pathway (only applies once your child reaches Year 10)
+          {t("newProfile.pathwayLabel")}
         </label>
         <select id="pathway" name="pathway" defaultValue="CORE" className="mt-1 w-full touch-target rounded-lg border border-slate-300 px-4 py-3">
-          <option value="CORE">Core</option>
-          <option value="FOUNDATION">Foundation (GCSE)</option>
-          <option value="HIGHER">Higher (GCSE)</option>
+          <option value="CORE">{t("newProfile.pathwayCore")}</option>
+          <option value="FOUNDATION">{t("newProfile.pathwayFoundation")}</option>
+          <option value="HIGHER">{t("newProfile.pathwayHigher")}</option>
         </select>
       </div>
 
       <div className="grid grid-cols-2 gap-4">
         <div>
           <label htmlFor="pin" className="block text-sm font-medium text-slate-700">
-            4-digit PIN
+            {t("newProfile.pinLabel")}
           </label>
           <input
             id="pin"
@@ -111,7 +112,7 @@ export default function CreateChildForm({ years }: { years: Array<{ yearNumber: 
         </div>
         <div>
           <label htmlFor="pinConfirm" className="block text-sm font-medium text-slate-700">
-            Confirm PIN
+            {t("newProfile.pinConfirmLabel")}
           </label>
           <input
             id="pinConfirm"
@@ -126,7 +127,7 @@ export default function CreateChildForm({ years }: { years: Array<{ yearNumber: 
           {state.fieldErrors?.pinConfirm && <p className="mt-1 text-sm text-berry-600">{state.fieldErrors.pinConfirm}</p>}
         </div>
       </div>
-      <p className="text-xs text-slate-500">Your child will use their avatar and this PIN to sign in &mdash; no email address needed.</p>
+      <p className="text-xs text-slate-500">{t("newProfile.pinHelp")}</p>
 
       <SubmitButton />
     </form>

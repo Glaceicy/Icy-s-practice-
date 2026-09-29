@@ -4,9 +4,13 @@ import { assertChildAccess } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import ChildTopBar from "@/components/ChildTopBar";
 import Mascot from "@/components/illustrations/Mascot";
+import { getLocale } from "@/lib/i18n/locale";
+import { translate } from "@/lib/i18n/translate";
 
 export default async function LevelOverviewPage({ params }: { params: { childId: string; levelId: string } }) {
   const { child } = await assertChildAccess(params.childId);
+  const locale = await getLocale();
+  const t = (key: string, vars?: Record<string, string | number>) => translate(locale, key, vars);
 
   const level = await prisma.level.findUnique({
     where: { id: params.levelId },
@@ -20,10 +24,10 @@ export default async function LevelOverviewPage({ params }: { params: { childId:
       <main className="mx-auto min-h-screen max-w-3xl px-6 py-10">
         <ChildTopBar child={child} />
         <div className="mt-8 rounded-xl2 border bg-amber-50 p-6 text-amber-800">
-          <h1 className="text-xl font-bold">This level is still locked</h1>
-          <p className="mt-2">Score 95% or more in the previous level to unlock this level.</p>
+          <h1 className="text-xl font-bold">{t("levelOverview.lockedTitle")}</h1>
+          <p className="mt-2">{t("levelOverview.lockedBody")}</p>
           <Link href={`/learn/${child.id}/journey/${level.schoolYear.yearNumber}`} className="mt-4 inline-block font-semibold text-brand-700 underline">
-            Back to the journey map
+            {t("levelOverview.backToJourney")}
           </Link>
         </div>
       </main>
@@ -35,13 +39,10 @@ export default async function LevelOverviewPage({ params }: { params: { childId:
       <main className="mx-auto min-h-screen max-w-3xl px-6 py-10">
         <ChildTopBar child={child} />
         <div className="mt-8 rounded-xl2 border bg-amber-50 p-6 text-amber-800">
-          <h1 className="text-xl font-bold">Coming soon</h1>
-          <p className="mt-2">
-            {level.title} is unlocked, but its lessons and questions are still being written. Please check back soon &mdash; in the
-            meantime, explore an available level from the journey map.
-          </p>
+          <h1 className="text-xl font-bold">{t("levelOverview.comingSoonTitle")}</h1>
+          <p className="mt-2">{t("levelOverview.comingSoonBody", { level: level.title })}</p>
           <Link href={`/learn/${child.id}/journey/${level.schoolYear.yearNumber}`} className="mt-4 inline-block font-semibold text-brand-700 underline">
-            Back to the journey map
+            {t("levelOverview.backToJourney")}
           </Link>
         </div>
       </main>
@@ -71,13 +72,13 @@ export default async function LevelOverviewPage({ params }: { params: { childId:
 
       <section aria-labelledby="objectives-heading" className="mt-8 rounded-xl2 border bg-white p-6 shadow-sm">
         <h2 id="objectives-heading" className="font-bold text-brand-800">
-          What you will learn
+          {t("levelOverview.whatYouWillLearn")}
         </h2>
         <ul className="mt-3 space-y-2">
           {level.objectives.map((o) => (
             <li key={o.id} className="flex gap-2 text-slate-700">
               <span aria-hidden="true">🎯</span>
-              <span>By the end of this level, you will be able to {o.description.charAt(0).toLowerCase() + o.description.slice(1)}</span>
+              <span>{t("levelOverview.objectivePrefix", { objective: o.description.charAt(0).toLowerCase() + o.description.slice(1) })}</span>
             </li>
           ))}
         </ul>
@@ -86,35 +87,35 @@ export default async function LevelOverviewPage({ params }: { params: { childId:
       <section className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
         <Link href={`/learn/${child.id}/level/${level.id}/lesson/1`} className="rounded-xl2 border bg-white p-5 shadow-sm hover:border-brand-400">
           <p className="text-2xl">📖</p>
-          <h3 className="mt-1 font-bold">Lessons</h3>
-          <p className="text-sm text-slate-600">{level.lessons.length} short lessons explaining each idea, with worked examples.</p>
+          <h3 className="mt-1 font-bold">{t("levelOverview.lessonsTitle")}</h3>
+          <p className="text-sm text-slate-600">{t("levelOverview.lessonsBody", { count: level.lessons.length })}</p>
         </Link>
         <Link href={`/learn/${child.id}/level/${level.id}/guided`} className="rounded-xl2 border bg-white p-5 shadow-sm hover:border-brand-400">
           <p className="text-2xl">🖐️</p>
-          <h3 className="mt-1 font-bold">Guided practice</h3>
-          <p className="text-sm text-slate-600">10 questions with hints available if you need them.</p>
+          <h3 className="mt-1 font-bold">{t("levelOverview.guidedTitle")}</h3>
+          <p className="text-sm text-slate-600">{t("levelOverview.guidedBody")}</p>
         </Link>
         <Link href={`/learn/${child.id}/level/${level.id}/independent`} className="rounded-xl2 border bg-white p-5 shadow-sm hover:border-brand-400">
           <p className="text-2xl">✏️</p>
-          <h3 className="mt-1 font-bold">Independent practice</h3>
-          <p className="text-sm text-slate-600">At least 20 questions that adapt to how you&rsquo;re doing.</p>
+          <h3 className="mt-1 font-bold">{t("levelOverview.independentTitle")}</h3>
+          <p className="text-sm text-slate-600">{t("levelOverview.independentBody")}</p>
         </Link>
         <Link href={`/learn/${child.id}/level/${level.id}/mastery`} className="rounded-xl2 border-2 border-sunny-500 bg-sunny-50 p-5 shadow-sm hover:border-sunny-600">
           <p className="text-2xl">🏆</p>
-          <h3 className="mt-1 font-bold">Mastery Challenge</h3>
-          <p className="text-sm text-slate-600">40 questions in 4 rounds. Score 38/40 (95%) to unlock the next level.</p>
+          <h3 className="mt-1 font-bold">{t("levelOverview.masteryTitle")}</h3>
+          <p className="text-sm text-slate-600">{t("levelOverview.masteryBody")}</p>
         </Link>
       </section>
 
       {recentAttempts.length > 0 && (
         <section className="mt-8 rounded-xl2 border bg-white p-6 shadow-sm">
-          <h2 className="font-bold text-brand-800">Your previous Mastery Challenge attempts</h2>
+          <h2 className="font-bold text-brand-800">{t("levelOverview.previousAttemptsTitle")}</h2>
           <ul className="mt-3 space-y-1 text-sm text-slate-700">
             {recentAttempts.map((a) => (
               <li key={a.id} className="flex justify-between">
-                <span>Attempt {a.attemptNumber}</span>
+                <span>{t("levelOverview.attemptLabel", { number: a.attemptNumber })}</span>
                 <span className={a.passed ? "font-semibold text-leaf-600" : "text-slate-500"}>
-                  {a.correctFirstAttempt}/{a.totalQuestions} ({Math.round(a.scorePercentage ?? 0)}%) {a.passed ? "— Passed" : ""}
+                  {a.correctFirstAttempt}/{a.totalQuestions} ({Math.round(a.scorePercentage ?? 0)}%) {a.passed ? t("levelOverview.passedSuffix") : ""}
                 </span>
               </li>
             ))}

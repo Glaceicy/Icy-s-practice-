@@ -2,24 +2,27 @@
 
 import { useFormState, useFormStatus } from "react-dom";
 import { loginAdultAction, type FormState } from "@/lib/actions/auth";
+import { useT } from "./I18nProvider";
 
 const initialState: FormState = {};
 
 function SubmitButton() {
   const { pending } = useFormStatus();
+  const t = useT();
   return (
     <button
       type="submit"
       disabled={pending}
       className="touch-target w-full rounded-xl2 bg-brand-600 px-6 py-3 text-lg font-semibold text-white shadow hover:bg-brand-700 disabled:opacity-60"
     >
-      {pending ? "Signing in..." : "Sign in"}
+      {pending ? t("login.submitting") : t("login.submit")}
     </button>
   );
 }
 
 export default function LoginForm() {
   const [state, formAction] = useFormState(loginAdultAction, initialState);
+  const t = useT();
 
   return (
     <form action={formAction} className="space-y-5" noValidate>
@@ -30,13 +33,13 @@ export default function LoginForm() {
       )}
       <div>
         <label htmlFor="email" className="block text-sm font-medium text-slate-700">
-          Email address
+          {t("login.emailLabel")}
         </label>
         <input id="email" name="email" type="email" required autoComplete="email" className="mt-1 w-full touch-target rounded-lg border border-slate-300 px-4 py-3" />
       </div>
       <div>
         <label htmlFor="password" className="block text-sm font-medium text-slate-700">
-          Password
+          {t("login.passwordLabel")}
         </label>
         <input id="password" name="password" type="password" required autoComplete="current-password" className="mt-1 w-full touch-target rounded-lg border border-slate-300 px-4 py-3" />
       </div>

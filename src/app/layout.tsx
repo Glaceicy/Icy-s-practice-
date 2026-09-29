@@ -3,6 +3,7 @@ import { getActiveChildSoft } from "@/lib/auth";
 import { getLocale } from "@/lib/i18n/locale";
 import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { I18nProvider } from "@/components/I18nProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -36,7 +37,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           Skip to main content
         </a>
         <LanguageSwitcher current={locale} />
-        <div id="main-content">{children}</div>
+        <I18nProvider locale={locale}>
+          <div id="main-content">{children}</div>
+        </I18nProvider>
         <ServiceWorkerRegister />
       </body>
     </html>

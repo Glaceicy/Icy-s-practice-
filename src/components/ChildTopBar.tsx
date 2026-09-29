@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { switchProfileAction } from "@/lib/actions/children";
+import { getLocale } from "@/lib/i18n/locale";
+import { translate } from "@/lib/i18n/translate";
 
 const AVATAR_EMOJI: Record<string, string> = {
   fox: "🦊",
@@ -12,7 +14,10 @@ const AVATAR_EMOJI: Record<string, string> = {
   unicorn: "🦄"
 };
 
-export default function ChildTopBar({ child }: { child: { id: string; displayName: string; avatarKey: string } }) {
+export default async function ChildTopBar({ child }: { child: { id: string; displayName: string; avatarKey: string } }) {
+  const locale = await getLocale();
+  const t = (key: string) => translate(locale, key);
+
   return (
     <nav aria-label="Learner navigation" className="flex flex-wrap items-center justify-between gap-3 rounded-xl2 border bg-white px-4 py-3 shadow-sm">
       <Link href={`/learn/${child.id}/journey`} className="flex items-center gap-2 font-bold text-brand-800">
@@ -23,23 +28,23 @@ export default function ChildTopBar({ child }: { child: { id: string; displayNam
       </Link>
       <div className="flex flex-wrap gap-2 text-sm">
         <Link href={`/learn/${child.id}/journey`} className="touch-target rounded-lg px-3 py-2 font-semibold text-brand-700 hover:bg-brand-50">
-          Journey map
+          {t("childTopBar.journeyMap")}
         </Link>
         <Link href={`/learn/${child.id}/year-select`} className="touch-target rounded-lg px-3 py-2 font-semibold text-brand-700 hover:bg-brand-50">
-          All years
+          {t("childTopBar.allYears")}
         </Link>
         <Link href={`/learn/${child.id}/achievements`} className="touch-target rounded-lg px-3 py-2 font-semibold text-brand-700 hover:bg-brand-50">
-          🏆 Achievements
+          {t("childTopBar.achievements")}
         </Link>
         <Link href="/settings/accessibility" className="touch-target rounded-lg px-3 py-2 font-semibold text-brand-700 hover:bg-brand-50">
-          ⚙️ Settings
+          {t("childTopBar.settings")}
         </Link>
         <Link href="/dashboard" className="touch-target rounded-lg px-3 py-2 font-semibold text-slate-600 hover:bg-slate-50">
-          Parent dashboard
+          {t("childTopBar.parentDashboard")}
         </Link>
         <form action={switchProfileAction}>
           <button type="submit" className="touch-target rounded-lg px-3 py-2 font-semibold text-slate-600 hover:bg-slate-50">
-            Switch profile
+            {t("childTopBar.switchProfile")}
           </button>
         </form>
       </div>

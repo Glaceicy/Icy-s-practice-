@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import { selectChildAction } from "@/lib/actions/children";
 import type { FormState } from "@/lib/actions/auth";
+import { useT } from "./I18nProvider";
 
 const AVATAR_EMOJI: Record<string, string> = {
   fox: "🦊",
@@ -20,13 +21,14 @@ const initialState: FormState = {};
 
 function UnlockButton() {
   const { pending } = useFormStatus();
+  const t = useT();
   return (
     <button
       type="submit"
       disabled={pending}
       className="touch-target w-full rounded-lg bg-brand-600 px-4 py-2 font-semibold text-white hover:bg-brand-700 disabled:opacity-60"
     >
-      {pending ? "Checking..." : "Go!"}
+      {pending ? t("profilePinCard.checking") : t("profilePinCard.go")}
     </button>
   );
 }
@@ -44,6 +46,7 @@ export default function ProfilePinCard({
 }) {
   const [open, setOpen] = useState(false);
   const [state, formAction] = useFormState(selectChildAction, initialState);
+  const t = useT();
 
   return (
     <div className="flex flex-col items-center gap-3 rounded-xl2 border bg-white p-6 text-center shadow-sm">
@@ -59,13 +62,13 @@ export default function ProfilePinCard({
           onClick={() => setOpen(true)}
           className="touch-target w-full rounded-lg border-2 border-brand-500 px-4 py-2 font-semibold text-brand-700 hover:bg-brand-50"
         >
-          Enter PIN
+          {t("profilePinCard.enterPin")}
         </button>
       ) : (
         <form action={formAction} className="w-full space-y-2">
           <input type="hidden" name="childId" value={childId} />
           <label htmlFor={`pin-${childId}`} className="sr-only">
-            4-digit PIN for {displayName}
+            {t("profilePinCard.pinLabelFor", { name: displayName })}
           </label>
           <input
             id={`pin-${childId}`}

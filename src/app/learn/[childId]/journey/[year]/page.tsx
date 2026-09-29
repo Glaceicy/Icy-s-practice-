@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { assertChildAccess } from "@/lib/auth";
 import { getJourneyForChild } from "@/lib/services/journey";
 import ChildTopBar from "@/components/ChildTopBar";
+import { getLocale } from "@/lib/i18n/locale";
+import { translate } from "@/lib/i18n/translate";
 
 const THEME_BG: Record<string, string> = {
   playful: "from-sunny-400 to-berry-400",
@@ -17,13 +19,15 @@ export default async function YearJourneyPage({ params }: { params: { childId: s
   const years = await getJourneyForChild(child.id);
   const year = years.find((y) => y.yearNumber === yearNumber);
   if (!year) notFound();
+  const locale = await getLocale();
+  const t = (key: string, vars?: Record<string, string | number>) => translate(locale, key, vars);
 
   return (
     <main className="mx-auto min-h-screen max-w-5xl px-6 py-10">
       <ChildTopBar child={child} />
 
       <div className={`mt-6 rounded-xl2 bg-gradient-to-r ${THEME_BG[year.themeStage] ?? THEME_BG.playful} p-6 text-white shadow`}>
-        <h1 className="text-2xl font-extrabold">{year.title} learning journey</h1>
+        <h1 className="text-2xl font-extrabold">{t("journeyYear.heading", { year: year.title })}</h1>
         <p className="mt-1 text-white/90">{year.summary}</p>
       </div>
 
@@ -46,15 +50,15 @@ export default async function YearJourneyPage({ params }: { params: { childId: s
                 <span className="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-white/70 text-lg font-bold text-brand-800">
                   {level.unlocked ? level.levelNumber : "🔒"}
                 </span>
-                {level.passed && <span aria-label="Passed">✅</span>}
-                {level.isMixedMastery && <span className="text-xs font-semibold uppercase tracking-wide">Mixed mastery</span>}
+                {level.passed && <span aria-label={t("journeyYear.passed")}>✅</span>}
+                {level.isMixedMastery && <span className="text-xs font-semibold uppercase tracking-wide">{t("journeyYear.mixedMastery")}</span>}
               </div>
               <h2 className="mt-2 font-bold">{level.title}</h2>
               <p className="mt-1 text-sm">{level.summary}</p>
-              {!level.unlocked && <p className="mt-3 text-xs font-semibold">Score 95% or more in the previous level to unlock this level.</p>}
-              {level.unlocked && !contentReady && <p className="mt-3 text-xs font-semibold">Content coming soon &mdash; this level&rsquo;s lessons and questions are still being written.</p>}
+              {!level.unlocked && <p className="mt-3 text-xs font-semibold">{t("journeyYear.lockedHint")}</p>}
+              {level.unlocked && !contentReady && <p className="mt-3 text-xs font-semibold">{t("journeyYear.comingSoon")}</p>}
               {level.unlocked && contentReady && level.bestScorePercentage !== null && (
-                <p className="mt-3 text-xs font-semibold text-brand-700">Best score: {Math.round(level.bestScorePercentage)}%</p>
+                <p className="mt-3 text-xs font-semibold text-brand-700">{t("journeyYear.bestScore", { score: Math.round(level.bestScorePercentage) })}</p>
               )}
             </>
           );

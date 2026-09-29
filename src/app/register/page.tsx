@@ -1,21 +1,23 @@
 import Link from "next/link";
 import RegisterForm from "@/components/RegisterForm";
+import { getLocale } from "@/lib/i18n/locale";
+import { translate } from "@/lib/i18n/translate";
 
-export default function RegisterPage() {
+export default async function RegisterPage() {
+  const locale = await getLocale();
+  const t = (key: string) => translate(locale, key);
+
   return (
     <main className="mx-auto flex min-h-screen max-w-md flex-col justify-center px-6 py-16">
-      <h1 className="text-2xl font-bold text-brand-800">Create your adult account</h1>
-      <p className="mt-2 text-sm text-slate-600">
-        Parents, carers and teachers use this account to create and manage child/learner profiles. Children never need their own
-        email address &mdash; they sign in with an avatar and a 4-digit PIN.
-      </p>
+      <h1 className="text-2xl font-bold text-brand-800">{t("register.title")}</h1>
+      <p className="mt-2 text-sm text-slate-600">{t("register.subtitle")}</p>
       <div className="mt-8 rounded-xl2 border bg-white p-6 shadow-sm">
         <RegisterForm />
       </div>
       <p className="mt-6 text-center text-sm text-slate-600">
-        Already have an account?{" "}
+        {t("register.alreadyHaveAccount")}{" "}
         <Link href="/login" className="font-semibold text-brand-700 underline">
-          Sign in
+          {t("register.signInLink")}
         </Link>
       </p>
     </main>
