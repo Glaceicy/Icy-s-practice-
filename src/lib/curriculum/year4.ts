@@ -7,16 +7,18 @@ import type { SchoolYearDef } from "./types";
 export const year4: SchoolYearDef = {
   yearNumber: 4,
   title: "Year 4",
+  titleFr: "Année 4",
   keyStage: "KS2",
   summary: "Times tables to 12x12, decimals and area for 8-9 year olds.",
+  summaryFr: "Les tables de multiplication jusqu’à 12x12, les décimaux et l’aire pour les enfants de 8 à 9 ans.",
   minAge: 8,
   maxAge: 9,
   themeStage: "adventure",
   levels: [
-    { levelNumber: 1, title: "Place value, rounding and numbers to 10,000", summary: "By the end of this level, you will read, write and round numbers to 10,000.", isMixedMastery: false, status: "COMPLETE", pathway: null, objectives: [
-      { code: "Y4-L1-1", description: "Recognise the place value of each digit in a four-digit number.", dfeReference: "Y4 Number & place value: recognise place value of each digit (Th,H,T,O)" },
-      { code: "Y4-L1-2", description: "Round any number to the nearest 10, 100 or 1,000.", dfeReference: "Y4 Number & place value: round any number to the nearest 10, 100 or 1000" },
-      { code: "Y4-L1-3", description: "Count in multiples of 6, 7, 9, 25 and 1,000.", dfeReference: "Y4 Number & place value: count in multiples of 6, 7, 9, 25 and 1000" }
+    { levelNumber: 1, title: "Place value, rounding and numbers to 10,000", titleFr: "Valeur de position, arrondi et nombres jusqu’à 10 000", summary: "By the end of this level, you will read, write and round numbers to 10,000.", summaryFr: "À la fin de ce niveau, tu sauras lire, écrire et arrondir les nombres jusqu’à 10 000.", isMixedMastery: false, status: "COMPLETE", pathway: null, objectives: [
+      { code: "Y4-L1-1", description: "Recognise the place value of each digit in a four-digit number.", descriptionFr: "Reconnaître la valeur de position de chaque chiffre dans un nombre à quatre chiffres.", dfeReference: "Y4 Number & place value: recognise place value of each digit (Th,H,T,O)" },
+      { code: "Y4-L1-2", description: "Round any number to the nearest 10, 100 or 1,000.", descriptionFr: "Arrondir n’importe quel nombre à la dizaine, la centaine ou au millier le plus proche.", dfeReference: "Y4 Number & place value: round any number to the nearest 10, 100 or 1000" },
+      { code: "Y4-L1-3", description: "Count in multiples of 6, 7, 9, 25 and 1,000.", descriptionFr: "Compter de 6 en 6, de 7 en 7, de 9 en 9, de 25 en 25 et de 1 000 en 1 000.", dfeReference: "Y4 Number & place value: count in multiples of 6, 7, 9, 25 and 1000" }
     ]},
     { levelNumber: 2, title: "Addition and subtraction", summary: "By the end of this level, you will add and subtract numbers with up to 4 digits.", isMixedMastery: false, status: "SCAFFOLDED", pathway: null, objectives: [
       { code: "Y4-L2-1", description: "Add and subtract numbers with up to 4 digits using the formal written column method.", dfeReference: "Y4 Addition & subtraction: add/subtract using formal written methods" },

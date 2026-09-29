@@ -13,17 +13,19 @@ import type { SchoolYearDef } from "./types";
 export const year10: SchoolYearDef = {
   yearNumber: 10,
   title: "Year 10",
+  titleFr: "Année 10",
   keyStage: "KS4",
   summary: "GCSE Mathematics preparation for 14-15 year olds, with Foundation and Higher pathways.",
+  summaryFr: "Préparation aux mathématiques du GCSE pour les 14-15 ans, avec les parcours Foundation et Higher.",
   minAge: 14,
   maxAge: 15,
   themeStage: "mature",
   levels: [
-    { levelNumber: 1, title: "Number accuracy, bounds, indices, standard form and surds", summary: "By the end of this level, you will work accurately with bounds, indices, standard form and surds.", isMixedMastery: false, status: "COMPLETE", pathway: null, objectives: [
-      { code: "Y10-L1-1", description: "Calculate upper and lower bounds of numbers given to a degree of accuracy.", dfeReference: "GCSE Number: bounds (Foundation & Higher)" },
-      { code: "Y10-L1-2", description: "Calculate with roots and integer, fractional and negative indices.", dfeReference: "GCSE Number: indices (Foundation & Higher)" },
-      { code: "Y10-L1-3", description: "Calculate with numbers in standard form, including on a calculator.", dfeReference: "GCSE Number: standard form (Foundation & Higher)" },
-      { code: "Y10-L1-4", description: "Simplify surd expressions and rationalise a denominator (Higher extension).", dfeReference: "GCSE Number: surds (Higher tier extension)" }
+    { levelNumber: 1, title: "Number accuracy, bounds, indices, standard form and surds", titleFr: "Précision numérique, bornes, indices, notation scientifique et radicaux", summary: "By the end of this level, you will work accurately with bounds, indices, standard form and surds.", summaryFr: "À la fin de ce niveau, tu travailleras avec précision avec les bornes, les indices, la notation scientifique et les radicaux.", isMixedMastery: false, status: "COMPLETE", pathway: null, objectives: [
+      { code: "Y10-L1-1", description: "Calculate upper and lower bounds of numbers given to a degree of accuracy.", descriptionFr: "Calculer les bornes supérieure et inférieure de nombres donnés à un degré de précision.", dfeReference: "GCSE Number: bounds (Foundation & Higher)" },
+      { code: "Y10-L1-2", description: "Calculate with roots and integer, fractional and negative indices.", descriptionFr: "Calculer avec des racines et des indices entiers, fractionnaires et négatifs.", dfeReference: "GCSE Number: indices (Foundation & Higher)" },
+      { code: "Y10-L1-3", description: "Calculate with numbers in standard form, including on a calculator.", descriptionFr: "Calculer avec des nombres en notation scientifique, y compris à la calculatrice.", dfeReference: "GCSE Number: standard form (Foundation & Higher)" },
+      { code: "Y10-L1-4", description: "Simplify surd expressions and rationalise a denominator (Higher extension).", descriptionFr: "Simplifier des expressions avec radicaux et rationaliser un dénominateur (extension Higher).", dfeReference: "GCSE Number: surds (Higher tier extension)" }
     ]},
     { levelNumber: 2, title: "Ratio, proportion, growth and compound measures", summary: "By the end of this level, you will solve GCSE-level problems involving ratio, proportion and growth.", isMixedMastery: false, status: "SCAFFOLDED", pathway: null, objectives: [
       { code: "Y10-L2-1", description: "Solve problems involving direct and inverse proportion, including algebraic representations.", dfeReference: "GCSE Ratio & proportion: direct/inverse proportion" },

@@ -10,8 +10,10 @@ import type { SchoolYearDef } from "./types";
 export const year1: SchoolYearDef = {
   yearNumber: 1,
   title: "Year 1",
+  titleFr: "Année 1",
   keyStage: "KS1",
   summary: "First steps in number, shape and measuring for 5-6 year olds.",
+  summaryFr: "Premiers pas en nombres, formes et mesures pour les enfants de 5 à 6 ans.",
   minAge: 5,
   maxAge: 6,
   themeStage: "playful",
@@ -19,27 +21,61 @@ export const year1: SchoolYearDef = {
     {
       levelNumber: 1,
       title: "Counting, reading and writing numbers to 20",
+      titleFr: "Compter, lire et écrire les nombres jusqu’à 20",
       summary: "By the end of this level, you will be able to count, read and write numbers to 20.",
+      summaryFr: "À la fin de ce niveau, tu sauras compter, lire et écrire les nombres jusqu’à 20.",
       isMixedMastery: false,
       status: "COMPLETE",
       pathway: null,
       objectives: [
-        { code: "Y1-L1-1", description: "Count to 20 forwards and backwards, starting from any number.", dfeReference: "Y1 Number & place value: count to and across 100" },
-        { code: "Y1-L1-2", description: "Read and write numbers to 20 in numerals and words.", dfeReference: "Y1 Number & place value: read and write numbers from 1 to 20" },
-        { code: "Y1-L1-3", description: "Say one more or one less than a given number to 20.", dfeReference: "Y1 Number & place value: given a number, identify one more and one less" }
+        {
+          code: "Y1-L1-1",
+          description: "Count to 20 forwards and backwards, starting from any number.",
+          descriptionFr: "Compter jusqu’à 20 en avançant et en reculant, en partant de n’importe quel nombre.",
+          dfeReference: "Y1 Number & place value: count to and across 100"
+        },
+        {
+          code: "Y1-L1-2",
+          description: "Read and write numbers to 20 in numerals and words.",
+          descriptionFr: "Lire et écrire les nombres jusqu’à 20 en chiffres et en lettres.",
+          dfeReference: "Y1 Number & place value: read and write numbers from 1 to 20"
+        },
+        {
+          code: "Y1-L1-3",
+          description: "Say one more or one less than a given number to 20.",
+          descriptionFr: "Dire ce qui vient juste après ou juste avant un nombre donné jusqu’à 20.",
+          dfeReference: "Y1 Number & place value: given a number, identify one more and one less"
+        }
       ]
     },
     {
       levelNumber: 2,
       title: "Counting and place value to 100",
+      titleFr: "Compter et la valeur de position jusqu’à 100",
       summary: "By the end of this level, you will be able to count in 2s, 5s and 10s and understand numbers to 100.",
+      summaryFr: "À la fin de ce niveau, tu sauras compter de 2 en 2, de 5 en 5 et de 10 en 10, et comprendre les nombres jusqu’à 100.",
       isMixedMastery: false,
       status: "COMPLETE",
       pathway: null,
       objectives: [
-        { code: "Y1-L2-1", description: "Count to and across 100, forwards and backwards.", dfeReference: "Y1 Number & place value: count to and across 100" },
-        { code: "Y1-L2-2", description: "Count in multiples of 2, 5 and 10.", dfeReference: "Y1 Number & place value: count in multiples of twos, fives and tens" },
-        { code: "Y1-L2-3", description: "Compare numbers using more than, less than and equal to.", dfeReference: "Y1 Number & place value: use language of equal to, more than, less than" }
+        {
+          code: "Y1-L2-1",
+          description: "Count to and across 100, forwards and backwards.",
+          descriptionFr: "Compter jusqu’à 100 et au-delà, en avançant et en reculant.",
+          dfeReference: "Y1 Number & place value: count to and across 100"
+        },
+        {
+          code: "Y1-L2-2",
+          description: "Count in multiples of 2, 5 and 10.",
+          descriptionFr: "Compter de 2 en 2, de 5 en 5 et de 10 en 10.",
+          dfeReference: "Y1 Number & place value: count in multiples of twos, fives and tens"
+        },
+        {
+          code: "Y1-L2-3",
+          description: "Compare numbers using more than, less than and equal to.",
+          descriptionFr: "Comparer des nombres en utilisant plus grand que, plus petit que et égal à.",
+          dfeReference: "Y1 Number & place value: use language of equal to, more than, less than"
+        }
       ]
     },
     {
@@ -136,14 +172,31 @@ export const year1: SchoolYearDef = {
     {
       levelNumber: 10,
       title: "Year 1 mixed mastery",
+      titleFr: "Maîtrise mixte — Année 1",
       summary: "By the end of this level, you will confidently use everything you have learned in Year 1.",
+      summaryFr: "À la fin de ce niveau, tu utiliseras avec assurance tout ce que tu as appris en Année 1.",
       isMixedMastery: true,
       status: "COMPLETE",
       pathway: null,
       objectives: [
-        { code: "Y1-L10-1", description: "Use counting, number bonds and addition/subtraction to 20 accurately.", dfeReference: "Y1 Number & Addition/subtraction (mixed review)" },
-        { code: "Y1-L10-2", description: "Apply grouping, sharing, halves and quarters to solve problems.", dfeReference: "Y1 Multiplication/division & Fractions (mixed review)" },
-        { code: "Y1-L10-3", description: "Use measuring, money, time, shape and position knowledge in varied problems.", dfeReference: "Y1 Measurement & Geometry (mixed review)" }
+        {
+          code: "Y1-L10-1",
+          description: "Use counting, number bonds and addition/subtraction to 20 accurately.",
+          descriptionFr: "Utiliser le comptage, les compléments et l’addition/soustraction jusqu’à 20 avec précision.",
+          dfeReference: "Y1 Number & Addition/subtraction (mixed review)"
+        },
+        {
+          code: "Y1-L10-2",
+          description: "Apply grouping, sharing, halves and quarters to solve problems.",
+          descriptionFr: "Utiliser le groupement, le partage, les moitiés et les quarts pour résoudre des problèmes.",
+          dfeReference: "Y1 Multiplication/division & Fractions (mixed review)"
+        },
+        {
+          code: "Y1-L10-3",
+          description: "Use measuring, money, time, shape and position knowledge in varied problems.",
+          descriptionFr: "Utiliser les connaissances en mesures, argent, temps, formes et position dans des problèmes variés.",
+          dfeReference: "Y1 Measurement & Geometry (mixed review)"
+        }
       ]
     }
   ]

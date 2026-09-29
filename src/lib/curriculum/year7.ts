@@ -10,16 +10,18 @@ import type { SchoolYearDef } from "./types";
 export const year7: SchoolYearDef = {
   yearNumber: 7,
   title: "Year 7",
+  titleFr: "Année 7",
   keyStage: "KS3",
   summary: "The bridge from primary arithmetic to secondary algebra and geometry for 11-12 year olds.",
+  summaryFr: "Le pont entre l’arithmétique du primaire et l’algèbre et la géométrie du secondaire pour les enfants de 11 à 12 ans.",
   minAge: 11,
   maxAge: 12,
   themeStage: "gameinspired",
   levels: [
-    { levelNumber: 1, title: "Integers, place value, ordering and negative numbers", summary: "By the end of this level, you will order, compare and calculate with positive and negative integers.", isMixedMastery: false, status: "COMPLETE", pathway: null, objectives: [
-      { code: "Y7-L1-1", description: "Order positive and negative integers and use the symbols <, >, =.", dfeReference: "KS3 Number: order positive and negative integers" },
-      { code: "Y7-L1-2", description: "Add, subtract, multiply and divide with negative numbers.", dfeReference: "KS3 Number: use the four operations with negative numbers" },
-      { code: "Y7-L1-3", description: "Round numbers and measures to an appropriate degree of accuracy.", dfeReference: "KS3 Number: round numbers and measures" }
+    { levelNumber: 1, title: "Integers, place value, ordering and negative numbers", titleFr: "Nombres entiers, valeur de position, ordre et nombres négatifs", summary: "By the end of this level, you will order, compare and calculate with positive and negative integers.", summaryFr: "À la fin de ce niveau, tu sauras ranger, comparer et calculer avec des nombres entiers positifs et négatifs.", isMixedMastery: false, status: "COMPLETE", pathway: null, objectives: [
+      { code: "Y7-L1-1", description: "Order positive and negative integers and use the symbols <, >, =.", descriptionFr: "Ranger des nombres entiers positifs et négatifs et utiliser les symboles <, >, =.", dfeReference: "KS3 Number: order positive and negative integers" },
+      { code: "Y7-L1-2", description: "Add, subtract, multiply and divide with negative numbers.", descriptionFr: "Additionner, soustraire, multiplier et diviser avec des nombres négatifs.", dfeReference: "KS3 Number: use the four operations with negative numbers" },
+      { code: "Y7-L1-3", description: "Round numbers and measures to an appropriate degree of accuracy.", descriptionFr: "Arrondir des nombres et des mesures au degré de précision approprié.", dfeReference: "KS3 Number: round numbers and measures" }
     ]},
     { levelNumber: 2, title: "The four operations and order of operations", summary: "By the end of this level, you will apply BIDMAS to calculate accurately.", isMixedMastery: false, status: "SCAFFOLDED", pathway: null, objectives: [
       { code: "Y7-L2-1", description: "Use the four operations applied to integers, fractions and decimals.", dfeReference: "KS3 Number: use the four operations applied to positive/negative integers, fractions, decimals" },

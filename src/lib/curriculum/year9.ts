@@ -7,21 +7,23 @@ import type { SchoolYearDef } from "./types";
 export const year9: SchoolYearDef = {
   yearNumber: 9,
   title: "Year 9",
+  titleFr: "Année 9",
   keyStage: "KS3",
   summary: "Standard form, quadratic graphs and trigonometry as preparation for GCSE.",
+  summaryFr: "La notation scientifique, les graphiques quadratiques et la trigonométrie en préparation du GCSE.",
   minAge: 13,
   maxAge: 14,
   themeStage: "mature",
   levels: [
-    { levelNumber: 1, title: "Standard form, indices, roots and number accuracy", summary: "By the end of this level, you will use standard form and index laws with accuracy.", isMixedMastery: false, status: "COMPLETE", pathway: null, objectives: [
-      { code: "Y9-L1-1", description: "Interpret and write numbers in standard form (A x 10^n).", dfeReference: "KS3 Number: interpret/write standard form" },
-      { code: "Y9-L1-2", description: "Use the laws of indices, including negative and fractional indices.", dfeReference: "KS3 Number: laws of indices" },
-      { code: "Y9-L1-3", description: "Round to a given number of significant figures and estimate answers.", dfeReference: "KS3 Number: round to significant figures" }
+    { levelNumber: 1, title: "Standard form, indices, roots and number accuracy", titleFr: "Notation scientifique, indices, racines et précision numérique", summary: "By the end of this level, you will use standard form and index laws with accuracy.", summaryFr: "À la fin de ce niveau, tu utiliseras la notation scientifique et les lois des indices avec précision.", isMixedMastery: false, status: "COMPLETE", pathway: null, objectives: [
+      { code: "Y9-L1-1", description: "Interpret and write numbers in standard form (A x 10^n).", descriptionFr: "Interpréter et écrire des nombres en notation scientifique (A x 10^n).", dfeReference: "KS3 Number: interpret/write standard form" },
+      { code: "Y9-L1-2", description: "Use the laws of indices, including negative and fractional indices.", descriptionFr: "Utiliser les lois des indices, y compris les indices négatifs et fractionnaires.", dfeReference: "KS3 Number: laws of indices" },
+      { code: "Y9-L1-3", description: "Round to a given number of significant figures and estimate answers.", descriptionFr: "Arrondir à un nombre donné de chiffres significatifs et estimer des résultats.", dfeReference: "KS3 Number: round to significant figures" }
     ]},
-    { levelNumber: 2, title: "Proportion, rates and compound measures", summary: "By the end of this level, you will solve problems involving direct and inverse proportion.", isMixedMastery: false, status: "COMPLETE", pathway: null, objectives: [
-      { code: "Y9-L2-1", description: "Solve problems involving direct and inverse proportion, including graphical and algebraic representations.", dfeReference: "KS3 Ratio & proportion: direct and inverse proportion" },
-      { code: "Y9-L2-2", description: "Interpret and use compound measures, including speed, density and pressure.", dfeReference: "KS3 Ratio & proportion: compound measures" },
-      { code: "Y9-L2-3", description: "Set up, solve and interpret answers in growth and decay problems.", dfeReference: "KS3 Ratio & proportion: growth and decay" }
+    { levelNumber: 2, title: "Proportion, rates and compound measures", titleFr: "Proportionnalité, taux et grandeurs composées", summary: "By the end of this level, you will solve problems involving direct and inverse proportion.", summaryFr: "À la fin de ce niveau, tu sauras résoudre des problèmes de proportionnalité directe et inverse.", isMixedMastery: false, status: "COMPLETE", pathway: null, objectives: [
+      { code: "Y9-L2-1", description: "Solve problems involving direct and inverse proportion, including graphical and algebraic representations.", descriptionFr: "Résoudre des problèmes de proportionnalité directe et inverse, y compris des représentations graphiques et algébriques.", dfeReference: "KS3 Ratio & proportion: direct and inverse proportion" },
+      { code: "Y9-L2-2", description: "Interpret and use compound measures, including speed, density and pressure.", descriptionFr: "Interpréter et utiliser des grandeurs composées, comme la vitesse, la densité et la pression.", dfeReference: "KS3 Ratio & proportion: compound measures" },
+      { code: "Y9-L2-3", description: "Set up, solve and interpret answers in growth and decay problems.", descriptionFr: "Poser, résoudre et interpréter des problèmes de croissance et de décroissance.", dfeReference: "KS3 Ratio & proportion: growth and decay" }
     ]},
     { levelNumber: 3, title: "Advanced algebraic manipulation", summary: "By the end of this level, you will expand double brackets and factorise quadratics.", isMixedMastery: false, status: "SCAFFOLDED", pathway: null, objectives: [
       { code: "Y9-L3-1", description: "Simplify and manipulate expressions by expanding products of two binomials.", dfeReference: "KS3 Algebra: expand products of two binomials" },

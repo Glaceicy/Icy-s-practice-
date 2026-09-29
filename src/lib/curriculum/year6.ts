@@ -6,21 +6,23 @@ import type { SchoolYearDef } from "./types";
 export const year6: SchoolYearDef = {
   yearNumber: 6,
   title: "Year 6",
+  titleFr: "Année 6",
   keyStage: "KS2",
   summary: "Ratio, algebra basics and SATs-style reasoning for 10-11 year olds.",
+  summaryFr: "Les ratios, les bases de l’algèbre et le raisonnement de type SATs pour les enfants de 10 à 11 ans.",
   minAge: 10,
   maxAge: 11,
   themeStage: "adventure",
   levels: [
-    { levelNumber: 1, title: "Place value, rounding and negative numbers", summary: "By the end of this level, you will use place value confidently with very large and negative numbers.", isMixedMastery: false, status: "COMPLETE", pathway: null, objectives: [
-      { code: "Y6-L1-1", description: "Read, write, order and compare numbers up to 10,000,000.", dfeReference: "Y6 Number & place value: numbers up to 10,000,000" },
-      { code: "Y6-L1-2", description: "Round any whole number to a required degree of accuracy.", dfeReference: "Y6 Number & place value: round any whole number" },
-      { code: "Y6-L1-3", description: "Use negative numbers in context, and calculate intervals across zero.", dfeReference: "Y6 Number & place value: use negative numbers in context" }
+    { levelNumber: 1, title: "Place value, rounding and negative numbers", titleFr: "Valeur de position, arrondi et nombres négatifs", summary: "By the end of this level, you will use place value confidently with very large and negative numbers.", summaryFr: "À la fin de ce niveau, tu utiliseras la valeur de position avec assurance pour les très grands nombres et les nombres négatifs.", isMixedMastery: false, status: "COMPLETE", pathway: null, objectives: [
+      { code: "Y6-L1-1", description: "Read, write, order and compare numbers up to 10,000,000.", descriptionFr: "Lire, écrire, ranger et comparer les nombres jusqu’à 10 000 000.", dfeReference: "Y6 Number & place value: numbers up to 10,000,000" },
+      { code: "Y6-L1-2", description: "Round any whole number to a required degree of accuracy.", descriptionFr: "Arrondir n’importe quel nombre entier au degré de précision demandé.", dfeReference: "Y6 Number & place value: round any whole number" },
+      { code: "Y6-L1-3", description: "Use negative numbers in context, and calculate intervals across zero.", descriptionFr: "Utiliser les nombres négatifs en contexte et calculer des intervalles à travers zéro.", dfeReference: "Y6 Number & place value: use negative numbers in context" }
     ]},
-    { levelNumber: 2, title: "The four operations and multi-step problems", summary: "By the end of this level, you will use all four operations to solve multi-step problems.", isMixedMastery: false, status: "COMPLETE", pathway: null, objectives: [
-      { code: "Y6-L2-1", description: "Multiply multi-digit numbers up to 4 digits by a two-digit number using a formal written method.", dfeReference: "Y6 Multiplication & division: formal written method" },
-      { code: "Y6-L2-2", description: "Divide numbers up to 4 digits by a two-digit number, interpreting remainders.", dfeReference: "Y6 Multiplication & division: long division" },
-      { code: "Y6-L2-3", description: "Solve problems involving all four operations, using estimation to check answers.", dfeReference: "Y6 Addition, subtraction, multiplication & division: solve problems" }
+    { levelNumber: 2, title: "The four operations and multi-step problems", titleFr: "Les quatre opérations et les problèmes à étapes multiples", summary: "By the end of this level, you will use all four operations to solve multi-step problems.", summaryFr: "À la fin de ce niveau, tu sauras utiliser les quatre opérations pour résoudre des problèmes à étapes multiples.", isMixedMastery: false, status: "COMPLETE", pathway: null, objectives: [
+      { code: "Y6-L2-1", description: "Multiply multi-digit numbers up to 4 digits by a two-digit number using a formal written method.", descriptionFr: "Multiplier des nombres à plusieurs chiffres jusqu’à 4 chiffres par un nombre à deux chiffres avec une méthode posée.", dfeReference: "Y6 Multiplication & division: formal written method" },
+      { code: "Y6-L2-2", description: "Divide numbers up to 4 digits by a two-digit number, interpreting remainders.", descriptionFr: "Diviser des nombres jusqu’à 4 chiffres par un nombre à deux chiffres, en interprétant les restes.", dfeReference: "Y6 Multiplication & division: long division" },
+      { code: "Y6-L2-3", description: "Solve problems involving all four operations, using estimation to check answers.", descriptionFr: "Résoudre des problèmes impliquant les quatre opérations, en utilisant l’estimation pour vérifier les réponses.", dfeReference: "Y6 Addition, subtraction, multiplication & division: solve problems" }
     ]},
     { levelNumber: 3, title: "Fractions and mixed numbers", summary: "By the end of this level, you will add, subtract, multiply and divide fractions.", isMixedMastery: false, status: "SCAFFOLDED", pathway: null, objectives: [
       { code: "Y6-L3-1", description: "Add and subtract fractions with different denominators and mixed numbers.", dfeReference: "Y6 Fractions: add/subtract fractions with different denominators" },

@@ -6,21 +6,23 @@ import type { SchoolYearDef } from "./types";
 export const year3: SchoolYearDef = {
   yearNumber: 3,
   title: "Year 3",
+  titleFr: "Année 3",
   keyStage: "KS2",
   summary: "Numbers to 1,000, the 3/4/8 times tables and perimeter for 7-8 year olds.",
+  summaryFr: "Les nombres jusqu’à 1 000, les tables de multiplication par 3/4/8 et le périmètre pour les enfants de 7 à 8 ans.",
   minAge: 7,
   maxAge: 8,
   themeStage: "playful",
   levels: [
-    { levelNumber: 1, title: "Place value and numbers to 1,000", summary: "By the end of this level, you will understand hundreds, tens and ones to 1,000.", isMixedMastery: false, status: "COMPLETE", pathway: null, objectives: [
-      { code: "Y3-L1-1", description: "Recognise the place value of each digit in a three-digit number.", dfeReference: "Y3 Number & place value: recognise place value of each digit (H,T,O)" },
-      { code: "Y3-L1-2", description: "Compare and order numbers up to 1,000.", dfeReference: "Y3 Number & place value: compare and order numbers up to 1000" },
-      { code: "Y3-L1-3", description: "Count from 0 in multiples of 4, 8, 50 and 100.", dfeReference: "Y3 Number & place value: count from 0 in multiples of 4, 8, 50, 100" }
+    { levelNumber: 1, title: "Place value and numbers to 1,000", titleFr: "Valeur de position et nombres jusqu’à 1 000", summary: "By the end of this level, you will understand hundreds, tens and ones to 1,000.", summaryFr: "À la fin de ce niveau, tu comprendras les centaines, dizaines et unités jusqu’à 1 000.", isMixedMastery: false, status: "COMPLETE", pathway: null, objectives: [
+      { code: "Y3-L1-1", description: "Recognise the place value of each digit in a three-digit number.", descriptionFr: "Reconnaître la valeur de position de chaque chiffre dans un nombre à trois chiffres.", dfeReference: "Y3 Number & place value: recognise place value of each digit (H,T,O)" },
+      { code: "Y3-L1-2", description: "Compare and order numbers up to 1,000.", descriptionFr: "Comparer et ranger les nombres jusqu’à 1 000.", dfeReference: "Y3 Number & place value: compare and order numbers up to 1000" },
+      { code: "Y3-L1-3", description: "Count from 0 in multiples of 4, 8, 50 and 100.", descriptionFr: "Compter à partir de 0 de 4 en 4, de 8 en 8, de 50 en 50 et de 100 en 100.", dfeReference: "Y3 Number & place value: count from 0 in multiples of 4, 8, 50, 100" }
     ]},
-    { levelNumber: 2, title: "Written addition and subtraction", summary: "By the end of this level, you will add and subtract numbers using columns.", isMixedMastery: false, status: "COMPLETE", pathway: null, objectives: [
-      { code: "Y3-L2-1", description: "Add and subtract numbers mentally, including a three-digit number and ones/tens/hundreds.", dfeReference: "Y3 Addition & subtraction: add/subtract mentally" },
-      { code: "Y3-L2-2", description: "Use formal written column methods for addition and subtraction.", dfeReference: "Y3 Addition & subtraction: written methods, columnar addition and subtraction" },
-      { code: "Y3-L2-3", description: "Estimate and check answers using inverse operations.", dfeReference: "Y3 Addition & subtraction: estimate and use inverse operations to check" }
+    { levelNumber: 2, title: "Written addition and subtraction", titleFr: "Addition et soustraction posées", summary: "By the end of this level, you will add and subtract numbers using columns.", summaryFr: "À la fin de ce niveau, tu sauras additionner et soustraire des nombres en colonnes.", isMixedMastery: false, status: "COMPLETE", pathway: null, objectives: [
+      { code: "Y3-L2-1", description: "Add and subtract numbers mentally, including a three-digit number and ones/tens/hundreds.", descriptionFr: "Additionner et soustraire mentalement, y compris un nombre à trois chiffres et des unités/dizaines/centaines.", dfeReference: "Y3 Addition & subtraction: add/subtract mentally" },
+      { code: "Y3-L2-2", description: "Use formal written column methods for addition and subtraction.", descriptionFr: "Utiliser les méthodes posées en colonnes pour l’addition et la soustraction.", dfeReference: "Y3 Addition & subtraction: written methods, columnar addition and subtraction" },
+      { code: "Y3-L2-3", description: "Estimate and check answers using inverse operations.", descriptionFr: "Estimer et vérifier les résultats à l’aide des opérations inverses.", dfeReference: "Y3 Addition & subtraction: estimate and use inverse operations to check" }
     ]},
     { levelNumber: 3, title: "The 3, 4 and 8 multiplication tables", summary: "By the end of this level, you will know the 3, 4 and 8 times tables.", isMixedMastery: false, status: "SCAFFOLDED", pathway: null, objectives: [
       { code: "Y3-L3-1", description: "Recall and use multiplication facts for the 3, 4 and 8 times tables.", dfeReference: "Y3 Multiplication & division: recall 3, 4, 8 times tables" },

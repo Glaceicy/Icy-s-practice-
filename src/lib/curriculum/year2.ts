@@ -8,8 +8,10 @@ import type { SchoolYearDef } from "./types";
 export const year2: SchoolYearDef = {
   yearNumber: 2,
   title: "Year 2",
+  titleFr: "Année 2",
   keyStage: "KS1",
   summary: "Building fluency with numbers to 100, times tables and measuring for 6-7 year olds.",
+  summaryFr: "Développer l’aisance avec les nombres jusqu’à 100, les tables de multiplication et les mesures pour les enfants de 6 à 7 ans.",
   minAge: 6,
   maxAge: 7,
   themeStage: "playful",
@@ -17,45 +19,113 @@ export const year2: SchoolYearDef = {
     {
       levelNumber: 1,
       title: "Place value and numbers to 100",
+      titleFr: "Valeur de position et nombres jusqu’à 100",
       summary: "By the end of this level, you will understand tens and ones in numbers up to 100.",
+      summaryFr: "À la fin de ce niveau, tu comprendras les dizaines et les unités dans les nombres jusqu’à 100.",
       isMixedMastery: false, status: "COMPLETE", pathway: null,
       objectives: [
-        { code: "Y2-L1-1", description: "Recognise the place value of each digit in a two-digit number (tens, ones).", dfeReference: "Y2 Number & place value: recognise place value of each digit" },
-        { code: "Y2-L1-2", description: "Compare and order numbers to 100 using <, > and =.", dfeReference: "Y2 Number & place value: compare and order numbers using symbols" },
-        { code: "Y2-L1-3", description: "Count in steps of 2, 3 and 5, and in tens from any number.", dfeReference: "Y2 Number & place value: count in steps of 2, 3 and 5" }
+        {
+          code: "Y2-L1-1",
+          description: "Recognise the place value of each digit in a two-digit number (tens, ones).",
+          descriptionFr: "Reconnaître la valeur de position de chaque chiffre dans un nombre à deux chiffres (dizaines, unités).",
+          dfeReference: "Y2 Number & place value: recognise place value of each digit"
+        },
+        {
+          code: "Y2-L1-2",
+          description: "Compare and order numbers to 100 using <, > and =.",
+          descriptionFr: "Comparer et ranger les nombres jusqu’à 100 en utilisant <, > et =.",
+          dfeReference: "Y2 Number & place value: compare and order numbers using symbols"
+        },
+        {
+          code: "Y2-L1-3",
+          description: "Count in steps of 2, 3 and 5, and in tens from any number.",
+          descriptionFr: "Compter de 2 en 2, de 3 en 3 et de 5 en 5, et de 10 en 10 à partir de n’importe quel nombre.",
+          dfeReference: "Y2 Number & place value: count in steps of 2, 3 and 5"
+        }
       ]
     },
     {
       levelNumber: 2,
       title: "Addition and subtraction facts",
+      titleFr: "Faits d’addition et de soustraction",
       summary: "By the end of this level, you will recall addition and subtraction facts to 20.",
+      summaryFr: "À la fin de ce niveau, tu connaîtras par cœur les faits d’addition et de soustraction jusqu’à 20.",
       isMixedMastery: false, status: "COMPLETE", pathway: null,
       objectives: [
-        { code: "Y2-L2-1", description: "Recall and use addition and subtraction facts to 20 fluently.", dfeReference: "Y2 Addition & subtraction: recall and use number bonds to 20" },
-        { code: "Y2-L2-2", description: "Derive related facts (e.g. 7+3=10, so 70+30=100).", dfeReference: "Y2 Addition & subtraction: derive and use related facts to 100" },
-        { code: "Y2-L2-3", description: "Add and subtract mentally using a number line.", dfeReference: "Y2 Addition & subtraction: add/subtract using concrete objects and mental methods" }
+        {
+          code: "Y2-L2-1",
+          description: "Recall and use addition and subtraction facts to 20 fluently.",
+          descriptionFr: "Connaître et utiliser avec aisance les faits d’addition et de soustraction jusqu’à 20.",
+          dfeReference: "Y2 Addition & subtraction: recall and use number bonds to 20"
+        },
+        {
+          code: "Y2-L2-2",
+          description: "Derive related facts (e.g. 7+3=10, so 70+30=100).",
+          descriptionFr: "Déduire des faits liés (par exemple 7+3=10, donc 70+30=100).",
+          dfeReference: "Y2 Addition & subtraction: derive and use related facts to 100"
+        },
+        {
+          code: "Y2-L2-3",
+          description: "Add and subtract mentally using a number line.",
+          descriptionFr: "Additionner et soustraire mentalement à l’aide d’une droite numérique.",
+          dfeReference: "Y2 Addition & subtraction: add/subtract using concrete objects and mental methods"
+        }
       ]
     },
     {
       levelNumber: 3,
       title: "Adding and subtracting two-digit numbers",
+      titleFr: "Additionner et soustraire des nombres à deux chiffres",
       summary: "By the end of this level, you will add and subtract two-digit numbers.",
+      summaryFr: "À la fin de ce niveau, tu sauras additionner et soustraire des nombres à deux chiffres.",
       isMixedMastery: false, status: "COMPLETE", pathway: null,
       objectives: [
-        { code: "Y2-L3-1", description: "Add a two-digit number and ones.", dfeReference: "Y2 Addition & subtraction: a two-digit number and ones" },
-        { code: "Y2-L3-2", description: "Add and subtract two two-digit numbers.", dfeReference: "Y2 Addition & subtraction: two two-digit numbers" },
-        { code: "Y2-L3-3", description: "Solve two-step addition and subtraction word problems.", dfeReference: "Y2 Addition & subtraction: solve problems, including missing number problems" }
+        {
+          code: "Y2-L3-1",
+          description: "Add a two-digit number and ones.",
+          descriptionFr: "Additionner un nombre à deux chiffres et des unités.",
+          dfeReference: "Y2 Addition & subtraction: a two-digit number and ones"
+        },
+        {
+          code: "Y2-L3-2",
+          description: "Add and subtract two two-digit numbers.",
+          descriptionFr: "Additionner et soustraire deux nombres à deux chiffres.",
+          dfeReference: "Y2 Addition & subtraction: two two-digit numbers"
+        },
+        {
+          code: "Y2-L3-3",
+          description: "Solve two-step addition and subtraction word problems.",
+          descriptionFr: "Résoudre des problèmes d’addition et de soustraction à deux étapes.",
+          dfeReference: "Y2 Addition & subtraction: solve problems, including missing number problems"
+        }
       ]
     },
     {
       levelNumber: 4,
       title: "Multiplication and division using 2, 5 and 10",
+      titleFr: "Multiplication et division avec 2, 5 et 10",
       summary: "By the end of this level, you will know the 2, 5 and 10 times tables.",
+      summaryFr: "À la fin de ce niveau, tu connaîtras les tables de multiplication par 2, 5 et 10.",
       isMixedMastery: false, status: "COMPLETE", pathway: null,
       objectives: [
-        { code: "Y2-L4-1", description: "Recall and use multiplication facts for the 2, 5 and 10 times tables.", dfeReference: "Y2 Multiplication & division: recall 2, 5 and 10 times tables" },
-        { code: "Y2-L4-2", description: "Use arrays to represent multiplication.", dfeReference: "Y2 Multiplication & division: show using arrays" },
-        { code: "Y2-L4-3", description: "Solve simple division problems by sharing and grouping.", dfeReference: "Y2 Multiplication & division: calculate using multiplication and division" }
+        {
+          code: "Y2-L4-1",
+          description: "Recall and use multiplication facts for the 2, 5 and 10 times tables.",
+          descriptionFr: "Connaître et utiliser les tables de multiplication par 2, 5 et 10.",
+          dfeReference: "Y2 Multiplication & division: recall 2, 5 and 10 times tables"
+        },
+        {
+          code: "Y2-L4-2",
+          description: "Use arrays to represent multiplication.",
+          descriptionFr: "Utiliser des tableaux (réseaux) pour représenter la multiplication.",
+          dfeReference: "Y2 Multiplication & division: show using arrays"
+        },
+        {
+          code: "Y2-L4-3",
+          description: "Solve simple division problems by sharing and grouping.",
+          descriptionFr: "Résoudre des problèmes de division simples par partage et par groupement.",
+          dfeReference: "Y2 Multiplication & division: calculate using multiplication and division"
+        }
       ]
     },
     {

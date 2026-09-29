@@ -7,21 +7,23 @@ import type { SchoolYearDef } from "./types";
 export const year8: SchoolYearDef = {
   yearNumber: 8,
   title: "Year 8",
+  titleFr: "Année 8",
   keyStage: "KS3",
   summary: "Powers, algebraic manipulation and Pythagoras for 12-13 year olds.",
+  summaryFr: "Les puissances, la manipulation algébrique et le théorème de Pythagore pour les enfants de 12 à 13 ans.",
   minAge: 12,
   maxAge: 13,
   themeStage: "gameinspired",
   levels: [
-    { levelNumber: 1, title: "Number skills, powers, roots and index notation", summary: "By the end of this level, you will use powers, roots and index laws confidently.", isMixedMastery: false, status: "COMPLETE", pathway: null, objectives: [
-      { code: "Y8-L1-1", description: "Use integer powers and associated real roots (square, cube and higher).", dfeReference: "KS3 Number: use integer powers and associated real roots" },
-      { code: "Y8-L1-2", description: "Recognise and use relationships between operations, including inverse operations.", dfeReference: "KS3 Number: recognise/use relationships between operations" },
-      { code: "Y8-L1-3", description: "Use index laws to simplify numerical expressions.", dfeReference: "KS3 Number: use standard units of measure and related concepts" }
+    { levelNumber: 1, title: "Number skills, powers, roots and index notation", titleFr: "Compétences numériques, puissances, racines et notation indicielle", summary: "By the end of this level, you will use powers, roots and index laws confidently.", summaryFr: "À la fin de ce niveau, tu utiliseras les puissances, racines et lois des indices avec assurance.", isMixedMastery: false, status: "COMPLETE", pathway: null, objectives: [
+      { code: "Y8-L1-1", description: "Use integer powers and associated real roots (square, cube and higher).", descriptionFr: "Utiliser les puissances entières et les racines réelles associées (carrée, cubique et supérieures).", dfeReference: "KS3 Number: use integer powers and associated real roots" },
+      { code: "Y8-L1-2", description: "Recognise and use relationships between operations, including inverse operations.", descriptionFr: "Reconnaître et utiliser les relations entre opérations, y compris les opérations inverses.", dfeReference: "KS3 Number: recognise/use relationships between operations" },
+      { code: "Y8-L1-3", description: "Use index laws to simplify numerical expressions.", descriptionFr: "Utiliser les lois des indices pour simplifier des expressions numériques.", dfeReference: "KS3 Number: use standard units of measure and related concepts" }
     ]},
-    { levelNumber: 2, title: "Fractions, percentages and percentage change", summary: "By the end of this level, you will calculate percentage increase, decrease and change.", isMixedMastery: false, status: "COMPLETE", pathway: null, objectives: [
-      { code: "Y8-L2-1", description: "Interpret percentage increase and decrease, and percentage change.", dfeReference: "KS3 Ratio & proportion: percentage increase/decrease/change" },
-      { code: "Y8-L2-2", description: "Work with percentages greater than 100%.", dfeReference: "KS3 Ratio & proportion: percentages greater than 100%" },
-      { code: "Y8-L2-3", description: "Solve problems involving fractions and percentages of amounts.", dfeReference: "KS3 Number/Ratio & proportion: solve problems" }
+    { levelNumber: 2, title: "Fractions, percentages and percentage change", titleFr: "Fractions, pourcentages et variation en pourcentage", summary: "By the end of this level, you will calculate percentage increase, decrease and change.", summaryFr: "À la fin de ce niveau, tu sauras calculer une augmentation, une diminution et une variation en pourcentage.", isMixedMastery: false, status: "COMPLETE", pathway: null, objectives: [
+      { code: "Y8-L2-1", description: "Interpret percentage increase and decrease, and percentage change.", descriptionFr: "Interpréter une augmentation, une diminution et une variation en pourcentage.", dfeReference: "KS3 Ratio & proportion: percentage increase/decrease/change" },
+      { code: "Y8-L2-2", description: "Work with percentages greater than 100%.", descriptionFr: "Travailler avec des pourcentages supérieurs à 100 %.", dfeReference: "KS3 Ratio & proportion: percentages greater than 100%" },
+      { code: "Y8-L2-3", description: "Solve problems involving fractions and percentages of amounts.", descriptionFr: "Résoudre des problèmes impliquant des fractions et des pourcentages de quantités.", dfeReference: "KS3 Number/Ratio & proportion: solve problems" }
     ]},
     { levelNumber: 3, title: "Ratio, rates and direct proportion", summary: "By the end of this level, you will solve problems involving ratio, rates and direct proportion.", isMixedMastery: false, status: "SCAFFOLDED", pathway: null, objectives: [
       { code: "Y8-L3-1", description: "Solve problems involving direct proportion, including graphical representations.", dfeReference: "KS3 Ratio & proportion: direct proportion" },
