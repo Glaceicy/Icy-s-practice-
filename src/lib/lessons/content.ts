@@ -8,7 +8,9 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
     {
       order: 1,
       title: "Counting forwards and backwards to 20",
+      titleFr: "Compter en avant et en arrière jusqu'à 20",
       concept: "Counting a set of objects and saying the number sequence to 20",
+      conceptFr: "Compter un ensemble d'objets et dire la suite des nombres jusqu'à 20",
       representation: "concrete",
       visualAid: "counters",
       ageBandStyle: "playful",
@@ -16,16 +18,26 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "When we count, we say one number name for every object — touching each one as we go so we don't miss any or count one twice.\n\n" +
         "We can count forwards (1, 2, 3...) to find out **how many**, and count backwards (20, 19, 18...) to take away.",
+      explanationMdFr:
+        "Quand on compte, on dit un nom de nombre pour chaque objet — en touchant chacun d'eux pour ne pas en oublier ou en compter deux fois.\n\n" +
+        "On peut compter en avant (1, 2, 3...) pour trouver **combien il y en a**, et compter en arrière (20, 19, 18...) pour enlever.",
       workedExamples: [
         { problem: "Count these 7 stars: ⭐⭐⭐⭐⭐⭐⭐", steps: ["Touch the first star and say 1.", "Touch each next star, saying the next number.", "The last number you say is the total."], answer: "7" },
         { problem: "Count backwards from 12 to 8.", steps: ["Start at 12.", "Say the number before each time: 11, 10, 9, 8.", "Stop at 8."], answer: "12, 11, 10, 9, 8" }
       ],
-      audioScript: "Let's count together! Touch each star as you say the number. Ready? One... two... three..."
+      workedExamplesFr: [
+        { problem: "Compte ces 7 étoiles : ⭐⭐⭐⭐⭐⭐⭐", steps: ["Touche la première étoile et dis 1.", "Touche chaque étoile suivante en disant le nombre suivant.", "Le dernier nombre que tu dis est le total."], answer: "7" },
+        { problem: "Compte à rebours de 12 à 8.", steps: ["Commence à 12.", "Dis le nombre précédent à chaque fois : 11, 10, 9, 8.", "Arrête-toi à 8."], answer: "12, 11, 10, 9, 8" }
+      ],
+      audioScript: "Let's count together! Touch each star as you say the number. Ready? One... two... three...",
+      audioScriptFr: "Comptons ensemble ! Touche chaque étoile en disant le nombre. Prêt ? Un... deux... trois..."
     },
     {
       order: 2,
       title: "One more, one less",
+      titleFr: "Un de plus, un de moins",
       concept: "Finding one more or one less than a given number using a number line",
+      conceptFr: "Trouver un de plus ou un de moins qu'un nombre donné à l'aide d'une droite numérique",
       representation: "pictorial",
       visualAid: "number-line",
       ageBandStyle: "playful",
@@ -33,16 +45,26 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "On a number line, **one more** means moving one step to the right. **One less** means moving one step to the left.\n\n" +
         "This works for any number up to 20 — try it with your finger on a number line!",
+      explanationMdFr:
+        "Sur une droite numérique, **un de plus** veut dire avancer d'un pas vers la droite. **Un de moins** veut dire avancer d'un pas vers la gauche.\n\n" +
+        "Cela fonctionne pour n'importe quel nombre jusqu'à 20 — essaie avec ton doigt sur une droite numérique !",
       workedExamples: [
         { problem: "What is one more than 8?", steps: ["Find 8 on the number line.", "Move one step to the right.", "You land on 9."], answer: "9" },
         { problem: "What is one less than 15?", steps: ["Find 15 on the number line.", "Move one step to the left.", "You land on 14."], answer: "14" }
       ],
-      audioScript: "One more means we move forwards one step. One less means we move backwards one step. Let's try it on our number line."
+      workedExamplesFr: [
+        { problem: "Quel est le nombre juste après 8 ?", steps: ["Trouve 8 sur la droite numérique.", "Avance d'un pas vers la droite.", "Tu arrives sur 9."], answer: "9" },
+        { problem: "Quel est le nombre juste avant 15 ?", steps: ["Trouve 15 sur la droite numérique.", "Avance d'un pas vers la gauche.", "Tu arrives sur 14."], answer: "14" }
+      ],
+      audioScript: "One more means we move forwards one step. One less means we move backwards one step. Let's try it on our number line.",
+      audioScriptFr: "Un de plus veut dire qu'on avance d'un pas. Un de moins veut dire qu'on recule d'un pas. Essayons sur notre droite numérique."
     },
     {
       order: 3,
       title: "Reading and writing numbers to 20",
+      titleFr: "Lire et écrire les nombres jusqu'à 20",
       concept: "Matching numerals (like 14) to number words (like fourteen)",
+      conceptFr: "Associer des chiffres (comme 14) aux mots-nombres (comme quatorze)",
       representation: "abstract",
       visualAid: "none",
       ageBandStyle: "playful",
@@ -50,18 +72,28 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "A **numeral** is a number written in digits, like 14. A **number word** is the same number written in letters, like *fourteen*.\n\n" +
         "The number words from eleven to nineteen don't follow quite the same pattern as the words after twenty — so these are extra important to practise!",
+      explanationMdFr:
+        "Un **chiffre** est un nombre écrit avec des chiffres, comme 14. Un **mot-nombre** est le même nombre écrit en lettres, comme *quatorze*.\n\n" +
+        "Les mots-nombres de onze à seize ne suivent pas tout à fait le même schéma que les mots après vingt — c'est donc particulièrement important de les pratiquer !",
       workedExamples: [
         { problem: "Write the numeral for 'sixteen'.", steps: ["Say the word slowly: six-teen.", "This means the number after fifteen.", "Write the digits."], answer: "16" },
         { problem: "Write the word for 11.", steps: ["11 is a special one-off word.", "It is not 'oneteen'!"], answer: "eleven" }
       ],
-      audioScript: "Let's practise reading number words. Some of them, like eleven and twelve, have their own special names to learn."
+      workedExamplesFr: [
+        { problem: "Écris le chiffre pour « seize ».", steps: ["Dis le mot lentement : sei-ze.", "Cela veut dire le nombre après quinze.", "Écris les chiffres."], answer: "16" },
+        { problem: "Écris le mot pour 11.", steps: ["11 est un mot particulier, à part.", "Ce n'est pas « un-ze » !"], answer: "onze" }
+      ],
+      audioScript: "Let's practise reading number words. Some of them, like eleven and twelve, have their own special names to learn.",
+      audioScriptFr: "Entraînons-nous à lire les mots-nombres. Certains d'entre eux, comme onze et douze, ont un nom bien à eux à apprendre."
     }
   ],
   Y1L2: [
     {
       order: 1,
       title: "Tens and ones",
+      titleFr: "Les dizaines et les unités",
       concept: "Understanding that a two-digit number is made of groups of ten and some extra ones",
+      conceptFr: "Comprendre qu'un nombre à deux chiffres est composé de groupes de dix et de quelques unités en plus",
       representation: "concrete",
       visualAid: "ten-frame",
       ageBandStyle: "playful",
@@ -69,40 +101,63 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       explanationMd:
         "We can bundle ten counters together to make **one ten**. Any counters left over are the **ones**.\n\n" +
         "For example, 34 is made of 3 tens and 4 ones — three full bundles of ten, and four more.",
+      explanationMdFr:
+        "On peut regrouper dix jetons ensemble pour faire **une dizaine**. Les jetons qui restent sont les **unités**.\n\n" +
+        "Par exemple, 34 est composé de 3 dizaines et 4 unités — trois paquets complets de dix, et quatre de plus.",
       workedExamples: [
         { problem: "How many tens and ones make 27?", steps: ["Make bundles of ten: 2 bundles = 20.", "Count what's left over: 7.", "27 = 2 tens and 7 ones."], answer: "2 tens, 7 ones" }
       ],
-      audioScript: "Every time we get ten ones, we bundle them into one ten. Let's build some two-digit numbers together."
+      workedExamplesFr: [
+        { problem: "Combien de dizaines et d'unités font 27 ?", steps: ["Fais des paquets de dix : 2 paquets = 20.", "Compte ce qui reste : 7.", "27 = 2 dizaines et 7 unités."], answer: "2 dizaines, 7 unités" }
+      ],
+      audioScript: "Every time we get ten ones, we bundle them into one ten. Let's build some two-digit numbers together.",
+      audioScriptFr: "Chaque fois qu'on obtient dix unités, on les regroupe en une dizaine. Construisons ensemble des nombres à deux chiffres."
     },
     {
       order: 2,
       title: "Counting in 2s, 5s and 10s",
+      titleFr: "Compter de 2 en 2, de 5 en 5 et de 10 en 10",
       concept: "Skip counting to count larger amounts quickly",
+      conceptFr: "Compter par bonds pour compter rapidement de grandes quantités",
       representation: "pictorial",
       visualAid: "number-line",
       ageBandStyle: "playful",
       objectiveCodes: ["Y1-L2-2"],
       explanationMd:
         "Instead of counting one at a time, we can count in jumps! Counting in 10s (10, 20, 30...) is a fast way to count big groups.",
+      explanationMdFr:
+        "Au lieu de compter un par un, on peut compter par bonds ! Compter de 10 en 10 (10, 20, 30...) est une façon rapide de compter de grands groupes.",
       workedExamples: [
         { problem: "Count in 10s: 10, 20, 30, ___", steps: ["Each jump adds 10.", "30 + 10 = 40."], answer: "40" }
       ],
-      audioScript: "Let's skip count together — in tens this time. Ten, twenty, thirty..."
+      workedExamplesFr: [
+        { problem: "Compte de 10 en 10 : 10, 20, 30, ___", steps: ["Chaque bond ajoute 10.", "30 + 10 = 40."], answer: "40" }
+      ],
+      audioScript: "Let's skip count together — in tens this time. Ten, twenty, thirty...",
+      audioScriptFr: "Comptons ensemble par bonds — de dix en dix cette fois. Dix, vingt, trente..."
     },
     {
       order: 3,
       title: "Comparing numbers to 100",
+      titleFr: "Comparer des nombres jusqu'à 100",
       concept: "Using the tens digit (and then the ones digit) to decide which number is bigger",
+      conceptFr: "Utiliser le chiffre des dizaines (puis celui des unités) pour décider quel nombre est le plus grand",
       representation: "abstract",
       visualAid: "none",
       ageBandStyle: "playful",
       objectiveCodes: ["Y1-L2-3"],
       explanationMd:
         "To compare two numbers, look at the tens digit first. The number with more tens is bigger. If the tens digits match, compare the ones digit.",
+      explanationMdFr:
+        "Pour comparer deux nombres, regarde d'abord le chiffre des dizaines. Le nombre qui a le plus de dizaines est le plus grand. Si les chiffres des dizaines sont identiques, compare le chiffre des unités.",
       workedExamples: [
         { problem: "Which is bigger, 52 or 48?", steps: ["52 has 5 tens; 48 has 4 tens.", "5 tens is more than 4 tens."], answer: "52" }
       ],
-      audioScript: "When comparing numbers, always check the tens digit first."
+      workedExamplesFr: [
+        { problem: "Lequel est le plus grand, 52 ou 48 ?", steps: ["52 a 5 dizaines ; 48 a 4 dizaines.", "5 dizaines, c'est plus que 4 dizaines."], answer: "52" }
+      ],
+      audioScript: "When comparing numbers, always check the tens digit first.",
+      audioScriptFr: "Pour comparer des nombres, vérifie toujours d'abord le chiffre des dizaines."
     }
   ],
   Y1L10: [

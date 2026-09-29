@@ -171,7 +171,12 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["{a} - {b} = ? (You will need to borrow.)"],
     explain: (v, r) => [`${v[0]! % 10} is smaller than ${v[1]! % 10}, so borrow 1 ten to subtract the ones. ${v[0]} - ${v[1]} = ${r}.`],
     hints: () => ["When the ones digit is too small to subtract from, borrow 1 from the tens column."],
-    declaredVariationSpace: 800 * 800
+    declaredVariationSpace: 800 * 800,
+    fr: {
+      promptTemplates: ["{a} - {b} = ? (Tu devras emprunter.)"],
+      explain: (v, r) => [`${v[0]! % 10} est plus petit que ${v[1]! % 10}, donc emprunte 1 dizaine pour soustraire les unités. ${v[0]} - ${v[1]} = ${r}.`],
+      hints: () => ["Quand le chiffre des unités est trop petit pour soustraire, emprunte 1 à la colonne des dizaines."]
+    }
   }),
   arithmeticTemplate({
     key: "y3l2.missingDigitColumnAdd", levelKey: "Y3L2", objectiveCode: "Y3-L2-2", difficulty: "REASONING",
@@ -181,7 +186,12 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["___ + {b} = {c}. Use the column method to find the missing number.", "What number, added to {b}, makes {c}?"],
     explain: (v, r) => [`${v[0]! + v[1]!} - ${v[1]} = ${r}.`],
     hints: () => ["Use the inverse (subtraction) to find the missing addend."],
-    declaredVariationSpace: 800 * 800 * 2
+    declaredVariationSpace: 800 * 800 * 2,
+    fr: {
+      promptTemplates: ["___ + {b} = {c}. Utilise la méthode en colonnes pour trouver le nombre manquant.", "Quel nombre, ajouté à {b}, donne {c} ?"],
+      explain: (v, r) => [`${v[0]! + v[1]!} - ${v[1]} = ${r}.`],
+      hints: () => ["Utilise l'opération inverse (la soustraction) pour trouver le terme manquant."]
+    }
   }),
   arithmeticTemplate({
     key: "y3l2.mcAddTwoThreeDigit", levelKey: "Y3L2", objectiveCode: "Y3-L2-2", difficulty: "APPLICATION",
@@ -191,7 +201,12 @@ export const level: QuestionTemplateDef[] = [
     explain: (v, r) => [`${v[0]} + ${v[1]} = ${r}.`],
     hints: () => ["Add the columns from the right, carrying where needed."],
     distractorSpread: 50,
-    declaredVariationSpace: 800 * 800
+    declaredVariationSpace: 800 * 800,
+    fr: {
+      promptTemplates: ["Combien font {a} + {b} ?"],
+      explain: (v, r) => [`${v[0]} + ${v[1]} = ${r}.`],
+      hints: () => ["Additionne les colonnes en partant de la droite, en retenant si besoin."]
+    }
   }),
   arithmeticTemplate({
     key: "y3l2.wordProblemColumnAddition", levelKey: "Y3L2", objectiveCode: "Y3-L2-2", difficulty: "APPLICATION",
@@ -200,7 +215,13 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["A shop sold {a} {ctx} in one week and {b} {ctx} the next week. How many {ctx} were sold in total?"],
     explain: (v, r) => [`${v[0]} + ${v[1]} = ${r}.`],
     hints: () => ["Use the column method to add the two totals."],
-    declaredVariationSpace: 800 * 800 * CTX.length
+    declaredVariationSpace: 800 * 800 * CTX.length,
+    fr: {
+      contextPool: CTX_FR,
+      promptTemplates: ["Un magasin a vendu {a} {ctx} une semaine et {b} {ctx} la semaine suivante. Combien de {ctx} ont été vendus au total ?"],
+      explain: (v, r) => [`${v[0]} + ${v[1]} = ${r}.`],
+      hints: () => ["Utilise la méthode en colonnes pour additionner les deux totaux."]
+    }
   }),
 
   // --- Y3-L2-3: estimate and check answers using inverse operations ---
@@ -211,7 +232,12 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["Estimate {a} + {b} by rounding each number to the nearest 100 first."],
     explain: (v, r) => [`${v[0]} rounds to ${Math.round(v[0]! / 100) * 100}. ${v[1]} rounds to ${Math.round(v[1]! / 100) * 100}. ${Math.round(v[0]! / 100) * 100} + ${Math.round(v[1]! / 100) * 100} = ${r}.`],
     hints: () => ["Round each number to the nearest 100 before adding."],
-    declaredVariationSpace: 800 * 800
+    declaredVariationSpace: 800 * 800,
+    fr: {
+      promptTemplates: ["Estime {a} + {b} en arrondissant d'abord chaque nombre à la centaine près."],
+      explain: (v, r) => [`${v[0]} s'arrondit à ${Math.round(v[0]! / 100) * 100}. ${v[1]} s'arrondit à ${Math.round(v[1]! / 100) * 100}. ${Math.round(v[0]! / 100) * 100} + ${Math.round(v[1]! / 100) * 100} = ${r}.`],
+      hints: () => ["Arrondis chaque nombre à la centaine près avant d'additionner."]
+    }
   }),
   arithmeticTemplate({
     key: "y3l2.estimateDifferenceRoundHundred", levelKey: "Y3L2", objectiveCode: "Y3-L2-3", difficulty: "REASONING",
