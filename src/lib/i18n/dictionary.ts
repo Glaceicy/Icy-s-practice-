@@ -122,6 +122,72 @@ export const dictionary = {
       previousAttemptsTitle: "Your previous Mastery Challenge attempts",
       attemptLabel: "Attempt {number}",
       passedSuffix: "— Passed"
+    },
+    practiceSession: {
+      loading: "Loading your next question…",
+      allDone: "All done! Taking you to the next step…",
+      questionOf: "Question {position} of {total}",
+      remaining: "{count} remaining",
+      wellDone: "🎉 Well done!",
+      getHint: "💡 Get a hint",
+      genericHint: "Take it one step at a time — think about what the question is really asking.",
+      tryAgain: "Try a similar question"
+    },
+    masterySession: {
+      loading: "Loading your Mastery Challenge…",
+      progressSavedTitle: "Progress saved",
+      progressSavedBody: "You've answered {answered} of {total} questions. Come back any time — nothing will be lost.",
+      continueChallenge: "Continue the challenge",
+      roundComplete: "Round {round} complete!",
+      questionsRemaining: "{count} question(s) remaining in this Mastery Challenge.",
+      takeABreak: "Feel free to take a short movement or rest break before continuing.",
+      startRound: "Start round {round}",
+      continueLabel: "Continue",
+      saveAndBreak: "Save and take a break",
+      allAnsweredTitle: "All 40 questions answered",
+      allAnsweredBody: "Once you submit, your answers are final and your score will be calculated.",
+      submitting: "Submitting...",
+      submitChallenge: "Submit my Mastery Challenge",
+      roundOf: "Round {round} of 4 · Question {position} of 10",
+      remainingOverall: "{count} remaining overall",
+      continueNext: "Continue to the next question",
+      pauseAndSave: "Pause and save progress",
+      genericError: "Something went wrong. Please try again."
+    },
+    questionInput: {
+      chooseAnswer: "Choose an answer",
+      orderingHelp: "Tap the items in order (or use the number buttons for a keyboard/accessible alternative to dragging).",
+      resetOrder: "Reset order",
+      chooseMatch: "Choose a match…",
+      yourAnswer: "Your answer",
+      submitAnswer: "Submit answer"
+    },
+    wrongAnswerCard: {
+      misconceptionIntro: "It looks like this might be about:",
+      stepByStep: "Let's look at it step by step:",
+      hintLabel: "Hint:",
+      scaffoldEasier: "Let's try a couple of easier questions first, then come back to this one."
+    },
+    wrongAnswerReviewPanel: {
+      defaultTrigger: "📋 Review my tricky questions",
+      dialogLabel: "Questions to review",
+      close: "Close",
+      loading: "Loading…",
+      questionsToReviewOne: "{count} question to look back on",
+      questionsToReviewMany: "{count} questions to look back on",
+      fetching: "Fetching your questions…",
+      nothingToReview: "Nothing to review yet — great work so far!",
+      youAnswered: "You answered:",
+      correctAnswer: "Correct answer:"
+    },
+    scratchpad: {
+      trigger: "✏️ Scratchpad",
+      title: "Scratchpad",
+      close: "Close",
+      penColour: "Pen colour",
+      undo: "↩️ Undo",
+      clear: "🧹 Clear",
+      footer: "Draw here to work things out — this is just for you, it isn't submitted as your answer."
     }
   },
   fr: {
@@ -241,6 +307,72 @@ export const dictionary = {
       previousAttemptsTitle: "Vos précédentes tentatives du Défi de Maîtrise",
       attemptLabel: "Tentative {number}",
       passedSuffix: "— Réussi"
+    },
+    practiceSession: {
+      loading: "Chargement de votre prochaine question…",
+      allDone: "Terminé ! On vous emmène vers l’étape suivante…",
+      questionOf: "Question {position} sur {total}",
+      remaining: "{count} restante(s)",
+      wellDone: "🎉 Bien joué !",
+      getHint: "💡 Obtenir un indice",
+      genericHint: "Allez-y étape par étape — réfléchissez à ce que la question demande vraiment.",
+      tryAgain: "Essayer une question similaire"
+    },
+    masterySession: {
+      loading: "Chargement de votre Défi de Maîtrise…",
+      progressSavedTitle: "Progression enregistrée",
+      progressSavedBody: "Vous avez répondu à {answered} question(s) sur {total}. Revenez quand vous voulez — rien ne sera perdu.",
+      continueChallenge: "Continuer le défi",
+      roundComplete: "Manche {round} terminée !",
+      questionsRemaining: "{count} question(s) restante(s) dans ce Défi de Maîtrise.",
+      takeABreak: "N’hésitez pas à faire une courte pause avant de continuer.",
+      startRound: "Commencer la manche {round}",
+      continueLabel: "Continuer",
+      saveAndBreak: "Enregistrer et faire une pause",
+      allAnsweredTitle: "Les 40 questions ont été répondues",
+      allAnsweredBody: "Une fois soumises, vos réponses sont définitives et votre score sera calculé.",
+      submitting: "Envoi en cours...",
+      submitChallenge: "Soumettre mon Défi de Maîtrise",
+      roundOf: "Manche {round} sur 4 · Question {position} sur 10",
+      remainingOverall: "{count} restante(s) au total",
+      continueNext: "Passer à la question suivante",
+      pauseAndSave: "Mettre en pause et enregistrer",
+      genericError: "Une erreur s’est produite. Veuillez réessayer."
+    },
+    questionInput: {
+      chooseAnswer: "Choisissez une réponse",
+      orderingHelp: "Appuyez sur les éléments dans l’ordre (ou utilisez les boutons numérotés comme alternative accessible au glisser-déposer).",
+      resetOrder: "Réinitialiser l’ordre",
+      chooseMatch: "Choisir une correspondance…",
+      yourAnswer: "Votre réponse",
+      submitAnswer: "Valider la réponse"
+    },
+    wrongAnswerCard: {
+      misconceptionIntro: "Cela pourrait concerner :",
+      stepByStep: "Regardons cela étape par étape :",
+      hintLabel: "Indice :",
+      scaffoldEasier: "Essayons d’abord deux questions plus faciles, puis revenons à celle-ci."
+    },
+    wrongAnswerReviewPanel: {
+      defaultTrigger: "📋 Revoir mes questions difficiles",
+      dialogLabel: "Questions à revoir",
+      close: "Fermer",
+      loading: "Chargement…",
+      questionsToReviewOne: "{count} question à revoir",
+      questionsToReviewMany: "{count} questions à revoir",
+      fetching: "Récupération de vos questions…",
+      nothingToReview: "Rien à revoir pour l’instant — excellent travail !",
+      youAnswered: "Vous avez répondu :",
+      correctAnswer: "Bonne réponse :"
+    },
+    scratchpad: {
+      trigger: "✏️ Brouillon",
+      title: "Brouillon",
+      close: "Fermer",
+      penColour: "Couleur du stylo",
+      undo: "↩️ Annuler",
+      clear: "🧹 Effacer",
+      footer: "Dessinez ici pour réfléchir — c’est juste pour vous, ce n’est pas envoyé comme réponse."
     }
   }
 } as const;

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { StoredQuestionView } from "@/lib/services/questionLog";
+import { useT } from "./I18nProvider";
 
 interface MatchItem {
   id: string;
@@ -21,6 +22,7 @@ export default function QuestionInput({
   const [selectedChoice, setSelectedChoice] = useState<string | null>(null);
   const [orderedIds, setOrderedIds] = useState<string[]>([]);
   const [matches, setMatches] = useState<Record<string, string>>({});
+  const t = useT();
 
   useEffect(() => {
     setText("");
@@ -61,7 +63,7 @@ export default function QuestionInput({
 
       {isChoiceBased && (
         <fieldset className="space-y-2">
-          <legend className="sr-only">Choose an answer</legend>
+          <legend className="sr-only">{t("questionInput.chooseAnswer")}</legend>
           {question.choices!.map((choice) => (
             <label
               key={choice.id}
@@ -86,7 +88,7 @@ export default function QuestionInput({
 
       {isOrdering && (
         <div>
-          <p className="text-sm text-slate-600">Tap the items in order (or use the number buttons for a keyboard/accessible alternative to dragging).</p>
+          <p className="text-sm text-slate-600">{t("questionInput.orderingHelp")}</p>
           <div className="mt-2 flex flex-wrap gap-2">
             {question.choices!.map((choice) => {
               const chosenIndex = orderedIds.indexOf(choice.id);
@@ -106,7 +108,7 @@ export default function QuestionInput({
           </div>
           {orderedIds.length > 0 && (
             <button type="button" onClick={() => setOrderedIds([])} className="mt-2 text-sm font-semibold text-slate-500 underline">
-              Reset order
+              {t("questionInput.resetOrder")}
             </button>
           )}
         </div>
@@ -123,7 +125,7 @@ export default function QuestionInput({
                 disabled={disabled}
                 className="touch-target flex-1 rounded-lg border border-slate-300 px-3 py-2"
               >
-                <option value="">Choose a match&hellip;</option>
+                <option value="">{t("questionInput.chooseMatch")}</option>
                 {((question.visualAid?.data.right as MatchItem[]) ?? []).map((right) => (
                   <option key={right.id} value={right.id}>
                     {right.label}
@@ -138,7 +140,7 @@ export default function QuestionInput({
       {isFreeText && (
         <div>
           <label htmlFor="answer" className="block text-sm font-medium text-slate-700">
-            Your answer
+            {t("questionInput.yourAnswer")}
           </label>
           <input
             id="answer"
@@ -157,7 +159,7 @@ export default function QuestionInput({
         disabled={disabled || !canSubmit}
         className="touch-target w-full rounded-xl2 bg-brand-600 px-6 py-3 text-lg font-semibold text-white shadow hover:bg-brand-700 disabled:opacity-50"
       >
-        Submit answer
+        {t("questionInput.submitAnswer")}
       </button>
     </form>
   );

@@ -17,6 +17,7 @@ import WrongAnswerCard, { type WrongAnswerSupportView } from "./WrongAnswerCard"
 import WrongAnswerReviewPanel from "./WrongAnswerReviewPanel";
 import Scratchpad from "./Scratchpad";
 import Mascot from "./illustrations/Mascot";
+import { useT } from "./I18nProvider";
 
 type ViewMode = "loading" | "paused" | "question" | "round-complete" | "ready-to-submit" | "submitting";
 
@@ -30,6 +31,7 @@ export default function MasterySession({ attemptId, childId, levelId }: { attemp
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [hasWrongAnswers, setHasWrongAnswers] = useState(false);
+  const t = useT();
 
   const refresh = useCallback(async () => {
     const s = await getMasteryStateAction(attemptId);
@@ -77,7 +79,7 @@ export default function MasterySession({ attemptId, childId, levelId }: { attemp
       }
       await refresh();
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Something went wrong. Please try again.");
+      setError(e instanceof Error ? e.message : t("masterySession.genericError"));
     } finally {
       setSubmitting(false);
     }
@@ -109,7 +111,7 @@ export default function MasterySession({ attemptId, childId, levelId }: { attemp
   }
 
   if (mode === "loading" || !state) {
-    return <p className="text-center text-slate-500">Loading your Mastery Challenge&hellip;</p>;
+    return <p className="text-center text-slate-500">{t("masterySession.loading")}</p>;
   }
 
   if (mode === "paused") {
@@ -119,12 +121,10 @@ export default function MasterySession({ attemptId, childId, levelId }: { attemp
         <p className="text-4xl" aria-hidden="true">
           ⏸️
         </p>
-        <h2 className="mt-2 text-xl font-bold text-brand-800">Progress saved</h2>
-        <p className="mt-2 text-slate-600">
-          You&rsquo;ve answered {answered} of {state.totalQuestions} questions. Come back any time &mdash; nothing will be lost.
-        </p>
+        <h2 className="mt-2 text-xl font-bold text-brand-800">{t("masterySession.progressSavedTitle")}</h2>
+        <p className="mt-2 text-slate-600">{t("masterySession.progressSavedBody", { answered, total: state.totalQuestions })}</p>
         <button type="button" onClick={handleResume} className="touch-target mt-6 rounded-xl2 bg-brand-600 px-6 py-3 font-semibold text-white hover:bg-brand-700">
-          Continue the challenge
+          {t("masterySession.continueChallenge")}
         </button>
       </div>
     );
@@ -140,16 +140,16 @@ export default function MasterySession({ attemptId, childId, levelId }: { attemp
         <div className="flex justify-center">
           <Mascot mood="cheer" className="h-20 w-20 animate-pop-in" />
         </div>
-        <h2 className="mt-2 text-xl font-bold text-brand-800">Round {justFinishedRound} complete!</h2>
-        <p className="mt-2 text-slate-600">{remaining} question(s) remaining in this Mastery Challenge.</p>
-        <p className="mt-1 text-sm text-slate-500">Feel free to take a short movement or rest break before continuing.</p>
+        <h2 className="mt-2 text-xl font-bold text-brand-800">{t("masterySession.roundComplete", { round: justFinishedRound })}</h2>
+        <p className="mt-2 text-slate-600">{t("masterySession.questionsRemaining", { count: remaining })}</p>
+        <p className="mt-1 text-sm text-slate-500">{t("masterySession.takeABreak")}</p>
         <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
           <button type="button" onClick={handleContinueRound} className="touch-target rounded-xl2 bg-brand-600 px-6 py-3 font-semibold text-white hover:bg-brand-700">
-            {remaining > 0 ? `Start round ${justFinishedRound + 1}` : "Continue"}
+            {remaining > 0 ? t("masterySession.startRound", { round: justFinishedRound + 1 }) : t("masterySession.continueLabel")}
           </button>
           {remaining > 0 && (
             <button type="button" onClick={handlePause} className="touch-target rounded-xl2 border-2 border-brand-500 px-6 py-3 font-semibold text-brand-700 hover:bg-brand-50">
-              Save and take a break
+              {t("masterySession.saveAndBreak")}
             </button>
           )}
         </div>
@@ -163,15 +163,15 @@ export default function MasterySession({ attemptId, childId, levelId }: { attemp
         <p className="text-4xl" aria-hidden="true">
           ✅
         </p>
-        <h2 className="mt-2 text-xl font-bold text-brand-800">All 40 questions answered</h2>
-        <p className="mt-2 text-slate-600">Once you submit, your answers are final and your score will be calculated.</p>
+        <h2 className="mt-2 text-xl font-bold text-brand-800">{t("masterySession.allAnsweredTitle")}</h2>
+        <p className="mt-2 text-slate-600">{t("masterySession.allAnsweredBody")}</p>
         <button
           type="button"
           onClick={handleFinalize}
           disabled={mode === "submitting"}
           className="touch-target mt-6 rounded-xl2 bg-leaf-600 px-8 py-3 text-lg font-semibold text-white hover:bg-leaf-700 disabled:opacity-60"
         >
-          {mode === "submitting" ? "Submitting..." : "Submit my Mastery Challenge"}
+          {mode === "submitting" ? t("masterySession.submitting") : t("masterySession.submitChallenge")}
         </button>
       </div>
     );
@@ -187,10 +187,8 @@ export default function MasterySession({ attemptId, childId, levelId }: { attemp
     <div>
       <div className="mb-4">
         <div className="flex justify-between text-xs font-semibold text-slate-500">
-          <span>
-            Round {nextSlot.roundNumber} of 4 &middot; Question {nextSlot.positionInRound} of 10
-          </span>
-          <span>{state.totalQuestions - answeredCount} remaining overall</span>
+          <span>{t("masterySession.roundOf", { round: nextSlot.roundNumber, position: nextSlot.positionInRound })}</span>
+          <span>{t("masterySession.remainingOverall", { count: state.totalQuestions - answeredCount })}</span>
         </div>
         <div className="mt-1 h-2 w-full rounded-full bg-slate-200" role="progressbar" aria-valuenow={progress} aria-valuemin={0} aria-valuemax={100}>
           <div className="h-2 rounded-full bg-brand-500 transition-[width]" style={{ width: `${progress}%` }} />
@@ -215,14 +213,14 @@ export default function MasterySession({ attemptId, childId, levelId }: { attemp
         <div className="mt-4 space-y-3">
           <WrongAnswerCard support={support} />
           <button type="button" onClick={continueAfterWrong} className="touch-target w-full rounded-xl2 bg-brand-600 px-6 py-3 font-semibold text-white hover:bg-brand-700">
-            Continue to the next question
+            {t("masterySession.continueNext")}
           </button>
         </div>
       )}
 
       {!support && (
         <button type="button" onClick={handlePause} className="mt-4 text-sm font-semibold text-slate-500 underline">
-          Pause and save progress
+          {t("masterySession.pauseAndSave")}
         </button>
       )}
     </div>

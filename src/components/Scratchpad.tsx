@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { useT } from "./I18nProvider";
 
 const PEN_COLORS = [
   { name: "black", value: "#1e293b" },
@@ -24,6 +25,7 @@ export default function Scratchpad() {
   const lastPointRef = useRef<{ x: number; y: number } | null>(null);
   const historyRef = useRef<ImageData[]>([]);
   const [canUndo, setCanUndo] = useState(false);
+  const t = useT();
 
   function getContext() {
     return canvasRef.current?.getContext("2d") ?? null;
@@ -97,21 +99,21 @@ export default function Scratchpad() {
         onClick={() => setOpen(true)}
         className="touch-target rounded-xl2 border-2 border-brand-300 bg-white px-4 py-2 text-sm font-semibold text-brand-700 hover:bg-brand-50"
       >
-        ✏️ Scratchpad
+        {t("scratchpad.trigger")}
       </button>
 
       {open && (
-        <div role="dialog" aria-modal="true" aria-label="Scratchpad" className="fixed inset-0 z-50 flex items-end justify-center bg-slate-900/40 p-0 sm:items-center sm:p-6">
+        <div role="dialog" aria-modal="true" aria-label={t("scratchpad.title")} className="fixed inset-0 z-50 flex items-end justify-center bg-slate-900/40 p-0 sm:items-center sm:p-6">
           <div className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-t-xl2 bg-white p-4 shadow-lg sm:rounded-xl2 sm:p-6">
             <div className="flex items-center justify-between">
-              <h2 className="text-lg font-bold text-brand-800">Scratchpad</h2>
-              <button type="button" onClick={() => setOpen(false)} className="touch-target rounded-lg border px-3 py-1 text-sm font-semibold text-slate-600 hover:bg-slate-50" aria-label="Close">
+              <h2 className="text-lg font-bold text-brand-800">{t("scratchpad.title")}</h2>
+              <button type="button" onClick={() => setOpen(false)} className="touch-target rounded-lg border px-3 py-1 text-sm font-semibold text-slate-600 hover:bg-slate-50" aria-label={t("scratchpad.close")}>
                 ✕
               </button>
             </div>
 
             <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
-              <div className="flex gap-2" role="radiogroup" aria-label="Pen colour">
+              <div className="flex gap-2" role="radiogroup" aria-label={t("scratchpad.penColour")}>
                 {PEN_COLORS.map((c) => (
                   <button
                     key={c.value}
@@ -132,10 +134,10 @@ export default function Scratchpad() {
                   disabled={!canUndo}
                   className="touch-target rounded-lg border-2 border-slate-300 px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 disabled:opacity-40"
                 >
-                  ↩️ Undo
+                  {t("scratchpad.undo")}
                 </button>
                 <button type="button" onClick={handleClear} className="touch-target rounded-lg border-2 border-slate-300 px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">
-                  🧹 Clear
+                  {t("scratchpad.clear")}
                 </button>
               </div>
             </div>
@@ -151,7 +153,7 @@ export default function Scratchpad() {
               className="mt-3 w-full touch-none rounded-xl2 border-2 border-slate-300 bg-white"
               style={{ aspectRatio: `${CANVAS_WIDTH} / ${CANVAS_HEIGHT}` }}
             />
-            <p className="mt-2 text-center text-xs text-slate-400">Draw here to work things out — this is just for you, it isn&rsquo;t submitted as your answer.</p>
+            <p className="mt-2 text-center text-xs text-slate-400">{t("scratchpad.footer")}</p>
           </div>
         </div>
       )}

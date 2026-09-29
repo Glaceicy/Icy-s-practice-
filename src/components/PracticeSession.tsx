@@ -7,6 +7,7 @@ import QuestionInput from "./QuestionInput";
 import WrongAnswerCard, { type WrongAnswerSupportView } from "./WrongAnswerCard";
 import WrongAnswerReviewPanel from "./WrongAnswerReviewPanel";
 import Scratchpad from "./Scratchpad";
+import { useT } from "./I18nProvider";
 
 export default function PracticeSession({
   attemptId,
@@ -28,6 +29,7 @@ export default function PracticeSession({
   const [celebrating, setCelebrating] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [hasWrongAnswers, setHasWrongAnswers] = useState(false);
+  const t = useT();
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -72,11 +74,11 @@ export default function PracticeSession({
   }
 
   if (loading) {
-    return <p className="text-center text-slate-500">Loading your next question&hellip;</p>;
+    return <p className="text-center text-slate-500">{t("practiceSession.loading")}</p>;
   }
 
   if (!state || state.done || !state.question) {
-    return <p className="text-center text-slate-500">All done! Taking you to the next step&hellip;</p>;
+    return <p className="text-center text-slate-500">{t("practiceSession.allDone")}</p>;
   }
 
   const progress = Math.round((state.position / state.totalQuestions) * 100);
@@ -85,10 +87,8 @@ export default function PracticeSession({
     <div>
       <div className="mb-4">
         <div className="flex justify-between text-xs font-semibold text-slate-500">
-          <span>
-            Question {state.position + 1} of {state.totalQuestions}
-          </span>
-          <span>{state.totalQuestions - state.position} remaining</span>
+          <span>{t("practiceSession.questionOf", { position: state.position + 1, total: state.totalQuestions })}</span>
+          <span>{t("practiceSession.remaining", { count: state.totalQuestions - state.position })}</span>
         </div>
         <div className="mt-1 h-2 w-full rounded-full bg-slate-200" role="progressbar" aria-valuenow={progress} aria-valuemin={0} aria-valuemax={100}>
           <div className="h-2 rounded-full bg-brand-500 transition-[width]" style={{ width: `${progress}%` }} />
@@ -102,7 +102,7 @@ export default function PracticeSession({
 
       {celebrating && (
         <p className="mb-3 text-center text-lg font-bold text-leaf-600" aria-live="polite">
-          🎉 Well done!
+          {t("practiceSession.wellDone")}
         </p>
       )}
 
@@ -120,10 +120,10 @@ export default function PracticeSession({
                 }}
                 className="touch-target rounded-lg border border-brand-300 px-3 py-2 text-sm font-semibold text-brand-700 hover:bg-brand-50"
               >
-                💡 Get a hint
+                {t("practiceSession.getHint")}
               </button>
             ) : (
-              <p className="rounded-lg bg-brand-50 p-3 text-sm text-brand-800">Take it one step at a time — think about what the question is really asking.</p>
+              <p className="rounded-lg bg-brand-50 p-3 text-sm text-brand-800">{t("practiceSession.genericHint")}</p>
             )}
           </div>
         )}
@@ -141,7 +141,7 @@ export default function PracticeSession({
             onClick={tryAgain}
             className="touch-target w-full rounded-xl2 bg-brand-600 px-6 py-3 font-semibold text-white hover:bg-brand-700"
           >
-            Try a similar question
+            {t("practiceSession.tryAgain")}
           </button>
         </div>
       )}
