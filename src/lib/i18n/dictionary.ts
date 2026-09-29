@@ -188,6 +188,53 @@ export const dictionary = {
       undo: "↩️ Undo",
       clear: "🧹 Clear",
       footer: "Draw here to work things out — this is just for you, it isn't submitted as your answer."
+    },
+    guidedPage: {
+      heading: "Guided practice: {level}",
+      subtitle: "Ask for a hint any time you need one. If an answer isn't quite right, we'll work through it together."
+    },
+    independentPage: {
+      heading: "Independent practice: {level}",
+      subtitle: "Have a go on your own. When you're ready, the Mastery Challenge is next."
+    },
+    revisionPage: {
+      heading: "Personalised revision: {level}",
+      subtitle: "You're nearly there! Let's practise these skills before trying the challenge again."
+    },
+    masteryPage: {
+      heading: "Mastery Challenge: {level}",
+      subtitle: "40 questions in 4 rounds of 10. Score 38 or more (95%) to unlock the next level. You can pause after any round and continue later."
+    },
+    reviewTricky: {
+      triggerOne: "📋 Review {count} tricky question",
+      triggerMany: "📋 Review {count} tricky questions",
+      lookBackTitle: "Want to look back at the tricky ones?",
+      lookBackBodyPractice: "See every question you found tricky, with the correct answer and explanation.",
+      lookBackBodyMastery: "See every question you missed, with the correct answer and explanation."
+    },
+    practiceSummary: {
+      modeGuided: "Guided practice",
+      modeRevision: "Personalised revision",
+      modeIndependent: "Independent practice",
+      complete: "{mode} complete!",
+      questionsCorrect: "questions answered correctly",
+      startIndependent: "Start independent practice",
+      takeMastery: "Take the Mastery Challenge",
+      tryMasteryAgain: "Try the Mastery Challenge again",
+      backToLevel: "Back to level overview"
+    },
+    masteryResults: {
+      passedTitle: "Fantastic! You passed!",
+      notPassedTitle: "You're nearly there!",
+      unlockedNext: "🔓 Year {year} Level {level} is now unlocked!",
+      programmeComplete: "🎉 You've completed the whole Maths Journey programme!",
+      tryAgainEncouragement: "You're nearly there! Let's practise these skills before trying the challenge again.",
+      passRequirement: "You need {needed} out of {total} (95%) to pass and unlock the next level.",
+      skillsToPractise: "Skills to keep practising",
+      missedCount: "{count} missed",
+      startRevision: "Start personalised revision",
+      backToLevel: "Back to level overview",
+      continueJourney: "Continue your journey"
     }
   },
   fr: {
@@ -373,6 +420,53 @@ export const dictionary = {
       undo: "↩️ Annuler",
       clear: "🧹 Effacer",
       footer: "Dessinez ici pour réfléchir — c’est juste pour vous, ce n’est pas envoyé comme réponse."
+    },
+    guidedPage: {
+      heading: "Entraînement guidé : {level}",
+      subtitle: "Demandez un indice quand vous en avez besoin. Si une réponse n’est pas tout à fait juste, nous la reverrons ensemble."
+    },
+    independentPage: {
+      heading: "Entraînement autonome : {level}",
+      subtitle: "Essayez par vous-même. Une fois prêt, le Défi de Maîtrise vous attend."
+    },
+    revisionPage: {
+      heading: "Révision personnalisée : {level}",
+      subtitle: "Vous y êtes presque ! Entraînons ces compétences avant de retenter le défi."
+    },
+    masteryPage: {
+      heading: "Défi de Maîtrise : {level}",
+      subtitle: "40 questions en 4 manches de 10. Obtenez 38 ou plus (95 %) pour débloquer le niveau suivant. Vous pouvez faire une pause après chaque manche et continuer plus tard."
+    },
+    reviewTricky: {
+      triggerOne: "📋 Revoir {count} question difficile",
+      triggerMany: "📋 Revoir {count} questions difficiles",
+      lookBackTitle: "Envie de revoir les questions difficiles ?",
+      lookBackBodyPractice: "Revoyez chaque question que vous avez trouvée difficile, avec la bonne réponse et l’explication.",
+      lookBackBodyMastery: "Revoyez chaque question manquée, avec la bonne réponse et l’explication."
+    },
+    practiceSummary: {
+      modeGuided: "Entraînement guidé",
+      modeRevision: "Révision personnalisée",
+      modeIndependent: "Entraînement autonome",
+      complete: "{mode} terminé !",
+      questionsCorrect: "questions répondues correctement",
+      startIndependent: "Commencer l’entraînement autonome",
+      takeMastery: "Passer au Défi de Maîtrise",
+      tryMasteryAgain: "Retenter le Défi de Maîtrise",
+      backToLevel: "Retour à l’aperçu du niveau"
+    },
+    masteryResults: {
+      passedTitle: "Fantastique, vous avez réussi !",
+      notPassedTitle: "Vous y êtes presque !",
+      unlockedNext: "🔓 Année {year} Niveau {level} est maintenant débloqué !",
+      programmeComplete: "🎉 Vous avez terminé tout le programme Maths Journey !",
+      tryAgainEncouragement: "Vous y êtes presque ! Entraînons ces compétences avant de retenter le défi.",
+      passRequirement: "Il vous faut {needed} sur {total} (95 %) pour réussir et débloquer le niveau suivant.",
+      skillsToPractise: "Compétences à continuer de travailler",
+      missedCount: "{count} manquée(s)",
+      startRevision: "Commencer la révision personnalisée",
+      backToLevel: "Retour à l’aperçu du niveau",
+      continueJourney: "Continuer votre parcours"
     }
   }
 } as const;

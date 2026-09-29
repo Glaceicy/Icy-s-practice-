@@ -4,6 +4,8 @@ import { prisma } from "@/lib/db";
 import { beginPracticeAction } from "@/lib/actions/learning";
 import ChildTopBar from "@/components/ChildTopBar";
 import PracticeSession from "@/components/PracticeSession";
+import { getLocale } from "@/lib/i18n/locale";
+import { translate } from "@/lib/i18n/translate";
 
 export default async function IndependentPracticePage({ params }: { params: { childId: string; levelId: string } }) {
   const { child } = await assertChildAccess(params.childId);
@@ -11,12 +13,13 @@ export default async function IndependentPracticePage({ params }: { params: { ch
   if (!level || level.status !== "COMPLETE") notFound();
 
   const { attemptId } = await beginPracticeAction(level.id, "INDEPENDENT");
+  const locale = await getLocale();
 
   return (
     <main className="mx-auto min-h-screen max-w-2xl px-6 py-10">
       <ChildTopBar child={child} />
-      <h1 className="mt-6 text-2xl font-bold text-brand-800">Independent practice: {level.title}</h1>
-      <p className="mt-1 text-sm text-slate-600">Have a go on your own. When you&rsquo;re ready, the Mastery Challenge is next.</p>
+      <h1 className="mt-6 text-2xl font-bold text-brand-800">{translate(locale, "independentPage.heading", { level: level.title })}</h1>
+      <p className="mt-1 text-sm text-slate-600">{translate(locale, "independentPage.subtitle")}</p>
       <div className="mt-6">
         <PracticeSession attemptId={attemptId} childId={child.id} levelId={level.id} mode="INDEPENDENT" />
       </div>
