@@ -60,6 +60,7 @@ model ChildProfile {
   currentYearId String
   currentYear   SchoolYear @relation(fields: [currentYearId], references: [id])
   pathway       String   @default("CORE") // relevant from Year 10 (Foundation/Higher); CORE elsewhere
+  locale        String   @default("en") // "en" | "fr" — language for this child's UI and question content
   fontMode      String   @default("STANDARD")
   highContrast  Boolean  @default(false)
   reducedMotion Boolean  @default(false)
@@ -90,8 +91,10 @@ model SchoolYear {
   id          String   @id @default(cuid())
   yearNumber  Int      @unique // 1-10
   title       String   // e.g. "Year 4"
+  titleFr     String?  // French translation, nullable — falls back to `title` when absent
   keyStage    String   // "KS1" | "KS2" | "KS3" | "KS4"
   summary     String
+  summaryFr   String?
   minAge      Int
   maxAge      Int
   themeStage  String   // visual maturity band: "playful" | "adventure" | "gameinspired" | "mature"
@@ -110,7 +113,9 @@ model Level {
   schoolYear   SchoolYear @relation(fields: [schoolYearId], references: [id], onDelete: Cascade)
   levelNumber  Int        // 1-10 within the year
   title        String
+  titleFr      String?
   summary      String
+  summaryFr    String?
   isMixedMastery Boolean  @default(false) // true for level 10 of each year
   status       String   @default("SCAFFOLDED")
   pathway      String?      // set only for Year 10 topic variants; null = applies to all pathways
@@ -132,6 +137,7 @@ model LearningObjective {
   level       Level    @relation(fields: [levelId], references: [id], onDelete: Cascade)
   code        String   // curriculum reference code, e.g. "Y4-NPV-1"
   description String   // child-facing plain-language objective
+  descriptionFr String?
   dfeReference String? // National Curriculum programme-of-study citation
 
   lessons     LessonObjective[]
@@ -147,12 +153,17 @@ model Lesson {
   level       Level    @relation(fields: [levelId], references: [id], onDelete: Cascade)
   order       Int
   title       String
+  titleFr     String?
   concept     String        // one concept per mini-lesson
+  conceptFr   String?
   explanationMd String      // plain-language explanation (markdown)
+  explanationMdFr String?
   representation String     // "concrete" | "pictorial" | "abstract" | "cpa" (uses all three)
   visualAid   String        // e.g. "ten-frame" | "number-line" | "bar-model" | "clock" | "coins" | "array"
   workedExamples String     // WorkedExample[] serialised as a JSON string
+  workedExamplesFr String?
   audioScript String?       // narration script for optional read-aloud
+  audioScriptFr String?
   ageBandStyle String       @default("playful") // matches SchoolYear.themeStage
 
   objectives  LessonObjective[]
@@ -224,6 +235,15 @@ model GeneratedQuestionLog {
   acceptableAnswers String? // comma-separated alternative accepted representations
   explanationSteps String // serialised string[] (JSON)
   hints        String   // serialised string[] (JSON)
+  // French text for the same underlying question instance (same seed/answer,
+  // just localised prose). Nullable and populated lazily on first fr request
+  // — a template without an `fr` override yet leaves these null, and the
+  // English fields above are shown instead (see questionLog.ts localiseLog).
+  promptFr       String?
+  choicesJsonFr  String?
+  visualAidJsonFr String?
+  explanationStepsFr String?
+  hintsFr        String?
   misconceptionTag String?
   timesServed  Int      @default(0)
   timesCorrectFirstTry Int @default(0)

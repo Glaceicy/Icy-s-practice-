@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/db";
 import { loadAllTemplates } from "@/lib/questionEngine/templates/all";
 import { getAllTemplates } from "@/lib/questionEngine/registry";
-import type { GeneratedQuestionInstance, QuestionTemplateDef } from "@/lib/questionEngine/types";
+import type { GeneratedQuestionInstance, Locale, QuestionTemplateDef } from "@/lib/questionEngine/types";
 
 loadAllTemplates();
 
@@ -24,20 +24,42 @@ export function getTemplateDef(generatorKey: string): QuestionTemplateDef {
   return def;
 }
 
+function frFieldsFrom(instance: GeneratedQuestionInstance) {
+  return {
+    promptFr: instance.prompt,
+    choicesJsonFr: instance.choices ? JSON.stringify(instance.choices) : null,
+    visualAidJsonFr: instance.visualAid ? JSON.stringify(instance.visualAid) : null,
+    explanationStepsFr: JSON.stringify(instance.explanationSteps),
+    hintsFr: JSON.stringify(instance.hints)
+  };
+}
+
 /** Ensures a DB QuestionTemplate row exists for a code-registered template
  * (creating it — and its parent Level/LearningObjective if this is the very
  * first time this level has been served — on first use), then ensures a
  * GeneratedQuestionLog row exists for the given seed, returning both the row
  * id and the freshly (re)computed instance for rendering. The stored
  * `correctAnswer` on that row — never a client-supplied value — is always
- * what grades the learner (see submitAnswer in services/attempts.ts). */
+ * what grades the learner (see submitAnswer in services/attempts.ts), and is
+ * always locale-independent by construction (see builders.ts) so it never
+ * varies with `locale` here.
+ *
+ * The row's base (English) columns are always populated from the English
+ * instance, regardless of which locale triggered creation, so a later
+ * English-locale request never accidentally sees French text. French columns
+ * are populated lazily, once, the first time a `locale: "fr"` request hits a
+ * row that doesn't have them yet — a template with no French translation
+ * authored simply keeps writing (locale-neutral, since builders fall back to
+ * English) English text into those columns, which is harmless. */
 export async function ensureQuestionLog(
   levelDbId: string,
   generatorKey: string,
-  seed: number
+  seed: number,
+  locale: Locale = "en"
 ): Promise<{ logId: string; instance: GeneratedQuestionInstance }> {
   const def = getTemplateDef(generatorKey);
-  const instance = def.generate(seed);
+  const instance = def.generate(seed, locale);
+  const enInstance = locale === "en" ? instance : def.generate(seed, "en");
 
   let template = await prisma.questionTemplate.findUnique({
     where: { levelId_generatorKey: { levelId: levelDbId, generatorKey } }
@@ -72,17 +94,23 @@ export async function ensureQuestionLog(
       data: {
         templateId: template.id,
         seed,
-        prompt: instance.prompt,
-        questionType: instance.type,
-        difficulty: instance.difficulty,
-        choicesJson: instance.choices ? JSON.stringify(instance.choices) : null,
-        visualAidJson: instance.visualAid ? JSON.stringify(instance.visualAid) : null,
-        correctAnswer: instance.correctAnswer,
-        acceptableAnswers: instance.acceptableAnswers?.join("|||") ?? null,
-        explanationSteps: JSON.stringify(instance.explanationSteps),
-        hints: JSON.stringify(instance.hints),
-        misconceptionTag: instance.misconceptionTag ?? null
+        prompt: enInstance.prompt,
+        questionType: enInstance.type,
+        difficulty: enInstance.difficulty,
+        choicesJson: enInstance.choices ? JSON.stringify(enInstance.choices) : null,
+        visualAidJson: enInstance.visualAid ? JSON.stringify(enInstance.visualAid) : null,
+        correctAnswer: enInstance.correctAnswer,
+        acceptableAnswers: enInstance.acceptableAnswers?.join("|||") ?? null,
+        explanationSteps: JSON.stringify(enInstance.explanationSteps),
+        hints: JSON.stringify(enInstance.hints),
+        misconceptionTag: enInstance.misconceptionTag ?? null,
+        ...(locale === "fr" ? frFieldsFrom(instance) : {})
       }
+    });
+  } else if (locale === "fr" && log.promptFr === null) {
+    log = await prisma.generatedQuestionLog.update({
+      where: { id: log.id },
+      data: frFieldsFrom(instance)
     });
   }
 
@@ -100,22 +128,34 @@ export interface StoredQuestionView {
 
 /** Converts a persisted GeneratedQuestionLog row into the shape sent to the
  * client — deliberately excludes correctAnswer/acceptableAnswers so the
- * answer key never reaches the browser before grading. */
-export function logToView(log: {
-  id: string;
-  prompt: string;
-  questionType: string;
-  difficulty: string;
-  choicesJson: string | null;
-  visualAidJson: string | null;
-}): StoredQuestionView {
+ * answer key never reaches the browser before grading. Falls back to the
+ * English columns whenever the French ones are null (not yet translated, or
+ * `locale` is "en"), so this never breaks for content that hasn't been
+ * translated yet. */
+export function logToView(
+  log: {
+    id: string;
+    prompt: string;
+    promptFr: string | null;
+    questionType: string;
+    difficulty: string;
+    choicesJson: string | null;
+    choicesJsonFr: string | null;
+    visualAidJson: string | null;
+    visualAidJsonFr: string | null;
+  },
+  locale: Locale = "en"
+): StoredQuestionView {
+  const prompt = locale === "fr" ? (log.promptFr ?? log.prompt) : log.prompt;
+  const choicesJson = locale === "fr" ? (log.choicesJsonFr ?? log.choicesJson) : log.choicesJson;
+  const visualAidJson = locale === "fr" ? (log.visualAidJsonFr ?? log.visualAidJson) : log.visualAidJson;
   return {
     logId: log.id,
-    prompt: log.prompt,
+    prompt,
     type: log.questionType,
     difficulty: log.difficulty,
-    choices: log.choicesJson ? JSON.parse(log.choicesJson) : undefined,
-    visualAid: log.visualAidJson ? JSON.parse(log.visualAidJson) : undefined
+    choices: choicesJson ? JSON.parse(choicesJson) : undefined,
+    visualAid: visualAidJson ? JSON.parse(visualAidJson) : undefined
   };
 }
 
@@ -143,25 +183,36 @@ function resolveAnswerDisplay(answer: string, questionType: string, choicesJson:
 
 /** Builds a review-friendly view of one wrong answer — safe to show only
  * after the question has already been graded (unlike StoredQuestionView,
- * this deliberately includes the correct answer and explanation). */
+ * this deliberately includes the correct answer and explanation). Falls back
+ * to English wherever French text hasn't been translated yet, same as
+ * `logToView`. */
 export function toWrongAnswerReviewItem(
   log: {
     prompt: string;
+    promptFr: string | null;
     questionType: string;
     choicesJson: string | null;
+    choicesJsonFr: string | null;
     visualAidJson: string | null;
+    visualAidJsonFr: string | null;
     correctAnswer: string;
     explanationSteps: string;
+    explanationStepsFr: string | null;
   },
   givenAnswer: string,
-  answeredAt: Date | null
+  answeredAt: Date | null,
+  locale: Locale = "en"
 ): WrongAnswerReviewItem {
+  const prompt = locale === "fr" ? (log.promptFr ?? log.prompt) : log.prompt;
+  const choicesJson = locale === "fr" ? (log.choicesJsonFr ?? log.choicesJson) : log.choicesJson;
+  const visualAidJson = locale === "fr" ? (log.visualAidJsonFr ?? log.visualAidJson) : log.visualAidJson;
+  const explanationSteps = locale === "fr" ? (log.explanationStepsFr ?? log.explanationSteps) : log.explanationSteps;
   return {
-    prompt: log.prompt,
-    givenAnswerDisplay: resolveAnswerDisplay(givenAnswer, log.questionType, log.choicesJson),
-    correctAnswerDisplay: resolveAnswerDisplay(log.correctAnswer, log.questionType, log.choicesJson),
-    explanationSteps: JSON.parse(log.explanationSteps),
-    visualAid: log.visualAidJson ? JSON.parse(log.visualAidJson) : undefined,
+    prompt,
+    givenAnswerDisplay: resolveAnswerDisplay(givenAnswer, log.questionType, choicesJson),
+    correctAnswerDisplay: resolveAnswerDisplay(log.correctAnswer, log.questionType, choicesJson),
+    explanationSteps: JSON.parse(explanationSteps),
+    visualAid: visualAidJson ? JSON.parse(visualAidJson) : undefined,
     answeredAt
   };
 }

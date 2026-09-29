@@ -20,6 +20,8 @@ export type QuestionType =
 
 export type DifficultyBand = "FLUENCY" | "APPLICATION" | "REASONING";
 
+export type Locale = "en" | "fr";
+
 export type PathwayTag = "CORE" | "FOUNDATION" | "HIGHER";
 
 export interface VisualAid {
@@ -75,5 +77,8 @@ export interface QuestionTemplateDef {
   /** Declared size of the distinct-parameter variation space. Must be >= 150
    * per the question bank requirement; enforced by a unit test. */
   variationSpace: number;
-  generate(seed: number): GeneratedQuestionInstance;
+  /** `locale` defaults to "en". A template with no French content authored
+   * yet (no `fr` block passed to its builder) silently renders in English
+   * for `locale: "fr"` too — untranslated content is never blocking. */
+  generate(seed: number, locale?: Locale): GeneratedQuestionInstance;
 }

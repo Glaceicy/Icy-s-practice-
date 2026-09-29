@@ -4,6 +4,7 @@ import { z } from "zod";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/db";
 import { hashPin, requireAdult, requireActiveChild, setActiveChild, verifyPin, clearActiveChild } from "@/lib/auth";
+import { setLocale } from "@/lib/i18n/locale";
 import type { FormState } from "./auth";
 import { AVATAR_KEYS } from "@/lib/types";
 
@@ -74,6 +75,7 @@ export async function selectChildAction(_prev: FormState, formData: FormData): P
   if (!valid) return { error: "Incorrect PIN. Please try again.", fieldErrors: { pin: "Incorrect PIN." } };
 
   await setActiveChild(child.id);
+  setLocale(child.locale === "fr" ? "fr" : "en");
   redirect(`/learn/${child.id}/journey`);
 }
 

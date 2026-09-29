@@ -3,6 +3,7 @@ import type {
   ChoiceOption,
   DifficultyBand,
   GeneratedQuestionInstance,
+  Locale,
   PathwayTag,
   QuestionTemplateDef,
   QuestionType,
@@ -112,6 +113,19 @@ export interface ArithmeticTemplateOptions {
   distractorSpread?: number; // for MULTIPLE_CHOICE
   falseStatementRate?: number; // for TRUE_FALSE: probability the shown statement is false
   declaredVariationSpace: number;
+  /** French text for the same underlying question. Every field here is
+   * optional and falls back to its English counterpart above when absent —
+   * a template can be partially translated (e.g. prompt done, explain not
+   * yet) without ever breaking. Safe to author independently of the English
+   * fields: none of `promptTemplates`/`contextPool` (picked via `rng.pick`,
+   * which consumes exactly one draw regardless of array length/contents) or
+   * `derive`/`explain`/`hints`/`visualAid` (pure functions of `values`/
+   * `result`, no `rng` access) can change the underlying maths — the same
+   * seed always produces the same numbers and the same `correctAnswer` in
+   * both languages. */
+  fr?: Partial<
+    Pick<ArithmeticTemplateOptions, "promptTemplates" | "contextPool" | "derive" | "explain" | "hints" | "visualAid">
+  >;
 }
 
 const letters = ["a", "b", "c", "d", "e"];
@@ -124,7 +138,15 @@ const letters = ["a", "b", "c", "d", "e"];
 export function arithmeticTemplate(opts: ArithmeticTemplateOptions): QuestionTemplateDef {
   const fmt = opts.formatValue ?? ((n: number) => String(n));
 
-  function build(seed: number): GeneratedQuestionInstance {
+  function build(seed: number, locale: Locale = "en"): GeneratedQuestionInstance {
+    const fr = locale === "fr" ? opts.fr : undefined;
+    const promptTemplates = fr?.promptTemplates ?? opts.promptTemplates;
+    const contextPool = fr?.contextPool ?? opts.contextPool;
+    const derive = fr?.derive ?? opts.derive;
+    const explainFn = fr?.explain ?? opts.explain;
+    const hintsFn = fr?.hints ?? opts.hints;
+    const visualAidFn = fr?.visualAid ?? opts.visualAid;
+
     const rng = new Rng(seed);
     const values = pickValues(rng, opts.ranges, opts.constraint);
     const result = opts.compute(values);
@@ -133,17 +155,17 @@ export function arithmeticTemplate(opts: ArithmeticTemplateOptions): QuestionTem
       const letter = letters[i] ?? `v${i}`;
       varMap[letter] = fmt(v);
     });
-    if (opts.contextPool && opts.contextPool.length > 0) {
-      varMap.ctx = rng.pick(opts.contextPool);
+    if (contextPool && contextPool.length > 0) {
+      varMap.ctx = rng.pick(contextPool);
     }
-    if (opts.derive) {
-      Object.assign(varMap, opts.derive(values, result));
+    if (derive) {
+      Object.assign(varMap, derive(values, result));
     }
-    const promptTemplate = rng.pick(opts.promptTemplates);
+    const promptTemplate = rng.pick(promptTemplates);
     const prompt = fillTemplate(promptTemplate, varMap);
-    const explanationSteps = opts.explain(values, result);
-    const hints = opts.hints(values, result);
-    const visualAid = opts.visualAid?.(values, result);
+    const explanationSteps = explainFn(values, result);
+    const hints = hintsFn(values, result);
+    const visualAid = visualAidFn?.(values, result);
     const misconceptionTag = rng.pick(opts.misconceptionTags);
 
     if (opts.type === "MULTIPLE_CHOICE") {
@@ -214,6 +236,18 @@ export interface OrderingTemplateOptions {
   hints: (items: Array<{ label: string; sortValue: number }>) => string[];
   visualAid?: (items: Array<{ label: string; sortValue: number }>) => VisualAid | undefined;
   declaredVariationSpace: number;
+  /** French text. The underlying items are ALWAYS generated once via the
+   * English `generateItems` regardless of locale — `translateLabels` then
+   * runs as a pure, RNG-free post-processing pass over those exact items
+   * (same length, same order, same `sortValue`s) to swap in French `label`
+   * text. This guarantees `correctAnswer`/choice ids can never drift between
+   * locales, since French never re-derives structure, only relabels it.
+   * `explain`/`hints`/`visualAid`/`promptTemplates` are separately safe to
+   * override freely (pure functions of the already-generated items, or a
+   * single `rng.pick` whose draw count doesn't depend on array content). */
+  fr?: Partial<Pick<OrderingTemplateOptions, "promptTemplates" | "explain" | "hints" | "visualAid">> & {
+    translateLabels?: (items: Array<{ label: string; sortValue: number }>) => Array<{ label: string; sortValue: number }>;
+  };
 }
 
 /** Ordering / drag-and-drop style templates: the learner arranges a set of
@@ -223,14 +257,20 @@ export interface OrderingTemplateOptions {
  * dragging is a numbered "tap in order" / select-position control driven by
  * the same `choices`/`correctAnswer` data (implemented in the UI layer). */
 export function orderingTemplate(opts: OrderingTemplateOptions): QuestionTemplateDef {
-  function build(seed: number): GeneratedQuestionInstance {
+  function build(seed: number, locale: Locale = "en"): GeneratedQuestionInstance {
+    const fr = locale === "fr" ? opts.fr : undefined;
+    const promptTemplates = fr?.promptTemplates ?? opts.promptTemplates;
+    const explainFn = fr?.explain ?? opts.explain;
+    const hintsFn = fr?.hints ?? opts.hints;
+    const visualAidFn = fr?.visualAid ?? opts.visualAid;
+
     const rng = new Rng(seed);
-    const rawItems = opts.generateItems(rng);
+    const rawItems = fr?.translateLabels ? fr.translateLabels(opts.generateItems(rng)) : opts.generateItems(rng);
     const withIds = rawItems.map((it, i) => ({ ...it, id: `opt${i}` }));
     const direction = opts.direction ?? "asc";
     const correctOrder = [...withIds].sort((a, b) => (direction === "asc" ? a.sortValue - b.sortValue : b.sortValue - a.sortValue));
     const displayOrder = rng.shuffle(withIds);
-    const prompt = fillTemplate(rng.pick(opts.promptTemplates), {});
+    const prompt = fillTemplate(rng.pick(promptTemplates), {});
     const misconceptionTag = rng.pick(opts.misconceptionTags);
     return {
       templateKey: opts.key,
@@ -238,11 +278,11 @@ export function orderingTemplate(opts: OrderingTemplateOptions): QuestionTemplat
       type: opts.type ?? "ORDERING",
       difficulty: opts.difficulty,
       prompt,
-      visualAid: opts.visualAid?.(rawItems),
+      visualAid: visualAidFn?.(rawItems),
       choices: displayOrder.map((it) => ({ id: it.id, label: it.label })),
       correctAnswer: correctOrder.map((it) => it.id).join(","),
-      explanationSteps: opts.explain(rawItems),
-      hints: opts.hints(rawItems),
+      explanationSteps: explainFn(rawItems),
+      hints: hintsFn(rawItems),
       misconceptionTag
     };
   }
@@ -272,6 +312,14 @@ export interface MatchingTemplateOptions {
   explain: (pairs: Array<{ left: string; right: string }>) => string[];
   hints: (pairs: Array<{ left: string; right: string }>) => string[];
   declaredVariationSpace: number;
+  /** French text. As with `orderingTemplate`, pairs are ALWAYS generated once
+   * via the English `generatePairs`; `translatePairs` is a pure, RNG-free
+   * post-processing pass over those exact pairs (same length/order) so the
+   * L/R id-to-pair mapping — and therefore `correctAnswer` — can never drift
+   * between locales. */
+  fr?: Partial<Pick<MatchingTemplateOptions, "promptTemplates" | "explain" | "hints">> & {
+    translatePairs?: (pairs: Array<{ left: string; right: string }>) => Array<{ left: string; right: string }>;
+  };
 }
 
 /** Matching-activity templates (e.g. match a clock face to its written time,
@@ -280,12 +328,17 @@ export interface MatchingTemplateOptions {
  * display); `correctAnswer` is the canonical "L0=R0;L1=R1;..." mapping. The
  * accessible alternative is a per-row dropdown driven by the same data. */
 export function matchingTemplate(opts: MatchingTemplateOptions): QuestionTemplateDef {
-  function build(seed: number): GeneratedQuestionInstance {
+  function build(seed: number, locale: Locale = "en"): GeneratedQuestionInstance {
+    const fr = locale === "fr" ? opts.fr : undefined;
+    const promptTemplates = fr?.promptTemplates ?? opts.promptTemplates;
+    const explainFn = fr?.explain ?? opts.explain;
+    const hintsFn = fr?.hints ?? opts.hints;
+
     const rng = new Rng(seed);
-    const pairs = opts.generatePairs(rng);
+    const pairs = fr?.translatePairs ? fr.translatePairs(opts.generatePairs(rng)) : opts.generatePairs(rng);
     const left = pairs.map((p, i) => ({ id: `L${i}`, label: p.left }));
     const right = rng.shuffle(pairs.map((p, i) => ({ id: `R${i}`, label: p.right })));
-    const prompt = fillTemplate(rng.pick(opts.promptTemplates), {});
+    const prompt = fillTemplate(rng.pick(promptTemplates), {});
     const misconceptionTag = rng.pick(opts.misconceptionTags);
     return {
       templateKey: opts.key,
@@ -295,8 +348,8 @@ export function matchingTemplate(opts: MatchingTemplateOptions): QuestionTemplat
       prompt,
       visualAid: { kind: "none", data: { left, right } },
       correctAnswer: pairs.map((_, i) => `L${i}=R${i}`).join(";"),
-      explanationSteps: opts.explain(pairs),
-      hints: opts.hints(pairs),
+      explanationSteps: explainFn(pairs),
+      hints: hintsFn(pairs),
       misconceptionTag
     };
   }
@@ -337,6 +390,18 @@ export interface CategoricalTemplateOptions {
     visualAid?: VisualAid;
   };
   declaredVariationSpace: number;
+  /** French text. `picked` is ALWAYS drawn from the English `pools`, and
+   * `build` always runs identically, regardless of locale — `translate` then
+   * runs as a pure post-processing pass over the resulting `drawn` object
+   * (same array lengths for `distractorLabels`) so the subsequent choice
+   * shuffle/id assignment, and therefore `correctAnswer`, can never drift
+   * between locales. */
+  fr?: {
+    translate?: (
+      drawn: { prompt: string; correctLabel: string; distractorLabels: string[]; explanationSteps: string[]; hints: string[]; visualAid?: VisualAid },
+      picked: Record<string, string>
+    ) => Partial<{ prompt: string; correctLabel: string; distractorLabels: string[]; explanationSteps: string[]; hints: string[]; visualAid?: VisualAid }>;
+  };
 }
 
 /** Generic multiple-choice-from-text-labels templates for content where the
@@ -346,13 +411,17 @@ export interface CategoricalTemplateOptions {
  * mathematically valid (the pools only vary surface presentation, never the
  * underlying maths). */
 export function categoricalPoolTemplate(opts: CategoricalTemplateOptions): QuestionTemplateDef {
-  function build(seed: number): GeneratedQuestionInstance {
+  function build(seed: number, locale: Locale = "en"): GeneratedQuestionInstance {
+    const fr = locale === "fr" ? opts.fr : undefined;
     const rng = new Rng(seed);
     const picked: Record<string, string> = {};
     for (const [name, values] of Object.entries(opts.pools)) {
       picked[name] = rng.pick(values);
     }
-    const drawn = opts.build(picked, rng);
+    let drawn = opts.build(picked, rng);
+    if (fr?.translate) {
+      drawn = { ...drawn, ...fr.translate(drawn, picked) };
+    }
     const { choices, correctId } = buildChoices(rng, drawn.correctLabel, drawn.distractorLabels);
     const misconceptionTag = rng.pick(opts.misconceptionTags);
     return {

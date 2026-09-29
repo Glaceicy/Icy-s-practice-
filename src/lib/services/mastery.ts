@@ -8,8 +8,9 @@ import { MASTERY_QUESTIONS_PER_ROUND, MASTERY_TOTAL_QUESTIONS, computeScorePerce
 import { decideUnlock } from "@/lib/unlocking";
 import { getExcludedKeysForChild } from "./practice";
 import type { Pathway } from "@/lib/types";
+import type { Locale } from "@/lib/questionEngine/types";
 
-export async function getActiveOrNewMasteryAttempt(childId: string, levelId: string, levelKey: string, pathway: Pathway) {
+export async function getActiveOrNewMasteryAttempt(childId: string, levelId: string, levelKey: string, pathway: Pathway, locale: Locale = "en") {
   const existing = await prisma.assessmentAttempt.findFirst({
     where: { childId, levelId, status: { in: ["IN_PROGRESS", "PAUSED"] } },
     orderBy: { startedAt: "desc" }
@@ -42,7 +43,7 @@ export async function getActiveOrNewMasteryAttempt(childId: string, levelId: str
 
   for (let i = 0; i < picks.length; i++) {
     const pick = picks[i]!;
-    const { logId } = await ensureQuestionLog(levelId, pick.templateKey, pick.seed);
+    const { logId } = await ensureQuestionLog(levelId, pick.templateKey, pick.seed, locale);
     await prisma.assessmentAnswer.create({
       data: {
         attemptId: attempt.id,
@@ -75,9 +76,9 @@ export async function getMasteryState(attemptId: string) {
   return attempt;
 }
 
-export async function getMasteryQuestionView(logId: string): Promise<StoredQuestionView> {
+export async function getMasteryQuestionView(logId: string, locale: Locale = "en"): Promise<StoredQuestionView> {
   const log = await prisma.generatedQuestionLog.findUniqueOrThrow({ where: { id: logId } });
-  return logToView(log);
+  return logToView(log, locale);
 }
 
 export interface MasteryAnswerResult {
@@ -92,8 +93,9 @@ export async function submitMasteryAnswer(params: {
   roundNumber: number;
   positionInRound: number;
   givenAnswer: string;
+  locale?: Locale;
 }): Promise<MasteryAnswerResult> {
-  const { childId, attemptId, roundNumber, positionInRound, givenAnswer } = params;
+  const { childId, attemptId, roundNumber, positionInRound, givenAnswer, locale = "en" } = params;
 
   const attempt = await prisma.assessmentAttempt.findUniqueOrThrow({ where: { id: attemptId } });
   if (attempt.status === "SUBMITTED") throw new Error("This Mastery Challenge has already been submitted.");
@@ -132,10 +134,12 @@ export async function submitMasteryAnswer(params: {
 
   let support: WrongAnswerSupport | null = null;
   if (!isCorrect) {
+    const explanationSteps = locale === "fr" ? (slot.questionLog.explanationStepsFr ?? slot.questionLog.explanationSteps) : slot.questionLog.explanationSteps;
+    const hints = locale === "fr" ? (slot.questionLog.hintsFr ?? slot.questionLog.hints) : slot.questionLog.hints;
     support = buildWrongAnswerSupport(
       {
-        explanationSteps: JSON.parse(slot.questionLog.explanationSteps),
-        hints: JSON.parse(slot.questionLog.hints),
+        explanationSteps: JSON.parse(explanationSteps),
+        hints: JSON.parse(hints),
         misconceptionTag: slot.questionLog.misconceptionTag
       },
       1
@@ -262,11 +266,11 @@ export async function finalizeMasteryAttempt(childId: string, attemptId: string)
  * answers at any time") and on the results screen once submitted. Each
  * slot is answered at most once (locked immediately, no retries), so there
  * is no deduplication to do here, unlike practice attempts. */
-export async function getWrongAnswersForMasteryAttempt(attemptId: string): Promise<WrongAnswerReviewItem[]> {
+export async function getWrongAnswersForMasteryAttempt(attemptId: string, locale: Locale = "en"): Promise<WrongAnswerReviewItem[]> {
   const rows = await prisma.assessmentAnswer.findMany({
     where: { attemptId, isCorrect: false },
     include: { questionLog: true },
     orderBy: [{ roundNumber: "asc" }, { positionInRound: "asc" }]
   });
-  return rows.map((row) => toWrongAnswerReviewItem(row.questionLog, row.givenAnswer ?? "", row.answeredAt));
+  return rows.map((row) => toWrongAnswerReviewItem(row.questionLog, row.givenAnswer ?? "", row.answeredAt, locale));
 }

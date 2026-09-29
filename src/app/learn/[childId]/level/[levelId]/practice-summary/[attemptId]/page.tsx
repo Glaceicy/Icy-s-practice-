@@ -18,7 +18,7 @@ export default async function PracticeSummaryPage({ params }: { params: { childI
   const attempt = await prisma.practiceAttempt.findUnique({ where: { id: params.attemptId } });
   if (!attempt || attempt.childId !== child.id || !attempt.completedAt) notFound();
 
-  const wrongAnswers = await getWrongAnswersForPracticeAttempt(attempt.id);
+  const wrongAnswers = await getWrongAnswersForPracticeAttempt(attempt.id, child.locale === "fr" ? "fr" : "en");
   const nextStep = NEXT_STEP[attempt.mode] ?? NEXT_STEP.INDEPENDENT!;
   const modeLabel = attempt.mode === "GUIDED" ? "Guided practice" : attempt.mode === "REVISION" ? "Personalised revision" : "Independent practice";
 

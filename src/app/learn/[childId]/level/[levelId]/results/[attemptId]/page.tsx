@@ -30,7 +30,7 @@ export default async function ResultsPage({ params }: { params: { childId: strin
   }
 
   const next = nextLevelRef(attempt.level.schoolYear.yearNumber, attempt.level.levelNumber);
-  const wrongAnswers = await getWrongAnswersForMasteryAttempt(attempt.id);
+  const wrongAnswers = await getWrongAnswersForMasteryAttempt(attempt.id, child.locale === "fr" ? "fr" : "en");
 
   return (
     <main className="mx-auto min-h-screen max-w-2xl px-6 py-10">

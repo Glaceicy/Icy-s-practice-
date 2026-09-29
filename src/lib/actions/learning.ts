@@ -26,6 +26,11 @@ import {
 } from "@/lib/services/mastery";
 import { logToView, type StoredQuestionView, type WrongAnswerReviewItem } from "@/lib/services/questionLog";
 import type { Pathway, PracticeMode } from "@/lib/types";
+import type { Locale } from "@/lib/questionEngine/types";
+
+function childLocale(child: { locale: string }): Locale {
+  return child.locale === "fr" ? "fr" : "en";
+}
 
 async function levelContext(levelId: string) {
   const level = await prisma.level.findUniqueOrThrow({ where: { id: levelId }, include: { schoolYear: true } });
@@ -70,7 +75,8 @@ export async function fetchNextPracticeQuestionAction(attemptId: string): Promis
   const { levelKey } = await levelContext(attempt.levelId);
   const exclude = await getExcludedKeysForChild(child.id, attempt.levelId);
   const objectiveCodes = attempt.mode === "REVISION" ? await getWeakObjectiveCodes(child.id, attempt.levelId) : undefined;
-  const next: NextPracticeQuestion = await getNextPracticeQuestion(attemptId, attempt.levelId, levelKey, child.pathway as Pathway, exclude, objectiveCodes);
+  const locale = childLocale(child);
+  const next: NextPracticeQuestion = await getNextPracticeQuestion(attemptId, attempt.levelId, levelKey, child.pathway as Pathway, exclude, objectiveCodes, locale);
 
   if (next.done || !next.logId || !next.instance) {
     return { done: true, position: next.position, totalQuestions: next.totalQuestions };
@@ -81,7 +87,7 @@ export async function fetchNextPracticeQuestionAction(attemptId: string): Promis
     done: false,
     position: next.position,
     totalQuestions: next.totalQuestions,
-    question: logToView(log),
+    question: logToView(log, locale),
     triesSoFar: next.triesSoFar,
     remaining: next.remaining
   };
@@ -97,14 +103,14 @@ export async function submitPracticeAnswerAction(
   const { child } = await requireActiveChild();
   const attempt = await prisma.practiceAttempt.findUniqueOrThrow({ where: { id: attemptId } });
   if (attempt.childId !== child.id) throw new Error("FORBIDDEN");
-  return submitPracticeAnswer({ childId: child.id, attemptId, position, logId, givenAnswer, hintsUsed });
+  return submitPracticeAnswer({ childId: child.id, attemptId, position, logId, givenAnswer, hintsUsed, locale: childLocale(child) });
 }
 
 export async function getWrongAnswersForPracticeAttemptAction(attemptId: string): Promise<WrongAnswerReviewItem[]> {
   const { child } = await requireActiveChild();
   const attempt = await prisma.practiceAttempt.findUniqueOrThrow({ where: { id: attemptId } });
   if (attempt.childId !== child.id) throw new Error("FORBIDDEN");
-  return getWrongAnswersForPracticeAttempt(attemptId);
+  return getWrongAnswersForPracticeAttempt(attemptId, childLocale(child));
 }
 
 // ---------------------------------------------------------------------------
@@ -131,7 +137,7 @@ export async function beginMasteryAction(levelId: string): Promise<MasteryStateP
   const { child } = await requireActiveChild();
   await verifyUnlocked(child.id, levelId);
   const { levelKey } = await levelContext(levelId);
-  const attempt = await getActiveOrNewMasteryAttempt(child.id, levelId, levelKey, child.pathway as Pathway);
+  const attempt = await getActiveOrNewMasteryAttempt(child.id, levelId, levelKey, child.pathway as Pathway, childLocale(child));
   return loadMasteryState(attempt.id);
 }
 
@@ -166,7 +172,7 @@ export async function getMasteryQuestionAction(attemptId: string, roundNumber: n
   const slot = await prisma.assessmentAnswer.findUniqueOrThrow({
     where: { attemptId_roundNumber_positionInRound: { attemptId, roundNumber, positionInRound } }
   });
-  const view = await getMasteryQuestionView(slot.questionLogId);
+  const view = await getMasteryQuestionView(slot.questionLogId, childLocale(child));
   return { question: view, locked: slot.locked, isCorrect: slot.isCorrect };
 }
 
@@ -179,7 +185,7 @@ export async function submitMasteryAnswerAction(
   const { child } = await requireActiveChild();
   const attempt = await prisma.assessmentAttempt.findUniqueOrThrow({ where: { id: attemptId } });
   if (attempt.childId !== child.id) throw new Error("FORBIDDEN");
-  return submitMasteryAnswer({ childId: child.id, attemptId, roundNumber, positionInRound, givenAnswer });
+  return submitMasteryAnswer({ childId: child.id, attemptId, roundNumber, positionInRound, givenAnswer, locale: childLocale(child) });
 }
 
 export async function pauseMasteryAction(attemptId: string): Promise<void> {
@@ -207,5 +213,5 @@ export async function getWrongAnswersForMasteryAttemptAction(attemptId: string):
   const { child } = await requireActiveChild();
   const attempt = await prisma.assessmentAttempt.findUniqueOrThrow({ where: { id: attemptId } });
   if (attempt.childId !== child.id) throw new Error("FORBIDDEN");
-  return getWrongAnswersForMasteryAttempt(attemptId);
+  return getWrongAnswersForMasteryAttempt(attemptId, childLocale(child));
 }

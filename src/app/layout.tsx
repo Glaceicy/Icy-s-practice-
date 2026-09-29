@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { getActiveChildSoft } from "@/lib/auth";
+import { getLocale } from "@/lib/i18n/locale";
 import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -17,6 +19,7 @@ export const viewport: Viewport = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const child = await getActiveChildSoft();
+  const locale = await getLocale();
   const bodyClasses = [
     "min-h-screen bg-brand-50 text-slate-900 antialiased",
     child?.fontMode === "DYSLEXIC" ? "font-dyslexic" : "",
@@ -27,11 +30,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     .join(" ");
 
   return (
-    <html lang="en-GB">
+    <html lang={locale === "fr" ? "fr" : "en-GB"}>
       <body className={bodyClasses}>
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>
+        <LanguageSwitcher current={locale} />
         <div id="main-content">{children}</div>
         <ServiceWorkerRegister />
       </body>

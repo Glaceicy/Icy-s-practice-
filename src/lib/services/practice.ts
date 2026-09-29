@@ -7,7 +7,7 @@ import { recordObjectiveProgress, recordMisconception } from "./objectives";
 import { buildWrongAnswerSupport, type WrongAnswerSupport } from "./misconception";
 import { GUIDED_PRACTICE_QUESTIONS, INDEPENDENT_PRACTICE_MIN_QUESTIONS, REVISION_MIN_QUESTIONS } from "@/lib/scoring";
 import type { PracticeMode } from "@/lib/types";
-import type { GeneratedQuestionInstance } from "@/lib/questionEngine/types";
+import type { GeneratedQuestionInstance, Locale } from "@/lib/questionEngine/types";
 
 export async function getExcludedKeysForChild(childId: string, levelId: string): Promise<Set<string>> {
   const [practiceAnswers, assessmentAnswers] = await Promise.all([
@@ -77,7 +77,8 @@ export async function getNextPracticeQuestion(
   levelKey: string,
   pathway: "CORE" | "FOUNDATION" | "HIGHER",
   excludeAcrossChild: Set<string>,
-  objectiveCodes?: string[]
+  objectiveCodes?: string[],
+  locale: Locale = "en"
 ): Promise<NextPracticeQuestion> {
   const attempt = await prisma.practiceAttempt.findUniqueOrThrow({ where: { id: attemptId }, include: { answers: true } });
   const batch = await batchFor(attemptId, levelDbId, levelKey, pathway, attempt.totalQuestions, excludeAcrossChild, objectiveCodes);
@@ -101,7 +102,7 @@ export async function getNextPracticeQuestion(
   const base = batch[position]!;
   const def = getTemplateDef(base.templateKey);
   const seed = triesSoFar === 0 ? base.seed : seedFor(base.templateKey, base.seed + triesSoFar * 37) % 150;
-  const { logId, instance } = await ensureQuestionLog(levelDbId, base.templateKey, seed);
+  const { logId, instance } = await ensureQuestionLog(levelDbId, base.templateKey, seed, locale);
   void def;
 
   return {
@@ -141,8 +142,9 @@ export async function submitPracticeAnswer(params: {
   logId: string;
   givenAnswer: string;
   hintsUsed: number;
+  locale?: Locale;
 }): Promise<PracticeAnswerResult> {
-  const { childId, attemptId, position, logId, givenAnswer, hintsUsed } = params;
+  const { childId, attemptId, position, logId, givenAnswer, hintsUsed, locale = "en" } = params;
 
   // A slot that's already been answered correctly is done — a duplicate
   // submission (double-tap, a slow network causing a client retry, two
@@ -199,7 +201,7 @@ export async function submitPracticeAnswer(params: {
   let support: WrongAnswerSupport | null = null;
   if (!isCorrect) {
     const def = getTemplateDef(log.template.generatorKey);
-    const instance = def.generate(log.seed);
+    const instance = def.generate(log.seed, locale);
     support = buildWrongAnswerSupport(instance, attemptNumber, hintsUsed);
     if (log.misconceptionTag) {
       await recordMisconception({
@@ -228,7 +230,7 @@ export async function submitPracticeAnswer(params: {
  * shown, since that's the attempt worth reviewing. Usable both mid-session
  * (spec: "review wrong answers at any time") and on an end-of-session
  * summary once the attempt is complete. */
-export async function getWrongAnswersForPracticeAttempt(attemptId: string): Promise<WrongAnswerReviewItem[]> {
+export async function getWrongAnswersForPracticeAttempt(attemptId: string, locale: Locale = "en"): Promise<WrongAnswerReviewItem[]> {
   const rows = await prisma.practiceAnswer.findMany({
     where: { attemptId, isCorrect: false },
     include: { questionLog: true },
@@ -239,7 +241,7 @@ export async function getWrongAnswersForPracticeAttempt(attemptId: string): Prom
   for (const row of rows) {
     if (seenPositions.has(row.position)) continue;
     seenPositions.add(row.position);
-    items.push(toWrongAnswerReviewItem(row.questionLog, row.givenAnswer, row.answeredAt));
+    items.push(toWrongAnswerReviewItem(row.questionLog, row.givenAnswer, row.answeredAt, locale));
   }
   return items;
 }
