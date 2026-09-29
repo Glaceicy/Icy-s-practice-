@@ -4,6 +4,8 @@ import { getAdultSession } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { getChildSummary } from "@/lib/services/dashboard";
 import { logoutAction } from "@/lib/actions/auth";
+import { getLocale } from "@/lib/i18n/locale";
+import { translate } from "@/lib/i18n/translate";
 
 export default async function DashboardPage() {
   const session = await getAdultSession();
@@ -11,21 +13,23 @@ export default async function DashboardPage() {
   const adult = await prisma.adultUser.findUniqueOrThrow({ where: { id: session.adultId } });
   const children = await prisma.childProfile.findMany({ where: { ownerId: adult.id }, orderBy: { createdAt: "asc" } });
   const summaries = await Promise.all(children.map((c) => getChildSummary(c.id)));
+  const locale = await getLocale();
+  const t = (key: string, vars?: Record<string, string | number>) => translate(locale, key, vars);
 
   return (
     <main className="mx-auto min-h-screen max-w-5xl px-6 py-10">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-brand-800">{adult.role === "TEACHER" ? "Teacher dashboard" : "Parent dashboard"}</h1>
+          <h1 className="text-2xl font-bold text-brand-800">{adult.role === "TEACHER" ? t("dashboard.teacherHeading") : t("dashboard.parentHeading")}</h1>
           <p className="text-sm text-slate-600">{adult.fullName}</p>
         </div>
         <div className="flex gap-2 text-sm">
           <Link href="/profiles" className="rounded-lg border px-4 py-2 font-semibold text-brand-700 hover:bg-brand-50">
-            Learner profiles
+            {t("dashboard.learnerProfiles")}
           </Link>
           <form action={logoutAction}>
             <button type="submit" className="rounded-lg border px-4 py-2 font-semibold text-slate-600 hover:bg-slate-50">
-              Sign out
+              {t("dashboard.signOut")}
             </button>
           </form>
         </div>
@@ -38,34 +42,34 @@ export default async function DashboardPage() {
               <div>
                 <h2 className="text-xl font-bold text-brand-800">{s.displayName}</h2>
                 <p className="text-sm text-slate-500">
-                  {s.currentYearTitle} &middot; {s.pathway} pathway
+                  {s.currentYearTitle} &middot; {s.pathway} {t("dashboard.pathwaySuffix")}
                 </p>
               </div>
               <div className="flex gap-2">
                 <Link href={`/dashboard/child/${s.childId}`} className="rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-700">
-                  View progress
+                  {t("dashboard.viewProgress")}
                 </Link>
                 <Link href={`/dashboard/child/${s.childId}/report`} className="rounded-lg border px-4 py-2 text-sm font-semibold text-brand-700 hover:bg-brand-50">
-                  Progress report
+                  {t("dashboard.progressReport")}
                 </Link>
               </div>
             </div>
 
             <dl className="mt-4 grid grid-cols-2 gap-4 text-sm sm:grid-cols-4">
               <div>
-                <dt className="text-slate-500">Levels unlocked</dt>
+                <dt className="text-slate-500">{t("dashboard.levelsUnlocked")}</dt>
                 <dd className="text-lg font-bold text-brand-700">{s.levelsUnlocked}</dd>
               </div>
               <div>
-                <dt className="text-slate-500">Levels passed</dt>
+                <dt className="text-slate-500">{t("dashboard.levelsPassed")}</dt>
                 <dd className="text-lg font-bold text-brand-700">{s.levelsPassed}</dd>
               </div>
               <div>
-                <dt className="text-slate-500">Average score</dt>
+                <dt className="text-slate-500">{t("dashboard.averageScore")}</dt>
                 <dd className="text-lg font-bold text-brand-700">{s.averageScorePercentage !== null ? `${Math.round(s.averageScorePercentage)}%` : "—"}</dd>
               </div>
               <div>
-                <dt className="text-slate-500">Est. minutes learning</dt>
+                <dt className="text-slate-500">{t("dashboard.estMinutes")}</dt>
                 <dd className="text-lg font-bold text-brand-700">{s.minutesSpent}</dd>
               </div>
             </dl>
@@ -74,9 +78,9 @@ export default async function DashboardPage() {
 
         {summaries.length === 0 && (
           <p className="text-slate-500">
-            No learner profiles yet.{" "}
+            {t("dashboard.noProfilesYet")}{" "}
             <Link href="/profiles/new" className="font-semibold text-brand-700 underline">
-              Create one
+              {t("dashboard.createOne")}
             </Link>
             .
           </p>

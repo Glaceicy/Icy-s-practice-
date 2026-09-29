@@ -4,6 +4,8 @@ import { requireAdult } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { getChildSummary } from "@/lib/services/dashboard";
 import { setLearningGoalAction, resetPracticeActivityAction, updateAccessibilitySettingsAsAdultAction } from "@/lib/actions/children";
+import { getLocale } from "@/lib/i18n/locale";
+import { translate } from "@/lib/i18n/translate";
 
 export default async function ChildDashboardPage({ params }: { params: { childId: string } }) {
   const adult = await requireAdult();
@@ -18,6 +20,10 @@ export default async function ChildDashboardPage({ params }: { params: { childId
     orderBy: { unlockedAt: "desc" },
     take: 6
   });
+  const locale = await getLocale();
+  const t = (key: string, vars?: Record<string, string | number>) => translate(locale, key, vars);
+  const dateLocale = locale === "fr" ? "fr-FR" : "en-GB";
+  const modeLabel = (mode: string) => translate(locale, `modeLabels.${mode}`);
 
   async function saveGoal(formData: FormData) {
     "use server";
@@ -32,22 +38,22 @@ export default async function ChildDashboardPage({ params }: { params: { childId
   return (
     <main className="mx-auto min-h-screen max-w-4xl px-6 py-10">
       <Link href="/dashboard" className="text-sm font-semibold text-brand-700 underline">
-        ← All learners
+        {t("childDashboard.allLearners")}
       </Link>
-      <h1 className="mt-2 text-2xl font-bold text-brand-800">{summary.displayName}&rsquo;s progress</h1>
+      <h1 className="mt-2 text-2xl font-bold text-brand-800">{t("childDashboard.progressHeading", { name: summary.displayName })}</h1>
 
       <section className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
-        <Stat label="Levels unlocked" value={summary.levelsUnlocked} />
-        <Stat label="Levels passed" value={summary.levelsPassed} />
-        <Stat label="Mastery attempts" value={summary.totalAssessmentAttempts} />
-        <Stat label="Est. minutes" value={summary.minutesSpent} />
+        <Stat label={t("dashboard.levelsUnlocked")} value={summary.levelsUnlocked} />
+        <Stat label={t("dashboard.levelsPassed")} value={summary.levelsPassed} />
+        <Stat label={t("childDashboard.masteryAttempts")} value={summary.totalAssessmentAttempts} />
+        <Stat label={t("childDashboard.estMinutes")} value={summary.minutesSpent} />
       </section>
 
       <section className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
         <div className="rounded-xl2 border bg-white p-5 shadow-sm">
-          <h2 className="font-bold text-leaf-700">Strengths</h2>
+          <h2 className="font-bold text-leaf-700">{t("childDashboard.strengths")}</h2>
           {summary.strengths.length === 0 ? (
-            <p className="mt-2 text-sm text-slate-500">Not enough data yet.</p>
+            <p className="mt-2 text-sm text-slate-500">{t("childDashboard.notEnoughData")}</p>
           ) : (
             <ul className="mt-2 space-y-1 text-sm text-slate-700">
               {summary.strengths.map((s, i) => (
@@ -57,9 +63,9 @@ export default async function ChildDashboardPage({ params }: { params: { childId
           )}
         </div>
         <div className="rounded-xl2 border bg-white p-5 shadow-sm">
-          <h2 className="font-bold text-amber-700">Areas needing improvement</h2>
+          <h2 className="font-bold text-amber-700">{t("childDashboard.areasImprovement")}</h2>
           {summary.developing.length === 0 ? (
-            <p className="mt-2 text-sm text-slate-500">Not enough data yet.</p>
+            <p className="mt-2 text-sm text-slate-500">{t("childDashboard.notEnoughData")}</p>
           ) : (
             <ul className="mt-2 space-y-1 text-sm text-slate-700">
               {summary.developing.map((s, i) => (
@@ -72,7 +78,7 @@ export default async function ChildDashboardPage({ params }: { params: { childId
 
       {summary.topMisconceptions.length > 0 && (
         <section className="mt-6 rounded-xl2 border bg-white p-5 shadow-sm">
-          <h2 className="font-bold text-brand-800">Common misconceptions</h2>
+          <h2 className="font-bold text-brand-800">{t("childDashboard.commonMisconceptions")}</h2>
           <ul className="mt-2 space-y-1 text-sm text-slate-700">
             {summary.topMisconceptions.map((m, i) => (
               <li key={i} className="flex justify-between">
@@ -85,16 +91,14 @@ export default async function ChildDashboardPage({ params }: { params: { childId
       )}
 
       <section className="mt-6 rounded-xl2 border bg-white p-5 shadow-sm">
-        <h2 className="font-bold text-brand-800">Recent Mastery Challenge attempts</h2>
+        <h2 className="font-bold text-brand-800">{t("childDashboard.recentMasteryAttempts")}</h2>
         {summary.recentAttempts.length === 0 ? (
-          <p className="mt-2 text-sm text-slate-500">No attempts yet.</p>
+          <p className="mt-2 text-sm text-slate-500">{t("childDashboard.noAttemptsYet")}</p>
         ) : (
           <ul className="mt-2 space-y-1 text-sm text-slate-700">
             {summary.recentAttempts.map((a) => (
               <li key={a.id} className="flex justify-between">
-                <span>
-                  Year {a.yearNumber}, Level {a.levelNumber}: {a.levelTitle}
-                </span>
+                <span>{t("childDashboard.yearLevelLine", { year: a.yearNumber, number: a.levelNumber, title: a.levelTitle })}</span>
                 <span className={a.passed ? "font-semibold text-leaf-600" : "text-slate-500"}>{Math.round(a.scorePercentage ?? 0)}%</span>
               </li>
             ))}
@@ -103,24 +107,22 @@ export default async function ChildDashboardPage({ params }: { params: { childId
       </section>
 
       <section className="mt-6 rounded-xl2 border bg-white p-5 shadow-sm">
-        <h2 className="font-bold text-brand-800">Recent activity</h2>
-        <p className="mt-1 text-xs text-slate-500">Every practice session your child has completed, most recent first.</p>
+        <h2 className="font-bold text-brand-800">{t("childDashboard.recentActivity")}</h2>
+        <p className="mt-1 text-xs text-slate-500">{t("childDashboard.recentActivitySubtitle")}</p>
         {summary.recentActivity.length === 0 ? (
-          <p className="mt-2 text-sm text-slate-500">No completed practice sessions yet.</p>
+          <p className="mt-2 text-sm text-slate-500">{t("childDashboard.noSessionsYet")}</p>
         ) : (
           <ul className="mt-3 space-y-2 text-sm text-slate-700">
             {summary.recentActivity.map((a) => (
               <li key={a.id} className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 border-b pb-2 last:border-0 last:pb-0">
                 <span>
-                  <span className="font-semibold">{MODE_LABELS[a.mode] ?? a.mode}</span> &middot; Year {a.yearNumber}, Level {a.levelNumber}: {a.levelTitle}
+                  <span className="font-semibold">{modeLabel(a.mode)}</span> &middot; {t("childDashboard.yearLevelLine", { year: a.yearNumber, number: a.levelNumber, title: a.levelTitle })}
                 </span>
                 <span className="flex items-center gap-3 text-xs text-slate-500">
-                  <span>
-                    {a.correctCount}/{a.totalQuestions} correct
-                  </span>
-                  {a.hintsUsed > 0 && <span>{a.hintsUsed} hint{a.hintsUsed === 1 ? "" : "s"}</span>}
-                  <span>~{a.minutes} min</span>
-                  <span>{a.completedAt.toLocaleDateString("en-GB", { day: "numeric", month: "short" })}</span>
+                  <span>{t("childDashboard.correctOf", { correct: a.correctCount, total: a.totalQuestions })}</span>
+                  {a.hintsUsed > 0 && <span>{t(a.hintsUsed === 1 ? "childDashboard.hintOne" : "childDashboard.hintMany", { count: a.hintsUsed })}</span>}
+                  <span>{t("childDashboard.aboutMinutes", { minutes: a.minutes })}</span>
+                  <span>{a.completedAt.toLocaleDateString(dateLocale, { day: "numeric", month: "short" })}</span>
                 </span>
               </li>
             ))}
@@ -129,8 +131,8 @@ export default async function ChildDashboardPage({ params }: { params: { childId
       </section>
 
       <section className="mt-6 rounded-xl2 border bg-white p-5 shadow-sm">
-        <h2 className="font-bold text-brand-800">Reset a practice activity</h2>
-        <p className="mt-1 text-xs text-slate-500">Clears in-progress guided/independent practice for an unlocked level so your child can start fresh.</p>
+        <h2 className="font-bold text-brand-800">{t("childDashboard.resetActivity")}</h2>
+        <p className="mt-1 text-xs text-slate-500">{t("childDashboard.resetActivitySubtitle")}</p>
         <ul className="mt-3 space-y-2">
           {unlockedLevels.map((u) => (
             <li key={u.levelId} className="flex flex-wrap items-center justify-between gap-2 text-sm">
@@ -146,7 +148,7 @@ export default async function ChildDashboardPage({ params }: { params: { childId
                   return (
                     <form action={reset} key={mode}>
                       <button type="submit" className="rounded border px-3 py-1 text-xs font-semibold text-slate-600 hover:bg-slate-50">
-                        Reset {mode.toLowerCase()}
+                        {t("childDashboard.resetButton", { mode: mode.toLowerCase() })}
                       </button>
                     </form>
                   );
@@ -159,54 +161,52 @@ export default async function ChildDashboardPage({ params }: { params: { childId
 
       <section className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
         <div className="rounded-xl2 border bg-white p-5 shadow-sm">
-          <h2 className="font-bold text-brand-800">Set a learning goal</h2>
+          <h2 className="font-bold text-brand-800">{t("childDashboard.setGoal")}</h2>
           <form action={saveGoal} className="mt-3 space-y-3 text-sm">
-            <input name="description" placeholder="e.g. Practise times tables" required className="w-full rounded-lg border px-3 py-2" />
+            <input name="description" placeholder={t("childDashboard.goalPlaceholder")} required className="w-full rounded-lg border px-3 py-2" />
             <select name="targetType" className="w-full rounded-lg border px-3 py-2">
-              <option value="levels_per_week">Levels per week</option>
-              <option value="minutes_per_week">Minutes per week</option>
-              <option value="objective_focus">Focus objective (sessions)</option>
+              <option value="levels_per_week">{t("childDashboard.targetLevelsPerWeek")}</option>
+              <option value="minutes_per_week">{t("childDashboard.targetMinutesPerWeek")}</option>
+              <option value="objective_focus">{t("childDashboard.targetObjectiveFocus")}</option>
             </select>
             <input name="targetValue" type="number" min={1} defaultValue={1} required className="w-full rounded-lg border px-3 py-2" />
             <button type="submit" className="touch-target rounded-lg bg-brand-600 px-4 py-2 font-semibold text-white hover:bg-brand-700">
-              Save goal
+              {t("childDashboard.saveGoal")}
             </button>
           </form>
           {goals.length > 0 && (
             <ul className="mt-3 space-y-1 text-xs text-slate-500">
               {goals.map((g) => (
-                <li key={g.id}>
-                  {g.description} — target {g.targetValue} ({g.targetType.replace(/_/g, " ")})
-                </li>
+                <li key={g.id}>{t("childDashboard.goalLine", { description: g.description, value: g.targetValue, type: g.targetType.replace(/_/g, " ") })}</li>
               ))}
             </ul>
           )}
         </div>
 
         <div className="rounded-xl2 border bg-white p-5 shadow-sm">
-          <h2 className="font-bold text-brand-800">Accessibility &amp; audio settings</h2>
+          <h2 className="font-bold text-brand-800">{t("childDashboard.accessibilityAudioSettings")}</h2>
           <form action={saveAccessibility} className="mt-3 space-y-2 text-sm">
             <label className="flex items-center gap-2">
-              <input type="radio" name="fontMode" value="STANDARD" defaultChecked={child.fontMode === "STANDARD"} /> Standard font
+              <input type="radio" name="fontMode" value="STANDARD" defaultChecked={child.fontMode === "STANDARD"} /> {t("childDashboard.standardFont")}
             </label>
             <label className="flex items-center gap-2">
-              <input type="radio" name="fontMode" value="DYSLEXIC" defaultChecked={child.fontMode === "DYSLEXIC"} /> Dyslexia-friendly font
+              <input type="radio" name="fontMode" value="DYSLEXIC" defaultChecked={child.fontMode === "DYSLEXIC"} /> {t("childDashboard.dyslexicFont")}
             </label>
             <label className="flex items-center gap-2">
-              <input type="checkbox" name="highContrast" value="on" defaultChecked={child.highContrast} /> High contrast
+              <input type="checkbox" name="highContrast" value="on" defaultChecked={child.highContrast} /> {t("childDashboard.highContrast")}
             </label>
             <label className="flex items-center gap-2">
-              <input type="checkbox" name="reducedMotion" value="on" defaultChecked={child.reducedMotion} /> Reduce motion
+              <input type="checkbox" name="reducedMotion" value="on" defaultChecked={child.reducedMotion} /> {t("childDashboard.reduceMotion")}
             </label>
             <label className="flex items-center gap-2">
-              <input type="checkbox" name="soundMuted" value="on" defaultChecked={child.soundMuted} /> Mute sound
+              <input type="checkbox" name="soundMuted" value="on" defaultChecked={child.soundMuted} /> {t("childDashboard.muteSound")}
             </label>
             <label className="flex items-center gap-2">
-              <input type="checkbox" name="readAloud" value="on" defaultChecked={child.readAloud} /> Read aloud by default
+              <input type="checkbox" name="readAloud" value="on" defaultChecked={child.readAloud} /> {t("childDashboard.readAloudDefault")}
             </label>
             <input type="range" name="audioVolume" min={0} max={100} defaultValue={child.audioVolume} className="w-full" />
             <button type="submit" className="touch-target rounded-lg bg-brand-600 px-4 py-2 font-semibold text-white hover:bg-brand-700">
-              Save
+              {t("childDashboard.save")}
             </button>
           </form>
         </div>
@@ -223,9 +223,3 @@ function Stat({ label, value }: { label: string; value: number }) {
     </div>
   );
 }
-
-const MODE_LABELS: Record<string, string> = {
-  GUIDED: "Guided practice",
-  INDEPENDENT: "Independent practice",
-  REVISION: "Revision"
-};

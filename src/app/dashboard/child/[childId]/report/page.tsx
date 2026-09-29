@@ -4,6 +4,8 @@ import { requireAdult } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { getChildSummary } from "@/lib/services/dashboard";
 import PrintButton from "@/components/PrintButton";
+import { getLocale } from "@/lib/i18n/locale";
+import { translate } from "@/lib/i18n/translate";
 
 export default async function ProgressReportPage({ params }: { params: { childId: string } }) {
   const adult = await requireAdult();
@@ -12,71 +14,81 @@ export default async function ProgressReportPage({ params }: { params: { childId
 
   const summary = await getChildSummary(child.id);
   const generatedAt = new Date();
+  const locale = await getLocale();
+  const t = (key: string, vars?: Record<string, string | number>) => translate(locale, key, vars);
+  const dateLocale = locale === "fr" ? "fr-FR" : "en-GB";
+  const modeLabel = (mode: string) => translate(locale, `modeLabels.${mode}`);
 
   return (
     <main className="mx-auto min-h-screen max-w-3xl px-6 py-10 print:py-0">
       <div className="flex items-center justify-between print:hidden">
         <Link href={`/dashboard/child/${child.id}`} className="text-sm font-semibold text-brand-700 underline">
-          ← Back to dashboard
+          {t("progressReport.backToDashboard")}
         </Link>
-        <PrintButton label="Print / save as PDF" />
+        <PrintButton label={t("progressReport.printOrSave")} />
       </div>
 
       <article className="mt-6 rounded-xl2 border bg-white p-8 shadow-sm print:border-0 print:shadow-none">
         <header className="border-b pb-4">
-          <p className="text-xs font-semibold uppercase tracking-wide text-brand-600">Maths Journey UK — Progress Report</p>
+          <p className="text-xs font-semibold uppercase tracking-wide text-brand-600">{t("progressReport.reportTitle")}</p>
           <h1 className="mt-1 text-2xl font-bold text-brand-800">{summary.displayName}</h1>
           <p className="text-sm text-slate-500">
-            {summary.currentYearTitle} &middot; Generated {generatedAt.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}
+            {t("progressReport.generatedOn", { year: summary.currentYearTitle, date: generatedAt.toLocaleDateString(dateLocale, { day: "numeric", month: "long", year: "numeric" }) })}
           </p>
         </header>
 
         <section className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
-          <ReportStat label="Levels unlocked" value={summary.levelsUnlocked} />
-          <ReportStat label="Levels passed" value={summary.levelsPassed} />
-          <ReportStat label="Average score" value={summary.averageScorePercentage !== null ? `${Math.round(summary.averageScorePercentage)}%` : "—"} />
-          <ReportStat label="Est. minutes learning" value={summary.minutesSpent} />
+          <ReportStat label={t("progressReport.levelsUnlocked")} value={summary.levelsUnlocked} />
+          <ReportStat label={t("progressReport.levelsPassed")} value={summary.levelsPassed} />
+          <ReportStat label={t("progressReport.averageScore")} value={summary.averageScorePercentage !== null ? `${Math.round(summary.averageScorePercentage)}%` : "—"} />
+          <ReportStat label={t("progressReport.estMinutes")} value={summary.minutesSpent} />
         </section>
 
         <section className="mt-6">
-          <h2 className="font-bold text-brand-800">Strengths</h2>
+          <h2 className="font-bold text-brand-800">{t("progressReport.strengths")}</h2>
           <ul className="mt-2 list-disc pl-5 text-sm text-slate-700">
-            {summary.strengths.length === 0 ? <li>Not enough data yet.</li> : summary.strengths.map((s, i) => <li key={i}>{s.description}</li>)}
+            {summary.strengths.length === 0 ? <li>{t("progressReport.notEnoughData")}</li> : summary.strengths.map((s, i) => <li key={i}>{s.description}</li>)}
           </ul>
         </section>
 
         <section className="mt-4">
-          <h2 className="font-bold text-brand-800">Areas needing improvement</h2>
+          <h2 className="font-bold text-brand-800">{t("progressReport.areasImprovement")}</h2>
           <ul className="mt-2 list-disc pl-5 text-sm text-slate-700">
-            {summary.developing.length === 0 ? <li>Not enough data yet.</li> : summary.developing.map((s, i) => <li key={i}>{s.description}</li>)}
+            {summary.developing.length === 0 ? <li>{t("progressReport.notEnoughData")}</li> : summary.developing.map((s, i) => <li key={i}>{s.description}</li>)}
           </ul>
         </section>
 
         <section className="mt-4">
-          <h2 className="font-bold text-brand-800">Common misconceptions observed</h2>
+          <h2 className="font-bold text-brand-800">{t("progressReport.misconceptionsObserved")}</h2>
           <ul className="mt-2 list-disc pl-5 text-sm text-slate-700">
-            {summary.topMisconceptions.length === 0 ? <li>None recorded yet.</li> : summary.topMisconceptions.map((m, i) => <li key={i}>{m.label} ({m.count} occurrences)</li>)}
+            {summary.topMisconceptions.length === 0 ? (
+              <li>{t("progressReport.noneRecorded")}</li>
+            ) : (
+              summary.topMisconceptions.map((m, i) => (
+                <li key={i}>
+                  {m.label} ({t("progressReport.occurrences", { count: m.count })})
+                </li>
+              ))
+            )}
           </ul>
         </section>
 
         <section className="mt-4">
-          <h2 className="font-bold text-brand-800">Mastery Challenge history</h2>
+          <h2 className="font-bold text-brand-800">{t("progressReport.masteryHistory")}</h2>
           <table className="mt-2 w-full border-collapse text-sm">
             <thead>
               <tr className="border-b text-left text-slate-500">
-                <th className="py-1">Level</th>
-                <th className="py-1">Score</th>
-                <th className="py-1">Result</th>
+                <th className="py-1">{t("progressReport.colLevel")}</th>
+                <th className="py-1">{t("progressReport.colScore")}</th>
+                <th className="py-1">{t("progressReport.colResult")}</th>
               </tr>
             </thead>
             <tbody>
               {summary.recentAttempts.map((a) => (
                 <tr key={a.id} className="border-b">
-                  <td className="py-1">
-                    Year {a.yearNumber}, Level {a.levelNumber}: {a.levelTitle}
-                  </td>
+                  <td className="py-1">{t("progressReport.yearLevelLine", { year: a.yearNumber, number: a.levelNumber, title: a.levelTitle })}</td>
                   <td className="py-1">{Math.round(a.scorePercentage ?? 0)}%</td>
-                  <td className="py-1">{a.passed ? "Passed" : "Not yet passed"}</td>
+                  <td className="py-1">{a.passed ? t("progressReport.passed") : t("progressReport.notYetPassed")}</td>
                 </tr>
               ))}
             </tbody>
@@ -84,29 +96,29 @@ export default async function ProgressReportPage({ params }: { params: { childId
         </section>
 
         <section className="mt-4">
-          <h2 className="font-bold text-brand-800">Recent activity</h2>
+          <h2 className="font-bold text-brand-800">{t("progressReport.recentActivity")}</h2>
           <table className="mt-2 w-full border-collapse text-sm">
             <thead>
               <tr className="border-b text-left text-slate-500">
-                <th className="py-1">Date</th>
-                <th className="py-1">Activity</th>
-                <th className="py-1">Level</th>
-                <th className="py-1">Score</th>
-                <th className="py-1">Time</th>
+                <th className="py-1">{t("progressReport.colDate")}</th>
+                <th className="py-1">{t("progressReport.colActivity")}</th>
+                <th className="py-1">{t("progressReport.colLevel")}</th>
+                <th className="py-1">{t("progressReport.colScore")}</th>
+                <th className="py-1">{t("progressReport.colTime")}</th>
               </tr>
             </thead>
             <tbody>
               {summary.recentActivity.length === 0 ? (
                 <tr>
                   <td colSpan={5} className="py-1 text-slate-500">
-                    No completed practice sessions yet.
+                    {t("progressReport.noSessionsYet")}
                   </td>
                 </tr>
               ) : (
                 summary.recentActivity.map((a) => (
                   <tr key={a.id} className="border-b">
-                    <td className="py-1">{a.completedAt.toLocaleDateString("en-GB", { day: "numeric", month: "short" })}</td>
-                    <td className="py-1">{MODE_LABELS[a.mode] ?? a.mode}</td>
+                    <td className="py-1">{a.completedAt.toLocaleDateString(dateLocale, { day: "numeric", month: "short" })}</td>
+                    <td className="py-1">{modeLabel(a.mode)}</td>
                     <td className="py-1">
                       Y{a.yearNumber} L{a.levelNumber}: {a.levelTitle}
                     </td>
@@ -121,10 +133,7 @@ export default async function ProgressReportPage({ params }: { params: { childId
           </table>
         </section>
 
-        <p className="mt-8 text-xs text-slate-400">
-          This report summarises learning activity recorded within Maths Journey UK. Time-spent figures are estimated from session
-          start/end timestamps, capped at 60 minutes per session so an idle or paused session can't inflate the total.
-        </p>
+        <p className="mt-8 text-xs text-slate-400">{t("progressReport.footerNote")}</p>
       </article>
     </main>
   );
@@ -138,9 +147,3 @@ function ReportStat({ label, value }: { label: string; value: number | string })
     </div>
   );
 }
-
-const MODE_LABELS: Record<string, string> = {
-  GUIDED: "Guided practice",
-  INDEPENDENT: "Independent practice",
-  REVISION: "Revision"
-};
