@@ -18,6 +18,18 @@ function fmtTime(totalMinutes: number): string {
   return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
 }
 const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+const DAY_EN_TO_FR: Record<string, string> = {
+  Monday: "lundi", Tuesday: "mardi", Wednesday: "mercredi", Thursday: "jeudi", Friday: "vendredi"
+};
+const ORDINAL_EN_TO_FR: Record<string, string> = { "1st": "1er", "2nd": "2e", "3rd": "3e", "4th": "4e" };
+const BOOL_EN_TO_FR: Record<string, string> = { True: "Vrai", False: "Faux" };
+function translateGraphSeries(visualAid: { kind: string; data: Record<string, unknown> } | undefined) {
+  const series = (visualAid?.data as { series?: Array<{ label: string; value: number }> } | undefined)?.series ?? [];
+  return series.map((s) => ({ ...s, label: DAY_EN_TO_FR[s.label] ?? s.label }));
+}
+function translateDurationLabel(label: string): string {
+  return label.replace(/hour\(s\)/g, "heure(s)");
+}
 
 function distinctValues(rng: { int: (lo: number, hi: number) => number }, count: number, lo: number, hi: number): number[] {
   const set = new Set<number>();
@@ -56,6 +68,18 @@ export const level: QuestionTemplateDef[] = [
         visualAid: visuals.graph("line", series)
       };
     },
+    fr: {
+      translate: (drawn) => {
+        const m = drawn.prompt.match(/on (\w+)\?$/);
+        const dayFr = m ? (DAY_EN_TO_FR[m[1]!] ?? m[1]) : "";
+        return {
+          prompt: `Le graphique montre le nombre de livres empruntés chaque jour. Combien de livres ont été empruntés le ${dayFr} ?`,
+          explanationSteps: [`En lisant le graphique au ${dayFr}, on voit ${drawn.correctLabel} livres.`],
+          hints: ["Trouve le jour sur le graphique et lis la valeur à ce point."],
+          visualAid: visuals.graph("line", translateGraphSeries(drawn.visualAid))
+        };
+      }
+    },
     declaredVariationSpace: 5000
   }),
   categoricalPoolTemplate({
@@ -78,6 +102,23 @@ export const level: QuestionTemplateDef[] = [
         hints: ["Subtract the smaller value from the larger value."],
         visualAid: visuals.graph("line", series)
       };
+    },
+    fr: {
+      translate: (drawn) => {
+        const pm = drawn.prompt.match(/on (\w+) and on (\w+)\?$/);
+        const day1Fr = pm ? (DAY_EN_TO_FR[pm[1]!] ?? pm[1]) : "";
+        const day2Fr = pm ? (DAY_EN_TO_FR[pm[2]!] ?? pm[2]) : "";
+        const em = drawn.explanationSteps[0]?.match(/^\w+: (\d+)\. \w+: (\d+)\. Difference: (\d+)\.$/);
+        const v1 = em ? em[1] : "";
+        const v2 = em ? em[2] : "";
+        const diff = em ? em[3] : "";
+        return {
+          prompt: `Le graphique montre le nombre de livres empruntés chaque jour. Quelle est la différence entre le nombre de livres empruntés le ${day1Fr} et le ${day2Fr} ?`,
+          explanationSteps: [`${day1Fr} : ${v1}. ${day2Fr} : ${v2}. Différence : ${diff}.`],
+          hints: ["Soustrais la plus petite valeur de la plus grande."],
+          visualAid: visuals.graph("line", translateGraphSeries(drawn.visualAid))
+        };
+      }
     },
     declaredVariationSpace: 5000
   }),
@@ -102,6 +143,23 @@ export const level: QuestionTemplateDef[] = [
         visualAid: visuals.graph("line", series)
       };
     },
+    fr: {
+      translate: (drawn) => {
+        const pm = drawn.prompt.match(/for (\w+) and (\w+) combined\?$/);
+        const day1Fr = pm ? (DAY_EN_TO_FR[pm[1]!] ?? pm[1]) : "";
+        const day2Fr = pm ? (DAY_EN_TO_FR[pm[2]!] ?? pm[2]) : "";
+        const em = drawn.explanationSteps[0]?.match(/^\w+: (\d+)\. \w+: (\d+)\. \d+ \+ \d+ = (\d+)\.$/);
+        const v1 = em ? em[1] : "";
+        const v2 = em ? em[2] : "";
+        const sum = em ? em[3] : "";
+        return {
+          prompt: `Le graphique montre le nombre de livres empruntés chaque jour. Quel est le total pour ${day1Fr} et ${day2Fr} combinés ?`,
+          explanationSteps: [`${day1Fr} : ${v1}. ${day2Fr} : ${v2}. ${v1} + ${v2} = ${sum}.`],
+          hints: ["Additionne les deux valeurs."],
+          visualAid: visuals.graph("line", translateGraphSeries(drawn.visualAid))
+        };
+      }
+    },
     declaredVariationSpace: 5000
   }),
   categoricalPoolTemplate({
@@ -121,6 +179,22 @@ export const level: QuestionTemplateDef[] = [
         hints: ["Find the highest point on the graph."],
         visualAid: visuals.graph("line", series)
       };
+    },
+    fr: {
+      translate: (drawn) => {
+        const correctFr = DAY_EN_TO_FR[drawn.correctLabel] ?? drawn.correctLabel;
+        const distractorsFr = drawn.distractorLabels.map((d) => DAY_EN_TO_FR[d] ?? d);
+        const em = drawn.explanationSteps[0]?.match(/had the highest value: (\d+)\.$/);
+        const value = em ? em[1] : "";
+        return {
+          prompt: "Le graphique montre le nombre de livres empruntés chaque jour. Quel jour a-t-on emprunté le plus de livres ?",
+          correctLabel: correctFr,
+          distractorLabels: distractorsFr,
+          explanationSteps: [`${correctFr} a eu la valeur la plus élevée : ${value}.`],
+          hints: ["Trouve le point le plus haut sur le graphique."],
+          visualAid: visuals.graph("line", translateGraphSeries(drawn.visualAid))
+        };
+      }
     },
     declaredVariationSpace: 5000
   }),
@@ -142,6 +216,22 @@ export const level: QuestionTemplateDef[] = [
         visualAid: visuals.graph("line", series)
       };
     },
+    fr: {
+      translate: (drawn) => {
+        const correctFr = DAY_EN_TO_FR[drawn.correctLabel] ?? drawn.correctLabel;
+        const distractorsFr = drawn.distractorLabels.map((d) => DAY_EN_TO_FR[d] ?? d);
+        const em = drawn.explanationSteps[0]?.match(/had the lowest value: (\d+)\.$/);
+        const value = em ? em[1] : "";
+        return {
+          prompt: "Le graphique montre le nombre de livres empruntés chaque jour. Quel jour a-t-on emprunté le moins de livres ?",
+          correctLabel: correctFr,
+          distractorLabels: distractorsFr,
+          explanationSteps: [`${correctFr} a eu la valeur la plus basse : ${value}.`],
+          hints: ["Trouve le point le plus bas sur le graphique."],
+          visualAid: visuals.graph("line", translateGraphSeries(drawn.visualAid))
+        };
+      }
+    },
     declaredVariationSpace: 5000
   }),
   categoricalPoolTemplate({
@@ -161,6 +251,20 @@ export const level: QuestionTemplateDef[] = [
         hints: ["Subtract the lowest value from the highest value."],
         visualAid: visuals.graph("line", series)
       };
+    },
+    fr: {
+      translate: (drawn) => {
+        const em = drawn.explanationSteps[0]?.match(/^Highest: (\d+)\. Lowest: (\d+)\. Difference: (\d+)\.$/);
+        const hi = em ? em[1] : "";
+        const lo = em ? em[2] : "";
+        const diff = em ? em[3] : "";
+        return {
+          prompt: "Le graphique montre le nombre de livres empruntés chaque jour. Quelle est la différence entre la valeur la plus élevée et la plus basse ?",
+          explanationSteps: [`Le plus élevé : ${hi}. Le plus bas : ${lo}. Différence : ${diff}.`],
+          hints: ["Soustrais la valeur la plus basse de la valeur la plus élevée."],
+          visualAid: visuals.graph("line", translateGraphSeries(drawn.visualAid))
+        };
+      }
     },
     declaredVariationSpace: 5000
   }),
@@ -182,6 +286,13 @@ export const level: QuestionTemplateDef[] = [
         visualAid: visuals.graph("line", series)
       };
     },
+    fr: {
+      translate: (drawn) => ({
+        prompt: "Le graphique montre le nombre de livres empruntés chaque jour, du lundi au vendredi. Combien de livres ont été empruntés au total sur la semaine ?",
+        hints: ["Additionne les valeurs des cinq jours."],
+        visualAid: visuals.graph("line", translateGraphSeries(drawn.visualAid))
+      })
+    },
     declaredVariationSpace: 5000
   }),
 
@@ -202,6 +313,20 @@ export const level: QuestionTemplateDef[] = [
         hints: ["Find the matching day in the table and read its value."]
       };
     },
+    fr: {
+      translate: (drawn) => {
+        const m = drawn.prompt.match(/^A café's sales table shows: Monday (\d+), Tuesday (\d+), Wednesday (\d+)\. How many were sold on (\w+)\?$/);
+        const v0 = m ? m[1] : "";
+        const v1 = m ? m[2] : "";
+        const v2 = m ? m[3] : "";
+        const dayFr = m ? (DAY_EN_TO_FR[m[4]!] ?? m[4]) : "";
+        return {
+          prompt: `Le tableau des ventes d'un café indique : lundi ${v0}, mardi ${v1}, mercredi ${v2}. Combien ont été vendus le ${dayFr} ?`,
+          explanationSteps: [`Le tableau indique ${drawn.correctLabel} pour le ${dayFr}.`],
+          hints: ["Trouve le jour correspondant dans le tableau et lis sa valeur."]
+        };
+      }
+    },
     declaredVariationSpace: 5000
   }),
   arithmeticTemplate({
@@ -212,7 +337,12 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["A table shows items sold: Monday {mon}, Tuesday {tue}. What is the combined total for both days?"],
     explain: (v, r) => [`${v[0]} + ${v[1]} = ${r}.`],
     hints: () => ["Add the two table entries together."],
-    declaredVariationSpace: 55 * 55
+    declaredVariationSpace: 55 * 55,
+    fr: {
+      promptTemplates: ["Un tableau indique les articles vendus : lundi {mon}, mardi {tue}. Quel est le total combiné pour les deux jours ?"],
+      explain: (v, r) => [`${v[0]} + ${v[1]} = ${r}.`],
+      hints: () => ["Additionne les deux valeurs du tableau."]
+    }
   }),
   categoricalPoolTemplate({
     key: "y5l9.tableDifference", levelKey: "Y5L9", objectiveCode: "Y5-L9-2", difficulty: "APPLICATION",
@@ -231,6 +361,18 @@ export const level: QuestionTemplateDef[] = [
         explanationSteps: [`The difference between ${Math.max(a, b)} and ${Math.min(a, b)} is ${diff}.`],
         hints: ["Subtract the smaller value from the larger value."]
       };
+    },
+    fr: {
+      translate: (drawn) => {
+        const m = drawn.prompt.match(/^A table shows items sold: Monday (\d+), Tuesday (\d+)\./);
+        const a = m ? Number(m[1]) : 0;
+        const b = m ? Number(m[2]) : 0;
+        return {
+          prompt: `Un tableau indique les articles vendus : lundi ${a}, mardi ${b}. Combien de plus ont été vendus le jour le plus chargé ?`,
+          explanationSteps: [`La différence entre ${Math.max(a, b)} et ${Math.min(a, b)} est ${drawn.correctLabel}.`],
+          hints: ["Soustrais la plus petite valeur de la plus grande."]
+        };
+      }
     },
     declaredVariationSpace: 3025
   }),
@@ -251,6 +393,18 @@ export const level: QuestionTemplateDef[] = [
         explanationSteps: [`The ${["1st", "2nd", "3rd", "4th"][idx]} departure listed is ${correct}.`],
         hints: ["Count along the list of departure times to find the one asked for."]
       };
+    },
+    fr: {
+      translate: (drawn) => {
+        const m = drawn.prompt.match(/^A bus timetable shows departures at (.+)\. What time is the (\w+) departure\?$/);
+        const times = m ? m[1] : "";
+        const ordinalFr = m ? (ORDINAL_EN_TO_FR[m[2]!] ?? m[2]) : "";
+        return {
+          prompt: `Un horaire de bus indique des départs à ${times}. À quelle heure est le ${ordinalFr} départ ?`,
+          explanationSteps: [`Le ${ordinalFr} départ indiqué est ${drawn.correctLabel}.`],
+          hints: ["Compte dans la liste des horaires de départ pour trouver celui demandé."]
+        };
+      }
     },
     declaredVariationSpace: 850 * 31
   }),
@@ -274,6 +428,18 @@ export const level: QuestionTemplateDef[] = [
         hints: ["Find the first departure time that is later than your arrival time."]
       };
     },
+    fr: {
+      translate: (drawn) => {
+        const m = drawn.prompt.match(/^A bus timetable shows departures at (.+)\. You arrive at the stop at (\d{2}:\d{2})\. What time is the next bus\?$/);
+        const times = m ? m[1] : "";
+        const arrival = m ? m[2] : "";
+        return {
+          prompt: `Un horaire de bus indique des départs à ${times}. Tu arrives à l'arrêt à ${arrival}. À quelle heure est le prochain bus ?`,
+          explanationSteps: [`Le prochain départ après ${arrival} est ${drawn.correctLabel}.`],
+          hints: ["Trouve le premier horaire de départ qui est après ton heure d'arrivée."]
+        };
+      }
+    },
     declaredVariationSpace: 750 * 31 * 3
   }),
   arithmeticTemplate({
@@ -284,7 +450,12 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["A recycling table shows: Glass {glass} kg, Plastic {plastic} kg, Paper ___ kg. The total for all three is {total} kg. What is the paper weight?"],
     explain: (v, r) => [`${v[0]! + v[1]! + r} - ${v[0]} - ${v[1]} = ${r}.`],
     hints: () => ["Subtract the known entries from the total to find the missing one."],
-    declaredVariationSpace: 36 * 36 * 36
+    declaredVariationSpace: 36 * 36 * 36,
+    fr: {
+      promptTemplates: ["Un tableau de recyclage indique : Verre {glass} kg, Plastique {plastic} kg, Papier ___ kg. Le total des trois est {total} kg. Quel est le poids du papier ?"],
+      explain: (v, r) => [`${v[0]! + v[1]! + r} - ${v[0]} - ${v[1]} = ${r}.`],
+      hints: () => ["Soustrais les valeurs connues du total pour trouver celle qui manque."]
+    }
   }),
   categoricalPoolTemplate({
     key: "y5l9.wordProblemTableComparison", levelKey: "Y5L9", objectiveCode: "Y5-L9-2", difficulty: "REASONING",
@@ -303,6 +474,25 @@ export const level: QuestionTemplateDef[] = [
         hints: ["Compare all three values and find the biggest one."]
       };
     },
+    fr: {
+      translate: (drawn) => {
+        const m = drawn.prompt.match(/^A sales table shows: Monday (\d+), Tuesday (\d+), Wednesday (\d+)\./);
+        const v0 = m ? m[1] : "";
+        const v1 = m ? m[2] : "";
+        const v2 = m ? m[3] : "";
+        const correctFr = DAY_EN_TO_FR[drawn.correctLabel] ?? drawn.correctLabel;
+        const distractorsFr = drawn.distractorLabels.map((d) => DAY_EN_TO_FR[d] ?? d);
+        const em = drawn.explanationSteps[0]?.match(/had the highest value: (\d+)\.$/);
+        const value = em ? em[1] : "";
+        return {
+          prompt: `Un tableau des ventes indique : lundi ${v0}, mardi ${v1}, mercredi ${v2}. Quel jour a eu le plus de ventes ?`,
+          correctLabel: correctFr,
+          distractorLabels: distractorsFr,
+          explanationSteps: [`${correctFr} a eu la valeur la plus élevée : ${value}.`],
+          hints: ["Compare les trois valeurs et trouve la plus grande."]
+        };
+      }
+    },
     declaredVariationSpace: 5000
   }),
 
@@ -315,7 +505,12 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["A journey starts at {start} and ends at {end} (both 24-hour clock times, same day). How many minutes did the journey take?"],
     explain: (v, r) => [`From ${fmtTime(v[0]!)} to ${fmtTime(v[0]! + r)} is ${r} minutes.`],
     hints: () => ["Count the minutes from the start time to the end time."],
-    declaredVariationSpace: 1200 * 170
+    declaredVariationSpace: 1200 * 170,
+    fr: {
+      promptTemplates: ["Un trajet commence à {start} et se termine à {end} (les deux en horloge 24 heures, le même jour). Combien de minutes a duré le trajet ?"],
+      explain: (v, r) => [`De ${fmtTime(v[0]!)} à ${fmtTime(v[0]! + r)}, cela fait ${r} minutes.`],
+      hints: () => ["Compte les minutes entre l'heure de départ et l'heure d'arrivée."]
+    }
   }),
   categoricalPoolTemplate({
     key: "y5l9.mcReadTimeFromTimetable", levelKey: "Y5L9", objectiveCode: "Y5-L9-3", difficulty: "APPLICATION",
@@ -336,6 +531,18 @@ export const level: QuestionTemplateDef[] = [
         hints: ["Find the station name in the timetable and read its time."]
       };
     },
+    fr: {
+      translate: (drawn) => {
+        const m = drawn.prompt.match(/^A train timetable shows arrival times: (.+)\. What time does the train reach (.+)\?$/);
+        const times = m ? m[1] : "";
+        const station = m ? m[2] : "";
+        return {
+          prompt: `Un horaire de train indique les heures d'arrivée : ${times}. À quelle heure le train arrive-t-il à ${station} ?`,
+          explanationSteps: [`L'horaire indique ${drawn.correctLabel} pour ${station}.`],
+          hints: ["Trouve le nom de la gare dans l'horaire et lis son heure."]
+        };
+      }
+    },
     declaredVariationSpace: 950 * 31
   }),
   arithmeticTemplate({
@@ -346,7 +553,12 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["A train departs at {dep} (24-hour clock). The journey takes {dur} minutes. What time does it arrive?"],
     explain: (v, r) => [`${fmtTime(v[0]!)} + ${v[1]} minutes = ${fmtTime((v[0]! + v[1]!) % 1440)}.`],
     hints: () => ["Add the journey time (in minutes) to the departure time."],
-    declaredVariationSpace: 1439 * 170
+    declaredVariationSpace: 1439 * 170,
+    fr: {
+      promptTemplates: ["Un train part à {dep} (horloge 24 heures). Le trajet dure {dur} minutes. À quelle heure arrive-t-il ?"],
+      explain: (v, r) => [`${fmtTime(v[0]!)} + ${v[1]} minutes = ${fmtTime((v[0]! + v[1]!) % 1440)}.`],
+      hints: () => ["Ajoute la durée du trajet (en minutes) à l'heure de départ."]
+    }
   }),
   arithmeticTemplate({
     key: "y5l9.subtractDurationFromTime", levelKey: "Y5L9", objectiveCode: "Y5-L9-3", difficulty: "APPLICATION",
@@ -356,7 +568,12 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: ["A bus arrives at {arr} (24-hour clock). The journey took {dur} minutes. What time did it depart?"],
     explain: (v, r) => [`${fmtTime(v[0]!)} - ${v[1]} minutes = ${fmtTime((v[0]! - v[1]! + 1440) % 1440)}.`],
     hints: () => ["Subtract the journey time (in minutes) from the arrival time."],
-    declaredVariationSpace: 1259 * 160
+    declaredVariationSpace: 1259 * 160,
+    fr: {
+      promptTemplates: ["Un bus arrive à {arr} (horloge 24 heures). Le trajet a duré {dur} minutes. À quelle heure est-il parti ?"],
+      explain: (v, r) => [`${fmtTime(v[0]!)} - ${v[1]} minutes = ${fmtTime((v[0]! - v[1]! + 1440) % 1440)}.`],
+      hints: () => ["Soustrais la durée du trajet (en minutes) de l'heure d'arrivée."]
+    }
   }),
   categoricalPoolTemplate({
     key: "y5l9.durationHoursMinutes", levelKey: "Y5L9", objectiveCode: "Y5-L9-3", difficulty: "REASONING",
@@ -377,6 +594,22 @@ export const level: QuestionTemplateDef[] = [
         hints: ["Work out the total minutes first, then convert to hours and minutes."]
       };
     },
+    fr: {
+      translate: (drawn) => {
+        const m = drawn.prompt.match(/^How long is the journey from (\d{2}:\d{2}) to (\d{2}:\d{2})\?$/);
+        const start = m ? m[1] : "";
+        const end = m ? m[2] : "";
+        const em = drawn.explanationSteps[0]?.match(/^(\d+) minutes = (\d+) hour\(s\) and (\d+) minute\(s\)\.$/);
+        const dur = em ? em[1] : "";
+        const h = em ? em[2] : "";
+        const min = em ? em[3] : "";
+        return {
+          prompt: `Combien de temps dure le trajet de ${start} à ${end} ?`,
+          explanationSteps: [`${dur} minutes = ${h} heure(s) et ${min} minute(s).`],
+          hints: ["Calcule d'abord le total en minutes, puis convertis en heures et minutes."]
+        };
+      }
+    },
     declaredVariationSpace: 1200 * 175
   }),
   categoricalPoolTemplate({
@@ -395,6 +628,23 @@ export const level: QuestionTemplateDef[] = [
         explanationSteps: [`From ${fmtTime(start)} to ${fmtTime(end)} is actually ${dur} minutes.`],
         hints: ["Count the minutes between the two times to check."]
       };
+    },
+    fr: {
+      translate: (drawn) => {
+        const m = drawn.prompt.match(/^A journey from (\d{2}:\d{2}) to (\d{2}:\d{2}) takes (\d+) minutes\.$/);
+        const start = m ? m[1] : "";
+        const end = m ? m[2] : "";
+        const shown = m ? m[3] : "";
+        const em = drawn.explanationSteps[0]?.match(/is actually (\d+) minutes\.$/);
+        const dur = em ? em[1] : "";
+        return {
+          prompt: `Un trajet de ${start} à ${end} dure ${shown} minutes.`,
+          correctLabel: BOOL_EN_TO_FR[drawn.correctLabel] ?? drawn.correctLabel,
+          distractorLabels: drawn.distractorLabels.map((d) => BOOL_EN_TO_FR[d] ?? d),
+          explanationSteps: [`De ${start} à ${end}, cela fait en réalité ${dur} minutes.`],
+          hints: ["Compte les minutes entre les deux heures pour vérifier."]
+        };
+      }
     },
     declaredVariationSpace: 1300 * 120 * 2
   }),
@@ -420,6 +670,24 @@ export const level: QuestionTemplateDef[] = [
         explanationSteps: [`${fmtTime(dep)} to ${fmtTime(arr)} is ${dur} minutes, which is ${correct}.`],
         hints: ["Work out the total number of minutes, then convert to hours and minutes if needed."]
       };
+    },
+    fr: {
+      translate: (drawn) => {
+        const m = drawn.prompt.match(/^A coach departs at (\d{2}:\d{2}) and arrives at (\d{2}:\d{2}) \(both 24-hour clock times\)\. How long is the journey\?$/);
+        const dep = m ? m[1] : "";
+        const arr = m ? m[2] : "";
+        const em = drawn.explanationSteps[0]?.match(/is (\d+) minutes, which is/);
+        const dur = em ? em[1] : "";
+        const correctFr = translateDurationLabel(drawn.correctLabel);
+        const distractorsFr = drawn.distractorLabels.map(translateDurationLabel);
+        return {
+          prompt: `Un car part à ${dep} et arrive à ${arr} (les deux en horloge 24 heures). Combien de temps dure le trajet ?`,
+          correctLabel: correctFr,
+          distractorLabels: distractorsFr,
+          explanationSteps: [`${dep} à ${arr} fait ${dur} minutes, soit ${correctFr}.`],
+          hints: ["Calcule d'abord le nombre total de minutes, puis convertis en heures et minutes si besoin."]
+        };
+      }
     },
     declaredVariationSpace: 840 * 151
   })
