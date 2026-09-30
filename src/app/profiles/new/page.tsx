@@ -4,6 +4,7 @@ import { prisma } from "@/lib/db";
 import CreateChildForm from "@/components/CreateChildForm";
 import { getLocale } from "@/lib/i18n/locale";
 import { translate } from "@/lib/i18n/translate";
+import { localize } from "@/lib/i18n/content";
 
 export default async function NewProfilePage() {
   const session = await getAdultSession();
@@ -18,7 +19,13 @@ export default async function NewProfilePage() {
       <h1 className="text-2xl font-bold text-brand-800">{t("newProfile.title")}</h1>
       <p className="mt-2 text-sm text-slate-600">{t("newProfile.subtitle")}</p>
       <div className="mt-8 rounded-xl2 border bg-white p-6 shadow-sm">
-        <CreateChildForm years={years.map((y) => ({ yearNumber: y.yearNumber, title: y.title, summary: y.summary }))} />
+        <CreateChildForm
+          years={years.map((y) => ({
+            yearNumber: y.yearNumber,
+            title: localize(locale, y.title, y.titleFr),
+            summary: localize(locale, y.summary, y.summaryFr)
+          }))}
+        />
       </div>
     </main>
   );

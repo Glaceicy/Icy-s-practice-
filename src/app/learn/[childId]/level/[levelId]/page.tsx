@@ -64,7 +64,7 @@ export default async function LevelOverviewPage({ params }: { params: { childId:
         <Mascot mood="wave" className="h-20 w-20 flex-none animate-pop-in" />
         <div>
           <p className="text-sm font-semibold uppercase tracking-wide text-brand-600">
-            {level.schoolYear.title} &middot; Level {level.levelNumber}
+            {t("levelOverview.yearLevelCaption", { year: localize(locale, level.schoolYear.title, level.schoolYear.titleFr), number: level.levelNumber })}
           </p>
           <h1 className="text-3xl font-extrabold text-brand-800">{localize(locale, level.title, level.titleFr)}</h1>
         </div>

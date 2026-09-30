@@ -7,6 +7,7 @@ import ProfilePinCard from "@/components/ProfilePinCard";
 import Mascot from "@/components/illustrations/Mascot";
 import { getLocale } from "@/lib/i18n/locale";
 import { translate } from "@/lib/i18n/translate";
+import { localize } from "@/lib/i18n/content";
 
 export default async function ProfilesPage() {
   const session = await getAdultSession();
@@ -50,7 +51,13 @@ export default async function ProfilesPage() {
 
       <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
         {children.map((child) => (
-          <ProfilePinCard key={child.id} childId={child.id} displayName={child.displayName} avatarKey={child.avatarKey} yearTitle={child.currentYear.title} />
+          <ProfilePinCard
+            key={child.id}
+            childId={child.id}
+            displayName={child.displayName}
+            avatarKey={child.avatarKey}
+            yearTitle={localize(locale, child.currentYear.title, child.currentYear.titleFr)}
+          />
         ))}
 
         <Link
