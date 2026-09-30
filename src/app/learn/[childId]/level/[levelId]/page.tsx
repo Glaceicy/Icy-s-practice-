@@ -6,6 +6,7 @@ import ChildTopBar from "@/components/ChildTopBar";
 import Mascot from "@/components/illustrations/Mascot";
 import { getLocale } from "@/lib/i18n/locale";
 import { translate } from "@/lib/i18n/translate";
+import { localize } from "@/lib/i18n/content";
 
 export default async function LevelOverviewPage({ params }: { params: { childId: string; levelId: string } }) {
   const { child } = await assertChildAccess(params.childId);
@@ -40,7 +41,7 @@ export default async function LevelOverviewPage({ params }: { params: { childId:
         <ChildTopBar child={child} />
         <div className="mt-8 rounded-xl2 border bg-amber-50 p-6 text-amber-800">
           <h1 className="text-xl font-bold">{t("levelOverview.comingSoonTitle")}</h1>
-          <p className="mt-2">{t("levelOverview.comingSoonBody", { level: level.title })}</p>
+          <p className="mt-2">{t("levelOverview.comingSoonBody", { level: localize(locale, level.title, level.titleFr) })}</p>
           <Link href={`/learn/${child.id}/journey/${level.schoolYear.yearNumber}`} className="mt-4 inline-block font-semibold text-brand-700 underline">
             {t("levelOverview.backToJourney")}
           </Link>
@@ -65,22 +66,25 @@ export default async function LevelOverviewPage({ params }: { params: { childId:
           <p className="text-sm font-semibold uppercase tracking-wide text-brand-600">
             {level.schoolYear.title} &middot; Level {level.levelNumber}
           </p>
-          <h1 className="text-3xl font-extrabold text-brand-800">{level.title}</h1>
+          <h1 className="text-3xl font-extrabold text-brand-800">{localize(locale, level.title, level.titleFr)}</h1>
         </div>
       </div>
-      <p className="mt-2 text-slate-700">{level.summary}</p>
+      <p className="mt-2 text-slate-700">{localize(locale, level.summary, level.summaryFr)}</p>
 
       <section aria-labelledby="objectives-heading" className="mt-8 rounded-xl2 border bg-white p-6 shadow-sm">
         <h2 id="objectives-heading" className="font-bold text-brand-800">
           {t("levelOverview.whatYouWillLearn")}
         </h2>
         <ul className="mt-3 space-y-2">
-          {level.objectives.map((o) => (
-            <li key={o.id} className="flex gap-2 text-slate-700">
-              <span aria-hidden="true">🎯</span>
-              <span>{t("levelOverview.objectivePrefix", { objective: o.description.charAt(0).toLowerCase() + o.description.slice(1) })}</span>
-            </li>
-          ))}
+          {level.objectives.map((o) => {
+            const description = localize(locale, o.description, o.descriptionFr);
+            return (
+              <li key={o.id} className="flex gap-2 text-slate-700">
+                <span aria-hidden="true">🎯</span>
+                <span>{t("levelOverview.objectivePrefix", { objective: description.charAt(0).toLowerCase() + description.slice(1) })}</span>
+              </li>
+            );
+          })}
         </ul>
       </section>
 

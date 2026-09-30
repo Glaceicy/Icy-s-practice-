@@ -1,5 +1,7 @@
 import { prisma } from "@/lib/db";
 import { misconceptionLabel } from "@/lib/types";
+import type { Locale } from "@/lib/i18n/locale";
+import { localize } from "@/lib/i18n/content";
 
 export interface ChildSummary {
   childId: string;
@@ -39,7 +41,7 @@ export interface ChildSummary {
 // "minutes spent learning" figure parents see.
 const MAX_MINUTES_PER_ATTEMPT = 60;
 
-export async function getChildSummary(childId: string): Promise<ChildSummary> {
+export async function getChildSummary(childId: string, locale: Locale = "en"): Promise<ChildSummary> {
   const child = await prisma.childProfile.findUniqueOrThrow({ where: { id: childId }, include: { currentYear: true } });
 
   const [unlocks, submittedAttempts, practiceAttempts, masteryRecords, misconceptions] = await Promise.all([
@@ -77,18 +79,18 @@ export async function getChildSummary(childId: string): Promise<ChildSummary> {
 
   const strengths = masteryRecords
     .filter((m) => m.status === "MASTERED" || m.status === "SECURE")
-    .map((m) => ({ description: m.objective.description, status: m.status }))
+    .map((m) => ({ description: localize(locale, m.objective.description, m.objective.descriptionFr), status: m.status }))
     .slice(0, 8);
   const developing = masteryRecords
     .filter((m) => m.status === "DEVELOPING")
-    .map((m) => ({ description: m.objective.description, status: m.status }))
+    .map((m) => ({ description: localize(locale, m.objective.description, m.objective.descriptionFr), status: m.status }))
     .slice(0, 8);
 
   return {
     childId,
     displayName: child.displayName,
     avatarKey: child.avatarKey,
-    currentYearTitle: child.currentYear.title,
+    currentYearTitle: localize(locale, child.currentYear.title, child.currentYear.titleFr),
     pathway: child.pathway,
     levelsUnlocked: unlocks,
     levelsPassed: passed.length,
@@ -100,7 +102,7 @@ export async function getChildSummary(childId: string): Promise<ChildSummary> {
     topMisconceptions: misconceptions.map((m) => ({ label: misconceptionLabel(m.tag), count: m._count.tag })),
     recentAttempts: submittedAttempts.slice(0, 10).map((a) => ({
       id: a.id,
-      levelTitle: a.level.title,
+      levelTitle: localize(locale, a.level.title, a.level.titleFr),
       yearNumber: a.level.schoolYear.yearNumber,
       levelNumber: a.level.levelNumber,
       scorePercentage: a.scorePercentage,
@@ -109,7 +111,7 @@ export async function getChildSummary(childId: string): Promise<ChildSummary> {
     })),
     recentActivity: practiceAttempts.slice(0, 15).map((p) => ({
       id: p.id,
-      levelTitle: p.level.title,
+      levelTitle: localize(locale, p.level.title, p.level.titleFr),
       yearNumber: p.level.schoolYear.yearNumber,
       levelNumber: p.level.levelNumber,
       mode: p.mode,

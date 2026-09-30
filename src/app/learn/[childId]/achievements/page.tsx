@@ -3,6 +3,7 @@ import { assertChildAccess } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import ChildTopBar from "@/components/ChildTopBar";
 import { translate } from "@/lib/i18n/translate";
+import { localize } from "@/lib/i18n/content";
 
 const ICONS: Record<string, string> = { star: "⭐", trophy: "🏆" };
 
@@ -33,8 +34,8 @@ export default async function AchievementsPage({ params }: { params: { childId: 
               <p className="text-4xl" aria-hidden="true">
                 {ICONS[a.iconKey] ?? "⭐"}
               </p>
-              <h2 className="mt-1 font-bold text-brand-800">{a.title}</h2>
-              <p className="mt-1 text-sm text-slate-600">{a.description}</p>
+              <h2 className="mt-1 font-bold text-brand-800">{localize(locale, a.title, a.titleFr)}</h2>
+              <p className="mt-1 text-sm text-slate-600">{localize(locale, a.description, a.descriptionFr)}</p>
               <p className="mt-2 text-xs text-slate-400">{new Date(a.earnedAt).toLocaleDateString(dateLocale)}</p>
               {a.certificateAvailable && (
                 <Link href={`/learn/${child.id}/achievements/${a.id}/certificate`} className="mt-3 inline-block text-sm font-semibold text-brand-700 underline">
@@ -53,7 +54,13 @@ export default async function AchievementsPage({ params }: { params: { childId: 
         <ol className="mt-3 space-y-1 text-sm text-slate-700">
           {passedAttempts.map((a) => (
             <li key={a.id} className="flex justify-between rounded-lg bg-white px-4 py-2 shadow-sm">
-              <span>{t("achievements.levelLine", { year: a.level.schoolYear.title, number: a.level.levelNumber, title: a.level.title })}</span>
+              <span>
+                {t("achievements.levelLine", {
+                  year: localize(locale, a.level.schoolYear.title, a.level.schoolYear.titleFr),
+                  number: a.level.levelNumber,
+                  title: localize(locale, a.level.title, a.level.titleFr)
+                })}
+              </span>
               <span className="text-slate-400">{new Date(a.submittedAt!).toLocaleDateString(dateLocale)}</span>
             </li>
           ))}

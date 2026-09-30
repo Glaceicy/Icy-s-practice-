@@ -9,6 +9,7 @@ import ChildTopBar from "@/components/ChildTopBar";
 import WrongAnswerReviewPanel from "@/components/WrongAnswerReviewPanel";
 import Mascot from "@/components/illustrations/Mascot";
 import { translate } from "@/lib/i18n/translate";
+import { localize } from "@/lib/i18n/content";
 
 export default async function ResultsPage({ params }: { params: { childId: string; levelId: string; attemptId: string } }) {
   const { child } = await assertChildAccess(params.childId);
@@ -21,17 +22,17 @@ export default async function ResultsPage({ params }: { params: { childId: strin
   });
   if (!attempt || attempt.childId !== child.id || attempt.status !== "SUBMITTED") notFound();
 
+  const locale = child.locale === "fr" ? "fr" : "en";
   const weakObjectives = new Map<string, { code: string; description: string; count: number }>();
   for (const a of attempt.answers) {
     if (!a.isCorrect) {
       const obj = a.questionLog.template.objective;
       const existing = weakObjectives.get(obj.id);
-      weakObjectives.set(obj.id, { code: obj.code, description: obj.description, count: (existing?.count ?? 0) + 1 });
+      weakObjectives.set(obj.id, { code: obj.code, description: localize(locale, obj.description, obj.descriptionFr), count: (existing?.count ?? 0) + 1 });
     }
   }
 
   const next = nextLevelRef(attempt.level.schoolYear.yearNumber, attempt.level.levelNumber);
-  const locale = child.locale === "fr" ? "fr" : "en";
   const t = (key: string, vars?: Record<string, string | number>) => translate(locale, key, vars);
   const wrongAnswers = await getWrongAnswersForMasteryAttempt(attempt.id, locale);
 

@@ -3,10 +3,14 @@ import { assertChildAccess } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import ChildTopBar from "@/components/ChildTopBar";
 import LessonViewer from "@/components/LessonViewer";
+import { getLocale } from "@/lib/i18n/locale";
+import { localize, localizeJson } from "@/lib/i18n/content";
+import type { WorkedExample } from "@/lib/lessons/types";
 
 export default async function LessonPage({ params }: { params: { childId: string; levelId: string; order: string } }) {
   const { child } = await assertChildAccess(params.childId);
   const order = Number(params.order);
+  const locale = await getLocale();
 
   const level = await prisma.level.findUnique({ where: { id: params.levelId }, include: { lessons: true } });
   if (!level) notFound();
@@ -24,11 +28,11 @@ export default async function LessonPage({ params }: { params: { childId: string
         <LessonViewer
           lesson={{
             order: lesson.order,
-            title: lesson.title,
-            explanationMd: lesson.explanationMd,
+            title: localize(locale, lesson.title, lesson.titleFr),
+            explanationMd: localize(locale, lesson.explanationMd, lesson.explanationMdFr),
             visualAid: lesson.visualAid,
-            audioScript: lesson.audioScript ?? "",
-            workedExamples: JSON.parse(lesson.workedExamples)
+            audioScript: localize(locale, lesson.audioScript ?? "", lesson.audioScriptFr),
+            workedExamples: localizeJson<WorkedExample[]>(locale, lesson.workedExamples, lesson.workedExamplesFr)
           }}
           childId={child.id}
           levelId={level.id}

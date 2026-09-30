@@ -7,8 +7,8 @@ import { translate } from "@/lib/i18n/translate";
 
 export default async function YearSelectPage({ params }: { params: { childId: string } }) {
   const { child } = await assertChildAccess(params.childId);
-  const years = await getJourneyForChild(child.id);
   const locale = await getLocale();
+  const years = await getJourneyForChild(child.id, locale);
   const t = (key: string, vars?: Record<string, string | number>) => translate(locale, key, vars);
 
   return (

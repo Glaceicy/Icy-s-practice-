@@ -16,10 +16,10 @@ const THEME_BG: Record<string, string> = {
 export default async function YearJourneyPage({ params }: { params: { childId: string; year: string } }) {
   const { child } = await assertChildAccess(params.childId);
   const yearNumber = Number(params.year);
-  const years = await getJourneyForChild(child.id);
+  const locale = await getLocale();
+  const years = await getJourneyForChild(child.id, locale);
   const year = years.find((y) => y.yearNumber === yearNumber);
   if (!year) notFound();
-  const locale = await getLocale();
   const t = (key: string, vars?: Record<string, string | number>) => translate(locale, key, vars);
 
   return (

@@ -7,6 +7,7 @@ import ChildTopBar from "@/components/ChildTopBar";
 import PracticeSession from "@/components/PracticeSession";
 import { getLocale } from "@/lib/i18n/locale";
 import { translate } from "@/lib/i18n/translate";
+import { localize } from "@/lib/i18n/content";
 
 export default async function RevisionPage({ params }: { params: { childId: string; levelId: string } }) {
   const { child } = await assertChildAccess(params.childId);
@@ -22,13 +23,13 @@ export default async function RevisionPage({ params }: { params: { childId: stri
   return (
     <main className="mx-auto min-h-screen max-w-2xl px-6 py-10">
       <ChildTopBar child={child} />
-      <h1 className="mt-6 text-2xl font-bold text-brand-800">{translate(locale, "revisionPage.heading", { level: level.title })}</h1>
+      <h1 className="mt-6 text-2xl font-bold text-brand-800">{translate(locale, "revisionPage.heading", { level: localize(locale, level.title, level.titleFr) })}</h1>
       <p className="mt-1 text-sm text-slate-600">{translate(locale, "revisionPage.subtitle")}</p>
 
       {weakObjectives.length > 0 && (
         <ul className="mt-4 space-y-1 rounded-xl2 border bg-brand-50 p-4 text-sm text-brand-800">
           {weakObjectives.map((o) => (
-            <li key={o.id}>🎯 {o.description}</li>
+            <li key={o.id}>🎯 {localize(locale, o.description, o.descriptionFr)}</li>
           ))}
         </ul>
       )}

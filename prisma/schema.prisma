@@ -400,7 +400,9 @@ model Achievement {
   child       ChildProfile @relation(fields: [childId], references: [id], onDelete: Cascade)
   key         String   // e.g. "first_level_passed", "year1_complete", "5_day_streak"
   title       String
+  titleFr     String?
   description String
+  descriptionFr String?
   iconKey     String
   earnedAt    DateTime @default(now())
   certificateAvailable Boolean @default(false)

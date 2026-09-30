@@ -222,13 +222,16 @@ export async function finalizeMasteryAttempt(childId: string, attemptId: string)
   }
 
   if (passed) {
+    const levelTitleFr = attempt.level.titleFr ?? attempt.level.title;
     await prisma.achievement.upsert({
       where: { childId_key: { childId, key: `level_passed_${attempt.levelId}` } },
       create: {
         childId,
         key: `level_passed_${attempt.levelId}`,
         title: `${attempt.level.title} mastered!`,
+        titleFr: `${levelTitleFr} maîtrisé !`,
         description: `Passed the Year ${attempt.level.schoolYear.yearNumber} Level ${attempt.level.levelNumber} Mastery Challenge with ${Math.round(scorePercentage)}%.`,
+        descriptionFr: `Défi de maîtrise réussi pour l'Année ${attempt.level.schoolYear.yearNumber}, Niveau ${attempt.level.levelNumber}, avec ${Math.round(scorePercentage)} %.`,
         iconKey: "star",
         certificateAvailable: true
       },
@@ -241,7 +244,9 @@ export async function finalizeMasteryAttempt(childId: string, attemptId: string)
           childId,
           key: `year_complete_${attempt.level.schoolYearId}`,
           title: `Year ${attempt.level.schoolYear.yearNumber} complete!`,
+          titleFr: `Année ${attempt.level.schoolYear.yearNumber} terminée !`,
           description: `Completed every level in Year ${attempt.level.schoolYear.yearNumber}.`,
+          descriptionFr: `Tous les niveaux de l'Année ${attempt.level.schoolYear.yearNumber} ont été complétés.`,
           iconKey: "trophy",
           certificateAvailable: true
         },

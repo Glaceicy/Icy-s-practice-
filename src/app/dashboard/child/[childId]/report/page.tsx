@@ -12,9 +12,9 @@ export default async function ProgressReportPage({ params }: { params: { childId
   const child = await prisma.childProfile.findFirst({ where: { id: params.childId, ownerId: adult.id }, include: { currentYear: true } });
   if (!child) notFound();
 
-  const summary = await getChildSummary(child.id);
-  const generatedAt = new Date();
   const locale = await getLocale();
+  const summary = await getChildSummary(child.id, locale);
+  const generatedAt = new Date();
   const t = (key: string, vars?: Record<string, string | number>) => translate(locale, key, vars);
   const dateLocale = locale === "fr" ? "fr-FR" : "en-GB";
   const modeLabel = (mode: string) => translate(locale, `modeLabels.${mode}`);

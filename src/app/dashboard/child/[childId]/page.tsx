@@ -6,13 +6,15 @@ import { getChildSummary } from "@/lib/services/dashboard";
 import { setLearningGoalAction, resetPracticeActivityAction, updateAccessibilitySettingsAsAdultAction } from "@/lib/actions/children";
 import { getLocale } from "@/lib/i18n/locale";
 import { translate } from "@/lib/i18n/translate";
+import { localize } from "@/lib/i18n/content";
 
 export default async function ChildDashboardPage({ params }: { params: { childId: string } }) {
   const adult = await requireAdult();
   const child = await prisma.childProfile.findFirst({ where: { id: params.childId, ownerId: adult.id } });
   if (!child) notFound();
 
-  const summary = await getChildSummary(child.id);
+  const locale = await getLocale();
+  const summary = await getChildSummary(child.id, locale);
   const goals = await prisma.learningGoal.findMany({ where: { childId: child.id }, orderBy: { createdAt: "desc" }, take: 5 });
   const unlockedLevels = await prisma.levelUnlock.findMany({
     where: { childId: child.id },
@@ -20,7 +22,6 @@ export default async function ChildDashboardPage({ params }: { params: { childId
     orderBy: { unlockedAt: "desc" },
     take: 6
   });
-  const locale = await getLocale();
   const t = (key: string, vars?: Record<string, string | number>) => translate(locale, key, vars);
   const dateLocale = locale === "fr" ? "fr-FR" : "en-GB";
   const modeLabel = (mode: string) => translate(locale, `modeLabels.${mode}`);
@@ -137,7 +138,7 @@ export default async function ChildDashboardPage({ params }: { params: { childId
           {unlockedLevels.map((u) => (
             <li key={u.levelId} className="flex flex-wrap items-center justify-between gap-2 text-sm">
               <span>
-                {u.level.schoolYear.title}, Level {u.level.levelNumber}: {u.level.title}
+                {localize(locale, u.level.schoolYear.title, u.level.schoolYear.titleFr)}, Level {u.level.levelNumber}: {localize(locale, u.level.title, u.level.titleFr)}
               </span>
               <span className="flex gap-2">
                 {(["GUIDED", "INDEPENDENT"] as const).map((mode) => {

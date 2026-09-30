@@ -1,4 +1,6 @@
 import { prisma } from "@/lib/db";
+import type { Locale } from "@/lib/i18n/locale";
+import { localize } from "@/lib/i18n/content";
 
 export interface LevelStatusView {
   levelId: string;
@@ -26,7 +28,7 @@ export interface YearProgressView {
   isCurrentYear: boolean;
 }
 
-export async function getJourneyForChild(childId: string): Promise<YearProgressView[]> {
+export async function getJourneyForChild(childId: string, locale: Locale = "en"): Promise<YearProgressView[]> {
   const [years, child, unlocks, submittedAttempts] = await Promise.all([
     prisma.schoolYear.findMany({ orderBy: { yearNumber: "asc" }, include: { levels: { orderBy: { levelNumber: "asc" } } } }),
     prisma.childProfile.findUniqueOrThrow({ where: { id: childId } }),
@@ -51,8 +53,8 @@ export async function getJourneyForChild(childId: string): Promise<YearProgressV
     const levels: LevelStatusView[] = year.levels.map((level) => ({
       levelId: level.id,
       levelNumber: level.levelNumber,
-      title: level.title,
-      summary: level.summary,
+      title: localize(locale, level.title, level.titleFr),
+      summary: localize(locale, level.summary, level.summaryFr),
       isMixedMastery: level.isMixedMastery,
       contentStatus: level.status,
       unlocked: unlockedIds.has(level.id),
@@ -64,8 +66,8 @@ export async function getJourneyForChild(childId: string): Promise<YearProgressV
     return {
       yearNumber: year.yearNumber,
       yearId: year.id,
-      title: year.title,
-      summary: year.summary,
+      title: localize(locale, year.title, year.titleFr),
+      summary: localize(locale, year.summary, year.summaryFr),
       keyStage: year.keyStage,
       themeStage: year.themeStage,
       levels,
