@@ -12,8 +12,8 @@ export default async function DashboardPage() {
   if (!session) redirect("/login");
   const adult = await prisma.adultUser.findUniqueOrThrow({ where: { id: session.adultId } });
   const children = await prisma.childProfile.findMany({ where: { ownerId: adult.id }, orderBy: { createdAt: "asc" } });
-  const summaries = await Promise.all(children.map((c) => getChildSummary(c.id)));
   const locale = await getLocale();
+  const summaries = await Promise.all(children.map((c) => getChildSummary(c.id, locale)));
   const t = (key: string, vars?: Record<string, string | number>) => translate(locale, key, vars);
 
   return (
