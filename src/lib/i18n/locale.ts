@@ -1,10 +1,10 @@
 import "server-only";
 import { cookies } from "next/headers";
 import type { Locale } from "@/lib/questionEngine/types";
+import { LOCALE_COOKIE } from "./cookie";
 
 export type { Locale };
-
-export const LOCALE_COOKIE = "mj_locale";
+export { LOCALE_COOKIE };
 export const SUPPORTED_LOCALES: Locale[] = ["en", "fr"];
 
 function isLocale(value: string | undefined): value is Locale {
