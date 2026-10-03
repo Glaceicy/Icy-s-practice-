@@ -2,6 +2,7 @@
 
 import { useFormState, useFormStatus } from "react-dom";
 import { registerAdultAction, type FormState } from "@/lib/actions/auth";
+import PasswordField from "./PasswordField";
 import { useT } from "./I18nProvider";
 
 const initialState: FormState = {};
@@ -48,13 +49,9 @@ export default function RegisterForm() {
         {state.fieldErrors?.email && <p className="mt-1 text-sm text-berry-600">{state.fieldErrors.email}</p>}
       </div>
 
-      <div>
-        <label htmlFor="password" className="block text-sm font-medium text-slate-700">
-          {t("register.passwordLabel")}
-        </label>
-        <input id="password" name="password" type="password" required autoComplete="new-password" minLength={10} className="mt-1 w-full touch-target rounded-lg border border-slate-300 px-4 py-3" />
-        {state.fieldErrors?.password && <p className="mt-1 text-sm text-berry-600">{state.fieldErrors.password}</p>}
-      </div>
+      <PasswordField name="password" label={t("register.passwordLabel")} autoComplete="new-password" minLength={10} error={state.fieldErrors?.password} />
+
+      <PasswordField name="passwordConfirm" label={t("register.passwordConfirmLabel")} autoComplete="new-password" error={state.fieldErrors?.passwordConfirm} />
 
       <fieldset>
         <legend className="block text-sm font-medium text-slate-700">{t("register.roleLegend")}</legend>

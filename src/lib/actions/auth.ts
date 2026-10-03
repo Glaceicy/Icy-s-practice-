@@ -14,13 +14,19 @@ import {
 } from "@/lib/auth";
 import { sendVerificationEmail } from "@/lib/email";
 
-const registerSchema = z.object({
-  fullName: z.string().trim().min(2, "Please enter your full name.").max(200),
-  email: z.string().trim().toLowerCase().email("Please enter a valid email address."),
-  password: z.string().min(10, "Password must be at least 10 characters long."),
-  role: z.enum(["PARENT", "TEACHER"]),
-  consent: z.literal("on", { errorMap: () => ({ message: "You must confirm you are an adult and consent to creating child profiles." }) })
-});
+const registerSchema = z
+  .object({
+    fullName: z.string().trim().min(2, "Please enter your full name.").max(200),
+    email: z.string().trim().toLowerCase().email("Please enter a valid email address."),
+    password: z.string().min(10, "Password must be at least 10 characters long."),
+    passwordConfirm: z.string().min(1, "Please confirm your password."),
+    role: z.enum(["PARENT", "TEACHER"]),
+    consent: z.literal("on", { errorMap: () => ({ message: "You must confirm you are an adult and consent to creating child profiles." }) })
+  })
+  .refine((data) => data.password === data.passwordConfirm, {
+    message: "Passwords do not match.",
+    path: ["passwordConfirm"]
+  });
 
 export interface FormState {
   error?: string;
