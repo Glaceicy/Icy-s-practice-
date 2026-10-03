@@ -81,53 +81,61 @@ export const year1: SchoolYearDef = {
     {
       levelNumber: 3,
       title: "Addition and subtraction within 10",
+      titleFr: "Addition et soustraction jusqu’à 10",
       summary: "By the end of this level, you will be able to add and subtract numbers within 10.",
+      summaryFr: "À la fin de ce niveau, tu sauras additionner et soustraire des nombres jusqu’à 10.",
       isMixedMastery: false,
-      status: "SCAFFOLDED",
+      status: "COMPLETE",
       pathway: null,
       objectives: [
-        { code: "Y1-L3-1", description: "Read, write and understand addition (+) and subtraction (-) and equals (=) signs.", dfeReference: "Y1 Addition & subtraction: read/write/interpret statements using +, - and =" },
-        { code: "Y1-L3-2", description: "Add two one-digit numbers within 10 using objects and pictures.", dfeReference: "Y1 Addition & subtraction: represent and use number bonds within 20" },
-        { code: "Y1-L3-3", description: "Subtract one-digit numbers within 10.", dfeReference: "Y1 Addition & subtraction: add and subtract one-digit numbers to 20" }
+        { code: "Y1-L3-1", description: "Read, write and understand addition (+) and subtraction (-) and equals (=) signs.", descriptionFr: "Lire, écrire et comprendre les signes d’addition (+), de soustraction (-) et d’égalité (=).", dfeReference: "Y1 Addition & subtraction: read/write/interpret statements using +, - and =" },
+        { code: "Y1-L3-2", description: "Add two one-digit numbers within 10 using objects and pictures.", descriptionFr: "Additionner deux nombres à un chiffre jusqu’à 10 à l’aide d’objets et d’images.", dfeReference: "Y1 Addition & subtraction: represent and use number bonds within 20" },
+        { code: "Y1-L3-3", description: "Subtract one-digit numbers within 10.", descriptionFr: "Soustraire des nombres à un chiffre jusqu’à 10.", dfeReference: "Y1 Addition & subtraction: add and subtract one-digit numbers to 20" }
       ]
     },
     {
       levelNumber: 4,
       title: "Addition and subtraction within 20",
+      titleFr: "Addition et soustraction jusqu’à 20",
       summary: "By the end of this level, you will be able to add and subtract two numbers within 20.",
+      summaryFr: "À la fin de ce niveau, tu sauras additionner et soustraire deux nombres jusqu’à 20.",
       isMixedMastery: false,
-      status: "SCAFFOLDED",
+      status: "COMPLETE",
       pathway: null,
       objectives: [
-        { code: "Y1-L4-1", description: "Add two numbers within 20, including crossing 10.", dfeReference: "Y1 Addition & subtraction: add one-digit and two-digit numbers to 20" },
-        { code: "Y1-L4-2", description: "Subtract numbers within 20.", dfeReference: "Y1 Addition & subtraction: subtract one-digit and two-digit numbers to 20" },
-        { code: "Y1-L4-3", description: "Solve simple one-step addition and subtraction word problems.", dfeReference: "Y1 Addition & subtraction: solve one-step problems involving addition and subtraction" }
+        { code: "Y1-L4-1", description: "Add two numbers within 20, including crossing 10.", descriptionFr: "Additionner deux nombres jusqu’à 20, y compris en passant par 10.", dfeReference: "Y1 Addition & subtraction: add one-digit and two-digit numbers to 20" },
+        { code: "Y1-L4-2", description: "Subtract numbers within 20.", descriptionFr: "Soustraire des nombres jusqu’à 20.", dfeReference: "Y1 Addition & subtraction: subtract one-digit and two-digit numbers to 20" },
+        { code: "Y1-L4-3", description: "Solve simple one-step addition and subtraction word problems.", descriptionFr: "Résoudre des problèmes simples d’addition et de soustraction en une étape.", dfeReference: "Y1 Addition & subtraction: solve one-step problems involving addition and subtraction" }
       ]
     },
     {
       levelNumber: 5,
       title: "Number bonds, missing numbers and simple problems",
+      titleFr: "Compléments, nombres manquants et problèmes simples",
       summary: "By the end of this level, you will know your number bonds to 10 and 20 and be able to find missing numbers.",
+      summaryFr: "À la fin de ce niveau, tu connaîtras tes compléments à 10 et à 20 et sauras trouver des nombres manquants.",
       isMixedMastery: false,
-      status: "SCAFFOLDED",
+      status: "COMPLETE",
       pathway: null,
       objectives: [
-        { code: "Y1-L5-1", description: "Recall number bonds to 10 and related subtraction facts.", dfeReference: "Y1 Addition & subtraction: represent and use number bonds within 20" },
-        { code: "Y1-L5-2", description: "Find a missing number in an addition or subtraction sentence.", dfeReference: "Y1 Addition & subtraction: missing number problems" },
-        { code: "Y1-L5-3", description: "Solve simple worded problems using number bonds.", dfeReference: "Y1 Addition & subtraction: solve one-step problems" }
+        { code: "Y1-L5-1", description: "Recall number bonds to 10 and related subtraction facts.", descriptionFr: "Se souvenir des compléments à 10 et des faits de soustraction associés.", dfeReference: "Y1 Addition & subtraction: represent and use number bonds within 20" },
+        { code: "Y1-L5-2", description: "Find a missing number in an addition or subtraction sentence.", descriptionFr: "Trouver un nombre manquant dans une phrase d’addition ou de soustraction.", dfeReference: "Y1 Addition & subtraction: missing number problems" },
+        { code: "Y1-L5-3", description: "Solve simple worded problems using number bonds.", descriptionFr: "Résoudre des problèmes énoncés simples à l’aide des compléments.", dfeReference: "Y1 Addition & subtraction: solve one-step problems" }
       ]
     },
     {
       levelNumber: 6,
       title: "Early multiplication and division through grouping and sharing",
+      titleFr: "Premiers pas en multiplication et division par groupement et partage",
       summary: "By the end of this level, you will be able to group and share small amounts of objects equally.",
+      summaryFr: "À la fin de ce niveau, tu sauras grouper et partager équitablement de petites quantités d’objets.",
       isMixedMastery: false,
-      status: "SCAFFOLDED",
+      status: "COMPLETE",
       pathway: null,
       objectives: [
-        { code: "Y1-L6-1", description: "Solve grouping problems using pictures and objects (e.g. how many groups of 2).", dfeReference: "Y1 Multiplication & division: solve one-step problems using concrete objects and arrays" },
-        { code: "Y1-L6-2", description: "Solve sharing problems, sharing a quantity equally between a number of people.", dfeReference: "Y1 Multiplication & division: solve one-step problems using concrete objects and arrays" },
-        { code: "Y1-L6-3", description: "Use arrays to show equal groups.", dfeReference: "Y1 Multiplication & division: arrays with support" }
+        { code: "Y1-L6-1", description: "Solve grouping problems using pictures and objects (e.g. how many groups of 2).", descriptionFr: "Résoudre des problèmes de groupement à l’aide d’images et d’objets (par ex. combien de groupes de 2).", dfeReference: "Y1 Multiplication & division: solve one-step problems using concrete objects and arrays" },
+        { code: "Y1-L6-2", description: "Solve sharing problems, sharing a quantity equally between a number of people.", descriptionFr: "Résoudre des problèmes de partage, en répartissant une quantité équitablement entre plusieurs personnes.", dfeReference: "Y1 Multiplication & division: solve one-step problems using concrete objects and arrays" },
+        { code: "Y1-L6-3", description: "Use arrays to show equal groups.", descriptionFr: "Utiliser des quadrillages pour montrer des groupes égaux.", dfeReference: "Y1 Multiplication & division: arrays with support" }
       ]
     },
     {

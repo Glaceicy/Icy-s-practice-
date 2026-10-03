@@ -191,12 +191,16 @@ and every year's journey map). This satisfies "the complete curriculum-
 objective structure" from the final delivery requirements.
 
 **Fully authored** (lessons + a validated, ≥150-variation-per-template
-question bank, playable end to end) — **28 of the 100 levels**:
+question bank, playable end to end) — **32 of the 100 levels**:
 
 | Level | Templates | Why this one |
 | --- | --- | --- |
 | Year 1, Level 1 | 30 | Flagship KS1 level — proves the full mechanic |
 | Year 1, Level 2 | 30 | Proves within-year progression (Level 1 → 2) |
+| Year 1, Level 3 | 16 | Addition and subtraction within 10, including reading +/-/= |
+| Year 1, Level 4 | 15 | Addition and subtraction within 20, including crossing 10 |
+| Year 1, Level 5 | 15 | Number bonds to 10, missing-number sentences, worded bonds problems |
+| Year 1, Level 6 | 15 | Early multiplication/division via grouping, sharing and arrays |
 | Year 1, Level 10 | 30 | Mixed-mastery review — proves year-end unlock into Year 2 |
 | Year 4, Level 1 | 15 | Proves the engine at upper-KS2 depth |
 | Year 5, Level 1 | 27 | Place value to 1,000,000, rounding and negative numbers in context |
@@ -224,7 +228,7 @@ question bank, playable end to end) — **28 of the 100 levels**:
 | Year 9, Level 2 | 21 | Direct/inverse proportion, compound measures (speed/density/pressure), growth and decay |
 | Year 10, Level 1 | 15 | Proves the engine at KS4/GCSE depth, including Foundation/Higher pathway-tagged templates |
 
-Every one of these 28 levels' templates is individually verified (by
+Every one of these 32 levels' templates is individually verified (by
 `tests/questionEngine.test.ts`) to generate at least 150 distinct, valid
 variations, exactly as spec §7 requires per level; the first three meet the
 full ≥30-template bar from spec §7, the rest ship at 15-27 templates each
@@ -373,7 +377,7 @@ are no placeholder controls.
 
 ## 14. Known limitations
 
-- Only 6 of 100 levels have full lesson/question content (§6) — this is the
+- Only 32 of 100 levels have full lesson/question content (§6) — this is the
   single biggest gap versus the full spec and is the natural next phase of
   work, using the exact same engine.
 - "Time spent learning" on the dashboard/report is estimated from

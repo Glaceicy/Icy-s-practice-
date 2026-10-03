@@ -160,6 +160,310 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       audioScriptFr: "Pour comparer des nombres, vérifie toujours d'abord le chiffre des dizaines."
     }
   ],
+  Y1L3: [
+    {
+      order: 1,
+      title: "What do +, - and = mean?",
+      titleFr: "Que signifient +, - et = ?",
+      concept: "Reading and understanding the addition, subtraction and equals signs",
+      conceptFr: "Lire et comprendre les signes d'addition, de soustraction et d'égalité",
+      representation: "concrete",
+      visualAid: "counters",
+      ageBandStyle: "playful",
+      objectiveCodes: ["Y1-L3-1"],
+      explanationMd:
+        "The **+** sign means we are putting groups together — add them up.\n\n" +
+        "The **-** sign means we are taking some away.\n\n" +
+        "The **=** sign means both sides have the same amount.",
+      explanationMdFr:
+        "Le signe **+** veut dire qu'on réunit des groupes — on les additionne.\n\n" +
+        "Le signe **-** veut dire qu'on enlève une partie.\n\n" +
+        "Le signe **=** veut dire que les deux côtés ont la même quantité.",
+      workedExamples: [
+        { problem: "What does the + mean in 3 + 2 = 5?", steps: ["+ means put together.", "3 and 2 are joined.", "Together they make 5."], answer: "add together" },
+        { problem: "What does the - mean in 5 - 2 = 3?", steps: ["- means take away.", "2 is taken from 5.", "That leaves 3."], answer: "take away" }
+      ],
+      workedExamplesFr: [
+        { problem: "Que signifie le + dans 3 + 2 = 5 ?", steps: ["+ veut dire réunir.", "3 et 2 sont assemblés.", "Ensemble ils font 5."], answer: "additionner" },
+        { problem: "Que signifie le - dans 5 - 2 = 3 ?", steps: ["- veut dire enlever.", "2 est enlevé de 5.", "Il reste alors 3."], answer: "enlever" }
+      ],
+      audioScript: "Plus means put together. Minus means take away. Equals means both sides match.",
+      audioScriptFr: "Plus veut dire réunir. Moins veut dire enlever. Égal veut dire que les deux côtés sont pareils."
+    },
+    {
+      order: 2,
+      title: "Adding within 10",
+      titleFr: "Additionner jusqu'à 10",
+      concept: "Adding two one-digit numbers that total no more than 10",
+      conceptFr: "Additionner deux nombres à un chiffre dont le total ne dépasse pas 10",
+      representation: "pictorial",
+      visualAid: "ten-frame",
+      ageBandStyle: "playful",
+      objectiveCodes: ["Y1-L3-2"],
+      explanationMd:
+        "To add, start with the bigger number and count on.\n\n" +
+        "A **ten frame** helps: fill in squares for each number, then count all the filled squares.",
+      explanationMdFr:
+        "Pour additionner, pars du plus grand nombre et compte en avançant.\n\n" +
+        "Un **cadre de dix** aide : remplis des cases pour chaque nombre, puis compte toutes les cases remplies.",
+      workedExamples: [
+        { problem: "4 + 3 = ?", steps: ["Start at 4.", "Count on 3 more: 5, 6, 7."], answer: "7" }
+      ],
+      workedExamplesFr: [
+        { problem: "4 + 3 = ?", steps: ["Commence à 4.", "Compte 3 de plus : 5, 6, 7."], answer: "7" }
+      ],
+      audioScript: "Start with the bigger number, then count on the smaller one.",
+      audioScriptFr: "Commence par le plus grand nombre, puis compte en ajoutant le plus petit."
+    },
+    {
+      order: 3,
+      title: "Subtracting within 10",
+      titleFr: "Soustraire jusqu'à 10",
+      concept: "Subtracting a one-digit number from a number up to 10",
+      conceptFr: "Soustraire un nombre à un chiffre d'un nombre jusqu'à 10",
+      representation: "pictorial",
+      visualAid: "ten-frame",
+      ageBandStyle: "playful",
+      objectiveCodes: ["Y1-L3-3"],
+      explanationMd:
+        "To subtract, start at the first number and count back.\n\n" +
+        "You can also cross out squares on a ten frame and count what's left.",
+      explanationMdFr:
+        "Pour soustraire, pars du premier nombre et compte en reculant.\n\n" +
+        "Tu peux aussi rayer des cases sur un cadre de dix et compter ce qu'il reste.",
+      workedExamples: [
+        { problem: "8 - 3 = ?", steps: ["Start at 8.", "Count back 3: 7, 6, 5."], answer: "5" }
+      ],
+      workedExamplesFr: [
+        { problem: "8 - 3 = ?", steps: ["Commence à 8.", "Compte 3 en arrière : 7, 6, 5."], answer: "5" }
+      ],
+      audioScript: "Start at the first number and count backwards to take away.",
+      audioScriptFr: "Pars du premier nombre et compte en arrière pour enlever."
+    }
+  ],
+  Y1L4: [
+    {
+      order: 1,
+      title: "Adding within 20, crossing 10",
+      titleFr: "Additionner jusqu'à 20, en passant par 10",
+      concept: "Adding two numbers within 20, bridging through the next ten",
+      conceptFr: "Additionner deux nombres jusqu'à 20, en passant par la dizaine suivante",
+      representation: "pictorial",
+      visualAid: "number-line",
+      ageBandStyle: "playful",
+      objectiveCodes: ["Y1-L4-1"],
+      explanationMd:
+        "When a sum crosses 10, split the second number: jump to 10 first, then jump the rest of the way.\n\n" +
+        "For example, 8 + 5: jump 2 to reach 10, then jump 3 more to reach 13.",
+      explanationMdFr:
+        "Quand une somme passe par 10, découpe le second nombre : saute d'abord jusqu'à 10, puis termine le trajet.\n\n" +
+        "Par exemple, 8 + 5 : saute de 2 pour atteindre 10, puis saute de 3 de plus pour atteindre 13.",
+      workedExamples: [
+        { problem: "8 + 5 = ?", steps: ["8 + 2 = 10.", "10 + 3 = 13."], answer: "13" }
+      ],
+      workedExamplesFr: [
+        { problem: "8 + 5 = ?", steps: ["8 + 2 = 10.", "10 + 3 = 13."], answer: "13" }
+      ],
+      audioScript: "Jump to the next ten first, then jump the rest of the way.",
+      audioScriptFr: "Saute d'abord jusqu'à la dizaine suivante, puis termine le trajet."
+    },
+    {
+      order: 2,
+      title: "Subtracting within 20",
+      titleFr: "Soustraire jusqu'à 20",
+      concept: "Subtracting numbers within 20, bridging back through a ten",
+      conceptFr: "Soustraire des nombres jusqu'à 20, en passant par une dizaine en arrière",
+      representation: "pictorial",
+      visualAid: "number-line",
+      ageBandStyle: "playful",
+      objectiveCodes: ["Y1-L4-2"],
+      explanationMd:
+        "When subtracting crosses a ten, jump back to the nearest ten first, then jump back the rest of the way.\n\n" +
+        "For example, 13 - 5: jump back 3 to reach 10, then jump back 2 more to reach 8.",
+      explanationMdFr:
+        "Quand une soustraction passe par une dizaine, saute d'abord en arrière jusqu'à la dizaine la plus proche, puis termine le trajet.\n\n" +
+        "Par exemple, 13 - 5 : saute de 3 en arrière pour atteindre 10, puis saute de 2 de plus pour atteindre 8.",
+      workedExamples: [
+        { problem: "13 - 5 = ?", steps: ["13 - 3 = 10.", "10 - 2 = 8."], answer: "8" }
+      ],
+      workedExamplesFr: [
+        { problem: "13 - 5 = ?", steps: ["13 - 3 = 10.", "10 - 2 = 8."], answer: "8" }
+      ],
+      audioScript: "Jump back to the nearest ten first, then jump back the rest of the way.",
+      audioScriptFr: "Saute d'abord en arrière jusqu'à la dizaine la plus proche, puis termine le trajet."
+    },
+    {
+      order: 3,
+      title: "Solving word problems within 20",
+      titleFr: "Résoudre des problèmes jusqu'à 20",
+      concept: "Choosing addition or subtraction to solve a one-step word problem",
+      conceptFr: "Choisir l'addition ou la soustraction pour résoudre un problème en une étape",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "playful",
+      objectiveCodes: ["Y1-L4-3"],
+      explanationMd:
+        "Read the problem carefully. If more is being added, add. If some is being taken away or given away, subtract.",
+      explanationMdFr:
+        "Lis le problème attentivement. Si on ajoute quelque chose, additionne. Si on enlève ou donne quelque chose, soustrais.",
+      workedExamples: [
+        { problem: "There are 9 apples. 6 more are picked. How many now?", steps: ["More are added, so add.", "9 + 6 = 15."], answer: "15" }
+      ],
+      workedExamplesFr: [
+        { problem: "Il y a 9 pommes. 6 de plus sont cueillies. Combien y en a-t-il maintenant ?", steps: ["On ajoute, donc on additionne.", "9 + 6 = 15."], answer: "15" }
+      ],
+      audioScript: "Decide: are we putting more together, or taking some away?",
+      audioScriptFr: "Décide : est-ce qu'on réunit davantage, ou est-ce qu'on enlève quelque chose ?"
+    }
+  ],
+  Y1L5: [
+    {
+      order: 1,
+      title: "Number bonds to 10",
+      titleFr: "Compléments à 10",
+      concept: "Recalling pairs of numbers that add together to make 10",
+      conceptFr: "Se souvenir des paires de nombres qui s'additionnent pour faire 10",
+      representation: "pictorial",
+      visualAid: "ten-frame",
+      ageBandStyle: "playful",
+      objectiveCodes: ["Y1-L5-1"],
+      explanationMd:
+        "Number bonds to 10 are pairs that add together to make 10, like 6 and 4, or 7 and 3.\n\n" +
+        "Knowing these by heart makes adding and subtracting much faster!",
+      explanationMdFr:
+        "Les compléments à 10 sont des paires qui s'additionnent pour faire 10, comme 6 et 4, ou 7 et 3.\n\n" +
+        "Les connaître par cœur rend l'addition et la soustraction beaucoup plus rapides !",
+      workedExamples: [
+        { problem: "What bonds with 6 to make 10?", steps: ["Think: 6 and what makes 10?", "6 + 4 = 10."], answer: "4" }
+      ],
+      workedExamplesFr: [
+        { problem: "Qu'est-ce qui s'associe avec 6 pour faire 10 ?", steps: ["Réfléchis : 6 et quoi font 10 ?", "6 + 4 = 10."], answer: "4" }
+      ],
+      audioScript: "Learn your number bonds to 10 by heart — they help with everything else!",
+      audioScriptFr: "Apprends tes compléments à 10 par cœur — ils aident pour tout le reste !"
+    },
+    {
+      order: 2,
+      title: "Finding a missing number",
+      titleFr: "Trouver un nombre manquant",
+      concept: "Finding the missing number in an addition or subtraction sentence",
+      conceptFr: "Trouver le nombre manquant dans une phrase d'addition ou de soustraction",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "playful",
+      objectiveCodes: ["Y1-L5-2"],
+      explanationMd:
+        "The missing number can be anywhere in the sentence. Work out what is known, then use addition or subtraction to find the gap.",
+      explanationMdFr:
+        "Le nombre manquant peut être n'importe où dans la phrase. Détermine ce que tu sais, puis utilise l'addition ou la soustraction pour trouver le nombre manquant.",
+      workedExamples: [
+        { problem: "4 + ___ = 9", steps: ["9 - 4 = 5.", "So the missing number is 5."], answer: "5" }
+      ],
+      workedExamplesFr: [
+        { problem: "4 + ___ = 9", steps: ["9 - 4 = 5.", "Le nombre manquant est donc 5."], answer: "5" }
+      ],
+      audioScript: "Whatever is missing, use the numbers you know to work it out.",
+      audioScriptFr: "Quel que soit le nombre manquant, utilise ceux que tu connais pour le trouver."
+    },
+    {
+      order: 3,
+      title: "Word problems using number bonds",
+      titleFr: "Problèmes à l'aide des compléments",
+      concept: "Using number bonds to solve simple worded problems",
+      conceptFr: "Utiliser les compléments pour résoudre des problèmes énoncés simples",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "playful",
+      objectiveCodes: ["Y1-L5-3"],
+      explanationMd:
+        "Read the problem and work out what you know and what you need to find. Number bonds can help you find it quickly.",
+      explanationMdFr:
+        "Lis le problème et détermine ce que tu sais et ce que tu dois trouver. Les compléments peuvent t'aider à le trouver rapidement.",
+      workedExamples: [
+        { problem: "A box holds 10 eggs. 7 are inside. How many more are needed to fill it?", steps: ["10 - 7 = 3.", "3 more are needed."], answer: "3" }
+      ],
+      workedExamplesFr: [
+        { problem: "Une boîte contient 10 œufs. 7 sont dedans. Combien de plus faut-il pour la remplir ?", steps: ["10 - 7 = 3.", "Il en faut 3 de plus."], answer: "3" }
+      ],
+      audioScript: "Use what you know about number bonds to solve the problem.",
+      audioScriptFr: "Utilise ce que tu sais sur les compléments pour résoudre le problème."
+    }
+  ],
+  Y1L6: [
+    {
+      order: 1,
+      title: "Grouping",
+      titleFr: "Le groupement",
+      concept: "Finding how many equal groups fit into a total",
+      conceptFr: "Trouver combien de groupes égaux composent un total",
+      representation: "concrete",
+      visualAid: "array",
+      ageBandStyle: "playful",
+      objectiveCodes: ["Y1-L6-1"],
+      explanationMd:
+        "Grouping means putting objects into equal-sized sets and counting how many sets there are.\n\n" +
+        "For example, 10 counters in groups of 2 makes 5 groups.",
+      explanationMdFr:
+        "Grouper veut dire mettre des objets en ensembles de taille égale et compter combien d'ensembles il y a.\n\n" +
+        "Par exemple, 10 jetons en groupes de 2 font 5 groupes.",
+      workedExamples: [
+        { problem: "8 counters in groups of 2. How many groups?", steps: ["Count out groups of 2: 2, 4, 6, 8.", "That took 4 groups."], answer: "4" }
+      ],
+      workedExamplesFr: [
+        { problem: "8 jetons en groupes de 2. Combien de groupes ?", steps: ["Compte par groupes de 2 : 2, 4, 6, 8.", "Cela fait 4 groupes."], answer: "4" }
+      ],
+      audioScript: "Count out equal groups, then count how many groups you made.",
+      audioScriptFr: "Compte des groupes égaux, puis compte combien de groupes tu as faits."
+    },
+    {
+      order: 2,
+      title: "Sharing equally",
+      titleFr: "Le partage égal",
+      concept: "Sharing a quantity equally between a number of people",
+      conceptFr: "Partager une quantité équitablement entre plusieurs personnes",
+      representation: "concrete",
+      visualAid: "counters",
+      ageBandStyle: "playful",
+      objectiveCodes: ["Y1-L6-2"],
+      explanationMd:
+        "Sharing means giving out objects one at a time, equally, until none are left.\n\n" +
+        "For example, 12 sweets shared between 3 friends gives each friend 4.",
+      explanationMdFr:
+        "Partager veut dire distribuer des objets un par un, équitablement, jusqu'à ce qu'il n'en reste plus.\n\n" +
+        "Par exemple, 12 bonbons partagés entre 3 amis donnent 4 à chacun.",
+      workedExamples: [
+        { problem: "12 sweets shared between 3 friends. How many each?", steps: ["Deal them out one at a time: round 1 gives 3, round 2 gives 3 more...", "Each friend ends up with 4."], answer: "4" }
+      ],
+      workedExamplesFr: [
+        { problem: "12 bonbons partagés entre 3 amis. Combien chacun ?", steps: ["Distribue-les un par un : tour 1 donne 3, tour 2 donne 3 de plus...", "Chaque ami se retrouve avec 4."], answer: "4" }
+      ],
+      audioScript: "Share one at a time, equally, until everything is given out.",
+      audioScriptFr: "Partage un par un, équitablement, jusqu'à ce que tout soit distribué."
+    },
+    {
+      order: 3,
+      title: "Arrays of equal groups",
+      titleFr: "Quadrillages de groupes égaux",
+      concept: "Reading an array of rows and columns to find a total",
+      conceptFr: "Lire un quadrillage de rangées et de colonnes pour trouver un total",
+      representation: "pictorial",
+      visualAid: "array",
+      ageBandStyle: "playful",
+      objectiveCodes: ["Y1-L6-3"],
+      explanationMd:
+        "An array arranges objects in neat rows and columns. Counting the rows and how many are in each row tells you the total.",
+      explanationMdFr:
+        "Un quadrillage range des objets en rangées et colonnes bien nettes. Compter les rangées et combien il y a dans chaque rangée donne le total.",
+      workedExamples: [
+        { problem: "An array has 3 rows of 4. How many altogether?", steps: ["3 rows, each with 4.", "4 + 4 + 4 = 12."], answer: "12" }
+      ],
+      workedExamplesFr: [
+        { problem: "Un quadrillage a 3 rangées de 4. Combien en tout ?", steps: ["3 rangées, chacune avec 4.", "4 + 4 + 4 = 12."], answer: "12" }
+      ],
+      audioScript: "Count the rows, then count how many are in each row.",
+      audioScriptFr: "Compte les rangées, puis compte combien il y a dans chaque rangée."
+    }
+  ],
   Y1L10: [
     {
       order: 1,
