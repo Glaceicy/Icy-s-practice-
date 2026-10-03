@@ -80,7 +80,7 @@ export default async function LevelOverviewPage({ params }: { params: { childId:
             const description = localize(locale, o.description, o.descriptionFr);
             return (
               <li key={o.id} className="flex gap-2 text-slate-700">
-                <span aria-hidden="true">🎯</span>
+                <span aria-hidden="true">✅</span>
                 <span>{t("levelOverview.objectivePrefix", { objective: description.charAt(0).toLowerCase() + description.slice(1) })}</span>
               </li>
             );

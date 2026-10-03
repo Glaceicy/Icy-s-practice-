@@ -29,7 +29,7 @@ export default async function RevisionPage({ params }: { params: { childId: stri
       {weakObjectives.length > 0 && (
         <ul className="mt-4 space-y-1 rounded-xl2 border bg-brand-50 p-4 text-sm text-brand-800">
           {weakObjectives.map((o) => (
-            <li key={o.id}>🎯 {localize(locale, o.description, o.descriptionFr)}</li>
+            <li key={o.id}>✅ {localize(locale, o.description, o.descriptionFr)}</li>
           ))}
         </ul>
       )}
