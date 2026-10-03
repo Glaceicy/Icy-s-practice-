@@ -5,6 +5,11 @@
 :root {
   --font-sans: "Atkinson Hyperlegible", ui-sans-serif, system-ui, sans-serif;
   --font-dyslexic: "OpenDyslexic", "Comic Sans MS", ui-sans-serif, system-ui, sans-serif;
+  /* Always render in light mode, even when the device/browser prefers dark
+     — the app's colours (brand palette, high-contrast mode) are designed
+     for a light background, and letting the browser auto-dark native form
+     controls or invert page colours fights that design. */
+  color-scheme: light;
 }
 
 html {
