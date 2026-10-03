@@ -22,13 +22,26 @@ additional `SchoolYear` sets without a schema change.
   README "Deploying so it's reachable from any device". SQLite also works
   for isolated local-only work (switch `provider` back to `"sqlite"`).
 - **Auth**: Adults authenticate with email/password (bcrypt-hashed,
-  12 rounds) and a signed, httpOnly JWT session cookie (`jose`). Children
-  never have their own credentials or email address — they select an avatar
-  and enter a 4-digit PIN (bcrypt-hashed) scoped to their owning adult
-  account. Every server action that touches a child's data re-verifies, on
-  the server, that the active child belongs to the authenticated adult
+  12 rounds) and a signed, httpOnly JWT session cookie (`jose`,
+  `mj_session`), created only after the account's email address has been
+  verified (see below) — this is what stops a fake/mistyped email from ever
+  reaching a real family's data. Children have their own credential too (a
+  4-digit PIN, bcrypt-hashed, unique per parent) but **no password or
+  email of their own**; they log in directly at `/child-login` with their
+  *parent's* email address plus their own PIN, which creates a fully
+  independent child-only session (`mj_child_session`) carrying zero parent
+  privileges. A parent can also temporarily "view as" a child from their own
+  dashboard (`mj_child` cookie) without re-entering any PIN, since the
+  parent's own session already proves authorization — that path is
+  reachable only from the dashboard, never the reverse (a child session can
+  never reach the parent dashboard, switch to a sibling, or see another
+  family's data). Every server action that touches a child's data
+  re-verifies ownership server-side regardless of which path got there
   (`requireActiveChild` / `assertChildAccess` in `src/lib/auth.ts`) — a
-  tampered cookie cannot grant access to another family's data.
+  tampered cookie cannot grant access to another family's data. Full detail,
+  including the email-verification flow, lives in `src/lib/auth.ts` and the
+  "Authentication and sessions" section of the companion technical
+  reference published alongside this document.
 - **API surface**: Next.js Server Actions (`src/lib/actions/*`), not a
   separate REST/GraphQL layer. Business logic lives in `src/lib/services/*`,
   independent of the web framework, so it is directly unit-testable (see
@@ -36,6 +49,14 @@ additional `SchoolYear` sets without a schema change.
 - **PWA**: installable manifest + a minimal service worker that caches only
   the static shell, never API/data routes, so offline visits never show
   stale progress or scores.
+- **Internationalization**: English and French are both fully supported —
+  UI chrome via a dictionary with English fallback, question/curriculum
+  content via parallel nullable `*Fr` columns on the relevant tables, also
+  falling back to English wherever a translation hasn't landed yet. First-
+  time visitors from French-speaking countries/regions get French as their
+  default locale automatically (Vercel Edge Middleware geolocation,
+  `src/middleware.ts`); the choice is a cookie (`mj_locale`) a user can
+  always change. See §15.
 
 ## 3. Data model
 
@@ -47,6 +68,14 @@ Full schema: `prisma/schema.prisma`. Entities, matching spec §15:
 `AssessmentAttempt` / `AssessmentAnswer` (the Mastery Challenge),
 `LevelUnlock`, `ObjectiveMastery`, `MisconceptionLog`, `Achievement`,
 `LearningGoal`, `LearningSessionLog`, `ProgressReport`, `AdminAuditLog`.
+
+`AdultUser` additionally carries `emailVerified`, `emailVerificationTokenHash`
+(unique, nullable) and `emailVerificationExpiresAt`, used by the registration/
+verification flow (see §2); `ChildProfile` carries `locale` (the child's own
+UI/content language, applied on every login) alongside its accessibility
+fields (§9). `GeneratedQuestionLog`, `SchoolYear`, `Level`, `Lesson` and
+`Achievement` each carry parallel nullable French columns (e.g. `promptFr`,
+`titleFr`, `descriptionFr`) for the i18n content fallback described in §15.
 
 SQLite has no native enum type, so fields that would otherwise be Prisma
 enums (`AdultRole`, `Pathway`, `QuestionType`, `DifficultyBand`,
@@ -63,12 +92,17 @@ native enums without changing application code.
 `src/lib/questionEngine/` is a self-contained, framework-agnostic module:
 
 - **Templates are code, not data.** Each `QuestionTemplateDef` is a pure
-  function `generate(seed) => GeneratedQuestionInstance`, registered under a
-  level key (e.g. `Y1L1`) in `src/lib/questionEngine/templates/year1/level1.ts`.
-  Given the same `(templateKey, seed)`, `generate` always returns an
-  identical question (proven by `tests/questionEngine.test.ts`'s
-  determinism test) — this is what makes replay, admin review, and
-  "frequently answered incorrectly" analytics meaningful.
+  function `generate(seed, locale) => GeneratedQuestionInstance`, registered
+  under a level key (e.g. `Y1L1`) in
+  `src/lib/questionEngine/templates/year1/level1.ts`. Given the same
+  `(templateKey, seed, locale)`, `generate` always returns an identical
+  question (proven by `tests/questionEngine.test.ts`'s determinism test) —
+  this is what makes replay, admin review, and "frequently answered
+  incorrectly" analytics meaningful, and what makes a French render of the
+  same seed reproducible too. The English instance is always what's stored
+  as the question's permanent, locale-independent answer key (see
+  `ensureQuestionLog` in `src/lib/services/questionLog.ts`) — grading never
+  depends on which locale a child is using.
 - **Deterministic grading only.** `correctAnswer` is always computed by pure
   arithmetic/logic inside `generate()`, stored on the `GeneratedQuestionLog`
   row the first time a given `(template, seed)` pair is served, and that
@@ -108,13 +142,25 @@ directly unit-tested without touching a database:
 
 - `src/lib/scoring.ts`: `computeScorePercentage`, `isMasteryPass` (38, 39 or
   40 out of 40 passes; 37 or fewer does not — this exact boundary is
-  asserted in `tests/scoring.test.ts`).
+  asserted in `tests/scoring.test.ts`), plus `MASTERY_REDO_ROUND_NUMBER`
+  (5) and `MASTERY_REDO_FAIL_THRESHOLD` (3) for the redo mechanic below.
 - `src/lib/assessment.ts`: the 40-question, 4-round Mastery Challenge state
   machine — only the first submission for a question is ever recorded (the
   slot locks immediately), pause/resume, and a hard refusal to finalize
   until all 40 are answered. `tests/assessment.test.ts` exercises the full
   38-vs-37 boundary through this engine, plus pause/resume and immutability
-  after submission.
+  after submission. Unlike practice modes, a wrong Mastery Challenge answer
+  never reveals the correct answer or an explanation in the moment — the
+  child only learns the specifics afterwards, on the results/review screen.
+- **The redo round.** Once all 40 main-round questions are locked,
+  `injectRedoRoundIfNeeded` (`src/lib/services/mastery.ts`) checks whether
+  the child is on track to fail and, if so, gives them **one chance**: a
+  freshly re-seeded instance of each missed question (same objective, new
+  seed, so it isn't just the memorised original) is appended as round 5.
+  The headline score (`correctFirstAttempt`/`scorePercentage`) is always
+  computed from the original 40 only — the redo round can change whether
+  the level *passes* (fewer than 3 still wrong after the redo round passes
+  it) but never inflates the reported score.
 - `src/lib/unlocking.ts`: `decideUnlock` (pure decision) plus the
   `LevelUnlock` row's `@@unique([childId, levelId])` database constraint,
   which is the second, authoritative guarantee that a level is never
@@ -293,28 +339,34 @@ All 20 screens from spec §13 are implemented and linked:
 
 1. Landing — `/`
 2. Adult registration — `/register`
-3. Adult login — `/login`
-4. Child-profile creation — `/profiles/new`
-5. Child-profile selection — `/profiles`
-6. School-year selection — `/learn/[childId]/year-select`
-7. Learning-journey map — `/learn/[childId]/journey/[year]`
-8. Level overview — `/learn/[childId]/level/[levelId]`
-9. Interactive lesson — `/learn/[childId]/level/[levelId]/lesson/[order]`
-10. Guided practice — `/learn/[childId]/level/[levelId]/guided`
-11. Independent practice — `/learn/[childId]/level/[levelId]/independent`
-12. Mastery Challenge — `/learn/[childId]/level/[levelId]/mastery`
-13. Wrong-answer explanation — the `WrongAnswerCard` view shown inline within
-    guided/independent/Mastery Challenge on an incorrect answer (a distinct
-    screen state within the flow, not a separate URL — reviewing an
-    explanation mid-assessment shouldn't require losing your place)
-14. Assessment results — `/learn/[childId]/level/[levelId]/results/[attemptId]`
-15. Personalised revision — `/learn/[childId]/level/[levelId]/revision`
-16. Child achievements — `/learn/[childId]/achievements`
-17. Parent/teacher dashboard — `/dashboard`
-18. Progress report (printable) — `/dashboard/child/[childId]/report`
-19. Accessibility settings — `/settings/accessibility`
-20. Admin curriculum/question area — `/admin`, `/admin/questions`,
+3. Check your email (post-registration) — `/register/check-email`
+4. Email verification confirm — `/verify-email`
+5. Adult login — `/login`
+6. Child login (independent, PIN + parent email) — `/child-login`
+7. Child-profile creation — `/profiles/new`
+8. Child-profile selection (parent-only "view as") — `/profiles`
+9. School-year selection — `/learn/[childId]/year-select`
+10. Learning-journey map — `/learn/[childId]/journey/[year]`
+11. Level overview — `/learn/[childId]/level/[levelId]`
+12. Interactive lesson — `/learn/[childId]/level/[levelId]/lesson/[order]`
+13. Guided practice — `/learn/[childId]/level/[levelId]/guided`
+14. Independent practice — `/learn/[childId]/level/[levelId]/independent`
+15. Mastery Challenge — `/learn/[childId]/level/[levelId]/mastery` (no inline
+    answer reveal on a wrong attempt — see §5 — plus a one-time "redo your
+    wrong answers" interstitial for a near-miss)
+16. Assessment results — `/learn/[childId]/level/[levelId]/results/[attemptId]`
+17. Personalised revision — `/learn/[childId]/level/[levelId]/revision`
+18. Child achievements — `/learn/[childId]/achievements`
+19. Parent/teacher dashboard — `/dashboard`
+20. Progress report (printable) — `/dashboard/child/[childId]/report`
+21. Accessibility settings — `/settings/accessibility`
+22. Admin curriculum/question area — `/admin`, `/admin/questions`,
     `/admin/curriculum`, `/admin/import-export`
+
+Wrong-answer explanations in guided/independent practice remain an inline
+view within the flow (not a separate URL — reviewing an explanation
+shouldn't require losing your place); the Mastery Challenge deliberately
+does **not** show one inline (§5).
 
 Every button and form on every screen is wired to real server logic — there
 are no placeholder controls.
@@ -332,3 +384,46 @@ are no placeholder controls.
   varies by device/browser) rather than pre-recorded narration audio.
 - No specialist legal review of data-protection compliance has been
   performed (§10).
+- `npm audit` reports pre-existing vulnerabilities (notably a `next@14.2.15`
+  advisory) unrelated to the auth/i18n/Mastery-redo work in this document —
+  a framework version bump hasn't been scheduled.
+- No automated end-to-end test yet covers the independent child-login path
+  or the email-verification flow against a real mailbox; both were verified
+  manually against the live Vercel deployment.
+
+## 15. Internationalization (EN/FR)
+
+Two supported locales — English (default/fallback) and French — chosen so
+that no partially-translated string or content row ever breaks the app;
+everything falls back to English instead.
+
+- **Locale storage.** `LOCALE_COOKIE` (`mj_locale`, defined in
+  `src/lib/i18n/cookie.ts` without a `next/headers` import so Edge
+  Middleware can read it too) holds the active locale. `setLocale()`
+  (`src/lib/i18n/locale.ts`) is called whenever a child session is
+  established, using that child's own stored `locale` field — so the UI
+  always follows the active child, not a stale cookie from a previous
+  session or sibling.
+- **UI chrome.** `src/lib/i18n/dictionary.ts` holds parallel `en`/`fr`
+  objects by namespace; `useT()` resolves a key against the active locale
+  and falls back to English for anything not yet translated.
+- **Database content.** Curriculum metadata and generated question content
+  (`GeneratedQuestionLog` and friends) carry English columns plus parallel
+  nullable `*Fr` columns, resolved the same fallback-to-English way. French
+  question text is generated and backfilled onto a log row lazily, the
+  first time a French-locale request actually needs it
+  (`ensureQuestionLog` in `src/lib/services/questionLog.ts`). Earlier in
+  this app's life, some DB-backed read paths displayed content without
+  threading `locale` through to the `*Fr` columns at all, which showed
+  English text inside an otherwise-French session — that language-mixing
+  bug is fixed; every read path that serves curriculum or question content
+  now takes a `locale` parameter and uses it.
+- **Geolocation default.** `src/middleware.ts` (Vercel Edge Middleware)
+  sets `mj_locale=fr` for first-time visitors only (i.e. no cookie set yet)
+  whose request carries a Vercel geolocation header matching a
+  French-speaking country or region (mainland France plus Belgium,
+  Luxembourg, Monaco, French overseas territories, francophone Africa,
+  Haiti, Vanuatu; Quebec in Canada; and the French-speaking Swiss cantons).
+  This header only exists on Vercel's edge network, so it's a no-op
+  locally or on any other host — those always default to English until a
+  user or child profile explicitly sets French.
