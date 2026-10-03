@@ -26,6 +26,15 @@ import y3l2 from "./year3/level2";
 import y6l1 from "./year6/level1";
 import y6l2 from "./year6/level2";
 import y7l1 from "./year7/level1";
+import y7l2 from "./year7/level2";
+import y7l3 from "./year7/level3";
+import y7l4 from "./year7/level4";
+import y7l5 from "./year7/level5";
+import y7l6 from "./year7/level6";
+import y7l7 from "./year7/level7";
+import y7l8 from "./year7/level8";
+import y7l9 from "./year7/level9";
+import y7l10 from "./year7/level10";
 import y8l1 from "./year8/level1";
 import y8l2 from "./year8/level2";
 import y9l1 from "./year9/level1";
@@ -69,6 +78,15 @@ export function loadAllTemplates(): void {
   registerTemplates("Y6L1", y6l1);
   registerTemplates("Y6L2", y6l2);
   registerTemplates("Y7L1", y7l1);
+  registerTemplates("Y7L2", y7l2);
+  registerTemplates("Y7L3", y7l3);
+  registerTemplates("Y7L4", y7l4);
+  registerTemplates("Y7L5", y7l5);
+  registerTemplates("Y7L6", y7l6);
+  registerTemplates("Y7L7", y7l7);
+  registerTemplates("Y7L8", y7l8);
+  registerTemplates("Y7L9", y7l9);
+  registerTemplates("Y7L10", y7l10);
   registerTemplates("Y8L1", y8l1);
   registerTemplates("Y8L2", y8l2);
   registerTemplates("Y9L1", y9l1);
@@ -77,4 +95,4 @@ export function loadAllTemplates(): void {
   loaded = true;
 }
 
-export const COMPLETE_LEVEL_KEYS = ["Y1L1", "Y1L2", "Y1L3", "Y1L4", "Y1L5", "Y1L6", "Y1L10", "Y2L1", "Y2L2", "Y2L3", "Y2L4", "Y3L1", "Y3L2", "Y4L1", "Y5L1", "Y5L2", "Y5L3", "Y5L4", "Y5L5", "Y5L6", "Y5L7", "Y5L8", "Y5L9", "Y5L10", "Y6L1", "Y6L2", "Y7L1", "Y8L1", "Y8L2", "Y9L1", "Y9L2", "Y10L1"] as const;
+export const COMPLETE_LEVEL_KEYS = ["Y1L1", "Y1L2", "Y1L3", "Y1L4", "Y1L5", "Y1L6", "Y1L10", "Y2L1", "Y2L2", "Y2L3", "Y2L4", "Y3L1", "Y3L2", "Y4L1", "Y5L1", "Y5L2", "Y5L3", "Y5L4", "Y5L5", "Y5L6", "Y5L7", "Y5L8", "Y5L9", "Y5L10", "Y6L1", "Y6L2", "Y7L1", "Y7L2", "Y7L3", "Y7L4", "Y7L5", "Y7L6", "Y7L7", "Y7L8", "Y7L9", "Y7L10", "Y8L1", "Y8L2", "Y9L1", "Y9L2", "Y10L1"] as const;

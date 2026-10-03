@@ -2125,6 +2125,699 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       audioScriptFr: "Décompose un problème à plusieurs étapes une opération à la fois, et utilise une estimation arrondie pour vérifier ton résultat final."
     }
   ],
+  Y7L2: [
+    {
+      order: 1,
+      title: "The four operations with integers, fractions and decimals",
+      titleFr: "Les quatre opérations avec entiers, fractions et décimaux",
+      concept: "Applying addition, subtraction, multiplication and division across number types",
+      conceptFr: "Appliquer l'addition, la soustraction, la multiplication et la division à tous les types de nombres",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "gameinspired",
+      objectiveCodes: ["Y7-L2-1"],
+      explanationMd:
+        "The same four operations work on whole numbers, decimals and fractions — only the bookkeeping changes.\n\n" +
+        "With decimals, multiply as if the numbers were whole, then count the decimal places to place the point. With fractions that share a denominator, work on the numerators.",
+      explanationMdFr:
+        "Les quatre mêmes opérations fonctionnent avec les entiers, les décimaux et les fractions — seule la mise en forme change.\n\n" +
+        "Avec les décimaux, multiplie comme s'il s'agissait d'entiers, puis compte les décimales pour placer la virgule. Avec des fractions de même dénominateur, travaille sur les numérateurs.",
+      workedExamples: [
+        { problem: "Work out 3.4 x 6", steps: ["34 x 6 = 204.", "There is one decimal place, so 3.4 x 6 = 20.4."], answer: "20.4" }
+      ],
+      workedExamplesFr: [
+        { problem: "Calcule 3,4 x 6", steps: ["34 x 6 = 204.", "Il y a une décimale, donc 3,4 x 6 = 20,4."], answer: "20,4" }
+      ],
+      audioScript: "Multiply as whole numbers first, then put the decimal point back where it belongs.",
+      audioScriptFr: "Multiplie d'abord comme des entiers, puis remets la virgule à sa place."
+    },
+    {
+      order: 2,
+      title: "Order of operations (BIDMAS)",
+      titleFr: "Priorité des opérations",
+      concept: "Using the conventional priority of operations to evaluate expressions",
+      conceptFr: "Utiliser la priorité conventionnelle des opérations pour évaluer des expressions",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "gameinspired",
+      objectiveCodes: ["Y7-L2-2"],
+      explanationMd:
+        "Calculations follow a fixed order: **B**rackets, **I**ndices, **D**ivision and **M**ultiplication, then **A**ddition and **S**ubtraction.\n\n" +
+        "Working left to right without this order gives the wrong answer — 3 + 4 x 5 is 23, not 35.",
+      explanationMdFr:
+        "Les calculs suivent un ordre fixe : **parenthèses**, **puissances**, **division** et **multiplication**, puis **addition** et **soustraction**.\n\n" +
+        "Calculer de gauche à droite sans respecter cet ordre donne un résultat faux — 3 + 4 x 5 fait 23, pas 35.",
+      workedExamples: [
+        { problem: "Work out 3 + 4 x 5", steps: ["Multiplication first: 4 x 5 = 20.", "Then add: 3 + 20 = 23."], answer: "23" }
+      ],
+      workedExamplesFr: [
+        { problem: "Calcule 3 + 4 x 5", steps: ["La multiplication d'abord : 4 x 5 = 20.", "Puis additionne : 3 + 20 = 23."], answer: "23" }
+      ],
+      audioScript: "Brackets first, then indices, then divide and multiply, and finally add and subtract.",
+      audioScriptFr: "Les parenthèses d'abord, puis les puissances, puis la division et la multiplication, et enfin l'addition et la soustraction."
+    },
+    {
+      order: 3,
+      title: "Using a calculator and interpreting the display",
+      titleFr: "Utiliser une calculatrice et interpréter l'affichage",
+      concept: "Entering calculations correctly and rounding the result sensibly",
+      conceptFr: "Saisir les calculs correctement et arrondir le résultat de façon sensée",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "gameinspired",
+      objectiveCodes: ["Y7-L2-3"],
+      explanationMd:
+        "A calculator does exactly what you type — so the order you enter things matters just as much as BIDMAS on paper.\n\n" +
+        "The display often shows more decimal places than the question needs. Round to a sensible degree of accuracy and state the units.",
+      explanationMdFr:
+        "Une calculatrice fait exactement ce que tu tapes — l'ordre de saisie compte donc autant que la priorité des opérations sur papier.\n\n" +
+        "L'affichage montre souvent plus de décimales que nécessaire. Arrondis à une précision raisonnable et précise les unités.",
+      workedExamples: [
+        { problem: "A calculator shows 7.48. Round to 1 decimal place.", steps: ["Look at the second decimal place: 8.", "8 is 5 or more, so round up."], answer: "7.5" }
+      ],
+      workedExamplesFr: [
+        { problem: "Une calculatrice affiche 7,48. Arrondis à 1 décimale.", steps: ["Regarde la deuxième décimale : 8.", "8 est supérieur ou égal à 5, donc on arrondit vers le haut."], answer: "7,5" }
+      ],
+      audioScript: "Check what you typed, then round the answer to a sensible accuracy.",
+      audioScriptFr: "Vérifie ce que tu as tapé, puis arrondis le résultat à une précision raisonnable."
+    }
+  ],
+  Y7L3: [
+    {
+      order: 1,
+      title: "Simplifying fractions",
+      titleFr: "Simplifier les fractions",
+      concept: "Dividing numerator and denominator by their highest common factor",
+      conceptFr: "Diviser le numérateur et le dénominateur par leur plus grand facteur commun",
+      representation: "pictorial",
+      visualAid: "fraction-diagram",
+      ageBandStyle: "gameinspired",
+      objectiveCodes: ["Y7-L3-1"],
+      explanationMd:
+        "A fraction is in its simplest form when the numerator and denominator share no common factor except 1.\n\n" +
+        "To simplify, divide both by their highest common factor. The value of the fraction never changes — only how it is written.",
+      explanationMdFr:
+        "Une fraction est sous sa forme la plus simple quand le numérateur et le dénominateur n'ont aucun facteur commun autre que 1.\n\n" +
+        "Pour simplifier, divise les deux par leur plus grand facteur commun. La valeur de la fraction ne change jamais — seule son écriture change.",
+      workedExamples: [
+        { problem: "Simplify 12/18", steps: ["The highest common factor of 12 and 18 is 6.", "12 ÷ 6 = 2 and 18 ÷ 6 = 3."], answer: "2/3" }
+      ],
+      workedExamplesFr: [
+        { problem: "Simplifie 12/18", steps: ["Le plus grand facteur commun de 12 et 18 est 6.", "12 ÷ 6 = 2 et 18 ÷ 6 = 3."], answer: "2/3" }
+      ],
+      audioScript: "Find the highest common factor, then divide the top and the bottom by it.",
+      audioScriptFr: "Trouve le plus grand facteur commun, puis divise le haut et le bas par ce nombre."
+    },
+    {
+      order: 2,
+      title: "Calculating with fractions and mixed numbers",
+      titleFr: "Calculer avec des fractions et des nombres mixtes",
+      concept: "Adding, subtracting, multiplying and dividing fractions",
+      conceptFr: "Additionner, soustraire, multiplier et diviser des fractions",
+      representation: "abstract",
+      visualAid: "fraction-diagram",
+      ageBandStyle: "gameinspired",
+      objectiveCodes: ["Y7-L3-2"],
+      explanationMd:
+        "When denominators match, add or subtract the numerators and keep the denominator.\n\n" +
+        "To multiply a fraction by a whole number, multiply the numerator only. To divide a fraction by a whole number, divide the numerator (or multiply the denominator).",
+      explanationMdFr:
+        "Quand les dénominateurs sont identiques, additionne ou soustrais les numérateurs et garde le dénominateur.\n\n" +
+        "Pour multiplier une fraction par un entier, multiplie seulement le numérateur. Pour diviser une fraction par un entier, divise le numérateur (ou multiplie le dénominateur).",
+      workedExamples: [
+        { problem: "Work out 3/8 + 2/8", steps: ["The denominators match.", "3 + 2 = 5, so the answer is 5/8."], answer: "5/8" }
+      ],
+      workedExamplesFr: [
+        { problem: "Calcule 3/8 + 2/8", steps: ["Les dénominateurs sont identiques.", "3 + 2 = 5, donc le résultat est 5/8."], answer: "5/8" }
+      ],
+      audioScript: "Same denominators? Just work with the numerators.",
+      audioScriptFr: "Mêmes dénominateurs ? Travaille simplement avec les numérateurs."
+    },
+    {
+      order: 3,
+      title: "Fractions as operators",
+      titleFr: "Les fractions comme opérateurs",
+      concept: "Finding a fraction of an amount",
+      conceptFr: "Trouver une fraction d'une quantité",
+      representation: "pictorial",
+      visualAid: "bar-model",
+      ageBandStyle: "gameinspired",
+      objectiveCodes: ["Y7-L3-3"],
+      explanationMd:
+        "A fraction can act on a quantity: 3/5 of 40 means split 40 into 5 equal parts, then take 3 of them.\n\n" +
+        "Divide by the denominator first, then multiply by the numerator.",
+      explanationMdFr:
+        "Une fraction peut agir sur une quantité : 3/5 de 40 signifie partager 40 en 5 parts égales, puis en prendre 3.\n\n" +
+        "Divise d'abord par le dénominateur, puis multiplie par le numérateur.",
+      workedExamples: [
+        { problem: "Find 3/5 of 40", steps: ["40 ÷ 5 = 8.", "8 x 3 = 24."], answer: "24" }
+      ],
+      workedExamplesFr: [
+        { problem: "Trouve 3/5 de 40", steps: ["40 ÷ 5 = 8.", "8 x 3 = 24."], answer: "24" }
+      ],
+      audioScript: "Divide by the bottom number, then multiply by the top number.",
+      audioScriptFr: "Divise par le nombre du bas, puis multiplie par celui du haut."
+    }
+  ],
+  Y7L4: [
+    {
+      order: 1,
+      title: "Fractions, decimals and percentages",
+      titleFr: "Fractions, décimaux et pourcentages",
+      concept: "Converting fluently between the three representations",
+      conceptFr: "Convertir couramment entre les trois représentations",
+      representation: "abstract",
+      visualAid: "fraction-diagram",
+      ageBandStyle: "gameinspired",
+      objectiveCodes: ["Y7-L4-1"],
+      explanationMd:
+        "Fractions, decimals and percentages are three ways of writing the same value.\n\n" +
+        "To get a percentage from a fraction, scale the fraction so the denominator is 100. To get a decimal from a percentage, divide by 100.",
+      explanationMdFr:
+        "Les fractions, les décimaux et les pourcentages sont trois façons d'écrire la même valeur.\n\n" +
+        "Pour obtenir un pourcentage à partir d'une fraction, ramène le dénominateur à 100. Pour obtenir un décimal à partir d'un pourcentage, divise par 100.",
+      workedExamples: [
+        { problem: "Write 7/20 as a percentage", steps: ["20 x 5 = 100, so multiply top and bottom by 5.", "7 x 5 = 35, giving 35/100."], answer: "35%" }
+      ],
+      workedExamplesFr: [
+        { problem: "Écris 7/20 en pourcentage", steps: ["20 x 5 = 100, donc multiplie le haut et le bas par 5.", "7 x 5 = 35, soit 35/100."], answer: "35 %" }
+      ],
+      audioScript: "Scale the fraction so the bottom is one hundred, and you can read the percentage straight off.",
+      audioScriptFr: "Ramène le dénominateur à cent, et tu peux lire le pourcentage directement."
+    },
+    {
+      order: 2,
+      title: "Percentage increase and decrease",
+      titleFr: "Augmentation et diminution en pourcentage",
+      concept: "Changing an amount by a given percentage",
+      conceptFr: "Modifier une quantité d'un pourcentage donné",
+      representation: "abstract",
+      visualAid: "bar-model",
+      ageBandStyle: "gameinspired",
+      objectiveCodes: ["Y7-L4-2"],
+      explanationMd:
+        "To increase by a percentage, work out the percentage of the amount and add it on. To decrease, subtract it instead.\n\n" +
+        "Finding 1% first (divide by 100) makes any percentage easy to build up.",
+      explanationMdFr:
+        "Pour augmenter d'un pourcentage, calcule ce pourcentage de la quantité et ajoute-le. Pour diminuer, soustrais-le.\n\n" +
+        "Trouver d'abord 1 % (diviser par 100) permet de construire facilement n'importe quel pourcentage.",
+      workedExamples: [
+        { problem: "Increase 400 by 15%", steps: ["1% of 400 = 4.", "15% = 4 x 15 = 60.", "400 + 60 = 460."], answer: "460" }
+      ],
+      workedExamplesFr: [
+        { problem: "Augmente 400 de 15 %", steps: ["1 % de 400 = 4.", "15 % = 4 x 15 = 60.", "400 + 60 = 460."], answer: "460" }
+      ],
+      audioScript: "Find one percent first, then build up to the percentage you need.",
+      audioScriptFr: "Trouve d'abord un pour cent, puis construis le pourcentage dont tu as besoin."
+    },
+    {
+      order: 3,
+      title: "Percentage as parts per hundred",
+      titleFr: "Le pourcentage comme parties par centaine",
+      concept: "Expressing one quantity as a percentage of another",
+      conceptFr: "Exprimer une quantité en pourcentage d'une autre",
+      representation: "abstract",
+      visualAid: "bar-model",
+      ageBandStyle: "gameinspired",
+      objectiveCodes: ["Y7-L4-3"],
+      explanationMd:
+        "'Per cent' literally means 'per hundred', so 37% means 37 parts out of every 100.\n\n" +
+        "To express one quantity as a percentage of another, divide the part by the whole, then multiply by 100.",
+      explanationMdFr:
+        "« Pour cent » signifie littéralement « pour cent », donc 37 % signifie 37 parties sur 100.\n\n" +
+        "Pour exprimer une quantité en pourcentage d'une autre, divise la partie par le tout, puis multiplie par 100.",
+      workedExamples: [
+        { problem: "What percentage is 9 out of 20?", steps: ["9 ÷ 20 = 0.45.", "0.45 x 100 = 45."], answer: "45%" }
+      ],
+      workedExamplesFr: [
+        { problem: "Quel pourcentage représente 9 sur 20 ?", steps: ["9 ÷ 20 = 0,45.", "0,45 x 100 = 45."], answer: "45 %" }
+      ],
+      audioScript: "Divide the part by the whole, then multiply by one hundred.",
+      audioScriptFr: "Divise la partie par le tout, puis multiplie par cent."
+    }
+  ],
+  Y7L5: [
+    {
+      order: 1,
+      title: "Ratio notation and simplest form",
+      titleFr: "Notation des rapports et forme la plus simple",
+      concept: "Writing and simplifying ratios",
+      conceptFr: "Écrire et simplifier des rapports",
+      representation: "pictorial",
+      visualAid: "bar-model",
+      ageBandStyle: "gameinspired",
+      objectiveCodes: ["Y7-L5-1"],
+      explanationMd:
+        "A ratio compares quantities, written with a colon: 3:2 means 3 parts of one thing to 2 of another.\n\n" +
+        "Just like fractions, ratios simplify by dividing every part by the same common factor.",
+      explanationMdFr:
+        "Un rapport compare des quantités, écrit avec deux points : 3:2 signifie 3 parts d'une chose pour 2 d'une autre.\n\n" +
+        "Comme les fractions, les rapports se simplifient en divisant chaque terme par le même facteur commun.",
+      workedExamples: [
+        { problem: "Simplify 12:18", steps: ["Both divide by 6.", "12 ÷ 6 = 2 and 18 ÷ 6 = 3."], answer: "2:3" }
+      ],
+      workedExamplesFr: [
+        { problem: "Simplifie 12:18", steps: ["Les deux se divisent par 6.", "12 ÷ 6 = 2 et 18 ÷ 6 = 3."], answer: "2:3" }
+      ],
+      audioScript: "Divide both sides of the ratio by their highest common factor.",
+      audioScriptFr: "Divise les deux termes du rapport par leur plus grand facteur commun."
+    },
+    {
+      order: 2,
+      title: "Dividing a quantity in a given ratio",
+      titleFr: "Partager une quantité selon un rapport donné",
+      concept: "Sharing a total into parts given by a ratio",
+      conceptFr: "Partager un total en parts données par un rapport",
+      representation: "pictorial",
+      visualAid: "bar-model",
+      ageBandStyle: "gameinspired",
+      objectiveCodes: ["Y7-L5-2"],
+      explanationMd:
+        "Add the ratio parts to find how many equal shares there are, divide the total by that, then multiply back up for each share.\n\n" +
+        "Always check your shares add back up to the original total.",
+      explanationMdFr:
+        "Additionne les termes du rapport pour trouver le nombre de parts égales, divise le total par ce nombre, puis multiplie pour chaque part.\n\n" +
+        "Vérifie toujours que la somme des parts redonne le total de départ.",
+      workedExamples: [
+        { problem: "Share 45 in the ratio 2:3", steps: ["2 + 3 = 5 parts.", "45 ÷ 5 = 9 per part.", "2 x 9 = 18 and 3 x 9 = 27."], answer: "18 and 27" }
+      ],
+      workedExamplesFr: [
+        { problem: "Partage 45 dans le rapport 2:3", steps: ["2 + 3 = 5 parts.", "45 ÷ 5 = 9 par part.", "2 x 9 = 18 et 3 x 9 = 27."], answer: "18 et 27" }
+      ],
+      audioScript: "Add the parts, divide the total, then multiply for each share.",
+      audioScriptFr: "Additionne les parts, divise le total, puis multiplie pour chaque part."
+    },
+    {
+      order: 3,
+      title: "Scale factors, diagrams and maps",
+      titleFr: "Facteurs d'échelle, schémas et cartes",
+      concept: "Using scale factors to enlarge lengths and read maps",
+      conceptFr: "Utiliser les facteurs d'échelle pour agrandir des longueurs et lire des cartes",
+      representation: "pictorial",
+      visualAid: "shape",
+      ageBandStyle: "gameinspired",
+      objectiveCodes: ["Y7-L5-3"],
+      explanationMd:
+        "A scale factor multiplies every length in a shape. A scale factor of 3 makes each side three times longer.\n\n" +
+        "Map scales work the same way: 1:25000 means 1 cm on the map is 25,000 cm in real life.",
+      explanationMdFr:
+        "Un facteur d'échelle multiplie chaque longueur d'une forme. Un facteur d'échelle de 3 rend chaque côté trois fois plus long.\n\n" +
+        "Les échelles de cartes fonctionnent de la même façon : 1:25000 signifie que 1 cm sur la carte représente 25 000 cm en réalité.",
+      workedExamples: [
+        { problem: "A 7 cm side is enlarged by scale factor 4. How long is it now?", steps: ["7 x 4 = 28."], answer: "28 cm" }
+      ],
+      workedExamplesFr: [
+        { problem: "Un côté de 7 cm est agrandi avec un facteur d'échelle de 4. Combien mesure-t-il maintenant ?", steps: ["7 x 4 = 28."], answer: "28 cm" }
+      ],
+      audioScript: "Multiply every length by the scale factor.",
+      audioScriptFr: "Multiplie chaque longueur par le facteur d'échelle."
+    }
+  ],
+  Y7L6: [
+    {
+      order: 1,
+      title: "Algebraic notation",
+      titleFr: "La notation algébrique",
+      concept: "Using letters for numbers and the convention of omitting multiplication signs",
+      conceptFr: "Utiliser des lettres pour les nombres et la convention d'omettre le signe de multiplication",
+      representation: "abstract",
+      visualAid: "algebra-tile",
+      ageBandStyle: "gameinspired",
+      objectiveCodes: ["Y7-L6-1"],
+      explanationMd:
+        "In algebra a letter stands for a number that can vary. We write 5n rather than 5 x n — the multiplication sign is left out.\n\n" +
+        "The number in front of the letter is called the **coefficient**.",
+      explanationMdFr:
+        "En algèbre, une lettre représente un nombre qui peut varier. On écrit 5n plutôt que 5 x n — le signe de multiplication est omis.\n\n" +
+        "Le nombre devant la lettre s'appelle le **coefficient**.",
+      workedExamples: [
+        { problem: "Write 'n multiplied by 7' in algebra", steps: ["Write the number first.", "Leave out the multiplication sign."], answer: "7n" }
+      ],
+      workedExamplesFr: [
+        { problem: "Écris « n multiplié par 7 » en algèbre", steps: ["Écris d'abord le nombre.", "Omets le signe de multiplication."], answer: "7n" }
+      ],
+      audioScript: "Number first, letter second, and no multiplication sign between them.",
+      audioScriptFr: "Le nombre d'abord, la lettre ensuite, et aucun signe de multiplication entre les deux."
+    },
+    {
+      order: 2,
+      title: "Collecting like terms",
+      titleFr: "Regrouper les termes semblables",
+      concept: "Simplifying expressions by combining terms with the same letter",
+      conceptFr: "Simplifier des expressions en combinant les termes avec la même lettre",
+      representation: "abstract",
+      visualAid: "algebra-tile",
+      ageBandStyle: "gameinspired",
+      objectiveCodes: ["Y7-L6-2"],
+      explanationMd:
+        "Only terms with exactly the same letter can be combined: 3x and 5x make 8x, but 3x and 5y stay separate.\n\n" +
+        "Add or subtract the coefficients; the letter itself does not change.",
+      explanationMdFr:
+        "Seuls les termes ayant exactement la même lettre peuvent être combinés : 3x et 5x font 8x, mais 3x et 5y restent séparés.\n\n" +
+        "Additionne ou soustrais les coefficients ; la lettre elle-même ne change pas.",
+      workedExamples: [
+        { problem: "Simplify 4x + 3y + 6x", steps: ["Combine the x terms: 4x + 6x = 10x.", "The 3y has no partner."], answer: "10x + 3y" }
+      ],
+      workedExamplesFr: [
+        { problem: "Simplifie 4x + 3y + 6x", steps: ["Combine les termes en x : 4x + 6x = 10x.", "Le 3y n'a pas de partenaire."], answer: "10x + 3y" }
+      ],
+      audioScript: "Same letter? Combine them. Different letters? Leave them apart.",
+      audioScriptFr: "Même lettre ? Combine-les. Lettres différentes ? Laisse-les séparées."
+    },
+    {
+      order: 3,
+      title: "Substituting into formulae",
+      titleFr: "Substituer dans des formules",
+      concept: "Replacing letters with numbers and evaluating",
+      conceptFr: "Remplacer les lettres par des nombres et calculer",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "gameinspired",
+      objectiveCodes: ["Y7-L6-3"],
+      explanationMd:
+        "To substitute, replace each letter with its given value, then calculate using the normal order of operations.\n\n" +
+        "Watch out: 3x with x = 4 means 3 x 4 = 12, not 34.",
+      explanationMdFr:
+        "Pour substituer, remplace chaque lettre par sa valeur donnée, puis calcule en respectant la priorité des opérations.\n\n" +
+        "Attention : 3x avec x = 4 signifie 3 x 4 = 12, et non 34.",
+      workedExamples: [
+        { problem: "Find 3x + 5 when x = 4", steps: ["3 x 4 = 12.", "12 + 5 = 17."], answer: "17" }
+      ],
+      workedExamplesFr: [
+        { problem: "Calcule 3x + 5 quand x = 4", steps: ["3 x 4 = 12.", "12 + 5 = 17."], answer: "17" }
+      ],
+      audioScript: "Swap the letter for its value, then follow the order of operations.",
+      audioScriptFr: "Remplace la lettre par sa valeur, puis respecte la priorité des opérations."
+    }
+  ],
+  Y7L7: [
+    {
+      order: 1,
+      title: "Expressions, equations and vocabulary",
+      titleFr: "Expressions, équations et vocabulaire",
+      concept: "Distinguishing terms, expressions, equations and factors",
+      conceptFr: "Distinguer termes, expressions, équations et facteurs",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "gameinspired",
+      objectiveCodes: ["Y7-L7-1"],
+      explanationMd:
+        "A **term** is a single number or letter (or letters and numbers multiplied). An **expression** is terms joined by + or -, with no equals sign. An **equation** says two expressions are equal.\n\n" +
+        "Getting the vocabulary right makes instructions in questions much clearer.",
+      explanationMdFr:
+        "Un **terme** est un seul nombre ou une lettre (ou des lettres et nombres multipliés). Une **expression** est un ensemble de termes reliés par + ou -, sans signe égal. Une **équation** affirme que deux expressions sont égales.\n\n" +
+        "Maîtriser le vocabulaire rend les consignes bien plus claires.",
+      workedExamples: [
+        { problem: "Is 4x + 7 an expression or an equation?", steps: ["Look for an equals sign.", "There isn't one."], answer: "An expression" }
+      ],
+      workedExamplesFr: [
+        { problem: "4x + 7 est-il une expression ou une équation ?", steps: ["Cherche un signe égal.", "Il n'y en a pas."], answer: "Une expression" }
+      ],
+      audioScript: "No equals sign means it is an expression, not an equation.",
+      audioScriptFr: "Pas de signe égal signifie que c'est une expression, pas une équation."
+    },
+    {
+      order: 2,
+      title: "Solving linear equations",
+      titleFr: "Résoudre des équations linéaires",
+      concept: "Using inverse operations to find an unknown",
+      conceptFr: "Utiliser les opérations inverses pour trouver une inconnue",
+      representation: "abstract",
+      visualAid: "bar-model",
+      ageBandStyle: "gameinspired",
+      objectiveCodes: ["Y7-L7-2"],
+      explanationMd:
+        "Keep an equation balanced: whatever you do to one side, do to the other.\n\n" +
+        "Undo the addition or subtraction first, then undo the multiplication or division. If the unknown appears on both sides, collect the letter terms on one side first.",
+      explanationMdFr:
+        "Garde l'équation équilibrée : ce que tu fais d'un côté, fais-le de l'autre.\n\n" +
+        "Annule d'abord l'addition ou la soustraction, puis la multiplication ou la division. Si l'inconnue apparaît des deux côtés, regroupe d'abord les termes en lettres d'un seul côté.",
+      workedExamples: [
+        { problem: "Solve 4x + 5 = 29", steps: ["29 - 5 = 24.", "24 ÷ 4 = 6."], answer: "x = 6" }
+      ],
+      workedExamplesFr: [
+        { problem: "Résous 4x + 5 = 29", steps: ["29 - 5 = 24.", "24 ÷ 4 = 6."], answer: "x = 6" }
+      ],
+      audioScript: "Undo the plus first, then undo the times.",
+      audioScriptFr: "Annule d'abord l'addition, puis la multiplication."
+    },
+    {
+      order: 3,
+      title: "Generating sequences",
+      titleFr: "Générer des suites",
+      concept: "Using term-to-term and position-to-term rules",
+      conceptFr: "Utiliser les règles de terme en terme et de rang en terme",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "gameinspired",
+      objectiveCodes: ["Y7-L7-3"],
+      explanationMd:
+        "A **term-to-term** rule tells you how to get from one term to the next, such as 'add 4'.\n\n" +
+        "A **position-to-term** rule (the nth term) gives any term directly: for 3n + 2, the 10th term is 3 x 10 + 2 = 32.",
+      explanationMdFr:
+        "Une règle **de terme en terme** indique comment passer d'un terme au suivant, par exemple « ajouter 4 ».\n\n" +
+        "Une règle **de rang en terme** (le terme général) donne directement n'importe quel terme : pour 3n + 2, le 10e terme est 3 x 10 + 2 = 32.",
+      workedExamples: [
+        { problem: "The nth term is 5n - 1. Find the 6th term.", steps: ["5 x 6 = 30.", "30 - 1 = 29."], answer: "29" }
+      ],
+      workedExamplesFr: [
+        { problem: "Le terme général est 5n - 1. Trouve le 6e terme.", steps: ["5 x 6 = 30.", "30 - 1 = 29."], answer: "29" }
+      ],
+      audioScript: "Substitute the position number into the rule to jump straight to any term.",
+      audioScriptFr: "Remplace n par le rang dans la règle pour obtenir directement n'importe quel terme."
+    }
+  ],
+  Y7L8: [
+    {
+      order: 1,
+      title: "Angles in triangles and other shapes",
+      titleFr: "Les angles dans les triangles et autres formes",
+      concept: "Using the angle sum of a triangle to deduce missing angles",
+      conceptFr: "Utiliser la somme des angles d'un triangle pour déduire des angles manquants",
+      representation: "pictorial",
+      visualAid: "shape",
+      ageBandStyle: "gameinspired",
+      objectiveCodes: ["Y7-L8-1"],
+      explanationMd:
+        "The angles inside any triangle always add to 180°. Quadrilaterals always add to 360°.\n\n" +
+        "These facts let you find a missing angle by subtracting the ones you know.",
+      explanationMdFr:
+        "Les angles intérieurs de tout triangle font toujours 180°. Ceux des quadrilatères font toujours 360°.\n\n" +
+        "Ces faits permettent de trouver un angle manquant en soustrayant ceux que tu connais.",
+      workedExamples: [
+        { problem: "A triangle has angles 50° and 70°. Find the third.", steps: ["50 + 70 = 120.", "180 - 120 = 60."], answer: "60°" }
+      ],
+      workedExamplesFr: [
+        { problem: "Un triangle a des angles de 50° et 70°. Trouve le troisième.", steps: ["50 + 70 = 120.", "180 - 120 = 60."], answer: "60°" }
+      ],
+      audioScript: "Triangles always total one hundred and eighty degrees.",
+      audioScriptFr: "Les triangles font toujours cent quatre-vingts degrés au total."
+    },
+    {
+      order: 2,
+      title: "Constructions with ruler and protractor",
+      titleFr: "Constructions à la règle et au rapporteur",
+      concept: "Using standard conventions to construct and classify shapes",
+      conceptFr: "Utiliser les conventions standard pour construire et classer des formes",
+      representation: "concrete",
+      visualAid: "shape",
+      ageBandStyle: "gameinspired",
+      objectiveCodes: ["Y7-L8-2"],
+      explanationMd:
+        "Use a ruler for lengths, a protractor for angles and compasses for arcs of a fixed radius.\n\n" +
+        "Classify triangles by their largest angle: exactly 90° is right-angled, more than 90° is obtuse, all less than 90° is acute.",
+      explanationMdFr:
+        "Utilise une règle pour les longueurs, un rapporteur pour les angles et un compas pour les arcs de rayon fixe.\n\n" +
+        "Classe les triangles selon leur plus grand angle : exactement 90° = rectangle, plus de 90° = obtusangle, tous inférieurs à 90° = acutangle.",
+      workedExamples: [
+        { problem: "A triangle has angles 100°, 50° and 30°. What type is it?", steps: ["The largest angle is 100°.", "100° is more than 90°."], answer: "Obtuse" }
+      ],
+      workedExamplesFr: [
+        { problem: "Un triangle a des angles de 100°, 50° et 30°. De quel type est-il ?", steps: ["Le plus grand angle est 100°.", "100° est supérieur à 90°."], answer: "Obtusangle" }
+      ],
+      audioScript: "Check the largest angle to name the triangle.",
+      audioScriptFr: "Regarde le plus grand angle pour nommer le triangle."
+    },
+    {
+      order: 3,
+      title: "Angle facts at lines and points",
+      titleFr: "Faits sur les angles aux droites et aux points",
+      concept: "Angles on a straight line, around a point and vertically opposite",
+      conceptFr: "Angles sur une droite, autour d'un point et opposés par le sommet",
+      representation: "pictorial",
+      visualAid: "shape",
+      ageBandStyle: "gameinspired",
+      objectiveCodes: ["Y7-L8-3"],
+      explanationMd:
+        "Angles on a straight line add to 180°. Angles around a point add to 360°. When two straight lines cross, vertically opposite angles are equal.\n\n" +
+        "These three facts solve a huge number of angle problems.",
+      explanationMdFr:
+        "Les angles sur une droite font 180°. Les angles autour d'un point font 360°. Quand deux droites se croisent, les angles opposés par le sommet sont égaux.\n\n" +
+        "Ces trois faits résolvent un très grand nombre de problèmes d'angles.",
+      workedExamples: [
+        { problem: "An angle on a straight line is 115°. Find the other.", steps: ["180 - 115 = 65."], answer: "65°" }
+      ],
+      workedExamplesFr: [
+        { problem: "Un angle sur une droite mesure 115°. Trouve l'autre.", steps: ["180 - 115 = 65."], answer: "65°" }
+      ],
+      audioScript: "Straight line, one hundred and eighty. Full point, three hundred and sixty.",
+      audioScriptFr: "Ligne droite, cent quatre-vingts. Tour complet, trois cent soixante."
+    }
+  ],
+  Y7L9: [
+    {
+      order: 1,
+      title: "Area of triangles, parallelograms and trapezia",
+      titleFr: "Aire des triangles, parallélogrammes et trapèzes",
+      concept: "Deriving and applying area formulae",
+      conceptFr: "Établir et appliquer les formules d'aire",
+      representation: "pictorial",
+      visualAid: "shape",
+      ageBandStyle: "gameinspired",
+      objectiveCodes: ["Y7-L9-1"],
+      explanationMd:
+        "A parallelogram has area base x height. A triangle is half of a parallelogram, so its area is (base x height) ÷ 2.\n\n" +
+        "A trapezium uses the average of the two parallel sides: ((a + b) ÷ 2) x height.",
+      explanationMdFr:
+        "Un parallélogramme a pour aire base x hauteur. Un triangle est la moitié d'un parallélogramme, donc son aire est (base x hauteur) ÷ 2.\n\n" +
+        "Un trapèze utilise la moyenne des deux côtés parallèles : ((a + b) ÷ 2) x hauteur.",
+      workedExamples: [
+        { problem: "Find the area of a triangle with base 12 cm and height 5 cm", steps: ["12 x 5 = 60.", "60 ÷ 2 = 30."], answer: "30 cm²" }
+      ],
+      workedExamplesFr: [
+        { problem: "Trouve l'aire d'un triangle de base 12 cm et de hauteur 5 cm", steps: ["12 x 5 = 60.", "60 ÷ 2 = 30."], answer: "30 cm²" }
+      ],
+      audioScript: "Triangle area is base times height, divided by two.",
+      audioScriptFr: "L'aire d'un triangle est base fois hauteur, divisée par deux."
+    },
+    {
+      order: 2,
+      title: "Surface area and volume of cuboids",
+      titleFr: "Aire totale et volume des pavés droits",
+      concept: "Calculating the space inside and the surface outside a cuboid",
+      conceptFr: "Calculer l'espace intérieur et la surface extérieure d'un pavé droit",
+      representation: "pictorial",
+      visualAid: "shape",
+      ageBandStyle: "gameinspired",
+      objectiveCodes: ["Y7-L9-2"],
+      explanationMd:
+        "Volume of a cuboid is length x width x height, measured in cubic units.\n\n" +
+        "Surface area adds up all six faces: 2(lw + lh + wh), measured in square units.",
+      explanationMdFr:
+        "Le volume d'un pavé droit est longueur x largeur x hauteur, mesuré en unités cubes.\n\n" +
+        "L'aire totale additionne les six faces : 2(Ll + Lh + lh), mesurée en unités carrées.",
+      workedExamples: [
+        { problem: "Find the volume of a 4 cm by 3 cm by 5 cm cuboid", steps: ["4 x 3 = 12.", "12 x 5 = 60."], answer: "60 cm³" }
+      ],
+      workedExamplesFr: [
+        { problem: "Trouve le volume d'un pavé droit de 4 cm sur 3 cm sur 5 cm", steps: ["4 x 3 = 12.", "12 x 5 = 60."], answer: "60 cm³" }
+      ],
+      audioScript: "Volume multiplies all three dimensions together.",
+      audioScriptFr: "Le volume multiplie les trois dimensions ensemble."
+    },
+    {
+      order: 3,
+      title: "Interpreting and comparing data",
+      titleFr: "Interpréter et comparer des données",
+      concept: "Using mean, range and charts to compare data sets",
+      conceptFr: "Utiliser la moyenne, l'étendue et les graphiques pour comparer des séries de données",
+      representation: "pictorial",
+      visualAid: "graph",
+      ageBandStyle: "gameinspired",
+      objectiveCodes: ["Y7-L9-3"],
+      explanationMd:
+        "The **mean** is the total divided by how many values there are. The **range** is the largest value minus the smallest.\n\n" +
+        "On a pie chart, each category's angle is its share of the total multiplied by 360°.",
+      explanationMdFr:
+        "La **moyenne** est le total divisé par le nombre de valeurs. L'**étendue** est la plus grande valeur moins la plus petite.\n\n" +
+        "Sur un diagramme circulaire, l'angle de chaque catégorie est sa part du total multipliée par 360°.",
+      workedExamples: [
+        { problem: "Find the mean of 4, 8, 10 and 6", steps: ["4 + 8 + 10 + 6 = 28.", "28 ÷ 4 = 7."], answer: "7" }
+      ],
+      workedExamplesFr: [
+        { problem: "Trouve la moyenne de 4, 8, 10 et 6", steps: ["4 + 8 + 10 + 6 = 28.", "28 ÷ 4 = 7."], answer: "7" }
+      ],
+      audioScript: "Mean is the total shared equally. Range is biggest minus smallest.",
+      audioScriptFr: "La moyenne est le total partagé également. L'étendue est la plus grande moins la plus petite."
+    }
+  ],
+  Y7L10: [
+    {
+      order: 1,
+      title: "Number fluency review",
+      titleFr: "Révision de l'aisance numérique",
+      concept: "Integers, fractions, decimals and percentages together",
+      conceptFr: "Entiers, fractions, décimaux et pourcentages réunis",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "gameinspired",
+      objectiveCodes: ["Y7-L10-1"],
+      explanationMd:
+        "This level mixes everything from Year 7 number work: negative numbers, order of operations, fractions of amounts and percentages.\n\n" +
+        "Read each question carefully to spot which technique it needs — the mix is the challenge.",
+      explanationMdFr:
+        "Ce niveau mélange tout le travail numérique de l'Année 7 : nombres négatifs, priorité des opérations, fractions de quantités et pourcentages.\n\n" +
+        "Lis chaque question attentivement pour repérer la technique nécessaire — c'est le mélange qui fait le défi.",
+      workedExamples: [
+        { problem: "Work out 20% of 350", steps: ["1% of 350 = 3.5.", "3.5 x 20 = 70."], answer: "70" }
+      ],
+      workedExamplesFr: [
+        { problem: "Calcule 20 % de 350", steps: ["1 % de 350 = 3,5.", "3,5 x 20 = 70."], answer: "70" }
+      ],
+      audioScript: "Spot the technique each question needs, then apply it carefully.",
+      audioScriptFr: "Repère la technique dont chaque question a besoin, puis applique-la avec soin."
+    },
+    {
+      order: 2,
+      title: "Ratio, algebra and equations review",
+      titleFr: "Révision des rapports, de l'algèbre et des équations",
+      concept: "Applying ratio, simplification, substitution and equation solving",
+      conceptFr: "Appliquer les rapports, la simplification, la substitution et la résolution d'équations",
+      representation: "abstract",
+      visualAid: "bar-model",
+      ageBandStyle: "gameinspired",
+      objectiveCodes: ["Y7-L10-2"],
+      explanationMd:
+        "Ratio problems, collecting like terms, substituting into formulae and solving equations all appear here.\n\n" +
+        "The same balance principle runs through them: keep both sides of an equation equal, and keep ratio parts in proportion.",
+      explanationMdFr:
+        "Les problèmes de rapports, le regroupement des termes semblables, la substitution dans des formules et la résolution d'équations apparaissent tous ici.\n\n" +
+        "Le même principe d'équilibre les relie : garde les deux côtés d'une équation égaux, et garde les parts d'un rapport proportionnelles.",
+      workedExamples: [
+        { problem: "Solve 6x + 4 = 34", steps: ["34 - 4 = 30.", "30 ÷ 6 = 5."], answer: "x = 5" }
+      ],
+      workedExamplesFr: [
+        { problem: "Résous 6x + 4 = 34", steps: ["34 - 4 = 30.", "30 ÷ 6 = 5."], answer: "x = 5" }
+      ],
+      audioScript: "Balance both sides, and undo operations in reverse order.",
+      audioScriptFr: "Équilibre les deux côtés, et annule les opérations dans l'ordre inverse."
+    },
+    {
+      order: 3,
+      title: "Geometry and statistics review",
+      titleFr: "Révision de la géométrie et des statistiques",
+      concept: "Angle facts, area, volume and averages together",
+      conceptFr: "Faits sur les angles, aires, volumes et moyennes réunis",
+      representation: "pictorial",
+      visualAid: "shape",
+      ageBandStyle: "gameinspired",
+      objectiveCodes: ["Y7-L10-3"],
+      explanationMd:
+        "Angle facts, area and volume formulae and statistical measures all return here, mixed together.\n\n" +
+        "Always check your units: lengths in cm, areas in cm², volumes in cm³.",
+      explanationMdFr:
+        "Les faits sur les angles, les formules d'aire et de volume, et les mesures statistiques reviennent tous ici, mélangés.\n\n" +
+        "Vérifie toujours tes unités : longueurs en cm, aires en cm², volumes en cm³.",
+      workedExamples: [
+        { problem: "A cuboid is 3 cm by 4 cm by 10 cm. Find its volume.", steps: ["3 x 4 = 12.", "12 x 10 = 120."], answer: "120 cm³" }
+      ],
+      workedExamplesFr: [
+        { problem: "Un pavé droit mesure 3 cm sur 4 cm sur 10 cm. Trouve son volume.", steps: ["3 x 4 = 12.", "12 x 10 = 120."], answer: "120 cm³" }
+      ],
+      audioScript: "Check the units match the kind of measurement you are finding.",
+      audioScriptFr: "Vérifie que les unités correspondent au type de mesure que tu cherches."
+    }
+  ],
   Y8L1: [
     {
       order: 1,
