@@ -29,12 +29,18 @@ export interface YearProgressView {
 }
 
 export async function getJourneyForChild(childId: string, locale: Locale = "en"): Promise<YearProgressView[]> {
-  const [years, child, unlocks, submittedAttempts] = await Promise.all([
+  const [allYears, child, unlocks, submittedAttempts] = await Promise.all([
     prisma.schoolYear.findMany({ orderBy: { yearNumber: "asc" }, include: { levels: { orderBy: { levelNumber: "asc" } } } }),
-    prisma.childProfile.findUniqueOrThrow({ where: { id: childId } }),
+    prisma.childProfile.findUniqueOrThrow({ where: { id: childId }, include: { currentYear: true } }),
     prisma.levelUnlock.findMany({ where: { childId } }),
     prisma.assessmentAttempt.findMany({ where: { childId, status: "SUBMITTED" } })
   ]);
+
+  // A child only ever sees the year they were registered into onward — years
+  // below that are a different child's starting point, not an earlier stage
+  // of this child's own journey, so they're left off the map entirely rather
+  // than just shown locked.
+  const years = allYears.filter((year) => year.yearNumber >= child.currentYear.yearNumber);
 
   const unlockedIds = new Set(unlocks.map((u) => u.levelId));
   const bestScoreByLevel = new Map<string, number>();

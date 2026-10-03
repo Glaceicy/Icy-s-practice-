@@ -20,7 +20,9 @@ export const dictionary = {
       featureSafeTitle: "Safe by design",
       featureSafeBody: "No adverts, no public profiles, no child-to-child messaging. Children use an avatar and a 4-digit PIN — never an email address.",
       contentCoverage:
-        "Content coverage: Year 1 Levels 1, 2 and 10, plus Year 4 Level 1, Year 7 Level 1 and Year 10 Level 1 are fully built with validated lessons and question banks today. Every other level has its full curriculum structure in place and is clearly marked “Coming soon” while its content is authored using the same engine."
+        "Content coverage: Year 1 Levels 1, 2 and 10, plus Year 4 Level 1, Year 7 Level 1 and Year 10 Level 1 are fully built with validated lessons and question banks today. Every other level has its full curriculum structure in place and is clearly marked “Coming soon” while its content is authored using the same engine.",
+      studentPrompt: "Learning at home or school?",
+      studentLoginLink: "Student login"
     },
     login: {
       title: "Sign in",
@@ -36,7 +38,7 @@ export const dictionary = {
     register: {
       title: "Create your adult account",
       subtitle:
-        "Parents, carers and teachers use this account to create and manage child/learner profiles. Children never need their own email address — they sign in with an avatar and a 4-digit PIN.",
+        "Parents, carers and teachers use this account to create and manage child/learner profiles. Children never need their own email address — they sign in with your email and a 4-digit PIN.",
       fullNameLabel: "Your full name",
       emailLabel: "Email address",
       passwordLabel: "Password (at least 10 characters)",
@@ -49,6 +51,31 @@ export const dictionary = {
       submitting: "Creating your account...",
       alreadyHaveAccount: "Already have an account?",
       signInLink: "Sign in"
+    },
+    childLogin: {
+      title: "Student login",
+      subtitle: "Ask the grown-up who set up your profile for their email address if you don't know it.",
+      parentEmailLabel: "Parent or carer's email address",
+      pinLabel: "Your 4-digit PIN",
+      submit: "Log in",
+      submitting: "Checking...",
+      grownUpPrompt: "A parent or teacher?",
+      grownUpLink: "Sign in here"
+    },
+    checkEmail: {
+      title: "Check your email",
+      bodyWithEmail: "We've sent a verification link to {email}. Click it to activate your account — you'll need to do this before you can log in.",
+      bodyGeneric: "We've sent a verification link to your email address. Click it to activate your account before logging in.",
+      resendPrompt: "Didn't get it?",
+      resendButton: "Resend verification email",
+      resending: "Sending...",
+      resendConfirmation: "If that address has an account waiting to be verified, a new email is on its way."
+    },
+    verifyEmail: {
+      title: "Confirm your email",
+      subtitle: "Click below to confirm this is your email address and activate your account.",
+      confirmButton: "Confirm my email address",
+      missingToken: "This link is missing its verification code. Please use the link from your email, or request a new one from the login page."
     },
     profiles: {
       heading: "Who's learning today?",
@@ -76,10 +103,7 @@ export const dictionary = {
       submitting: "Creating profile..."
     },
     profilePinCard: {
-      enterPin: "Enter PIN",
-      pinLabelFor: "4-digit PIN for {name}",
-      go: "Go!",
-      checking: "Checking..."
+      go: "View this profile"
     },
     childTopBar: {
       journeyMap: "Journey map",
@@ -87,7 +111,8 @@ export const dictionary = {
       achievements: "🏆 Achievements",
       settings: "⚙️ Settings",
       parentDashboard: "Parent dashboard",
-      switchProfile: "Switch profile"
+      switchProfile: "Switch profile",
+      logOut: "Log out"
     },
     journeyYear: {
       heading: "{year} learning journey",
@@ -479,7 +504,9 @@ export const dictionary = {
       featureSafeTitle: "Sécurisé par conception",
       featureSafeBody: "Pas de publicités, pas de profils publics, pas de messagerie entre enfants. Les enfants utilisent un avatar et un code à 4 chiffres — jamais d’adresse e-mail.",
       contentCoverage:
-        "Contenu disponible : les niveaux 1, 2 et 10 de l’année 1, ainsi que le niveau 1 des années 4, 7 et 10 sont entièrement disponibles avec leçons et banques de questions validées. Chaque autre niveau a déjà sa structure de programme en place et est clairement marqué « Bientôt disponible » pendant que son contenu est rédigé avec le même moteur."
+        "Contenu disponible : les niveaux 1, 2 et 10 de l’année 1, ainsi que le niveau 1 des années 4, 7 et 10 sont entièrement disponibles avec leçons et banques de questions validées. Chaque autre niveau a déjà sa structure de programme en place et est clairement marqué « Bientôt disponible » pendant que son contenu est rédigé avec le même moteur.",
+      studentPrompt: "Tu apprends à la maison ou à l'école ?",
+      studentLoginLink: "Connexion élève"
     },
     login: {
       title: "Se connecter",
@@ -495,7 +522,7 @@ export const dictionary = {
     register: {
       title: "Créez votre compte adulte",
       subtitle:
-        "Les parents, tuteurs et enseignants utilisent ce compte pour créer et gérer les profils des enfants/apprenants. Les enfants n’ont jamais besoin de leur propre adresse e-mail — ils se connectent avec un avatar et un code à 4 chiffres.",
+        "Les parents, tuteurs et enseignants utilisent ce compte pour créer et gérer les profils des enfants/apprenants. Les enfants n’ont jamais besoin de leur propre adresse e-mail — ils se connectent avec votre adresse e-mail et un code à 4 chiffres.",
       fullNameLabel: "Votre nom complet",
       emailLabel: "Adresse e-mail",
       passwordLabel: "Mot de passe (au moins 10 caractères)",
@@ -508,6 +535,31 @@ export const dictionary = {
       submitting: "Création de votre compte...",
       alreadyHaveAccount: "Vous avez déjà un compte ?",
       signInLink: "Se connecter"
+    },
+    childLogin: {
+      title: "Connexion élève",
+      subtitle: "Demande l'adresse e-mail de l'adulte qui a créé ton profil si tu ne la connais pas.",
+      parentEmailLabel: "Adresse e-mail du parent ou tuteur",
+      pinLabel: "Ton code à 4 chiffres",
+      submit: "Se connecter",
+      submitting: "Vérification...",
+      grownUpPrompt: "Un parent ou un enseignant ?",
+      grownUpLink: "Connectez-vous ici"
+    },
+    checkEmail: {
+      title: "Consultez vos e-mails",
+      bodyWithEmail: "Nous avons envoyé un lien de vérification à {email}. Cliquez dessus pour activer votre compte — c'est nécessaire avant de pouvoir vous connecter.",
+      bodyGeneric: "Nous avons envoyé un lien de vérification à votre adresse e-mail. Cliquez dessus pour activer votre compte avant de vous connecter.",
+      resendPrompt: "Vous ne l'avez pas reçu ?",
+      resendButton: "Renvoyer l'e-mail de vérification",
+      resending: "Envoi en cours...",
+      resendConfirmation: "Si cette adresse a un compte en attente de vérification, un nouvel e-mail est en route."
+    },
+    verifyEmail: {
+      title: "Confirmez votre e-mail",
+      subtitle: "Cliquez ci-dessous pour confirmer que c'est bien votre adresse e-mail et activer votre compte.",
+      confirmButton: "Confirmer mon adresse e-mail",
+      missingToken: "Ce lien n'a pas de code de vérification. Veuillez utiliser le lien de votre e-mail, ou en demander un nouveau depuis la page de connexion."
     },
     profiles: {
       heading: "Qui apprend aujourd’hui ?",
@@ -535,10 +587,7 @@ export const dictionary = {
       submitting: "Création du profil..."
     },
     profilePinCard: {
-      enterPin: "Entrer le code",
-      pinLabelFor: "Code à 4 chiffres pour {name}",
-      go: "C’est parti !",
-      checking: "Vérification..."
+      go: "Voir ce profil"
     },
     childTopBar: {
       journeyMap: "Carte du parcours",
@@ -546,7 +595,8 @@ export const dictionary = {
       achievements: "🏆 Récompenses",
       settings: "⚙️ Paramètres",
       parentDashboard: "Tableau de bord parent",
-      switchProfile: "Changer de profil"
+      switchProfile: "Changer de profil",
+      logOut: "Se déconnecter"
     },
     journeyYear: {
       heading: "Parcours d’apprentissage — {year}",

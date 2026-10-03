@@ -36,6 +36,9 @@ model AdultUser {
   updatedAt    DateTime @updatedAt
   consentGivenAt DateTime? // parental / responsible-adult consent timestamp (ICO Children's Code)
   marketingOptIn Boolean  @default(false)
+  emailVerified  Boolean  @default(false) // login is blocked until this is true (see verifyEmailAction)
+  emailVerificationTokenHash String? @unique // sha256 of the one-time link token sent by email; never the raw token
+  emailVerificationExpiresAt DateTime?
 
   children     ChildProfile[]
   learningGoals LearningGoal[]

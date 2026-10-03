@@ -33,6 +33,15 @@ export default async function LandingPage() {
         )}
       </div>
 
+      {!session && (
+        <p className="mt-4 text-sm text-slate-600">
+          {t("home.studentPrompt")}{" "}
+          <Link href="/child-login" className="font-semibold text-brand-700 underline">
+            {t("home.studentLoginLink")}
+          </Link>
+        </p>
+      )}
+
       <dl className="mt-16 grid grid-cols-1 gap-6 text-left sm:grid-cols-3">
         <div className="rounded-xl2 border bg-white p-6 shadow-sm">
           <dt className="font-semibold text-brand-700">{t("home.featureYearsTitle")}</dt>

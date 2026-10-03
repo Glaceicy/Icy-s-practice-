@@ -82,7 +82,8 @@ async function seedDemoAccounts() {
       passwordHash,
       fullName: "Demo Parent",
       role: "PARENT",
-      consentGivenAt: new Date()
+      consentGivenAt: new Date(),
+      emailVerified: true
     },
     update: {}
   });
@@ -94,7 +95,8 @@ async function seedDemoAccounts() {
       passwordHash,
       fullName: "Demo Teacher",
       role: "TEACHER",
-      consentGivenAt: new Date()
+      consentGivenAt: new Date(),
+      emailVerified: true
     },
     update: {}
   });
@@ -106,7 +108,8 @@ async function seedDemoAccounts() {
       passwordHash,
       fullName: "Demo Administrator",
       role: "ADMIN",
-      consentGivenAt: new Date()
+      consentGivenAt: new Date(),
+      emailVerified: true
     },
     update: {}
   });

@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { getAdultSession } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { logoutAction } from "@/lib/actions/auth";
-import ProfilePinCard from "@/components/ProfilePinCard";
+import ProfileCard from "@/components/ProfileCard";
 import Mascot from "@/components/illustrations/Mascot";
 import { getLocale } from "@/lib/i18n/locale";
 import { translate } from "@/lib/i18n/translate";
@@ -51,12 +51,13 @@ export default async function ProfilesPage() {
 
       <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
         {children.map((child) => (
-          <ProfilePinCard
+          <ProfileCard
             key={child.id}
             childId={child.id}
             displayName={child.displayName}
             avatarKey={child.avatarKey}
             yearTitle={localize(locale, child.currentYear.title, child.currentYear.titleFr)}
+            locale={locale}
           />
         ))}
 

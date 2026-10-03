@@ -3,7 +3,7 @@
 import { z } from "zod";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/db";
-import { hashPin, requireAdult, requireActiveChild, setActiveChild, verifyPin, clearActiveChild } from "@/lib/auth";
+import { hashPin, requireAdult, requireActiveChild, setActiveChild, verifyPin, clearActiveChild, createChildSession, clearChildSession } from "@/lib/auth";
 import { setLocale } from "@/lib/i18n/locale";
 import type { FormState } from "./auth";
 import { AVATAR_KEYS } from "@/lib/types";
@@ -36,6 +36,16 @@ export async function createChildAction(_prev: FormState, formData: FormData): P
   const schoolYear = await prisma.schoolYear.findUnique({ where: { yearNumber } });
   if (!schoolYear) return { error: "That school year could not be found." };
 
+  // PINs must be unique across one parent's own children — a child logs in
+  // with [parent email + PIN] alone (see childLoginAction), so two siblings
+  // sharing a PIN would make that lookup ambiguous.
+  const siblings = await prisma.childProfile.findMany({ where: { ownerId: adult.id }, select: { pinHash: true } });
+  for (const sibling of siblings) {
+    if (await verifyPin(pin, sibling.pinHash)) {
+      return { error: "Another child already uses this PIN. Please choose a different 4-digit PIN.", fieldErrors: { pin: "PIN already in use by a sibling profile." } };
+    }
+  }
+
   const pinHash = await hashPin(pin);
   const child = await prisma.childProfile.create({
     data: {
@@ -57,26 +67,59 @@ export async function createChildAction(_prev: FormState, formData: FormData): P
   redirect("/profiles");
 }
 
-const selectChildSchema = z.object({
-  childId: z.string().min(1),
-  pin: z.string().regex(/^\d{4}$/, "Please enter the 4-digit PIN.")
-});
-
-export async function selectChildAction(_prev: FormState, formData: FormData): Promise<FormState> {
+/** Parent-driven only (Path 1 in auth.ts) — the parent is already fully
+ * authenticated via their own email+password, so no PIN is asked here. PINs
+ * are now solely the child's own credential for childLoginAction below. */
+export async function selectChildAction(childId: string): Promise<void> {
   const adult = await requireAdult();
-  const parsed = selectChildSchema.safeParse(Object.fromEntries(formData));
-  if (!parsed.success) return { error: "Please enter a 4-digit PIN." };
-  const { childId, pin } = parsed.data;
-
   const child = await prisma.childProfile.findFirst({ where: { id: childId, ownerId: adult.id } });
-  if (!child) return { error: "Profile not found." };
-
-  const valid = await verifyPin(pin, child.pinHash);
-  if (!valid) return { error: "Incorrect PIN. Please try again.", fieldErrors: { pin: "Incorrect PIN." } };
+  if (!child) throw new Error("NOT_FOUND");
 
   await setActiveChild(child.id);
   setLocale(child.locale === "fr" ? "fr" : "en");
   redirect(`/learn/${child.id}/journey`);
+}
+
+const childLoginSchema = z.object({
+  parentEmail: z.string().trim().toLowerCase().email("Please enter your parent's email address."),
+  pin: z.string().regex(/^\d{4}$/, "Please enter your 4-digit PIN.")
+});
+
+/** Path 2 in auth.ts — a child logging in directly with their parent's
+ * email and their own PIN, independent of any parent session. PINs aren't
+ * directly queryable (they're bcrypt hashes), so every child under that
+ * parent is checked in turn; PIN uniqueness per parent (enforced in
+ * createChildAction above) guarantees at most one of them can ever match. */
+export async function childLoginAction(_prev: FormState, formData: FormData): Promise<FormState> {
+  const parsed = childLoginSchema.safeParse(Object.fromEntries(formData));
+  if (!parsed.success) {
+    const fieldErrors: Record<string, string> = {};
+    for (const issue of parsed.error.issues) {
+      const key = issue.path[0];
+      if (typeof key === "string") fieldErrors[key] = issue.message;
+    }
+    return { error: "Please fix the errors below.", fieldErrors };
+  }
+  const { parentEmail, pin } = parsed.data;
+
+  const adult = await prisma.adultUser.findUnique({ where: { email: parentEmail } });
+  const genericError: FormState = { error: "We couldn't find a profile with that email and PIN. Please check them and try again." };
+  if (!adult) return genericError;
+
+  const children = await prisma.childProfile.findMany({ where: { ownerId: adult.id } });
+  for (const child of children) {
+    if (await verifyPin(pin, child.pinHash)) {
+      await createChildSession(child.id);
+      setLocale(child.locale === "fr" ? "fr" : "en");
+      redirect(`/learn/${child.id}/journey`);
+    }
+  }
+  return genericError;
+}
+
+export async function childLogoutAction(): Promise<void> {
+  await clearChildSession();
+  redirect("/child-login");
 }
 
 export async function switchProfileAction(): Promise<void> {

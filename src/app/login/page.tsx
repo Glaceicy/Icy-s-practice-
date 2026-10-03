@@ -23,6 +23,12 @@ export default async function LoginPage() {
           {t("login.createAccountLink")}
         </Link>
       </p>
+      <p className="mt-2 text-center text-sm text-slate-600">
+        {t("home.studentPrompt")}{" "}
+        <Link href="/child-login" className="font-semibold text-brand-700 underline">
+          {t("home.studentLoginLink")}
+        </Link>
+      </p>
     </main>
   );
 }

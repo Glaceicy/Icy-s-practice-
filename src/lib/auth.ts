@@ -2,10 +2,12 @@ import "server-only";
 import { cookies } from "next/headers";
 import { SignJWT, jwtVerify } from "jose";
 import bcrypt from "bcryptjs";
+import { createHash, randomBytes } from "crypto";
 import { prisma } from "./db";
 
 const SESSION_COOKIE = "mj_session";
 const CHILD_COOKIE = "mj_child";
+const CHILD_SESSION_COOKIE = "mj_child_session";
 const SESSION_MAX_AGE_SECONDS = 60 * 60 * 24 * 30; // 30 days
 
 function getSecretKey(): Uint8Array {
@@ -36,6 +38,20 @@ export async function hashPin(pin: string): Promise<string> {
 
 export async function verifyPin(pin: string, hash: string): Promise<boolean> {
   return bcrypt.compare(pin, hash);
+}
+
+/** A one-time, time-limited link token (e.g. for email verification). The
+ * raw token goes in the emailed link and is never stored; only its SHA-256
+ * hash is kept, so a database leak alone can't be used to "verify" an
+ * account — unlike a password/PIN this doesn't need slow bcrypt hashing,
+ * since the token already has 256 bits of its own entropy. */
+export function generateVerificationToken(): { token: string; tokenHash: string; expiresAt: Date } {
+  const token = randomBytes(32).toString("hex");
+  return { token, tokenHash: hashVerificationToken(token), expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000) };
+}
+
+export function hashVerificationToken(token: string): string {
+  return createHash("sha256").update(token).digest("hex");
 }
 
 export async function createAdultSession(adultId: string): Promise<void> {
@@ -79,6 +95,9 @@ export async function clearAdultSession(): Promise<void> {
   cookies().delete(CHILD_COOKIE);
 }
 
+/** Path 1 (parent-driven): the parent is fully logged in and has picked a
+ * child from /profiles to view/monitor. Layered on top of the adult
+ * session, so it only ever works for an already-authenticated parent. */
 export async function setActiveChild(childId: string): Promise<void> {
   cookies().set(CHILD_COOKIE, childId, {
     httpOnly: true,
@@ -93,16 +112,83 @@ export async function clearActiveChild(): Promise<void> {
   cookies().delete(CHILD_COOKIE);
 }
 
-/** Returns the active child profile, but only if it belongs to the currently
- * authenticated adult — re-verified against the database on every call so a
- * tampered cookie can never grant access to another family's child. */
+/** Path 2 (child-driven): a self-contained session for a child who logged
+ * in directly with their parent's email + their own PIN (see
+ * childLoginAction). Deliberately carries no adult/parent privileges at
+ * all — it is a completely separate credential from the adult session
+ * above, not layered on it, so a child using this never has a route into
+ * /dashboard, /profiles or /admin (those all require `requireAdult()`,
+ * which only ever looks at the adult session cookie). */
+export async function createChildSession(childId: string): Promise<void> {
+  const token = await new SignJWT({ childId, kind: "child" })
+    .setProtectedHeader({ alg: "HS256" })
+    .setIssuedAt()
+    .setExpirationTime(`${SESSION_MAX_AGE_SECONDS}s`)
+    .sign(getSecretKey());
+
+  cookies().set(CHILD_SESSION_COOKIE, token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    path: "/",
+    maxAge: SESSION_MAX_AGE_SECONDS
+  });
+}
+
+async function getChildSessionToken(): Promise<{ childId: string } | null> {
+  const token = cookies().get(CHILD_SESSION_COOKIE)?.value;
+  if (!token) return null;
+  try {
+    const { payload } = await jwtVerify(token, getSecretKey());
+    if (typeof payload.childId !== "string" || payload.kind !== "child") return null;
+    return { childId: payload.childId };
+  } catch {
+    return null;
+  }
+}
+
+export async function clearChildSession(): Promise<void> {
+  cookies().delete(CHILD_SESSION_COOKIE);
+}
+
+/** True while a child-only session (Path 2) is active — used purely to
+ * adapt the UI (e.g. ChildTopBar hides "switch profile"/"parent dashboard"
+ * links a child-only session could never use anyway, since requireAdult()
+ * would just refuse them). Never used as the actual access-control check —
+ * requireActiveChild()/assertChildAccess() below are. */
+export async function isChildOnlySession(): Promise<boolean> {
+  const adult = await getAdultSession();
+  if (adult) return false;
+  return (await getChildSessionToken()) !== null;
+}
+
+/** Returns the active child profile for either session type:
+ * - Path 1: a logged-in parent who has selected a child from /profiles.
+ * - Path 2: a child who logged in directly (parent email + their own PIN).
+ * Both paths re-verify against the database on every call — a tampered or
+ * stale cookie can never grant access to another family's child, and a
+ * parent session always takes priority if (improbably) both cookies are
+ * somehow present. */
 export async function requireActiveChild() {
-  const adult = await requireAdult();
-  const childId = cookies().get(CHILD_COOKIE)?.value;
-  if (!childId) throw new Error("NO_ACTIVE_CHILD");
-  const child = await prisma.childProfile.findFirst({ where: { id: childId, ownerId: adult.id } });
-  if (!child) throw new Error("NO_ACTIVE_CHILD");
-  return { adult, child };
+  const adultSession = await getAdultSession();
+  if (adultSession) {
+    const childId = cookies().get(CHILD_COOKIE)?.value;
+    if (!childId) throw new Error("NO_ACTIVE_CHILD");
+    const child = await prisma.childProfile.findFirst({ where: { id: childId, ownerId: adultSession.adultId }, include: { owner: true } });
+    if (!child) throw new Error("NO_ACTIVE_CHILD");
+    const { owner, ...rest } = child;
+    return { adult: owner, child: rest };
+  }
+
+  const childSession = await getChildSessionToken();
+  if (childSession) {
+    const child = await prisma.childProfile.findUnique({ where: { id: childSession.childId }, include: { owner: true } });
+    if (!child) throw new Error("NO_ACTIVE_CHILD");
+    const { owner, ...rest } = child;
+    return { adult: owner, child: rest };
+  }
+
+  throw new Error("NO_ACTIVE_CHILD");
 }
 
 /** Guards a /learn/[childId]/* route: the active child (verified above) must
