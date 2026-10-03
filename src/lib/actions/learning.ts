@@ -131,6 +131,7 @@ export interface MasteryStatePayload {
   totalQuestions: number;
   slots: MasterySlotPayload[];
   pathway: string;
+  redoJustStarted: boolean;
 }
 
 export async function beginMasteryAction(levelId: string): Promise<MasteryStatePayload> {
@@ -142,13 +143,14 @@ export async function beginMasteryAction(levelId: string): Promise<MasteryStateP
 }
 
 async function loadMasteryState(attemptId: string): Promise<MasteryStatePayload> {
-  const attempt = await getMasteryState(attemptId);
+  const { attempt, redoJustStarted } = await getMasteryState(attemptId);
   return {
     attemptId: attempt.id,
     status: attempt.status,
     currentRound: attempt.currentRound,
     totalQuestions: attempt.totalQuestions,
     pathway: attempt.pathway,
+    redoJustStarted,
     slots: attempt.answers.map((a) => ({
       roundNumber: a.roundNumber,
       positionInRound: a.positionInRound,

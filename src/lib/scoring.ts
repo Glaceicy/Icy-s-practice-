@@ -6,6 +6,8 @@ export const MASTERY_ROUNDS = 4;
 export const MASTERY_QUESTIONS_PER_ROUND = MASTERY_TOTAL_QUESTIONS / MASTERY_ROUNDS;
 export const MASTERY_PASS_CORRECT = 38; // 38/40 = 95%
 export const MASTERY_PASS_PERCENTAGE = 95;
+export const MASTERY_REDO_ROUND_NUMBER = MASTERY_ROUNDS + 1; // 5 — the one-chance "fix your mistakes" round offered after a failed first pass
+export const MASTERY_REDO_FAIL_THRESHOLD = 3; // 3+ still wrong after the redo round means the whole level must be redone
 export const GUIDED_PRACTICE_QUESTIONS = 10;
 export const INDEPENDENT_PRACTICE_MIN_QUESTIONS = 20;
 export const REVISION_MIN_QUESTIONS = 10;

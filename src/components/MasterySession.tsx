@@ -11,27 +11,35 @@ import {
   finalizeMasteryAction,
   type MasteryStatePayload
 } from "@/lib/actions/learning";
+import { MASTERY_REDO_ROUND_NUMBER } from "@/lib/scoring";
 import type { StoredQuestionView } from "@/lib/services/questionLog";
 import QuestionInput from "./QuestionInput";
-import WrongAnswerCard, { type WrongAnswerSupportView } from "./WrongAnswerCard";
-import WrongAnswerReviewPanel from "./WrongAnswerReviewPanel";
 import Scratchpad from "./Scratchpad";
 import Mascot from "./illustrations/Mascot";
 import { useT } from "./I18nProvider";
 
-type ViewMode = "loading" | "paused" | "question" | "round-complete" | "ready-to-submit" | "submitting";
+type ViewMode = "loading" | "paused" | "question" | "round-complete" | "redo-intro" | "ready-to-submit" | "submitting";
 
 export default function MasterySession({ attemptId, childId, levelId }: { attemptId: string; childId: string; levelId: string }) {
   const router = useRouter();
   const [state, setState] = useState<MasteryStatePayload | null>(null);
   const [question, setQuestion] = useState<StoredQuestionView | null>(null);
-  const [support, setSupport] = useState<WrongAnswerSupportView | null>(null);
+  const [wasWrong, setWasWrong] = useState(false);
   const [mode, setMode] = useState<ViewMode>("loading");
   const [justFinishedRound, setJustFinishedRound] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
-  const [hasWrongAnswers, setHasWrongAnswers] = useState(false);
   const t = useT();
+
+  const showQuestionFor = useCallback(
+    async (roundNumber: number, positionInRound: number) => {
+      const q = await getMasteryQuestionAction(attemptId, roundNumber, positionInRound);
+      setQuestion(q.question);
+      setWasWrong(false);
+      setMode("question");
+    },
+    [attemptId]
+  );
 
   const refresh = useCallback(async () => {
     const s = await getMasteryStateAction(attemptId);
@@ -49,11 +57,15 @@ export default function MasterySession({ attemptId, childId, levelId }: { attemp
       setMode("ready-to-submit");
       return;
     }
-    const q = await getMasteryQuestionAction(attemptId, nextSlot.roundNumber, nextSlot.positionInRound);
-    setQuestion(q.question);
-    setSupport(null);
-    setMode("question");
-  }, [attemptId, childId, levelId, router]);
+    if (s.redoJustStarted) {
+      // One-time interstitial: the main 40 just finished short of passing,
+      // and the server has generated fresh redo questions for exactly the
+      // ones the child got wrong — explain that before diving back in.
+      setMode("redo-intro");
+      return;
+    }
+    await showQuestionFor(nextSlot.roundNumber, nextSlot.positionInRound);
+  }, [attemptId, childId, levelId, router, showQuestionFor]);
 
   useEffect(() => {
     refresh();
@@ -68,11 +80,15 @@ export default function MasterySession({ attemptId, childId, levelId }: { attemp
     try {
       const result = await submitMasteryAnswerAction(attemptId, nextSlot.roundNumber, nextSlot.positionInRound, answer);
       if (!result.isCorrect) {
-        setSupport(result.support);
-        setHasWrongAnswers(true);
+        // The Mastery Challenge never reveals the correct answer or an
+        // explanation in the moment — just a plain "not quite", then on to
+        // the next question. Full explanations are only ever shown on the
+        // results screen once the whole challenge (including any redo
+        // round) is submitted.
+        setWasWrong(true);
         return;
       }
-      if (result.roundComplete && nextSlot.positionInRound === 10) {
+      if (result.roundComplete && nextSlot.roundNumber !== MASTERY_REDO_ROUND_NUMBER && nextSlot.positionInRound === 10) {
         setJustFinishedRound(nextSlot.roundNumber);
         setMode("round-complete");
         return;
@@ -86,7 +102,7 @@ export default function MasterySession({ attemptId, childId, levelId }: { attemp
   }
 
   async function continueAfterWrong() {
-    setSupport(null);
+    setWasWrong(false);
     await refresh();
   }
 
@@ -102,6 +118,15 @@ export default function MasterySession({ attemptId, childId, levelId }: { attemp
 
   async function handleContinueRound() {
     await refresh();
+  }
+
+  async function handleStartRedoRound() {
+    const nextSlot = state?.slots.find((sl) => !sl.locked);
+    if (!nextSlot) {
+      await refresh();
+      return;
+    }
+    await showQuestionFor(nextSlot.roundNumber, nextSlot.positionInRound);
   }
 
   async function handleFinalize() {
@@ -157,13 +182,29 @@ export default function MasterySession({ attemptId, childId, levelId }: { attemp
     );
   }
 
+  if (mode === "redo-intro") {
+    const redoCount = state.slots.filter((s) => s.roundNumber === MASTERY_REDO_ROUND_NUMBER).length;
+    return (
+      <div className="rounded-xl2 border bg-white p-8 text-center shadow-sm">
+        <div className="flex justify-center">
+          <Mascot mood="think" className="h-20 w-20 animate-pop-in" />
+        </div>
+        <h2 className="mt-2 text-xl font-bold text-brand-800">{t("masterySession.redoIntroTitle")}</h2>
+        <p className="mt-2 text-slate-600">{t("masterySession.redoIntroBody", { count: redoCount })}</p>
+        <button type="button" onClick={handleStartRedoRound} className="touch-target mt-6 rounded-xl2 bg-brand-600 px-6 py-3 font-semibold text-white hover:bg-brand-700">
+          {t("masterySession.redoIntroButton")}
+        </button>
+      </div>
+    );
+  }
+
   if (mode === "ready-to-submit" || mode === "submitting") {
     return (
       <div className="rounded-xl2 border bg-white p-8 text-center shadow-sm">
         <p className="text-4xl" aria-hidden="true">
           ✅
         </p>
-        <h2 className="mt-2 text-xl font-bold text-brand-800">{t("masterySession.allAnsweredTitle")}</h2>
+        <h2 className="mt-2 text-xl font-bold text-brand-800">{t("masterySession.allAnsweredTitle", { total: state.totalQuestions })}</h2>
         <p className="mt-2 text-slate-600">{t("masterySession.allAnsweredBody")}</p>
         <button
           type="button"
@@ -182,12 +223,18 @@ export default function MasterySession({ attemptId, childId, levelId }: { attemp
   const answeredCount = state.slots.filter((s) => s.locked).length;
   const nextSlot = state.slots.find((sl) => !sl.locked)!;
   const progress = Math.round((answeredCount / state.totalQuestions) * 100);
+  const isRedoQuestion = nextSlot.roundNumber === MASTERY_REDO_ROUND_NUMBER;
+  const redoTotal = state.slots.filter((s) => s.roundNumber === MASTERY_REDO_ROUND_NUMBER).length;
 
   return (
     <div>
       <div className="mb-4">
         <div className="flex justify-between text-xs font-semibold text-slate-500">
-          <span>{t("masterySession.roundOf", { round: nextSlot.roundNumber, position: nextSlot.positionInRound })}</span>
+          <span>
+            {isRedoQuestion
+              ? t("masterySession.redoQuestionOf", { position: nextSlot.positionInRound, total: redoTotal })
+              : t("masterySession.roundOf", { round: nextSlot.roundNumber, position: nextSlot.positionInRound })}
+          </span>
           <span>{t("masterySession.remainingOverall", { count: state.totalQuestions - answeredCount })}</span>
         </div>
         <div className="mt-1 h-2 w-full rounded-full bg-slate-200" role="progressbar" aria-valuenow={progress} aria-valuemin={0} aria-valuemax={100}>
@@ -197,7 +244,6 @@ export default function MasterySession({ attemptId, childId, levelId }: { attemp
 
       <div className="mb-4 flex flex-wrap gap-3">
         <Scratchpad />
-        {hasWrongAnswers && <WrongAnswerReviewPanel attemptId={attemptId} kind="mastery" hasWrongAnswers={hasWrongAnswers} />}
       </div>
 
       {error && <p className="mb-3 rounded-lg bg-berry-50 p-3 text-sm text-berry-600">{error}</p>}
@@ -205,20 +251,23 @@ export default function MasterySession({ attemptId, childId, levelId }: { attemp
       <div className="rounded-xl2 border bg-white p-6 shadow-sm" data-testid="question-card" data-log-id={question.logId}>
         <p className="text-xl font-semibold text-slate-800">{question.prompt}</p>
         <div className="mt-4">
-          <QuestionInput question={question} disabled={!!support || submitting} onSubmit={handleAnswer} />
+          <QuestionInput question={question} disabled={wasWrong || submitting} onSubmit={handleAnswer} />
         </div>
       </div>
 
-      {support && (
+      {wasWrong && (
         <div className="mt-4 space-y-3">
-          <WrongAnswerCard support={support} />
+          <div className="rounded-xl2 border-2 border-slate-300 bg-slate-50 p-5 text-center" role="status" data-testid="mastery-wrong-notice">
+            <p className="text-lg font-bold text-slate-700">{t("masterySession.wrongNoticeTitle")}</p>
+            <p className="mt-1 text-sm text-slate-600">{t("masterySession.wrongNoticeBody")}</p>
+          </div>
           <button type="button" onClick={continueAfterWrong} className="touch-target w-full rounded-xl2 bg-brand-600 px-6 py-3 font-semibold text-white hover:bg-brand-700">
             {t("masterySession.continueNext")}
           </button>
         </div>
       )}
 
-      {!support && (
+      {!wasWrong && (
         <button type="button" onClick={handlePause} className="mt-4 text-sm font-semibold text-slate-500 underline">
           {t("masterySession.pauseAndSave")}
         </button>

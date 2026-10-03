@@ -2,6 +2,8 @@ import { describe, expect, it } from "vitest";
 import {
   MASTERY_PASS_CORRECT,
   MASTERY_TOTAL_QUESTIONS,
+  MASTERY_REDO_ROUND_NUMBER,
+  MASTERY_REDO_FAIL_THRESHOLD,
   computeScorePercentage,
   isMasteryPass,
   positionInRoundForQuestionIndex,
@@ -39,6 +41,11 @@ describe("scoring rules (spec §16)", () => {
   it("MASTERY_PASS_CORRECT is exactly 38 out of 40", () => {
     expect(MASTERY_PASS_CORRECT).toBe(38);
     expect(MASTERY_TOTAL_QUESTIONS).toBe(40);
+  });
+
+  it("the redo round is round 5, and 3+ still wrong after it means the whole level is redone", () => {
+    expect(MASTERY_REDO_ROUND_NUMBER).toBe(5);
+    expect(MASTERY_REDO_FAIL_THRESHOLD).toBe(3);
   });
 
   it("maps a zero-based question index to its round (1-4) and position-in-round (1-10)", () => {

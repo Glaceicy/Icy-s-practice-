@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { assertChildAccess } from "@/lib/auth";
 import { prisma } from "@/lib/db";
-import { MASTERY_PASS_CORRECT, MASTERY_TOTAL_QUESTIONS } from "@/lib/scoring";
+import { MASTERY_PASS_CORRECT, MASTERY_TOTAL_QUESTIONS, MASTERY_REDO_ROUND_NUMBER } from "@/lib/scoring";
 import { nextLevelRef } from "@/lib/curriculum";
 import { getWrongAnswersForMasteryAttempt } from "@/lib/services/mastery";
 import ChildTopBar from "@/components/ChildTopBar";
@@ -23,8 +23,13 @@ export default async function ResultsPage({ params }: { params: { childId: strin
   if (!attempt || attempt.childId !== child.id || attempt.status !== "SUBMITTED") notFound();
 
   const locale = child.locale === "fr" ? "fr" : "en";
+  const redoApplied = attempt.answers.some((a) => a.roundNumber === MASTERY_REDO_ROUND_NUMBER);
+  // Once a redo round exists it supersedes the main-round misses it covers —
+  // a question fixed on the redo is, in the end, no longer a weak spot — so
+  // the weak-objectives list is built from whichever round has the final say.
+  const sourceAnswers = redoApplied ? attempt.answers.filter((a) => a.roundNumber === MASTERY_REDO_ROUND_NUMBER) : attempt.answers.filter((a) => a.roundNumber !== MASTERY_REDO_ROUND_NUMBER);
   const weakObjectives = new Map<string, { code: string; description: string; count: number }>();
-  for (const a of attempt.answers) {
+  for (const a of sourceAnswers) {
     if (!a.isCorrect) {
       const obj = a.questionLog.template.objective;
       const existing = weakObjectives.get(obj.id);
@@ -46,10 +51,14 @@ export default async function ResultsPage({ params }: { params: { childId: strin
         </div>
         <h1 className="mt-2 text-2xl font-extrabold text-brand-800">{attempt.passed ? t("masteryResults.passedTitle") : t("masteryResults.notPassedTitle")}</h1>
         <p className="mt-3 text-4xl font-bold text-brand-700">
-          {attempt.correctFirstAttempt} / {attempt.totalQuestions}
+          {attempt.correctFirstAttempt} / {MASTERY_TOTAL_QUESTIONS}
         </p>
         <p className="text-lg text-slate-600">{Math.round(attempt.scorePercentage ?? 0)}%</p>
         <p className="mt-2 text-sm text-slate-500">{t("masteryResults.passRequirement", { needed: MASTERY_PASS_CORRECT, total: MASTERY_TOTAL_QUESTIONS })}</p>
+
+        {redoApplied && (
+          <p className="mt-3 text-sm font-semibold text-brand-700">{t(attempt.passed ? "masteryResults.redoPassedNote" : "masteryResults.redoFailedNote")}</p>
+        )}
 
         {attempt.passed && next && (
           <p className="mt-4 rounded-lg bg-white p-3 font-semibold text-leaf-700">{t("masteryResults.unlockedNext", { year: next.year, level: next.level })}</p>
