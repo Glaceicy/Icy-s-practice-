@@ -25,6 +25,14 @@ import y3l1 from "./year3/level1";
 import y3l2 from "./year3/level2";
 import y6l1 from "./year6/level1";
 import y6l2 from "./year6/level2";
+import y6l3 from "./year6/level3";
+import y6l4 from "./year6/level4";
+import y6l5 from "./year6/level5";
+import y6l6 from "./year6/level6";
+import y6l7 from "./year6/level7";
+import y6l8 from "./year6/level8";
+import y6l9 from "./year6/level9";
+import y6l10 from "./year6/level10";
 import y7l1 from "./year7/level1";
 import y7l2 from "./year7/level2";
 import y7l3 from "./year7/level3";
@@ -45,6 +53,15 @@ import y9l5 from "./year9/level5";
 import y9l6 from "./year9/level6";
 import y9l7 from "./year9/level7";
 import y10l1 from "./year10/level1";
+import y10l2 from "./year10/level2";
+import y10l3 from "./year10/level3";
+import y10l4 from "./year10/level4";
+import y10l5 from "./year10/level5";
+import y10l6 from "./year10/level6";
+import y10l7 from "./year10/level7";
+import y10l8 from "./year10/level8";
+import y10l9 from "./year10/level9";
+import y10l10 from "./year10/level10";
 
 // Levels with a fully authored, validated question bank (>=15 templates,
 // each verified to reach >=150 distinct valid variations — Year 1 Levels 1,
@@ -82,6 +99,14 @@ export function loadAllTemplates(): void {
   registerTemplates("Y3L2", y3l2);
   registerTemplates("Y6L1", y6l1);
   registerTemplates("Y6L2", y6l2);
+  registerTemplates("Y6L3", y6l3);
+  registerTemplates("Y6L4", y6l4);
+  registerTemplates("Y6L5", y6l5);
+  registerTemplates("Y6L6", y6l6);
+  registerTemplates("Y6L7", y6l7);
+  registerTemplates("Y6L8", y6l8);
+  registerTemplates("Y6L9", y6l9);
+  registerTemplates("Y6L10", y6l10);
   registerTemplates("Y7L1", y7l1);
   registerTemplates("Y7L2", y7l2);
   registerTemplates("Y7L3", y7l3);
@@ -102,7 +127,16 @@ export function loadAllTemplates(): void {
   registerTemplates("Y9L6", y9l6);
   registerTemplates("Y9L7", y9l7);
   registerTemplates("Y10L1", y10l1);
+  registerTemplates("Y10L2", y10l2);
+  registerTemplates("Y10L3", y10l3);
+  registerTemplates("Y10L4", y10l4);
+  registerTemplates("Y10L5", y10l5);
+  registerTemplates("Y10L6", y10l6);
+  registerTemplates("Y10L7", y10l7);
+  registerTemplates("Y10L8", y10l8);
+  registerTemplates("Y10L9", y10l9);
+  registerTemplates("Y10L10", y10l10);
   loaded = true;
 }
 
-export const COMPLETE_LEVEL_KEYS = ["Y1L1", "Y1L2", "Y1L3", "Y1L4", "Y1L5", "Y1L6", "Y1L10", "Y2L1", "Y2L2", "Y2L3", "Y2L4", "Y3L1", "Y3L2", "Y4L1", "Y5L1", "Y5L2", "Y5L3", "Y5L4", "Y5L5", "Y5L6", "Y5L7", "Y5L8", "Y5L9", "Y5L10", "Y6L1", "Y6L2", "Y7L1", "Y7L2", "Y7L3", "Y7L4", "Y7L5", "Y7L6", "Y7L7", "Y7L8", "Y7L9", "Y7L10", "Y8L1", "Y8L2", "Y9L1", "Y9L2", "Y9L3", "Y9L4", "Y9L5", "Y9L6", "Y9L7", "Y10L1"] as const;
+export const COMPLETE_LEVEL_KEYS = ["Y1L1", "Y1L2", "Y1L3", "Y1L4", "Y1L5", "Y1L6", "Y1L10", "Y2L1", "Y2L2", "Y2L3", "Y2L4", "Y3L1", "Y3L2", "Y4L1", "Y5L1", "Y5L2", "Y5L3", "Y5L4", "Y5L5", "Y5L6", "Y5L7", "Y5L8", "Y5L9", "Y5L10", "Y6L1", "Y6L2", "Y6L3", "Y6L4", "Y6L5", "Y6L6", "Y6L7", "Y6L8", "Y6L9", "Y6L10", "Y7L1", "Y7L2", "Y7L3", "Y7L4", "Y7L5", "Y7L6", "Y7L7", "Y7L8", "Y7L9", "Y7L10", "Y8L1", "Y8L2", "Y9L1", "Y9L2", "Y9L3", "Y9L4", "Y9L5", "Y9L6", "Y9L7", "Y10L1", "Y10L2", "Y10L3", "Y10L4", "Y10L5", "Y10L6", "Y10L7", "Y10L8", "Y10L9", "Y10L10"] as const;

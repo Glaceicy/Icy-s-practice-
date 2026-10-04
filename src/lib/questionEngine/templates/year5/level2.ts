@@ -245,12 +245,12 @@ export const level: QuestionTemplateDef[] = [
     key: "y5l2.wordProblemSavings", levelKey: "Y5L2", objectiveCode: "Y5-L2-3", difficulty: "REASONING",
     misconceptionTags: ["ORDER_OF_OPERATIONS_ERROR"], type: "WORD_PROBLEM",
     ranges: [[500, 5000], [100, 2000], [100, 1500]], compute: (v) => v[0]! + v[1]! - v[2]!,
-    promptTemplates: ["A family had £{a} in savings. They added £{b} from a bonus, then spent £{c} on a repair. How much do they have now?"],
+    promptTemplates: ["A family had {a} in savings. They added {b} from a bonus, then spent {c} on a repair. How much do they have now?"],
     explain: (v, r) => [`£${v[0]} + £${v[1]} = £${v[0]! + v[1]!}.`, `£${v[0]! + v[1]!} - £${v[2]} = £${r}.`],
     hints: () => ["Add the money coming in first, then subtract the money spent."],
     formatValue: (n) => `£${n}`,
     fr: {
-      promptTemplates: ["Une famille avait £{a} d'économies. Elle a ajouté £{b} grâce à une prime, puis dépensé £{c} pour une réparation. Combien lui reste-t-il maintenant ?"],
+      promptTemplates: ["Une famille avait {a} d'économies. Elle a ajouté {b} grâce à une prime, puis dépensé {c} pour une réparation. Combien lui reste-t-il maintenant ?"],
       explain: (v, r) => [`£${v[0]} + £${v[1]} = £${v[0]! + v[1]!}.`, `£${v[0]! + v[1]!} - £${v[2]} = £${r}.`],
       hints: () => ["Additionne d'abord l'argent reçu, puis soustrais l'argent dépensé."]
     },
@@ -261,13 +261,13 @@ export const level: QuestionTemplateDef[] = [
     misconceptionTags: ["SUBTRACTION_MISCOUNT"], type: "WORD_PROBLEM",
     ranges: [[2000, 9000], [500, 3000], [500, 3000]], constraint: (v) => v[0]! > v[1]! + v[2]!,
     compute: (v) => v[0]! - v[1]! - v[2]!, contextPool: SHOPS,
-    promptTemplates: ["{ctx} had a budget of £{a}. It spent £{b} on stock and £{c} on delivery costs. How much of the budget is left?"],
+    promptTemplates: ["{ctx} had a budget of {a}. It spent {b} on stock and {c} on delivery costs. How much of the budget is left?"],
     explain: (v, r) => [`£${v[0]} - £${v[1]} = £${v[0]! - v[1]!}.`, `£${v[0]! - v[1]!} - £${v[2]} = £${r}.`],
     hints: () => ["Subtract each cost from the budget, one at a time."],
     formatValue: (n) => `£${n}`,
     fr: {
       contextPool: SHOPS_FR,
-      promptTemplates: ["Le budget de {ctx} était de £{a}. £{b} ont été dépensés en stock et £{c} en frais de livraison. Combien reste-t-il du budget ?"],
+      promptTemplates: ["Le budget de {ctx} était de {a}. {b} ont été dépensés en stock et {c} en frais de livraison. Combien reste-t-il du budget ?"],
       explain: (v, r) => [`£${v[0]} - £${v[1]} = £${v[0]! - v[1]!}.`, `£${v[0]! - v[1]!} - £${v[2]} = £${r}.`],
       hints: () => ["Soustrais chaque coût du budget, un à la fois."]
     },

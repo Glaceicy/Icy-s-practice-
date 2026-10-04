@@ -64,7 +64,7 @@ export const level: QuestionTemplateDef[] = [
     explain: (v, r) => [`Subtracting a negative is the same as adding: ${v[0]} - (-${v[1]}) = ${v[0]} + ${v[1]} = ${r}.`],
     hints: () => ["Two minus signs together become a plus sign."],
     fr: {
-      promptTemplates: ["{a} - (-{b}) = ?", "Calcule {a} moins moins {b}."],
+      promptTemplates: ["{a} - (-{b}) = ?", "Calcule {a} moins le nombre négatif {b}."],
       explain: (v, r) => [`Soustraire un négatif revient à additionner : ${v[0]} - (-${v[1]}) = ${v[0]} + ${v[1]} = ${r}.`],
       hints: () => ["Deux signes moins ensemble deviennent un signe plus."]
     },

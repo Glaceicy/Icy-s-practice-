@@ -191,7 +191,7 @@ and every year's journey map). This satisfies "the complete curriculum-
 objective structure" from the final delivery requirements.
 
 **Fully authored** (lessons + a validated, ≥150-variation-per-template
-question bank, playable end to end) — **46 of the 100 levels**:
+question bank, playable end to end) — **63 of the 100 levels**:
 
 | Level | Templates | Why this one |
 | --- | --- | --- |
@@ -221,6 +221,14 @@ question bank, playable end to end) — **46 of the 100 levels**:
 | Year 3, Level 2 | 21 | Mental addition/subtraction with hundreds/tens/ones, formal column methods, estimating and checking with inverses |
 | Year 6, Level 1 | 21 | Place value/ordering to 10,000,000, rounding to any degree of accuracy, negative numbers and intervals across zero |
 | Year 6, Level 2 | 21 | Formal written multiplication (4-digit x 2-digit), division with remainders, multi-step problems with estimation |
+| Year 6, Level 3 | 15 | Adding/subtracting fractions with different denominators and mixed numbers, multiplying proper fractions, dividing a fraction by a whole number |
+| Year 6, Level 4 | 15 | Decimal place value to three places, a fraction as a division, fraction/decimal/percentage equivalents |
+| Year 6, Level 5 | 15 | Ratio language, unequal sharing and grouping, scale factors |
+| Year 6, Level 6 | 15 | Formulae in words and symbols, linear sequences, equations with two unknowns |
+| Year 6, Level 7 | 15 | Area of triangles and parallelograms, volume of cubes and cuboids, metric and miles/kilometres conversion |
+| Year 6, Level 8 | 15 | Angles in triangles/quadrilaterals/regular polygons, drawing shapes accurately, four-quadrant coordinates |
+| Year 6, Level 9 | 15 | Pie charts and line graphs, the mean as an average |
+| Year 6, Level 10 | 16 | Year 6 mixed reasoning and SATs-style mastery across all three domains |
 | Year 7, Level 1 | 15 | Proves the engine at KS3 depth (negative numbers) |
 | Year 7, Level 2 | 15 | Four operations, BIDMAS, calculator accuracy |
 | Year 7, Level 3 | 15 | Simplifying fractions, fraction arithmetic, fractions as operators |
@@ -241,8 +249,17 @@ question bank, playable end to end) — **46 of the 100 levels**:
 | Year 9, Level 6 | 15 | Translation vectors, standard constructions, combined transformations |
 | Year 9, Level 7 | 15 | Pythagoras and introductory trigonometry |
 | Year 10, Level 1 | 15 | Proves the engine at KS4/GCSE depth, including Foundation/Higher pathway-tagged templates |
+| Year 10, Level 2 | 17 | Direct/inverse proportion, growth, decay and compound interest, compound measures (Higher: pressure) |
+| Year 10, Level 3 | 17 | Manipulating expressions, linear and quadratic equations, nth term of linear and quadratic sequences (Higher: algebraic fractions) |
+| Year 10, Level 4 | 15 | Quadratics by factorising and formula, simultaneous equations, graphical solutions (Higher: completing the square) |
+| Year 10, Level 5 | 15 | Linear/quadratic/cubic graphs, gradient as a rate of change, direct and inverse proportion graphs |
+| Year 10, Level 6 | 17 | Congruence conditions, similarity of lengths/areas/volumes, geometric reasoning (Higher: similar-triangle proof) |
+| Year 10, Level 7 | 18 | Pythagoras in 2D and 3D, trigonometric ratios, exact values (Higher: sine rule, cosine rule, ½ab sin C) |
+| Year 10, Level 8 | 17 | Circles and spheres, surface area and volume, vectors (Higher: vector proof) |
+| Year 10, Level 9 | 18 | Tree and Venn diagrams, conditional probability, sampling and bias (Higher: cumulative frequency and box plots) |
+| Year 10, Level 10 | 17 | Year 10 GCSE-style mixed mastery across number, algebra, geometry, probability and statistics (Higher: surds, completing the square) |
 
-Every one of these 46 levels' templates is individually verified (by
+Every one of these 63 levels' templates is individually verified (by
 `tests/questionEngine.test.ts`) to generate at least 150 distinct, valid
 variations, exactly as spec §7 requires per level; the first three meet the
 full ≥30-template bar from spec §7, the rest ship at 15-27 templates each
@@ -250,12 +267,12 @@ full ≥30-template bar from spec §7, the rest ship at 15-27 templates each
 and validated proof of the engine at that age range, rather than a diluted
 attempt at 30 across all of them.
 
-Years 5 and 7 are being filled in level-by-level, in the order children are
-actually reaching them — see the commit history for progress; the table
+Years 1, 5, 6, 7, 9 and 10 are being filled in level-by-level, in the order
+children are actually reaching them — see the commit history for progress; the table
 above and `COMPLETE_LEVEL_KEYS` in `src/lib/questionEngine/templates/all.ts`
 are always the source of truth for exactly which levels are live.
 
-**The other 72 levels** have their objectives fully defined but no lessons
+**The other 37 levels** have their objectives fully defined but no lessons
 or question templates yet (`Level.status = "SCAFFOLDED"` in the database).
 The app **never presents a scaffolded level as playable**: the journey map
 shows it as unlocked-but-"Coming soon" once a child reaches it, and the
@@ -391,7 +408,7 @@ are no placeholder controls.
 
 ## 14. Known limitations
 
-- Only 46 of 100 levels have full lesson/question content (§6) — this is the
+- Only 63 of 100 levels have full lesson/question content (§6) — this is the
   single biggest gap versus the full spec and is the natural next phase of
   work, using the exact same engine.
 - "Time spent learning" on the dashboard/report is estimated from

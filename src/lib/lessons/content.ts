@@ -3630,5 +3630,1326 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       audioScript: "Look for the largest square factor hiding inside the surd.",
       audioScriptFr: "Cherche le plus grand facteur carré caché à l'intérieur de la racine."
     }
+  ],
+  Y6L3: [
+    {
+      order: 1,
+      title: "Adding and subtracting fractions with different denominators",
+      titleFr: "Additionner et soustraire des fractions de dénominateurs différents",
+      concept: "Finding a common denominator before adding or subtracting fractions and mixed numbers",
+      conceptFr: "Trouver un dénominateur commun avant d'additionner ou de soustraire des fractions et des nombres mixtes",
+      representation: "pictorial",
+      visualAid: "fraction-diagram",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y6-L3-1"],
+      explanationMd:
+        "You can only add or subtract fractions when the pieces are the same size, so first change them to a **common denominator** — usually the lowest common multiple of the two denominators.\n\n" +
+        "With mixed numbers, deal with the whole numbers and the fraction parts separately, and convert to improper fractions if the fraction part would go negative.",
+      explanationMdFr:
+        "On ne peut additionner ou soustraire des fractions que si les parts ont la même taille : il faut donc d'abord les mettre au même **dénominateur commun** — en général le plus petit multiple commun des deux dénominateurs.\n\n" +
+        "Avec des nombres mixtes, traite les entiers et les parties fractionnaires séparément, et convertis en fractions impropres si la partie fractionnaire deviendrait négative.",
+      workedExamples: [
+        { problem: "2/3 + 1/4", steps: ["The lowest common multiple of 3 and 4 is 12.", "2/3 = 8/12 and 1/4 = 3/12.", "8/12 + 3/12 = 11/12."], answer: "11/12" },
+        { problem: "3 1/2 - 1 3/4", steps: ["Write both with denominator 4: 3 2/4 - 1 3/4.", "2/4 is smaller than 3/4, so borrow: 2 6/4 - 1 3/4.", "2 - 1 = 1 and 6/4 - 3/4 = 3/4."], answer: "1 3/4" }
+      ],
+      workedExamplesFr: [
+        { problem: "2/3 + 1/4", steps: ["Le plus petit multiple commun de 3 et 4 est 12.", "2/3 = 8/12 et 1/4 = 3/12.", "8/12 + 3/12 = 11/12."], answer: "11/12" },
+        { problem: "3 1/2 - 1 3/4", steps: ["Écris les deux avec le dénominateur 4 : 3 2/4 - 1 3/4.", "2/4 est plus petit que 3/4, donc emprunte : 2 6/4 - 1 3/4.", "2 - 1 = 1 et 6/4 - 3/4 = 3/4."], answer: "1 3/4" }
+      ],
+      audioScript: "Same-sized pieces first! Find a common denominator, then add or subtract the numerators.",
+      audioScriptFr: "D'abord des parts de même taille ! Trouve un dénominateur commun, puis additionne ou soustrais les numérateurs."
+    },
+    {
+      order: 2,
+      title: "Multiplying pairs of proper fractions",
+      titleFr: "Multiplier des paires de fractions propres",
+      concept: "Multiplying numerators and denominators, and simplifying the result",
+      conceptFr: "Multiplier les numérateurs et les dénominateurs, puis simplifier le résultat",
+      representation: "pictorial",
+      visualAid: "fraction-diagram",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y6-L3-2"],
+      explanationMd:
+        "To multiply two fractions, multiply the numerators together and the denominators together. No common denominator is needed.\n\n" +
+        "Think of 1/2 of 1/3: you are splitting a third into two, which gives a sixth — and 1 x 1 = 1 over 2 x 3 = 6.",
+      explanationMdFr:
+        "Pour multiplier deux fractions, multiplie les numérateurs entre eux et les dénominateurs entre eux. Aucun dénominateur commun n'est nécessaire.\n\n" +
+        "Pense à 1/2 de 1/3 : tu coupes un tiers en deux, ce qui donne un sixième — et 1 x 1 = 1 sur 2 x 3 = 6.",
+      workedExamples: [
+        { problem: "2/3 x 3/5", steps: ["Multiply the numerators: 2 x 3 = 6.", "Multiply the denominators: 3 x 5 = 15.", "6/15 simplifies to 2/5."], answer: "2/5" }
+      ],
+      workedExamplesFr: [
+        { problem: "2/3 x 3/5", steps: ["Multiplie les numérateurs : 2 x 3 = 6.", "Multiplie les dénominateurs : 3 x 5 = 15.", "6/15 se simplifie en 2/5."], answer: "2/5" }
+      ],
+      audioScript: "Multiplying fractions is the easy one — straight across the top, straight across the bottom.",
+      audioScriptFr: "Multiplier des fractions, c'est le plus simple — tout droit en haut, tout droit en bas."
+    },
+    {
+      order: 3,
+      title: "Dividing a proper fraction by a whole number",
+      titleFr: "Diviser une fraction propre par un nombre entier",
+      concept: "Dividing a fraction by a whole number by multiplying the denominator",
+      conceptFr: "Diviser une fraction par un entier en multipliant le dénominateur",
+      representation: "pictorial",
+      visualAid: "fraction-diagram",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y6-L3-3"],
+      explanationMd:
+        "Dividing a fraction by a whole number cuts each piece into more pieces, so the **denominator** gets bigger: 1/4 ÷ 3 = 1/12.\n\n" +
+        "The rule is to multiply the denominator by the whole number and leave the numerator alone.",
+      explanationMdFr:
+        "Diviser une fraction par un entier découpe chaque part en plus de parts, donc le **dénominateur** augmente : 1/4 ÷ 3 = 1/12.\n\n" +
+        "La règle : multiplie le dénominateur par l'entier et laisse le numérateur tel quel.",
+      workedExamples: [
+        { problem: "3/5 ÷ 4", steps: ["Keep the numerator 3.", "Multiply the denominator: 5 x 4 = 20.", "The answer is 3/20."], answer: "3/20" }
+      ],
+      workedExamplesFr: [
+        { problem: "3/5 ÷ 4", steps: ["Garde le numérateur 3.", "Multiplie le dénominateur : 5 x 4 = 20.", "La réponse est 3/20."], answer: "3/20" }
+      ],
+      audioScript: "Dividing makes the pieces smaller, so the number on the bottom gets bigger.",
+      audioScriptFr: "Diviser rend les parts plus petites, donc le nombre du bas augmente."
+    }
+  ],
+  Y6L4: [
+    {
+      order: 1,
+      title: "Decimal place value to three places",
+      titleFr: "La valeur de position des décimales jusqu'aux millièmes",
+      concept: "Identifying the value of each digit in a number with up to three decimal places",
+      conceptFr: "Identifier la valeur de chaque chiffre d'un nombre jusqu'aux millièmes",
+      representation: "abstract",
+      visualAid: "number-line",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y6-L4-1"],
+      explanationMd:
+        "After the decimal point the columns are **tenths**, **hundredths** and **thousandths**. Each column is worth ten times less than the one to its left.\n\n" +
+        "So in 4.726 the 7 is worth 7 tenths, the 2 is worth 2 hundredths and the 6 is worth 6 thousandths.",
+      explanationMdFr:
+        "Après la virgule, les colonnes sont les **dixièmes**, les **centièmes** et les **millièmes**. Chaque colonne vaut dix fois moins que celle de gauche.\n\n" +
+        "Donc dans 4,726 le 7 vaut 7 dixièmes, le 2 vaut 2 centièmes et le 6 vaut 6 millièmes.",
+      workedExamples: [
+        { problem: "What is the value of the 5 in 2.157?", steps: ["The digits after the point are tenths, hundredths, thousandths.", "5 is in the hundredths column."], answer: "5 hundredths (0.05)" }
+      ],
+      workedExamplesFr: [
+        { problem: "Quelle est la valeur du 5 dans 2,157 ?", steps: ["Après la virgule : dixièmes, centièmes, millièmes.", "Le 5 est dans la colonne des centièmes."], answer: "5 centièmes (0,05)" }
+      ],
+      audioScript: "Tenths, hundredths, thousandths — each step right is ten times smaller.",
+      audioScriptFr: "Dixièmes, centièmes, millièmes — chaque pas vers la droite est dix fois plus petit."
+    },
+    {
+      order: 2,
+      title: "A fraction is a division",
+      titleFr: "Une fraction est une division",
+      concept: "Converting a fraction to a decimal by dividing the numerator by the denominator",
+      conceptFr: "Convertir une fraction en décimale en divisant le numérateur par le dénominateur",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y6-L4-2"],
+      explanationMd:
+        "The fraction bar means divide: 3/8 means 3 ÷ 8. Doing that division gives the **decimal equivalent**.\n\n" +
+        "Some divisions stop (3/8 = 0.375) and some repeat forever (1/3 = 0.333...).",
+      explanationMdFr:
+        "La barre de fraction signifie diviser : 3/8 veut dire 3 ÷ 8. Faire cette division donne l'**équivalent décimal**.\n\n" +
+        "Certaines divisions s'arrêtent (3/8 = 0,375) et d'autres se répètent à l'infini (1/3 = 0,333...).",
+      workedExamples: [
+        { problem: "Write 3/8 as a decimal.", steps: ["3/8 means 3 ÷ 8.", "3 ÷ 8 = 0.375."], answer: "0.375" }
+      ],
+      workedExamplesFr: [
+        { problem: "Écris 3/8 sous forme décimale.", steps: ["3/8 signifie 3 ÷ 8.", "3 ÷ 8 = 0,375."], answer: "0,375" }
+      ],
+      audioScript: "The fraction line is a divide sign in disguise.",
+      audioScriptFr: "La barre de fraction est un signe de division déguisé."
+    },
+    {
+      order: 3,
+      title: "Fraction, decimal and percentage equivalents",
+      titleFr: "Équivalences fractions, décimales et pourcentages",
+      concept: "Recalling and using the common equivalences between fractions, decimals and percentages",
+      conceptFr: "Mémoriser et utiliser les équivalences courantes entre fractions, décimales et pourcentages",
+      representation: "abstract",
+      visualAid: "bar-model",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y6-L4-3"],
+      explanationMd:
+        "Learning a handful of equivalents by heart makes percentage work much faster: 1/2 = 0.5 = 50%, 1/4 = 0.25 = 25%, 1/5 = 0.2 = 20%, 3/4 = 0.75 = 75%.\n\n" +
+        "To turn a decimal into a percentage, multiply by 100. To go back, divide by 100.",
+      explanationMdFr:
+        "Apprendre quelques équivalences par cœur accélère beaucoup le travail sur les pourcentages : 1/2 = 0,5 = 50 %, 1/4 = 0,25 = 25 %, 1/5 = 0,2 = 20 %, 3/4 = 0,75 = 75 %.\n\n" +
+        "Pour passer d'une décimale à un pourcentage, multiplie par 100. Pour revenir, divise par 100.",
+      workedExamples: [
+        { problem: "Write 0.6 as a fraction and a percentage.", steps: ["0.6 is 6 tenths, so 6/10 = 3/5.", "0.6 x 100 = 60%."], answer: "3/5 and 60%" }
+      ],
+      workedExamplesFr: [
+        { problem: "Écris 0,6 sous forme de fraction et de pourcentage.", steps: ["0,6 vaut 6 dixièmes, donc 6/10 = 3/5.", "0,6 x 100 = 60 %."], answer: "3/5 et 60 %" }
+      ],
+      audioScript: "Learn the key equivalents by heart and percentage questions become quick.",
+      audioScriptFr: "Apprends les équivalences clés par cœur et les questions de pourcentage deviennent rapides."
+    }
+  ],
+  Y6L5: [
+    {
+      order: 1,
+      title: "Comparing two quantities with ratio",
+      titleFr: "Comparer deux quantités avec un rapport",
+      concept: "Using ratio language to describe and compare the relative sizes of two quantities",
+      conceptFr: "Utiliser le langage des rapports pour décrire et comparer deux quantités",
+      representation: "pictorial",
+      visualAid: "bar-model",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y6-L5-1"],
+      explanationMd:
+        "A **ratio** compares two amounts part-to-part, like 2 : 3. A **fraction** compares a part to the whole.\n\n" +
+        "If red to blue is 2 : 3, there are 5 parts altogether, so 2/5 are red and 3/5 are blue.",
+      explanationMdFr:
+        "Un **rapport** compare deux quantités partie à partie, comme 2 : 3. Une **fraction** compare une partie au tout.\n\n" +
+        "Si rouge pour bleu vaut 2 : 3, il y a 5 parts en tout, donc 2/5 sont rouges et 3/5 sont bleus.",
+      workedExamples: [
+        { problem: "Red to blue counters is 2 : 3. There are 12 red. How many blue?", steps: ["2 parts stand for 12, so 1 part is 6.", "Blue is 3 parts: 3 x 6 = 18."], answer: "18" }
+      ],
+      workedExamplesFr: [
+        { problem: "Le rapport jetons rouges / bleus est 2 : 3. Il y a 12 rouges. Combien de bleus ?", steps: ["2 parts valent 12, donc 1 part vaut 6.", "Le bleu, c'est 3 parts : 3 x 6 = 18."], answer: "18" }
+      ],
+      audioScript: "Find the value of one part first — then everything else follows.",
+      audioScriptFr: "Trouve d'abord la valeur d'une part — tout le reste en découle."
+    },
+    {
+      order: 2,
+      title: "Unequal sharing",
+      titleFr: "Le partage inégal",
+      concept: "Sharing an amount in a given ratio using the number of parts",
+      conceptFr: "Partager une quantité selon un rapport donné à l'aide du nombre de parts",
+      representation: "pictorial",
+      visualAid: "bar-model",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y6-L5-2"],
+      explanationMd:
+        "To share in a ratio, add the ratio numbers to find how many parts there are, divide the total by that, then multiply up for each share.\n\n" +
+        "Drawing a bar split into the right number of parts makes this much easier to see.",
+      explanationMdFr:
+        "Pour partager selon un rapport, additionne les nombres du rapport pour trouver le nombre de parts, divise le total par ce nombre, puis multiplie pour chaque part.\n\n" +
+        "Dessiner une barre découpée au bon nombre de parts rend cela beaucoup plus clair.",
+      workedExamples: [
+        { problem: "Share £45 in the ratio 2 : 3.", steps: ["2 + 3 = 5 parts.", "£45 ÷ 5 = £9 per part.", "Shares are 2 x £9 = £18 and 3 x £9 = £27."], answer: "£18 and £27" }
+      ],
+      workedExamplesFr: [
+        { problem: "Partage 45 £ dans le rapport 2 : 3.", steps: ["2 + 3 = 5 parts.", "45 £ ÷ 5 = 9 £ par part.", "Les parts sont 2 x 9 £ = 18 £ et 3 x 9 £ = 27 £."], answer: "18 £ et 27 £" }
+      ],
+      audioScript: "Add the parts, divide, then multiply back up for each share.",
+      audioScriptFr: "Additionne les parts, divise, puis multiplie pour chaque part."
+    },
+    {
+      order: 3,
+      title: "Scale factors and similar shapes",
+      titleFr: "Facteurs d'échelle et figures semblables",
+      concept: "Using a scale factor to enlarge or reduce lengths",
+      conceptFr: "Utiliser un facteur d'échelle pour agrandir ou réduire des longueurs",
+      representation: "pictorial",
+      visualAid: "shape",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y6-L5-3"],
+      explanationMd:
+        "A **scale factor** tells you what to multiply every length by. A scale factor of 3 makes every side three times as long, and the shape keeps exactly the same angles.\n\n" +
+        "To find a scale factor, divide a new length by the matching old length.",
+      explanationMdFr:
+        "Un **facteur d'échelle** indique par combien multiplier chaque longueur. Un facteur de 3 rend chaque côté trois fois plus long, et la figure garde exactement les mêmes angles.\n\n" +
+        "Pour trouver un facteur d'échelle, divise une nouvelle longueur par l'ancienne correspondante.",
+      workedExamples: [
+        { problem: "A 4 cm side becomes 12 cm. What happens to a 7 cm side?", steps: ["Scale factor = 12 ÷ 4 = 3.", "7 x 3 = 21 cm."], answer: "21 cm" }
+      ],
+      workedExamplesFr: [
+        { problem: "Un côté de 4 cm devient 12 cm. Que devient un côté de 7 cm ?", steps: ["Facteur d'échelle = 12 ÷ 4 = 3.", "7 x 3 = 21 cm."], answer: "21 cm" }
+      ],
+      audioScript: "One scale factor multiplies every single length — angles never change.",
+      audioScriptFr: "Un seul facteur d'échelle multiplie toutes les longueurs — les angles ne changent jamais."
+    }
+  ],
+  Y6L6: [
+    {
+      order: 1,
+      title: "Using formulae in words and symbols",
+      titleFr: "Utiliser des formules en mots et en symboles",
+      concept: "Substituting values into a simple formula written in words or algebra",
+      conceptFr: "Remplacer des valeurs dans une formule simple écrite en mots ou en algèbre",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y6-L6-1"],
+      explanationMd:
+        "A **formula** is a rule that works for any numbers you put in. Substituting means swapping each letter for its value and then calculating.\n\n" +
+        "Remember that 3n means 3 x n, and work out multiplication before addition.",
+      explanationMdFr:
+        "Une **formule** est une règle qui fonctionne pour tous les nombres qu'on y met. Substituer veut dire remplacer chaque lettre par sa valeur, puis calculer.\n\n" +
+        "Rappelle-toi que 3n signifie 3 x n, et fais la multiplication avant l'addition.",
+      workedExamples: [
+        { problem: "If C = 4n + 7, what is C when n = 6?", steps: ["4 x 6 = 24.", "24 + 7 = 31."], answer: "31" }
+      ],
+      workedExamplesFr: [
+        { problem: "Si C = 4n + 7, que vaut C quand n = 6 ?", steps: ["4 x 6 = 24.", "24 + 7 = 31."], answer: "31" }
+      ],
+      audioScript: "Swap the letter for its number, then multiply before you add.",
+      audioScriptFr: "Remplace la lettre par son nombre, puis multiplie avant d'additionner."
+    },
+    {
+      order: 2,
+      title: "Generating and describing linear sequences",
+      titleFr: "Générer et décrire des suites arithmétiques",
+      concept: "Finding the common difference and continuing or describing a linear sequence",
+      conceptFr: "Trouver la raison et poursuivre ou décrire une suite arithmétique",
+      representation: "abstract",
+      visualAid: "number-line",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y6-L6-2"],
+      explanationMd:
+        "In a **linear sequence** you add the same amount every time. That amount is the **common difference**.\n\n" +
+        "Describing the sequence means saying the start and the step, for example \"start at 5 and add 4 each time\".",
+      explanationMdFr:
+        "Dans une **suite arithmétique**, on ajoute toujours la même quantité. Cette quantité est la **raison**.\n\n" +
+        "Décrire la suite, c'est dire le départ et le pas, par exemple « commence à 5 et ajoute 4 chaque fois ».",
+      workedExamples: [
+        { problem: "Continue 5, 9, 13, 17, ...", steps: ["9 - 5 = 4, so the difference is 4.", "17 + 4 = 21, then 25."], answer: "21, 25" }
+      ],
+      workedExamplesFr: [
+        { problem: "Poursuis 5, 9, 13, 17, ...", steps: ["9 - 5 = 4, donc la raison est 4.", "17 + 4 = 21, puis 25."], answer: "21, 25" }
+      ],
+      audioScript: "Look at the gaps between the terms — in a linear sequence they are all the same.",
+      audioScriptFr: "Regarde les écarts entre les termes — dans une suite arithmétique ils sont tous égaux."
+    },
+    {
+      order: 3,
+      title: "Equations with two unknowns",
+      titleFr: "Les équations à deux inconnues",
+      concept: "Finding pairs of values that satisfy an equation with two unknowns",
+      conceptFr: "Trouver des paires de valeurs qui vérifient une équation à deux inconnues",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y6-L6-3"],
+      explanationMd:
+        "An equation like a + b = 10 has **many** solutions. Choosing a value for one letter fixes the other.\n\n" +
+        "Working systematically — 0 and 10, 1 and 9, 2 and 8 — makes sure you find them all.",
+      explanationMdFr:
+        "Une équation comme a + b = 10 a **beaucoup** de solutions. Choisir une valeur pour une lettre fixe l'autre.\n\n" +
+        "Travailler systématiquement — 0 et 10, 1 et 9, 2 et 8 — garantit de les trouver toutes.",
+      workedExamples: [
+        { problem: "Find three whole-number pairs with 2a + b = 12.", steps: ["If a = 1, b = 10.", "If a = 2, b = 8.", "If a = 3, b = 6."], answer: "(1, 10), (2, 8), (3, 6)" }
+      ],
+      workedExamplesFr: [
+        { problem: "Trouve trois paires d'entiers avec 2a + b = 12.", steps: ["Si a = 1, b = 10.", "Si a = 2, b = 8.", "Si a = 3, b = 6."], answer: "(1, 10), (2, 8), (3, 6)" }
+      ],
+      audioScript: "Pick a value for one letter, work out the other, then move up one and repeat.",
+      audioScriptFr: "Choisis une valeur pour une lettre, calcule l'autre, puis passe à la suivante et recommence."
+    }
+  ],
+  Y6L7: [
+    {
+      order: 1,
+      title: "Area of triangles and parallelograms",
+      titleFr: "L'aire des triangles et des parallélogrammes",
+      concept: "Using base and perpendicular height to find the area of triangles and parallelograms",
+      conceptFr: "Utiliser la base et la hauteur perpendiculaire pour trouver l'aire des triangles et des parallélogrammes",
+      representation: "pictorial",
+      visualAid: "shape",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y6-L7-1"],
+      explanationMd:
+        "A parallelogram has area **base x perpendicular height** — slide the slanted end across and it becomes a rectangle.\n\n" +
+        "A triangle is exactly half of that parallelogram, so its area is **½ x base x perpendicular height**. The height must be at right angles to the base, not the slanted side.",
+      explanationMdFr:
+        "Un parallélogramme a pour aire **base x hauteur perpendiculaire** — glisse l'extrémité inclinée et il devient un rectangle.\n\n" +
+        "Un triangle est exactement la moitié de ce parallélogramme, donc son aire est **½ x base x hauteur perpendiculaire**. La hauteur doit être perpendiculaire à la base, pas le côté incliné.",
+      workedExamples: [
+        { problem: "A triangle has base 12 cm and height 5 cm. Find its area.", steps: ["½ x 12 x 5.", "12 x 5 = 60, half of 60 is 30."], answer: "30 cm²" },
+        { problem: "A parallelogram has base 9 cm and height 4 cm.", steps: ["Area = base x height.", "9 x 4 = 36."], answer: "36 cm²" }
+      ],
+      workedExamplesFr: [
+        { problem: "Un triangle a une base de 12 cm et une hauteur de 5 cm. Trouve son aire.", steps: ["½ x 12 x 5.", "12 x 5 = 60, la moitié de 60 est 30."], answer: "30 cm²" },
+        { problem: "Un parallélogramme a une base de 9 cm et une hauteur de 4 cm.", steps: ["Aire = base x hauteur.", "9 x 4 = 36."], answer: "36 cm²" }
+      ],
+      audioScript: "Use the perpendicular height, not the slanted side — and halve it for a triangle.",
+      audioScriptFr: "Utilise la hauteur perpendiculaire, pas le côté incliné — et divise par 2 pour un triangle."
+    },
+    {
+      order: 2,
+      title: "Volume of cubes and cuboids",
+      titleFr: "Le volume des cubes et des pavés droits",
+      concept: "Finding volume by multiplying length, width and height",
+      conceptFr: "Trouver le volume en multipliant longueur, largeur et hauteur",
+      representation: "concrete",
+      visualAid: "shape",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y6-L7-2"],
+      explanationMd:
+        "**Volume** is the space inside a solid, measured in cubic units such as cm³. For a cuboid it is **length x width x height**.\n\n" +
+        "Imagine filling the box with centimetre cubes: one layer is length x width, and you need height layers.",
+      explanationMdFr:
+        "Le **volume** est l'espace à l'intérieur d'un solide, mesuré en unités cubes comme le cm³. Pour un pavé droit, c'est **longueur x largeur x hauteur**.\n\n" +
+        "Imagine remplir la boîte de cubes de 1 cm : une couche fait longueur x largeur, et il faut « hauteur » couches.",
+      workedExamples: [
+        { problem: "Find the volume of a 6 cm by 4 cm by 3 cm cuboid.", steps: ["One layer is 6 x 4 = 24 cubes.", "There are 3 layers: 24 x 3 = 72."], answer: "72 cm³" }
+      ],
+      workedExamplesFr: [
+        { problem: "Trouve le volume d'un pavé de 6 cm sur 4 cm sur 3 cm.", steps: ["Une couche fait 6 x 4 = 24 cubes.", "Il y a 3 couches : 24 x 3 = 72."], answer: "72 cm³" }
+      ],
+      audioScript: "Count one layer of cubes, then multiply by the number of layers.",
+      audioScriptFr: "Compte une couche de cubes, puis multiplie par le nombre de couches."
+    },
+    {
+      order: 3,
+      title: "Converting metric units, miles and kilometres",
+      titleFr: "Convertir les unités métriques, les miles et les kilomètres",
+      concept: "Converting between metric units and approximating between miles and kilometres",
+      conceptFr: "Convertir entre unités métriques et approximer entre miles et kilomètres",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y6-L7-3"],
+      explanationMd:
+        "Metric conversions are all powers of ten: 10 mm = 1 cm, 100 cm = 1 m, 1,000 m = 1 km, 1,000 g = 1 kg, 1,000 ml = 1 litre.\n\n" +
+        "Miles and kilometres are not metric partners, so we use the approximation **5 miles ≈ 8 km**.",
+      explanationMdFr:
+        "Les conversions métriques sont toutes des puissances de dix : 10 mm = 1 cm, 100 cm = 1 m, 1 000 m = 1 km, 1 000 g = 1 kg, 1 000 ml = 1 litre.\n\n" +
+        "Les miles et les kilomètres ne sont pas des unités métriques apparentées : on utilise l'approximation **5 miles ≈ 8 km**.",
+      workedExamples: [
+        { problem: "Convert 40 miles to kilometres.", steps: ["40 ÷ 5 = 8 lots of 5 miles.", "8 x 8 km = 64 km."], answer: "about 64 km" }
+      ],
+      workedExamplesFr: [
+        { problem: "Convertis 40 miles en kilomètres.", steps: ["40 ÷ 5 = 8 groupes de 5 miles.", "8 x 8 km = 64 km."], answer: "environ 64 km" }
+      ],
+      audioScript: "Five miles is about eight kilometres — divide by five, then multiply by eight.",
+      audioScriptFr: "Cinq miles valent environ huit kilomètres — divise par cinq, puis multiplie par huit."
+    }
+  ],
+  Y6L8: [
+    {
+      order: 1,
+      title: "Missing angles in triangles, quadrilaterals and polygons",
+      titleFr: "Les angles manquants dans les triangles, quadrilatères et polygones",
+      concept: "Using angle sums to find unknown angles in polygons",
+      conceptFr: "Utiliser les sommes d'angles pour trouver des angles inconnus dans les polygones",
+      representation: "pictorial",
+      visualAid: "shape",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y6-L8-1"],
+      explanationMd:
+        "Angles in a triangle add to **180°** and angles in a quadrilateral add to **360°**. For a regular polygon with n sides, each exterior angle is 360° ÷ n.\n\n" +
+        "Subtract the angles you know from the total to find the one you don't.",
+      explanationMdFr:
+        "Les angles d'un triangle ont pour somme **180°** et ceux d'un quadrilatère **360°**. Pour un polygone régulier à n côtés, chaque angle extérieur vaut 360° ÷ n.\n\n" +
+        "Retire les angles connus du total pour trouver celui qui manque.",
+      workedExamples: [
+        { problem: "Two angles of a triangle are 47° and 68°. Find the third.", steps: ["47 + 68 = 115.", "180 - 115 = 65."], answer: "65°" }
+      ],
+      workedExamplesFr: [
+        { problem: "Deux angles d'un triangle valent 47° et 68°. Trouve le troisième.", steps: ["47 + 68 = 115.", "180 - 115 = 65."], answer: "65°" }
+      ],
+      audioScript: "Know your angle sums: 180 for a triangle, 360 for a quadrilateral.",
+      audioScriptFr: "Connais tes sommes d'angles : 180 pour un triangle, 360 pour un quadrilatère."
+    },
+    {
+      order: 2,
+      title: "Drawing shapes accurately",
+      titleFr: "Dessiner des figures avec précision",
+      concept: "Constructing 2D shapes from given lengths and angles",
+      conceptFr: "Construire des figures planes à partir de longueurs et d'angles donnés",
+      representation: "concrete",
+      visualAid: "shape",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y6-L8-2"],
+      explanationMd:
+        "Accurate drawing needs a sharp pencil, a ruler and a protractor. Draw the given side first, measure the angle at one end, then draw the next side along that line.\n\n" +
+        "Always check your lengths afterwards — a millimetre of drift at each step soon adds up.",
+      explanationMdFr:
+        "Un dessin précis demande un crayon bien taillé, une règle et un rapporteur. Trace d'abord le côté donné, mesure l'angle à une extrémité, puis trace le côté suivant le long de cette direction.\n\n" +
+        "Vérifie toujours tes longueurs ensuite — un millimètre d'écart à chaque étape s'additionne vite.",
+      workedExamples: [
+        { problem: "Draw a triangle with a 6 cm base and angles of 50° and 60° at its ends.", steps: ["Draw the 6 cm base.", "Measure 50° at the left end and draw a line.", "Measure 60° at the right end; where the lines cross is the third vertex."], answer: "a correctly constructed triangle" }
+      ],
+      workedExamplesFr: [
+        { problem: "Trace un triangle de base 6 cm avec des angles de 50° et 60° à ses extrémités.", steps: ["Trace la base de 6 cm.", "Mesure 50° à l'extrémité gauche et trace une ligne.", "Mesure 60° à l'extrémité droite ; l'intersection des lignes est le troisième sommet."], answer: "un triangle correctement construit" }
+      ],
+      audioScript: "Base first, then angles, then let the lines meet.",
+      audioScriptFr: "D'abord la base, puis les angles, puis laisse les lignes se rencontrer."
+    },
+    {
+      order: 3,
+      title: "Coordinates in all four quadrants",
+      titleFr: "Les coordonnées dans les quatre quadrants",
+      concept: "Reading and plotting coordinates with negative values",
+      conceptFr: "Lire et placer des coordonnées avec des valeurs négatives",
+      representation: "pictorial",
+      visualAid: "coordinate-grid",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y6-L8-3"],
+      explanationMd:
+        "Coordinates are always written (x, y) — **across first, then up or down**. Left of the y-axis x is negative; below the x-axis y is negative.\n\n" +
+        "Reflecting in the y-axis changes the sign of x; reflecting in the x-axis changes the sign of y.",
+      explanationMdFr:
+        "Les coordonnées s'écrivent toujours (x, y) — **d'abord horizontalement, puis vers le haut ou le bas**. À gauche de l'axe des ordonnées, x est négatif ; sous l'axe des abscisses, y est négatif.\n\n" +
+        "Une réflexion par l'axe des ordonnées change le signe de x ; par l'axe des abscisses, celui de y.",
+      workedExamples: [
+        { problem: "Reflect (3, -2) in the y-axis.", steps: ["Reflecting in the y-axis changes the sign of x.", "(3, -2) becomes (-3, -2)."], answer: "(-3, -2)" }
+      ],
+      workedExamplesFr: [
+        { problem: "Réfléchis (3, -2) par l'axe des ordonnées.", steps: ["La réflexion par l'axe des ordonnées change le signe de x.", "(3, -2) devient (-3, -2)."], answer: "(-3, -2)" }
+      ],
+      audioScript: "Across then up — and watch for the minus signs in the other three quadrants.",
+      audioScriptFr: "D'abord horizontalement, puis verticalement — et attention aux signes moins dans les trois autres quadrants."
+    }
+  ],
+  Y6L9: [
+    {
+      order: 1,
+      title: "Reading and constructing pie charts",
+      titleFr: "Lire et construire des diagrammes circulaires",
+      concept: "Using the 360° in a full circle to read and draw pie charts",
+      conceptFr: "Utiliser les 360° du cercle complet pour lire et tracer des diagrammes circulaires",
+      representation: "pictorial",
+      visualAid: "graph",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y6-L9-1"],
+      explanationMd:
+        "A pie chart shows how a whole is split up. The whole circle is **360°**, so each item's angle is its share of the total multiplied by 360.\n\n" +
+        "Reading one works in reverse: an angle of 90° is a quarter of the circle, so it stands for a quarter of the total.",
+      explanationMdFr:
+        "Un diagramme circulaire montre comment un tout est partagé. Le cercle entier fait **360°**, donc l'angle de chaque élément est sa part du total multipliée par 360.\n\n" +
+        "La lecture fonctionne à l'inverse : un angle de 90° est le quart du cercle, donc il représente le quart du total.",
+      workedExamples: [
+        { problem: "60 people are surveyed and 15 choose tea. What angle shows tea?", steps: ["15 out of 60 is a quarter.", "A quarter of 360° is 90°."], answer: "90°" }
+      ],
+      workedExamplesFr: [
+        { problem: "60 personnes sont interrogées et 15 choisissent le thé. Quel angle représente le thé ?", steps: ["15 sur 60, c'est un quart.", "Un quart de 360° fait 90°."], answer: "90°" }
+      ],
+      audioScript: "The whole circle is 360 degrees — every slice is a share of that.",
+      audioScriptFr: "Le cercle entier fait 360 degrés — chaque part en est une fraction."
+    },
+    {
+      order: 2,
+      title: "Line graphs",
+      titleFr: "Les graphiques linéaires",
+      concept: "Reading values and trends from a line graph",
+      conceptFr: "Lire des valeurs et des tendances sur un graphique linéaire",
+      representation: "pictorial",
+      visualAid: "graph",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y6-L9-1"],
+      explanationMd:
+        "A line graph shows how something changes over time. Check the scale on each axis before reading any value.\n\n" +
+        "A steeper line means a faster change, a flat line means no change, and a downward line means a decrease.",
+      explanationMdFr:
+        "Un graphique linéaire montre comment une grandeur évolue dans le temps. Vérifie l'échelle de chaque axe avant de lire une valeur.\n\n" +
+        "Une ligne plus raide signifie un changement plus rapide, une ligne plate aucun changement, et une ligne descendante une diminution.",
+      workedExamples: [
+        { problem: "A graph rises from 4°C at 6am to 16°C at noon. What is the increase?", steps: ["Read both values from the vertical axis.", "16 - 4 = 12."], answer: "12°C" }
+      ],
+      workedExamplesFr: [
+        { problem: "Un graphique monte de 4 °C à 6 h à 16 °C à midi. Quelle est l'augmentation ?", steps: ["Lis les deux valeurs sur l'axe vertical.", "16 - 4 = 12."], answer: "12 °C" }
+      ],
+      audioScript: "Check the scale first, then read across and down carefully.",
+      audioScriptFr: "Vérifie d'abord l'échelle, puis lis horizontalement et verticalement avec soin."
+    },
+    {
+      order: 3,
+      title: "The mean as an average",
+      titleFr: "La moyenne",
+      concept: "Calculating the mean by sharing the total equally between the values",
+      conceptFr: "Calculer la moyenne en partageant le total équitablement entre les valeurs",
+      representation: "abstract",
+      visualAid: "bar-model",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y6-L9-2"],
+      explanationMd:
+        "The **mean** levels everything out: add all the values, then divide by how many there are.\n\n" +
+        "You can also work backwards — if you know the mean and how many values there are, multiplying gives the total.",
+      explanationMdFr:
+        "La **moyenne** égalise tout : additionne toutes les valeurs, puis divise par leur nombre.\n\n" +
+        "Tu peux aussi raisonner à l'envers — si tu connais la moyenne et le nombre de valeurs, la multiplication donne le total.",
+      workedExamples: [
+        { problem: "Find the mean of 4, 9, 11 and 8.", steps: ["4 + 9 + 11 + 8 = 32.", "32 ÷ 4 = 8."], answer: "8" },
+        { problem: "Five scores have a mean of 12. What is their total?", steps: ["Total = mean x how many.", "12 x 5 = 60."], answer: "60" }
+      ],
+      workedExamplesFr: [
+        { problem: "Trouve la moyenne de 4, 9, 11 et 8.", steps: ["4 + 9 + 11 + 8 = 32.", "32 ÷ 4 = 8."], answer: "8" },
+        { problem: "Cinq notes ont une moyenne de 12. Quel est leur total ?", steps: ["Total = moyenne x nombre de valeurs.", "12 x 5 = 60."], answer: "60" }
+      ],
+      audioScript: "Add them all up, then share equally — that's the mean.",
+      audioScriptFr: "Additionne tout, puis partage équitablement — c'est la moyenne."
+    }
+  ],
+  Y6L10: [
+    {
+      order: 1,
+      title: "Reasoning with place value and the four operations",
+      titleFr: "Raisonner avec la valeur de position et les quatre opérations",
+      concept: "Choosing an efficient method and checking it with estimation",
+      conceptFr: "Choisir une méthode efficace et la vérifier par estimation",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y6-L10-1"],
+      explanationMd:
+        "In a reasoning question, read it twice: decide what is being asked, then pick the operation and method that gets there with least work.\n\n" +
+        "Estimate first by rounding — if your exact answer is nowhere near the estimate, something has gone wrong.",
+      explanationMdFr:
+        "Dans une question de raisonnement, lis-la deux fois : décide ce qui est demandé, puis choisis l'opération et la méthode les plus directes.\n\n" +
+        "Estime d'abord en arrondissant — si ta réponse exacte est loin de l'estimation, il y a une erreur.",
+      workedExamples: [
+        { problem: "A shop sells 1,860 tickets at £12 each. Roughly, then exactly, how much is that?", steps: ["Estimate: 2,000 x £12 = £24,000.", "Exactly: 1,860 x 12 = £22,320.", "That is close to the estimate, so it is sensible."], answer: "£22,320" }
+      ],
+      workedExamplesFr: [
+        { problem: "Un magasin vend 1 860 billets à 12 £ chacun. Approximativement, puis exactement, combien cela fait-il ?", steps: ["Estimation : 2 000 x 12 £ = 24 000 £.", "Exactement : 1 860 x 12 = 22 320 £.", "C'est proche de l'estimation, donc c'est cohérent."], answer: "22 320 £" }
+      ],
+      audioScript: "Estimate first, calculate second, then check the two agree.",
+      audioScriptFr: "Estime d'abord, calcule ensuite, puis vérifie que les deux concordent."
+    },
+    {
+      order: 2,
+      title: "Multi-step fractions, percentages, ratio and algebra",
+      titleFr: "Fractions, pourcentages, rapports et algèbre en plusieurs étapes",
+      concept: "Breaking a multi-step problem into single steps and keeping track of each answer",
+      conceptFr: "Découper un problème en plusieurs étapes et garder la trace de chaque résultat",
+      representation: "abstract",
+      visualAid: "bar-model",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y6-L10-2"],
+      explanationMd:
+        "Multi-step problems are easier if you write down what each step gives you before starting the next one.\n\n" +
+        "A bar model is a quick way to see what fraction, percentage or ratio of the whole you are working with.",
+      explanationMdFr:
+        "Les problèmes à plusieurs étapes sont plus simples si tu notes le résultat de chaque étape avant de passer à la suivante.\n\n" +
+        "Un schéma en barres est un moyen rapide de voir quelle fraction, quel pourcentage ou quel rapport du tout tu manipules.",
+      workedExamples: [
+        { problem: "A coat costs £80. The price rises by 25%, then 10% is taken off. What is the final price?", steps: ["25% of £80 = £20, so the price becomes £100.", "10% of £100 = £10.", "£100 - £10 = £90."], answer: "£90" }
+      ],
+      workedExamplesFr: [
+        { problem: "Un manteau coûte 80 £. Le prix augmente de 25 %, puis on retire 10 %. Quel est le prix final ?", steps: ["25 % de 80 £ = 20 £, donc le prix devient 100 £.", "10 % de 100 £ = 10 £.", "100 £ - 10 £ = 90 £."], answer: "90 £" }
+      ],
+      audioScript: "One step at a time, writing each answer down before you move on.",
+      audioScriptFr: "Une étape à la fois, en notant chaque résultat avant de continuer."
+    },
+    {
+      order: 3,
+      title: "SATs-style measurement, geometry and statistics",
+      titleFr: "Mesures, géométrie et statistiques façon examen",
+      concept: "Applying area, volume, angle and average facts to reasoning questions",
+      conceptFr: "Appliquer les faits sur l'aire, le volume, les angles et les moyennes à des questions de raisonnement",
+      representation: "pictorial",
+      visualAid: "shape",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y6-L10-3"],
+      explanationMd:
+        "These questions usually need one fact plus one calculation: an angle sum, an area or volume formula, or the mean.\n\n" +
+        "Check the units in the question and in your answer — cm and cm², or cm² and cm³, are easy to mix up under pressure.",
+      explanationMdFr:
+        "Ces questions demandent en général un fait plus un calcul : une somme d'angles, une formule d'aire ou de volume, ou la moyenne.\n\n" +
+        "Vérifie les unités dans la question et dans ta réponse — cm et cm², ou cm² et cm³, se confondent facilement sous pression.",
+      workedExamples: [
+        { problem: "A cuboid is 5 cm by 4 cm by 2 cm. What is its volume, and what is the area of its largest face?", steps: ["Volume = 5 x 4 x 2 = 40 cm³.", "The largest face is 5 x 4 = 20 cm²."], answer: "40 cm³ and 20 cm²" }
+      ],
+      workedExamplesFr: [
+        { problem: "Un pavé droit mesure 5 cm sur 4 cm sur 2 cm. Quel est son volume, et quelle est l'aire de sa plus grande face ?", steps: ["Volume = 5 x 4 x 2 = 40 cm³.", "La plus grande face fait 5 x 4 = 20 cm²."], answer: "40 cm³ et 20 cm²" }
+      ],
+      audioScript: "One fact, one calculation — and always check the units.",
+      audioScriptFr: "Un fait, un calcul — et vérifie toujours les unités."
+    }
+  ],
+  Y10L2: [
+    {
+      order: 1,
+      title: "Direct and inverse proportion",
+      titleFr: "Proportionnalité directe et inverse",
+      concept: "Recognising direct and inverse proportion and writing them algebraically",
+      conceptFr: "Reconnaître la proportionnalité directe et inverse et les écrire algébriquement",
+      representation: "abstract",
+      visualAid: "graph",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y10-L2-1"],
+      explanationMd:
+        "In **direct proportion**, y = kx: double x and y doubles, and the graph is a straight line through the origin.\n\n" +
+        "In **inverse proportion**, y = k/x: double x and y halves, and the graph is a curve that never touches the axes. In both cases, find k from one given pair of values first.",
+      explanationMdFr:
+        "En **proportionnalité directe**, y = kx : si x double, y double, et le graphique est une droite passant par l'origine.\n\n" +
+        "En **proportionnalité inverse**, y = k/x : si x double, y est divisé par deux, et le graphique est une courbe qui ne touche jamais les axes. Dans les deux cas, trouve d'abord k à partir d'un couple de valeurs donné.",
+      workedExamples: [
+        { problem: "y is directly proportional to x, and y = 21 when x = 3. Find y when x = 8.", steps: ["k = 21 ÷ 3 = 7, so y = 7x.", "y = 7 x 8 = 56."], answer: "56" },
+        { problem: "y is inversely proportional to x, and y = 6 when x = 4. Find y when x = 12.", steps: ["k = 6 x 4 = 24, so y = 24/x.", "y = 24 ÷ 12 = 2."], answer: "2" }
+      ],
+      workedExamplesFr: [
+        { problem: "y est directement proportionnel à x, et y = 21 quand x = 3. Trouve y quand x = 8.", steps: ["k = 21 ÷ 3 = 7, donc y = 7x.", "y = 7 x 8 = 56."], answer: "56" },
+        { problem: "y est inversement proportionnel à x, et y = 6 quand x = 4. Trouve y quand x = 12.", steps: ["k = 6 x 4 = 24, donc y = 24/x.", "y = 24 ÷ 12 = 2."], answer: "2" }
+      ],
+      audioScript: "Find the constant k from the pair you are given, then use the rule for any other value.",
+      audioScriptFr: "Trouve la constante k à partir du couple donné, puis utilise la règle pour toute autre valeur."
+    },
+    {
+      order: 2,
+      title: "Growth, decay and compound interest",
+      titleFr: "Croissance, décroissance et intérêts composés",
+      concept: "Using a repeated multiplier to model percentage growth and decay",
+      conceptFr: "Utiliser un multiplicateur répété pour modéliser croissance et décroissance en pourcentage",
+      representation: "abstract",
+      visualAid: "graph",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y10-L2-2"],
+      explanationMd:
+        "Compound growth applies the same **multiplier** again and again. A 5% rise has multiplier 1.05; a 5% fall has multiplier 0.95.\n\n" +
+        "After n years the amount is start x multiplier^n. This is not the same as adding 5% of the original each time — later years grow from a larger base.",
+      explanationMdFr:
+        "La croissance composée applique le même **multiplicateur** encore et encore. Une hausse de 5 % a pour multiplicateur 1,05 ; une baisse de 5 %, 0,95.\n\n" +
+        "Après n années, le montant vaut départ x multiplicateur^n. Ce n'est pas la même chose qu'ajouter 5 % du montant initial chaque fois — les années suivantes partent d'une base plus grande.",
+      workedExamples: [
+        { problem: "£2,000 is invested at 3% compound interest for 2 years.", steps: ["Multiplier is 1.03.", "2000 x 1.03² = 2000 x 1.0609.", "That is £2,121.80."], answer: "£2,121.80" }
+      ],
+      workedExamplesFr: [
+        { problem: "2 000 £ sont placés à 3 % d'intérêts composés pendant 2 ans.", steps: ["Le multiplicateur est 1,03.", "2000 x 1,03² = 2000 x 1,0609.", "Soit 2 121,80 £."], answer: "2 121,80 £" }
+      ],
+      audioScript: "One multiplier, raised to the power of the number of years — that is compound growth.",
+      audioScriptFr: "Un multiplicateur, élevé à la puissance du nombre d'années — c'est la croissance composée."
+    },
+    {
+      order: 3,
+      title: "Compound measures: speed, density and pressure",
+      titleFr: "Grandeurs composées : vitesse, masse volumique et pression",
+      concept: "Rearranging and using the speed, density and pressure formulae with consistent units",
+      conceptFr: "Réarranger et utiliser les formules de vitesse, de masse volumique et de pression avec des unités cohérentes",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y10-L2-3"],
+      explanationMd:
+        "A **compound measure** combines two units: speed = distance ÷ time, density = mass ÷ volume, pressure = force ÷ area.\n\n" +
+        "Each one rearranges the same way, and the units tell you which is which — kg/m³ is a mass over a volume, so it must be a density.",
+      explanationMdFr:
+        "Une **grandeur composée** combine deux unités : vitesse = distance ÷ temps, masse volumique = masse ÷ volume, pression = force ÷ aire.\n\n" +
+        "Chacune se réarrange de la même façon, et les unités t'indiquent laquelle est laquelle — kg/m³ est une masse sur un volume, donc c'est une masse volumique.",
+      workedExamples: [
+        { problem: "A block of mass 240 g has volume 30 cm³. Find its density.", steps: ["Density = mass ÷ volume.", "240 ÷ 30 = 8."], answer: "8 g/cm³" },
+        { problem: "Convert 72 km/h to m/s.", steps: ["72 km = 72,000 m and 1 hour = 3,600 s.", "72,000 ÷ 3,600 = 20."], answer: "20 m/s" }
+      ],
+      workedExamplesFr: [
+        { problem: "Un bloc de masse 240 g a un volume de 30 cm³. Trouve sa masse volumique.", steps: ["Masse volumique = masse ÷ volume.", "240 ÷ 30 = 8."], answer: "8 g/cm³" },
+        { problem: "Convertis 72 km/h en m/s.", steps: ["72 km = 72 000 m et 1 heure = 3 600 s.", "72 000 ÷ 3 600 = 20."], answer: "20 m/s" }
+      ],
+      audioScript: "Read the units out loud — they tell you exactly which formula you need.",
+      audioScriptFr: "Lis les unités à voix haute — elles t'indiquent exactement quelle formule utiliser."
+    }
+  ],
+  Y10L3: [
+    {
+      order: 1,
+      title: "Manipulating algebraic expressions",
+      titleFr: "Manipuler des expressions algébriques",
+      concept: "Expanding, factorising and simplifying expressions, including algebraic fractions",
+      conceptFr: "Développer, factoriser et simplifier des expressions, y compris des fractions algébriques",
+      representation: "abstract",
+      visualAid: "algebra-tile",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y10-L3-1"],
+      explanationMd:
+        "Expanding removes brackets, factorising puts them back. Simplifying an **algebraic fraction** means factorising top and bottom and cancelling any common factor.\n\n" +
+        "You can only cancel whole factors, never single terms — (x + 3)/(x + 5) does not simplify.",
+      explanationMdFr:
+        "Développer supprime les parenthèses, factoriser les remet. Simplifier une **fraction algébrique** signifie factoriser le numérateur et le dénominateur, puis simplifier le facteur commun.\n\n" +
+        "On ne peut simplifier que des facteurs entiers, jamais des termes isolés — (x + 3)/(x + 5) ne se simplifie pas.",
+      workedExamples: [
+        { problem: "Simplify (x² + 5x + 6)/(x + 2).", steps: ["Factorise the top: (x + 2)(x + 3).", "Cancel the common factor (x + 2)."], answer: "x + 3" }
+      ],
+      workedExamplesFr: [
+        { problem: "Simplifie (x² + 5x + 6)/(x + 2).", steps: ["Factorise le numérateur : (x + 2)(x + 3).", "Simplifie le facteur commun (x + 2)."], answer: "x + 3" }
+      ],
+      audioScript: "Factorise top and bottom first — only then can you cancel.",
+      audioScriptFr: "Factorise d'abord le haut et le bas — ce n'est qu'ensuite qu'on peut simplifier."
+    },
+    {
+      order: 2,
+      title: "Solving linear and quadratic equations",
+      titleFr: "Résoudre des équations linéaires et quadratiques",
+      concept: "Balancing linear equations and solving quadratics by factorising",
+      conceptFr: "Équilibrer des équations linéaires et résoudre des équations quadratiques par factorisation",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y10-L3-2"],
+      explanationMd:
+        "Linear equations are solved by doing the same thing to both sides until x is alone.\n\n" +
+        "A quadratic must be rearranged to **= 0** first. Then factorise: if two things multiply to zero, at least one of them is zero, which gives the two solutions.",
+      explanationMdFr:
+        "Les équations linéaires se résolvent en faisant la même chose des deux côtés jusqu'à isoler x.\n\n" +
+        "Une équation quadratique doit d'abord être ramenée à **= 0**. Ensuite, factorise : si un produit vaut zéro, au moins un facteur est nul, ce qui donne les deux solutions.",
+      workedExamples: [
+        { problem: "Solve x² + 7x + 12 = 0.", steps: ["Factorise: (x + 3)(x + 4) = 0.", "x + 3 = 0 or x + 4 = 0."], answer: "x = -3 or x = -4" }
+      ],
+      workedExamplesFr: [
+        { problem: "Résous x² + 7x + 12 = 0.", steps: ["Factorise : (x + 3)(x + 4) = 0.", "x + 3 = 0 ou x + 4 = 0."], answer: "x = -3 ou x = -4" }
+      ],
+      audioScript: "Get the quadratic equal to zero, factorise, then set each bracket to zero.",
+      audioScriptFr: "Ramène l'équation quadratique à zéro, factorise, puis annule chaque parenthèse."
+    },
+    {
+      order: 3,
+      title: "The nth term of linear and quadratic sequences",
+      titleFr: "Le terme de rang n des suites arithmétiques et quadratiques",
+      concept: "Deducing nth-term rules from first and second differences",
+      conceptFr: "Déduire la formule du terme de rang n à partir des différences premières et secondes",
+      representation: "abstract",
+      visualAid: "number-line",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y10-L3-3"],
+      explanationMd:
+        "For a **linear** sequence the first differences are constant: that difference is the coefficient of n, and the constant is found by checking term 1.\n\n" +
+        "For a **quadratic** sequence the second differences are constant. Half of the second difference gives the coefficient of n².",
+      explanationMdFr:
+        "Pour une suite **arithmétique**, les différences premières sont constantes : cette différence est le coefficient de n, et la constante se trouve en vérifiant le premier terme.\n\n" +
+        "Pour une suite **quadratique**, les différences secondes sont constantes. La moitié de la différence seconde donne le coefficient de n².",
+      workedExamples: [
+        { problem: "Find the nth term of 7, 11, 15, 19, ...", steps: ["First difference is 4, so start with 4n.", "4 x 1 = 4, but term 1 is 7, so add 3."], answer: "4n + 3" },
+        { problem: "What is the n² coefficient for 3, 9, 19, 33, ...?", steps: ["First differences: 6, 10, 14.", "Second difference: 4.", "Half of 4 is 2."], answer: "2n²" }
+      ],
+      workedExamplesFr: [
+        { problem: "Trouve le terme de rang n de 7, 11, 15, 19, ...", steps: ["La différence première est 4, donc commence par 4n.", "4 x 1 = 4, mais le premier terme est 7, donc ajoute 3."], answer: "4n + 3" },
+        { problem: "Quel est le coefficient de n² pour 3, 9, 19, 33, ... ?", steps: ["Différences premières : 6, 10, 14.", "Différence seconde : 4.", "La moitié de 4 est 2."], answer: "2n²" }
+      ],
+      audioScript: "Constant first differences mean linear; constant second differences mean quadratic.",
+      audioScriptFr: "Différences premières constantes : suite arithmétique ; différences secondes constantes : suite quadratique."
+    }
+  ],
+  Y10L4: [
+    {
+      order: 1,
+      title: "Three ways to solve a quadratic",
+      titleFr: "Trois façons de résoudre une équation quadratique",
+      concept: "Choosing between factorising, completing the square and the quadratic formula",
+      conceptFr: "Choisir entre la factorisation, la complétion du carré et la formule quadratique",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y10-L4-1"],
+      explanationMd:
+        "Try **factorising** first — it is quickest when it works. **Completing the square** is best when you also want the turning point. The **quadratic formula** always works.\n\n" +
+        "The formula is x = (-b ± √(b² - 4ac)) ÷ 2a, and b² - 4ac tells you how many real solutions there are.",
+      explanationMdFr:
+        "Essaie d'abord la **factorisation** — c'est le plus rapide quand ça marche. La **complétion du carré** est idéale si tu veux aussi le sommet. La **formule quadratique** fonctionne toujours.\n\n" +
+        "La formule est x = (-b ± √(b² - 4ac)) ÷ 2a, et b² - 4ac indique le nombre de solutions réelles.",
+      workedExamples: [
+        { problem: "Write x² + 6x + 1 in completed-square form.", steps: ["Half of 6 is 3, so start with (x + 3)².", "(x + 3)² = x² + 6x + 9, which is 8 too much.", "So x² + 6x + 1 = (x + 3)² - 8."], answer: "(x + 3)² - 8" }
+      ],
+      workedExamplesFr: [
+        { problem: "Écris x² + 6x + 1 sous forme canonique.", steps: ["La moitié de 6 est 3, donc commence par (x + 3)².", "(x + 3)² = x² + 6x + 9, soit 8 de trop.", "Donc x² + 6x + 1 = (x + 3)² - 8."], answer: "(x + 3)² - 8" }
+      ],
+      audioScript: "Factorise if you can, complete the square if you need the turning point, use the formula if all else fails.",
+      audioScriptFr: "Factorise si possible, complète le carré si tu veux le sommet, utilise la formule en dernier recours."
+    },
+    {
+      order: 2,
+      title: "Simultaneous equations",
+      titleFr: "Les systèmes d'équations",
+      concept: "Solving linear/linear by elimination and linear/quadratic by substitution",
+      conceptFr: "Résoudre linéaire/linéaire par élimination et linéaire/quadratique par substitution",
+      representation: "abstract",
+      visualAid: "graph",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y10-L4-2"],
+      explanationMd:
+        "Two linear equations are solved by **elimination**: scale one or both so that one variable cancels when you add or subtract.\n\n" +
+        "A linear and a quadratic are solved by **substitution**: rearrange the linear one and put it into the quadratic, which gives a quadratic in one variable.",
+      explanationMdFr:
+        "Deux équations linéaires se résolvent par **élimination** : multiplie l'une ou les deux pour qu'une variable disparaisse lors de l'addition ou de la soustraction.\n\n" +
+        "Une linéaire et une quadratique se résolvent par **substitution** : réarrange la linéaire et remplace dans la quadratique, ce qui donne une équation quadratique à une inconnue.",
+      workedExamples: [
+        { problem: "Solve 3x + y = 14 and x + y = 6.", steps: ["Subtract the second from the first: 2x = 8.", "x = 4, so y = 6 - 4 = 2."], answer: "x = 4, y = 2" }
+      ],
+      workedExamplesFr: [
+        { problem: "Résous 3x + y = 14 et x + y = 6.", steps: ["Soustrais la seconde de la première : 2x = 8.", "x = 4, donc y = 6 - 4 = 2."], answer: "x = 4, y = 2" }
+      ],
+      audioScript: "Line them up so one variable disappears — then solve what is left.",
+      audioScriptFr: "Aligne-les pour qu'une variable disparaisse — puis résous ce qui reste."
+    },
+    {
+      order: 3,
+      title: "Reading solutions from a graph",
+      titleFr: "Lire des solutions sur un graphique",
+      concept: "Finding approximate solutions to equations from the points where graphs cross",
+      conceptFr: "Trouver des solutions approchées à partir des points d'intersection des graphiques",
+      representation: "pictorial",
+      visualAid: "graph",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y10-L4-3"],
+      explanationMd:
+        "Where a curve crosses the x-axis, y = 0, so those x values solve the equation = 0.\n\n" +
+        "To solve something else, such as x² - 3 = x, draw both graphs and read the x values where they intersect. Graphical answers are approximate, so give them to the accuracy the scale allows.",
+      explanationMdFr:
+        "Là où une courbe coupe l'axe des abscisses, y = 0 : ces valeurs de x résolvent l'équation = 0.\n\n" +
+        "Pour résoudre autre chose, comme x² - 3 = x, trace les deux graphiques et lis les valeurs de x aux intersections. Les réponses graphiques sont approchées : donne-les à la précision que permet l'échelle.",
+      workedExamples: [
+        { problem: "A curve crosses the x-axis at -1 and 4. What does that tell you?", steps: ["At the x-axis, y = 0.", "So the equation is solved by x = -1 and x = 4."], answer: "x = -1 and x = 4" }
+      ],
+      workedExamplesFr: [
+        { problem: "Une courbe coupe l'axe des abscisses en -1 et 4. Qu'est-ce que cela indique ?", steps: ["Sur l'axe des abscisses, y = 0.", "Donc l'équation a pour solutions x = -1 et x = 4."], answer: "x = -1 et x = 4" }
+      ],
+      audioScript: "Crossing points are solutions — read the x values carefully off the scale.",
+      audioScriptFr: "Les points d'intersection sont des solutions — lis soigneusement les valeurs de x sur l'échelle."
+    }
+  ],
+  Y10L5: [
+    {
+      order: 1,
+      title: "Plotting and recognising graphs",
+      titleFr: "Tracer et reconnaître des graphiques",
+      concept: "Linking the equation of a function to the shape of its graph",
+      conceptFr: "Relier l'équation d'une fonction à la forme de son graphique",
+      representation: "pictorial",
+      visualAid: "graph",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y10-L5-1"],
+      explanationMd:
+        "The highest power of x tells you the shape: power 1 gives a **straight line**, power 2 a **parabola**, power 3 an **S-shaped cubic**.\n\n" +
+        "To plot any of them, build a table of values by substituting each x, then join the points smoothly.",
+      explanationMdFr:
+        "La plus haute puissance de x donne la forme : puissance 1 une **droite**, puissance 2 une **parabole**, puissance 3 une **cubique en S**.\n\n" +
+        "Pour les tracer, construis un tableau de valeurs en remplaçant chaque x, puis relie les points régulièrement.",
+      workedExamples: [
+        { problem: "Find y when x = 3 on y = 2x² + 1.", steps: ["3² = 9.", "2 x 9 = 18, plus 1 is 19."], answer: "19" }
+      ],
+      workedExamplesFr: [
+        { problem: "Trouve y quand x = 3 sur y = 2x² + 1.", steps: ["3² = 9.", "2 x 9 = 18, plus 1 égale 19."], answer: "19" }
+      ],
+      audioScript: "Look at the highest power first — it tells you the shape before you plot anything.",
+      audioScriptFr: "Regarde d'abord la plus haute puissance — elle donne la forme avant même de tracer."
+    },
+    {
+      order: 2,
+      title: "Gradient as a rate of change",
+      titleFr: "Le coefficient directeur comme taux de variation",
+      concept: "Interpreting the gradient of a line in a real context",
+      conceptFr: "Interpréter le coefficient directeur d'une droite dans un contexte réel",
+      representation: "pictorial",
+      visualAid: "graph",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y10-L5-2"],
+      explanationMd:
+        "Gradient = change in y ÷ change in x. In y = mx + c, m is the gradient and c is where the line crosses the y-axis.\n\n" +
+        "In context the gradient has units and a meaning: pounds per hour, metres per second, litres per minute.",
+      explanationMdFr:
+        "Coefficient directeur = variation de y ÷ variation de x. Dans y = mx + c, m est le coefficient directeur et c l'ordonnée à l'origine.\n\n" +
+        "En contexte, le coefficient directeur a des unités et un sens : livres par heure, mètres par seconde, litres par minute.",
+      workedExamples: [
+        { problem: "A line passes through (2, 5) and (6, 17). Find its gradient.", steps: ["Change in y = 17 - 5 = 12.", "Change in x = 6 - 2 = 4.", "12 ÷ 4 = 3."], answer: "3" }
+      ],
+      workedExamplesFr: [
+        { problem: "Une droite passe par (2, 5) et (6, 17). Trouve son coefficient directeur.", steps: ["Variation de y = 17 - 5 = 12.", "Variation de x = 6 - 2 = 4.", "12 ÷ 4 = 3."], answer: "3" }
+      ],
+      audioScript: "Up divided by across — and in a real problem, say what the units mean.",
+      audioScriptFr: "La montée divisée par le déplacement — et dans un problème réel, précise le sens des unités."
+    },
+    {
+      order: 3,
+      title: "Graphs of direct and inverse proportion",
+      titleFr: "Graphiques de proportionnalité directe et inverse",
+      concept: "Recognising proportion relationships from the shape of a graph",
+      conceptFr: "Reconnaître des relations de proportionnalité d'après la forme d'un graphique",
+      representation: "pictorial",
+      visualAid: "graph",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y10-L5-3"],
+      explanationMd:
+        "**Direct proportion** is the only straight line that passes through the origin — a constant term lifts the line off (0, 0) and breaks the proportion.\n\n" +
+        "**Inverse proportion** gives a curve that falls steeply then flattens, approaching but never touching the axes.",
+      explanationMdFr:
+        "La **proportionnalité directe** est la seule droite qui passe par l'origine — un terme constant décale la droite de (0, 0) et brise la proportionnalité.\n\n" +
+        "La **proportionnalité inverse** donne une courbe qui descend fortement puis s'aplatit, s'approchant des axes sans jamais les toucher.",
+      workedExamples: [
+        { problem: "Is y = 4x + 3 a direct proportion?", steps: ["Substitute x = 0: y = 3, not 0.", "The line misses the origin."], answer: "No" }
+      ],
+      workedExamplesFr: [
+        { problem: "y = 4x + 3 est-elle une proportionnalité directe ?", steps: ["Remplace x par 0 : y = 3, pas 0.", "La droite ne passe pas par l'origine."], answer: "Non" }
+      ],
+      audioScript: "Substitute zero — if y is not zero too, it is not direct proportion.",
+      audioScriptFr: "Remplace x par zéro — si y n'est pas nul aussi, ce n'est pas une proportionnalité directe."
+    }
+  ],
+  Y10L6: [
+    {
+      order: 1,
+      title: "The four congruence conditions",
+      titleFr: "Les quatre conditions d'isométrie",
+      concept: "Deciding whether two triangles must be congruent using SSS, SAS, ASA or RHS",
+      conceptFr: "Décider si deux triangles sont forcément isométriques avec SSS, SAS, ASA ou RHS",
+      representation: "pictorial",
+      visualAid: "shape",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y10-L6-1"],
+      explanationMd:
+        "Two triangles are **congruent** when they are identical in shape and size. Only four sets of facts guarantee it: **SSS**, **SAS** (the angle between the two sides), **ASA** (the side between the two angles) and **RHS**.\n\n" +
+        "Equal angles alone are not enough — that only makes the triangles similar.",
+      explanationMdFr:
+        "Deux triangles sont **isométriques** quand ils sont identiques en forme et en taille. Seuls quatre ensembles de données le garantissent : **SSS**, **SAS** (l'angle entre les deux côtés), **ASA** (le côté entre les deux angles) et **RHS**.\n\n" +
+        "Des angles égaux seuls ne suffisent pas — cela rend seulement les triangles semblables.",
+      workedExamples: [
+        { problem: "Two triangles share a right angle, a 13 cm hypotenuse and a 5 cm side. Are they congruent?", steps: ["Right angle, hypotenuse and another side is the RHS condition.", "RHS guarantees congruence."], answer: "Yes, by RHS" }
+      ],
+      workedExamplesFr: [
+        { problem: "Deux triangles ont un angle droit, une hypoténuse de 13 cm et un côté de 5 cm. Sont-ils isométriques ?", steps: ["Angle droit, hypoténuse et un autre côté : c'est la condition RHS.", "RHS garantit l'isométrie."], answer: "Oui, par RHS" }
+      ],
+      audioScript: "Count the sides and angles, and check where the angle sits — that decides the condition.",
+      audioScriptFr: "Compte les côtés et les angles, et regarde où se trouve l'angle — cela détermine la condition."
+    },
+    {
+      order: 2,
+      title: "Similar shapes: lengths, areas and volumes",
+      titleFr: "Figures semblables : longueurs, aires et volumes",
+      concept: "Scaling lengths by k, areas by k² and volumes by k³",
+      conceptFr: "Multiplier les longueurs par k, les aires par k² et les volumes par k³",
+      representation: "pictorial",
+      visualAid: "shape",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y10-L6-2"],
+      explanationMd:
+        "Similar shapes have equal angles and all lengths in the same ratio. If lengths scale by **k**, areas scale by **k²** and volumes by **k³**.\n\n" +
+        "Working backwards, take the square root of an area ratio or the cube root of a volume ratio to get the length scale factor.",
+      explanationMdFr:
+        "Les figures semblables ont des angles égaux et toutes leurs longueurs dans le même rapport. Si les longueurs sont multipliées par **k**, les aires le sont par **k²** et les volumes par **k³**.\n\n" +
+        "À l'inverse, prends la racine carrée d'un rapport d'aires ou la racine cubique d'un rapport de volumes pour obtenir le facteur d'échelle des longueurs.",
+      workedExamples: [
+        { problem: "Two similar solids have lengths in the ratio 1 : 3. The smaller has volume 20 cm³.", steps: ["Volume scale factor is 3³ = 27.", "20 x 27 = 540."], answer: "540 cm³" }
+      ],
+      workedExamplesFr: [
+        { problem: "Deux solides semblables ont des longueurs dans le rapport 1 : 3. Le plus petit a un volume de 20 cm³.", steps: ["Le facteur d'échelle des volumes est 3³ = 27.", "20 x 27 = 540."], answer: "540 cm³" }
+      ],
+      audioScript: "Lengths k, areas k squared, volumes k cubed — never mix them up.",
+      audioScriptFr: "Longueurs k, aires k au carré, volumes k au cube — ne les confonds jamais."
+    },
+    {
+      order: 3,
+      title: "Building a geometric argument",
+      titleFr: "Construire un raisonnement géométrique",
+      concept: "Chaining angle facts together and quoting a reason at every step",
+      conceptFr: "Enchaîner des propriétés sur les angles en justifiant chaque étape",
+      representation: "pictorial",
+      visualAid: "shape",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y10-L6-3"],
+      explanationMd:
+        "A geometric proof is a chain of statements where every step has a **reason**: alternate angles are equal, corresponding angles are equal, co-interior angles add to 180°, angles in a triangle add to 180°.\n\n" +
+        "Marks are given for the reasons as much as the numbers, so write them down every time.",
+      explanationMdFr:
+        "Une démonstration géométrique est une chaîne d'affirmations où chaque étape a une **raison** : les angles alternes-internes sont égaux, les angles correspondants sont égaux, les angles co-intérieurs ont pour somme 180°, la somme des angles d'un triangle vaut 180°.\n\n" +
+        "Les points vont autant aux justifications qu'aux nombres : écris-les à chaque fois.",
+      workedExamples: [
+        { problem: "In an isosceles triangle the apex angle is 40°. Find a base angle, giving reasons.", steps: ["The base angles are equal (isosceles triangle).", "180 - 40 = 140 (angles in a triangle add to 180°).", "140 ÷ 2 = 70."], answer: "70°" }
+      ],
+      workedExamplesFr: [
+        { problem: "Dans un triangle isocèle, l'angle au sommet vaut 40°. Trouve un angle à la base en justifiant.", steps: ["Les angles à la base sont égaux (triangle isocèle).", "180 - 40 = 140 (la somme des angles d'un triangle vaut 180°).", "140 ÷ 2 = 70."], answer: "70°" }
+      ],
+      audioScript: "Every line needs a reason — write the fact you used next to each number.",
+      audioScriptFr: "Chaque ligne a besoin d'une justification — écris la propriété utilisée à côté de chaque nombre."
+    }
+  ],
+  Y10L7: [
+    {
+      order: 1,
+      title: "Pythagoras in 2D and 3D",
+      titleFr: "Pythagore en 2D et en 3D",
+      concept: "Using a² + b² = c² in triangles and extending it to the diagonal of a cuboid",
+      conceptFr: "Utiliser a² + b² = c² dans les triangles et l'étendre à la diagonale d'un pavé droit",
+      representation: "pictorial",
+      visualAid: "shape",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y10-L7-1"],
+      explanationMd:
+        "In a right-angled triangle, a² + b² = c², where c is the hypotenuse. To find a shorter side, subtract instead of adding.\n\n" +
+        "In 3D you simply use it twice — across the base, then up to the far corner — which gives the shortcut √(a² + b² + c²).",
+      explanationMdFr:
+        "Dans un triangle rectangle, a² + b² = c², où c est l'hypoténuse. Pour trouver un côté court, soustrais au lieu d'additionner.\n\n" +
+        "En 3D, on l'applique simplement deux fois — sur la base, puis jusqu'au coin opposé — ce qui donne le raccourci √(a² + b² + c²).",
+      workedExamples: [
+        { problem: "A cuboid is 2 cm by 3 cm by 6 cm. Find its space diagonal.", steps: ["2² + 3² + 6² = 4 + 9 + 36 = 49.", "√49 = 7."], answer: "7 cm" }
+      ],
+      workedExamplesFr: [
+        { problem: "Un pavé droit mesure 2 cm sur 3 cm sur 6 cm. Trouve sa diagonale d'espace.", steps: ["2² + 3² + 6² = 4 + 9 + 36 = 49.", "√49 = 7."], answer: "7 cm" }
+      ],
+      audioScript: "Square, add, square root — and in three dimensions just add one more square.",
+      audioScriptFr: "Élève au carré, additionne, prends la racine — et en trois dimensions, ajoute simplement un carré de plus."
+    },
+    {
+      order: 2,
+      title: "Trigonometry in right-angled triangles",
+      titleFr: "La trigonométrie dans les triangles rectangles",
+      concept: "Choosing and using sine, cosine or tangent to find a side or an angle",
+      conceptFr: "Choisir et utiliser le sinus, le cosinus ou la tangente pour trouver un côté ou un angle",
+      representation: "pictorial",
+      visualAid: "shape",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y10-L7-1"],
+      explanationMd:
+        "Label the sides relative to the angle you are using: **opposite**, **adjacent** and **hypotenuse**. Then SOH CAH TOA tells you which ratio links the two sides you care about.\n\n" +
+        "To find a missing angle, use the inverse functions sin⁻¹, cos⁻¹ or tan⁻¹.",
+      explanationMdFr:
+        "Nomme les côtés par rapport à l'angle utilisé : **opposé**, **adjacent** et **hypoténuse**. Ensuite SOH CAH TOA indique quel rapport relie les deux côtés concernés.\n\n" +
+        "Pour trouver un angle manquant, utilise les fonctions inverses sin⁻¹, cos⁻¹ ou tan⁻¹.",
+      workedExamples: [
+        { problem: "A hypotenuse is 20 cm and the angle is 30°. Find the opposite side.", steps: ["Opposite and hypotenuse means sine.", "20 x sin 30° = 20 x 0.5 = 10."], answer: "10 cm" }
+      ],
+      workedExamplesFr: [
+        { problem: "Une hypoténuse mesure 20 cm et l'angle vaut 30°. Trouve le côté opposé.", steps: ["Opposé et hypoténuse : c'est le sinus.", "20 x sin 30° = 20 x 0,5 = 10."], answer: "10 cm" }
+      ],
+      audioScript: "Label the sides first, then let SOH CAH TOA pick the ratio for you.",
+      audioScriptFr: "Nomme d'abord les côtés, puis laisse SOH CAH TOA choisir le rapport."
+    },
+    {
+      order: 3,
+      title: "The sine rule, cosine rule and exact values",
+      titleFr: "Loi des sinus, loi des cosinus et valeurs exactes",
+      concept: "Extending trigonometry to non-right-angled triangles and recalling exact values",
+      conceptFr: "Étendre la trigonométrie aux triangles quelconques et mémoriser les valeurs exactes",
+      representation: "abstract",
+      visualAid: "shape",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y10-L7-2", "Y10-L7-3"],
+      explanationMd:
+        "When a triangle has no right angle, use the **sine rule** a/sin A = b/sin B when you have a side with its opposite angle, and the **cosine rule** a² = b² + c² - 2bc cos A when you have three sides, or two sides and the angle between them. Area is ½ab sin C.\n\n" +
+        "Some values should be known exactly: sin 30° = 1/2, cos 60° = 1/2, tan 45° = 1, sin 60° = √3/2 and cos 30° = √3/2.",
+      explanationMdFr:
+        "Quand un triangle n'a pas d'angle droit, utilise la **loi des sinus** a/sin A = b/sin B si tu as un côté et l'angle opposé, et la **loi des cosinus** a² = b² + c² - 2bc cos A si tu as trois côtés, ou deux côtés et l'angle entre eux. L'aire vaut ½ab sin C.\n\n" +
+        "Certaines valeurs doivent être connues exactement : sin 30° = 1/2, cos 60° = 1/2, tan 45° = 1, sin 60° = √3/2 et cos 30° = √3/2.",
+      workedExamples: [
+        { problem: "A triangle has sides 7 cm and 9 cm with a 60° angle between them. Find its area.", steps: ["Area = ½ab sin C.", "½ x 7 x 9 x sin 60° = 31.5 x 0.866.", "That is 27.3 cm² to 1 d.p."], answer: "27.3 cm²" }
+      ],
+      workedExamplesFr: [
+        { problem: "Un triangle a des côtés de 7 cm et 9 cm avec un angle de 60° entre eux. Trouve son aire.", steps: ["Aire = ½ab sin C.", "½ x 7 x 9 x sin 60° = 31,5 x 0,866.", "Soit 27,3 cm² au dixième près."], answer: "27,3 cm²" }
+      ],
+      audioScript: "No right angle? Pair sides with opposite angles for the sine rule, or use the cosine rule.",
+      audioScriptFr: "Pas d'angle droit ? Associe côtés et angles opposés pour la loi des sinus, ou utilise la loi des cosinus."
+    }
+  ],
+  Y10L8: [
+    {
+      order: 1,
+      title: "Circles, spheres and curved solids",
+      titleFr: "Cercles, sphères et solides courbes",
+      concept: "Using the circle and sphere formulae, in terms of pi and as decimals",
+      conceptFr: "Utiliser les formules du cercle et de la sphère, en fonction de pi et en décimales",
+      representation: "pictorial",
+      visualAid: "shape",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y10-L8-1"],
+      explanationMd:
+        "Circumference is **2πr**, area is **πr²**. A sphere has surface area **4πr²** and volume **4/3 πr³**.\n\n" +
+        "Leaving π in your answer keeps it exact; multiplying it out gives a decimal you must round sensibly.",
+      explanationMdFr:
+        "La circonférence vaut **2πr**, l'aire **πr²**. Une sphère a pour aire **4πr²** et pour volume **4/3 πr³**.\n\n" +
+        "Garder π dans la réponse la rend exacte ; en le développant, on obtient une décimale à arrondir judicieusement.",
+      workedExamples: [
+        { problem: "Find the area of a circle of radius 6 cm, in terms of π.", steps: ["Area = πr².", "6² = 36."], answer: "36π cm²" }
+      ],
+      workedExamplesFr: [
+        { problem: "Trouve l'aire d'un cercle de rayon 6 cm, en fonction de π.", steps: ["Aire = πr².", "6² = 36."], answer: "36π cm²" }
+      ],
+      audioScript: "Square the radius for area, double it for circumference — and keep pi if you want an exact answer.",
+      audioScriptFr: "Élève le rayon au carré pour l'aire, double-le pour la circonférence — et garde pi pour une réponse exacte."
+    },
+    {
+      order: 2,
+      title: "Surface area and volume of solids",
+      titleFr: "Aire et volume des solides",
+      concept: "Finding surface area face by face and volume as cross-section times length",
+      conceptFr: "Trouver l'aire face par face et le volume comme section multipliée par la longueur",
+      representation: "pictorial",
+      visualAid: "shape",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y10-L8-1"],
+      explanationMd:
+        "**Surface area** is the total of every face, so sketching the net stops you missing one. A cuboid has three pairs of identical faces.\n\n" +
+        "For any **prism**, volume = area of cross-section x length. A cylinder is just a prism with a circular cross-section, so its volume is πr²h.",
+      explanationMdFr:
+        "L'**aire totale** est la somme de toutes les faces : dessiner le patron évite d'en oublier une. Un pavé droit a trois paires de faces identiques.\n\n" +
+        "Pour tout **prisme**, volume = aire de la section x longueur. Un cylindre est un prisme à section circulaire, donc son volume est πr²h.",
+      workedExamples: [
+        { problem: "A cuboid is 5 cm by 3 cm by 2 cm. Find its surface area.", steps: ["Faces are 15, 10 and 6 cm².", "2 x (15 + 10 + 6) = 62."], answer: "62 cm²" }
+      ],
+      workedExamplesFr: [
+        { problem: "Un pavé droit mesure 5 cm sur 3 cm sur 2 cm. Trouve son aire totale.", steps: ["Les faces valent 15, 10 et 6 cm².", "2 x (15 + 10 + 6) = 62."], answer: "62 cm²" }
+      ],
+      audioScript: "Sketch the net for surface area; use cross-section times length for volume.",
+      audioScriptFr: "Dessine le patron pour l'aire ; utilise section x longueur pour le volume."
+    },
+    {
+      order: 3,
+      title: "Vectors and vector proof",
+      titleFr: "Vecteurs et démonstration vectorielle",
+      concept: "Adding, subtracting and scaling vectors, and using them to prove results",
+      conceptFr: "Additionner, soustraire et multiplier des vecteurs, et les utiliser pour démontrer",
+      representation: "pictorial",
+      visualAid: "coordinate-grid",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y10-L8-2", "Y10-L8-3"],
+      explanationMd:
+        "A **vector** has size and direction and is written as a column: across on top, up underneath. Add and subtract component by component, and multiplying by a number scales both components.\n\n" +
+        "Reversing a vector reverses its sign, so BA = -AB. In a proof, showing one vector is a **scalar multiple** of another proves the two are parallel.",
+      explanationMdFr:
+        "Un **vecteur** a une norme et une direction, et s'écrit en colonne : déplacement horizontal en haut, vertical en bas. On additionne et soustrait composante par composante, et multiplier par un nombre multiplie les deux composantes.\n\n" +
+        "Inverser un vecteur change son signe, donc BA = -AB. Dans une démonstration, montrer qu'un vecteur est un **multiple scalaire** d'un autre prouve qu'ils sont parallèles.",
+      workedExamples: [
+        { problem: "In triangle OAB, M and N are midpoints of OA and OB. Show MN is parallel to AB.", steps: ["MN = ON - OM = ½OB - ½OA.", "That factorises to ½(OB - OA) = ½AB.", "MN is a scalar multiple of AB, so they are parallel."], answer: "MN = ½AB, so MN is parallel to AB" }
+      ],
+      workedExamplesFr: [
+        { problem: "Dans le triangle OAB, M et N sont les milieux de OA et OB. Montre que MN est parallèle à AB.", steps: ["MN = ON - OM = ½OB - ½OA.", "Cela se factorise en ½(OB - OA) = ½AB.", "MN est un multiple scalaire de AB, donc ils sont parallèles."], answer: "MN = ½AB, donc MN est parallèle à AB" }
+      ],
+      audioScript: "A scalar multiple always means parallel — that is the heart of every vector proof.",
+      audioScriptFr: "Un multiple scalaire signifie toujours parallèle — c'est le cœur de toute démonstration vectorielle."
+    }
+  ],
+  Y10L9: [
+    {
+      order: 1,
+      title: "Tree diagrams, Venn diagrams and conditional probability",
+      titleFr: "Arbres, diagrammes de Venn et probabilité conditionnelle",
+      concept: "Representing combined events and working with 'given that' probabilities",
+      conceptFr: "Représenter des événements combinés et travailler avec les probabilités « sachant que »",
+      representation: "pictorial",
+      visualAid: "graph",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y10-L9-1"],
+      explanationMd:
+        "On a **tree diagram** you multiply along the branches and add between them. For 'at least one', it is usually quicker to find the probability of none and subtract from 1.\n\n" +
+        "**Conditional** probability means you are told something has already happened, so you only count that part of the sample space — a Venn diagram or a two-way table shows exactly which part.",
+      explanationMdFr:
+        "Sur un **arbre de probabilité**, on multiplie le long des branches et on additionne entre elles. Pour « au moins un », il est souvent plus rapide de calculer la probabilité d'aucun et de la retirer de 1.\n\n" +
+        "Une probabilité **conditionnelle** signifie qu'on sait déjà qu'un événement s'est produit : on ne compte donc que cette partie de l'univers — un diagramme de Venn ou un tableau à double entrée montre exactement laquelle.",
+      workedExamples: [
+        { problem: "A bag has 5 red and 3 blue counters. Two are drawn without replacement. Find P(both red).", steps: ["First draw: 5/8.", "Second draw: 4/7 because one red has gone.", "5/8 x 4/7 = 20/56 = 5/14."], answer: "5/14" }
+      ],
+      workedExamplesFr: [
+        { problem: "Un sac contient 5 jetons rouges et 3 bleus. On en tire deux sans remise. Trouve P(les deux rouges).", steps: ["Premier tirage : 5/8.", "Second tirage : 4/7 car un rouge est parti.", "5/8 x 4/7 = 20/56 = 5/14."], answer: "5/14" }
+      ],
+      audioScript: "Without replacement, both numbers change on the second branch — that is conditional probability.",
+      audioScriptFr: "Sans remise, les deux nombres changent sur la seconde branche — c'est la probabilité conditionnelle."
+    },
+    {
+      order: 2,
+      title: "Sampling and bias",
+      titleFr: "Échantillonnage et biais",
+      concept: "Comparing sampling methods and judging whether a sample is representative",
+      conceptFr: "Comparer des méthodes d'échantillonnage et juger si un échantillon est représentatif",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y10-L9-2"],
+      explanationMd:
+        "A good sample is **large enough** and **representative**. Random sampling gives everyone an equal chance; stratified sampling takes a share from each group in proportion to its size; systematic sampling takes every nth name from an ordered list.\n\n" +
+        "A sample is **biased** if some people could never be chosen, or if people chose themselves.",
+      explanationMdFr:
+        "Un bon échantillon est **assez grand** et **représentatif**. L'échantillonnage aléatoire donne à chacun la même chance ; l'échantillonnage stratifié prélève une part de chaque groupe proportionnelle à sa taille ; l'échantillonnage systématique prend un nom sur n dans une liste ordonnée.\n\n" +
+        "Un échantillon est **biaisé** si certaines personnes ne peuvent jamais être choisies, ou si les gens se sont désignés eux-mêmes.",
+      workedExamples: [
+        { problem: "A school of 900 has 300 in Year 11. A stratified sample of 60 is taken. How many from Year 11?", steps: ["Year 11 is 300/900 = one third.", "One third of 60 = 20."], answer: "20" }
+      ],
+      workedExamplesFr: [
+        { problem: "Une école de 900 élèves en compte 300 en Year 11. Un échantillon stratifié de 60 est prélevé. Combien viennent de Year 11 ?", steps: ["Year 11 représente 300/900 = un tiers.", "Un tiers de 60 = 20."], answer: "20" }
+      ],
+      audioScript: "Ask who could never be picked — that question finds the bias every time.",
+      audioScriptFr: "Demande-toi qui ne pourrait jamais être choisi — cette question révèle le biais à chaque fois."
+    },
+    {
+      order: 3,
+      title: "Cumulative frequency, box plots and the interquartile range",
+      titleFr: "Fréquences cumulées, boîtes à moustaches et écart interquartile",
+      concept: "Estimating the median and quartiles and comparing distributions",
+      conceptFr: "Estimer la médiane et les quartiles et comparer des distributions",
+      representation: "pictorial",
+      visualAid: "graph",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y10-L9-3"],
+      explanationMd:
+        "On a cumulative frequency curve, read across at **half** the total frequency for the median, a **quarter** for Q1 and **three quarters** for Q3.\n\n" +
+        "The **interquartile range** is Q3 - Q1. It describes the middle half only, so unlike the range it is not thrown off by one extreme value. A smaller IQR means more consistent data.",
+      explanationMdFr:
+        "Sur une courbe des fréquences cumulées, lis à la **moitié** de l'effectif total pour la médiane, au **quart** pour Q1 et aux **trois quarts** pour Q3.\n\n" +
+        "L'**écart interquartile** vaut Q3 - Q1. Il ne décrit que la moitié centrale : contrairement à l'étendue, une valeur extrême ne le fausse pas. Un écart plus petit signifie des données plus régulières.",
+      workedExamples: [
+        { problem: "A box plot has Q1 = 32 and Q3 = 55. Find the interquartile range.", steps: ["IQR = Q3 - Q1.", "55 - 32 = 23."], answer: "23" }
+      ],
+      workedExamplesFr: [
+        { problem: "Une boîte à moustaches a Q1 = 32 et Q3 = 55. Trouve l'écart interquartile.", steps: ["EIQ = Q3 - Q1.", "55 - 32 = 23."], answer: "23" }
+      ],
+      audioScript: "Median compares typical values; interquartile range compares consistency.",
+      audioScriptFr: "La médiane compare les valeurs typiques ; l'écart interquartile compare la régularité."
+    }
+  ],
+  Y10L10: [
+    {
+      order: 1,
+      title: "Mixed number, ratio and proportion",
+      titleFr: "Nombres, rapports et proportionnalité mélangés",
+      concept: "Choosing the right number technique in an unlabelled GCSE-style question",
+      conceptFr: "Choisir la bonne technique numérique dans une question d'examen non étiquetée",
+      representation: "abstract",
+      visualAid: "bar-model",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y10-L10-1"],
+      explanationMd:
+        "Exam questions rarely tell you the topic. Look for the signal: \"to the nearest\" means bounds, a repeated percentage means a multiplier, \"in the ratio\" means counting parts, and √ with a non-square number means surds.\n\n" +
+        "Reverse percentages are the classic trap — always divide by the multiplier rather than subtracting the same percentage.",
+      explanationMdFr:
+        "Les questions d'examen indiquent rarement le thème. Repère l'indice : « au ... près » signale les bornes, un pourcentage répété un multiplicateur, « dans le rapport » un comptage de parts, et √ d'un nombre non carré des radicaux.\n\n" +
+        "Les pourcentages inverses sont le piège classique — divise toujours par le multiplicateur au lieu de retirer le même pourcentage.",
+      workedExamples: [
+        { problem: "After a 20% increase a price is £96. Find the original price.", steps: ["The multiplier is 1.2.", "96 ÷ 1.2 = 80."], answer: "£80" }
+      ],
+      workedExamplesFr: [
+        { problem: "Après une augmentation de 20 %, un prix vaut 96 £. Trouve le prix initial.", steps: ["Le multiplicateur est 1,2.", "96 ÷ 1,2 = 80."], answer: "80 £" }
+      ],
+      audioScript: "Find the signal word first — it tells you which technique the question wants.",
+      audioScriptFr: "Repère d'abord le mot indice — il révèle la technique attendue."
+    },
+    {
+      order: 2,
+      title: "Mixed algebra",
+      titleFr: "Algèbre mélangée",
+      concept: "Moving fluently between expanding, factorising, solving and sequences",
+      conceptFr: "Passer avec aisance du développement à la factorisation, la résolution et les suites",
+      representation: "abstract",
+      visualAid: "graph",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y10-L10-2"],
+      explanationMd:
+        "Most algebra marks come from the same handful of moves: expand, factorise, balance both sides, substitute, and read a graph.\n\n" +
+        "When a question looks unfamiliar, ask which of those five it is really asking for — and always check your answer by substituting it back in.",
+      explanationMdFr:
+        "La plupart des points en algèbre viennent des mêmes gestes : développer, factoriser, équilibrer les deux côtés, substituer et lire un graphique.\n\n" +
+        "Quand une question semble inconnue, demande-toi lequel de ces cinq gestes elle demande vraiment — et vérifie toujours ta réponse en la remplaçant dans l'équation.",
+      workedExamples: [
+        { problem: "Solve 5x + 7 = 42 and check it.", steps: ["42 - 7 = 35.", "35 ÷ 5 = 7.", "Check: 5 x 7 + 7 = 42."], answer: "x = 7" }
+      ],
+      workedExamplesFr: [
+        { problem: "Résous 5x + 7 = 42 et vérifie.", steps: ["42 - 7 = 35.", "35 ÷ 5 = 7.", "Vérification : 5 x 7 + 7 = 42."], answer: "x = 7" }
+      ],
+      audioScript: "Expand, factorise, balance, substitute, read a graph — nearly every algebra mark is one of those.",
+      audioScriptFr: "Développer, factoriser, équilibrer, substituer, lire un graphique — presque tous les points d'algèbre viennent de là."
+    },
+    {
+      order: 3,
+      title: "Mixed geometry, probability and statistics",
+      titleFr: "Géométrie, probabilités et statistiques mélangées",
+      concept: "Selecting the right geometric, probability or statistical tool under exam conditions",
+      conceptFr: "Choisir le bon outil géométrique, probabiliste ou statistique en conditions d'examen",
+      representation: "pictorial",
+      visualAid: "shape",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y10-L10-3"],
+      explanationMd:
+        "A right angle and two sides means Pythagoras; a right angle and an angle means trigonometry; no right angle means the sine or cosine rule.\n\n" +
+        "In statistics, use the median for typical values and the interquartile range for consistency, and always show the fraction or multiplication you used in a probability answer.",
+      explanationMdFr:
+        "Un angle droit et deux côtés : Pythagore ; un angle droit et un angle : la trigonométrie ; pas d'angle droit : la loi des sinus ou des cosinus.\n\n" +
+        "En statistiques, utilise la médiane pour les valeurs typiques et l'écart interquartile pour la régularité, et montre toujours la fraction ou la multiplication utilisée dans une réponse de probabilité.",
+      workedExamples: [
+        { problem: "A rectangle is 9 m by 12 m. How far is it corner to corner?", steps: ["This is a right-angled triangle, so use Pythagoras.", "9² + 12² = 81 + 144 = 225.", "√225 = 15."], answer: "15 m" }
+      ],
+      workedExamplesFr: [
+        { problem: "Un rectangle mesure 9 m sur 12 m. Quelle est la distance d'un coin au coin opposé ?", steps: ["C'est un triangle rectangle : utilise Pythagore.", "9² + 12² = 81 + 144 = 225.", "√225 = 15."], answer: "15 m" }
+      ],
+      audioScript: "Right angle or not? That single question picks your geometry tool.",
+      audioScriptFr: "Angle droit ou pas ? Cette seule question détermine ton outil géométrique."
+    }
   ]
 };
