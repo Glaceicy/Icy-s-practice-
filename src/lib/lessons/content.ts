@@ -5804,5 +5804,704 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       audioScript: "Right angle? Pythagoras. Comparing data? Give an average and a spread.",
       audioScriptFr: "Un angle droit ? Pythagore. Comparer des données ? Donne une moyenne et une dispersion."
     }
+  ],
+  Y4L2: [
+    {
+      order: 1,
+      title: "Column addition and subtraction with four digits",
+      titleFr: "Addition et soustraction posées à quatre chiffres",
+      concept: "Lining up place-value columns to add and subtract numbers up to 10,000",
+      conceptFr: "Aligner les colonnes de valeur de position pour additionner et soustraire jusqu'à 10 000",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y4-L2-1"],
+      explanationMd:
+        "Written addition and subtraction both depend on one thing: lining the digits up in their **place-value columns** — ones under ones, tens under tens, and so on.\n\n" +
+        "When a column adds to ten or more, **carry** into the next column. When the top digit is too small to subtract from, **exchange** a ten from the column to the left.",
+      explanationMdFr:
+        "L'addition et la soustraction posées reposent toutes deux sur une chose : aligner les chiffres dans leurs **colonnes de valeur de position** — unités sous unités, dizaines sous dizaines, et ainsi de suite.\n\n" +
+        "Quand une colonne atteint dix ou plus, **reporte** une retenue dans la colonne suivante. Quand le chiffre du haut est trop petit, **emprunte** une dizaine à la colonne de gauche.",
+      workedExamples: [
+        { problem: "Work out 3,486 + 2,175.", steps: ["6 + 5 = 11, write 1 and carry 1.", "8 + 7 + 1 = 16, write 6 and carry 1.", "4 + 1 + 1 = 6, then 3 + 2 = 5."], answer: "5,661" },
+        { problem: "Work out 4,205 - 1,348.", steps: ["5 - 8 needs an exchange: 15 - 8 = 7.", "Continue column by column, exchanging where needed."], answer: "2,857" }
+      ],
+      workedExamplesFr: [
+        { problem: "Calcule 3 486 + 2 175.", steps: ["6 + 5 = 11, écris 1 et retiens 1.", "8 + 7 + 1 = 16, écris 6 et retiens 1.", "4 + 1 + 1 = 6, puis 3 + 2 = 5."], answer: "5 661" },
+        { problem: "Calcule 4 205 - 1 348.", steps: ["5 - 8 demande un emprunt : 15 - 8 = 7.", "Continue colonne par colonne en empruntant si besoin."], answer: "2 857" }
+      ],
+      audioScript: "Line the columns up first — everything else follows from that.",
+      audioScriptFr: "Aligne d'abord les colonnes — tout le reste en découle."
+    },
+    {
+      order: 2,
+      title: "Estimating and checking with the inverse",
+      titleFr: "Estimer et vérifier par l'opération inverse",
+      concept: "Rounding to estimate an answer and using the inverse operation to check it",
+      conceptFr: "Arrondir pour estimer un résultat et utiliser l'opération inverse pour le vérifier",
+      representation: "abstract",
+      visualAid: "number-line",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y4-L2-2"],
+      explanationMd:
+        "An **estimate** is a quick, rough answer found by rounding. It tells you roughly what to expect, so a wildly different exact answer is a warning sign.\n\n" +
+        "The **inverse** checks it exactly: addition is undone by subtraction, and subtraction is undone by addition. If 1,250 + 460 = 1,710, then 1,710 - 460 should give 1,250 back.",
+      explanationMdFr:
+        "Une **estimation** est une réponse rapide et approximative obtenue en arrondissant. Elle indique à quoi s'attendre : un résultat exact très différent est un signal d'alerte.\n\n" +
+        "L'**opération inverse** vérifie exactement : la soustraction annule l'addition, et l'addition annule la soustraction. Si 1 250 + 460 = 1 710, alors 1 710 - 460 doit redonner 1 250.",
+      workedExamples: [
+        { problem: "Estimate 3,812 + 2,190 by rounding to the nearest 100.", steps: ["3,812 rounds to 3,800.", "2,190 rounds to 2,200.", "3,800 + 2,200 = 6,000."], answer: "about 6,000" }
+      ],
+      workedExamplesFr: [
+        { problem: "Estime 3 812 + 2 190 en arrondissant à la centaine près.", steps: ["3 812 s'arrondit à 3 800.", "2 190 s'arrondit à 2 200.", "3 800 + 2 200 = 6 000."], answer: "environ 6 000" }
+      ],
+      audioScript: "Estimate first, calculate second, then check with the inverse.",
+      audioScriptFr: "Estime d'abord, calcule ensuite, puis vérifie par l'opération inverse."
+    },
+    {
+      order: 3,
+      title: "Two-step problems",
+      titleFr: "Les problèmes à deux étapes",
+      concept: "Deciding which operations to use and working through them one at a time",
+      conceptFr: "Choisir les opérations à utiliser et les enchaîner une à la fois",
+      representation: "abstract",
+      visualAid: "bar-model",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y4-L2-3"],
+      explanationMd:
+        "A two-step problem needs two calculations. Read it twice: decide what the **first** step is, do it, write the answer down, then use that answer in the second step.\n\n" +
+        "Watch the words: \"altogether\" and \"more\" usually mean add, while \"left\", \"fewer\" and \"how many more than\" usually mean subtract.",
+      explanationMdFr:
+        "Un problème à deux étapes demande deux calculs. Lis-le deux fois : décide quelle est la **première** étape, fais-la, note le résultat, puis utilise ce résultat dans la seconde.\n\n" +
+        "Surveille les mots : « en tout » et « de plus » veulent souvent dire additionner, tandis que « reste », « de moins » et « combien de plus que » veulent dire soustraire.",
+      workedExamples: [
+        { problem: "A museum had 2,340 visitors on Saturday and 1,180 more on Sunday. Then 760 left. How many remain?", steps: ["2,340 + 1,180 = 3,520.", "3,520 - 760 = 2,760."], answer: "2,760" }
+      ],
+      workedExamplesFr: [
+        { problem: "Un musée a reçu 2 340 visiteurs samedi et 1 180 de plus dimanche. Puis 760 sont partis. Combien en reste-t-il ?", steps: ["2 340 + 1 180 = 3 520.", "3 520 - 760 = 2 760."], answer: "2 760" }
+      ],
+      audioScript: "One step at a time — write the first answer down before you start the second.",
+      audioScriptFr: "Une étape à la fois — note le premier résultat avant de commencer le second."
+    }
+  ],
+  Y4L3: [
+    {
+      order: 1,
+      title: "Knowing all the tables to 12 x 12",
+      titleFr: "Connaître toutes les tables jusqu'à 12 x 12",
+      concept: "Recalling multiplication facts and their matching division facts",
+      conceptFr: "Mémoriser les faits de multiplication et les divisions correspondantes",
+      representation: "pictorial",
+      visualAid: "array",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y4-L3-1"],
+      explanationMd:
+        "Every multiplication fact comes with a matching **division fact**. If you know 7 x 8 = 56, you also know 56 ÷ 8 = 7 and 56 ÷ 7 = 8.\n\n" +
+        "Multiplication is also **commutative**: 7 x 8 and 8 x 7 give the same answer. That means learning one fact really gives you four.",
+      explanationMdFr:
+        "Chaque fait de multiplication s'accompagne d'une **division correspondante**. Si tu sais que 7 x 8 = 56, tu sais aussi que 56 ÷ 8 = 7 et 56 ÷ 7 = 8.\n\n" +
+        "La multiplication est aussi **commutative** : 7 x 8 et 8 x 7 donnent le même résultat. Apprendre un fait t'en donne donc quatre.",
+      workedExamples: [
+        { problem: "You know 6 x 9 = 54. Write three more facts.", steps: ["9 x 6 = 54 (swap the order).", "54 ÷ 9 = 6.", "54 ÷ 6 = 9."], answer: "9 x 6 = 54, 54 ÷ 9 = 6, 54 ÷ 6 = 9" }
+      ],
+      workedExamplesFr: [
+        { problem: "Tu sais que 6 x 9 = 54. Écris trois autres faits.", steps: ["9 x 6 = 54 (échange l'ordre).", "54 ÷ 9 = 6.", "54 ÷ 6 = 9."], answer: "9 x 6 = 54, 54 ÷ 9 = 6, 54 ÷ 6 = 9" }
+      ],
+      audioScript: "Learn one fact and you really learn four — two multiplications and two divisions.",
+      audioScriptFr: "Apprends un fait et tu en apprends quatre — deux multiplications et deux divisions."
+    },
+    {
+      order: 2,
+      title: "Using place value and known facts",
+      titleFr: "Utiliser la valeur de position et les faits connus",
+      concept: "Scaling a known times-table fact up by ten or a hundred",
+      conceptFr: "Agrandir un fait connu d'une table par dix ou par cent",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y4-L3-2"],
+      explanationMd:
+        "A fact you already know can solve much bigger calculations. If 4 x 6 = 24, then 4 x 60 = 240 and 40 x 60 = 2,400.\n\n" +
+        "Multiplying by 10 moves every digit **one place to the left**, and by 100 it moves **two places**. The digits never change — only their columns do.",
+      explanationMdFr:
+        "Un fait que tu connais déjà permet de résoudre des calculs bien plus grands. Si 4 x 6 = 24, alors 4 x 60 = 240 et 40 x 60 = 2 400.\n\n" +
+        "Multiplier par 10 déplace chaque chiffre **d'un rang vers la gauche**, et par 100 **de deux rangs**. Les chiffres ne changent jamais — seules leurs colonnes changent.",
+      workedExamples: [
+        { problem: "Work out 7 x 80.", steps: ["7 x 8 = 56.", "80 is ten times 8, so the answer is ten times bigger."], answer: "560" }
+      ],
+      workedExamplesFr: [
+        { problem: "Calcule 7 x 80.", steps: ["7 x 8 = 56.", "80 vaut dix fois 8, donc le résultat est dix fois plus grand."], answer: "560" }
+      ],
+      audioScript: "Use the fact you know, then make the answer ten or a hundred times bigger.",
+      audioScriptFr: "Utilise le fait que tu connais, puis rends le résultat dix ou cent fois plus grand."
+    },
+    {
+      order: 3,
+      title: "Factor pairs and commutativity",
+      titleFr: "Paires de facteurs et commutativité",
+      concept: "Finding the pairs of numbers that multiply to make a given number",
+      conceptFr: "Trouver les paires de nombres dont le produit donne un nombre donné",
+      representation: "pictorial",
+      visualAid: "array",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y4-L3-3"],
+      explanationMd:
+        "A **factor pair** is two numbers that multiply to make a given number: 3 and 8 are a factor pair of 24, and so are 4 and 6.\n\n" +
+        "A **factor** divides exactly into a number. A **multiple** is in that number's times table. Because multiplication can be done in any order, every factor pair works both ways round.",
+      explanationMdFr:
+        "Une **paire de facteurs**, ce sont deux nombres dont le produit donne un nombre donné : 3 et 8 forment une paire de facteurs de 24, tout comme 4 et 6.\n\n" +
+        "Un **diviseur** divise exactement un nombre. Un **multiple** se trouve dans sa table. Comme la multiplication se fait dans n'importe quel ordre, chaque paire fonctionne dans les deux sens.",
+      workedExamples: [
+        { problem: "36 is 4 times something. What is the factor pair partner?", steps: ["36 ÷ 4 = 9.", "So the pair is 4 and 9."], answer: "9" }
+      ],
+      workedExamplesFr: [
+        { problem: "36 vaut 4 fois quelque chose. Quel est le partenaire de la paire de facteurs ?", steps: ["36 ÷ 4 = 9.", "La paire est donc 4 et 9."], answer: "9" }
+      ],
+      audioScript: "Divide by the factor you have to find the one that goes with it.",
+      audioScriptFr: "Divise par le facteur que tu as pour trouver celui qui l'accompagne."
+    }
+  ],
+  Y4L4: [
+    {
+      order: 1,
+      title: "Short multiplication",
+      titleFr: "La multiplication posée",
+      concept: "Multiplying a two- or three-digit number by a one-digit number in columns",
+      conceptFr: "Multiplier un nombre à deux ou trois chiffres par un chiffre, en colonnes",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y4-L4-1"],
+      explanationMd:
+        "In short multiplication you work from **right to left**: multiply the ones, then the tens, then the hundreds, carrying anything over ten into the next column.\n\n" +
+        "It helps to see what the method is really doing: 34 x 6 is 30 x 6 plus 4 x 6, which is 180 + 24 = 204.",
+      explanationMdFr:
+        "Dans la multiplication posée, tu travailles **de droite à gauche** : multiplie les unités, puis les dizaines, puis les centaines, en reportant les retenues.\n\n" +
+        "Il est utile de voir ce que fait vraiment la méthode : 34 x 6, c'est 30 x 6 plus 4 x 6, soit 180 + 24 = 204.",
+      workedExamples: [
+        { problem: "Work out 47 x 6.", steps: ["7 x 6 = 42, write 2 and carry 4.", "4 x 6 = 24, plus the carried 4 is 28."], answer: "282" }
+      ],
+      workedExamplesFr: [
+        { problem: "Calcule 47 x 6.", steps: ["7 x 6 = 42, écris 2 et retiens 4.", "4 x 6 = 24, plus la retenue 4 donne 28."], answer: "282" }
+      ],
+      audioScript: "Ones first, then tens, carrying as you go.",
+      audioScriptFr: "D'abord les unités, puis les dizaines, avec les retenues."
+    },
+    {
+      order: 2,
+      title: "Division and what to do with a remainder",
+      titleFr: "La division et le traitement du reste",
+      concept: "Dividing with remainders and interpreting them in context",
+      conceptFr: "Diviser avec un reste et l'interpréter selon le contexte",
+      representation: "pictorial",
+      visualAid: "counters",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y4-L4-2"],
+      explanationMd:
+        "When a division does not work out exactly, what is left over is the **remainder**. 47 ÷ 5 = 9 remainder 2.\n\n" +
+        "What you do with the remainder depends on the question. Counting full boxes means **round down**. Making sure everyone fits means **round up**. Sometimes the remainder itself is the answer.",
+      explanationMdFr:
+        "Quand une division ne tombe pas juste, ce qui reste est le **reste**. 47 ÷ 5 = 9 reste 2.\n\n" +
+        "Ce que tu fais du reste dépend de la question. Compter des boîtes pleines veut dire **arrondir vers le bas**. S'assurer que tout le monde tienne veut dire **arrondir vers le haut**. Parfois, le reste lui-même est la réponse.",
+      workedExamples: [
+        { problem: "53 children need minibuses holding 8 each. How many minibuses?", steps: ["53 ÷ 8 = 6 remainder 5.", "The 5 left over still need a seat, so round up."], answer: "7" }
+      ],
+      workedExamplesFr: [
+        { problem: "53 enfants ont besoin de minibus de 8 places. Combien de minibus faut-il ?", steps: ["53 ÷ 8 = 6 reste 5.", "Les 5 restants ont aussi besoin d'une place, donc on arrondit au-dessus."], answer: "7" }
+      ],
+      audioScript: "Work out the remainder, then ask what the story needs you to do with it.",
+      audioScriptFr: "Calcule le reste, puis demande-toi ce que l'énoncé veut que tu en fasses."
+    },
+    {
+      order: 3,
+      title: "The distributive law",
+      titleFr: "La distributivité",
+      concept: "Splitting a number into parts, multiplying each part and adding the results",
+      conceptFr: "Séparer un nombre en parties, multiplier chaque partie et additionner",
+      representation: "pictorial",
+      visualAid: "array",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y4-L4-3"],
+      explanationMd:
+        "The **distributive law** says you can split one number up, multiply each part separately and then add. It is exactly what short multiplication does underneath.\n\n" +
+        "For example, 38 x 4 = (30 x 4) + (8 x 4) = 120 + 32 = 152. Splitting into tens and ones turns one hard calculation into two easy ones.",
+      explanationMdFr:
+        "La **distributivité** permet de séparer un nombre, de multiplier chaque partie séparément, puis d'additionner. C'est exactement ce que fait la multiplication posée.\n\n" +
+        "Par exemple, 38 x 4 = (30 x 4) + (8 x 4) = 120 + 32 = 152. Séparer en dizaines et unités transforme un calcul difficile en deux calculs faciles.",
+      workedExamples: [
+        { problem: "Use the distributive law for 56 x 3.", steps: ["50 x 3 = 150.", "6 x 3 = 18.", "150 + 18 = 168."], answer: "168" }
+      ],
+      workedExamplesFr: [
+        { problem: "Utilise la distributivité pour 56 x 3.", steps: ["50 x 3 = 150.", "6 x 3 = 18.", "150 + 18 = 168."], answer: "168" }
+      ],
+      audioScript: "Split into tens and ones, multiply both, then add the two parts.",
+      audioScriptFr: "Sépare en dizaines et unités, multiplie les deux, puis additionne les deux parties."
+    }
+  ],
+  Y4L5: [
+    {
+      order: 1,
+      title: "Families of equivalent fractions",
+      titleFr: "Les familles de fractions équivalentes",
+      concept: "Multiplying or dividing top and bottom by the same number",
+      conceptFr: "Multiplier ou diviser le haut et le bas par le même nombre",
+      representation: "pictorial",
+      visualAid: "fraction-diagram",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y4-L5-1"],
+      explanationMd:
+        "Two fractions are **equivalent** when they show the same amount: 1/2, 2/4, 3/6 and 4/8 are all the same size.\n\n" +
+        "To find an equivalent fraction, multiply **both** the top and the bottom by the same number — or divide both by the same number to simplify.",
+      explanationMdFr:
+        "Deux fractions sont **équivalentes** quand elles représentent la même quantité : 1/2, 2/4, 3/6 et 4/8 valent toutes la même chose.\n\n" +
+        "Pour trouver une fraction équivalente, multiplie **à la fois** le haut et le bas par le même nombre — ou divise les deux par le même nombre pour simplifier.",
+      workedExamples: [
+        { problem: "Complete 3/5 = ?/20.", steps: ["5 x 4 = 20, so the bottom was multiplied by 4.", "Do the same on top: 3 x 4 = 12."], answer: "12/20" }
+      ],
+      workedExamplesFr: [
+        { problem: "Complète 3/5 = ?/20.", steps: ["5 x 4 = 20, donc le bas a été multiplié par 4.", "Fais pareil en haut : 3 x 4 = 12."], answer: "12/20" }
+      ],
+      audioScript: "Whatever you do to the bottom, do exactly the same to the top.",
+      audioScriptFr: "Ce que tu fais en bas, fais exactement la même chose en haut."
+    },
+    {
+      order: 2,
+      title: "Adding and subtracting fractions with the same denominator",
+      titleFr: "Additionner et soustraire des fractions de même dénominateur",
+      concept: "Adding and subtracting only the numerators when the denominators match",
+      conceptFr: "N'additionner et ne soustraire que les numérateurs quand les dénominateurs sont identiques",
+      representation: "pictorial",
+      visualAid: "fraction-diagram",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y4-L5-2"],
+      explanationMd:
+        "When the denominators are the same, the pieces are the same size, so you simply **add or subtract the numerators**. The denominator does not change.\n\n" +
+        "3/8 + 2/8 = 5/8, not 5/16. One whole is the denominator over itself, so 8/8 = 1.",
+      explanationMdFr:
+        "Quand les dénominateurs sont identiques, les parts ont la même taille : il suffit d'**additionner ou de soustraire les numérateurs**. Le dénominateur ne change pas.\n\n" +
+        "3/8 + 2/8 = 5/8, et non 5/16. Un tout vaut le dénominateur sur lui-même, donc 8/8 = 1.",
+      workedExamples: [
+        { problem: "Work out 3/7 + 2/7.", steps: ["The denominators match, so add the numerators.", "3 + 2 = 5."], answer: "5/7" },
+        { problem: "What must be added to 4/9 to make 1?", steps: ["1 whole is 9/9.", "9 - 4 = 5."], answer: "5/9" }
+      ],
+      workedExamplesFr: [
+        { problem: "Calcule 3/7 + 2/7.", steps: ["Les dénominateurs sont identiques : additionne les numérateurs.", "3 + 2 = 5."], answer: "5/7" },
+        { problem: "Que faut-il ajouter à 4/9 pour obtenir 1 ?", steps: ["Un tout vaut 9/9.", "9 - 4 = 5."], answer: "5/9" }
+      ],
+      audioScript: "Same bottoms? Then only the top numbers change.",
+      audioScriptFr: "Mêmes dénominateurs ? Alors seuls les numérateurs changent."
+    },
+    {
+      order: 3,
+      title: "Quarters, halves and their decimals",
+      titleFr: "Quarts, moitiés et leurs décimaux",
+      concept: "Learning the decimal equivalents of 1/4, 1/2 and 3/4",
+      conceptFr: "Apprendre les équivalents décimaux de 1/4, 1/2 et 3/4",
+      representation: "abstract",
+      visualAid: "bar-model",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y4-L5-3"],
+      explanationMd:
+        "Three decimal equivalents are worth learning by heart: **1/4 = 0.25**, **1/2 = 0.5** and **3/4 = 0.75**.\n\n" +
+        "To find a fraction of an amount, divide by the bottom number and then multiply by the top one. A quarter of 20 is 20 ÷ 4 = 5, so three quarters of 20 is 5 x 3 = 15.",
+      explanationMdFr:
+        "Trois équivalents décimaux méritent d'être appris par cœur : **1/4 = 0,25**, **1/2 = 0,5** et **3/4 = 0,75**.\n\n" +
+        "Pour trouver une fraction d'une quantité, divise par le nombre du bas puis multiplie par celui du haut. Un quart de 20 vaut 20 ÷ 4 = 5, donc trois quarts de 20 valent 5 x 3 = 15.",
+      workedExamples: [
+        { problem: "What is 3/4 of 28?", steps: ["28 ÷ 4 = 7.", "7 x 3 = 21."], answer: "21" }
+      ],
+      workedExamplesFr: [
+        { problem: "Que vaut 3/4 de 28 ?", steps: ["28 ÷ 4 = 7.", "7 x 3 = 21."], answer: "21" }
+      ],
+      audioScript: "Divide by the bottom, multiply by the top — and learn 0.25, 0.5 and 0.75 by heart.",
+      audioScriptFr: "Divise par le bas, multiplie par le haut — et apprends 0,25, 0,5 et 0,75 par cœur."
+    }
+  ],
+  Y4L6: [
+    {
+      order: 1,
+      title: "Tenths and hundredths",
+      titleFr: "Dixièmes et centièmes",
+      concept: "Writing tenths and hundredths as decimals and back again",
+      conceptFr: "Écrire des dixièmes et des centièmes en décimal, et inversement",
+      representation: "abstract",
+      visualAid: "number-line",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y4-L6-1"],
+      explanationMd:
+        "After the decimal point, the first column is **tenths** and the second is **hundredths**. So 0.7 is seven tenths and 0.43 is forty-three hundredths.\n\n" +
+        "Dividing by 10 moves every digit one place right; dividing by 100 moves it two places. Money works the same way: 250p = £2.50.",
+      explanationMdFr:
+        "Après la virgule, la première colonne est celle des **dixièmes** et la seconde celle des **centièmes**. Ainsi 0,7 vaut sept dixièmes et 0,43 quarante-trois centièmes.\n\n" +
+        "Diviser par 10 déplace chaque chiffre d'un rang vers la droite ; diviser par 100 le déplace de deux rangs. L'argent fonctionne pareil : 250 p = 2,50 £.",
+      workedExamples: [
+        { problem: "Write 37 hundredths as a decimal.", steps: ["37 ÷ 100 moves the digits two places right."], answer: "0.37" }
+      ],
+      workedExamplesFr: [
+        { problem: "Écris 37 centièmes sous forme décimale.", steps: ["37 ÷ 100 déplace les chiffres de deux rangs vers la droite."], answer: "0,37" }
+      ],
+      audioScript: "Tenths first, hundredths second — each step right is ten times smaller.",
+      audioScriptFr: "D'abord les dixièmes, puis les centièmes — chaque pas vers la droite est dix fois plus petit."
+    },
+    {
+      order: 2,
+      title: "Rounding decimals to the nearest whole number",
+      titleFr: "Arrondir des décimaux à l'unité la plus proche",
+      concept: "Using the tenths digit to decide whether to round up or down",
+      conceptFr: "Utiliser le chiffre des dixièmes pour décider d'arrondir au-dessus ou en dessous",
+      representation: "pictorial",
+      visualAid: "number-line",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y4-L6-2"],
+      explanationMd:
+        "To round a decimal with one decimal place, look **only at the tenths digit**. If it is 5 or more, round up; if it is less than 5, round down.\n\n" +
+        "A number line makes it obvious: 6.3 is closer to 6, while 6.8 is closer to 7. Exactly 6.5 is halfway, and the rule says round up.",
+      explanationMdFr:
+        "Pour arrondir un décimal à un chiffre après la virgule, regarde **seulement le chiffre des dixièmes**. S'il vaut 5 ou plus, arrondis au-dessus ; s'il vaut moins de 5, en dessous.\n\n" +
+        "Une droite graduée le montre bien : 6,3 est plus proche de 6, tandis que 6,8 est plus proche de 7. Exactement 6,5 est au milieu, et la règle dit d'arrondir au-dessus.",
+      workedExamples: [
+        { problem: "Round 8.4 to the nearest whole number.", steps: ["The tenths digit is 4.", "4 is less than 5, so round down."], answer: "8" }
+      ],
+      workedExamplesFr: [
+        { problem: "Arrondis 8,4 à l'unité la plus proche.", steps: ["Le chiffre des dixièmes est 4.", "4 est inférieur à 5, donc on arrondit en dessous."], answer: "8" }
+      ],
+      audioScript: "Look at the tenths digit and nothing else — 5 or more rounds up.",
+      audioScriptFr: "Regarde le chiffre des dixièmes et rien d'autre — 5 ou plus, on arrondit au-dessus."
+    },
+    {
+      order: 3,
+      title: "Comparing decimals",
+      titleFr: "Comparer des décimaux",
+      concept: "Comparing decimals column by column from the left",
+      conceptFr: "Comparer des décimaux colonne par colonne depuis la gauche",
+      representation: "abstract",
+      visualAid: "number-line",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y4-L6-3"],
+      explanationMd:
+        "To compare decimals, start on the **left** and work right: compare the whole numbers first, then the tenths, then the hundredths.\n\n" +
+        "A longer decimal is not automatically bigger: 0.6 is larger than 0.59, because six tenths beats five tenths no matter what follows.",
+      explanationMdFr:
+        "Pour comparer des décimaux, commence **à gauche** et avance vers la droite : compare d'abord les entiers, puis les dixièmes, puis les centièmes.\n\n" +
+        "Un décimal plus long n'est pas forcément plus grand : 0,6 est plus grand que 0,59, car six dixièmes battent cinq dixièmes quoi qu'il suive.",
+      workedExamples: [
+        { problem: "Which is larger, 4.07 or 4.7?", steps: ["The whole numbers are both 4.", "The tenths are 0 and 7, so 4.7 is larger."], answer: "4.7" }
+      ],
+      workedExamplesFr: [
+        { problem: "Lequel est le plus grand, 4,07 ou 4,7 ?", steps: ["Les entiers valent tous deux 4.", "Les dixièmes valent 0 et 7, donc 4,7 est plus grand."], answer: "4,7" }
+      ],
+      audioScript: "Start at the left and compare one column at a time.",
+      audioScriptFr: "Commence à gauche et compare une colonne à la fois."
+    }
+  ],
+  Y4L7: [
+    {
+      order: 1,
+      title: "Converting units of measure",
+      titleFr: "Convertir des unités de mesure",
+      concept: "Multiplying or dividing by 10, 100, 1,000 or 60 to change units",
+      conceptFr: "Multiplier ou diviser par 10, 100, 1 000 ou 60 pour changer d'unité",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y4-L7-1"],
+      explanationMd:
+        "Metric units go up in powers of ten: **10 mm = 1 cm**, **100 cm = 1 m**, **1,000 m = 1 km**, **1,000 g = 1 kg** and **1,000 ml = 1 litre**.\n\n" +
+        "Time is different: there are **60 seconds in a minute** and **60 minutes in an hour**. Going to a smaller unit always multiplies; going to a bigger unit always divides.",
+      explanationMdFr:
+        "Les unités métriques avancent par puissances de dix : **10 mm = 1 cm**, **100 cm = 1 m**, **1 000 m = 1 km**, **1 000 g = 1 kg** et **1 000 ml = 1 litre**.\n\n" +
+        "Le temps est différent : il y a **60 secondes dans une minute** et **60 minutes dans une heure**. Passer à une unité plus petite multiplie toujours ; passer à une plus grande divise toujours.",
+      workedExamples: [
+        { problem: "How many metres are in 7 km?", steps: ["There are 1,000 m in 1 km.", "7 x 1,000 = 7,000."], answer: "7,000 m" },
+        { problem: "Convert 3 m 45 cm into centimetres.", steps: ["3 m = 300 cm.", "300 + 45 = 345."], answer: "345 cm" }
+      ],
+      workedExamplesFr: [
+        { problem: "Combien y a-t-il de mètres dans 7 km ?", steps: ["Il y a 1 000 m dans 1 km.", "7 x 1 000 = 7 000."], answer: "7 000 m" },
+        { problem: "Convertis 3 m 45 cm en centimètres.", steps: ["3 m = 300 cm.", "300 + 45 = 345."], answer: "345 cm" }
+      ],
+      audioScript: "Smaller unit means multiply; bigger unit means divide.",
+      audioScriptFr: "Unité plus petite : multiplie ; unité plus grande : divise."
+    },
+    {
+      order: 2,
+      title: "Area by counting squares",
+      titleFr: "L'aire en comptant les carreaux",
+      concept: "Finding area by counting or multiplying rows of squares",
+      conceptFr: "Trouver l'aire en comptant ou en multipliant des rangées de carreaux",
+      representation: "pictorial",
+      visualAid: "shape",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y4-L7-2"],
+      explanationMd:
+        "**Area** is how much space a shape covers. On squared paper you can count the squares — but for a rectangle it is much faster to multiply the rows by the number in each row.\n\n" +
+        "For an L-shape, split it into two rectangles, find each area and add them together.",
+      explanationMdFr:
+        "L'**aire** est l'espace qu'occupe une figure. Sur du papier quadrillé, tu peux compter les carreaux — mais pour un rectangle il est bien plus rapide de multiplier les rangées par le nombre de carreaux par rangée.\n\n" +
+        "Pour une forme en L, découpe-la en deux rectangles, calcule chaque aire et additionne.",
+      workedExamples: [
+        { problem: "A rectangle is 7 squares by 5 squares. What is its area?", steps: ["Counting every square would take ages.", "7 x 5 = 35."], answer: "35 squares" }
+      ],
+      workedExamplesFr: [
+        { problem: "Un rectangle fait 7 carreaux sur 5 carreaux. Quelle est son aire ?", steps: ["Compter chaque carreau prendrait longtemps.", "7 x 5 = 35."], answer: "35 carreaux" }
+      ],
+      audioScript: "Count a row, then multiply by the number of rows.",
+      audioScriptFr: "Compte une rangée, puis multiplie par le nombre de rangées."
+    },
+    {
+      order: 3,
+      title: "Perimeter of rectilinear figures",
+      titleFr: "Le périmètre des figures rectilignes",
+      concept: "Adding all the sides to find the distance around a shape",
+      conceptFr: "Additionner tous les côtés pour trouver la distance autour d'une figure",
+      representation: "pictorial",
+      visualAid: "shape",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y4-L7-3"],
+      explanationMd:
+        "**Perimeter** is the distance all the way around the outside of a shape. Add every side — do not multiply.\n\n" +
+        "A rectangle has two long sides and two short ones, so its perimeter is 2 x (length + width). A square has four equal sides, so its perimeter is 4 x one side.",
+      explanationMdFr:
+        "Le **périmètre** est la distance tout autour d'une figure. Additionne chaque côté — ne multiplie pas.\n\n" +
+        "Un rectangle a deux grands côtés et deux petits, donc son périmètre vaut 2 x (longueur + largeur). Un carré a quatre côtés égaux, donc son périmètre vaut 4 x un côté.",
+      workedExamples: [
+        { problem: "A rectangle is 9 cm by 4 cm. Find its perimeter.", steps: ["9 + 4 = 13.", "2 x 13 = 26."], answer: "26 cm" }
+      ],
+      workedExamplesFr: [
+        { problem: "Un rectangle mesure 9 cm sur 4 cm. Trouve son périmètre.", steps: ["9 + 4 = 13.", "2 x 13 = 26."], answer: "26 cm" }
+      ],
+      audioScript: "Perimeter adds the sides; area multiplies them. Do not mix them up.",
+      audioScriptFr: "Le périmètre additionne les côtés ; l'aire les multiplie. Ne les confonds pas."
+    }
+  ],
+  Y4L8: [
+    {
+      order: 1,
+      title: "Classifying shapes",
+      titleFr: "Classer les figures",
+      concept: "Sorting quadrilaterals and triangles by their sides and angles",
+      conceptFr: "Trier les quadrilatères et les triangles selon leurs côtés et leurs angles",
+      representation: "pictorial",
+      visualAid: "shape",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y4-L8-1"],
+      explanationMd:
+        "Quadrilaterals are sorted by their sides and angles: a **square** has four equal sides and four right angles, a **rectangle** has two pairs of equal sides and four right angles, a **parallelogram** has two pairs of parallel sides, and a **trapezium** has exactly one pair.\n\n" +
+        "Triangles are sorted the same way: **equilateral** (three equal sides), **isosceles** (two equal), **scalene** (none equal) and **right-angled** (one 90° angle).",
+      explanationMdFr:
+        "Les quadrilatères se classent selon leurs côtés et leurs angles : un **carré** a quatre côtés égaux et quatre angles droits, un **rectangle** a deux paires de côtés égaux et quatre angles droits, un **parallélogramme** a deux paires de côtés parallèles, et un **trapèze** exactement une paire.\n\n" +
+        "Les triangles se classent pareil : **équilatéral** (trois côtés égaux), **isocèle** (deux égaux), **scalène** (aucun égal) et **rectangle** (un angle de 90°).",
+      workedExamples: [
+        { problem: "A four-sided shape has two pairs of equal sides and four right angles. What is it?", steps: ["Four right angles rules out a parallelogram and a trapezium.", "The sides are equal in pairs, not all four."], answer: "a rectangle" }
+      ],
+      workedExamplesFr: [
+        { problem: "Une figure à quatre côtés a deux paires de côtés égaux et quatre angles droits. Qu'est-ce que c'est ?", steps: ["Quatre angles droits excluent le parallélogramme et le trapèze.", "Les côtés sont égaux deux à deux, pas tous les quatre."], answer: "un rectangle" }
+      ],
+      audioScript: "Count the equal sides, then count the right angles.",
+      audioScriptFr: "Compte les côtés égaux, puis les angles droits."
+    },
+    {
+      order: 2,
+      title: "Acute, right and obtuse angles",
+      titleFr: "Angles aigus, droits et obtus",
+      concept: "Classifying and calculating angles using 90° and 180°",
+      conceptFr: "Classer et calculer des angles à l'aide de 90° et 180°",
+      representation: "pictorial",
+      visualAid: "shape",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y4-L8-2"],
+      explanationMd:
+        "An **acute** angle is less than 90°, a **right** angle is exactly 90°, an **obtuse** angle is between 90° and 180°, and a **reflex** angle is more than 180°.\n\n" +
+        "Two useful facts: angles on a straight line add to **180°**, and angles all the way around a point add to **360°**.",
+      explanationMdFr:
+        "Un angle **aigu** mesure moins de 90°, un angle **droit** exactement 90°, un angle **obtus** entre 90° et 180°, et un angle **rentrant** plus de 180°.\n\n" +
+        "Deux faits utiles : les angles sur une droite ont pour somme **180°**, et les angles autour d'un point **360°**.",
+      workedExamples: [
+        { problem: "Two angles sit on a straight line. One is 115°. What is the other?", steps: ["Angles on a straight line add to 180°.", "180 - 115 = 65."], answer: "65°" }
+      ],
+      workedExamplesFr: [
+        { problem: "Deux angles sont sur une droite. L'un vaut 115°. Combien vaut l'autre ?", steps: ["Les angles sur une droite ont pour somme 180°.", "180 - 115 = 65."], answer: "65°" }
+      ],
+      audioScript: "Compare each angle with 90 and 180 — that tells you what kind it is.",
+      audioScriptFr: "Compare chaque angle à 90 et 180 — cela te dit de quel type il s'agit."
+    },
+    {
+      order: 3,
+      title: "Coordinates in the first quadrant",
+      titleFr: "Les coordonnées dans le premier quadrant",
+      concept: "Reading and plotting points written as (across, up)",
+      conceptFr: "Lire et placer des points écrits (horizontal, vertical)",
+      representation: "pictorial",
+      visualAid: "coordinate-grid",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y4-L8-3"],
+      explanationMd:
+        "Coordinates are always written **(across, up)**. The first number says how far along the bottom axis to go, and the second says how far up.\n\n" +
+        "A useful way to remember it: go along the corridor before you go up the stairs. Moving right changes only the first number; moving up changes only the second.",
+      explanationMdFr:
+        "Les coordonnées s'écrivent toujours **(horizontal, vertical)**. Le premier nombre indique de combien avancer sur l'axe du bas, le second de combien monter.\n\n" +
+        "Un moyen de s'en souvenir : d'abord le couloir, ensuite l'escalier. Se déplacer vers la droite ne change que le premier nombre ; monter ne change que le second.",
+      workedExamples: [
+        { problem: "A counter at (3, 5) moves 4 squares right. Where is it now?", steps: ["Moving right changes the first number.", "3 + 4 = 7, and the 5 stays the same."], answer: "(7, 5)" }
+      ],
+      workedExamplesFr: [
+        { problem: "Un jeton en (3, 5) se déplace de 4 carreaux vers la droite. Où est-il maintenant ?", steps: ["Se déplacer vers la droite change le premier nombre.", "3 + 4 = 7, et le 5 ne change pas."], answer: "(7, 5)" }
+      ],
+      audioScript: "Along the corridor, then up the stairs — across first, up second.",
+      audioScriptFr: "D'abord le couloir, ensuite l'escalier — horizontalement puis verticalement."
+    }
+  ],
+  Y4L9: [
+    {
+      order: 1,
+      title: "Reading bar charts and time graphs",
+      titleFr: "Lire des diagrammes en barres et des graphiques",
+      concept: "Using the scale to read values from a chart accurately",
+      conceptFr: "Utiliser l'échelle pour lire correctement les valeurs d'un graphique",
+      representation: "pictorial",
+      visualAid: "graph",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y4-L9-1"],
+      explanationMd:
+        "Before reading any chart, check the **scale**. One square does not always mean one — it might mean 2, 5 or 10.\n\n" +
+        "On a **bar chart** the height of each bar gives the value. On a **time graph** the line shows how something changes, so a rising line means an increase. A **pictogram** has a key telling you what one picture is worth.",
+      explanationMdFr:
+        "Avant de lire un graphique, vérifie l'**échelle**. Un carreau ne vaut pas toujours un — il peut valoir 2, 5 ou 10.\n\n" +
+        "Sur un **diagramme en barres**, la hauteur de chaque barre donne la valeur. Sur un **graphique de temps**, la courbe montre une évolution : une ligne qui monte signale une augmentation. Un **pictogramme** a une légende indiquant ce que vaut une image.",
+      workedExamples: [
+        { problem: "Each square on a chart stands for 5. A bar is 7 squares tall. What value does it show?", steps: ["Each square is worth 5.", "7 x 5 = 35."], answer: "35" }
+      ],
+      workedExamplesFr: [
+        { problem: "Chaque carreau d'un graphique vaut 5. Une barre fait 7 carreaux de haut. Quelle valeur montre-t-elle ?", steps: ["Chaque carreau vaut 5.", "7 x 5 = 35."], answer: "35" }
+      ],
+      audioScript: "Check the scale before you read a single bar.",
+      audioScriptFr: "Vérifie l'échelle avant même de lire une barre."
+    },
+    {
+      order: 2,
+      title: "Comparison, sum and difference problems",
+      titleFr: "Problèmes de comparaison, de somme et de différence",
+      concept: "Choosing to add or subtract when answering questions about charts",
+      conceptFr: "Choisir d'additionner ou de soustraire pour répondre à des questions sur un graphique",
+      representation: "pictorial",
+      visualAid: "graph",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y4-L9-2"],
+      explanationMd:
+        "Chart questions nearly always come in three kinds. **Sum** questions use words like \"altogether\" and \"in total\" — add. **Difference** questions use \"how many more\" or \"how many fewer\" — subtract.\n\n" +
+        "**Comparison** questions ask which is biggest or smallest — just read the bars and compare, no calculation needed.",
+      explanationMdFr:
+        "Les questions sur les graphiques sont presque toujours de trois sortes. Les questions de **somme** utilisent « en tout » ou « au total » — additionne. Les questions de **différence** utilisent « combien de plus » ou « combien de moins » — soustrais.\n\n" +
+        "Les questions de **comparaison** demandent lequel est le plus grand ou le plus petit — il suffit de lire les barres et de comparer, sans calcul.",
+      workedExamples: [
+        { problem: "One bar shows 42 and another shows 27. How many more does the first show?", steps: ["\"How many more\" means subtract.", "42 - 27 = 15."], answer: "15" }
+      ],
+      workedExamplesFr: [
+        { problem: "Une barre montre 42 et une autre 27. Combien de plus montre la première ?", steps: ["« Combien de plus » veut dire soustraire.", "42 - 27 = 15."], answer: "15" }
+      ],
+      audioScript: "Spot the question word — it tells you whether to add or subtract.",
+      audioScriptFr: "Repère le mot de la question — il dit s'il faut additionner ou soustraire."
+    },
+    {
+      order: 3,
+      title: "Frequency tables and tally charts",
+      titleFr: "Tableaux d'effectifs et tableaux de comptage",
+      concept: "Completing tables and converting tally marks into frequencies",
+      conceptFr: "Compléter des tableaux et convertir des barres de comptage en effectifs",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y4-L9-3"],
+      explanationMd:
+        "A **frequency table** records how many times each result happened. All the frequencies must add up to the total — which lets you find a missing row by subtracting.\n\n" +
+        "A **tally** groups marks in fives, with the fifth drawn across the other four. So three gates and two extra marks is 3 x 5 + 2 = 17.",
+      explanationMdFr:
+        "Un **tableau d'effectifs** indique combien de fois chaque résultat s'est produit. Tous les effectifs doivent s'additionner pour donner le total — ce qui permet de retrouver une ligne manquante par soustraction.\n\n" +
+        "Un **comptage** groupe les barres par cinq, la cinquième barrant les quatre autres. Ainsi trois paquets et deux barres font 3 x 5 + 2 = 17.",
+      workedExamples: [
+        { problem: "A table of 60 results shows 22 and 17 in two rows. What is the third row?", steps: ["22 + 17 = 39.", "60 - 39 = 21."], answer: "21" }
+      ],
+      workedExamplesFr: [
+        { problem: "Un tableau de 60 résultats indique 22 et 17 sur deux lignes. Que vaut la troisième ?", steps: ["22 + 17 = 39.", "60 - 39 = 21."], answer: "21" }
+      ],
+      audioScript: "The rows always add to the total — use that to fill a gap or to check your work.",
+      audioScriptFr: "Les lignes s'additionnent toujours pour donner le total — sers-t'en pour compléter ou vérifier."
+    }
+  ],
+  Y4L10: [
+    {
+      order: 1,
+      title: "Place value, rounding and the four operations",
+      titleFr: "Valeur de position, arrondi et quatre opérations",
+      concept: "Choosing an efficient method and checking it makes sense",
+      conceptFr: "Choisir une méthode efficace et vérifier qu'elle a du sens",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y4-L10-1"],
+      explanationMd:
+        "When you round, always look at the digit **one place to the right** of the column you are rounding to: the tens digit for the nearest hundred, the hundreds digit for the nearest thousand.\n\n" +
+        "In a multi-step question, estimate first by rounding. If your exact answer is nowhere near the estimate, go back and check.",
+      explanationMdFr:
+        "Quand tu arrondis, regarde toujours le chiffre **juste à droite** de la colonne visée : le chiffre des dizaines pour la centaine, celui des centaines pour le millier.\n\n" +
+        "Dans une question à plusieurs étapes, estime d'abord en arrondissant. Si ta réponse exacte est loin de l'estimation, reviens vérifier.",
+      workedExamples: [
+        { problem: "Round 4,682 to the nearest 1,000.", steps: ["The hundreds digit is 6.", "6 is 5 or more, so round up."], answer: "5,000" }
+      ],
+      workedExamplesFr: [
+        { problem: "Arrondis 4 682 au millier le plus proche.", steps: ["Le chiffre des centaines est 6.", "6 vaut 5 ou plus, donc on arrondit au-dessus."], answer: "5 000" }
+      ],
+      audioScript: "Look one place to the right of the column you are rounding to.",
+      audioScriptFr: "Regarde une colonne à droite de celle à laquelle tu arrondis."
+    },
+    {
+      order: 2,
+      title: "Tables, fractions and decimals together",
+      titleFr: "Tables, fractions et décimaux ensemble",
+      concept: "Moving between times tables, fractions of amounts and decimal equivalents",
+      conceptFr: "Passer des tables aux fractions d'une quantité et aux équivalents décimaux",
+      representation: "abstract",
+      visualAid: "bar-model",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y4-L10-2"],
+      explanationMd:
+        "Times tables sit underneath almost everything else. Finding a fraction of an amount is division then multiplication, and both come straight from your tables.\n\n" +
+        "Keep the decimal facts handy too: 1/10 = 0.1, 1/4 = 0.25, 1/2 = 0.5 and 3/4 = 0.75.",
+      explanationMdFr:
+        "Les tables de multiplication sont à la base de presque tout le reste. Trouver une fraction d'une quantité, c'est une division puis une multiplication, qui viennent directement des tables.\n\n" +
+        "Garde aussi les équivalents décimaux en tête : 1/10 = 0,1, 1/4 = 0,25, 1/2 = 0,5 et 3/4 = 0,75.",
+      workedExamples: [
+        { problem: "What is 2/5 of 45?", steps: ["45 ÷ 5 = 9.", "9 x 2 = 18."], answer: "18" }
+      ],
+      workedExamplesFr: [
+        { problem: "Que vaut 2/5 de 45 ?", steps: ["45 ÷ 5 = 9.", "9 x 2 = 18."], answer: "18" }
+      ],
+      audioScript: "Divide by the bottom, multiply by the top — your tables do the work.",
+      audioScriptFr: "Divise par le bas, multiplie par le haut — ce sont tes tables qui font le travail."
+    },
+    {
+      order: 3,
+      title: "Measurement, shape and data together",
+      titleFr: "Mesures, figures et données ensemble",
+      concept: "Picking the right measurement, geometry or statistics idea for a question",
+      conceptFr: "Choisir la bonne idée de mesure, de géométrie ou de statistiques pour une question",
+      representation: "pictorial",
+      visualAid: "shape",
+      ageBandStyle: "adventure",
+      objectiveCodes: ["Y4-L10-3"],
+      explanationMd:
+        "Three things catch people out most often. **Perimeter adds the sides; area multiplies two of them.** **Converting to a smaller unit multiplies; converting to a bigger unit divides.** **Angles on a straight line add to 180°.**\n\n" +
+        "With charts, always check the scale before reading a value, and check the units in your answer before you write it down.",
+      explanationMdFr:
+        "Trois pièges reviennent souvent. **Le périmètre additionne les côtés ; l'aire en multiplie deux.** **Convertir vers une unité plus petite multiplie ; vers une plus grande divise.** **Les angles sur une droite ont pour somme 180°.**\n\n" +
+        "Avec les graphiques, vérifie toujours l'échelle avant de lire une valeur, et vérifie les unités de ta réponse avant de l'écrire.",
+      workedExamples: [
+        { problem: "A rug is 6 m by 4 m. Give its perimeter and its area.", steps: ["Perimeter: 2 x (6 + 4) = 20 m.", "Area: 6 x 4 = 24 m²."], answer: "20 m and 24 m²" }
+      ],
+      workedExamplesFr: [
+        { problem: "Un tapis mesure 6 m sur 4 m. Donne son périmètre et son aire.", steps: ["Périmètre : 2 x (6 + 4) = 20 m.", "Aire : 6 x 4 = 24 m²."], answer: "20 m et 24 m²" }
+      ],
+      audioScript: "Perimeter adds, area multiplies — and always check your units.",
+      audioScriptFr: "Le périmètre additionne, l'aire multiplie — et vérifie toujours tes unités."
+    }
   ]
 };

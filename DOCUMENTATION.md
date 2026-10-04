@@ -191,7 +191,7 @@ and every year's journey map). This satisfies "the complete curriculum-
 objective structure" from the final delivery requirements.
 
 **Fully authored** (lessons + a validated, ≥150-variation-per-template
-question bank, playable end to end) — **74 of the 100 levels**:
+question bank, playable end to end) — **83 of the 100 levels**:
 
 | Level | Templates | Why this one |
 | --- | --- | --- |
@@ -203,6 +203,15 @@ question bank, playable end to end) — **74 of the 100 levels**:
 | Year 1, Level 6 | 15 | Early multiplication/division via grouping, sharing and arrays |
 | Year 1, Level 10 | 30 | Mixed-mastery review — proves year-end unlock into Year 2 |
 | Year 4, Level 1 | 15 | Proves the engine at upper-KS2 depth |
+| Year 4, Level 2 | 16 | Four-digit column addition and subtraction, estimating and inverse checks, two-step problems |
+| Year 4, Level 3 | 17 | All times tables to 12 x 12, scaling known facts by place value, factor pairs and commutativity |
+| Year 4, Level 4 | 17 | Short multiplication (2- and 3-digit by 1-digit), division with remainders, the distributive law |
+| Year 4, Level 5 | 16 | Families of equivalent fractions, adding/subtracting with the same denominator, decimal equivalents of quarters |
+| Year 4, Level 6 | 16 | Tenths and hundredths as decimals, rounding 1 d.p. to the nearest whole, comparing to two decimal places |
+| Year 4, Level 7 | 16 | Converting metric and time units, area by counting squares, perimeter of rectilinear figures |
+| Year 4, Level 8 | 15 | Classifying quadrilaterals and triangles, acute/right/obtuse angles, first-quadrant coordinates |
+| Year 4, Level 9 | 16 | Bar charts, time graphs and pictograms with scales, comparison/sum/difference problems, frequency and tally tables |
+| Year 4, Level 10 | 17 | Year 4 mixed mastery across number, times tables/fractions/decimals and measurement/geometry/statistics |
 | Year 5, Level 1 | 27 | Place value to 1,000,000, rounding and negative numbers in context |
 | Year 5, Level 2 | 21 | Formal addition/subtraction, estimating with rounding, multi-step problems |
 | Year 5, Level 3 | 20 | Formal multiplication, division with remainders, multiplying/dividing by 10/100/1,000 |
@@ -270,7 +279,7 @@ question bank, playable end to end) — **74 of the 100 levels**:
 | Year 10, Level 9 | 18 | Tree and Venn diagrams, conditional probability, sampling and bias (Higher: cumulative frequency and box plots) |
 | Year 10, Level 10 | 17 | Year 10 GCSE-style mixed mastery across number, algebra, geometry, probability and statistics (Higher: surds, completing the square) |
 
-Every one of these 74 levels' templates is individually verified (by
+Every one of these 83 levels' templates is individually verified (by
 `tests/questionEngine.test.ts`) to generate at least 150 distinct, valid
 variations, exactly as spec §7 requires per level; the first three meet the
 full ≥30-template bar from spec §7, the rest ship at 15-27 templates each
@@ -278,12 +287,12 @@ full ≥30-template bar from spec §7, the rest ship at 15-27 templates each
 and validated proof of the engine at that age range, rather than a diluted
 attempt at 30 across all of them.
 
-Years 5, 6, 7, 8, 9 and 10 are complete end to end; Years 1-4 are being
+Years 4, 5, 6, 7, 8, 9 and 10 are complete end to end; Years 1-3 are being
 filled in level-by-level, in the order children are actually reaching them — see the commit history for progress; the table
 above and `COMPLETE_LEVEL_KEYS` in `src/lib/questionEngine/templates/all.ts`
 are always the source of truth for exactly which levels are live.
 
-**The other 26 levels** have their objectives fully defined but no lessons
+**The other 17 levels** have their objectives fully defined but no lessons
 or question templates yet (`Level.status = "SCAFFOLDED"` in the database).
 The app **never presents a scaffolded level as playable**: the journey map
 shows it as unlocked-but-"Coming soon" once a child reaches it, and the
@@ -419,7 +428,7 @@ are no placeholder controls.
 
 ## 14. Known limitations
 
-- Only 74 of 100 levels have full lesson/question content (§6) — this is the
+- Only 83 of 100 levels have full lesson/question content (§6) — this is the
   single biggest gap versus the full spec and is the natural next phase of
   work, using the exact same engine.
 - "Time spent learning" on the dashboard/report is estimated from
