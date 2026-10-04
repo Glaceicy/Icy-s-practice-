@@ -45,6 +45,14 @@ import y7l9 from "./year7/level9";
 import y7l10 from "./year7/level10";
 import y8l1 from "./year8/level1";
 import y8l2 from "./year8/level2";
+import y8l3 from "./year8/level3";
+import y8l4 from "./year8/level4";
+import y8l5 from "./year8/level5";
+import y8l6 from "./year8/level6";
+import y8l7 from "./year8/level7";
+import y8l8 from "./year8/level8";
+import y8l9 from "./year8/level9";
+import y8l10 from "./year8/level10";
 import y9l1 from "./year9/level1";
 import y9l2 from "./year9/level2";
 import y9l3 from "./year9/level3";
@@ -52,6 +60,9 @@ import y9l4 from "./year9/level4";
 import y9l5 from "./year9/level5";
 import y9l6 from "./year9/level6";
 import y9l7 from "./year9/level7";
+import y9l8 from "./year9/level8";
+import y9l9 from "./year9/level9";
+import y9l10 from "./year9/level10";
 import y10l1 from "./year10/level1";
 import y10l2 from "./year10/level2";
 import y10l3 from "./year10/level3";
@@ -119,6 +130,14 @@ export function loadAllTemplates(): void {
   registerTemplates("Y7L10", y7l10);
   registerTemplates("Y8L1", y8l1);
   registerTemplates("Y8L2", y8l2);
+  registerTemplates("Y8L3", y8l3);
+  registerTemplates("Y8L4", y8l4);
+  registerTemplates("Y8L5", y8l5);
+  registerTemplates("Y8L6", y8l6);
+  registerTemplates("Y8L7", y8l7);
+  registerTemplates("Y8L8", y8l8);
+  registerTemplates("Y8L9", y8l9);
+  registerTemplates("Y8L10", y8l10);
   registerTemplates("Y9L1", y9l1);
   registerTemplates("Y9L2", y9l2);
   registerTemplates("Y9L3", y9l3);
@@ -126,6 +145,9 @@ export function loadAllTemplates(): void {
   registerTemplates("Y9L5", y9l5);
   registerTemplates("Y9L6", y9l6);
   registerTemplates("Y9L7", y9l7);
+  registerTemplates("Y9L8", y9l8);
+  registerTemplates("Y9L9", y9l9);
+  registerTemplates("Y9L10", y9l10);
   registerTemplates("Y10L1", y10l1);
   registerTemplates("Y10L2", y10l2);
   registerTemplates("Y10L3", y10l3);
@@ -139,4 +161,4 @@ export function loadAllTemplates(): void {
   loaded = true;
 }
 
-export const COMPLETE_LEVEL_KEYS = ["Y1L1", "Y1L2", "Y1L3", "Y1L4", "Y1L5", "Y1L6", "Y1L10", "Y2L1", "Y2L2", "Y2L3", "Y2L4", "Y3L1", "Y3L2", "Y4L1", "Y5L1", "Y5L2", "Y5L3", "Y5L4", "Y5L5", "Y5L6", "Y5L7", "Y5L8", "Y5L9", "Y5L10", "Y6L1", "Y6L2", "Y6L3", "Y6L4", "Y6L5", "Y6L6", "Y6L7", "Y6L8", "Y6L9", "Y6L10", "Y7L1", "Y7L2", "Y7L3", "Y7L4", "Y7L5", "Y7L6", "Y7L7", "Y7L8", "Y7L9", "Y7L10", "Y8L1", "Y8L2", "Y9L1", "Y9L2", "Y9L3", "Y9L4", "Y9L5", "Y9L6", "Y9L7", "Y10L1", "Y10L2", "Y10L3", "Y10L4", "Y10L5", "Y10L6", "Y10L7", "Y10L8", "Y10L9", "Y10L10"] as const;
+export const COMPLETE_LEVEL_KEYS = ["Y1L1", "Y1L2", "Y1L3", "Y1L4", "Y1L5", "Y1L6", "Y1L10", "Y2L1", "Y2L2", "Y2L3", "Y2L4", "Y3L1", "Y3L2", "Y4L1", "Y5L1", "Y5L2", "Y5L3", "Y5L4", "Y5L5", "Y5L6", "Y5L7", "Y5L8", "Y5L9", "Y5L10", "Y6L1", "Y6L2", "Y6L3", "Y6L4", "Y6L5", "Y6L6", "Y6L7", "Y6L8", "Y6L9", "Y6L10", "Y7L1", "Y7L2", "Y7L3", "Y7L4", "Y7L5", "Y7L6", "Y7L7", "Y7L8", "Y7L9", "Y7L10", "Y8L1", "Y8L2", "Y8L3", "Y8L4", "Y8L5", "Y8L6", "Y8L7", "Y8L8", "Y8L9", "Y8L10", "Y9L1", "Y9L2", "Y9L3", "Y9L4", "Y9L5", "Y9L6", "Y9L7", "Y9L8", "Y9L9", "Y9L10", "Y10L1", "Y10L2", "Y10L3", "Y10L4", "Y10L5", "Y10L6", "Y10L7", "Y10L8", "Y10L9", "Y10L10"] as const;

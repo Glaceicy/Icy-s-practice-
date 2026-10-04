@@ -1,8 +1,7 @@
 import type { SchoolYearDef } from "./types";
 
-// Year 9 (ages 13-14, KS3, pre-GCSE). Levels 1-2 are fully authored
-// (lessons, practice, 40-question mastery banks); levels 3-10 are
-// scaffolded (curriculum metadata only — see
+// Year 9 (ages 13-14, KS3, pre-GCSE). All ten levels are fully authored
+// (lessons, practice and mastery question banks — see
 // questionEngine/templates/all.ts COMPLETE_LEVEL_KEYS).
 export const year9: SchoolYearDef = {
   yearNumber: 9,
@@ -50,20 +49,20 @@ export const year9: SchoolYearDef = {
       { code: "Y9-L7-2", description: "Know the trigonometric ratios (sine, cosine, tangent) and use them to find missing sides.", descriptionFr: "Connaître les rapports trigonométriques (sinus, cosinus, tangente) et les utiliser pour trouver des côtés manquants.", dfeReference: "KS3 Geometry & measures: know/use trigonometric ratios" },
       { code: "Y9-L7-3", description: "Use trigonometric ratios to find missing angles in right-angled triangles.", descriptionFr: "Utiliser les rapports trigonométriques pour trouver des angles manquants dans des triangles rectangles.", dfeReference: "KS3 Geometry & measures: use trigonometric ratios for angles" }
     ]},
-    { levelNumber: 8, title: "Circles, surface area and volume", summary: "By the end of this level, you will calculate properties of circles and 3D shapes.", isMixedMastery: false, status: "SCAFFOLDED", pathway: null, objectives: [
-      { code: "Y9-L8-1", description: "Calculate arc lengths, angles and areas of sectors of circles.", dfeReference: "KS3 Geometry & measures: arc lengths/sectors" },
-      { code: "Y9-L8-2", description: "Calculate surface area and volume of cylinders and other prisms.", dfeReference: "KS3 Geometry & measures: surface area/volume of prisms" },
-      { code: "Y9-L8-3", description: "Identify and apply circle theorems related to properties of circles.", dfeReference: "KS3 Geometry & measures: circle properties" }
+    { levelNumber: 8, title: "Circles, surface area and volume", titleFr: "Cercles, aire et volume", summary: "By the end of this level, you will calculate properties of circles and 3D shapes.", summaryFr: "À la fin de ce niveau, tu calculeras les propriétés des cercles et des solides.", isMixedMastery: false, status: "COMPLETE", pathway: null, objectives: [
+      { code: "Y9-L8-1", description: "Calculate arc lengths, angles and areas of sectors of circles.", descriptionFr: "Calculer des longueurs d'arcs, des angles et des aires de secteurs de cercles.", dfeReference: "KS3 Geometry & measures: arc lengths/sectors" },
+      { code: "Y9-L8-2", description: "Calculate surface area and volume of cylinders and other prisms.", descriptionFr: "Calculer l'aire et le volume de cylindres et d'autres prismes.", dfeReference: "KS3 Geometry & measures: surface area/volume of prisms" },
+      { code: "Y9-L8-3", description: "Identify and apply circle theorems related to properties of circles.", descriptionFr: "Identifier et appliquer les théorèmes du cercle liés aux propriétés des cercles.", dfeReference: "KS3 Geometry & measures: circle properties" }
     ]},
-    { levelNumber: 9, title: "Probability and statistics", summary: "By the end of this level, you will calculate combined probabilities and analyse real data.", isMixedMastery: false, status: "SCAFFOLDED", pathway: null, objectives: [
-      { code: "Y9-L9-1", description: "Generate theoretical sample spaces for single and combined events.", dfeReference: "KS3 Probability: generate sample spaces" },
-      { code: "Y9-L9-2", description: "Use tree diagrams to calculate probabilities of combined independent and dependent events.", dfeReference: "KS3 Probability: tree diagrams" },
-      { code: "Y9-L9-3", description: "Interpret, analyse and compare data sets using appropriate graphical representation and statistical measures.", dfeReference: "KS3 Statistics: interpret/analyse/compare data" }
+    { levelNumber: 9, title: "Probability and statistics", titleFr: "Probabilités et statistiques", summary: "By the end of this level, you will calculate combined probabilities and analyse real data.", summaryFr: "À la fin de ce niveau, tu calculeras des probabilités combinées et tu analyseras des données réelles.", isMixedMastery: false, status: "COMPLETE", pathway: null, objectives: [
+      { code: "Y9-L9-1", description: "Generate theoretical sample spaces for single and combined events.", descriptionFr: "Construire des univers théoriques pour des événements simples et combinés.", dfeReference: "KS3 Probability: generate sample spaces" },
+      { code: "Y9-L9-2", description: "Use tree diagrams to calculate probabilities of combined independent and dependent events.", descriptionFr: "Utiliser des arbres de probabilité pour calculer les probabilités d'événements combinés indépendants et dépendants.", dfeReference: "KS3 Probability: tree diagrams" },
+      { code: "Y9-L9-3", description: "Interpret, analyse and compare data sets using appropriate graphical representation and statistical measures.", descriptionFr: "Interpréter, analyser et comparer des séries de données à l'aide de représentations graphiques et de mesures statistiques appropriées.", dfeReference: "KS3 Statistics: interpret/analyse/compare data" }
     ]},
-    { levelNumber: 10, title: "Year 9 pre-GCSE mixed mastery", summary: "By the end of this level, you will confidently use everything you have learned across Key Stage 3.", isMixedMastery: true, status: "SCAFFOLDED", pathway: null, objectives: [
-      { code: "Y9-L10-1", description: "Use standard form, indices, proportion and rates fluently in calculations.", dfeReference: "KS3 Number / Ratio & proportion (mixed review)" },
-      { code: "Y9-L10-2", description: "Apply advanced algebraic manipulation, graphs and equations to solve problems.", dfeReference: "KS3 Algebra (mixed review)" },
-      { code: "Y9-L10-3", description: "Use transformations, Pythagoras, trigonometry, probability and statistics in reasoning problems.", dfeReference: "KS3 Geometry & measures / Probability / Statistics (mixed review)" }
+    { levelNumber: 10, title: "Year 9 pre-GCSE mixed mastery", titleFr: "Maîtrise mixte pré-GCSE de l'Année 9", summary: "By the end of this level, you will confidently use everything you have learned across Key Stage 3.", summaryFr: "À la fin de ce niveau, tu utiliseras avec assurance tout ce que tu as appris au Key Stage 3.", isMixedMastery: true, status: "COMPLETE", pathway: null, objectives: [
+      { code: "Y9-L10-1", description: "Use standard form, indices, proportion and rates fluently in calculations.", descriptionFr: "Utiliser avec aisance la notation scientifique, les indices, la proportionnalité et les taux dans des calculs.", dfeReference: "KS3 Number / Ratio & proportion (mixed review)" },
+      { code: "Y9-L10-2", description: "Apply advanced algebraic manipulation, graphs and equations to solve problems.", descriptionFr: "Appliquer la manipulation algébrique avancée, les graphiques et les équations pour résoudre des problèmes.", dfeReference: "KS3 Algebra (mixed review)" },
+      { code: "Y9-L10-3", description: "Use transformations, Pythagoras, trigonometry, probability and statistics in reasoning problems.", descriptionFr: "Utiliser les transformations, Pythagore, la trigonométrie, les probabilités et les statistiques dans des problèmes de raisonnement.", dfeReference: "KS3 Geometry & measures / Probability / Statistics (mixed review)" }
     ]}
   ]
 };
