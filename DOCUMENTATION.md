@@ -191,7 +191,7 @@ and every year's journey map). This satisfies "the complete curriculum-
 objective structure" from the final delivery requirements.
 
 **Fully authored** (lessons + a validated, ≥150-variation-per-template
-question bank, playable end to end) — **32 of the 100 levels**:
+question bank, playable end to end) — **46 of the 100 levels**:
 
 | Level | Templates | Why this one |
 | --- | --- | --- |
@@ -222,13 +222,27 @@ question bank, playable end to end) — **32 of the 100 levels**:
 | Year 6, Level 1 | 21 | Place value/ordering to 10,000,000, rounding to any degree of accuracy, negative numbers and intervals across zero |
 | Year 6, Level 2 | 21 | Formal written multiplication (4-digit x 2-digit), division with remainders, multi-step problems with estimation |
 | Year 7, Level 1 | 15 | Proves the engine at KS3 depth (negative numbers) |
+| Year 7, Level 2 | 15 | Four operations, BIDMAS, calculator accuracy |
+| Year 7, Level 3 | 15 | Simplifying fractions, fraction arithmetic, fractions as operators |
+| Year 7, Level 4 | 15 | Fraction/decimal/percentage conversion, percentage change |
+| Year 7, Level 5 | 15 | Ratio notation, sharing in a ratio, scale factors and maps |
+| Year 7, Level 6 | 15 | Algebraic notation, collecting like terms, substitution |
+| Year 7, Level 7 | 15 | Algebra vocabulary, linear equations, sequences |
+| Year 7, Level 8 | 15 | Angle sums, constructions, angle facts at lines and points |
+| Year 7, Level 9 | 15 | Area formulae, cuboid surface area/volume, data interpretation |
+| Year 7, Level 10 | 15 | Year 7 mixed mastery across all three domains |
 | Year 8, Level 1 | 21 | Integer powers and real roots, inverse operations, index laws |
 | Year 8, Level 2 | 21 | Percentage increase/decrease/change, percentages over 100%, fractions and percentages of amounts |
 | Year 9, Level 1 | 21 | Standard form, index laws with negative/fractional indices, significant figures and estimating |
 | Year 9, Level 2 | 21 | Direct/inverse proportion, compound measures (speed/density/pressure), growth and decay |
+| Year 9, Level 3 | 15 | Expanding binomials, factorising quadratics, rearranging formulae |
+| Year 9, Level 4 | 16 | Gradients and intercepts, quadratic graphs, rate of change |
+| Year 9, Level 5 | 15 | Simultaneous equations, quadratics by factorisation, inequalities |
+| Year 9, Level 6 | 15 | Translation vectors, standard constructions, combined transformations |
+| Year 9, Level 7 | 15 | Pythagoras and introductory trigonometry |
 | Year 10, Level 1 | 15 | Proves the engine at KS4/GCSE depth, including Foundation/Higher pathway-tagged templates |
 
-Every one of these 32 levels' templates is individually verified (by
+Every one of these 46 levels' templates is individually verified (by
 `tests/questionEngine.test.ts`) to generate at least 150 distinct, valid
 variations, exactly as spec §7 requires per level; the first three meet the
 full ≥30-template bar from spec §7, the rest ship at 15-27 templates each
@@ -377,7 +391,7 @@ are no placeholder controls.
 
 ## 14. Known limitations
 
-- Only 32 of 100 levels have full lesson/question content (§6) — this is the
+- Only 46 of 100 levels have full lesson/question content (§6) — this is the
   single biggest gap versus the full spec and is the natural next phase of
   work, using the exact same engine.
 - "Time spent learning" on the dashboard/report is estimated from

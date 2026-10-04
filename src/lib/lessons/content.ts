@@ -3150,6 +3150,391 @@ export const lessonsByLevelKey: Record<string, LessonContent[]> = {
       audioScriptFr: "Pour une croissance ou décroissance sur plusieurs années, applique le changement en pourcentage à la valeur la plus récente à chaque fois, pas à celle de départ."
     }
   ],
+  Y9L3: [
+    {
+      order: 1,
+      title: "Expanding double brackets",
+      titleFr: "Développer un produit de deux parenthèses",
+      concept: "Multiplying out products of two binomials",
+      conceptFr: "Développer un produit de deux binômes",
+      representation: "abstract",
+      visualAid: "algebra-tile",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y9-L3-1"],
+      explanationMd:
+        "To expand (x + a)(x + b), multiply every term in the first bracket by every term in the second.\n\n" +
+        "You get x² + ax + bx + ab, which collects to x² + (a + b)x + ab. The x coefficient is the **sum** of the two numbers; the constant is their **product**.",
+      explanationMdFr:
+        "Pour développer (x + a)(x + b), multiplie chaque terme de la première parenthèse par chaque terme de la seconde.\n\n" +
+        "On obtient x² + ax + bx + ab, qui se regroupe en x² + (a + b)x + ab. Le coefficient de x est la **somme** des deux nombres ; la constante est leur **produit**.",
+      workedExamples: [
+        { problem: "Expand (x + 3)(x + 5)", steps: ["x x x = x².", "3 + 5 = 8, giving 8x.", "3 x 5 = 15."], answer: "x² + 8x + 15" }
+      ],
+      workedExamplesFr: [
+        { problem: "Développe (x + 3)(x + 5)", steps: ["x x x = x².", "3 + 5 = 8, donc 8x.", "3 x 5 = 15."], answer: "x² + 8x + 15" }
+      ],
+      audioScript: "Every term in the first bracket multiplies every term in the second — nothing gets missed.",
+      audioScriptFr: "Chaque terme de la première parenthèse multiplie chaque terme de la seconde — rien n'est oublié."
+    },
+    {
+      order: 2,
+      title: "Factorising quadratics",
+      titleFr: "Factoriser des expressions quadratiques",
+      concept: "Writing x² + bx + c as a product of two brackets",
+      conceptFr: "Écrire x² + bx + c comme un produit de deux parenthèses",
+      representation: "abstract",
+      visualAid: "algebra-tile",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y9-L3-2"],
+      explanationMd:
+        "Factorising reverses expanding. For x² + bx + c, find two numbers that **multiply to c** and **add to b**.\n\n" +
+        "A difference of two squares, x² - n², is a special case that always factorises to (x + n)(x - n).",
+      explanationMdFr:
+        "Factoriser, c'est l'inverse de développer. Pour x² + bx + c, trouve deux nombres dont le **produit est c** et la **somme est b**.\n\n" +
+        "Une différence de deux carrés, x² - n², est un cas particulier qui se factorise toujours en (x + n)(x - n).",
+      workedExamples: [
+        { problem: "Factorise x² + 7x + 12", steps: ["Which pair multiplies to 12 and adds to 7?", "3 and 4."], answer: "(x + 3)(x + 4)" }
+      ],
+      workedExamplesFr: [
+        { problem: "Factorise x² + 7x + 12", steps: ["Quelle paire a pour produit 12 et pour somme 7 ?", "3 et 4."], answer: "(x + 3)(x + 4)" }
+      ],
+      audioScript: "Multiply to the constant, add to the x coefficient — that's the pair you need.",
+      audioScriptFr: "Produit égal à la constante, somme égale au coefficient de x — voilà la paire qu'il te faut."
+    },
+    {
+      order: 3,
+      title: "Rearranging formulae",
+      titleFr: "Transformer des formules",
+      concept: "Changing the subject of a formula using inverse operations",
+      conceptFr: "Changer le sujet d'une formule à l'aide des opérations inverses",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y9-L3-3"],
+      explanationMd:
+        "Changing the subject uses the same balancing rules as solving an equation — you just finish with a letter instead of a number.\n\n" +
+        "Undo operations in reverse order: deal with addition and subtraction first, then multiplication and division.",
+      explanationMdFr:
+        "Changer le sujet utilise les mêmes règles d'équilibre que la résolution d'une équation — on termine simplement par une lettre au lieu d'un nombre.\n\n" +
+        "Annule les opérations dans l'ordre inverse : d'abord l'addition et la soustraction, puis la multiplication et la division.",
+      workedExamples: [
+        { problem: "Make x the subject of y = 4x + 7", steps: ["Subtract 7: y - 7 = 4x.", "Divide by 4."], answer: "x = (y - 7) ÷ 4" }
+      ],
+      workedExamplesFr: [
+        { problem: "Isole x dans y = 4x + 7", steps: ["Soustrais 7 : y - 7 = 4x.", "Divise par 4."], answer: "x = (y - 7) ÷ 4" }
+      ],
+      audioScript: "Same balancing rules as an equation — just keep going until the letter you want stands alone.",
+      audioScriptFr: "Les mêmes règles d'équilibre qu'une équation — continue jusqu'à ce que la lettre voulue soit seule."
+    }
+  ],
+  Y9L4: [
+    {
+      order: 1,
+      title: "Gradient and intercept",
+      titleFr: "Coefficient directeur et ordonnée à l'origine",
+      concept: "Reading gradient and y-intercept from y = mx + c",
+      conceptFr: "Lire le coefficient directeur et l'ordonnée à l'origine dans y = mx + c",
+      representation: "pictorial",
+      visualAid: "coordinate-grid",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y9-L4-1"],
+      explanationMd:
+        "Every straight line can be written as **y = mx + c**, where m is the gradient (how steep it is) and c is where it crosses the y-axis.\n\n" +
+        "Between two points, the gradient is the change in y divided by the change in x.",
+      explanationMdFr:
+        "Toute droite peut s'écrire **y = mx + c**, où m est le coefficient directeur (la pente) et c l'ordonnée à l'origine.\n\n" +
+        "Entre deux points, le coefficient directeur est la variation de y divisée par la variation de x.",
+      workedExamples: [
+        { problem: "Find the gradient of the line through (2, 4) and (5, 13)", steps: ["Change in y = 13 - 4 = 9.", "Change in x = 5 - 2 = 3.", "9 ÷ 3 = 3."], answer: "3" }
+      ],
+      workedExamplesFr: [
+        { problem: "Trouve le coefficient directeur de la droite passant par (2, 4) et (5, 13)", steps: ["Variation de y = 13 - 4 = 9.", "Variation de x = 5 - 2 = 3.", "9 ÷ 3 = 3."], answer: "3" }
+      ],
+      audioScript: "Gradient is rise over run: change in y divided by change in x.",
+      audioScriptFr: "Le coefficient directeur, c'est la montée sur l'avancée : variation de y divisée par variation de x."
+    },
+    {
+      order: 2,
+      title: "Quadratic graphs",
+      titleFr: "Les graphiques de fonctions quadratiques",
+      concept: "Recognising and interpreting parabolas",
+      conceptFr: "Reconnaître et interpréter des paraboles",
+      representation: "pictorial",
+      visualAid: "coordinate-grid",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y9-L4-2"],
+      explanationMd:
+        "A quadratic graph is a **parabola**. A positive x² coefficient gives a U shape; a negative one turns it upside down.\n\n" +
+        "The curve crosses the y-axis at the constant term, and crosses the x-axis at the roots — the values that make y zero.",
+      explanationMdFr:
+        "Un graphique quadratique est une **parabole**. Un coefficient de x² positif donne une forme en U ; un coefficient négatif la retourne.\n\n" +
+        "La courbe coupe l'axe des ordonnées au terme constant, et l'axe des abscisses aux racines — les valeurs qui annulent y.",
+      workedExamples: [
+        { problem: "For y = x² + 2x + 5, find y when x = 3", steps: ["3² = 9.", "2 x 3 = 6.", "9 + 6 + 5 = 20."], answer: "20" }
+      ],
+      workedExamplesFr: [
+        { problem: "Pour y = x² + 2x + 5, trouve y quand x = 3", steps: ["3² = 9.", "2 x 3 = 6.", "9 + 6 + 5 = 20."], answer: "20" }
+      ],
+      audioScript: "Square the x value first, then add the rest of the terms.",
+      audioScriptFr: "Élève d'abord x au carré, puis ajoute les autres termes."
+    },
+    {
+      order: 3,
+      title: "Gradient as a rate of change",
+      titleFr: "Le coefficient directeur comme taux de variation",
+      concept: "Interpreting gradient in real contexts such as speed and cost",
+      conceptFr: "Interpréter le coefficient directeur dans des contextes réels comme la vitesse et le coût",
+      representation: "pictorial",
+      visualAid: "graph",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y9-L4-3"],
+      explanationMd:
+        "On a real-world graph, the gradient has units and a meaning. On a distance-time graph it's speed; on a cost-quantity graph it's price per item.\n\n" +
+        "A steeper line always means a faster rate of change.",
+      explanationMdFr:
+        "Sur un graphique concret, le coefficient directeur a des unités et un sens. Sur un graphique distance-temps, c'est la vitesse ; sur un graphique coût-quantité, c'est le prix par article.\n\n" +
+        "Une droite plus raide signifie toujours un taux de variation plus élevé.",
+      workedExamples: [
+        { problem: "A train covers 240 km in 3 hours. What is the gradient of its distance-time graph?", steps: ["240 ÷ 3 = 80."], answer: "80 km/h" }
+      ],
+      workedExamplesFr: [
+        { problem: "Un train parcourt 240 km en 3 heures. Quel est le coefficient directeur de son graphique distance-temps ?", steps: ["240 ÷ 3 = 80."], answer: "80 km/h" }
+      ],
+      audioScript: "Always state the units — the gradient means something real.",
+      audioScriptFr: "Précise toujours les unités — le coefficient directeur a un sens concret."
+    }
+  ],
+  Y9L5: [
+    {
+      order: 1,
+      title: "Simultaneous equations",
+      titleFr: "Systèmes d'équations",
+      concept: "Solving two equations in two unknowns by elimination",
+      conceptFr: "Résoudre deux équations à deux inconnues par élimination",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y9-L5-1"],
+      explanationMd:
+        "Two equations with two unknowns can be solved together. **Elimination** adds or subtracts the equations so one letter disappears.\n\n" +
+        "Once you have one value, substitute it back into either equation to find the other.",
+      explanationMdFr:
+        "Deux équations à deux inconnues se résolvent ensemble. L'**élimination** additionne ou soustrait les équations pour faire disparaître une lettre.\n\n" +
+        "Une fois une valeur trouvée, remplace-la dans l'une des équations pour trouver l'autre.",
+      workedExamples: [
+        { problem: "Solve x + y = 10 and x - y = 4", steps: ["Add them: 2x = 14, so x = 7.", "Substitute: 7 + y = 10, so y = 3."], answer: "x = 7, y = 3" }
+      ],
+      workedExamplesFr: [
+        { problem: "Résous x + y = 10 et x - y = 4", steps: ["Additionne : 2x = 14, donc x = 7.", "Remplace : 7 + y = 10, donc y = 3."], answer: "x = 7, y = 3" }
+      ],
+      audioScript: "Add or subtract the equations to make one letter vanish.",
+      audioScriptFr: "Additionne ou soustrais les équations pour faire disparaître une lettre."
+    },
+    {
+      order: 2,
+      title: "Solving quadratics by factorising",
+      titleFr: "Résoudre des équations quadratiques par factorisation",
+      concept: "Using factorised form and the zero product rule",
+      conceptFr: "Utiliser la forme factorisée et la règle du produit nul",
+      representation: "abstract",
+      visualAid: "none",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y9-L5-2"],
+      explanationMd:
+        "If two things multiply to zero, at least one of them must be zero. So once a quadratic is factorised, set each bracket to zero in turn.\n\n" +
+        "That gives the two solutions, which are also where the curve crosses the x-axis.",
+      explanationMdFr:
+        "Si un produit vaut zéro, au moins un des facteurs est nul. Une fois l'expression factorisée, annule donc chaque parenthèse tour à tour.\n\n" +
+        "Cela donne les deux solutions, qui sont aussi les points où la courbe coupe l'axe des abscisses.",
+      workedExamples: [
+        { problem: "Solve x² - 7x + 12 = 0", steps: ["Factorise: (x - 3)(x - 4) = 0.", "x - 3 = 0 or x - 4 = 0."], answer: "x = 3 or x = 4" }
+      ],
+      workedExamplesFr: [
+        { problem: "Résous x² - 7x + 12 = 0", steps: ["Factorise : (x - 3)(x - 4) = 0.", "x - 3 = 0 ou x - 4 = 0."], answer: "x = 3 ou x = 4" }
+      ],
+      audioScript: "Factorise first, then set each bracket equal to zero.",
+      audioScriptFr: "Factorise d'abord, puis annule chaque parenthèse."
+    },
+    {
+      order: 3,
+      title: "Linear inequalities",
+      titleFr: "Inéquations linéaires",
+      concept: "Solving inequalities and interpreting the solution set",
+      conceptFr: "Résoudre des inéquations et interpréter l'ensemble des solutions",
+      representation: "pictorial",
+      visualAid: "number-line",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y9-L5-3"],
+      explanationMd:
+        "Solve an inequality exactly like an equation — the sign stays the same as long as you only multiply or divide by positive numbers.\n\n" +
+        "The answer is a **range** of values, not a single one. Check by substituting a value from your range back in.",
+      explanationMdFr:
+        "Résous une inéquation exactement comme une équation — le signe reste le même tant qu'on ne multiplie ou ne divise que par des nombres positifs.\n\n" +
+        "La réponse est un **intervalle** de valeurs, pas une seule. Vérifie en remplaçant par une valeur de ton intervalle.",
+      workedExamples: [
+        { problem: "Solve 3x + 4 < 19", steps: ["19 - 4 = 15.", "15 ÷ 3 = 5."], answer: "x < 5" }
+      ],
+      workedExamplesFr: [
+        { problem: "Résous 3x + 4 < 19", steps: ["19 - 4 = 15.", "15 ÷ 3 = 5."], answer: "x < 5" }
+      ],
+      audioScript: "The answer is a range — check it by testing a value inside it.",
+      audioScriptFr: "La réponse est un intervalle — vérifie en testant une valeur à l'intérieur."
+    }
+  ],
+  Y9L6: [
+    {
+      order: 1,
+      title: "Translations as vectors",
+      titleFr: "Les translations comme vecteurs",
+      concept: "Describing translations with a 2D column vector",
+      conceptFr: "Décrire des translations avec un vecteur à deux composantes",
+      representation: "pictorial",
+      visualAid: "coordinate-grid",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y9-L6-1"],
+      explanationMd:
+        "A translation slides a shape without turning or resizing it. The vector (a, b) means move a across and b up.\n\n" +
+        "To find the vector between two points, subtract the start coordinates from the end coordinates — in that order.",
+      explanationMdFr:
+        "Une translation fait glisser une forme sans la tourner ni la redimensionner. Le vecteur (a, b) signifie se déplacer de a horizontalement et de b verticalement.\n\n" +
+        "Pour trouver le vecteur entre deux points, soustrais les coordonnées de départ de celles d'arrivée — dans cet ordre.",
+      workedExamples: [
+        { problem: "What vector translates (2, 5) to (7, 3)?", steps: ["7 - 2 = 5.", "3 - 5 = -2."], answer: "(5, -2)" }
+      ],
+      workedExamplesFr: [
+        { problem: "Quel vecteur translate (2, 5) en (7, 3) ?", steps: ["7 - 2 = 5.", "3 - 5 = -2."], answer: "(5, -2)" }
+      ],
+      audioScript: "End coordinates minus start coordinates, keeping the order.",
+      audioScriptFr: "Coordonnées d'arrivée moins coordonnées de départ, en gardant l'ordre."
+    },
+    {
+      order: 2,
+      title: "Standard constructions",
+      titleFr: "Les constructions standard",
+      concept: "Using compasses to construct bisectors and perpendiculars",
+      conceptFr: "Utiliser le compas pour construire des médiatrices et des perpendiculaires",
+      representation: "concrete",
+      visualAid: "shape",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y9-L6-2"],
+      explanationMd:
+        "Standard constructions use **compasses set to a fixed radius**, never a protractor. Arcs of equal radius guarantee equal distances.\n\n" +
+        "A perpendicular bisector uses equal arcs from both endpoints; an angle bisector uses equal arcs from each arm. Always leave your construction arcs visible.",
+      explanationMdFr:
+        "Les constructions standard utilisent un **compas réglé sur un rayon fixe**, jamais un rapporteur. Des arcs de même rayon garantissent des distances égales.\n\n" +
+        "Une médiatrice utilise des arcs égaux depuis les deux extrémités ; une bissectrice, des arcs égaux depuis chaque côté. Laisse toujours tes arcs de construction visibles.",
+      workedExamples: [
+        { problem: "An angle of 76° is bisected. How big is each half?", steps: ["76 ÷ 2 = 38."], answer: "38°" }
+      ],
+      workedExamplesFr: [
+        { problem: "Un angle de 76° est coupé par sa bissectrice. Combien mesure chaque moitié ?", steps: ["76 ÷ 2 = 38."], answer: "38°" }
+      ],
+      audioScript: "Keep the compass radius fixed, and leave your arcs on the page.",
+      audioScriptFr: "Garde le rayon du compas fixe, et laisse tes arcs sur la feuille."
+    },
+    {
+      order: 3,
+      title: "Combining transformations",
+      titleFr: "Combiner des transformations",
+      concept: "Applying reflections, translations and enlargements in sequence",
+      conceptFr: "Appliquer des réflexions, translations et agrandissements à la suite",
+      representation: "pictorial",
+      visualAid: "coordinate-grid",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y9-L6-3"],
+      explanationMd:
+        "Reflecting in the y-axis flips the sign of x; reflecting in the x-axis flips the sign of y. A rotation of 180° about the origin flips both.\n\n" +
+        "When transformations are combined, apply them **one at a time, in order** — the result of the first becomes the input to the second.",
+      explanationMdFr:
+        "Une réflexion par rapport à l'axe des ordonnées change le signe de x ; par rapport à l'axe des abscisses, celui de y. Une rotation de 180° autour de l'origine change les deux.\n\n" +
+        "Quand des transformations sont combinées, applique-les **une à la fois, dans l'ordre** — le résultat de la première devient l'entrée de la seconde.",
+      workedExamples: [
+        { problem: "Reflect (3, 4) in the y-axis, then translate by (2, 0)", steps: ["Reflection gives (-3, 4).", "-3 + 2 = -1."], answer: "(-1, 4)" }
+      ],
+      workedExamplesFr: [
+        { problem: "Réfléchis (3, 4) par rapport à l'axe des ordonnées, puis translate par (2, 0)", steps: ["La réflexion donne (-3, 4).", "-3 + 2 = -1."], answer: "(-1, 4)" }
+      ],
+      audioScript: "One transformation at a time, in the order given.",
+      audioScriptFr: "Une transformation à la fois, dans l'ordre indiqué."
+    }
+  ],
+  Y9L7: [
+    {
+      order: 1,
+      title: "Pythagoras' theorem",
+      titleFr: "Le théorème de Pythagore",
+      concept: "Finding missing sides in right-angled triangles",
+      conceptFr: "Trouver des côtés manquants dans des triangles rectangles",
+      representation: "pictorial",
+      visualAid: "shape",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y9-L7-1"],
+      explanationMd:
+        "In any right-angled triangle, **a² + b² = c²**, where c is the hypotenuse — always the longest side, opposite the right angle.\n\n" +
+        "To find the hypotenuse, square both short sides, add, then square root. To find a short side, subtract instead of adding.",
+      explanationMdFr:
+        "Dans tout triangle rectangle, **a² + b² = c²**, où c est l'hypoténuse — toujours le plus long côté, opposé à l'angle droit.\n\n" +
+        "Pour trouver l'hypoténuse, élève les deux côtés courts au carré, additionne, puis prends la racine carrée. Pour un côté court, soustrais au lieu d'additionner.",
+      workedExamples: [
+        { problem: "Find the hypotenuse when the short sides are 6 cm and 8 cm", steps: ["6² + 8² = 36 + 64 = 100.", "The square root of 100 is 10."], answer: "10 cm" }
+      ],
+      workedExamplesFr: [
+        { problem: "Trouve l'hypoténuse quand les côtés courts mesurent 6 cm et 8 cm", steps: ["6² + 8² = 36 + 64 = 100.", "La racine carrée de 100 est 10."], answer: "10 cm" }
+      ],
+      audioScript: "Square, add, square root — and the hypotenuse is always the longest side.",
+      audioScriptFr: "Carré, addition, racine carrée — et l'hypoténuse est toujours le plus long côté."
+    },
+    {
+      order: 2,
+      title: "Trigonometric ratios",
+      titleFr: "Les rapports trigonométriques",
+      concept: "Using sine, cosine and tangent to find missing sides",
+      conceptFr: "Utiliser sinus, cosinus et tangente pour trouver des côtés manquants",
+      representation: "pictorial",
+      visualAid: "shape",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y9-L7-2"],
+      explanationMd:
+        "Label the sides relative to the angle you're working with: **opposite**, **adjacent** and **hypotenuse**.\n\n" +
+        "**SOH CAH TOA**: sine = opposite ÷ hypotenuse, cosine = adjacent ÷ hypotenuse, tangent = opposite ÷ adjacent. Pick the ratio that uses the two sides you know about.",
+      explanationMdFr:
+        "Nomme les côtés par rapport à l'angle étudié : **opposé**, **adjacent** et **hypoténuse**.\n\n" +
+        "sinus = opposé ÷ hypoténuse, cosinus = adjacent ÷ hypoténuse, tangente = opposé ÷ adjacent. Choisis le rapport qui utilise les deux côtés concernés.",
+      workedExamples: [
+        { problem: "The opposite side is 3 cm and the hypotenuse is 5 cm. Find sin A.", steps: ["sin A = opposite ÷ hypotenuse.", "3 ÷ 5 = 0.6."], answer: "0.6" }
+      ],
+      workedExamplesFr: [
+        { problem: "Le côté opposé mesure 3 cm et l'hypoténuse 5 cm. Trouve sin A.", steps: ["sin A = opposé ÷ hypoténuse.", "3 ÷ 5 = 0,6."], answer: "0,6" }
+      ],
+      audioScript: "Label the sides first, then choose the ratio that matches what you know.",
+      audioScriptFr: "Nomme d'abord les côtés, puis choisis le rapport correspondant à ce que tu connais."
+    },
+    {
+      order: 3,
+      title: "Finding angles with trigonometry",
+      titleFr: "Trouver des angles avec la trigonométrie",
+      concept: "Using inverse trigonometric functions to find missing angles",
+      conceptFr: "Utiliser les fonctions trigonométriques inverses pour trouver des angles",
+      representation: "pictorial",
+      visualAid: "shape",
+      ageBandStyle: "mature",
+      objectiveCodes: ["Y9-L7-3"],
+      explanationMd:
+        "If you know two sides, you can find the angle. Work out the ratio, then use the **inverse** function on your calculator — written as sin⁻¹, cos⁻¹ or tan⁻¹.\n\n" +
+        "Remember too that the two non-right angles in a right-angled triangle always add to 90°.",
+      explanationMdFr:
+        "Si tu connais deux côtés, tu peux trouver l'angle. Calcule le rapport, puis utilise la fonction **inverse** de ta calculatrice — notée sin⁻¹, cos⁻¹ ou tan⁻¹.\n\n" +
+        "N'oublie pas non plus que les deux angles non droits d'un triangle rectangle font toujours 90° au total.",
+      workedExamples: [
+        { problem: "The opposite side is 3 cm and the hypotenuse is 5 cm. Find angle A.", steps: ["sin A = 3 ÷ 5 = 0.6.", "sin⁻¹(0.6) ≈ 37."], answer: "About 37°" }
+      ],
+      workedExamplesFr: [
+        { problem: "Le côté opposé mesure 3 cm et l'hypoténuse 5 cm. Trouve l'angle A.", steps: ["sin A = 3 ÷ 5 = 0,6.", "sin⁻¹(0,6) ≈ 37."], answer: "Environ 37°" }
+      ],
+      audioScript: "Find the ratio first, then use the inverse function to get the angle.",
+      audioScriptFr: "Calcule d'abord le rapport, puis utilise la fonction inverse pour obtenir l'angle."
+    }
+  ],
   Y10L1: [
     {
       order: 1,
