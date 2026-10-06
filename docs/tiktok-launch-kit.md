@@ -17,8 +17,8 @@ npx tsx --tsconfig scripts/tsconfig.json scripts/export-brand-assets.ts   # bran
 
 | Field | Value |
 | --- | --- |
-| Handle | `@mathsjourneyuk` (fallbacks: `@mathsjourney.uk`, `@maths.journey.uk`) |
-| Name | Maths Journey UK |
+| Handle | `@mathsjourney.co.uk` — live |
+| Name | Maths Journey UK (**currently set to "math-master" — change this**) |
 | Bio (80 char limit) | `Years 1–10 maths, National Curriculum 🦊 Free levels · EN/FR` |
 | Link | `mathsjourney.co.uk` |
 | Profile picture | `public/brand/avatar-wave-400.png` |
@@ -29,6 +29,12 @@ Alternative avatars are in `public/brand/`: `avatar-cheer-400.png`,
 the ~40px TikTok renders it at; `trophy` is busier but works for a milestone
 post. Transparent 1080×1080 mascots (`mascot-<mood>-1080.png`) are for
 overlaying on video, and the `.svg` files are the vector originals.
+
+**Display name.** TikTok's display name is the searchable, human-readable one
+and is separate from the handle. It should read `Maths Journey UK`. Note the
+spelling: "math" is American, and this is a product sold on being aligned to
+the National Curriculum for England — a UK parent reads "math" as a signal the
+product is not for them.
 
 **Audience note.** TikTok's minimum age is 13, so nobody in the Year 1–6 range
 is legally on the platform. Write for the parent or teacher who installs it,
