@@ -94,7 +94,7 @@ export const level: QuestionTemplateDef[] = [
     declaredVariationSpace: 9000 * 90 * CTX.length,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Une usine produit {a} {ctx} chaque jour. Combien de {ctx} produit-elle en {b} jours ?"],
+      promptTemplates: ["Une usine produit {a} {ctx} chaque jour. Combien {de:ctx} produit-elle en {b} jours ?"],
       explain: (v, r) => [`${v[0]} x ${v[1]} = ${r}.`],
       hints: () => ["Utilise la méthode écrite formelle pour multiplier la quantité journalière par le nombre de jours."]
     }

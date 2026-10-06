@@ -203,7 +203,7 @@ export const level: QuestionTemplateDef[] = [
     ranges: [[11, 599]], compute: (v) => Math.round(v[0]! / 10),
     derive: (v) => ({ dec: (v[0]! / 10).toFixed(1) }),
     promptTemplates: [
-      "{ctx} is {dec} metres long. How long is it to the nearest metre?",
+      "{Ctx} is {dec} metres long. How long is it to the nearest metre?",
       "A jug holds {dec} litres. Round that to the nearest litre."
     ],
     explain: (v, r) => [`The tenths digit is ${v[0]! % 10}.`, `That rounds ${v[0]! % 10 >= 5 ? "up" : "down"} to ${r}.`],
@@ -211,7 +211,7 @@ export const level: QuestionTemplateDef[] = [
     fr: {
       contextPool: MEASURES_FR,
       promptTemplates: [
-        "{ctx} mesure {dec} mètres de long. Quelle est sa longueur au mètre près ?",
+        "{Ctx} mesure {dec} mètres de long. Quelle est sa longueur au mètre près ?",
         "Un pichet contient {dec} litres. Arrondis au litre près."
       ],
       explain: (v, r) => [`Le chiffre des dixièmes est ${v[0]! % 10}.`, `Cela s'arrondit ${v[0]! % 10 >= 5 ? "au-dessus" : "en dessous"} à ${r}.`],
@@ -407,7 +407,7 @@ export const level: QuestionTemplateDef[] = [
     ranges: [[21, 99], [1, 20]], compute: (v) => (v[0]! - v[1]!) / 10, formatValue: oneDp,
     derive: (v) => ({ da: (v[0]! / 10).toFixed(1), db: (v[1]! / 10).toFixed(1) }),
     promptTemplates: [
-      "{ctx} is {da} metres long. Another is {db} metres long. How much longer is the first, in metres?",
+      "{Ctx} is {da} metres long. Another is {db} metres long. How much longer is the first, in metres?",
       "Two lengths are {da} m and {db} m. What is the difference, in metres?"
     ],
     explain: (v, r) => [`Work in tenths: ${v[0]} - ${v[1]} = ${v[0]! - v[1]!} tenths.`, `That is ${r} metres.`],
@@ -415,7 +415,7 @@ export const level: QuestionTemplateDef[] = [
     fr: {
       contextPool: MEASURES_FR,
       promptTemplates: [
-        "{ctx} mesure {da} mètres de long. Une autre mesure {db} mètres. De combien la première est-elle plus longue, en mètres ?",
+        "{Ctx} mesure {da} mètres de long. Une autre mesure {db} mètres. De combien la première est-elle plus longue, en mètres ?",
         "Deux longueurs valent {da} m et {db} m. Quelle est la différence, en mètres ?"
       ],
       explain: (v, r) => [`Travaille en dixièmes : ${v[0]} - ${v[1]} = ${v[0]! - v[1]!} dixièmes.`, `Cela fait ${r} mètres.`],

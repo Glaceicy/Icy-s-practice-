@@ -118,7 +118,7 @@ export const level: QuestionTemplateDef[] = [
     derive: (v) => ({ dist: v[0]! * v[1]!, time: v[1]! }),
     promptTemplates: [
       "A journey of {dist} km takes {time} hours. What is the average speed, in km/h?",
-      "{ctx} covers {dist} km in {time} hours. Find the average speed, in km/h."
+      "{Ctx} covers {dist} km in {time} hours. Find the average speed, in km/h."
     ],
     explain: (v, r) => [`Speed = distance ÷ time.`, `${v[0]! * v[1]!} ÷ ${v[1]} = ${r} km/h.`],
     hints: () => ["Speed is distance divided by time — check the units match before dividing."],
@@ -126,7 +126,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: JOURNEYS_FR,
       promptTemplates: [
         "Un trajet de {dist} km dure {time} heures. Quelle est la vitesse moyenne, en km/h ?",
-        "{ctx} parcourt {dist} km en {time} heures. Trouve la vitesse moyenne, en km/h."
+        "{Ctx} parcourt {dist} km en {time} heures. Trouve la vitesse moyenne, en km/h."
       ],
       explain: (v, r) => [`Vitesse = distance ÷ temps.`, `${v[0]! * v[1]!} ÷ ${v[1]} = ${r} km/h.`],
       hints: () => ["La vitesse est la distance divisée par le temps — vérifie les unités avant de diviser."]
@@ -266,7 +266,7 @@ export const level: QuestionTemplateDef[] = [
     derive: (v) => ({ p: TRIPLES[v[0]!]![0] * v[1]!, q: TRIPLES[v[0]!]![1] * v[1]! }),
     promptTemplates: [
       "A right-angled triangle has shorter sides of {p} cm and {q} cm. How long is the hypotenuse, in cm?",
-      "{ctx} reaches {p} m up a wall from a point {q} m out from its base. How long is it, in m?",
+      "{Ctx} reaches {p} m up a wall from a point {q} m out from its base. How long is it, in m?",
       "A rectangle measures {p} m by {q} m. How long is its diagonal, in m?"
     ],
     explain: (v, r) => {
@@ -279,7 +279,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: PLACES_FR,
       promptTemplates: [
         "Un triangle rectangle a des côtés courts de {p} cm et {q} cm. Quelle est la longueur de l'hypoténuse, en cm ?",
-        "{ctx} atteint {p} m sur un mur depuis un point situé à {q} m de son pied. Quelle est sa longueur, en m ?",
+        "{Ctx} atteint {p} m sur un mur depuis un point situé à {q} m de son pied. Quelle est sa longueur, en m ?",
         "Un rectangle mesure {p} m sur {q} m. Quelle est la longueur de sa diagonale, en m ?"
       ],
       explain: (v, r) => {
@@ -298,7 +298,7 @@ export const level: QuestionTemplateDef[] = [
     derive: (v) => ({ ang: v[0]!, hyp: v[1]! }),
     promptTemplates: [
       "A right-angled triangle has a hypotenuse of {hyp} m and an angle of {ang}°. How long is the side opposite that angle, in m to 1 decimal place?",
-      "{ctx} is {hyp} m long and leans at {ang}° to the ground. How high does it reach, in m to 1 decimal place?"
+      "{Ctx} is {hyp} m long and leans at {ang}° to the ground. How high does it reach, in m to 1 decimal place?"
     ],
     explain: (v, r) => [`Opposite = hypotenuse x sin(angle).`, `${v[1]} x sin ${v[0]}° = ${r} m.`],
     hints: () => ["SOH: sine links the opposite side with the hypotenuse."],
@@ -306,7 +306,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: PLACES_FR,
       promptTemplates: [
         "Un triangle rectangle a une hypoténuse de {hyp} m et un angle de {ang}°. Quelle est la longueur du côté opposé à cet angle, en m au dixième près ?",
-        "{ctx} mesure {hyp} m et s'incline à {ang}° par rapport au sol. À quelle hauteur arrive-t-elle, en m au dixième près ?"
+        "{Ctx} mesure {hyp} m et s'incline à {ang}° par rapport au sol. À quelle hauteur arrive-t-elle, en m au dixième près ?"
       ],
       explain: (v, r) => [`Opposé = hypoténuse x sin(angle).`, `${v[1]} x sin ${v[0]}° = ${r} m.`],
       hints: () => ["SOH : le sinus relie le côté opposé à l'hypoténuse."]

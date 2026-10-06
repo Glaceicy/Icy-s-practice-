@@ -19,7 +19,7 @@ export const level: QuestionTemplateDef[] = [
     ranges: [[1, 40]], compute: (v) => v[0]! * v[0]!,
     promptTemplates: [
       "A circle has a radius of {a} cm. Its area is ___π cm². What number is missing?",
-      "{ctx} is a circle of radius {a} cm. Its area is ___π cm². What number is missing?",
+      "{Ctx} is a circle of radius {a} cm. Its area is ___π cm². What number is missing?",
       "Give the area of a circle of radius {a} cm as a multiple of π: ___π cm²."
     ],
     explain: (v, r) => [`Area = πr² = π x ${v[0]}² = ${r}π cm².`],
@@ -28,7 +28,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: ROUND_THINGS_FR,
       promptTemplates: [
         "Un cercle a un rayon de {a} cm. Son aire est ___π cm². Quel nombre manque ?",
-        "{ctx} est un cercle de rayon {a} cm. Son aire est ___π cm². Quel nombre manque ?",
+        "{Ctx} est un cercle de rayon {a} cm. Son aire est ___π cm². Quel nombre manque ?",
         "Donne l'aire d'un cercle de rayon {a} cm comme un multiple de π : ___π cm²."
       ],
       explain: (v, r) => [`Aire = πr² = π x ${v[0]}² = ${r}π cm².`],
@@ -42,7 +42,7 @@ export const level: QuestionTemplateDef[] = [
     ranges: [[1, 60]], compute: (v) => 2 * v[0]!,
     promptTemplates: [
       "A circle has a radius of {a} cm. Its circumference is ___π cm. What number is missing?",
-      "{ctx} has a radius of {a} cm. Give its circumference as a multiple of π: ___π cm.",
+      "{Ctx} has a radius of {a} cm. Give its circumference as a multiple of π: ___π cm.",
       "Write the circumference of a circle of radius {a} cm in the form ___π cm."
     ],
     explain: (v, r) => [`Circumference = 2πr = 2 x π x ${v[0]} = ${r}π cm.`],
@@ -51,7 +51,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: ROUND_THINGS_FR,
       promptTemplates: [
         "Un cercle a un rayon de {a} cm. Sa circonférence est ___π cm. Quel nombre manque ?",
-        "{ctx} a un rayon de {a} cm. Donne sa circonférence comme un multiple de π : ___π cm.",
+        "{Ctx} a un rayon de {a} cm. Donne sa circonférence comme un multiple de π : ___π cm.",
         "Écris la circonférence d'un cercle de rayon {a} cm sous la forme ___π cm."
       ],
       explain: (v, r) => [`Circonférence = 2πr = 2 x π x ${v[0]} = ${r}π cm.`],
@@ -66,7 +66,7 @@ export const level: QuestionTemplateDef[] = [
     derive: (v) => ({ rad: v[0]! }),
     promptTemplates: [
       "A circle has a radius of {rad} cm. What is its area in cm², to 1 decimal place?",
-      "{ctx} is a circle of radius {rad} m. What is its area in m², to 1 decimal place?",
+      "{Ctx} is a circle of radius {rad} m. What is its area in m², to 1 decimal place?",
       "Work out the area of a circle with radius {rad} cm, giving your answer in cm² to 1 decimal place."
     ],
     explain: (v, r) => [`Area = πr² = π x ${v[0]}² = π x ${v[0]! * v[0]!}.`, `That gives ${r} cm² to 1 decimal place.`],
@@ -75,7 +75,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: ROUND_THINGS_FR,
       promptTemplates: [
         "Un cercle a un rayon de {rad} cm. Quelle est son aire en cm², au dixième près ?",
-        "{ctx} est un cercle de rayon {rad} m. Quelle est son aire en m², au dixième près ?",
+        "{Ctx} est un cercle de rayon {rad} m. Quelle est son aire en m², au dixième près ?",
         "Calcule l'aire d'un cercle de rayon {rad} cm, en cm² au dixième près."
       ],
       explain: (v, r) => [`Aire = πr² = π x ${v[0]}² = π x ${v[0]! * v[0]!}.`, `Cela donne ${r} cm² au dixième près.`],
@@ -111,7 +111,7 @@ export const level: QuestionTemplateDef[] = [
     ranges: [[1, 15], [1, 20]], compute: (v) => v[0]! * v[0]! * v[1]!,
     promptTemplates: [
       "A cylinder has a radius of {a} cm and a height of {b} cm. Its volume is ___π cm³. What number is missing?",
-      "{ctx} is a cylinder of radius {a} cm and height {b} cm. Give its volume as a multiple of π: ___π cm³."
+      "{Ctx} is a cylinder of radius {a} cm and height {b} cm. Give its volume as a multiple of π: ___π cm³."
     ],
     explain: (v, r) => [`V = πr²h = π x ${v[0]}² x ${v[1]} = ${r}π cm³.`],
     hints: () => ["Volume of a cylinder is πr²h — square the radius, multiply by the height, keep π."],
@@ -119,7 +119,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: SOLID_THINGS_FR,
       promptTemplates: [
         "Un cylindre a un rayon de {a} cm et une hauteur de {b} cm. Son volume est ___π cm³. Quel nombre manque ?",
-        "{ctx} est un cylindre de rayon {a} cm et de hauteur {b} cm. Donne son volume comme un multiple de π : ___π cm³."
+        "{Ctx} est un cylindre de rayon {a} cm et de hauteur {b} cm. Donne son volume comme un multiple de π : ___π cm³."
       ],
       explain: (v, r) => [`V = πr²h = π x ${v[0]}² x ${v[1]} = ${r}π cm³.`],
       hints: () => ["Le volume d'un cylindre est πr²h — élève le rayon au carré, multiplie par la hauteur, garde π."]
@@ -133,7 +133,7 @@ export const level: QuestionTemplateDef[] = [
     compute: (v) => 2 * (v[0]! * v[1]! + v[0]! * v[2]! + v[1]! * v[2]!),
     promptTemplates: [
       "A cuboid measures {a} cm by {b} cm by {c} cm. What is its total surface area, in cm²?",
-      "{ctx} is a cuboid {a} cm by {b} cm by {c} cm. How much card is needed to cover it completely, in cm²?"
+      "{Ctx} is a cuboid {a} cm by {b} cm by {c} cm. How much card is needed to cover it completely, in cm²?"
     ],
     explain: (v, r) => [
       `The three different faces have areas ${v[0]! * v[1]!}, ${v[0]! * v[2]!} and ${v[1]! * v[2]!} cm².`,
@@ -144,7 +144,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: BOXES_FR,
       promptTemplates: [
         "Un pavé droit mesure {a} cm sur {b} cm sur {c} cm. Quelle est son aire totale, en cm² ?",
-        "{ctx} est un pavé droit de {a} cm sur {b} cm sur {c} cm. Combien de carton faut-il pour le couvrir entièrement, en cm² ?"
+        "{Ctx} est un pavé droit de {a} cm sur {b} cm sur {c} cm. Combien de carton faut-il pour le couvrir entièrement, en cm² ?"
       ],
       explain: (v, r) => [
         `Les trois faces différentes ont pour aires ${v[0]! * v[1]!}, ${v[0]! * v[2]!} et ${v[1]! * v[2]!} cm².`,
@@ -385,10 +385,10 @@ export const level: QuestionTemplateDef[] = [
       const claims: Array<{ text: string; valid: boolean }> = [
         { text: `AB = (${x}, ${y}) means BA = (${-x}, ${-y})`, valid: true },
         { text: `AB = (${x}, ${y}) means BA = (${y}, ${x})`, valid: false },
-        { text: `if AB = (${x}, ${y}) then AB + BA is the zero vector`, valid: true },
-        { text: `if AB = (${x}, ${y}) then AB + BA = (${2 * x}, ${2 * y})`, valid: false },
-        { text: `if M is the midpoint of AB then AM = ½AB`, valid: true },
-        { text: `if M is the midpoint of AB then AM = 2AB`, valid: false }
+        { text: `If AB = (${x}, ${y}) then AB + BA is the zero vector`, valid: true },
+        { text: `If AB = (${x}, ${y}) then AB + BA = (${2 * x}, ${2 * y})`, valid: false },
+        { text: `If M is the midpoint of AB then AM = ½AB`, valid: true },
+        { text: `If M is the midpoint of AB then AM = 2AB`, valid: false }
       ];
       const claim = rng.pick(claims);
       return {
@@ -406,10 +406,10 @@ export const level: QuestionTemplateDef[] = [
         const isTrue = drawn.correctLabel === "True";
         const body = drawn.prompt.replace(/\. True or false\?$/, "")
           .replace(/^AB = \((.+?)\) means BA = \((.+?)\)$/, "AB = ($1) signifie que BA = ($2)")
-          .replace(/^if AB = \((.+?)\) then AB \+ BA is the zero vector$/, "si AB = ($1) alors AB + BA est le vecteur nul")
-          .replace(/^if AB = \((.+?)\) then AB \+ BA = \((.+?)\)$/, "si AB = ($1) alors AB + BA = ($2)")
-          .replace(/^if M is the midpoint of AB then AM = ½AB$/, "si M est le milieu de AB alors AM = ½AB")
-          .replace(/^if M is the midpoint of AB then AM = 2AB$/, "si M est le milieu de AB alors AM = 2AB");
+          .replace(/^If AB = \((.+?)\) then AB \+ BA is the zero vector$/, "Si AB = ($1) alors AB + BA est le vecteur nul")
+          .replace(/^If AB = \((.+?)\) then AB \+ BA = \((.+?)\)$/, "Si AB = ($1) alors AB + BA = ($2)")
+          .replace(/^If M is the midpoint of AB then AM = ½AB$/, "Si M est le milieu de AB alors AM = ½AB")
+          .replace(/^If M is the midpoint of AB then AM = 2AB$/, "Si M est le milieu de AB alors AM = 2AB");
         return {
           prompt: `${body}. Vrai ou faux ?`,
           correctLabel: isTrue ? "Vrai" : "Faux",

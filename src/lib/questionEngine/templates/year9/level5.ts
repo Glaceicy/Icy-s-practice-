@@ -63,7 +63,7 @@ export const level: QuestionTemplateDef[] = [
     hints: () => ["Write two equations, then add them to eliminate the smaller amount."],
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Deux boîtes de {ctx} contiennent {total} articles au total. Une boîte en contient {difference} de plus que l'autre. Combien y en a-t-il dans la plus grande boîte ?"],
+      promptTemplates: ["Deux boîtes {de:ctx} contiennent {total} articles au total. Une boîte en contient {difference} de plus que l'autre. Combien y en a-t-il dans la plus grande boîte ?"],
       explain: (v, r) => [`Si x + y = ${v[0]! + v[1]!} et x - y = ${v[0]! - v[1]!}, l'addition donne 2x = ${2 * v[0]!}.`, `x = ${r}.`],
       hints: () => ["Écris deux équations, puis additionne-les pour éliminer la plus petite quantité."]
     },
@@ -258,7 +258,7 @@ export const level: QuestionTemplateDef[] = [
     misconceptionTags: ["INEQUALITY_ERROR"], type: "WORD_PROBLEM", contextPool: CTX,
     ranges: [[2, 12], [1, 20], [2, 15]], compute: (v) => v[2]!,
     derive: (v) => ({ budget: v[0]! * v[2]! + v[1]! }),
-    promptTemplates: ["{ctx} cost £{a} each, plus a £{b} delivery fee. With a budget of £{budget}, what is the greatest number that can be bought?"],
+    promptTemplates: ["{Ctx} cost £{a} each, plus a £{b} delivery fee. With a budget of £{budget}, what is the greatest number that can be bought?"],
     explain: (v, r) => [`${v[0]! * v[2]! + v[1]!} - ${v[1]} = ${v[0]! * v[2]!} for the items.`, `${v[0]! * v[2]!} ÷ ${v[0]} = ${r}.`],
     hints: () => ["Subtract the fixed fee, then divide by the price of one item."],
     fr: {

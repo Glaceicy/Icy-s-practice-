@@ -80,7 +80,7 @@ export const level: QuestionTemplateDef[] = [
       promptTemplates: [
         "Deux événements indépendants ont des probabilités de {pa}% et {pb}%. Quelle est la probabilité que les deux se produisent, en pourcentage ?",
         "Sur un arbre de probabilité, la première branche a une probabilité de {pa}% et la seconde de {pb}%, et les événements sont indépendants. Dans quel pourcentage des cas les deux se produisent-ils ?",
-        "La probabilité de {ctx} lundi est de {pa}% et mardi de {pb}%, indépendamment. Quelle est la probabilité en pourcentage des deux ?"
+        "La probabilité {de:ctx} lundi est de {pa}% et mardi de {pb}%, indépendamment. Quelle est la probabilité en pourcentage des deux ?"
       ],
       explain: (v, r) => [`Multiplie le long des branches : ${10 * v[0]!}% x ${10 * v[1]!}%.`, `En pourcentage, cela donne ${r}%.`],
       hints: () => ["Sur un arbre de probabilité, on multiplie le long des branches pour obtenir la probabilité des deux."]
@@ -105,7 +105,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: EVENTS_FR,
       promptTemplates: [
         "Deux événements indépendants ont des probabilités de {pa}% et {pb}%. Quelle est la probabilité qu'au moins l'un se produise, en pourcentage ?",
-        "La probabilité de {ctx} est de {pa}% le premier jour et de {pb}% le second, indépendamment. Quelle est la probabilité en pourcentage que cela arrive au moins une fois ?"
+        "La probabilité {de:ctx} est de {pa}% le premier jour et de {pb}% le second, indépendamment. Quelle est la probabilité en pourcentage que cela arrive au moins une fois ?"
       ],
       explain: (v, r) => [
         `Aucun des deux ne se produit avec une probabilité de ${100 - 10 * v[0]!}% x ${100 - 10 * v[1]!}% = ${(10 - v[0]!) * (10 - v[1]!)}%.`,
@@ -142,7 +142,7 @@ export const level: QuestionTemplateDef[] = [
     derive: (v) => ({ trials: 10 * v[1]! }),
     promptTemplates: [
       "The probability of an event is {a}/10. In {trials} trials, how many times would you expect it to happen?",
-      "{ctx} has a probability of {a}/10. Over {trials} attempts, what is the expected number of times it happens?"
+      "{Ctx} has a probability of {a}/10. Over {trials} attempts, what is the expected number of times it happens?"
     ],
     explain: (v, r) => [`Expected frequency = probability x number of trials.`, `${v[0]}/10 x ${10 * v[1]!} = ${r}.`],
     hints: () => ["Multiply the probability by the number of trials."],
@@ -150,7 +150,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: EVENTS_FR,
       promptTemplates: [
         "La probabilité d'un événement est {a}/10. Sur {trials} essais, combien de fois t'attends-tu à ce qu'il se produise ?",
-        "{ctx} a une probabilité de {a}/10. Sur {trials} tentatives, quel est le nombre attendu de réalisations ?"
+        "{Ctx} a une probabilité de {a}/10. Sur {trials} tentatives, quel est le nombre attendu de réalisations ?"
       ],
       explain: (v, r) => [`Effectif attendu = probabilité x nombre d'essais.`, `${v[0]}/10 x ${10 * v[1]!} = ${r}.`],
       hints: () => ["Multiplie la probabilité par le nombre d'essais."]
@@ -200,7 +200,7 @@ export const level: QuestionTemplateDef[] = [
           distractorLabels: drawn.distractorLabels.map((d) => d.replace(" out of ", " sur ")),
           explanationSteps: [picked.scenario === "with replacement"
             ? "Le jeton est remis, donc le sac est inchangé."
-            : "Un rouge est parti, donc il reste un rouge en moins sur un total diminué de un."],
+            : "Un rouge est parti, donc il reste un rouge en moins sur un total diminué d'un."],
           hints: ["Demande-toi si le premier jeton a été remis — cela décide si les deux nombres baissent de un."]
         };
       }

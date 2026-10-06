@@ -242,7 +242,7 @@ export const level: QuestionTemplateDef[] = [
     declaredVariationSpace: 66 * 2 * CTX.length,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Compte les cases remplies du cadre de dix. {a} et {b} de plus font combien de {ctx} en tout ?", "Combien de {ctx} sont montrés en tout : {a} et {b} de plus ?"],
+      promptTemplates: ["Compte les cases remplies du cadre de dix. {a} et {b} de plus font combien {de:ctx} en tout ?", "Combien {de:ctx} sont montrés en tout : {a} et {b} de plus ?"],
       hints: () => ["Compte chaque case remplie dans le cadre de dix."]
     }
   }),
@@ -257,7 +257,7 @@ export const level: QuestionTemplateDef[] = [
     declaredVariationSpace: 66 * CTX.length,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Il y a {a} {ctx} dans un panier. {b} de plus sont ajoutés. Combien de {ctx} y a-t-il maintenant ?"],
+      promptTemplates: ["Il y a {a} {ctx} dans un panier. {b} de plus sont ajoutés. Combien {de:ctx} y a-t-il maintenant ?"],
       hints: () => ["Imagine les objets tous ensemble, puis compte-les."]
     }
   }),
@@ -331,7 +331,7 @@ export const level: QuestionTemplateDef[] = [
     declaredVariationSpace: 66 * CTX.length,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Il y avait {a} {ctx} montrés dans le cadre de dix. {b} sont rayés. Combien de {ctx} reste-t-il ?"],
+      promptTemplates: ["Il y avait {a} {ctx} montrés dans le cadre de dix. {b} sont rayés. Combien {de:ctx} reste-t-il ?"],
       hints: () => ["Compte ce qu'il reste après en avoir rayé quelques-uns."]
     }
   }),
@@ -346,7 +346,7 @@ export const level: QuestionTemplateDef[] = [
     declaredVariationSpace: 66 * CTX.length,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Il y a {a} {ctx} sur la table. {b} sont donnés. Combien de {ctx} reste-t-il ?"],
+      promptTemplates: ["Il y a {a} {ctx} sur la table. {b} sont donnés. Combien {de:ctx} reste-t-il ?"],
       hints: () => ["Imagine qu'on en enlève quelques-uns, puis compte ce qu'il reste."]
     }
   }),

@@ -128,13 +128,13 @@ export const level: QuestionTemplateDef[] = [
     misconceptionTags: ["MEASURE_COMPARISON_CONFUSION"], type: "WORD_PROBLEM",
     ranges: [[2, 10], [2, 10]], compute: (v) => v[0]! * v[1]!,
     derive: (v) => ({ len: v[0]!, wid: v[1]! }), formatValue: (n) => `${n} m²`, contextPool: ROOMS,
-    promptTemplates: ["{ctx} measures {len} m by {wid} m. What area of carpet is needed to cover the floor?"],
+    promptTemplates: ["{Ctx} measures {len} m by {wid} m. What area of carpet is needed to cover the floor?"],
     explain: (v, r) => [`Area = ${v[0]} x ${v[1]} = ${r}.`],
     hints: () => ["Multiply the length by the width to find the floor area."],
     declaredVariationSpace: 9 * 9 * ROOMS.length,
     fr: {
       contextPool: ROOMS_FR,
-      promptTemplates: ["{ctx} mesure {len} m sur {wid} m. Quelle surface de moquette est nécessaire pour couvrir le sol ?"],
+      promptTemplates: ["{Ctx} mesure {len} m sur {wid} m. Quelle surface de moquette est nécessaire pour couvrir le sol ?"],
       explain: (v, r) => [`Aire = ${v[0]} x ${v[1]} = ${r}.`],
       hints: () => ["Multiplie la longueur par la largeur pour trouver l'aire du sol."]
     }
@@ -272,13 +272,13 @@ export const level: QuestionTemplateDef[] = [
     misconceptionTags: ["MEASURE_COMPARISON_CONFUSION"], type: "WORD_PROBLEM",
     ranges: [[2, 10], [2, 10], [2, 10]], compute: (v) => v[0]! * v[1]! * v[2]!,
     derive: (v) => ({ L: v[0]!, W: v[1]!, H: v[2]! }), formatValue: (n) => `${n} cm³`, contextPool: BOXES,
-    promptTemplates: ["{ctx} is {L} cm by {W} cm by {H} cm. What is its volume?"],
+    promptTemplates: ["{Ctx} is {L} cm by {W} cm by {H} cm. What is its volume?"],
     explain: (v, r) => [`Volume = ${v[0]} x ${v[1]} x ${v[2]} = ${r}.`],
     hints: () => ["Multiply all three dimensions together."],
     declaredVariationSpace: 9 * 9 * 9 * BOXES.length,
     fr: {
       contextPool: BOXES_FR,
-      promptTemplates: ["{ctx} mesure {L} cm sur {W} cm sur {H} cm. Quel est son volume ?"],
+      promptTemplates: ["{Ctx} mesure {L} cm sur {W} cm sur {H} cm. Quel est son volume ?"],
       explain: (v, r) => [`Volume = ${v[0]} x ${v[1]} x ${v[2]} = ${r}.`],
       hints: () => ["Multiplie les trois dimensions ensemble."]
     }

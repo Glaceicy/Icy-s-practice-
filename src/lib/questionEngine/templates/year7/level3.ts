@@ -294,7 +294,7 @@ export const level: QuestionTemplateDef[] = [
     hints: () => ["Divide the total by the denominator, then multiply by the numerator."],
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Un pot contient {amount} {ctx}. {a}/{b} d'entre eux sont donnés. Combien de {ctx} sont donnés ?"],
+      promptTemplates: ["Un pot contient {amount} {ctx}. {a}/{b} d'entre eux sont donnés. Combien {de:ctx} sont donnés ?"],
       hints: () => ["Divise le total par le dénominateur, puis multiplie par le numérateur."]
     },
     declaredVariationSpace: 9 * 9 * 10 * CTX.length

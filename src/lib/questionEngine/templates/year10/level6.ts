@@ -207,7 +207,7 @@ export const level: QuestionTemplateDef[] = [
     derive: (v) => ({ big: v[0]! * v[1]! }),
     promptTemplates: [
       "Two similar shapes have corresponding sides of {a} cm and {big} cm. What is the scale factor from the smaller to the larger?",
-      "{ctx} are similar. A side of {a} cm corresponds to a side of {big} cm. What is the scale factor?"
+      "{Ctx} are similar. A side of {a} cm corresponds to a side of {big} cm. What is the scale factor?"
     ],
     explain: (v, r) => [`${v[0]!} x ${r} = ${v[0]! * v[1]!}, so the scale factor is ${r}.`],
     hints: () => ["Divide the larger length by the corresponding smaller length."],
@@ -215,7 +215,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: SHAPES_FR,
       promptTemplates: [
         "Deux figures semblables ont des côtés correspondants de {a} cm et {big} cm. Quel est le facteur d'échelle du plus petit vers le plus grand ?",
-        "{ctx} sont semblables. Un côté de {a} cm correspond à un côté de {big} cm. Quel est le facteur d'échelle ?"
+        "{Ctx} sont semblables. Un côté de {a} cm correspond à un côté de {big} cm. Quel est le facteur d'échelle ?"
       ],
       explain: (v, r) => [`${v[0]!} x ${r} = ${v[0]! * v[1]!}, donc le facteur d'échelle est ${r}.`],
       hints: () => ["Divise la plus grande longueur par la plus petite longueur correspondante."]
@@ -229,7 +229,7 @@ export const level: QuestionTemplateDef[] = [
     derive: (v) => ({ big: v[0]! * v[1]! }),
     promptTemplates: [
       "Two similar shapes: a side of {a} cm corresponds to a side of {big} cm. What length corresponds to {c} cm, in cm?",
-      "{ctx} are similar. {a} cm maps to {big} cm. What does a side of {c} cm map to, in cm?"
+      "{Ctx} are similar. {a} cm maps to {big} cm. What does a side of {c} cm map to, in cm?"
     ],
     explain: (v, r) => [`The scale factor is ${v[0]! * v[1]!} ÷ ${v[0]} = ${v[1]}.`, `${v[2]} x ${v[1]} = ${r} cm.`],
     hints: () => ["Find the scale factor first, then multiply the length you are given by it."],
@@ -237,7 +237,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: SHAPES_FR,
       promptTemplates: [
         "Deux figures semblables : un côté de {a} cm correspond à un côté de {big} cm. Quelle longueur correspond à {c} cm, en cm ?",
-        "{ctx} sont semblables. {a} cm devient {big} cm. Que devient un côté de {c} cm, en cm ?"
+        "{Ctx} sont semblables. {a} cm devient {big} cm. Que devient un côté de {c} cm, en cm ?"
       ],
       explain: (v, r) => [`Le facteur d'échelle est ${v[0]! * v[1]!} ÷ ${v[0]} = ${v[1]}.`, `${v[2]} x ${v[1]} = ${r} cm.`],
       hints: () => ["Trouve d'abord le facteur d'échelle, puis multiplie la longueur donnée par celui-ci."]
@@ -250,7 +250,7 @@ export const level: QuestionTemplateDef[] = [
     ranges: [[2, 7], [5, 60]], compute: (v) => v[1]! * v[0]! * v[0]!,
     promptTemplates: [
       "Two similar shapes have a length scale factor of {a}. The smaller has an area of {b} cm². What is the area of the larger, in cm²?",
-      "{ctx} are similar with scale factor {a}. The smaller has area {b} cm². Find the larger area, in cm²."
+      "{Ctx} are similar with scale factor {a}. The smaller has area {b} cm². Find the larger area, in cm²."
     ],
     explain: (v, r) => [`The area scale factor is ${v[0]}² = ${v[0]! * v[0]!}.`, `${v[1]} x ${v[0]! * v[0]!} = ${r} cm².`],
     hints: () => ["Areas scale by the square of the length scale factor."],
@@ -258,7 +258,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: SHAPES_FR,
       promptTemplates: [
         "Deux figures semblables ont un facteur d'échelle de longueur de {a}. La plus petite a une aire de {b} cm². Quelle est l'aire de la plus grande, en cm² ?",
-        "{ctx} sont semblables avec un facteur d'échelle de {a}. La plus petite a une aire de {b} cm². Trouve l'aire de la plus grande, en cm²."
+        "{Ctx} sont semblables avec un facteur d'échelle de {a}. La plus petite a une aire de {b} cm². Trouve l'aire de la plus grande, en cm²."
       ],
       explain: (v, r) => [`Le facteur d'échelle des aires est ${v[0]}² = ${v[0]! * v[0]!}.`, `${v[1]} x ${v[0]! * v[0]!} = ${r} cm².`],
       hints: () => ["Les aires sont multipliées par le carré du facteur d'échelle des longueurs."]
@@ -271,7 +271,7 @@ export const level: QuestionTemplateDef[] = [
     ranges: [[2, 5], [4, 60]], compute: (v) => v[1]! * v[0]! * v[0]! * v[0]!,
     promptTemplates: [
       "Two similar solids have a length scale factor of {a}. The smaller has a volume of {b} cm³. What is the volume of the larger, in cm³?",
-      "{ctx} are similar with scale factor {a}. The smaller has volume {b} cm³. Find the larger volume, in cm³."
+      "{Ctx} are similar with scale factor {a}. The smaller has volume {b} cm³. Find the larger volume, in cm³."
     ],
     explain: (v, r) => [`The volume scale factor is ${v[0]}³ = ${v[0]! ** 3}.`, `${v[1]} x ${v[0]! ** 3} = ${r} cm³.`],
     hints: () => ["Volumes scale by the cube of the length scale factor."],
@@ -279,7 +279,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: SOLIDS_FR,
       promptTemplates: [
         "Deux solides semblables ont un facteur d'échelle de longueur de {a}. Le plus petit a un volume de {b} cm³. Quel est le volume du plus grand, en cm³ ?",
-        "{ctx} sont semblables avec un facteur d'échelle de {a}. Le plus petit a un volume de {b} cm³. Trouve le volume du plus grand, en cm³."
+        "{Ctx} sont semblables avec un facteur d'échelle de {a}. Le plus petit a un volume de {b} cm³. Trouve le volume du plus grand, en cm³."
       ],
       explain: (v, r) => [`Le facteur d'échelle des volumes est ${v[0]}³ = ${v[0]! ** 3}.`, `${v[1]} x ${v[0]! ** 3} = ${r} cm³.`],
       hints: () => ["Les volumes sont multipliés par le cube du facteur d'échelle des longueurs."]
@@ -293,7 +293,7 @@ export const level: QuestionTemplateDef[] = [
     derive: (v) => ({ cube: v[0]! ** 3 }),
     promptTemplates: [
       "Two similar solids have volumes in the ratio 1 : {cube}. The smaller has a height of {b} cm. What is the height of the larger, in cm?",
-      "{ctx} are similar and their volumes are in the ratio 1 : {cube}. The smaller is {b} cm tall. How tall is the larger, in cm?"
+      "{Ctx} are similar and their volumes are in the ratio 1 : {cube}. The smaller is {b} cm tall. How tall is the larger, in cm?"
     ],
     explain: (v, r) => [`The cube root of ${v[0]! ** 3} is ${v[0]}, so the length scale factor is ${v[0]}.`, `${v[1]} x ${v[0]} = ${r} cm.`],
     hints: () => ["Take the cube root of the volume ratio to get the length scale factor."],
@@ -301,7 +301,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: SOLIDS_FR,
       promptTemplates: [
         "Deux solides semblables ont des volumes dans le rapport 1 : {cube}. Le plus petit a une hauteur de {b} cm. Quelle est la hauteur du plus grand, en cm ?",
-        "{ctx} sont semblables et leurs volumes sont dans le rapport 1 : {cube}. Le plus petit mesure {b} cm de haut. Quelle est la hauteur du plus grand, en cm ?"
+        "{Ctx} sont semblables et leurs volumes sont dans le rapport 1 : {cube}. Le plus petit mesure {b} cm de haut. Quelle est la hauteur du plus grand, en cm ?"
       ],
       explain: (v, r) => [`La racine cubique de ${v[0]! ** 3} est ${v[0]}, donc le facteur d'échelle des longueurs est ${v[0]}.`, `${v[1]} x ${v[0]} = ${r} cm.`],
       hints: () => ["Prends la racine cubique du rapport des volumes pour obtenir le facteur d'échelle des longueurs."]

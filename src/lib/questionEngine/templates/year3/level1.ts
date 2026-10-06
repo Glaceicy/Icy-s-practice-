@@ -109,7 +109,7 @@ export const level: QuestionTemplateDef[] = [
     hints: () => ["Multiply the crates by 100 and the boxes by 10, then add the loose ones."],
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Un entrepôt a {a} caisses de 100 {ctx}, {b} boîtes de 10 {ctx} et {c} {ctx} en plus. Combien de {ctx} au total ?"],
+      promptTemplates: ["Un entrepôt a {a} caisses de 100 {ctx}, {b} boîtes de 10 {ctx} et {c} {ctx} en plus. Combien {de:ctx} au total ?"],
       explain: (v, r) => [`${v[0]} x 100 = ${v[0]! * 100}. ${v[1]} x 10 = ${v[1]! * 10}. ${v[0]! * 100} + ${v[1]! * 10} + ${v[2]} = ${r}.`],
       hints: () => ["Multiplie les caisses par 100 et les boîtes par 10, puis ajoute les unités en plus."]
     },
@@ -361,7 +361,7 @@ export const level: QuestionTemplateDef[] = [
     hints: () => ["Add 100 to the number."],
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["En comptant les {ctx} de 100 en 100 à partir de 0 : ..., {a}, ___. Que vient-il ensuite ?", "En comptant des boîtes de {ctx} de 100 en 100 à partir de 0 : ..., {a}, ___"],
+      promptTemplates: ["En comptant les {ctx} de 100 en 100 à partir de 0 : ..., {a}, ___. Que vient-il ensuite ?", "En comptant des boîtes {de:ctx} de 100 en 100 à partir de 0 : ..., {a}, ___"],
       explain: (v, r) => [`Ajoute 100 : ${v[0]! * 100} + 100 = ${r}.`],
       hints: () => ["Ajoute 100 au nombre."]
     },

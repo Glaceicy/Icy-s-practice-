@@ -21,7 +21,7 @@ export const level: QuestionTemplateDef[] = [
     hints: () => ["Double the number."],
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["En comptant les {ctx} de 2 en 2 : combien font {a} x 2 ?", "{a} groupes de 2 {ctx}. Combien de {ctx} au total ?"],
+      promptTemplates: ["En comptant les {ctx} de 2 en 2 : combien font {a} x 2 ?", "{a} groupes de 2 {ctx}. Combien {de:ctx} au total ?"],
       explain: (v, r) => [`${v[0]} x 2 = ${r}.`],
       hints: () => ["Double le nombre."]
     },
@@ -36,7 +36,7 @@ export const level: QuestionTemplateDef[] = [
     hints: () => ["Count on in 5s, or halve the x10 fact."],
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["En comptant les {ctx} de 5 en 5 : combien font {a} x 5 ?", "{a} groupes de 5 {ctx}. Combien de {ctx} au total ?"],
+      promptTemplates: ["En comptant les {ctx} de 5 en 5 : combien font {a} x 5 ?", "{a} groupes de 5 {ctx}. Combien {de:ctx} au total ?"],
       explain: (v, r) => [`${v[0]} x 5 = ${r}.`],
       hints: () => ["Compte de 5 en 5, ou prends la moitié du résultat x10."]
     },
@@ -51,7 +51,7 @@ export const level: QuestionTemplateDef[] = [
     hints: () => ["Write the number, then put a zero on the end."],
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["En comptant les {ctx} de 10 en 10 : combien font {a} x 10 ?", "{a} groupes de 10 {ctx}. Combien de {ctx} au total ?"],
+      promptTemplates: ["En comptant les {ctx} de 10 en 10 : combien font {a} x 10 ?", "{a} groupes de 10 {ctx}. Combien {de:ctx} au total ?"],
       explain: (v, r) => [`${v[0]} x 10 = ${r}.`],
       hints: () => ["Écris le nombre, puis ajoute un zéro à la fin."]
     },
@@ -167,7 +167,7 @@ export const level: QuestionTemplateDef[] = [
     visualAid: (v) => visuals.array(v[0]!, 2),
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Un tableau a {a} rangées de 2 {ctx}. Combien de {ctx} au total ?", "En comptant les {ctx} dans un tableau de {a} rangées et 2 colonnes : combien de {ctx} au total ?"],
+      promptTemplates: ["Un tableau a {a} rangées de 2 {ctx}. Combien {de:ctx} au total ?", "En comptant les {ctx} dans un tableau de {a} rangées et 2 colonnes : combien {de:ctx} au total ?"],
       explain: (v, r) => [`${v[0]} rangées de 2 = ${r}.`],
       hints: () => ["Multiplie le nombre de rangées par le nombre dans chaque rangée."]
     },
@@ -183,7 +183,7 @@ export const level: QuestionTemplateDef[] = [
     visualAid: (v) => visuals.array(v[0]!, 5),
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Un tableau a {a} rangées de 5 {ctx}. Combien de {ctx} au total ?", "En comptant les {ctx} dans un tableau de {a} rangées et 5 colonnes : combien de {ctx} au total ?"],
+      promptTemplates: ["Un tableau a {a} rangées de 5 {ctx}. Combien {de:ctx} au total ?", "En comptant les {ctx} dans un tableau de {a} rangées et 5 colonnes : combien {de:ctx} au total ?"],
       explain: (v, r) => [`${v[0]} rangées de 5 = ${r}.`],
       hints: () => ["Multiplie le nombre de rangées par le nombre dans chaque rangée."]
     },
@@ -199,7 +199,7 @@ export const level: QuestionTemplateDef[] = [
     visualAid: (v) => visuals.array(v[0]!, 10),
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Un tableau a {a} rangées de 10 {ctx}. Combien de {ctx} au total ?", "En comptant les {ctx} dans un tableau de {a} rangées et 10 colonnes : combien de {ctx} au total ?"],
+      promptTemplates: ["Un tableau a {a} rangées de 10 {ctx}. Combien {de:ctx} au total ?", "En comptant les {ctx} dans un tableau de {a} rangées et 10 colonnes : combien {de:ctx} au total ?"],
       explain: (v, r) => [`${v[0]} rangées de 10 = ${r}.`],
       hints: () => ["Multiplie le nombre de rangées par le nombre dans chaque rangée."]
     },
@@ -299,7 +299,7 @@ export const level: QuestionTemplateDef[] = [
     visualAid: (v) => visuals.array(v[0]!, 2),
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Un jardinier plante des {ctx} en {a} rangées de 2. Combien de {ctx} y a-t-il au total ?", "Il y a {a} rangées de 2 {ctx} dans une exposition. Combien de {ctx} au total ?"],
+      promptTemplates: ["Un jardinier plante des {ctx} en {a} rangées de 2. Combien {de:ctx} y a-t-il au total ?", "Il y a {a} rangées de 2 {ctx} dans une exposition. Combien {de:ctx} au total ?"],
       explain: (v, r) => [`${v[0]} rangées de 2 = ${r}.`],
       hints: () => ["Multiplie le nombre de rangées par le nombre dans chaque rangée."]
     },

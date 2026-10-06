@@ -17,7 +17,7 @@ export const level: QuestionTemplateDef[] = [
     ranges: [[2, 20], [2, 20]], compute: (v) => v[0]! * v[1]!,
     promptTemplates: [
       "A spinner has {a} equal sections and a dice has {b} faces. How many outcomes are in the sample space when both are used?",
-      "{ctx} with {a} equally likely results is used together with a second one with {b} results. How many combined outcomes are there?"
+      "{Ctx} with {a} equally likely results is used together with a second one with {b} results. How many combined outcomes are there?"
     ],
     explain: (v, r) => [`Each of the ${v[0]} first results can pair with each of the ${v[1]} second results.`, `${v[0]} x ${v[1]} = ${r}.`],
     hints: () => ["Multiply the number of outcomes of each event — a two-way table would have that many cells."],
@@ -25,7 +25,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: SPINNERS_FR,
       promptTemplates: [
         "Une roue a {a} secteurs égaux et un dé a {b} faces. Combien d'issues compte l'univers quand on utilise les deux ?",
-        "{ctx} avec {a} résultats équiprobables est utilisé avec un second qui en a {b}. Combien d'issues combinées y a-t-il ?"
+        "{Ctx} avec {a} résultats équiprobables est utilisé avec un second qui en a {b}. Combien d'issues combinées y a-t-il ?"
       ],
       explain: (v, r) => [`Chacun des ${v[0]} premiers résultats peut se combiner à chacun des ${v[1]} seconds.`, `${v[0]} x ${v[1]} = ${r}.`],
       hints: () => ["Multiplie le nombre d'issues de chaque événement — un tableau à double entrée aurait autant de cases."]
@@ -84,7 +84,7 @@ export const level: QuestionTemplateDef[] = [
     derive: (v) => ({ sections: v[0]!, trials: v[0]! * v[1]! }),
     promptTemplates: [
       "A fair spinner has {sections} equal sections. In {trials} spins, how many times would you expect to land on one chosen section?",
-      "{ctx} has {sections} equally likely results. Over {trials} trials, what is the expected number of times one particular result occurs?"
+      "{Ctx} has {sections} equally likely results. Over {trials} trials, what is the expected number of times one particular result occurs?"
     ],
     explain: (v, r) => [`Each section has probability 1/${v[0]}.`, `${v[0]! * v[1]!} ÷ ${v[0]} = ${r}.`],
     hints: () => ["Expected frequency = probability x number of trials."],
@@ -92,7 +92,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: SPINNERS_FR,
       promptTemplates: [
         "Une roue équilibrée a {sections} secteurs égaux. Sur {trials} tours, combien de fois t'attends-tu à tomber sur un secteur choisi ?",
-        "{ctx} a {sections} résultats équiprobables. Sur {trials} essais, quel est le nombre attendu de fois où un résultat particulier se produit ?"
+        "{Ctx} a {sections} résultats équiprobables. Sur {trials} essais, quel est le nombre attendu de fois où un résultat particulier se produit ?"
       ],
       explain: (v, r) => [`Chaque secteur a une probabilité de 1/${v[0]}.`, `${v[0]! * v[1]!} ÷ ${v[0]} = ${r}.`],
       hints: () => ["Effectif attendu = probabilité x nombre d'essais."]
@@ -159,7 +159,7 @@ export const level: QuestionTemplateDef[] = [
       promptTemplates: [
         "Deux événements indépendants ont des probabilités de {pa}% et {pb}%. Quelle est la probabilité que les deux se produisent, en pourcentage ?",
         "Sur un arbre de probabilité, la première branche vaut {pa}% et la seconde {pb}%, et les événements sont indépendants. Dans quel pourcentage des cas les deux se produisent-ils ?",
-        "La probabilité de {ctx} est de {pa}% lundi et de {pb}% mardi, indépendamment. Quelle est la probabilité en pourcentage des deux ?"
+        "La probabilité {de:ctx} est de {pa}% lundi et de {pb}% mardi, indépendamment. Quelle est la probabilité en pourcentage des deux ?"
       ],
       explain: (v, r) => [`Multiplie le long des branches : 0,${v[0]} x 0,${v[1]} = ${((v[0]! * v[1]!) / 100).toFixed(2)}.`, `En pourcentage, cela fait ${r} %.`],
       hints: () => ["Le long des branches on multiplie ; entre les branches on additionne."]
@@ -184,7 +184,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: EVENTS_FR,
       promptTemplates: [
         "Deux événements indépendants ont des probabilités de {pa}% et {pb}%. Quelle est la probabilité qu'aucun ne se produise, en pourcentage ?",
-        "La probabilité de {ctx} est de {pa}% aujourd'hui et de {pb}% demain, indépendamment. Quelle est la probabilité en pourcentage que cela n'arrive ni l'un ni l'autre jour ?"
+        "La probabilité {de:ctx} est de {pa}% aujourd'hui et de {pb}% demain, indépendamment. Quelle est la probabilité en pourcentage que cela n'arrive ni l'un ni l'autre jour ?"
       ],
       explain: (v, r) => [
         `P(pas le premier) = ${100 - 10 * v[0]!}% et P(pas le second) = ${100 - 10 * v[1]!}%.`,
@@ -212,7 +212,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: EVENTS_FR,
       promptTemplates: [
         "Deux événements indépendants ont des probabilités de {pa}% et {pb}%. Quelle est la probabilité qu'au moins l'un se produise, en pourcentage ?",
-        "La probabilité de {ctx} est de {pa}% le premier jour et de {pb}% le second, indépendamment. Quelle est la probabilité en pourcentage que cela arrive au moins une fois ?"
+        "La probabilité {de:ctx} est de {pa}% le premier jour et de {pb}% le second, indépendamment. Quelle est la probabilité en pourcentage que cela arrive au moins une fois ?"
       ],
       explain: (v, r) => [
         `Aucun ne se produit avec une probabilité de ${100 - 10 * v[0]!}% x ${100 - 10 * v[1]!}% = ${(10 - v[0]!) * (10 - v[1]!)}%.`,
@@ -239,7 +239,7 @@ export const level: QuestionTemplateDef[] = [
         "Il y a {a} perles rouges et {b} bleues dans un bocal, soit {total} au total. Après en avoir retiré une sans la remettre, combien en reste-t-il ?"
       ],
       explain: (v, r) => [`Il y avait ${v[0]! + v[1]!} jetons au départ.`, `Sans remise, il en manque un : ${v[0]! + v[1]!} - 1 = ${r}.`],
-      hints: () => ["Sans remise, le dénominateur de la seconde probabilité diminue de un."]
+      hints: () => ["Sans remise, le dénominateur de la seconde probabilité diminue d'un."]
     },
     declaredVariationSpace: 28 * 28 * 2
   }),
@@ -319,7 +319,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: DATASETS_FR,
       promptTemplates: [
         "Trouve la moyenne de {a}, {b}, {c}, {d} et {e}.",
-        "Cinq relevés de {ctx} valent {a}, {b}, {c}, {d} et {e}. Quelle est la moyenne ?"
+        "Cinq relevés {ctx} valent {a}, {b}, {c}, {d} et {e}. Quelle est la moyenne ?"
       ],
       explain: (v, r) => [`${v.join(" + ")} = ${v[0]! + v[1]! + v[2]! + v[3]! + v[4]!}.`, `${v[0]! + v[1]! + v[2]! + v[3]! + v[4]!} ÷ 5 = ${r}.`],
       hints: () => ["Additionne toutes les valeurs, puis divise par leur nombre."]
@@ -341,7 +341,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: DATASETS_FR,
       promptTemplates: [
         "Trouve la médiane de {a}, {b}, {c}, {d} et {e}.",
-        "Cinq valeurs de {ctx} sont {a}, {b}, {c}, {d} et {e}. Quelle est la médiane ?"
+        "Cinq valeurs {ctx} sont {a}, {b}, {c}, {d} et {e}. Quelle est la médiane ?"
       ],
       explain: (v, r) => [`Dans l'ordre : ${[...v].sort((p, q) => p - q).join(", ")}.`, `La valeur centrale est ${r}.`],
       hints: () => ["Ordonne d'abord les valeurs — la médiane est celle du milieu, pas la première écrite."]
@@ -363,7 +363,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: DATASETS_FR,
       promptTemplates: [
         "Trouve l'étendue de {a}, {b}, {c} et {d}.",
-        "Quatre mesures de {ctx} valent {a}, {b}, {c} et {d}. Quelle est l'étendue ?"
+        "Quatre mesures {ctx} valent {a}, {b}, {c} et {d}. Quelle est l'étendue ?"
       ],
       explain: (v, r) => [`La plus grande est ${Math.max(...v)} et la plus petite ${Math.min(...v)}.`, `${Math.max(...v)} - ${Math.min(...v)} = ${r}.`],
       hints: () => ["L'étendue mesure la dispersion : la plus grande moins la plus petite."]
@@ -385,7 +385,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: DATASETS_FR,
       promptTemplates: [
         "La moyenne de {b} valeurs est {a}. Quelle est leur somme ?",
-        "{b} mesures de {ctx} ont une moyenne de {a}. Quel est leur total ?",
+        "{b} mesures {ctx} ont une moyenne de {a}. Quel est leur total ?",
         "Un ensemble de {b} nombres a une moyenne de {a}. Trouve la somme de cet ensemble."
       ],
       explain: (v, r) => [`Moyenne = total ÷ effectif, donc total = moyenne x effectif.`, `${v[0]} x ${v[1]} = ${r}.`],

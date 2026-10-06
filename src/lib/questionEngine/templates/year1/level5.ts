@@ -19,7 +19,7 @@ export const level: QuestionTemplateDef[] = [
     declaredVariationSpace: 11 * 2 + 11 * CTX.length * 2,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["___ + {a} = 10", "Quel nombre s'associe avec {a} pour faire 10 ?", "En comptant les {ctx} : quel nombre se combine avec {a} pour faire 10 ?", "Il faut {ctx} pour faire 10 en tout — {a} sont déjà comptés. Combien de {ctx} de plus faut-il ?"],
+      promptTemplates: ["___ + {a} = 10", "Quel nombre s'associe avec {a} pour faire 10 ?", "En comptant les {ctx} : quel nombre se combine avec {a} pour faire 10 ?", "Il faut {ctx} pour faire 10 en tout — {a} sont déjà comptés. Combien {de:ctx} de plus faut-il ?"],
       hints: () => ["Réfléchis à ce qui s'associe avec ce nombre pour faire 10."]
     }
   }),
@@ -34,7 +34,7 @@ export const level: QuestionTemplateDef[] = [
     declaredVariationSpace: 11 * 2 + 11 * CTX.length * 2,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["10 - {a} = ?", "Combien fait 10 - {a} ?", "En comptant les {ctx} : combien fait 10 - {a} ?", "Il y a 10 {ctx}. {a} sont enlevés. Combien de {ctx} reste-t-il ?"],
+      promptTemplates: ["10 - {a} = ?", "Combien fait 10 - {a} ?", "En comptant les {ctx} : combien fait 10 - {a} ?", "Il y a 10 {ctx}. {a} sont enlevés. Combien {de:ctx} reste-t-il ?"],
       hints: () => ["Utilise le fait d'addition correspondant pour t'aider : combien de plus fait 10 ?"]
     }
   }),
@@ -190,7 +190,7 @@ export const level: QuestionTemplateDef[] = [
     declaredVariationSpace: 11 * CTX.length * 2,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Une boîte contient 10 {ctx}. {a} sont déjà dedans. Combien de plus faut-il pour remplir la boîte ?", "Un plateau a de la place pour 10 {ctx}. {a} {ctx} y sont pour l'instant. Combien de {ctx} de plus rempliront le plateau ?"],
+      promptTemplates: ["Une boîte contient 10 {ctx}. {a} sont déjà dedans. Combien de plus faut-il pour remplir la boîte ?", "Un plateau a de la place pour 10 {ctx}. {a} {ctx} y sont pour l'instant. Combien {de:ctx} de plus rempliront le plateau ?"],
       hints: () => ["Réfléchis à ce qu'il faut pour atteindre 10 en tout."]
     }
   }),

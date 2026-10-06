@@ -14,7 +14,7 @@ export const level: QuestionTemplateDef[] = [
     derive: (v) => ({ t1: v[0]!, t2: v[0]! + v[1]!, t3: v[0]! + 2 * v[1]!, t4: v[0]! + 3 * v[1]! }),
     promptTemplates: [
       "A sequence starts {t1}, {t2}, {t3}, {t4}, ... What is the common difference?",
-      "{ctx} grows as {t1}, {t2}, {t3}, {t4}, ... How much is added each time?"
+      "{Ctx} grows as {t1}, {t2}, {t3}, {t4}, ... How much is added each time?"
     ],
     explain: (v, r) => [`${v[0]! + v[1]!} - ${v[0]} = ${r}.`, `The same amount is added every time, so the common difference is ${r}.`],
     hints: () => ["Subtract any term from the one after it."],
@@ -22,7 +22,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: PATTERNS_FR,
       promptTemplates: [
         "Une suite commence par {t1}, {t2}, {t3}, {t4}, ... Quelle est la raison ?",
-        "{ctx} évolue en {t1}, {t2}, {t3}, {t4}, ... Combien ajoute-t-on à chaque fois ?"
+        "{Ctx} évolue en {t1}, {t2}, {t3}, {t4}, ... Combien ajoute-t-on à chaque fois ?"
       ],
       explain: (v, r) => [`${v[0]! + v[1]!} - ${v[0]} = ${r}.`, `On ajoute toujours la même quantité, donc la raison est ${r}.`],
       hints: () => ["Soustrais un terme de celui qui le suit."]

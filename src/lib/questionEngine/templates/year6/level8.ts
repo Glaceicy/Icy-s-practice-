@@ -133,7 +133,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: SHAPES_FR,
       promptTemplates: [
         "Tu traces un rectangle de {a} cm sur {b} cm. Quel est son périmètre, en cm ?",
-        "Un schéma de {ctx} contient un rectangle de {a} cm sur {b} cm. Quel est le périmètre de ce rectangle, en cm ?"
+        "Un schéma {de:ctx} contient un rectangle de {a} cm sur {b} cm. Quel est le périmètre de ce rectangle, en cm ?"
       ],
       explain: (v, r) => [`Périmètre = 2 x (${v[0]} + ${v[1]}) = ${r}.`],
       hints: () => ["Additionne la longueur et la largeur, puis double."]
@@ -176,7 +176,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: SHAPES_FR,
       promptTemplates: [
         "Un rectangle a un périmètre de {perim} cm et une longueur de {a} cm. Quelle est sa largeur, en cm ?",
-        "Un schéma de {ctx} montre un rectangle de périmètre {perim} cm et de longueur {a} cm. Quelle est sa largeur, en cm ?"
+        "Un schéma {de:ctx} montre un rectangle de périmètre {perim} cm et de longueur {a} cm. Quelle est sa largeur, en cm ?"
       ],
       explain: (v, r) => [`${2 * (v[0]! + v[1]!)} ÷ 2 = ${v[0]! + v[1]!}.`, `${v[0]! + v[1]!} - ${v[0]} = ${r}.`],
       hints: () => ["Divise le périmètre par deux pour obtenir longueur + largeur, puis soustrais la longueur."]
@@ -227,7 +227,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: SHAPES_FR,
       promptTemplates: [
         "Tu traces un rectangle de {a} cm sur {b} cm. Quelle est son aire, en cm² ?",
-        "Un schéma de {ctx} contient un rectangle de {a} cm sur {b} cm. Quelle est l'aire de ce rectangle, en cm² ?"
+        "Un schéma {de:ctx} contient un rectangle de {a} cm sur {b} cm. Quelle est l'aire de ce rectangle, en cm² ?"
       ],
       explain: (v, r) => [`${v[0]} x ${v[1]} = ${r}.`],
       hints: () => ["L'aire multiplie les deux longueurs ; le périmètre les additionne."]

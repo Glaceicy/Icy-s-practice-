@@ -324,7 +324,7 @@ export const level: QuestionTemplateDef[] = [
     compute: (v) => TRIPLES[v[0]!]![2] * v[1]!,
     derive: (v) => ({ p: TRIPLES[v[0]!]![0] * v[1]!, q: TRIPLES[v[0]!]![1] * v[1]! }),
     promptTemplates: [
-      "{ctx} is a rectangle {p} m by {q} m. How far is it diagonally from one corner to the opposite corner, in m?",
+      "{Ctx} is a rectangle {p} m by {q} m. How far is it diagonally from one corner to the opposite corner, in m?",
       "A rectangle measures {p} cm by {q} cm. How long is its diagonal, in cm?",
       "Walking {p} m east then {q} m north, how far are you in a straight line from where you started, in m?"
     ],
@@ -337,7 +337,7 @@ export const level: QuestionTemplateDef[] = [
     fr: {
       contextPool: CTX_FR,
       promptTemplates: [
-        "{ctx} est un rectangle de {p} m sur {q} m. Quelle est la distance en diagonale d'un coin au coin opposé, en m ?",
+        "{Ctx} est un rectangle de {p} m sur {q} m. Quelle est la distance en diagonale d'un coin au coin opposé, en m ?",
         "Un rectangle mesure {p} cm sur {q} cm. Quelle est la longueur de sa diagonale, en cm ?",
         "En marchant {p} m vers l'est puis {q} m vers le nord, à quelle distance en ligne droite es-tu du départ, en m ?"
       ],
@@ -370,7 +370,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: CTX_FR,
       promptTemplates: [
         "Un triangle rectangle a un côté opposé de {opp} cm et un côté adjacent de {adj} cm. Quel est l'angle, au degré près ?",
-        "Une rampe à côté de {ctx} monte de {opp} cm sur une longueur horizontale de {adj} cm. Quel angle forme-t-elle avec le sol, au degré près ?",
+        "Une rampe à côté {de:ctx} monte de {opp} cm sur une longueur horizontale de {adj} cm. Quel angle forme-t-elle avec le sol, au degré près ?",
         "Dans un triangle rectangle, les deux côtés courts mesurent {opp} m (opposé) et {adj} m (adjacent). Trouve l'angle, au degré près."
       ],
       explain: (v, r) => {
@@ -400,7 +400,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: EVENTS_FR,
       promptTemplates: [
         "Deux événements indépendants ont des probabilités de {pa}% et {pb}%. Quelle est la probabilité qu'aucun ne se produise, en pourcentage ?",
-        "La probabilité de {ctx} est de {pa}% aujourd'hui et de {pb}% demain, indépendamment. Quelle est la probabilité en pourcentage que cela n'arrive ni l'un ni l'autre jour ?",
+        "La probabilité {de:ctx} est de {pa}% aujourd'hui et de {pb}% demain, indépendamment. Quelle est la probabilité en pourcentage que cela n'arrive ni l'un ni l'autre jour ?",
         "P(A) = {pa}% et P(B) = {pb}%, et A et B sont indépendants. Trouve P(ni A ni B) en pourcentage."
       ],
       explain: (v, r) => [

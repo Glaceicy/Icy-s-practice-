@@ -205,13 +205,13 @@ export const level: QuestionTemplateDef[] = [
     misconceptionTags: ["STANDARD_FORM_PLACEMENT_ERROR"], type: "WORD_PROBLEM",
     ranges: [[10, 99], [2, 8]], compute: (v) => v[0]! * Math.pow(10, v[1]! - 1),
     derive: (v) => ({ mantissa: (v[0]! / 10).toFixed(1), exponent: v[1]! }), contextPool: FACTS,
-    promptTemplates: ["{ctx} is about {mantissa} x 10^{exponent}. Write this as an ordinary number."],
+    promptTemplates: ["{Ctx} is about {mantissa} x 10^{exponent}. Write this as an ordinary number."],
     explain: (v, r) => [`Multiply ${(v[0]! / 10).toFixed(1)} by 10^${v[1]} by moving the decimal point ${v[1]} places right: ${r}.`],
     hints: () => ["Moving the decimal point right multiplies by 10 each time."],
     declaredVariationSpace: 90 * 7 * FACTS.length,
     fr: {
       contextPool: FACTS_FR,
-      promptTemplates: ["{ctx} est d'environ {mantissa} x 10^{exponent}. Écris ce nombre sous forme de nombre ordinaire."],
+      promptTemplates: ["{Ctx} est d'environ {mantissa} x 10^{exponent}. Écris ce nombre sous forme de nombre ordinaire."],
       explain: (v, r) => [`Multiplie ${(v[0]! / 10).toFixed(1)} par 10^${v[1]} en déplaçant la virgule de ${v[1]} positions vers la droite : ${r}.`],
       hints: () => ["Déplacer la virgule vers la droite multiplie par 10 à chaque fois."]
     }

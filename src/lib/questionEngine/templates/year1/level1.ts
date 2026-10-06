@@ -29,7 +29,7 @@ export const level: QuestionTemplateDef[] = [
     declaredVariationSpace: 19 * 3 * CTX.length,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Quel nombre est un de plus que {a} ?", "Un de plus que {a}, c'est... ?", "Il y a {a} {ctx}. Un de plus arrive. Combien de {ctx} y a-t-il maintenant ?"],
+      promptTemplates: ["Quel nombre est un de plus que {a} ?", "Un de plus que {a}, c'est... ?", "Il y a {a} {ctx}. Un de plus arrive. Combien {de:ctx} y a-t-il maintenant ?"],
       explain: (v, r) => [`Commence à ${v[0]}.`, `Compte 1 de plus : ${v[0]}, puis ${r}.`, `Un de plus que ${v[0]} est ${r}.`],
       hints: (v) => [`Dis le nombre qui vient après ${v[0]} en comptant.`, "Utilise tes doigts ou une droite numérique pour compter 1 de plus."]
     }
@@ -45,7 +45,7 @@ export const level: QuestionTemplateDef[] = [
     declaredVariationSpace: 19 * 3 * CTX.length,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Quel nombre est un de moins que {a} ?", "Un de moins que {a}, c'est... ?", "Il y a {a} {ctx}. On en donne un. Combien de {ctx} reste-t-il ?"],
+      promptTemplates: ["Quel nombre est un de moins que {a} ?", "Un de moins que {a}, c'est... ?", "Il y a {a} {ctx}. On en donne un. Combien {de:ctx} reste-t-il ?"],
       explain: (v, r) => [`Commence à ${v[0]}.`, `Compte 1 de moins : ${v[0]}, puis ${r}.`, `Un de moins que ${v[0]} est ${r}.`],
       hints: (v) => [`Dis le nombre qui vient avant ${v[0]} en comptant.`, "Utilise une droite numérique et recule d'un pas."]
     }
@@ -141,7 +141,7 @@ export const level: QuestionTemplateDef[] = [
     declaredVariationSpace: 20 * 3 * CTX.length,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Compte les {ctx}. Combien y en a-t-il ?", "Combien de {ctx} peux-tu compter ?", "Regarde bien et compte les {ctx}. Quel est le total ?"],
+      promptTemplates: ["Compte les {ctx}. Combien y en a-t-il ?", "Combien {de:ctx} peux-tu compter ?", "Regarde bien et compte les {ctx}. Quel est le total ?"],
       explain: (v) => [`Compte chacun d'eux, en le touchant en disant le nombre.`, `Il y en a ${v[0]} au total.`],
       hints: () => ["Pointe chaque objet une seule fois en comptant.", "Compte soigneusement — n'en saute aucun et n'en compte pas deux fois."]
     }
@@ -157,7 +157,7 @@ export const level: QuestionTemplateDef[] = [
     declaredVariationSpace: 20 * 2 * CTX.length,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Combien de {ctx} sont montrés dans les cadres de dix ?", "Compte les {ctx} dans les cadres de dix. Combien y en a-t-il ?"],
+      promptTemplates: ["Combien {de:ctx} sont montrés dans les cadres de dix ?", "Compte les {ctx} dans les cadres de dix. Combien y en a-t-il ?"],
       explain: (v) => [`Chaque case d'un cadre de dix contient un jeton.`, `${v[0]} cases sont remplies, donc il y en a ${v[0]}.`],
       hints: () => ["Compte les cases remplies une par une, cadre de dix par cadre de dix."]
     }
@@ -269,7 +269,7 @@ export const level: QuestionTemplateDef[] = [
     fr: {
       contextPool: CTX_FR,
       promptTemplates: [
-        "Amrita a {a} {ctx} dans un bocal. Écris en chiffres le nombre de {ctx} qu'elle a.",
+        "Amrita a {a} {ctx} dans un bocal. Écris en chiffres le nombre {de:ctx} qu'elle a.",
         "Il y a {a} {ctx} sur la table. Écris cette quantité en chiffres."
       ],
       explain: (v) => [`Compte pour vérifier : il y en a ${v[0]}.`, `Écrit en chiffres, cela donne ${v[0]}.`],
@@ -634,8 +634,8 @@ level.push(
     fr: {
       contextPool: CTX_FR,
       promptTemplates: [
-        "Ben a {a} {ctx}. Son ami lui en donne un de plus. Combien de {ctx} Ben a-t-il maintenant ?",
-        "Ben commence avec {a} {ctx} et on lui en donne un de plus. Combien de {ctx} a-t-il en tout ?"
+        "Ben a {a} {ctx}. Son ami lui en donne un de plus. Combien {de:ctx} Ben a-t-il maintenant ?",
+        "Ben commence avec {a} {ctx} et on lui en donne un de plus. Combien {de:ctx} a-t-il en tout ?"
       ],
       explain: (v, r) => [`Ben commence avec ${v[0]}.`, `Un de plus fait ${r}.`],
       hints: () => ["Compte un de plus à partir du nombre de départ."]
@@ -656,8 +656,8 @@ level.push(
     fr: {
       contextPool: CTX_FR,
       promptTemplates: [
-        "Priya a {a} {ctx}. Elle en donne un. Combien de {ctx} reste-t-il à Priya ?",
-        "Priya commence avec {a} {ctx} et en donne un à une amie. Combien de {ctx} lui reste-t-il ?"
+        "Priya a {a} {ctx}. Elle en donne un. Combien {de:ctx} reste-t-il à Priya ?",
+        "Priya commence avec {a} {ctx} et en donne un à une amie. Combien {de:ctx} lui reste-t-il ?"
       ],
       explain: (v, r) => [`Priya commence avec ${v[0]}.`, `Un de moins fait ${r}.`],
       hints: () => ["Compte un de moins à partir du nombre de départ."]

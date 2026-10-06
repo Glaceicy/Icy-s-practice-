@@ -253,7 +253,7 @@ export const level: QuestionTemplateDef[] = [
     declaredVariationSpace: 8950 * CTX.length,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Un stade a accueilli {a} {ctx} pour un match. Arrondi à la centaine près, combien de {ctx} environ ont assisté au match ?"],
+      promptTemplates: ["Un stade a accueilli {a} {ctx} pour un match. Arrondi à la centaine près, combien {de:ctx} environ ont assisté au match ?"],
       explain: (v, r) => [`${v[0]} arrondi à la centaine près donne ${r}.`],
       hints: () => ["Arrondis à la centaine près en utilisant le chiffre des dizaines."]
     }

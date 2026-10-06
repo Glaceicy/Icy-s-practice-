@@ -26,7 +26,7 @@ export const level: QuestionTemplateDef[] = [
     fr: {
       contextPool: MATERIALS_FR,
       promptTemplates: [
-        "{baseQty} kg de {ctx} coûtent £{baseCost}. Au même tarif, combien coûtent {newQty} kg, en livres ?",
+        "{baseQty} kg {de:ctx} coûtent £{baseCost}. Au même tarif, combien coûtent {newQty} kg, en livres ?",
         "Si {baseQty} unités coûtent £{baseCost}, combien coûtent {newQty} unités, en livres ?"
       ],
       explain: (v, r) => [`Une unité coûte ${v[0]! * v[1]!} ÷ ${v[1]} = ${v[0]}.`, `${v[0]} x ${v[2]} = ${r}.`],
@@ -207,7 +207,7 @@ export const level: QuestionTemplateDef[] = [
     ranges: [[2, 40], [2, 12]], compute: (v) => v[0]!,
     derive: (v) => ({ distance: v[0]! * v[1]!, time: v[1]! }),
     promptTemplates: [
-      "{ctx} travels {distance} km in {time} hours. What is the average speed, in km/h?",
+      "{Ctx} travels {distance} km in {time} hours. What is the average speed, in km/h?",
       "A journey of {distance} km takes {time} hours. What is the average speed, in km/h?"
     ],
     explain: (v, r) => [`Speed = distance ÷ time.`, `${v[0]! * v[1]!} ÷ ${v[1]} = ${r}.`],
@@ -215,7 +215,7 @@ export const level: QuestionTemplateDef[] = [
     fr: {
       contextPool: JOURNEYS_FR,
       promptTemplates: [
-        "{ctx} parcourt {distance} km en {time} heures. Quelle est la vitesse moyenne, en km/h ?",
+        "{Ctx} parcourt {distance} km en {time} heures. Quelle est la vitesse moyenne, en km/h ?",
         "Un trajet de {distance} km prend {time} heures. Quelle est la vitesse moyenne, en km/h ?"
       ],
       explain: (v, r) => [`Vitesse = distance ÷ temps.`, `${v[0]! * v[1]!} ÷ ${v[1]} = ${r}.`],
@@ -228,7 +228,7 @@ export const level: QuestionTemplateDef[] = [
     misconceptionTags: ["COMPOUND_UNIT_ERROR"], type: "NUMBER_ENTRY", contextPool: JOURNEYS,
     ranges: [[5, 90], [2, 12]], compute: (v) => v[0]! * v[1]!,
     promptTemplates: [
-      "{ctx} travels at {a} km/h for {b} hours. How far does it go, in km?",
+      "{Ctx} travels at {a} km/h for {b} hours. How far does it go, in km?",
       "Travelling at {a} km/h for {b} hours covers how many km?"
     ],
     explain: (v, r) => [`Distance = speed x time.`, `${v[0]} x ${v[1]} = ${r}.`],
@@ -236,7 +236,7 @@ export const level: QuestionTemplateDef[] = [
     fr: {
       contextPool: JOURNEYS_FR,
       promptTemplates: [
-        "{ctx} roule à {a} km/h pendant {b} heures. Quelle distance parcourt-il, en km ?",
+        "{Ctx} roule à {a} km/h pendant {b} heures. Quelle distance parcourt-il, en km ?",
         "Rouler à {a} km/h pendant {b} heures couvre combien de km ?"
       ],
       explain: (v, r) => [`Distance = vitesse x temps.`, `${v[0]} x ${v[1]} = ${r}.`],
@@ -254,7 +254,7 @@ export const level: QuestionTemplateDef[] = [
     hints: () => ["Density = mass ÷ volume."],
     fr: {
       contextPool: MATERIALS_FR,
-      promptTemplates: ["Un bloc de {ctx} a une masse de {mass} g et un volume de {volume} cm³. Quelle est sa masse volumique, en g/cm³ ?"],
+      promptTemplates: ["Un bloc {de:ctx} a une masse de {mass} g et un volume de {volume} cm³. Quelle est sa masse volumique, en g/cm³ ?"],
       explain: (v, r) => [`Masse volumique = masse ÷ volume.`, `${v[0]! * v[1]!} ÷ ${v[1]} = ${r}.`],
       hints: () => ["Masse volumique = masse ÷ volume."]
     },
@@ -269,7 +269,7 @@ export const level: QuestionTemplateDef[] = [
     hints: () => ["Rearrange density = mass ÷ volume to get mass = density x volume."],
     fr: {
       contextPool: MATERIALS_FR,
-      promptTemplates: ["Un morceau de {ctx} a une masse volumique de {a} g/cm³ et un volume de {b} cm³. Quelle est sa masse, en grammes ?"],
+      promptTemplates: ["Un morceau {de:ctx} a une masse volumique de {a} g/cm³ et un volume de {b} cm³. Quelle est sa masse, en grammes ?"],
       explain: (v, r) => [`Masse = masse volumique x volume.`, `${v[0]} x ${v[1]} = ${r}.`],
       hints: () => ["Transforme masse volumique = masse ÷ volume en masse = masse volumique x volume."]
     },
@@ -281,12 +281,12 @@ export const level: QuestionTemplateDef[] = [
     ranges: [[1, 250]], compute: (v) => v[0]!,
     derive: (v) => ({ kmh: v[0]! * 36 / 10 }),
     constraint: (v) => (v[0]! * 36) % 10 === 0,
-    promptTemplates: ["{ctx} travels at {kmh} km/h. What is that speed in metres per second?"],
+    promptTemplates: ["{Ctx} travels at {kmh} km/h. What is that speed in metres per second?"],
     explain: (v, r) => [`Divide by 3.6 to convert km/h to m/s.`, `${(v[0]! * 36) / 10} ÷ 3.6 = ${r}.`],
     hints: () => ["1 m/s is 3.6 km/h, so divide by 3.6."],
     fr: {
       contextPool: JOURNEYS_FR,
-      promptTemplates: ["{ctx} roule à {kmh} km/h. Quelle est cette vitesse en mètres par seconde ?"],
+      promptTemplates: ["{Ctx} roule à {kmh} km/h. Quelle est cette vitesse en mètres par seconde ?"],
       explain: (v, r) => [`Divise par 3,6 pour convertir des km/h en m/s.`, `${(v[0]! * 36) / 10} ÷ 3,6 = ${r}.`],
       hints: () => ["1 m/s vaut 3,6 km/h, divise donc par 3,6."]
     },

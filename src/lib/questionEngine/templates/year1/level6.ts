@@ -77,7 +77,7 @@ export const level: QuestionTemplateDef[] = [
     declaredVariationSpace: 16 * CTX.length * 2,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["L'image montre {a} groupes de {b} {ctx}. Combien y en a-t-il en tout ?", "Il y a {a} groupes égaux de {ctx}, {b} dans chaque groupe. Combien de {ctx} en tout ?"],
+      promptTemplates: ["L'image montre {a} groupes de {b} {ctx}. Combien y en a-t-il en tout ?", "Il y a {a} groupes égaux {de:ctx}, {b} dans chaque groupe. Combien {de:ctx} en tout ?"],
       hints: () => ["Compte chaque groupe, puis compte tous les objets."]
     }
   }),
@@ -135,7 +135,7 @@ export const level: QuestionTemplateDef[] = [
     declaredVariationSpace: 25 * CTX.length,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["{total} {ctx} sont partagés également entre {a} enfants. Combien de {ctx} chaque enfant reçoit-il ?"],
+      promptTemplates: ["{total} {ctx} sont partagés également entre {a} enfants. Combien {de:ctx} chaque enfant reçoit-il ?"],
       hints: () => ["Partage le total un par un entre les enfants."]
     }
   }),
@@ -150,7 +150,7 @@ export const level: QuestionTemplateDef[] = [
     declaredVariationSpace: 25 * CTX.length * 2,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["{total} {ctx} sont partagés également en {a} groupes égaux montrés ci-dessous. Combien y en a-t-il dans chaque groupe ?", "{total} {ctx} sont répartis également en {a} groupes sur l'image. Combien de {ctx} y a-t-il dans chaque groupe ?"],
+      promptTemplates: ["{total} {ctx} sont partagés également en {a} groupes égaux montrés ci-dessous. Combien y en a-t-il dans chaque groupe ?", "{total} {ctx} sont répartis également en {a} groupes sur l'image. Combien {de:ctx} y a-t-il dans chaque groupe ?"],
       hints: () => ["Compte les jetons dans un seul des groupes égaux."]
     }
   }),
@@ -236,14 +236,14 @@ export const level: QuestionTemplateDef[] = [
     key: "y1l6.wordProblemArray", levelKey: "Y1L6", objectiveCode: "Y1-L6-3", difficulty: "APPLICATION",
     misconceptionTags: ["ARRAY_ROW_COL_CONFUSION"], type: "WORD_PROBLEM",
     ranges: [[2, 6], [2, 6]], compute: (v) => v[0]! * v[1]!, contextPool: CTX,
-    promptTemplates: ["{ctx} are arranged in {a} equal rows with {b} in each row. How many {ctx} are there altogether?"],
+    promptTemplates: ["{Ctx} are arranged in {a} equal rows with {b} in each row. How many {ctx} are there altogether?"],
     explain: (v, r) => [`${v[0]} rows of ${v[1]} = ${r}.`],
     hints: () => ["Multiply the number of rows by the number in each row."],
     visualAid: (v) => visuals.array(v[0]!, v[1]!),
     declaredVariationSpace: 25 * CTX.length,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Des {ctx} sont rangés en {a} rangées égales avec {b} dans chaque rangée. Combien de {ctx} y a-t-il en tout ?"],
+      promptTemplates: ["Des {ctx} sont rangés en {a} rangées égales avec {b} dans chaque rangée. Combien {de:ctx} y a-t-il en tout ?"],
       hints: () => ["Multiplie le nombre de rangées par le nombre dans chaque rangée."]
     }
   })

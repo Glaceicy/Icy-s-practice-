@@ -29,7 +29,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: CTX_FR,
       promptTemplates: [
         "Arrondis {a} au millier le plus proche.",
-        "Un inventaire de {ctx} indique {a}. Arrondis-le au millier le plus proche."
+        "Un inventaire {de:ctx} indique {a}. Arrondis-le au millier le plus proche."
       ],
       explain: (v, r) => [`Regarde le chiffre des centaines pour décider.`, `${v[0]} s'arrondit à ${r}.`],
       hints: () => ["Vérifie le chiffre des centaines : 5 ou plus, on arrondit vers le haut."]
@@ -200,7 +200,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: CTX_FR,
       promptTemplates: [
         "Avec y = {a}n + {c}, que vaut y quand n = {b} ?",
-        "Le coût de {ctx} est {a}n + {c} pence pour n articles. Quel est le coût de {b} articles ?"
+        "Le coût {de:ctx} est {a}n + {c} pence pour n articles. Quel est le coût de {b} articles ?"
       ],
       explain: (v, r) => [`${v[0]} x ${v[1]} = ${v[0]! * v[1]!}.`, `${v[0]! * v[1]!} + ${v[2]} = ${r}.`],
       hints: () => ["Remplace, puis multiplie avant d'additionner."]
@@ -222,7 +222,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: CTX_FR,
       promptTemplates: [
         "{a}, {t2}, {t3}, ___ . Quel est le terme suivant ?",
-        "Des rangées de {ctx} font {a}, {t2}, {t3}, ___ . Combien y en a-t-il dans la rangée suivante ?"
+        "Des rangées {de:ctx} font {a}, {t2}, {t3}, ___ . Combien y en a-t-il dans la rangée suivante ?"
       ],
       explain: (v, r) => [`Le pas est de ${v[1]}.`, `${v[0]! + v[1]! * 2} + ${v[1]} = ${r}.`],
       hints: () => ["Trouve le pas, puis ajoute-le une fois de plus."]
@@ -382,7 +382,7 @@ export const level: QuestionTemplateDef[] = [
     hints: () => ["Convert kilograms to grams first, then subtract."],
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Une caisse de {ctx} pèse {a} kilogrammes. On retire {b} paquets de cent grammes. Quel est le poids restant, en grammes ?"],
+      promptTemplates: ["Une caisse {de:ctx} pèse {a} kilogrammes. On retire {b} paquets de cent grammes. Quel est le poids restant, en grammes ?"],
       explain: (v, r) => [`${v[0]} kg = ${v[0]! * 1000} g.`, `${v[0]! * 1000} - ${v[1]! * 100} = ${r}.`],
       hints: () => ["Convertis d'abord les kilogrammes en grammes, puis soustrais."]
     },

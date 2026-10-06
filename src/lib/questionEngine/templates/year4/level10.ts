@@ -270,7 +270,7 @@ export const level: QuestionTemplateDef[] = [
     ranges: [[2, 40], [2, 40]], compute: (v) => 2 * (v[0]! + v[1]!),
     promptTemplates: [
       "A rectangle is {a} cm by {b} cm. What is its perimeter, in cm?",
-      "{ctx} is a rectangle {a} m by {b} m. What is the distance all the way around, in m?"
+      "{Ctx} is a rectangle {a} m by {b} m. What is the distance all the way around, in m?"
     ],
     explain: (v, r) => [`2 x (${v[0]} + ${v[1]}) = ${r}.`],
     hints: () => ["Perimeter adds all four sides; area multiplies two of them."],
@@ -278,7 +278,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: ROOMS_FR,
       promptTemplates: [
         "Un rectangle mesure {a} cm sur {b} cm. Quel est son périmètre, en cm ?",
-        "{ctx} est un rectangle de {a} m sur {b} m. Quelle est la distance tout autour, en m ?"
+        "{Ctx} est un rectangle de {a} m sur {b} m. Quelle est la distance tout autour, en m ?"
       ],
       explain: (v, r) => [`2 x (${v[0]} + ${v[1]}) = ${r}.`],
       hints: () => ["Le périmètre additionne les quatre côtés ; l'aire en multiplie deux."]
@@ -291,7 +291,7 @@ export const level: QuestionTemplateDef[] = [
     ranges: [[2, 20], [2, 20]], compute: (v) => v[0]! * v[1]!,
     promptTemplates: [
       "A rectangle on squared paper is {a} squares by {b} squares. What is its area, in squares?",
-      "{ctx} is {a} squares across and {b} squares down. How many squares does it cover?"
+      "{Ctx} is {a} squares across and {b} squares down. How many squares does it cover?"
     ],
     explain: (v, r) => [`${v[0]} x ${v[1]} = ${r} squares.`],
     hints: () => ["Multiply the two sides to count every square at once."],
@@ -299,7 +299,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: ROOMS_FR,
       promptTemplates: [
         "Un rectangle sur papier quadrillé mesure {a} carreaux sur {b} carreaux. Quelle est son aire, en carreaux ?",
-        "{ctx} fait {a} carreaux de large et {b} de haut. Combien de carreaux couvre-t-il ?"
+        "{Ctx} fait {a} carreaux de large et {b} de haut. Combien de carreaux couvre-t-il ?"
       ],
       explain: (v, r) => [`${v[0]} x ${v[1]} = ${r} carreaux.`],
       hints: () => ["Multiplie les deux côtés pour compter tous les carreaux d'un coup."]

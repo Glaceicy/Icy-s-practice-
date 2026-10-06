@@ -212,7 +212,7 @@ export const level: QuestionTemplateDef[] = [
     hints: () => ["Add the parts, divide the total by that, then multiply by the first ratio number."],
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Deux amis partagent {total} {ctx} dans le rapport {a}:{b}. Combien de {ctx} le premier ami reçoit-il ?"],
+      promptTemplates: ["Deux amis partagent {total} {ctx} dans le rapport {a}:{b}. Combien {de:ctx} le premier ami reçoit-il ?"],
       hints: () => ["Additionne les parts, divise le total par ce nombre, puis multiplie par le premier nombre du rapport."]
     },
     declaredVariationSpace: 9 * 9 * 10 * CTX.length
@@ -283,7 +283,7 @@ export const level: QuestionTemplateDef[] = [
     hints: () => ["Multiply the original length by the scale factor."],
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Une forme avec un côté de {a} cm est agrandie avec un facteur d'échelle de {b}. Quelle est la nouvelle longueur du côté, en cm ?", "Une photo de {ctx} avec un côté de {a} cm est agrandie avec un facteur d'échelle de {b}. Quelle est la nouvelle longueur du côté, en cm ?"],
+      promptTemplates: ["Une forme avec un côté de {a} cm est agrandie avec un facteur d'échelle de {b}. Quelle est la nouvelle longueur du côté, en cm ?", "Une photo {de:ctx} avec un côté de {a} cm est agrandie avec un facteur d'échelle de {b}. Quelle est la nouvelle longueur du côté, en cm ?"],
       hints: () => ["Multiplie la longueur d'origine par le facteur d'échelle."]
     },
     declaredVariationSpace: 25 * 8 * (2 + CTX.length)
@@ -327,7 +327,7 @@ export const level: QuestionTemplateDef[] = [
     hints: () => ["Divide the new length by the original length."],
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Le côté d'une forme passe de {a} cm à {newLength} cm après un agrandissement. Quel est le facteur d'échelle ?", "Un schéma de {ctx} passe de {a} cm à {newLength} cm après un agrandissement. Quel est le facteur d'échelle ?"],
+      promptTemplates: ["Le côté d'une forme passe de {a} cm à {newLength} cm après un agrandissement. Quel est le facteur d'échelle ?", "Un schéma {de:ctx} passe de {a} cm à {newLength} cm après un agrandissement. Quel est le facteur d'échelle ?"],
       hints: () => ["Divise la nouvelle longueur par la longueur d'origine."]
     },
     declaredVariationSpace: 20 * 8 * (2 + CTX.length)

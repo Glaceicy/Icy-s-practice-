@@ -237,7 +237,7 @@ export const level: QuestionTemplateDef[] = [
     declaredVariationSpace: 9 * 10 * CTX.length,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Un magasin a {a} boîtes de 10 {ctx} et {b} {ctx} en plus. Combien de {ctx} en tout ?"],
+      promptTemplates: ["Un magasin a {a} boîtes de 10 {ctx} et {b} {ctx} en plus. Combien {de:ctx} en tout ?"],
       explain: (v, r) => [`${v[0]} boîtes de 10 = ${v[0]! * 10}.`, `${v[0]! * 10} + ${v[1]} en plus = ${r}.`],
       hints: () => ["Multiplie d'abord les boîtes par 10, puis ajoute ceux qui restent."]
     }
@@ -415,7 +415,7 @@ export const level: QuestionTemplateDef[] = [
     declaredVariationSpace: 9 * 10 * 2 * CTX.length,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Compte les cadres de dix complets et les {ctx} en plus. Combien y en a-t-il en tout ?", "Combien de {ctx} sont montrés dans les cadres de dix complets et les unités en plus ?"],
+      promptTemplates: ["Compte les cadres de dix complets et les {ctx} en plus. Combien y en a-t-il en tout ?", "Combien {de:ctx} sont montrés dans les cadres de dix complets et les unités en plus ?"],
       explain: (v, r) => [`${v[0]} cadres de dix complets = ${v[0]! * 10}.`, `${v[0]! * 10} + ${v[1]} = ${r}.`],
       hints: () => ["Compte les cadres complets de dix en dix, puis ajoute les unités en plus."]
     }
@@ -459,7 +459,7 @@ export const level: QuestionTemplateDef[] = [
       promptTemplates: [
         "Quel nombre font {a} dizaines ?", "{a} dizaines, c'est quel nombre ?",
         "En comptant les {ctx} par groupes de 10 : {a} groupes complets font quel nombre ?",
-        "Si tu as {a} groupes de 10 {ctx}, combien de {ctx} cela fait-il en tout ?"
+        "Si tu as {a} groupes de 10 {ctx}, combien {de:ctx} cela fait-il en tout ?"
       ],
       explain: (v, r) => [`${v[0]} dizaines font ${r}.`],
       hints: () => ["Multiplie le chiffre des dizaines par 10."]

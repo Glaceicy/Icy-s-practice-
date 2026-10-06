@@ -53,7 +53,7 @@ export const level: QuestionTemplateDef[] = [
     declaredVariationSpace: 19 * (2 + CTX.length),
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["{a} + ___ = 20", "Que faut-il ajouter à {a} pour faire 20 ?", "Il y a {a} {ctx}. Combien de {ctx} de plus faut-il pour faire 20 ?"],
+      promptTemplates: ["{a} + ___ = 20", "Que faut-il ajouter à {a} pour faire 20 ?", "Il y a {a} {ctx}. Combien {de:ctx} de plus faut-il pour faire 20 ?"],
       explain: (v, r) => [`${v[0]} + ${r} = 20.`],
       hints: () => ["Compte à partir du nombre donné jusqu'à 20."]
     }
@@ -122,7 +122,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: CTX_FR,
       promptTemplates: [
         "{a} + ___ = 10", "Quel nombre s'associe avec {a} pour faire 10 ?",
-        "Il y a {a} {ctx} dans un cadre de dix. Combien de {ctx} de plus faut-il pour le remplir jusqu'à 10 ?",
+        "Il y a {a} {ctx} dans un cadre de dix. Combien {de:ctx} de plus faut-il pour le remplir jusqu'à 10 ?",
         "Combien faut-il ajouter à {a} pour atteindre 10 ?",
         "{a} et quel nombre font un total de 10 ?",
         "En comptant les {ctx} : {a} plus combien de plus égale 10 ?"
@@ -171,7 +171,7 @@ export const level: QuestionTemplateDef[] = [
     declaredVariationSpace: 20 * CTX.length,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Il y a {a} groupes de {b} {ctx}. Combien de {ctx} en tout ?"],
+      promptTemplates: ["Il y a {a} groupes de {b} {ctx}. Combien {de:ctx} en tout ?"],
       explain: (v, r) => [`${v[0]} groupes de ${v[1]} = ${r}.`],
       hints: () => ["Compte en groupes égaux, ou continue à compter plusieurs fois."]
     }
@@ -192,7 +192,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: CTX_FR,
       promptTemplates: [
         "{total} {ctx} sont partagés équitablement entre {a} enfants. Combien chaque enfant en reçoit-il ?",
-        "Partage {total} {ctx} équitablement entre {a} amis. Combien de {ctx} chaque ami reçoit-il ?"
+        "Partage {total} {ctx} équitablement entre {a} amis. Combien {de:ctx} chaque ami reçoit-il ?"
       ],
       explain: (v, r) => [`En partageant ${v[0]! * v[1]!} équitablement entre ${v[0]} groupes, cela donne ${r} chacun.`],
       hints: () => ["Distribue un à la fois dans chaque groupe jusqu'à ce qu'il n'en reste plus."]
@@ -706,7 +706,7 @@ export const level: QuestionTemplateDef[] = [
     declaredVariationSpace: 250 * CTX.length,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Sam a {a} {ctx}. On lui en donne {b} de plus, puis il en donne {c}. Combien de {ctx} a-t-il maintenant ?"],
+      promptTemplates: ["Sam a {a} {ctx}. On lui en donne {b} de plus, puis il en donne {c}. Combien {de:ctx} a-t-il maintenant ?"],
       explain: (v, r) => [`Départ : ${v[0]}.`, `${v[0]} + ${v[1]} = ${v[0]! + v[1]!}.`, `${v[0]! + v[1]!} - ${v[2]} = ${r}.`],
       hints: () => ["Effectue chaque étape dans l'ordre : additionne d'abord, puis soustrais."]
     }

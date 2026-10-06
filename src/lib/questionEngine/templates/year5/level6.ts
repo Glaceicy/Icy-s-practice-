@@ -544,12 +544,12 @@ export const level: QuestionTemplateDef[] = [
     ranges: [[100, 999]], compute: (v) => Math.round(v[0]! / 100),
     derive: (v) => ({ decimal: fmt2dp(v[0]!) }),
     contextPool: ["A ribbon", "A garden path", "A piece of rope", "A curtain", "A plank of wood", "A scarf"],
-    promptTemplates: ["{ctx} measures {decimal} m. Rounded to the nearest whole metre, how long is it?"],
+    promptTemplates: ["{Ctx} measures {decimal} m. Rounded to the nearest whole metre, how long is it?"],
     explain: (v, r) => [`${fmt2dp(v[0]!)} rounds to ${r} m.`],
     hints: () => ["Look at the tenths digit to decide the rounding direction."],
     fr: {
       contextPool: ["Un ruban", "Une allée de jardin", "Un morceau de corde", "Un rideau", "Une planche de bois", "Une écharpe"],
-      promptTemplates: ["{ctx} mesure {decimal} m. Arrondi au mètre entier le plus proche, quelle est sa longueur ?"],
+      promptTemplates: ["{Ctx} mesure {decimal} m. Arrondi au mètre entier le plus proche, quelle est sa longueur ?"],
       explain: (v, r) => [`${fmt2dp(v[0]!)} arrondi donne ${r} m.`],
       hints: () => ["Regarde le chiffre des dixièmes pour décider du sens de l'arrondi."]
     },
@@ -562,12 +562,12 @@ export const level: QuestionTemplateDef[] = [
     formatValue: (n) => fmtTenthsFromHundredths(n),
     derive: (v) => ({ decimal: fmt2dp(v[0]!) }),
     contextPool: ["A bag of flour", "A parcel", "A bag of apples", "A puppy", "A box of cereal", "A bag of rice"],
-    promptTemplates: ["{ctx} weighs {decimal} kg. Rounded to the nearest tenth of a kilogram, what is its weight?"],
+    promptTemplates: ["{Ctx} weighs {decimal} kg. Rounded to the nearest tenth of a kilogram, what is its weight?"],
     explain: (v, r) => [`${fmt2dp(v[0]!)} rounds to ${r} kg.`],
     hints: () => ["Look at the hundredths digit to decide whether to round the tenths digit up or down."],
     fr: {
       contextPool: ["Un sac de farine", "Un colis", "Un sac de pommes", "Un chiot", "Une boîte de céréales", "Un sac de riz"],
-      promptTemplates: ["{ctx} pèse {decimal} kg. Arrondi au dixième de kilogramme près, quel est son poids ?"],
+      promptTemplates: ["{Ctx} pèse {decimal} kg. Arrondi au dixième de kilogramme près, quel est son poids ?"],
       explain: (v, r) => [`${fmt2dp(v[0]!)} arrondi donne ${r} kg.`],
       hints: () => ["Regarde le chiffre des centièmes pour décider si le chiffre des dixièmes doit être arrondi vers le haut ou vers le bas."]
     },

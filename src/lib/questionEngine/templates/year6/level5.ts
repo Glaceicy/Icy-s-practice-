@@ -4,8 +4,12 @@ import type { QuestionTemplateDef } from "../../types";
 // Year 6, Level 5 — "Ratio and proportion"
 const CTX = ["beads", "stickers", "marbles", "counters", "cards", "tiles", "sweets", "badges"];
 const CTX_FR = ["perles", "autocollants", "billes", "jetons", "cartes", "carreaux", "bonbons", "badges"];
-const RECIPES = ["flour and sugar", "red and blue paint", "juice and water", "sand and cement", "oats and raisins", "beans and rice", "seeds and soil", "milk and cocoa"];
-const RECIPES_FR = ["farine et sucre", "peinture rouge et bleue", "jus et eau", "sable et ciment", "avoine et raisins secs", "haricots et riz", "graines et terreau", "lait et cacao"];
+// Two pools, because the two contexts are not interchangeable: a ratio can
+// mix paint or cement, but a recipe serving a number of people cannot.
+const MIXTURES = ["flour and sugar", "red and blue paint", "juice and water", "sand and cement", "oats and raisins", "beans and rice", "seeds and soil", "milk and cocoa"];
+const MIXTURES_FR = ["farine et sucre", "peinture rouge et bleue", "jus et eau", "sable et ciment", "avoine et raisins secs", "haricots et riz", "graines et terreau", "lait et cacao"];
+const RECIPES = ["flour and sugar", "juice and water", "oats and raisins", "beans and rice", "milk and cocoa", "butter and sugar", "tomatoes and basil", "cheese and ham"];
+const RECIPES_FR = ["farine et sucre", "jus et eau", "avoine et raisins secs", "haricots et riz", "lait et cacao", "beurre et sucre", "tomates et basilic", "fromage et jambon"];
 
 function gcd(a: number, b: number): number {
   return b === 0 ? a : gcd(b, a % b);
@@ -15,7 +19,7 @@ export const level: QuestionTemplateDef[] = [
   // --- Y6-L5-1: relative sizes of two quantities using ratio language ---
   arithmeticTemplate({
     key: "y6l5.scaleUpRatio", levelKey: "Y6L5", objectiveCode: "Y6-L5-1", difficulty: "APPLICATION",
-    misconceptionTags: ["RATIO_SCALING_ERROR"], type: "NUMBER_ENTRY", contextPool: RECIPES,
+    misconceptionTags: ["RATIO_SCALING_ERROR"], type: "NUMBER_ENTRY", contextPool: MIXTURES,
     // 1:1 is excluded: "the ratio is 1:1, the first is 12, what is the second?"
     // is a real question with nothing in it to get wrong.
     ranges: [[1, 9], [1, 9], [2, 12]], constraint: (v) => gcd(v[0]!, v[1]!) === 1 && !(v[0]! === 1 && v[1]! === 1),
@@ -28,7 +32,7 @@ export const level: QuestionTemplateDef[] = [
     explain: (v, r) => [`${v[0]! * v[2]!} ÷ ${v[0]} = ${v[2]}, the scale factor.`, `${v[1]} x ${v[2]} = ${r}.`],
     hints: () => ["Work out what the first part was multiplied by, then apply the same multiplier to the second."],
     fr: {
-      contextPool: RECIPES_FR,
+      contextPool: MIXTURES_FR,
       promptTemplates: [
         "Un mélange utilise {ctx} dans le rapport {a}:{b}. Si on utilise {scaled} unités du premier, combien faut-il du second ?",
         "Deux quantités sont dans le rapport {a}:{b}. La première vaut {scaled}. Que vaut la seconde ?"
@@ -36,7 +40,7 @@ export const level: QuestionTemplateDef[] = [
       explain: (v, r) => [`${v[0]! * v[2]!} ÷ ${v[0]} = ${v[2]}, le facteur d'échelle.`, `${v[1]} x ${v[2]} = ${r}.`],
       hints: () => ["Détermine par combien la première part a été multipliée, puis applique le même facteur à la seconde."]
     },
-    declaredVariationSpace: 9 * 9 * 11 * (1 + RECIPES.length)
+    declaredVariationSpace: 9 * 9 * 11 * (1 + MIXTURES.length)
   }),
   arithmeticTemplate({
     key: "y6l5.simplifyRatioFirstTerm", levelKey: "Y6L5", objectiveCode: "Y6-L5-1", difficulty: "FLUENCY",
@@ -78,7 +82,7 @@ export const level: QuestionTemplateDef[] = [
     fr: {
       contextPool: CTX_FR,
       promptTemplates: [
-        "Deux groupes de {ctx} sont dans le rapport {a}:{b}. Le premier groupe en a {firstPart}. Combien y en a-t-il en tout ?",
+        "Deux groupes {de:ctx} sont dans le rapport {a}:{b}. Le premier groupe en a {firstPart}. Combien y en a-t-il en tout ?",
         "Deux quantités sont dans le rapport {a}:{b}, et la première vaut {firstPart}. Quel est le total ?"
       ],
       explain: (v, r) => [`Une part vaut ${v[0]! * v[2]!} ÷ ${v[0]} = ${v[2]}.`, `Nombre total de parts = ${v[0]! + v[1]!}, donc le total est ${v[0]! + v[1]!} x ${v[2]} = ${r}.`],
@@ -196,7 +200,7 @@ export const level: QuestionTemplateDef[] = [
     fr: {
       contextPool: CTX_FR,
       promptTemplates: [
-        "Un groupe de {ctx} est partagé dans le rapport {a}:{b}. La première part vaut {a} sur combien de parts égales ?",
+        "Un groupe {de:ctx} est partagé dans le rapport {a}:{b}. La première part vaut {a} sur combien de parts égales ?",
         "Dans le rapport {a}:{b}, en combien de parts égales le tout est-il divisé ?"
       ],
       explain: (v, r) => [`${v[0]} + ${v[1]} = ${r} parts en tout.`],
@@ -278,7 +282,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: CTX_FR,
       promptTemplates: [
         "Une longueur de {a} cm est agrandie avec un facteur d'échelle de {b}. Quelle est la nouvelle longueur, en cm ?",
-        "Une image de {ctx} a un côté de {a} cm, agrandi avec un facteur d'échelle de {b}. Quelle est la nouvelle longueur, en cm ?"
+        "Une image {de:ctx} a un côté de {a} cm, agrandi avec un facteur d'échelle de {b}. Quelle est la nouvelle longueur, en cm ?"
       ],
       explain: (v, r) => [`${v[0]} x ${v[1]} = ${r}.`],
       hints: () => ["Multiplie la longueur d'origine par le facteur d'échelle."]
@@ -300,7 +304,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: CTX_FR,
       promptTemplates: [
         "Le côté d'une forme passe de {a} cm à {newLength} cm. Quel est le facteur d'échelle ?",
-        "Un dessin de {ctx} passe de {a} cm à {newLength} cm. Quel est le facteur d'échelle ?"
+        "Un dessin {de:ctx} passe de {a} cm à {newLength} cm. Quel est le facteur d'échelle ?"
       ],
       explain: (v, r) => [`${v[0]! * v[1]!} ÷ ${v[0]} = ${r}.`],
       hints: () => ["Divise la nouvelle longueur par la longueur d'origine."]
@@ -322,7 +326,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: CTX_FR,
       promptTemplates: [
         "Une longueur de {bigLength} cm est réduite par un facteur d'échelle de {b} (divisée par {b}). Quelle est la nouvelle longueur, en cm ?",
-        "Un modèle de {ctx} mesure {bigLength} cm et est réduit d'un facteur {b}. Combien mesure-t-il maintenant, en cm ?"
+        "Un modèle {de:ctx} mesure {bigLength} cm et est réduit d'un facteur {b}. Combien mesure-t-il maintenant, en cm ?"
       ],
       explain: (v, r) => [`${v[0]! * v[1]!} ÷ ${v[1]} = ${r}.`],
       hints: () => ["Réduire divise la longueur par le facteur d'échelle."]

@@ -34,7 +34,7 @@ export const level: QuestionTemplateDef[] = [
     derive: (v) => ({ p: TRIPLES[v[0]!]![0] * v[1]!, q: TRIPLES[v[0]!]![1] * v[1]! }),
     promptTemplates: [
       "A right-angled triangle has shorter sides of {p} cm and {q} cm. How long is the hypotenuse, in cm?",
-      "{ctx} forms a right-angled triangle with shorter sides {p} m and {q} m. How long is the sloping side, in m?",
+      "{Ctx} forms a right-angled triangle with shorter sides {p} m and {q} m. How long is the sloping side, in m?",
       "The two legs of a right-angled triangle are {p} mm and {q} mm. Use Pythagoras' theorem to find the hypotenuse, in mm."
     ],
     explain: (v, r) => {
@@ -47,7 +47,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: PLACES_FR,
       promptTemplates: [
         "Un triangle rectangle a des côtés courts de {p} cm et {q} cm. Quelle est la longueur de l'hypoténuse, en cm ?",
-        "{ctx} forme un triangle rectangle avec des côtés courts de {p} m et {q} m. Quelle est la longueur du côté oblique, en m ?",
+        "{Ctx} forme un triangle rectangle avec des côtés courts de {p} m et {q} m. Quelle est la longueur du côté oblique, en m ?",
         "Les deux cathètes d'un triangle rectangle mesurent {p} mm et {q} mm. Utilise le théorème de Pythagore pour trouver l'hypoténuse, en mm."
       ],
       explain: (v, r) => {
@@ -67,7 +67,7 @@ export const level: QuestionTemplateDef[] = [
     derive: (v) => ({ p: TRIPLES[v[0]!]![0] * v[1]!, h: TRIPLES[v[0]!]![2] * v[1]! }),
     promptTemplates: [
       "A right-angled triangle has a hypotenuse of {h} cm and one shorter side of {p} cm. How long is the other shorter side, in cm?",
-      "{ctx} is {h} m long and reaches a point {p} m from the base of a vertical wall. How high up the wall does it reach, in m?",
+      "{Ctx} is {h} m long and reaches a point {p} m from the base of a vertical wall. How high up the wall does it reach, in m?",
       "In a right-angled triangle the hypotenuse is {h} mm and a leg is {p} mm. Find the remaining leg, in mm."
     ],
     explain: (v, r) => {
@@ -80,7 +80,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: PLACES_FR,
       promptTemplates: [
         "Un triangle rectangle a une hypoténuse de {h} cm et un côté court de {p} cm. Quelle est la longueur de l'autre côté court, en cm ?",
-        "{ctx} mesure {h} m et atteint un point situé à {p} m du pied d'un mur vertical. À quelle hauteur sur le mur arrive-t-elle, en m ?",
+        "{Ctx} mesure {h} m et atteint un point situé à {p} m du pied d'un mur vertical. À quelle hauteur sur le mur arrive-t-elle, en m ?",
         "Dans un triangle rectangle, l'hypoténuse mesure {h} mm et une cathète {p} mm. Trouve la cathète restante, en mm."
       ],
       explain: (v, r) => {
@@ -103,7 +103,7 @@ export const level: QuestionTemplateDef[] = [
     },
     promptTemplates: [
       "A cuboid measures {p} cm by {q} cm by {s} cm. How long is the longest straight rod that fits inside it, in cm?",
-      "{ctx} is a cuboid {p} cm by {q} cm by {s} cm. Find the length of its space diagonal, in cm."
+      "{Ctx} is a cuboid {p} cm by {q} cm by {s} cm. Find the length of its space diagonal, in cm."
     ],
     explain: (v, r) => {
       const c = CUBOIDS[v[0]!]!;
@@ -119,7 +119,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: BOXES_FR,
       promptTemplates: [
         "Un pavé droit mesure {p} cm sur {q} cm sur {s} cm. Quelle est la longueur de la plus longue tige droite qui tient à l'intérieur, en cm ?",
-        "{ctx} est un pavé droit de {p} cm sur {q} cm sur {s} cm. Trouve la longueur de sa diagonale d'espace, en cm."
+        "{Ctx} est un pavé droit de {p} cm sur {q} cm sur {s} cm. Trouve la longueur de sa diagonale d'espace, en cm."
       ],
       explain: (v, r) => {
         const c = CUBOIDS[v[0]!]!;
@@ -174,7 +174,7 @@ export const level: QuestionTemplateDef[] = [
     derive: (v) => ({ ang: v[0]!, hyp: v[1]! }),
     promptTemplates: [
       "A right-angled triangle has a hypotenuse of {hyp} cm and an angle of {ang}°. How long is the side opposite that angle, in cm to 1 decimal place?",
-      "{ctx} is {hyp} m long and makes an angle of {ang}° with the ground. How high is its top above the ground, in m to 1 decimal place?"
+      "{Ctx} is {hyp} m long and makes an angle of {ang}° with the ground. How high is its top above the ground, in m to 1 decimal place?"
     ],
     explain: (v, r) => [`Opposite = hypotenuse x sin(angle).`, `${v[1]} x sin ${v[0]}° = ${r} cm.`],
     hints: () => ["SOH: sin = opposite ÷ hypotenuse, so opposite = hypotenuse x sin(angle)."],
@@ -182,7 +182,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: PLACES_FR,
       promptTemplates: [
         "Un triangle rectangle a une hypoténuse de {hyp} cm et un angle de {ang}°. Quelle est la longueur du côté opposé à cet angle, en cm au dixième près ?",
-        "{ctx} mesure {hyp} m et forme un angle de {ang}° avec le sol. À quelle hauteur se trouve son sommet, en m au dixième près ?"
+        "{Ctx} mesure {hyp} m et forme un angle de {ang}° avec le sol. À quelle hauteur se trouve son sommet, en m au dixième près ?"
       ],
       explain: (v, r) => [`Opposé = hypoténuse x sin(angle).`, `${v[1]} x sin ${v[0]}° = ${r} cm.`],
       hints: () => ["SOH : sin = opposé ÷ hypoténuse, donc opposé = hypoténuse x sin(angle)."]
@@ -196,7 +196,7 @@ export const level: QuestionTemplateDef[] = [
     derive: (v) => ({ ang: v[0]!, hyp: v[1]! }),
     promptTemplates: [
       "A right-angled triangle has a hypotenuse of {hyp} cm and an angle of {ang}°. How long is the side adjacent to that angle, in cm to 1 decimal place?",
-      "{ctx} is {hyp} m long and leans at {ang}° to the ground. How far is its foot from the wall, in m to 1 decimal place?"
+      "{Ctx} is {hyp} m long and leans at {ang}° to the ground. How far is its foot from the wall, in m to 1 decimal place?"
     ],
     explain: (v, r) => [`Adjacent = hypotenuse x cos(angle).`, `${v[1]} x cos ${v[0]}° = ${r} cm.`],
     hints: () => ["CAH: cos = adjacent ÷ hypotenuse, so adjacent = hypotenuse x cos(angle)."],
@@ -204,7 +204,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: PLACES_FR,
       promptTemplates: [
         "Un triangle rectangle a une hypoténuse de {hyp} cm et un angle de {ang}°. Quelle est la longueur du côté adjacent à cet angle, en cm au dixième près ?",
-        "{ctx} mesure {hyp} m et s'incline à {ang}° par rapport au sol. À quelle distance du mur se trouve son pied, en m au dixième près ?"
+        "{Ctx} mesure {hyp} m et s'incline à {ang}° par rapport au sol. À quelle distance du mur se trouve son pied, en m au dixième près ?"
       ],
       explain: (v, r) => [`Adjacent = hypoténuse x cos(angle).`, `${v[1]} x cos ${v[0]}° = ${r} cm.`],
       hints: () => ["CAH : cos = adjacent ÷ hypoténuse, donc adjacent = hypoténuse x cos(angle)."]
@@ -226,7 +226,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: PLACES_FR,
       promptTemplates: [
         "Dans un triangle rectangle, le côté adjacent à un angle de {ang}° mesure {adj} cm. Quelle est la longueur du côté opposé, en cm au dixième près ?",
-        "Tu te tiens à {adj} m du pied de {ctx} et tu regardes son sommet à {ang}°. Quelle est sa hauteur, en m au dixième près ?"
+        "Tu te tiens à {adj} m du pied {de:ctx} et tu regardes son sommet à {ang}°. Quelle est sa hauteur, en m au dixième près ?"
       ],
       explain: (v, r) => [`Opposé = adjacent x tan(angle).`, `${v[1]} x tan ${v[0]}° = ${r} cm.`],
       hints: () => ["TOA : tan = opposé ÷ adjacent, donc opposé = adjacent x tan(angle)."]
@@ -239,7 +239,7 @@ export const level: QuestionTemplateDef[] = [
     ranges: [[2, 30], [2, 30]],
     compute: (v) => Math.round((Math.atan(v[0]! / v[1]!) * 180) / Math.PI),
     promptTemplates: [
-      "{ctx} rises {a} m vertically over a horizontal distance of {b} m. What is its angle of elevation, to the nearest degree?",
+      "{Ctx} rises {a} m vertically over a horizontal distance of {b} m. What is its angle of elevation, to the nearest degree?",
       "A slope climbs {a} m for every {b} m travelled horizontally. What angle does it make with the horizontal, to the nearest degree?"
     ],
     explain: (v, r) => [`tan(angle) = ${v[0]} ÷ ${v[1]} = ${(v[0]! / v[1]!).toFixed(4)}.`, `Inverse tangent gives ${r}°.`],
@@ -247,7 +247,7 @@ export const level: QuestionTemplateDef[] = [
     fr: {
       contextPool: PLACES_FR,
       promptTemplates: [
-        "{ctx} monte de {a} m à la verticale sur une distance horizontale de {b} m. Quel est son angle d'élévation, au degré près ?",
+        "{Ctx} monte de {a} m à la verticale sur une distance horizontale de {b} m. Quel est son angle d'élévation, au degré près ?",
         "Une pente monte de {a} m pour {b} m parcourus horizontalement. Quel angle forme-t-elle avec l'horizontale, au degré près ?"
       ],
       explain: (v, r) => [`tan(angle) = ${v[0]} ÷ ${v[1]} = ${(v[0]! / v[1]!).toFixed(4)}.`, `La tangente inverse donne ${r}°.`],
@@ -495,7 +495,7 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: [
       "In a right-angled triangle one of the other angles is 45° and the side adjacent to it is {a} cm. How long is the opposite side, in cm?",
       "A right-angled triangle has a 45° angle. The adjacent side is {a} cm. Using tan 45° = 1, find the opposite side, in cm.",
-      "{ctx} meets the ground at exactly 45°, {a} m from the base of a vertical post. How tall is the post, in m?"
+      "{Ctx} meets the ground at exactly 45°, {a} m from the base of a vertical post. How tall is the post, in m?"
     ],
     explain: (v, r) => [`tan 45° = 1, so opposite = adjacent x 1.`, `The opposite side is ${r} cm — a 45° right-angled triangle is isosceles.`],
     hints: () => ["tan 45° = 1 exactly, so the two shorter sides are equal."],
@@ -504,7 +504,7 @@ export const level: QuestionTemplateDef[] = [
       promptTemplates: [
         "Dans un triangle rectangle, l'un des autres angles mesure 45° et le côté adjacent mesure {a} cm. Quelle est la longueur du côté opposé, en cm ?",
         "Un triangle rectangle a un angle de 45°. Le côté adjacent mesure {a} cm. En utilisant tan 45° = 1, trouve le côté opposé, en cm.",
-        "{ctx} rencontre le sol à exactement 45°, à {a} m du pied d'un poteau vertical. Quelle est la hauteur du poteau, en m ?"
+        "{Ctx} rencontre le sol à exactement 45°, à {a} m du pied d'un poteau vertical. Quelle est la hauteur du poteau, en m ?"
       ],
       explain: (v, r) => [`tan 45° = 1, donc opposé = adjacent x 1.`, `Le côté opposé mesure ${r} cm — un triangle rectangle à 45° est isocèle.`],
       hints: () => ["tan 45° = 1 exactement, donc les deux côtés courts sont égaux."]

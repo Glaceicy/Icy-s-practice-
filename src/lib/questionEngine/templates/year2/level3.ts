@@ -119,7 +119,7 @@ export const level: QuestionTemplateDef[] = [
     declaredVariationSpace: 80 * 9 * CTX.length,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Il y a {a} {ctx} dans une boîte. {b} de plus sont ajoutés. Combien y a-t-il de {ctx} maintenant ?"],
+      promptTemplates: ["Il y a {a} {ctx} dans une boîte. {b} de plus sont ajoutés. Combien y a-t-il {de:ctx} maintenant ?"],
       explain: (v, r) => [`${v[0]} + ${v[1]} = ${r}.`],
       hints: () => ["Ajoute les unités au nombre à deux chiffres."]
     }
@@ -226,7 +226,7 @@ export const level: QuestionTemplateDef[] = [
     declaredVariationSpace: 80 * 80 * CTX.length,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Un magasin avait {a} {ctx}. Il en a vendu {b}. Combien de {ctx} reste-t-il ?"],
+      promptTemplates: ["Un magasin avait {a} {ctx}. Il en a vendu {b}. Combien {de:ctx} reste-t-il ?"],
       explain: (v, r) => [`${v[0]} - ${v[1]} = ${r}.`],
       hints: () => ["Soustrais la quantité vendue de la quantité de départ."]
     }
@@ -243,7 +243,7 @@ export const level: QuestionTemplateDef[] = [
     declaredVariationSpace: 30 * 20 * 20 * CTX.length,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Il y a {a} {ctx} dans un premier panier, {b} dans un deuxième panier, et {c} dans un troisième. Combien de {ctx} au total ?"],
+      promptTemplates: ["Il y a {a} {ctx} dans un premier panier, {b} dans un deuxième panier, et {c} dans un troisième. Combien {de:ctx} au total ?"],
       explain: (v, r) => [`${v[0]} + ${v[1]} + ${v[2]} = ${r}.`],
       hints: () => ["Additionne les trois quantités."]
     }
@@ -258,7 +258,7 @@ export const level: QuestionTemplateDef[] = [
     declaredVariationSpace: 30 * 20 * 20 * CTX.length,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Tu commences avec {a} {ctx}. On t'en donne {b} de plus, puis tu en donnes {c}. Combien de {ctx} as-tu maintenant ?"],
+      promptTemplates: ["Tu commences avec {a} {ctx}. On t'en donne {b} de plus, puis tu en donnes {c}. Combien {de:ctx} as-tu maintenant ?"],
       explain: (v, r) => [`${v[0]} + ${v[1]} - ${v[2]} = ${r}.`],
       hints: () => ["Additionne d'abord la quantité supplémentaire, puis retire ce qui a été donné."]
     }
@@ -273,7 +273,7 @@ export const level: QuestionTemplateDef[] = [
     declaredVariationSpace: 40 * 20 * 20 * CTX.length,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Tu commences avec {a} {ctx}. {b} sont utilisés, puis {c} de plus sont ajoutés. Combien de {ctx} as-tu maintenant ?"],
+      promptTemplates: ["Tu commences avec {a} {ctx}. {b} sont utilisés, puis {c} de plus sont ajoutés. Combien {de:ctx} as-tu maintenant ?"],
       explain: (v, r) => [`${v[0]} - ${v[1]} + ${v[2]} = ${r}.`],
       hints: () => ["Soustrais d'abord la quantité utilisée, puis ajoute la nouvelle quantité."]
     }
@@ -289,7 +289,7 @@ export const level: QuestionTemplateDef[] = [
     declaredVariationSpace: 30 * 20 * 20 * CTX.length,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Un pot contient {a} {ctx}. {b} de plus sont ajoutés, puis {c} de plus sont ajoutés. Combien de {ctx} au total ?"],
+      promptTemplates: ["Un pot contient {a} {ctx}. {b} de plus sont ajoutés, puis {c} de plus sont ajoutés. Combien {de:ctx} au total ?"],
       explain: (v, r) => [`${v[0]} + ${v[1]} + ${v[2]} = ${r}.`],
       hints: () => ["Additionne les trois quantités."]
     }

@@ -15,7 +15,7 @@ export const level: QuestionTemplateDef[] = [
     ranges: [[1, 40], [1, 40], [1, 40], [1, 40]], compute: (v) => v[0]! + v[1]! + v[2]! + v[3]!,
     promptTemplates: [
       "A frequency table records {a}, {b}, {c} and {d} for the four outcomes. How many trials were there in total?",
-      "{ctx} is tested and the four outcomes occur {a}, {b}, {c} and {d} times. How many trials were carried out?"
+      "{Ctx} is tested and the four outcomes occur {a}, {b}, {c} and {d} times. How many trials were carried out?"
     ],
     explain: (v, r) => [`Add every frequency.`, `${v[0]} + ${v[1]} + ${v[2]} + ${v[3]} = ${r}.`],
     hints: () => ["The frequencies must add up to the number of trials."],
@@ -23,7 +23,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: EXPERIMENTS_FR,
       promptTemplates: [
         "Un tableau d'effectifs relève {a}, {b}, {c} et {d} pour les quatre issues. Combien d'essais y a-t-il eu en tout ?",
-        "{ctx} est testé et les quatre issues apparaissent {a}, {b}, {c} et {d} fois. Combien d'essais ont été réalisés ?"
+        "{Ctx} est testé et les quatre issues apparaissent {a}, {b}, {c} et {d} fois. Combien d'essais ont été réalisés ?"
       ],
       explain: (v, r) => [`Additionne tous les effectifs.`, `${v[0]} + ${v[1]} + ${v[2]} + ${v[3]} = ${r}.`],
       hints: () => ["Les effectifs doivent s'additionner pour donner le nombre d'essais."]
@@ -59,7 +59,7 @@ export const level: QuestionTemplateDef[] = [
     derive: (v) => ({ hits: v[0]! * v[1]!, trials: 100 * v[1]! }),
     promptTemplates: [
       "An outcome happened {hits} times in {trials} trials. What percentage of trials was that?",
-      "{ctx} gave a particular result {hits} times out of {trials}. What percentage is that?"
+      "{Ctx} gave a particular result {hits} times out of {trials}. What percentage is that?"
     ],
     explain: (v, r) => [`${v[0]! * v[1]!} ÷ ${100 * v[1]!} = 0.${v[0]! < 10 ? "0" : ""}${v[0]}.`, `As a percentage that is ${r}%.`],
     hints: () => ["Divide the frequency by the number of trials, then multiply by 100."],
@@ -67,7 +67,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: EXPERIMENTS_FR,
       promptTemplates: [
         "Une issue s'est produite {hits} fois sur {trials} essais. Quel pourcentage des essais cela représente-t-il ?",
-        "{ctx} a donné un résultat particulier {hits} fois sur {trials}. Quel pourcentage cela fait-il ?"
+        "{Ctx} a donné un résultat particulier {hits} fois sur {trials}. Quel pourcentage cela fait-il ?"
       ],
       explain: (v, r) => [`${v[0]! * v[1]!} ÷ ${100 * v[1]!} = 0,${v[0]! < 10 ? "0" : ""}${v[0]}.`, `En pourcentage, cela fait ${r} %.`],
       hints: () => ["Divise l'effectif par le nombre d'essais, puis multiplie par 100."]
@@ -151,7 +151,7 @@ export const level: QuestionTemplateDef[] = [
     derive: (v) => ({ pct: v[0]!, trials: 100 * v[1]! }),
     promptTemplates: [
       "An outcome has probability {pct}%. In {trials} trials, how many times would you expect it?",
-      "{ctx} gives a result {pct}% of the time. Over {trials} trials, what is the expected frequency?"
+      "{Ctx} gives a result {pct}% of the time. Over {trials} trials, what is the expected frequency?"
     ],
     explain: (v, r) => [`Expected frequency = probability x number of trials.`, `${v[0]}% of ${100 * v[1]!} = ${r}.`],
     hints: () => ["Multiply the probability by the number of trials — the answer need not be a whole number in general."],
@@ -159,7 +159,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: EXPERIMENTS_FR,
       promptTemplates: [
         "Une issue a une probabilité de {pct} %. Sur {trials} essais, combien de fois t'attends-tu à l'observer ?",
-        "{ctx} donne un résultat {pct} % du temps. Sur {trials} essais, quel est l'effectif attendu ?"
+        "{Ctx} donne un résultat {pct} % du temps. Sur {trials} essais, quel est l'effectif attendu ?"
       ],
       explain: (v, r) => [`Effectif attendu = probabilité x nombre d'essais.`, `${v[0]} % de ${100 * v[1]!} = ${r}.`],
       hints: () => ["Multiplie la probabilité par le nombre d'essais — en général le résultat n'est pas forcément entier."]
@@ -173,7 +173,7 @@ export const level: QuestionTemplateDef[] = [
     derive: (v) => ({ sections: v[0]!, trials: v[0]! * v[1]! }),
     promptTemplates: [
       "A fair spinner has {sections} equal sections. In {trials} spins, how many times would you expect one chosen section?",
-      "{ctx} has {sections} equally likely outcomes. Over {trials} trials, what is the expected frequency of one of them?"
+      "{Ctx} has {sections} equally likely outcomes. Over {trials} trials, what is the expected frequency of one of them?"
     ],
     explain: (v, r) => [`Each outcome has probability 1/${v[0]}.`, `${v[0]! * v[1]!} ÷ ${v[0]} = ${r}.`],
     hints: () => ["With equally likely outcomes, share the trials equally between them."],
@@ -181,7 +181,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: EXPERIMENTS_FR,
       promptTemplates: [
         "Une roue équilibrée a {sections} secteurs égaux. Sur {trials} tours, combien de fois t'attends-tu à un secteur choisi ?",
-        "{ctx} a {sections} issues équiprobables. Sur {trials} essais, quel est l'effectif attendu de l'une d'elles ?"
+        "{Ctx} a {sections} issues équiprobables. Sur {trials} essais, quel est l'effectif attendu de l'une d'elles ?"
       ],
       explain: (v, r) => [`Chaque issue a une probabilité de 1/${v[0]}.`, `${v[0]! * v[1]!} ÷ ${v[0]} = ${r}.`],
       hints: () => ["Avec des issues équiprobables, répartis les essais également entre elles."]
@@ -310,7 +310,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: DATASETS_FR,
       promptTemplates: [
         "Trouve la moyenne de {a}, {b}, {c}, {d} et {e}.",
-        "Cinq relevés de {ctx} valent {a}, {b}, {c}, {d} et {e}. Quelle est la moyenne ?"
+        "Cinq relevés {ctx} valent {a}, {b}, {c}, {d} et {e}. Quelle est la moyenne ?"
       ],
       explain: (v, r) => [`${v.join(" + ")} = ${v[0]! + v[1]! + v[2]! + v[3]! + v[4]!}.`, `${v[0]! + v[1]! + v[2]! + v[3]! + v[4]!} ÷ 5 = ${r}.`],
       hints: () => ["Additionne toutes les valeurs, puis divise par leur nombre."]
@@ -332,7 +332,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: DATASETS_FR,
       promptTemplates: [
         "Trouve la médiane de {a}, {b}, {c}, {d} et {e}.",
-        "Cinq valeurs de {ctx} sont {a}, {b}, {c}, {d} et {e}. Quelle est la médiane ?"
+        "Cinq valeurs {ctx} sont {a}, {b}, {c}, {d} et {e}. Quelle est la médiane ?"
       ],
       explain: (v, r) => [`Dans l'ordre : ${[...v].sort((p, q) => p - q).join(", ")}.`, `La valeur centrale est ${r}.`],
       hints: () => ["Ordonne d'abord les valeurs — la médiane est celle du milieu une fois triées."]
@@ -354,7 +354,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: DATASETS_FR,
       promptTemplates: [
         "Trouve l'étendue de {a}, {b}, {c} et {d}.",
-        "Quatre mesures de {ctx} valent {a}, {b}, {c} et {d}. Quelle est l'étendue ?"
+        "Quatre mesures {ctx} valent {a}, {b}, {c} et {d}. Quelle est l'étendue ?"
       ],
       explain: (v, r) => [`La plus grande est ${Math.max(...v)} et la plus petite ${Math.min(...v)}.`, `${Math.max(...v)} - ${Math.min(...v)} = ${r}.`],
       hints: () => ["L'étendue mesure la dispersion : la plus grande moins la plus petite."]
@@ -376,7 +376,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: DATASETS_FR,
       promptTemplates: [
         "La moyenne de {b} valeurs est {a}. Quelle est leur somme ?",
-        "{b} mesures de {ctx} ont une moyenne de {a}. Quel est leur total ?",
+        "{b} mesures {ctx} ont une moyenne de {a}. Quel est leur total ?",
         "Un ensemble de {b} nombres a une moyenne de {a}. Trouve leur somme."
       ],
       explain: (v, r) => [`Total = moyenne x nombre de valeurs.`, `${v[0]} x ${v[1]} = ${r}.`],

@@ -181,7 +181,7 @@ export const level: QuestionTemplateDef[] = [
     declaredVariationSpace: 210 * CTX.length,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Il y a {a} {ctx} dans une boîte. {b} de plus sont ajoutés. Combien de {ctx} y a-t-il maintenant ?"],
+      promptTemplates: ["Il y a {a} {ctx} dans une boîte. {b} de plus sont ajoutés. Combien {de:ctx} y a-t-il maintenant ?"],
       hints: () => ["Imagine les groupes réunis, puis compte-les tous."]
     }
   }),
@@ -195,7 +195,7 @@ export const level: QuestionTemplateDef[] = [
     declaredVariationSpace: 231 * CTX.length,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Il y a {a} {ctx} sur une étagère. {b} sont enlevés. Combien de {ctx} reste-t-il ?"],
+      promptTemplates: ["Il y a {a} {ctx} sur une étagère. {b} sont enlevés. Combien {de:ctx} reste-t-il ?"],
       hints: () => ["Imagine qu'on en enlève quelques-uns, puis compte ce qu'il reste."]
     }
   }),
@@ -210,7 +210,7 @@ export const level: QuestionTemplateDef[] = [
     declaredVariationSpace: 210 * CTX.length,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Un pot contenait {a} {ctx}. {b} de plus ont été ajoutés. Combien de {ctx} y a-t-il dans le pot maintenant ?"],
+      promptTemplates: ["Un pot contenait {a} {ctx}. {b} de plus ont été ajoutés. Combien {de:ctx} y a-t-il dans le pot maintenant ?"],
       hints: () => ["Additionne les deux quantités."]
     }
   }),
@@ -224,7 +224,7 @@ export const level: QuestionTemplateDef[] = [
     declaredVariationSpace: 210 * CTX.length,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Il y avait {a} {ctx} dans une boîte. D'autres ont été ajoutés, pour faire {b} {ctx} en tout. Combien de {ctx} ont été ajoutés ?"],
+      promptTemplates: ["Il y avait {a} {ctx} dans une boîte. D'autres ont été ajoutés, pour faire {b} {ctx} en tout. Combien {de:ctx} ont été ajoutés ?"],
       hints: () => ["Calcule la différence entre la quantité de départ et la quantité finale."]
     }
   })

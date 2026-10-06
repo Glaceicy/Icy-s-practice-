@@ -220,7 +220,7 @@ export const level: QuestionTemplateDef[] = [
     declaredVariationSpace: 9 * 9 * CTX.length,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Un magasin a {a10} {ctx} dans une boîte et {b10} {ctx} dans une autre. Combien de {ctx} en tout ?"],
+      promptTemplates: ["Un magasin a {a10} {ctx} dans une boîte et {b10} {ctx} dans une autre. Combien {de:ctx} en tout ?"],
       explain: (v, r) => [`${v[0]} + ${v[1]} = ${v[0]! + v[1]!}, donc ${v[0]! * 10} + ${v[1]! * 10} = ${r}.`],
       hints: () => ["Utilise le petit fait numérique, puis multiplie par 10."]
     }
@@ -358,7 +358,7 @@ export const level: QuestionTemplateDef[] = [
     declaredVariationSpace: 15 * 8 * CTX.length,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Il y a {a} {ctx} dans un pot. {b} de plus sont ajoutés. Combien de {ctx} y a-t-il maintenant ?"],
+      promptTemplates: ["Il y a {a} {ctx} dans un pot. {b} de plus sont ajoutés. Combien {de:ctx} y a-t-il maintenant ?"],
       hints: () => ["Imagine que tu sautes vers l'avant sur une droite numérique à partir du montant de départ."]
     }
   })

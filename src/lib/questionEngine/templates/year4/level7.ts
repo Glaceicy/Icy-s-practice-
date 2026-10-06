@@ -16,7 +16,7 @@ export const level: QuestionTemplateDef[] = [
     promptTemplates: [
       "How many metres are there in {a} kilometres?",
       "Convert {a} km into metres.",
-      "{ctx} is {a} km long. How many metres is that?"
+      "{Ctx} is {a} km long. How many metres is that?"
     ],
     explain: (v, r) => [`There are 1,000 metres in 1 kilometre.`, `${v[0]} x 1,000 = ${r}.`],
     hints: () => ["Kilo means a thousand, so multiply by 1,000."],
@@ -25,7 +25,7 @@ export const level: QuestionTemplateDef[] = [
       promptTemplates: [
         "Combien y a-t-il de mètres dans {a} kilomètres ?",
         "Convertis {a} km en mètres.",
-        "{ctx} fait {a} km. Combien cela fait-il de mètres ?"
+        "{Ctx} fait {a} km. Combien cela fait-il de mètres ?"
       ],
       explain: (v, r) => [`Il y a 1 000 mètres dans 1 kilomètre.`, `${v[0]} x 1 000 = ${r}.`],
       hints: () => ["Kilo veut dire mille, donc multiplie par 1 000."]
@@ -150,7 +150,7 @@ export const level: QuestionTemplateDef[] = [
     ranges: [[2, 15], [2, 15]], compute: (v) => v[0]! * v[1]!,
     promptTemplates: [
       "A rectangle is drawn on squared paper with {a} rows of {b} squares. What is its area, in squares?",
-      "{ctx} is a rectangle {a} squares across and {b} squares down. How many squares does it cover?"
+      "{Ctx} is a rectangle {a} squares across and {b} squares down. How many squares does it cover?"
     ],
     explain: (v, r) => [`Counting all the squares means multiplying the rows by the columns.`, `${v[0]} x ${v[1]} = ${r}.`],
     hints: () => ["Instead of counting one by one, multiply the number of rows by the number in each row."],
@@ -158,7 +158,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: ROOMS_FR,
       promptTemplates: [
         "Un rectangle est tracé sur du papier quadrillé avec {a} rangées de {b} carreaux. Quelle est son aire, en carreaux ?",
-        "{ctx} est un rectangle de {a} carreaux de large et {b} de haut. Combien de carreaux couvre-t-il ?"
+        "{Ctx} est un rectangle de {a} carreaux de large et {b} de haut. Combien de carreaux couvre-t-il ?"
       ],
       explain: (v, r) => [`Compter tous les carreaux revient à multiplier les rangées par les colonnes.`, `${v[0]} x ${v[1]} = ${r}.`],
       hints: () => ["Plutôt que de compter un par un, multiplie le nombre de rangées par le nombre de carreaux par rangée."]
@@ -262,7 +262,7 @@ export const level: QuestionTemplateDef[] = [
     ranges: [[2, 40], [2, 40]], compute: (v) => 2 * (v[0]! + v[1]!),
     promptTemplates: [
       "A rectangle is {a} cm long and {b} cm wide. What is its perimeter, in cm?",
-      "{ctx} is a rectangle {a} m by {b} m. How much fencing goes all the way round, in m?"
+      "{Ctx} is a rectangle {a} m by {b} m. How much fencing goes all the way round, in m?"
     ],
     explain: (v, r) => [`A rectangle has two long sides and two short sides.`, `2 x (${v[0]} + ${v[1]}) = ${r}.`],
     hints: () => ["Perimeter is the distance all the way around the edge — add all four sides."],
@@ -270,7 +270,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: ROOMS_FR,
       promptTemplates: [
         "Un rectangle mesure {a} cm de long et {b} cm de large. Quel est son périmètre, en cm ?",
-        "{ctx} est un rectangle de {a} m sur {b} m. Quelle longueur de clôture en fait le tour, en m ?"
+        "{Ctx} est un rectangle de {a} m sur {b} m. Quelle longueur de clôture en fait le tour, en m ?"
       ],
       explain: (v, r) => [`Un rectangle a deux grands côtés et deux petits côtés.`, `2 x (${v[0]} + ${v[1]}) = ${r}.`],
       hints: () => ["Le périmètre est la distance tout autour du bord — additionne les quatre côtés."]
@@ -283,7 +283,7 @@ export const level: QuestionTemplateDef[] = [
     ranges: [[2, 60]], compute: (v) => 4 * v[0]!,
     promptTemplates: [
       "A square has sides of {a} cm. What is its perimeter, in cm?",
-      "{ctx} is a square with sides of {a} m. What is the distance all the way around, in m?",
+      "{Ctx} is a square with sides of {a} m. What is the distance all the way around, in m?",
       "Each side of a square is {a} cm. How far is it around the outside, in cm?"
     ],
     explain: (v, r) => [`All four sides of a square are the same.`, `4 x ${v[0]} = ${r}.`],
@@ -292,7 +292,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: ROOMS_FR,
       promptTemplates: [
         "Un carré a des côtés de {a} cm. Quel est son périmètre, en cm ?",
-        "{ctx} est un carré de {a} m de côté. Quelle est la distance tout autour, en m ?",
+        "{Ctx} est un carré de {a} m de côté. Quelle est la distance tout autour, en m ?",
         "Chaque côté d'un carré mesure {a} cm. Quelle distance fait le tour, en cm ?"
       ],
       explain: (v, r) => [`Les quatre côtés d'un carré sont identiques.`, `4 x ${v[0]} = ${r}.`],

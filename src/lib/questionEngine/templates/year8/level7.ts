@@ -1,4 +1,4 @@
-import { arithmeticTemplate, categoricalPoolTemplate, matchingTemplate } from "../../builders";
+import { arithmeticTemplate, categoricalPoolTemplate, matchingTemplate, elide } from "../../builders";
 import type { QuestionTemplateDef } from "../../types";
 
 // Year 8, Level 7 — "Transformations, congruence and similarity"
@@ -173,14 +173,14 @@ export const level: QuestionTemplateDef[] = [
         const isTrue = drawn.correctLabel === "True";
         const shapeFr = shapesFr[picked.shape!] ?? picked.shape!;
         const body = drawn.prompt.replace(/\. True or false\?$/, "")
-          .replace(/^A translation of .+ leaves every side length unchanged$/, `Une translation de ${shapeFr} laisse toutes les longueurs inchangées`)
-          .replace(/^A reflection of .+ leaves every angle unchanged$/, `Une réflexion de ${shapeFr} laisse tous les angles inchangés`)
-          .replace(/^A rotation of .+ produces a congruent image$/, `Une rotation de ${shapeFr} produit une image isométrique`)
-          .replace(/^An enlargement of .+ by scale factor (\d+) leaves every angle unchanged$/, `Un agrandissement de ${shapeFr} d'un facteur $1 laisse tous les angles inchangés`)
-          .replace(/^A translation of .+ makes every side (\d+) times longer$/, `Une translation de ${shapeFr} rend chaque côté $1 fois plus long`)
-          .replace(/^A reflection of .+ doubles every angle$/, `Une réflexion de ${shapeFr} double tous les angles`)
-          .replace(/^A rotation of .+ produces a larger image$/, `Une rotation de ${shapeFr} produit une image plus grande`)
-          .replace(/^An enlargement of .+ by scale factor (\d+) multiplies every angle by (\d+)$/, `Un agrandissement de ${shapeFr} d'un facteur $1 multiplie chaque angle par $2`);
+          .replace(/^A translation of .+ leaves every side length unchanged$/, `Une translation ${elide("de", shapeFr)} laisse toutes les longueurs inchangées`)
+          .replace(/^A reflection of .+ leaves every angle unchanged$/, `Une réflexion ${elide("de", shapeFr)} laisse tous les angles inchangés`)
+          .replace(/^A rotation of .+ produces a congruent image$/, `Une rotation ${elide("de", shapeFr)} produit une image isométrique`)
+          .replace(/^An enlargement of .+ by scale factor (\d+) leaves every angle unchanged$/, `Un agrandissement ${elide("de", shapeFr)} d'un facteur $1 laisse tous les angles inchangés`)
+          .replace(/^A translation of .+ makes every side (\d+) times longer$/, `Une translation ${elide("de", shapeFr)} rend chaque côté $1 fois plus long`)
+          .replace(/^A reflection of .+ doubles every angle$/, `Une réflexion ${elide("de", shapeFr)} double tous les angles`)
+          .replace(/^A rotation of .+ produces a larger image$/, `Une rotation ${elide("de", shapeFr)} produit une image plus grande`)
+          .replace(/^An enlargement of .+ by scale factor (\d+) multiplies every angle by (\d+)$/, `Un agrandissement ${elide("de", shapeFr)} d'un facteur $1 multiplie chaque angle par $2`);
         return {
           prompt: `${body}. Vrai ou faux ?`,
           correctLabel: isTrue ? "Vrai" : "Faux",
@@ -332,7 +332,7 @@ export const level: QuestionTemplateDef[] = [
     derive: (v) => ({ big: v[0]! * v[1]! }),
     promptTemplates: [
       "Two similar shapes have corresponding sides of {a} cm and {big} cm. What is the scale factor from small to large?",
-      "{ctx} is enlarged so that a {a} cm side becomes {big} cm. What is the scale factor?"
+      "{Ctx} is enlarged so that a {a} cm side becomes {big} cm. What is the scale factor?"
     ],
     explain: (v, r) => [`${v[0]} x ${r} = ${v[0]! * v[1]!}, so the scale factor is ${r}.`],
     hints: () => ["Divide the new length by the matching old length."],
@@ -340,7 +340,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: SHAPES_FR,
       promptTemplates: [
         "Deux figures semblables ont des côtés correspondants de {a} cm et {big} cm. Quel est le facteur d'échelle du petit vers le grand ?",
-        "{ctx} est agrandi de sorte qu'un côté de {a} cm devienne {big} cm. Quel est le facteur d'échelle ?"
+        "{Ctx} est agrandi de sorte qu'un côté de {a} cm devienne {big} cm. Quel est le facteur d'échelle ?"
       ],
       explain: (v, r) => [`${v[0]} x ${r} = ${v[0]! * v[1]!}, donc le facteur d'échelle est ${r}.`],
       hints: () => ["Divise la nouvelle longueur par l'ancienne correspondante."]
@@ -354,7 +354,7 @@ export const level: QuestionTemplateDef[] = [
     derive: (v) => ({ big: v[0]! * v[1]! }),
     promptTemplates: [
       "In two similar shapes, {a} cm corresponds to {big} cm. What corresponds to {c} cm, in cm?",
-      "{ctx} is enlarged: {a} cm becomes {big} cm. What does a {c} cm side become, in cm?"
+      "{Ctx} is enlarged: {a} cm becomes {big} cm. What does a {c} cm side become, in cm?"
     ],
     explain: (v, r) => [`The scale factor is ${v[0]! * v[1]!} ÷ ${v[0]} = ${v[1]}.`, `${v[2]} x ${v[1]} = ${r} cm.`],
     hints: () => ["Find the scale factor from the pair you know, then apply it to the length you want."],
@@ -362,7 +362,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: SHAPES_FR,
       promptTemplates: [
         "Dans deux figures semblables, {a} cm correspond à {big} cm. À quoi correspond {c} cm, en cm ?",
-        "{ctx} est agrandi : {a} cm devient {big} cm. Que devient un côté de {c} cm, en cm ?"
+        "{Ctx} est agrandi : {a} cm devient {big} cm. Que devient un côté de {c} cm, en cm ?"
       ],
       explain: (v, r) => [`Le facteur d'échelle est ${v[0]! * v[1]!} ÷ ${v[0]} = ${v[1]}.`, `${v[2]} x ${v[1]} = ${r} cm.`],
       hints: () => ["Trouve le facteur d'échelle avec la paire connue, puis applique-le à la longueur voulue."]
@@ -450,7 +450,7 @@ export const level: QuestionTemplateDef[] = [
     ranges: [[2, 7], [5, 60]], compute: (v) => v[1]! * v[0]! * v[0]!,
     promptTemplates: [
       "Two similar shapes have a length scale factor of {a}. The smaller has area {b} cm². What is the larger area, in cm²?",
-      "{ctx} with area {b} cm² is enlarged by scale factor {a}. What is the new area, in cm²?"
+      "{Ctx} with area {b} cm² is enlarged by scale factor {a}. What is the new area, in cm²?"
     ],
     explain: (v, r) => [`The area scale factor is ${v[0]}² = ${v[0]! * v[0]!}.`, `${v[1]} x ${v[0]! * v[0]!} = ${r} cm².`],
     hints: () => ["Areas grow by the square of the length scale factor."],
@@ -458,7 +458,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: SHAPES_FR,
       promptTemplates: [
         "Deux figures semblables ont un facteur d'échelle de longueur de {a}. La plus petite a une aire de {b} cm². Quelle est l'aire de la plus grande, en cm² ?",
-        "{ctx} d'aire {b} cm² est agrandi d'un facteur {a}. Quelle est la nouvelle aire, en cm² ?"
+        "{Ctx} d'aire {b} cm² est agrandi d'un facteur {a}. Quelle est la nouvelle aire, en cm² ?"
       ],
       explain: (v, r) => [`Le facteur d'échelle des aires est ${v[0]}² = ${v[0]! * v[0]!}.`, `${v[1]} x ${v[0]! * v[0]!} = ${r} cm².`],
       hints: () => ["Les aires grandissent selon le carré du facteur d'échelle des longueurs."]

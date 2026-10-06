@@ -312,7 +312,7 @@ export const level: QuestionTemplateDef[] = [
     misconceptionTags: ["SUBSTITUTION_ERROR"], type: "MULTI_STEP", contextPool: SITUATIONS,
     ranges: [[2, 15], [1, 40], [1, 25]], compute: (v) => v[0]! * v[2]! + v[1]!,
     promptTemplates: [
-      "{ctx} costs a fixed £{b} plus £{a} per hour. What is the total cost for {c} hours, in pounds?",
+      "{Ctx} costs a fixed £{b} plus £{a} per hour. What is the total cost for {c} hours, in pounds?",
       "A charge is £{b} to start plus £{a} for each extra unit. What is the charge for {c} units, in pounds?"
     ],
     explain: (v, r) => [`The rule is C = ${v[0]}n + ${v[1]}.`, `${v[0]} x ${v[2]} + ${v[1]} = ${r}.`],
@@ -320,7 +320,7 @@ export const level: QuestionTemplateDef[] = [
     fr: {
       contextPool: SITUATIONS_FR,
       promptTemplates: [
-        "{ctx} coûte un fixe de {b} £ plus {a} £ par heure. Quel est le coût total pour {c} heures, en livres ?",
+        "{Ctx} coûte un fixe de {b} £ plus {a} £ par heure. Quel est le coût total pour {c} heures, en livres ?",
         "Un tarif est de {b} £ au départ plus {a} £ par unité supplémentaire. Quel est le tarif pour {c} unités, en livres ?"
       ],
       explain: (v, r) => [`La règle est C = ${v[0]}n + ${v[1]}.`, `${v[0]} x ${v[2]} + ${v[1]} = ${r}.`],
@@ -334,7 +334,7 @@ export const level: QuestionTemplateDef[] = [
     ranges: [[2, 15], [1, 40], [1, 25]], compute: (v) => v[2]!,
     derive: (v) => ({ total: v[0]! * v[2]! + v[1]! }),
     promptTemplates: [
-      "{ctx} costs a fixed £{b} plus £{a} per hour. The bill came to £{total}. How many hours was it?",
+      "{Ctx} costs a fixed £{b} plus £{a} per hour. The bill came to £{total}. How many hours was it?",
       "A charge is £{b} plus £{a} per unit, and the total is £{total}. How many units were used?"
     ],
     explain: (v, r) => [
@@ -346,7 +346,7 @@ export const level: QuestionTemplateDef[] = [
     fr: {
       contextPool: SITUATIONS_FR,
       promptTemplates: [
-        "{ctx} coûte un fixe de {b} £ plus {a} £ par heure. La facture s'élève à {total} £. Combien d'heures cela représente-t-il ?",
+        "{Ctx} coûte un fixe de {b} £ plus {a} £ par heure. La facture s'élève à {total} £. Combien d'heures cela représente-t-il ?",
         "Un tarif est de {b} £ plus {a} £ par unité, et le total est de {total} £. Combien d'unités ont été utilisées ?"
       ],
       explain: (v, r) => [

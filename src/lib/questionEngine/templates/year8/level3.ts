@@ -36,7 +36,11 @@ export const level: QuestionTemplateDef[] = [
   arithmeticTemplate({
     key: "y8l3.scaleUpFromUnit", levelKey: "Y8L3", objectiveCode: "Y8-L3-1", difficulty: "APPLICATION",
     misconceptionTags: ["PROPORTION_ERROR"], type: "MULTI_STEP", contextPool: GOODS,
-    ranges: [[2, 15], [2, 40], [2, 25]], compute: (v) => v[1]! * v[2]!,
+    ranges: [[2, 15], [2, 40], [2, 25]],
+    // Asking for the cost of the same quantity you were just given is not a
+    // question, so keep the two quantities apart.
+    constraint: (v) => v[0]! !== v[2]!,
+    compute: (v) => v[1]! * v[2]!,
     derive: (v) => ({ total: v[0]! * v[1]! }),
     promptTemplates: [
       "{a} items cost {total} pence. How much do {c} items cost, in pence?",
@@ -53,7 +57,7 @@ export const level: QuestionTemplateDef[] = [
       explain: (v, r) => [`Un article coûte ${v[0]! * v[1]!} ÷ ${v[0]} = ${v[1]} pence.`, `${v[2]} x ${v[1]} = ${r} pence.`],
       hints: () => ["Trouve d'abord le prix d'un seul, puis multiplie par le nombre voulu."]
     },
-    declaredVariationSpace: 14 * 39 * 24
+    declaredVariationSpace: 14 * 39 * 24 - 14 * 39
   }),
   arithmeticTemplate({
     key: "y8l3.proportionGraphValue", levelKey: "Y8L3", objectiveCode: "Y8-L3-1", difficulty: "APPLICATION",
@@ -135,7 +139,7 @@ export const level: QuestionTemplateDef[] = [
     derive: (v) => ({ dist: v[0]! * v[1]!, time: v[1]! }),
     promptTemplates: [
       "A journey of {dist} km takes {time} hours. What is the average speed, in km/h?",
-      "{ctx} travels {dist} km in {time} hours. Find the average speed, in km/h."
+      "{Ctx} travels {dist} km in {time} hours. Find the average speed, in km/h."
     ],
     explain: (v, r) => [`Speed = distance ÷ time.`, `${v[0]! * v[1]!} ÷ ${v[1]} = ${r} km/h.`],
     hints: () => ["The unit km/h tells you the calculation: kilometres divided by hours."],
@@ -143,7 +147,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: JOURNEYS_FR,
       promptTemplates: [
         "Un trajet de {dist} km dure {time} heures. Quelle est la vitesse moyenne, en km/h ?",
-        "{ctx} parcourt {dist} km en {time} heures. Trouve la vitesse moyenne, en km/h."
+        "{Ctx} parcourt {dist} km en {time} heures. Trouve la vitesse moyenne, en km/h."
       ],
       explain: (v, r) => [`Vitesse = distance ÷ temps.`, `${v[0]! * v[1]!} ÷ ${v[1]} = ${r} km/h.`],
       hints: () => ["L'unité km/h indique le calcul : des kilomètres divisés par des heures."]
@@ -156,7 +160,7 @@ export const level: QuestionTemplateDef[] = [
     ranges: [[5, 90], [2, 12]], compute: (v) => v[0]! * v[1]!,
     promptTemplates: [
       "A vehicle travels at {a} km/h for {b} hours. How far does it go, in km?",
-      "{ctx} keeps a steady {a} km/h for {b} hours. What distance is covered, in km?"
+      "{Ctx} keeps a steady {a} km/h for {b} hours. What distance is covered, in km?"
     ],
     explain: (v, r) => [`Distance = speed x time.`, `${v[0]} x ${v[1]} = ${r} km.`],
     hints: () => ["Rearranging speed = distance ÷ time gives distance = speed x time."],
@@ -164,7 +168,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: JOURNEYS_FR,
       promptTemplates: [
         "Un véhicule roule à {a} km/h pendant {b} heures. Quelle distance parcourt-il, en km ?",
-        "{ctx} maintient {a} km/h pendant {b} heures. Quelle distance est parcourue, en km ?"
+        "{Ctx} maintient {a} km/h pendant {b} heures. Quelle distance est parcourue, en km ?"
       ],
       explain: (v, r) => [`Distance = vitesse x temps.`, `${v[0]} x ${v[1]} = ${r} km.`],
       hints: () => ["En réarrangeant vitesse = distance ÷ temps, on obtient distance = vitesse x temps."]
@@ -201,7 +205,7 @@ export const level: QuestionTemplateDef[] = [
     derive: (v) => ({ mass: v[0]! * v[1]!, vol: v[1]! }),
     promptTemplates: [
       "An object of mass {mass} g has a volume of {vol} cm³. What is its density, in g/cm³?",
-      "{ctx} has a mass of {mass} g and a volume of {vol} cm³. Find its density, in g/cm³."
+      "{Ctx} has a mass of {mass} g and a volume of {vol} cm³. Find its density, in g/cm³."
     ],
     explain: (v, r) => [`Density = mass ÷ volume.`, `${v[0]! * v[1]!} ÷ ${v[1]} = ${r} g/cm³.`],
     hints: () => ["The unit g/cm³ is grams per cubic centimetre, so divide mass by volume."],
@@ -209,7 +213,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: MATERIALS_FR,
       promptTemplates: [
         "Un objet de masse {mass} g a un volume de {vol} cm³. Quelle est sa masse volumique, en g/cm³ ?",
-        "{ctx} a une masse de {mass} g et un volume de {vol} cm³. Trouve sa masse volumique, en g/cm³."
+        "{Ctx} a une masse de {mass} g et un volume de {vol} cm³. Trouve sa masse volumique, en g/cm³."
       ],
       explain: (v, r) => [`Masse volumique = masse ÷ volume.`, `${v[0]! * v[1]!} ÷ ${v[1]} = ${r} g/cm³.`],
       hints: () => ["L'unité g/cm³ signifie grammes par centimètre cube : divise la masse par le volume."]
@@ -222,7 +226,7 @@ export const level: QuestionTemplateDef[] = [
     ranges: [[2, 25], [2, 40]], compute: (v) => v[0]! * v[1]!,
     promptTemplates: [
       "A material has density {a} g/cm³. What is the mass of {b} cm³ of it, in grams?",
-      "{ctx} has a density of {a} g/cm³ and a volume of {b} cm³. What is its mass, in grams?"
+      "{Ctx} has a density of {a} g/cm³ and a volume of {b} cm³. What is its mass, in grams?"
     ],
     explain: (v, r) => [`Mass = density x volume.`, `${v[0]} x ${v[1]} = ${r} g.`],
     hints: () => ["Rearranging density = mass ÷ volume gives mass = density x volume."],
@@ -230,7 +234,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: MATERIALS_FR,
       promptTemplates: [
         "Un matériau a une masse volumique de {a} g/cm³. Quelle est la masse de {b} cm³ de ce matériau, en grammes ?",
-        "{ctx} a une masse volumique de {a} g/cm³ et un volume de {b} cm³. Quelle est sa masse, en grammes ?"
+        "{Ctx} a une masse volumique de {a} g/cm³ et un volume de {b} cm³. Quelle est sa masse, en grammes ?"
       ],
       explain: (v, r) => [`Masse = masse volumique x volume.`, `${v[0]} x ${v[1]} = ${r} g.`],
       hints: () => ["En réarrangeant masse volumique = masse ÷ volume, on obtient masse = masse volumique x volume."]

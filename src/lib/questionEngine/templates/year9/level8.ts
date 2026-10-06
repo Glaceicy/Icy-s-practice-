@@ -2,8 +2,12 @@ import { arithmeticTemplate, categoricalPoolTemplate, matchingTemplate } from ".
 import type { QuestionTemplateDef } from "../../types";
 
 // Year 9, Level 8 — "Circles, surface area and volume"
-const ROUND_THINGS = ["a pizza slice", "a fan blade", "a clock hand sweep", "a radar screen", "a garden sprinkler", "a protractor", "a cheese wedge", "a windscreen wiper"];
-const ROUND_THINGS_FR = ["une part de pizza", "une pale de ventilateur", "le balayage d'une aiguille d'horloge", "un écran radar", "un arroseur de jardin", "un rapporteur", "une part de fromage", "un essuie-glace"];
+// Sweeping things and semicircular things are kept apart: a sprinkler sweeps an
+// arc but is not one, and a protractor is a semicircle but does not trace one.
+const SWEEPERS = ["a fan blade", "a clock hand", "a radar beam", "a garden sprinkler", "a windscreen wiper", "a lighthouse beam", "a crane arm", "a searchlight"];
+const SWEEPERS_FR = ["une pale de ventilateur", "une aiguille d'horloge", "un faisceau radar", "un arroseur de jardin", "un essuie-glace", "un faisceau de phare", "le bras d'une grue", "un projecteur"];
+const SEMICIRCLES = ["a protractor", "a half-moon window", "a tunnel entrance", "a semicircular rug", "a semicircular flower bed", "a half-moon stage", "a semicircular pond", "an archway"];
+const SEMICIRCLES_FR = ["un rapporteur", "une fenêtre en demi-lune", "une entrée de tunnel", "un tapis en demi-cercle", "un parterre en demi-cercle", "une scène en demi-lune", "un bassin en demi-cercle", "une arcade"];
 const SOLIDS = ["a water butt", "a soup tin", "a candle", "a storage drum", "a paint pot", "a rainwater pipe"];
 const SOLIDS_FR = ["un récupérateur d'eau", "une boîte de soupe", "une bougie", "un bidon de stockage", "un pot de peinture", "une gouttière"];
 const oneDp = (n: number) => n.toFixed(1);
@@ -12,20 +16,20 @@ export const level: QuestionTemplateDef[] = [
   // --- Y9-L8-1: arc lengths, sector angles and sector areas ---
   arithmeticTemplate({
     key: "y9l8.arcLength", levelKey: "Y9L8", objectiveCode: "Y9-L8-1", difficulty: "APPLICATION",
-    misconceptionTags: ["SECTOR_FORMULA_ERROR"], type: "NUMBER_ENTRY", contextPool: ROUND_THINGS,
+    misconceptionTags: ["SECTOR_FORMULA_ERROR"], type: "NUMBER_ENTRY", contextPool: SWEEPERS,
     ranges: [[2, 30], [20, 340]], compute: (v) => (2 * Math.PI * v[0]! * v[1]!) / 360, formatValue: oneDp,
     derive: (v) => ({ rad: v[0]!, ang: v[1]! }),
     promptTemplates: [
       "A sector has radius {rad} cm and angle {ang}°. How long is its arc, in cm to 1 decimal place?",
-      "{ctx} sweeps through {ang}° at a radius of {rad} cm. How far does its tip travel, in cm to 1 decimal place?"
+      "{Ctx} sweeps through {ang}° at a radius of {rad} cm. How far does its tip travel, in cm to 1 decimal place?"
     ],
     explain: (v, r) => [`Arc = 2πr x (angle ÷ 360).`, `2 x π x ${v[0]} x (${v[1]} ÷ 360) = ${r} cm.`],
     hints: () => ["Find the whole circumference first, then take the fraction of it that the angle represents."],
     fr: {
-      contextPool: ROUND_THINGS_FR,
+      contextPool: SWEEPERS_FR,
       promptTemplates: [
         "Un secteur a un rayon de {rad} cm et un angle de {ang}°. Quelle est la longueur de son arc, en cm au dixième près ?",
-        "{ctx} balaie {ang}° à un rayon de {rad} cm. Quelle distance parcourt son extrémité, en cm au dixième près ?"
+        "{Ctx} balaie {ang}° à un rayon de {rad} cm. Quelle distance parcourt son extrémité, en cm au dixième près ?"
       ],
       explain: (v, r) => [`Arc = 2πr x (angle ÷ 360).`, `2 x π x ${v[0]} x (${v[1]} ÷ 360) = ${r} cm.`],
       hints: () => ["Calcule d'abord la circonférence entière, puis prends la fraction correspondant à l'angle."]
@@ -34,22 +38,22 @@ export const level: QuestionTemplateDef[] = [
   }),
   arithmeticTemplate({
     key: "y9l8.sectorArea", levelKey: "Y9L8", objectiveCode: "Y9-L8-1", difficulty: "APPLICATION",
-    misconceptionTags: ["SECTOR_FORMULA_ERROR"], type: "NUMBER_ENTRY", contextPool: ROUND_THINGS,
+    misconceptionTags: ["SECTOR_FORMULA_ERROR"], type: "NUMBER_ENTRY", contextPool: SWEEPERS,
     ranges: [[2, 25], [20, 340]], compute: (v) => (Math.PI * v[0]! * v[0]! * v[1]!) / 360, formatValue: oneDp,
     derive: (v) => ({ rad: v[0]!, ang: v[1]! }),
     promptTemplates: [
       "A sector has radius {rad} cm and angle {ang}°. What is its area, in cm² to 1 decimal place?",
-      "{ctx} covers a sector of radius {rad} m and angle {ang}°. What area does it cover, in m² to 1 decimal place?"
+      "{Ctx} covers a sector of radius {rad} m and angle {ang}°. What area does it cover, in m² to 1 decimal place?"
     ],
-    explain: (v, r) => [`Sector area = πr² x (angle ÷ 360).`, `π x ${v[0]}² x (${v[1]} ÷ 360) = ${r} cm².`],
+    explain: (v, r) => [`Sector area = πr² x (angle ÷ 360).`, `π x ${v[0]}² x (${v[1]} ÷ 360) = ${r}.`],
     hints: () => ["Work out the whole circle's area, then take the angle's share of it."],
     fr: {
-      contextPool: ROUND_THINGS_FR,
+      contextPool: SWEEPERS_FR,
       promptTemplates: [
         "Un secteur a un rayon de {rad} cm et un angle de {ang}°. Quelle est son aire, en cm² au dixième près ?",
-        "{ctx} couvre un secteur de rayon {rad} m et d'angle {ang}°. Quelle aire couvre-t-il, en m² au dixième près ?"
+        "{Ctx} couvre un secteur de rayon {rad} m et d'angle {ang}°. Quelle aire couvre-t-il, en m² au dixième près ?"
       ],
-      explain: (v, r) => [`Aire d'un secteur = πr² x (angle ÷ 360).`, `π x ${v[0]}² x (${v[1]} ÷ 360) = ${r} cm².`],
+      explain: (v, r) => [`Aire d'un secteur = πr² x (angle ÷ 360).`, `π x ${v[0]}² x (${v[1]} ÷ 360) = ${r}.`],
       hints: () => ["Calcule l'aire du cercle entier, puis prends la part correspondant à l'angle."]
     },
     declaredVariationSpace: 24 * 321
@@ -79,27 +83,27 @@ export const level: QuestionTemplateDef[] = [
   }),
   arithmeticTemplate({
     key: "y9l8.semicirclePerimeter", levelKey: "Y9L8", objectiveCode: "Y9-L8-1", difficulty: "REASONING",
-    misconceptionTags: ["PERIMETER_AREA_CONFUSION"], type: "MULTI_STEP", contextPool: ROUND_THINGS,
+    misconceptionTags: ["PERIMETER_AREA_CONFUSION"], type: "MULTI_STEP", contextPool: SEMICIRCLES,
     ranges: [[2, 40]], compute: (v) => Math.PI * v[0]! + 2 * v[0]!, formatValue: oneDp,
     derive: (v) => ({ rad: v[0]!, dia: 2 * v[0]! }),
     promptTemplates: [
       "A semicircle has radius {rad} cm. What is its full perimeter, in cm to 1 decimal place?",
       "A half-circle window has a radius of {rad} cm. How much edging strip goes right around it, in cm to 1 decimal place?",
-      "{ctx} traces a semicircle of radius {rad} cm. What is the perimeter of that semicircle, in cm to 1 decimal place?"
+      "{Ctx} is a semicircle of radius {rad} cm. What is the distance all the way around its edge, in cm to 1 decimal place?"
     ],
     explain: (v, r) => [`The curved edge is half the circumference: π x ${v[0]}.`, `Add the straight diameter of ${2 * v[0]!} cm to get ${r} cm.`],
     hints: () => ["Half the circumference is only part of it — do not forget the straight diameter across the bottom."],
     fr: {
-      contextPool: ROUND_THINGS_FR,
+      contextPool: SEMICIRCLES_FR,
       promptTemplates: [
         "Un demi-cercle a un rayon de {rad} cm. Quel est son périmètre complet, en cm au dixième près ?",
         "Une fenêtre en demi-cercle a un rayon de {rad} cm. Quelle longueur de bordure en fait tout le tour, en cm au dixième près ?",
-        "{ctx} décrit un demi-cercle de rayon {rad} cm. Quel est le périmètre de ce demi-cercle, en cm au dixième près ?"
+        "{Ctx} est un demi-cercle de rayon {rad} cm. Quelle est la distance tout autour de son bord, en cm au dixième près ?"
       ],
       explain: (v, r) => [`Le bord courbe est la moitié de la circonférence : π x ${v[0]}.`, `Ajoute le diamètre droit de ${2 * v[0]!} cm pour obtenir ${r} cm.`],
       hints: () => ["La moitié de la circonférence n'est qu'une partie — n'oublie pas le diamètre droit en bas."]
     },
-    declaredVariationSpace: 39 * 3 * (1 + ROUND_THINGS.length)
+    declaredVariationSpace: 39 * (2 + SEMICIRCLES.length)
   }),
   categoricalPoolTemplate({
     key: "y9l8.mcSectorFormula", levelKey: "Y9L8", objectiveCode: "Y9-L8-1", difficulty: "APPLICATION",
@@ -150,7 +154,7 @@ export const level: QuestionTemplateDef[] = [
     ranges: [[1, 15], [1, 20]], compute: (v) => v[0]! * v[0]! * v[1]!,
     promptTemplates: [
       "A cylinder has radius {a} cm and height {b} cm. Its volume is ___π cm³. What number is missing?",
-      "{ctx} is a cylinder of radius {a} cm and height {b} cm. Give its volume as a multiple of π: ___π cm³."
+      "{Ctx} is a cylinder of radius {a} cm and height {b} cm. Give its volume as a multiple of π: ___π cm³."
     ],
     explain: (v, r) => [`V = πr²h = π x ${v[0]}² x ${v[1]} = ${r}π cm³.`],
     hints: () => ["A cylinder is a prism with a circular cross-section, so volume is the circle's area times the height."],
@@ -158,7 +162,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: SOLIDS_FR,
       promptTemplates: [
         "Un cylindre a un rayon de {a} cm et une hauteur de {b} cm. Son volume est ___π cm³. Quel nombre manque ?",
-        "{ctx} est un cylindre de rayon {a} cm et de hauteur {b} cm. Donne son volume comme un multiple de π : ___π cm³."
+        "{Ctx} est un cylindre de rayon {a} cm et de hauteur {b} cm. Donne son volume comme un multiple de π : ___π cm³."
       ],
       explain: (v, r) => [`V = πr²h = π x ${v[0]}² x ${v[1]} = ${r}π cm³.`],
       hints: () => ["Un cylindre est un prisme à section circulaire : le volume est l'aire du cercle multipliée par la hauteur."]
@@ -200,7 +204,7 @@ export const level: QuestionTemplateDef[] = [
     derive: (v) => ({ rad: v[0]!, hei: v[1]! }),
     promptTemplates: [
       "A cylinder has radius {rad} cm and height {hei} cm. What is its volume, in cm³ to 1 decimal place?",
-      "{ctx} is a cylinder of radius {rad} cm and height {hei} cm. How much does it hold, in cm³ to 1 decimal place?"
+      "{Ctx} is a cylinder of radius {rad} cm and height {hei} cm. How much does it hold, in cm³ to 1 decimal place?"
     ],
     explain: (v, r) => [`V = πr²h = π x ${v[0]}² x ${v[1]} = π x ${v[0]! * v[0]! * v[1]!}.`, `That is ${r} cm³.`],
     hints: () => ["Square the radius, multiply by the height, then multiply by π."],
@@ -208,7 +212,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: SOLIDS_FR,
       promptTemplates: [
         "Un cylindre a un rayon de {rad} cm et une hauteur de {hei} cm. Quel est son volume, en cm³ au dixième près ?",
-        "{ctx} est un cylindre de rayon {rad} cm et de hauteur {hei} cm. Quelle est sa contenance, en cm³ au dixième près ?"
+        "{Ctx} est un cylindre de rayon {rad} cm et de hauteur {hei} cm. Quelle est sa contenance, en cm³ au dixième près ?"
       ],
       explain: (v, r) => [`V = πr²h = π x ${v[0]}² x ${v[1]} = π x ${v[0]! * v[0]! * v[1]!}.`, `Soit ${r} cm³.`],
       hints: () => ["Élève le rayon au carré, multiplie par la hauteur, puis multiplie par π."]

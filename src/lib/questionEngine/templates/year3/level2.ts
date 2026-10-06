@@ -115,7 +115,7 @@ export const level: QuestionTemplateDef[] = [
     declaredVariationSpace: 800 * 99 * CTX.length,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Il y a {a} {ctx} dans un entrepôt. {b} de plus sont livrés. Combien y a-t-il de {ctx} maintenant ?"],
+      promptTemplates: ["Il y a {a} {ctx} dans un entrepôt. {b} de plus sont livrés. Combien y a-t-il {de:ctx} maintenant ?"],
       explain: (v, r) => [`${v[0]} + ${v[1]} = ${r}.`],
       hints: () => ["Additionne mentalement les deux quantités."]
     }
@@ -218,7 +218,7 @@ export const level: QuestionTemplateDef[] = [
     declaredVariationSpace: 800 * 800 * CTX.length,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Un magasin a vendu {a} {ctx} une semaine et {b} {ctx} la semaine suivante. Combien de {ctx} ont été vendus au total ?"],
+      promptTemplates: ["Un magasin a vendu {a} {ctx} une semaine et {b} {ctx} la semaine suivante. Combien {de:ctx} ont été vendus au total ?"],
       explain: (v, r) => [`${v[0]} + ${v[1]} = ${r}.`],
       hints: () => ["Utilise la méthode en colonnes pour additionner les deux totaux."]
     }

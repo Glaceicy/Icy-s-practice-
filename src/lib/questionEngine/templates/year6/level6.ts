@@ -21,7 +21,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: CTX_FR,
       promptTemplates: [
         "Une formule dit : coût = {a} x n + {c}. Quel est le coût quand n = {b} ?",
-        "Le coût de {ctx} est {a} x n + {c} pence, où n est le nombre acheté. Quel est le coût quand n = {b} ?"
+        "Le coût {de:ctx} est {a} x n + {c} pence, où n est le nombre acheté. Quel est le coût quand n = {b} ?"
       ],
       explain: (v, r) => [`${v[0]} x ${v[1]} = ${v[0]! * v[1]!}.`, `${v[0]! * v[1]!} + ${v[2]} = ${r}.`],
       hints: () => ["Remplace n par sa valeur, puis multiplie avant d'additionner."]
@@ -42,7 +42,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: CTX_FR,
       promptTemplates: [
         "La formule du périmètre d'un rectangle est P = 2(L + l). Trouve P quand L = {a} et l = {b}.",
-        "Un plateau rectangulaire de {ctx} a L = {a} cm et l = {b} cm. Avec P = 2(L + l), que vaut P ?"
+        "Un plateau rectangulaire {de:ctx} a L = {a} cm et l = {b} cm. Avec P = 2(L + l), que vaut P ?"
       ],
       explain: (v, r) => [`${v[0]} + ${v[1]} = ${v[0]! + v[1]!}.`, `2 x ${v[0]! + v[1]!} = ${r}.`],
       hints: () => ["Calcule d'abord la parenthèse, puis double le résultat."]
@@ -58,7 +58,7 @@ export const level: QuestionTemplateDef[] = [
     hints: () => ["Turn the words into a calculation, then work it out."],
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Pour trouver le total, multiplie le nombre de {ctx} par {a}. Quel est le total quand il y en a {b} ?"],
+      promptTemplates: ["Pour trouver le total, multiplie le nombre {de:ctx} par {a}. Quel est le total quand il y en a {b} ?"],
       explain: (v, r) => [`${v[1]} x ${v[0]} = ${r}.`],
       hints: () => ["Transforme les mots en calcul, puis effectue-le."]
     },
@@ -93,7 +93,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: CTX_FR,
       promptTemplates: [
         "Avec y = {a}n + {c}, si y = {total}, que vaut n ?",
-        "Le coût de {ctx} est {a}n + {c} pence. Si le coût est de {total} pence, que vaut n ?"
+        "Le coût {de:ctx} est {a}n + {c} pence. Si le coût est de {total} pence, que vaut n ?"
       ],
       explain: (v, r) => [`${v[0]! * v[1]! + v[2]!} - ${v[2]} = ${v[0]! * v[1]!}.`, `${v[0]! * v[1]!} ÷ ${v[0]} = ${r}.`],
       hints: () => ["Annule d'abord l'addition, puis la multiplication."]
@@ -160,7 +160,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: CTX_FR,
       promptTemplates: [
         "Une suite a pour règle {a}n + {b}. Quel est le {c}e terme ?",
-        "Des rangées de {ctx} suivent la règle {a}n + {b}. Combien y en a-t-il dans la rangée {c} ?"
+        "Des rangées {de:ctx} suivent la règle {a}n + {b}. Combien y en a-t-il dans la rangée {c} ?"
       ],
       explain: (v, r) => [`${v[0]} x ${v[2]} = ${v[0]! * v[2]!}.`, `${v[0]! * v[2]!} + ${v[1]} = ${r}.`],
       hints: () => ["Remplace n par le numéro du terme."]
@@ -221,7 +221,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: CTX_FR,
       promptTemplates: [
         "a + b = {total}. Si a = {a}, que vaut b ?",
-        "Deux sortes de {ctx} font {total} en tout. S'il y en a {a} de la première sorte, combien de la seconde ?"
+        "Deux sortes {de:ctx} font {total} en tout. S'il y en a {a} de la première sorte, combien de la seconde ?"
       ],
       explain: (v, r) => [`${v[0]! + v[1]!} - ${v[0]} = ${r}.`],
       hints: () => ["Soustrais la valeur connue du total."]
@@ -243,7 +243,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: CTX_FR,
       promptTemplates: [
         "{a}x + y = {total}. Si x = {b}, que vaut y ?",
-        "Chaque boîte de {ctx} en contient {a}, plus quelques-uns en vrac. Avec {b} boîtes, le total est {total}. Combien y en a-t-il en vrac ?"
+        "Chaque boîte {de:ctx} en contient {a}, plus quelques-uns en vrac. Avec {b} boîtes, le total est {total}. Combien y en a-t-il en vrac ?"
       ],
       explain: (v, r) => [`${v[0]} x ${v[1]} = ${v[0]! * v[1]!}.`, `${v[0]! * v[1]! + v[2]!} - ${v[0]! * v[1]!} = ${r}.`],
       hints: () => ["Calcule la première partie, puis soustrais-la du total."]
@@ -264,7 +264,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: CTX_FR,
       promptTemplates: [
         "a + b = {a}, où a et b sont des entiers d'au moins 1. Combien de paires différentes sont possibles ?",
-        "Deux sortes de {ctx} font {a} en tout, avec au moins 1 de chaque. Combien de paires différentes sont possibles ?"
+        "Deux sortes {de:ctx} font {a} en tout, avec au moins 1 de chaque. Combien de paires différentes sont possibles ?"
       ],
       explain: (v, r) => [`Le premier nombre peut aller de 1 à ${v[0]! - 1}, soit ${r} paires.`],
       hints: () => ["Liste les possibilités dans l'ordre et cherche la régularité."]

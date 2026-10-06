@@ -89,7 +89,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: CTX_FR,
       promptTemplates: [
         "Arrondis {decimal} à 2 décimales.",
-        "Un relevé de {ctx} indique {decimal}. Arrondis-le à 2 décimales."
+        "Un relevé {de:ctx} indique {decimal}. Arrondis-le à 2 décimales."
       ],
       explain: (v, r) => [`Regarde le chiffre des millièmes pour décider.`, `${(v[0]! / 1000).toFixed(3)} s'arrondit à ${r}.`],
       hints: () => ["Regarde la troisième décimale : 5 ou plus, on arrondit vers le haut."]

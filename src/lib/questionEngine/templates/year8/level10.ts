@@ -68,7 +68,7 @@ export const level: QuestionTemplateDef[] = [
     derive: (v) => ({ amount: 100 * v[0]! }),
     promptTemplates: [
       "A price of {amount} pence rises by {b}%. What is the new price, in pence?",
-      "{ctx} costs {amount} pence and the price goes up by {b}%. What is the new price, in pence?"
+      "{Ctx} costs {amount} pence and the price goes up by {b}%. What is the new price, in pence?"
     ],
     explain: (v, r) => [`The multiplier is (100 + ${v[1]}) ÷ 100.`, `${100 * v[0]!} x that multiplier = ${r}.`],
     hints: () => ["A rise of p% means multiplying by (100 + p) ÷ 100."],
@@ -76,7 +76,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: GOODS_FR,
       promptTemplates: [
         "Un prix de {amount} pence augmente de {b} %. Quel est le nouveau prix, en pence ?",
-        "{ctx} coûte {amount} pence et le prix augmente de {b} %. Quel est le nouveau prix, en pence ?"
+        "{Ctx} coûte {amount} pence et le prix augmente de {b} %. Quel est le nouveau prix, en pence ?"
       ],
       explain: (v, r) => [`Le multiplicateur est (100 + ${v[1]}) ÷ 100.`, `${100 * v[0]!} x ce multiplicateur = ${r}.`],
       hints: () => ["Une hausse de p % revient à multiplier par (100 + p) ÷ 100."]
@@ -90,7 +90,7 @@ export const level: QuestionTemplateDef[] = [
     derive: (v) => ({ amount: 100 * v[0]! }),
     promptTemplates: [
       "A price of {amount} pence falls by {b}%. What is the new price, in pence?",
-      "{ctx} costs {amount} pence and is reduced by {b}% in a sale. What is the sale price, in pence?"
+      "{Ctx} costs {amount} pence and is reduced by {b}% in a sale. What is the sale price, in pence?"
     ],
     explain: (v, r) => [`The multiplier is (100 - ${v[1]}) ÷ 100.`, `${100 * v[0]!} x that multiplier = ${r}.`],
     hints: () => ["A fall of p% means multiplying by (100 - p) ÷ 100 — one step, not two."],
@@ -98,7 +98,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: GOODS_FR,
       promptTemplates: [
         "Un prix de {amount} pence baisse de {b} %. Quel est le nouveau prix, en pence ?",
-        "{ctx} coûte {amount} pence et est réduit de {b} % en soldes. Quel est le prix soldé, en pence ?"
+        "{Ctx} coûte {amount} pence et est réduit de {b} % en soldes. Quel est le prix soldé, en pence ?"
       ],
       explain: (v, r) => [`Le multiplicateur est (100 - ${v[1]}) ÷ 100.`, `${100 * v[0]!} x ce multiplicateur = ${r}.`],
       hints: () => ["Une baisse de p % revient à multiplier par (100 - p) ÷ 100 — une seule étape, pas deux."]

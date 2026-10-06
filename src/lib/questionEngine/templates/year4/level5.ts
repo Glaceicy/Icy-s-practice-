@@ -137,7 +137,7 @@ export const level: QuestionTemplateDef[] = [
     ranges: [[3, 12], [1, 11]], constraint: (v) => v[1]! < v[0]!,
     compute: (v) => v[0]! - v[1]!,
     promptTemplates: [
-      "{ctx} is split into {a} equal parts and {b} are shaded. How many parts are not shaded?",
+      "{Ctx} is split into {a} equal parts and {b} are shaded. How many parts are not shaded?",
       "A shape has {a} equal parts. {b} of them are coloured. How many are left plain?"
     ],
     explain: (v, r) => [`The shaded and unshaded parts make the whole.`, `${v[0]} - ${v[1]} = ${r}.`],
@@ -145,7 +145,7 @@ export const level: QuestionTemplateDef[] = [
     fr: {
       contextPool: SHAPES_FR,
       promptTemplates: [
-        "{ctx} est partagé en {a} parts égales et {b} sont coloriées. Combien de parts ne sont pas coloriées ?",
+        "{Ctx} est partagé en {a} parts égales et {b} sont coloriées. Combien de parts ne sont pas coloriées ?",
         "Une figure a {a} parts égales. {b} d'entre elles sont coloriées. Combien restent blanches ?"
       ],
       explain: (v, r) => [`Les parts coloriées et non coloriées forment le tout.`, `${v[0]} - ${v[1]} = ${r}.`],
@@ -206,7 +206,7 @@ export const level: QuestionTemplateDef[] = [
     compute: (v) => v[0]! - v[1]!,
     promptTemplates: [
       "{b}/{a} + ___/{a} = 1. What is the missing numerator?",
-      "{ctx} is cut into {a} equal parts and {b} are eaten. What fraction is left? Give the numerator."
+      "{Ctx} is cut into {a} equal parts and {b} are eaten. What fraction is left? Give the numerator."
     ],
     explain: (v, r) => [`A whole is ${v[0]}/${v[0]}.`, `${v[0]} - ${v[1]} = ${r}, so the missing fraction is ${r}/${v[0]}.`],
     hints: () => ["One whole is the denominator over itself — so make the numerators add up to the denominator."],
@@ -214,7 +214,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: SHAPES_FR,
       promptTemplates: [
         "{b}/{a} + ___/{a} = 1. Quel numérateur manque ?",
-        "{ctx} est coupé en {a} parts égales et {b} sont mangées. Quelle fraction reste-t-il ? Donne le numérateur."
+        "{Ctx} est coupé en {a} parts égales et {b} sont mangées. Quelle fraction reste-t-il ? Donne le numérateur."
       ],
       explain: (v, r) => [`Un tout vaut ${v[0]}/${v[0]}.`, `${v[0]} - ${v[1]} = ${r}, donc la fraction manquante est ${r}/${v[0]}.`],
       hints: () => ["Un tout, c'est le dénominateur sur lui-même — fais en sorte que les numérateurs s'additionnent au dénominateur."]

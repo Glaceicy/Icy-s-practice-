@@ -20,7 +20,7 @@ export const level: QuestionTemplateDef[] = [
     derive: (v) => ({ p: TRIPLES[v[0]!]![0] * v[1]!, q: TRIPLES[v[0]!]![1] * v[1]! }),
     promptTemplates: [
       "A right-angled triangle has shorter sides of {p} cm and {q} cm. How long is the hypotenuse, in cm?",
-      "{ctx} forms a right-angled triangle with shorter sides {p} m and {q} m. How long is the sloping side, in m?",
+      "{Ctx} forms a right-angled triangle with shorter sides {p} m and {q} m. How long is the sloping side, in m?",
       "Use Pythagoras' theorem: the legs of a right-angled triangle are {p} mm and {q} mm. Find the hypotenuse, in mm."
     ],
     explain: (v, r) => {
@@ -33,7 +33,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: PLACES_FR,
       promptTemplates: [
         "Un triangle rectangle a des côtés courts de {p} cm et {q} cm. Quelle est la longueur de l'hypoténuse, en cm ?",
-        "{ctx} forme un triangle rectangle avec des côtés courts de {p} m et {q} m. Quelle est la longueur du côté oblique, en m ?",
+        "{Ctx} forme un triangle rectangle avec des côtés courts de {p} m et {q} m. Quelle est la longueur du côté oblique, en m ?",
         "Utilise le théorème de Pythagore : les cathètes d'un triangle rectangle mesurent {p} mm et {q} mm. Trouve l'hypoténuse, en mm."
       ],
       explain: (v, r) => {
@@ -53,7 +53,7 @@ export const level: QuestionTemplateDef[] = [
     derive: (v) => ({ p: TRIPLES[v[0]!]![0] * v[1]!, h: TRIPLES[v[0]!]![2] * v[1]! }),
     promptTemplates: [
       "A right-angled triangle has a hypotenuse of {h} cm and one shorter side of {p} cm. How long is the other shorter side, in cm?",
-      "{ctx} is {h} m long and its foot is {p} m from a vertical wall. How high up the wall does it reach, in m?"
+      "{Ctx} is {h} m long and its foot is {p} m from a vertical wall. How high up the wall does it reach, in m?"
     ],
     explain: (v, r) => {
       const t = TRIPLES[v[0]!]!;
@@ -65,7 +65,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: PLACES_FR,
       promptTemplates: [
         "Un triangle rectangle a une hypoténuse de {h} cm et un côté court de {p} cm. Quelle est la longueur de l'autre côté court, en cm ?",
-        "{ctx} mesure {h} m et son pied est à {p} m d'un mur vertical. À quelle hauteur atteint-elle le mur, en m ?"
+        "{Ctx} mesure {h} m et son pied est à {p} m d'un mur vertical. À quelle hauteur atteint-elle le mur, en m ?"
       ],
       explain: (v, r) => {
         const t = TRIPLES[v[0]!]!;
@@ -173,7 +173,7 @@ export const level: QuestionTemplateDef[] = [
     ranges: [[1, 60]], compute: (v) => 2 * v[0]!,
     promptTemplates: [
       "A circle has radius {a} cm. Its circumference is ___π cm. What number is missing?",
-      "{ctx} has a radius of {a} cm. Give its circumference as a multiple of π: ___π cm.",
+      "{Ctx} has a radius of {a} cm. Give its circumference as a multiple of π: ___π cm.",
       "Write the circumference of a circle of radius {a} cm in the form ___π cm."
     ],
     explain: (v, r) => [`Circumference = 2πr = 2 x π x ${v[0]} = ${r}π cm.`],
@@ -182,7 +182,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: ROUND_THINGS_FR,
       promptTemplates: [
         "Un cercle a un rayon de {a} cm. Sa circonférence est ___π cm. Quel nombre manque ?",
-        "{ctx} a un rayon de {a} cm. Donne sa circonférence comme un multiple de π : ___π cm.",
+        "{Ctx} a un rayon de {a} cm. Donne sa circonférence comme un multiple de π : ___π cm.",
         "Écris la circonférence d'un cercle de rayon {a} cm sous la forme ___π cm."
       ],
       explain: (v, r) => [`Circonférence = 2πr = 2 x π x ${v[0]} = ${r}π cm.`],
@@ -196,7 +196,7 @@ export const level: QuestionTemplateDef[] = [
     ranges: [[1, 40]], compute: (v) => v[0]! * v[0]!,
     promptTemplates: [
       "A circle has radius {a} cm. Its area is ___π cm². What number is missing?",
-      "{ctx} is a circle of radius {a} cm. Give its area as a multiple of π: ___π cm².",
+      "{Ctx} is a circle of radius {a} cm. Give its area as a multiple of π: ___π cm².",
       "Write the area of a circle of radius {a} cm in the form ___π cm²."
     ],
     explain: (v, r) => [`Area = πr² = π x ${v[0]}² = ${r}π cm².`],
@@ -205,7 +205,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: ROUND_THINGS_FR,
       promptTemplates: [
         "Un cercle a un rayon de {a} cm. Son aire est ___π cm². Quel nombre manque ?",
-        "{ctx} est un cercle de rayon {a} cm. Donne son aire comme un multiple de π : ___π cm².",
+        "{Ctx} est un cercle de rayon {a} cm. Donne son aire comme un multiple de π : ___π cm².",
         "Écris l'aire d'un cercle de rayon {a} cm sous la forme ___π cm²."
       ],
       explain: (v, r) => [`Aire = πr² = π x ${v[0]}² = ${r}π cm².`],
@@ -220,7 +220,7 @@ export const level: QuestionTemplateDef[] = [
     derive: (v) => ({ rad: v[0]! }),
     promptTemplates: [
       "A circle has radius {rad} cm. What is its area in cm², to 1 decimal place?",
-      "{ctx} is a circle of radius {rad} m. What is its area in m², to 1 decimal place?",
+      "{Ctx} is a circle of radius {rad} m. What is its area in m², to 1 decimal place?",
       "Work out the area of a circle of radius {rad} cm, in cm² to 1 decimal place."
     ],
     explain: (v, r) => [`Area = π x ${v[0]}² = π x ${v[0]! * v[0]!}.`, `That is ${r} cm² to 1 decimal place.`],
@@ -229,7 +229,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: ROUND_THINGS_FR,
       promptTemplates: [
         "Un cercle a un rayon de {rad} cm. Quelle est son aire en cm², au dixième près ?",
-        "{ctx} est un cercle de rayon {rad} m. Quelle est son aire en m², au dixième près ?",
+        "{Ctx} est un cercle de rayon {rad} m. Quelle est son aire en m², au dixième près ?",
         "Calcule l'aire d'un cercle de rayon {rad} cm, en cm² au dixième près."
       ],
       explain: (v, r) => [`Aire = π x ${v[0]}² = π x ${v[0]! * v[0]!}.`, `Soit ${r} cm² au dixième près.`],
@@ -244,7 +244,7 @@ export const level: QuestionTemplateDef[] = [
     derive: (v) => ({ dia: 2 * v[0]! }),
     promptTemplates: [
       "A circle has a diameter of {dia} cm. What is its radius, in cm?",
-      "{ctx} measures {dia} cm right across through its centre. What is its radius, in cm?",
+      "{Ctx} measures {dia} cm right across through its centre. What is its radius, in cm?",
       "The distance across a circle through the centre is {dia} m. How long is the radius, in m?"
     ],
     explain: (v, r) => [`The radius is half the diameter.`, `${2 * v[0]!} ÷ 2 = ${r} cm.`],
@@ -253,7 +253,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: ROUND_THINGS_FR,
       promptTemplates: [
         "Un cercle a un diamètre de {dia} cm. Quel est son rayon, en cm ?",
-        "{ctx} mesure {dia} cm de part en part en passant par le centre. Quel est son rayon, en cm ?",
+        "{Ctx} mesure {dia} cm de part en part en passant par le centre. Quel est son rayon, en cm ?",
         "La distance à travers un cercle par le centre est {dia} m. Quelle est la longueur du rayon, en m ?"
       ],
       explain: (v, r) => [`Le rayon est la moitié du diamètre.`, `${2 * v[0]!} ÷ 2 = ${r} cm.`],
@@ -268,7 +268,7 @@ export const level: QuestionTemplateDef[] = [
     derive: (v) => ({ rad: v[0]! }),
     promptTemplates: [
       "A semicircle has radius {rad} cm. What is its full perimeter, in cm to 1 decimal place?",
-      "{ctx} is cut in half to make a semicircle of radius {rad} cm. What is the perimeter of that semicircle, in cm to 1 decimal place?",
+      "{Ctx} is cut in half to make a semicircle of radius {rad} cm. What is the perimeter of that semicircle, in cm to 1 decimal place?",
       "A half-circle of radius {rad} cm is edged all the way round. How much edging is needed, in cm to 1 decimal place?"
     ],
     explain: (v, r) => [`The curved edge is half the circumference: π x ${v[0]}.`, `Add the straight diameter of ${2 * v[0]!} cm to get ${r} cm.`],
@@ -277,7 +277,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: ROUND_THINGS_FR,
       promptTemplates: [
         "Un demi-cercle a un rayon de {rad} cm. Quel est son périmètre complet, en cm au dixième près ?",
-        "{ctx} est coupé en deux pour faire un demi-cercle de rayon {rad} cm. Quel est le périmètre de ce demi-cercle, en cm au dixième près ?",
+        "{Ctx} est coupé en deux pour faire un demi-cercle de rayon {rad} cm. Quel est le périmètre de ce demi-cercle, en cm au dixième près ?",
         "Un demi-cercle de rayon {rad} cm est bordé tout autour. Quelle longueur de bordure faut-il, en cm au dixième près ?"
       ],
       explain: (v, r) => [`Le bord courbe est la moitié de la circonférence : π x ${v[0]}.`, `Ajoute le diamètre droit de ${2 * v[0]!} cm pour obtenir ${r} cm.`],

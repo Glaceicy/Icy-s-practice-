@@ -272,7 +272,7 @@ export const level: QuestionTemplateDef[] = [
     constraint: (v) => v[0]! + v[1]! > v[2]!,
     compute: (v) => v[0]! + v[1]! - v[2]!,
     promptTemplates: [
-      "{ctx} had {a} visitors on Saturday and {b} more on Sunday, then {c} people left. How many remain?",
+      "{Ctx} had {a} visitors on Saturday and {b} more on Sunday, then {c} people left. How many remain?",
       "Start with {a}, add {b}, then subtract {c}. What is the answer?"
     ],
     explain: (v, r) => [`${v[0]} + ${v[1]} = ${v[0]! + v[1]!}.`, `${v[0]! + v[1]!} - ${v[2]} = ${r}.`],
@@ -280,7 +280,7 @@ export const level: QuestionTemplateDef[] = [
     fr: {
       contextPool: PLACES_FR,
       promptTemplates: [
-        "{ctx} a reçu {a} visiteurs samedi et {b} de plus dimanche, puis {c} personnes sont parties. Combien en reste-t-il ?",
+        "{Ctx} a reçu {a} visiteurs samedi et {b} de plus dimanche, puis {c} personnes sont parties. Combien en reste-t-il ?",
         "Pars de {a}, ajoute {b}, puis retire {c}. Quel est le résultat ?"
       ],
       explain: (v, r) => [`${v[0]} + ${v[1]} = ${v[0]! + v[1]!}.`, `${v[0]! + v[1]!} - ${v[2]} = ${r}.`],
@@ -315,7 +315,7 @@ export const level: QuestionTemplateDef[] = [
     misconceptionTags: ["OPERATION_CHOICE_ERROR"], type: "WORD_PROBLEM", contextPool: PLACES,
     ranges: [[3000, 9999], [1000, 2999]], compute: (v) => v[0]! - v[1]!,
     promptTemplates: [
-      "{ctx} sold {a} tickets this year and {b} last year. How many more were sold this year?",
+      "{Ctx} sold {a} tickets this year and {b} last year. How many more were sold this year?",
       "One total is {a} and another is {b}. What is the difference between them?"
     ],
     explain: (v, r) => [`"How many more" means find the difference.`, `${v[0]} - ${v[1]} = ${r}.`],
@@ -323,7 +323,7 @@ export const level: QuestionTemplateDef[] = [
     fr: {
       contextPool: PLACES_FR,
       promptTemplates: [
-        "{ctx} a vendu {a} billets cette année et {b} l'an dernier. Combien en a-t-il vendu de plus cette année ?",
+        "{Ctx} a vendu {a} billets cette année et {b} l'an dernier. Combien en a-t-il vendu de plus cette année ?",
         "Un total vaut {a} et un autre {b}. Quelle est la différence entre eux ?"
       ],
       explain: (v, r) => [`« Combien de plus » signifie chercher la différence.`, `${v[0]} - ${v[1]} = ${r}.`],

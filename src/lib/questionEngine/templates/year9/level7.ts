@@ -69,7 +69,7 @@ export const level: QuestionTemplateDef[] = [
     misconceptionTags: ["PYTHAGORAS_ERROR"], type: "WORD_PROBLEM", contextPool: PLACES,
     ranges: [[0, TRIPLES.length - 1], [1, 3]], compute: (v) => TRIPLES[v[0]!]![2] * v[1]!,
     derive: (v) => ({ sideA: TRIPLES[v[0]!]![0] * v[1]!, sideB: TRIPLES[v[0]!]![1] * v[1]! }),
-    promptTemplates: ["{ctx} reaches {sideB} m up and stands {sideA} m out from the base. How long is it, in metres?"],
+    promptTemplates: ["{Ctx} reaches {sideB} m up and stands {sideA} m out from the base. How long is it, in metres?"],
     explain: (v, r) => {
       const t = TRIPLES[v[0]!]!;
       const a = t[0] * v[1]!, b = t[1] * v[1]!;
@@ -78,7 +78,7 @@ export const level: QuestionTemplateDef[] = [
     hints: () => ["The height and the distance out are the two short sides; the length is the hypotenuse."],
     fr: {
       contextPool: PLACES_FR,
-      promptTemplates: ["{ctx} atteint {sideB} m de haut et se trouve à {sideA} m de la base. Quelle est sa longueur, en mètres ?"],
+      promptTemplates: ["{Ctx} atteint {sideB} m de haut et se trouve à {sideA} m de la base. Quelle est sa longueur, en mètres ?"],
       hints: () => ["La hauteur et la distance au sol sont les deux côtés courts ; la longueur est l'hypoténuse."]
     },
     declaredVariationSpace: TRIPLES.length * 3 * PLACES.length

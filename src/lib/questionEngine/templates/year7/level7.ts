@@ -254,7 +254,7 @@ export const level: QuestionTemplateDef[] = [
     hints: () => ["Subtract the fixed cost first, then divide by the price per item."],
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Jo achète des {ctx} à {a} pence chacun, plus un sac à {b} pence. Le coût total est de {total} pence. Combien de {ctx} Jo a-t-il achetés ?"],
+      promptTemplates: ["Jo achète des {ctx} à {a} pence chacun, plus un sac à {b} pence. Le coût total est de {total} pence. Combien {de:ctx} Jo a-t-il achetés ?"],
       hints: () => ["Soustrais d'abord le coût fixe, puis divise par le prix de chaque article."]
     },
     declaredVariationSpace: 8 * 21 * 15 * CTX.length

@@ -308,7 +308,7 @@ export const level: QuestionTemplateDef[] = [
     hints: () => ["Sharing a fraction between more people makes each piece smaller — the denominator grows."],
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["{a}/{b} d'un lot de {ctx} est partagé également entre {c} personnes. Chaque part vaut {a}/? du lot. Quel est le dénominateur ?"],
+      promptTemplates: ["{a}/{b} d'un lot {de:ctx} est partagé également entre {c} personnes. Chaque part vaut {a}/? du lot. Quel est le dénominateur ?"],
       explain: (v, r) => [`Diviser par ${v[2]} donne un dénominateur de ${v[1]} x ${v[2]} = ${r}.`],
       hints: () => ["Partager une fraction entre plus de personnes rend chaque part plus petite — le dénominateur grandit."]
     },

@@ -356,13 +356,13 @@ export const level: QuestionTemplateDef[] = [
     misconceptionTags: ["GROWTH_DECAY_RATE_ERROR"], type: "WORD_PROBLEM",
     ranges: [[10, 500]], compute: (v) => v[0]! * 110,
     derive: (v) => ({ base: v[0]! * 100 }), contextPool: GROWTH_CTX,
-    promptTemplates: ["{ctx} of {base} grows by 10% in one year. What is the new value after one year?"],
+    promptTemplates: ["{Ctx} of {base} grows by 10% in one year. What is the new value after one year?"],
     explain: (v, r) => [`10% of ${v[0]! * 100} is ${v[0]! * 10}. ${v[0]! * 100} + ${v[0]! * 10} = ${r}.`],
     hints: () => ["Work out 10% of the starting value, then add it on."],
     declaredVariationSpace: 491 * GROWTH_CTX.length,
     fr: {
       contextPool: GROWTH_CTX_FR,
-      promptTemplates: ["{ctx} de {base} augmente de 10 % en un an. Quelle est la nouvelle valeur après un an ?"],
+      promptTemplates: ["{Ctx} de {base} augmente de 10 % en un an. Quelle est la nouvelle valeur après un an ?"],
       explain: (v, r) => [`10 % de ${v[0]! * 100} est ${v[0]! * 10}. ${v[0]! * 100} + ${v[0]! * 10} = ${r}.`],
       hints: () => ["Calcule 10 % de la valeur de départ, puis ajoute-le."]
     }
@@ -372,13 +372,13 @@ export const level: QuestionTemplateDef[] = [
     misconceptionTags: ["GROWTH_DECAY_RATE_ERROR"], type: "WORD_PROBLEM",
     ranges: [[10, 500]], compute: (v) => v[0]! * 90,
     derive: (v) => ({ base: v[0]! * 100 }), contextPool: GROWTH_CTX,
-    promptTemplates: ["{ctx} of {base} decreases by 10% in one year. What is the new value after one year?"],
+    promptTemplates: ["{Ctx} of {base} decreases by 10% in one year. What is the new value after one year?"],
     explain: (v, r) => [`10% of ${v[0]! * 100} is ${v[0]! * 10}. ${v[0]! * 100} - ${v[0]! * 10} = ${r}.`],
     hints: () => ["Work out 10% of the starting value, then subtract it."],
     declaredVariationSpace: 491 * GROWTH_CTX.length,
     fr: {
       contextPool: GROWTH_CTX_FR,
-      promptTemplates: ["{ctx} de {base} diminue de 10 % en un an. Quelle est la nouvelle valeur après un an ?"],
+      promptTemplates: ["{Ctx} de {base} diminue de 10 % en un an. Quelle est la nouvelle valeur après un an ?"],
       explain: (v, r) => [`10 % de ${v[0]! * 100} est ${v[0]! * 10}. ${v[0]! * 100} - ${v[0]! * 10} = ${r}.`],
       hints: () => ["Calcule 10 % de la valeur de départ, puis soustrais-le."]
     }
@@ -388,13 +388,13 @@ export const level: QuestionTemplateDef[] = [
     misconceptionTags: ["GROWTH_DECAY_RATE_ERROR"], type: "WORD_PROBLEM",
     ranges: [[10, 500]], compute: (v) => v[0]! * 121,
     derive: (v) => ({ base: v[0]! * 100 }), contextPool: GROWTH_CTX,
-    promptTemplates: ["{ctx} of {base} grows by 10% each year for 2 years. What is the value after 2 years?"],
+    promptTemplates: ["{Ctx} of {base} grows by 10% each year for 2 years. What is the value after 2 years?"],
     explain: (v, r) => [`After year 1: ${v[0]! * 100} + 10% = ${v[0]! * 110}. After year 2: ${v[0]! * 110} + 10% = ${r}.`],
     hints: () => ["Grow the value by 10% for the first year, then grow that new value by 10% again."],
     declaredVariationSpace: 491 * GROWTH_CTX.length,
     fr: {
       contextPool: GROWTH_CTX_FR,
-      promptTemplates: ["{ctx} de {base} augmente de 10 % chaque année pendant 2 ans. Quelle est la valeur après 2 ans ?"],
+      promptTemplates: ["{Ctx} de {base} augmente de 10 % chaque année pendant 2 ans. Quelle est la valeur après 2 ans ?"],
       explain: (v, r) => [`Après l'année 1 : ${v[0]! * 100} + 10 % = ${v[0]! * 110}. Après l'année 2 : ${v[0]! * 110} + 10 % = ${r}.`],
       hints: () => ["Augmente la valeur de 10 % la première année, puis augmente cette nouvelle valeur de 10 % à nouveau."]
     }
@@ -404,13 +404,13 @@ export const level: QuestionTemplateDef[] = [
     misconceptionTags: ["GROWTH_DECAY_RATE_ERROR"], type: "WORD_PROBLEM",
     ranges: [[10, 500]], compute: (v) => v[0]! * 81,
     derive: (v) => ({ base: v[0]! * 100 }), contextPool: GROWTH_CTX,
-    promptTemplates: ["{ctx} of {base} decreases by 10% each year for 2 years. What is the value after 2 years?"],
+    promptTemplates: ["{Ctx} of {base} decreases by 10% each year for 2 years. What is the value after 2 years?"],
     explain: (v, r) => [`After year 1: ${v[0]! * 100} - 10% = ${v[0]! * 90}. After year 2: ${v[0]! * 90} - 10% = ${r}.`],
     hints: () => ["Decrease the value by 10% for the first year, then decrease that new value by 10% again."],
     declaredVariationSpace: 491 * GROWTH_CTX.length,
     fr: {
       contextPool: GROWTH_CTX_FR,
-      promptTemplates: ["{ctx} de {base} diminue de 10 % chaque année pendant 2 ans. Quelle est la valeur après 2 ans ?"],
+      promptTemplates: ["{Ctx} de {base} diminue de 10 % chaque année pendant 2 ans. Quelle est la valeur après 2 ans ?"],
       explain: (v, r) => [`Après l'année 1 : ${v[0]! * 100} - 10 % = ${v[0]! * 90}. Après l'année 2 : ${v[0]! * 90} - 10 % = ${r}.`],
       hints: () => ["Diminue la valeur de 10 % la première année, puis diminue cette nouvelle valeur de 10 % à nouveau."]
     }
@@ -499,13 +499,13 @@ export const level: QuestionTemplateDef[] = [
     misconceptionTags: ["GROWTH_DECAY_RATE_ERROR"], type: "WORD_PROBLEM",
     ranges: [[10, 500]], compute: (v) => v[0]! * 75,
     derive: (v) => ({ base: v[0]! * 100 }), contextPool: GROWTH_CTX,
-    promptTemplates: ["{ctx} of {base} falls by 25% in one year due to a downturn. What is the new value?"],
+    promptTemplates: ["{Ctx} of {base} falls by 25% in one year due to a downturn. What is the new value?"],
     explain: (v, r) => [`25% of ${v[0]! * 100} is ${v[0]! * 25}. ${v[0]! * 100} - ${v[0]! * 25} = ${r}.`],
     hints: () => ["Work out 25% of the starting value, then subtract it."],
     declaredVariationSpace: 491 * GROWTH_CTX.length,
     fr: {
       contextPool: GROWTH_CTX_FR,
-      promptTemplates: ["{ctx} de {base} chute de 25 % en un an en raison d'un ralentissement économique. Quelle est la nouvelle valeur ?"],
+      promptTemplates: ["{Ctx} de {base} chute de 25 % en un an en raison d'un ralentissement économique. Quelle est la nouvelle valeur ?"],
       explain: (v, r) => [`25 % de ${v[0]! * 100} est ${v[0]! * 25}. ${v[0]! * 100} - ${v[0]! * 25} = ${r}.`],
       hints: () => ["Calcule 25 % de la valeur de départ, puis soustrais-le."]
     }

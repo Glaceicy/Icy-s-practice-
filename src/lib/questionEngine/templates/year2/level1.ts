@@ -110,7 +110,7 @@ export const level: QuestionTemplateDef[] = [
     visualAid: (v) => visuals.array(v[0]!, 10),
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Un magasin a {a} boîtes de 10 {ctx} et {b} {ctx} en plus. Combien de {ctx} au total ?"],
+      promptTemplates: ["Un magasin a {a} boîtes de 10 {ctx} et {b} {ctx} en plus. Combien {de:ctx} au total ?"],
       explain: (v, r) => [`${v[0]} boîtes de 10 = ${v[0]! * 10}. ${v[0]! * 10} + ${v[1]} en plus = ${r}.`],
       hints: () => ["Multiplie les boîtes par 10 d'abord, puis ajoute les unités en plus."]
     },

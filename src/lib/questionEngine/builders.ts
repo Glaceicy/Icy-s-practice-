@@ -34,10 +34,56 @@ export function pickValues(rng: Rng, ranges: Array<[number, number]>, constraint
   return ranges.map(([lo, hi]) => rng.int(lo, hi));
 }
 
+/**
+ * Substitute `{name}` placeholders. Three spellings do extra work:
+ *
+ *   `{Ctx}`            the value of `ctx` with its first letter raised. Context
+ *                      pools are stored lowercase because most uses sit
+ *                      mid-sentence ("the area of {ctx}"), so a pool landing at
+ *                      the start of a sentence asks for the capital here.
+ *   `{b#are|is}`       the first word unless the value of `b` is exactly one, in
+ *                      which case the second. A range that reaches 1 would
+ *                      otherwise produce "1 are given away" or "in 1 hours",
+ *                      and in French both the verb and the participle inflect,
+ *                      so each agreeing word gets its own placeholder:
+ *                      "{b} {b#sont|est} {b#donnés|donné}".
+ *   `{de:ctx}`         the French word before `ctx`, elided when the value
+ *                      begins with a vowel sound: "de billes" but "d'étoiles".
+ *                      `de`, `du`, `le`, `la`, `ne`, `que` and `si` all take
+ *                      this form, and a capitalised word ("De:") keeps its
+ *                      capital. Context pools hold whichever article fits each
+ *                      entry, so the preceding word cannot be written into the
+ *                      sentence by hand. Words starting with h or y are left
+ *                      alone: "d'heure" elides but "de haricots" does not, and
+ *                      nothing in the spelling says which.
+ */
+const ELIDE_PLACEHOLDER = /\{([Dd]e|[Dd]u|[Ll]e|[Ll]a|[Nn]e|[Qq]ue|[Ss]i):(\w+)\}/g;
+const ELIDES_BEFORE = /^[aàâäeéèêëiîïoôöuùû]/i;
+
+/** French elision, for sentences assembled in code rather than from a template
+ * string: elide("de", "un rectangle") gives "d'un rectangle". Same rule as the
+ * `{de:ctx}` placeholder below, including leaving h and y alone. */
+export function elide(word: string, value: string): string {
+  if (!ELIDES_BEFORE.test(value)) return `${word} ${value}`;
+  const stem = word.toLowerCase() === "du" ? "de l" : word.slice(0, -1);
+  return `${stem}'${value}`;
+}
+
 export function fillTemplate(template: string, values: Record<string, string | number>): string {
-  return template.replace(/\{(\w+)\}/g, (_, key: string) => {
+  return template.replace(ELIDE_PLACEHOLDER, (whole, word: string, key: string) => {
     const v = values[key];
-    return v === undefined ? `{${key}}` : String(v);
+    if (v === undefined) return whole;
+    return elide(word, String(v));
+  }).replace(/\{(\w+)(?:#([^|{}]*)\|([^{}]*))?\}/g, (whole, key: string, plural?: string, singular?: string) => {
+    const raise = /^[A-Z]/.test(key) && values[key] === undefined;
+    const v = values[raise ? key[0]!.toLowerCase() + key.slice(1) : key];
+    if (v === undefined) return whole;
+    if (plural !== undefined && singular !== undefined) {
+      // Values arrive formatted, so "£1" and "1.0" both have to read as one.
+      return Number.parseFloat(String(v).replace(/[^0-9.-]/g, "")) === 1 ? singular : plural;
+    }
+    const filled = String(v);
+    return raise ? filled.charAt(0).toUpperCase() + filled.slice(1) : filled;
   });
 }
 

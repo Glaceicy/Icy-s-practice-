@@ -99,7 +99,7 @@ export const level: QuestionTemplateDef[] = [
     fr: {
       contextPool: THINGS_FR,
       promptTemplates: [
-        "Il y a {b} boîtes contenant chacune {a} {ctx}. Combien de {ctx} cela fait-il en tout ?",
+        "Il y a {b} boîtes contenant chacune {a} {ctx}. Combien {de:ctx} cela fait-il en tout ?",
         "Un magasin commande {b} caisses contenant chacune {a} {ctx}. Combien en reçoit-il ?"
       ],
       explain: (v, r) => [`Des groupes égaux veulent dire multiplier.`, `${v[0]} x ${v[1]} = ${r}.`],
@@ -233,8 +233,8 @@ export const level: QuestionTemplateDef[] = [
     fr: {
       contextPool: HOLDERS_FR,
       promptTemplates: [
-        "{a} œufs sont rangés dans des {ctx} de {b}. Combien de {ctx} peut-on remplir complètement ?",
-        "{a} objets sont rangés dans des {ctx} de {b} places. Combien de {ctx} peut-on remplir entièrement ?"
+        "{a} œufs sont rangés dans des {ctx} de {b}. Combien {de:ctx} peut-on remplir complètement ?",
+        "{a} objets sont rangés dans des {ctx} de {b} places. Combien {de:ctx} peut-on remplir entièrement ?"
       ],
       explain: (v, r) => [
         `${v[0]} ÷ ${v[1]} = ${r} reste ${v[0]! % v[1]!}.`,
@@ -262,7 +262,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: HOLDERS_FR,
       promptTemplates: [
         "{a} enfants ont besoin de minibus de {b} places chacun. Combien de minibus faut-il ?",
-        "{a} objets doivent tous être rangés dans des {ctx} de {b}. Combien de {ctx} faut-il ?"
+        "{a} objets doivent tous être rangés dans des {ctx} de {b}. Combien {de:ctx} faut-il ?"
       ],
       explain: (v, r) => [
         `${v[0]} ÷ ${v[1]} = ${Math.floor(v[0]! / v[1]!)} reste ${v[0]! % v[1]!}.`,

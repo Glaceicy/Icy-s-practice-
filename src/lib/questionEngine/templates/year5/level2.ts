@@ -201,11 +201,11 @@ export const level: QuestionTemplateDef[] = [
     misconceptionTags: ["ROUNDING_DIRECTION_ERROR"], type: "WORD_PROBLEM",
     ranges: [[1000, 8999], [1000, 8999]],
     compute: (v) => Math.round(v[0]! / 1000) * 1000 + Math.round(v[1]! / 1000) * 1000, contextPool: SCHOOLS,
-    promptTemplates: ["{ctx} collected {a} tokens in the autumn term and {b} tokens in the spring term. Estimate the total by rounding each amount to the nearest 1,000."],
+    promptTemplates: ["{Ctx} collected {a} tokens in the autumn term and {b} tokens in the spring term. Estimate the total by rounding each amount to the nearest 1,000."],
     explain: (v, r) => [`${v[0]} rounds to ${Math.round(v[0]! / 1000) * 1000}; ${v[1]} rounds to ${Math.round(v[1]! / 1000) * 1000}.`, `${Math.round(v[0]! / 1000) * 1000} + ${Math.round(v[1]! / 1000) * 1000} = ${r}.`],
     hints: () => ["Round each amount to the nearest 1,000 before adding."],
     fr: {
-      promptTemplates: ["{ctx} a récolté {a} jetons pendant le trimestre d'automne et {b} jetons pendant le trimestre de printemps. Estime le total en arrondissant chaque montant au millier près."],
+      promptTemplates: ["{Ctx} a récolté {a} jetons pendant le trimestre d'automne et {b} jetons pendant le trimestre de printemps. Estime le total en arrondissant chaque montant au millier près."],
       explain: (v, r) => [`${v[0]} s'arrondit à ${Math.round(v[0]! / 1000) * 1000} ; ${v[1]} s'arrondit à ${Math.round(v[1]! / 1000) * 1000}.`, `${Math.round(v[0]! / 1000) * 1000} + ${Math.round(v[1]! / 1000) * 1000} = ${r}.`],
       hints: () => ["Arrondis chaque montant au millier près avant d'additionner."]
     },
@@ -261,13 +261,13 @@ export const level: QuestionTemplateDef[] = [
     misconceptionTags: ["SUBTRACTION_MISCOUNT"], type: "WORD_PROBLEM",
     ranges: [[2000, 9000], [500, 3000], [500, 3000]], constraint: (v) => v[0]! > v[1]! + v[2]!,
     compute: (v) => v[0]! - v[1]! - v[2]!, contextPool: SHOPS,
-    promptTemplates: ["{ctx} had a budget of {a}. It spent {b} on stock and {c} on delivery costs. How much of the budget is left?"],
+    promptTemplates: ["{Ctx} had a budget of {a}. It spent {b} on stock and {c} on delivery costs. How much of the budget is left?"],
     explain: (v, r) => [`£${v[0]} - £${v[1]} = £${v[0]! - v[1]!}.`, `£${v[0]! - v[1]!} - £${v[2]} = £${r}.`],
     hints: () => ["Subtract each cost from the budget, one at a time."],
     formatValue: (n) => `£${n}`,
     fr: {
       contextPool: SHOPS_FR,
-      promptTemplates: ["Le budget de {ctx} était de {a}. {b} ont été dépensés en stock et {c} en frais de livraison. Combien reste-t-il du budget ?"],
+      promptTemplates: ["Le budget {de:ctx} était de {a}. {b} ont été dépensés en stock et {c} en frais de livraison. Combien reste-t-il du budget ?"],
       explain: (v, r) => [`£${v[0]} - £${v[1]} = £${v[0]! - v[1]!}.`, `£${v[0]! - v[1]!} - £${v[2]} = £${r}.`],
       hints: () => ["Soustrais chaque coût du budget, un à la fois."]
     },
@@ -277,12 +277,12 @@ export const level: QuestionTemplateDef[] = [
     key: "y5l2.wordProblemAttendance", levelKey: "Y5L2", objectiveCode: "Y5-L2-3", difficulty: "REASONING",
     misconceptionTags: ["ORDER_OF_OPERATIONS_ERROR"], type: "WORD_PROBLEM",
     ranges: [[3000, 9000], [200, 1500], [200, 1500]], compute: (v) => v[0]! - v[1]! + v[2]!, contextPool: CTX,
-    promptTemplates: ["{ctx} attending an event started at {a}. {b} left early, then {c} more arrived later. How many {ctx} were there by the end?"],
+    promptTemplates: ["{Ctx} attending an event started at {a}. {b} left early, then {c} more arrived later. How many {ctx} were there by the end?"],
     explain: (v, r) => [`${v[0]} - ${v[1]} = ${v[0]! - v[1]!}.`, `${v[0]! - v[1]!} + ${v[2]} = ${r}.`],
     hints: () => ["Subtract those who left, then add those who arrived later."],
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Le nombre de {ctx} présents à un événement a commencé à {a}. {b} sont partis plus tôt, puis {c} de plus sont arrivés plus tard. Combien de {ctx} y avait-il à la fin ?"],
+      promptTemplates: ["Le nombre {de:ctx} présents à un événement a commencé à {a}. {b} sont partis plus tôt, puis {c} de plus sont arrivés plus tard. Combien {de:ctx} y avait-il à la fin ?"],
       explain: (v, r) => [`${v[0]} - ${v[1]} = ${v[0]! - v[1]!}.`, `${v[0]! - v[1]!} + ${v[2]} = ${r}.`],
       hints: () => ["Soustrais ceux qui sont partis, puis ajoute ceux qui sont arrivés plus tard."]
     },
