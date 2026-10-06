@@ -234,13 +234,13 @@ export const level: QuestionTemplateDef[] = [
       contextPool: HOLDERS_FR,
       promptTemplates: [
         "{a} œufs sont rangés dans des {ctx} de {b}. Combien de {ctx} peut-on remplir complètement ?",
-        "{a} objets sont rangés dans des {ctx} contenant {b} chacune. Combien de {ctx} sont pleines ?"
+        "{a} objets sont rangés dans des {ctx} de {b} places. Combien de {ctx} peut-on remplir entièrement ?"
       ],
       explain: (v, r) => [
         `${v[0]} ÷ ${v[1]} = ${r} reste ${v[0]! % v[1]!}.`,
         `Seuls les groupes complets comptent ici, donc la réponse est ${r} et il en reste ${v[0]! % v[1]!}.`
       ],
-      hints: () => ["« Complètement remplies » signifie qu'on ignore le reste et qu'on arrondit vers le bas."]
+      hints: () => ["« Remplir entièrement » signifie qu'on ignore le reste et qu'on arrondit vers le bas."]
     },
     declaredVariationSpace: 80 * 7 * (1 + HOLDERS.length)
   }),

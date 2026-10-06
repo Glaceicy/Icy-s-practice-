@@ -1,0 +1,7 @@
+{
+  "//": "The app's tsconfig uses \"jsx\": \"preserve\" because Next.js does the JSX transform itself. Node scripts run through tsx need a real transform, so they compile with the automatic runtime instead.",
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react-jsx"
+  }
+}

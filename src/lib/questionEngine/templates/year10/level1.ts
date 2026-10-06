@@ -27,7 +27,9 @@ export const level: QuestionTemplateDef[] = [
   arithmeticTemplate({
     key: "y10l1.upperBound", levelKey: "Y10L1", objectiveCode: "Y10-L1-1", difficulty: "APPLICATION",
     misconceptionTags: ["BOUNDS_HALF_UNIT_ERROR"], type: "NUMBER_ENTRY",
-    ranges: [[10, 500], [0, 1]], compute: (v) => v[0]! + [0.5, 5][v[1]!]!,
+    ranges: [[10, 500], [0, 1]],
+    // A measurement stated to the nearest 10 must itself be a multiple of 10.
+    constraint: (v) => v[1]! === 0 || v[0]! % 10 === 0, compute: (v) => v[0]! + [0.5, 5][v[1]!]!,
     derive: (v) => ({ accuracy: [1, 10][v[1]!]! }),
     promptTemplates: ["A length of {a} cm is measured to the nearest {accuracy} cm. What is the upper bound?"],
     explain: (v, r) => [`Half of ${[1, 10][v[1]!]} is added to find the upper bound: ${v[0]} + ${[0.5, 5][v[1]!]} = ${r}.`],
@@ -38,12 +40,14 @@ export const level: QuestionTemplateDef[] = [
       explain: (v, r) => [`La moitié de ${[1, 10][v[1]!]} est ajoutée pour trouver la borne supérieure : ${v[0]} + ${[0.5, 5][v[1]!]} = ${r}.`],
       hints: () => ["La borne supérieure est une demi-unité au-dessus de la valeur arrondie."]
     },
-    declaredVariationSpace: 491 * 2
+    declaredVariationSpace: 491 + 50
   }),
   arithmeticTemplate({
     key: "y10l1.lowerBound", levelKey: "Y10L1", objectiveCode: "Y10-L1-1", difficulty: "APPLICATION",
     misconceptionTags: ["BOUNDS_HALF_UNIT_ERROR"], type: "NUMBER_ENTRY",
-    ranges: [[10, 500], [0, 1]], compute: (v) => v[0]! - [0.5, 5][v[1]!]!,
+    ranges: [[10, 500], [0, 1]],
+    // A measurement stated to the nearest 10 must itself be a multiple of 10.
+    constraint: (v) => v[1]! === 0 || v[0]! % 10 === 0, compute: (v) => v[0]! - [0.5, 5][v[1]!]!,
     derive: (v) => ({ accuracy: [1, 10][v[1]!]! }),
     promptTemplates: ["A mass of {a} kg is measured to the nearest {accuracy} kg. What is the lower bound?"],
     explain: (v, r) => [`Half of ${[1, 10][v[1]!]} is subtracted to find the lower bound: ${v[0]} - ${[0.5, 5][v[1]!]} = ${r}.`],
@@ -54,7 +58,7 @@ export const level: QuestionTemplateDef[] = [
       explain: (v, r) => [`La moitié de ${[1, 10][v[1]!]} est soustraite pour trouver la borne inférieure : ${v[0]} - ${[0.5, 5][v[1]!]} = ${r}.`],
       hints: () => ["La borne inférieure est une demi-unité en dessous de la valeur arrondie."]
     },
-    declaredVariationSpace: 491 * 2
+    declaredVariationSpace: 491 + 50
   }),
   arithmeticTemplate({
     key: "y10l1.indexLawMultiply", levelKey: "Y10L1", objectiveCode: "Y10-L1-2", difficulty: "FLUENCY",

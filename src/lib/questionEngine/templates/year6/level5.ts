@@ -16,7 +16,9 @@ export const level: QuestionTemplateDef[] = [
   arithmeticTemplate({
     key: "y6l5.scaleUpRatio", levelKey: "Y6L5", objectiveCode: "Y6-L5-1", difficulty: "APPLICATION",
     misconceptionTags: ["RATIO_SCALING_ERROR"], type: "NUMBER_ENTRY", contextPool: RECIPES,
-    ranges: [[1, 9], [1, 9], [2, 12]], constraint: (v) => gcd(v[0]!, v[1]!) === 1,
+    // 1:1 is excluded: "the ratio is 1:1, the first is 12, what is the second?"
+    // is a real question with nothing in it to get wrong.
+    ranges: [[1, 9], [1, 9], [2, 12]], constraint: (v) => gcd(v[0]!, v[1]!) === 1 && !(v[0]! === 1 && v[1]! === 1),
     compute: (v) => v[1]! * v[2]!,
     derive: (v) => ({ scaled: v[0]! * v[2]! }),
     promptTemplates: [
@@ -39,7 +41,7 @@ export const level: QuestionTemplateDef[] = [
   arithmeticTemplate({
     key: "y6l5.simplifyRatioFirstTerm", levelKey: "Y6L5", objectiveCode: "Y6-L5-1", difficulty: "FLUENCY",
     misconceptionTags: ["RATIO_SIMPLIFY_ERROR"], type: "NUMBER_ENTRY", contextPool: CTX,
-    ranges: [[1, 9], [1, 9], [2, 9]], constraint: (v) => gcd(v[0]!, v[1]!) === 1,
+    ranges: [[1, 9], [1, 9], [2, 9]], constraint: (v) => gcd(v[0]!, v[1]!) === 1 && !(v[0]! === 1 && v[1]! === 1),
     compute: (v) => v[0]!,
     derive: (v) => ({ p: v[0]! * v[2]!, q: v[1]! * v[2]! }),
     promptTemplates: [
@@ -62,7 +64,9 @@ export const level: QuestionTemplateDef[] = [
   arithmeticTemplate({
     key: "y6l5.ratioTotalFromParts", levelKey: "Y6L5", objectiveCode: "Y6-L5-1", difficulty: "APPLICATION",
     misconceptionTags: ["RATIO_SCALING_ERROR"], type: "NUMBER_ENTRY", contextPool: CTX,
-    ranges: [[1, 9], [1, 9], [2, 12]], constraint: (v) => gcd(v[0]!, v[1]!) === 1,
+    // 1:1 is excluded: "the ratio is 1:1, the first is 12, what is the second?"
+    // is a real question with nothing in it to get wrong.
+    ranges: [[1, 9], [1, 9], [2, 12]], constraint: (v) => gcd(v[0]!, v[1]!) === 1 && !(v[0]! === 1 && v[1]! === 1),
     compute: (v) => (v[0]! + v[1]!) * v[2]!,
     derive: (v) => ({ firstPart: v[0]! * v[2]! }),
     promptTemplates: [
@@ -85,7 +89,9 @@ export const level: QuestionTemplateDef[] = [
   arithmeticTemplate({
     key: "y6l5.mcRatioScaling", levelKey: "Y6L5", objectiveCode: "Y6-L5-1", difficulty: "APPLICATION",
     misconceptionTags: ["RATIO_SCALING_ERROR"], type: "MULTIPLE_CHOICE",
-    ranges: [[1, 9], [1, 9], [2, 12]], constraint: (v) => gcd(v[0]!, v[1]!) === 1,
+    // 1:1 is excluded: "the ratio is 1:1, the first is 12, what is the second?"
+    // is a real question with nothing in it to get wrong.
+    ranges: [[1, 9], [1, 9], [2, 12]], constraint: (v) => gcd(v[0]!, v[1]!) === 1 && !(v[0]! === 1 && v[1]! === 1),
     compute: (v) => v[1]! * v[2]!,
     derive: (v) => ({ scaled: v[0]! * v[2]! }),
     promptTemplates: ["Two amounts are in the ratio {a}:{b}. If the first is {scaled}, what is the second?"],
@@ -201,7 +207,9 @@ export const level: QuestionTemplateDef[] = [
   arithmeticTemplate({
     key: "y6l5.wordProblemUnequalSharing", levelKey: "Y6L5", objectiveCode: "Y6-L5-2", difficulty: "APPLICATION",
     misconceptionTags: ["RATIO_DIVISION_ERROR"], type: "WORD_PROBLEM", contextPool: CTX,
-    ranges: [[1, 9], [1, 9], [2, 12]], constraint: (v) => gcd(v[0]!, v[1]!) === 1,
+    // 1:1 is excluded: "the ratio is 1:1, the first is 12, what is the second?"
+    // is a real question with nothing in it to get wrong.
+    ranges: [[1, 9], [1, 9], [2, 12]], constraint: (v) => gcd(v[0]!, v[1]!) === 1 && !(v[0]! === 1 && v[1]! === 1),
     compute: (v) => v[1]! * v[2]!,
     derive: (v) => ({ total: (v[0]! + v[1]!) * v[2]! }),
     promptTemplates: ["Two friends share {total} {ctx} in the ratio {a}:{b}. How many does the second friend get?"],

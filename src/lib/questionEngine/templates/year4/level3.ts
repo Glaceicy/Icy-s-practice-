@@ -365,8 +365,8 @@ export const level: QuestionTemplateDef[] = [
     fr: {
       contextPool: GROUPS_FR,
       promptTemplates: [
-        "Il y a {a} {ctx} contenant chacune {b} objets. Combien d'objets y a-t-il en tout ?",
-        "{a} {ctx} contiennent chacune {b} choses. Combien de choses au total ?"
+        "Il y a {a} {ctx}, avec {b} objets dans chaque. Combien d'objets y a-t-il en tout ?",
+        "On a {a} {ctx} et {b} choses dans chaque. Combien de choses au total ?"
       ],
       explain: (v, r) => [`Des groupes égaux veulent dire multiplier.`, `${v[0]} x ${v[1]} = ${r}.`],
       hints: () => ["Quand chaque groupe a le même nombre, multiplie le nombre de groupes par la taille du groupe."]
