@@ -18,6 +18,11 @@ export default async function LoginPage() {
         {t("login.demoAccountLabel")} <strong>parent.demo@mathsjourney.example</strong> / <strong>Demo!Password123</strong>
       </p>
       <p className="mt-4 text-center text-sm text-slate-600">
+        <Link href="/forgot-password" className="font-semibold text-brand-700 underline">
+          {t("login.forgotPasswordLink")}
+        </Link>
+      </p>
+      <p className="mt-2 text-center text-sm text-slate-600">
         {t("login.newHere")}{" "}
         <Link href="/register" className="font-semibold text-brand-700 underline">
           {t("login.createAccountLink")}

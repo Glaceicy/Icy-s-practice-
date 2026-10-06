@@ -4,6 +4,7 @@ import { SignJWT, jwtVerify } from "jose";
 import bcrypt from "bcryptjs";
 import { createHash, randomBytes } from "crypto";
 import { prisma } from "./db";
+import { isSessionStale } from "./sessionFreshness";
 
 const SESSION_COOKIE = "mj_session";
 const CHILD_COOKIE = "mj_child";
@@ -45,9 +46,23 @@ export async function verifyPin(pin: string, hash: string): Promise<boolean> {
  * hash is kept, so a database leak alone can't be used to "verify" an
  * account — unlike a password/PIN this doesn't need slow bcrypt hashing,
  * since the token already has 256 bits of its own entropy. */
-export function generateVerificationToken(): { token: string; tokenHash: string; expiresAt: Date } {
+function generateLinkToken(ttlMs: number): { token: string; tokenHash: string; expiresAt: Date } {
   const token = randomBytes(32).toString("hex");
-  return { token, tokenHash: hashVerificationToken(token), expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000) };
+  return { token, tokenHash: hashVerificationToken(token), expiresAt: new Date(Date.now() + ttlMs) };
+}
+
+export function generateVerificationToken() {
+  return generateLinkToken(24 * 60 * 60 * 1000);
+}
+
+/** Same shape as the verification token on a much shorter fuse. A reset link
+ * is a live credential for the account — anyone holding it can set a new
+ * password — so it is worth far less sitting in an inbox than a link that
+ * only confirms an address. One hour is long enough to find the email and
+ * short enough that an old one in a shared or forwarded mailbox is already
+ * dead. */
+export function generatePasswordResetToken() {
+  return generateLinkToken(60 * 60 * 1000);
 }
 
 export function hashVerificationToken(token: string): string {
@@ -70,13 +85,13 @@ export async function createAdultSession(adultId: string): Promise<void> {
   });
 }
 
-export async function getAdultSession(): Promise<{ adultId: string } | null> {
+export async function getAdultSession(): Promise<{ adultId: string; issuedAt?: number } | null> {
   const token = cookies().get(SESSION_COOKIE)?.value;
   if (!token) return null;
   try {
     const { payload } = await jwtVerify(token, getSecretKey());
     if (typeof payload.adultId !== "string") return null;
-    return { adultId: payload.adultId };
+    return { adultId: payload.adultId, issuedAt: payload.iat };
   } catch {
     return null;
   }
@@ -87,6 +102,9 @@ export async function requireAdult() {
   if (!session) throw new Error("UNAUTHENTICATED");
   const adult = await prisma.adultUser.findUnique({ where: { id: session.adultId } });
   if (!adult) throw new Error("UNAUTHENTICATED");
+  // Checked here rather than in getAdultSession() because this is where the
+  // account row is already loaded, and every privileged route goes through it.
+  if (isSessionStale(session.issuedAt, adult.passwordChangedAt)) throw new Error("UNAUTHENTICATED");
   return adult;
 }
 
@@ -176,6 +194,9 @@ export async function requireActiveChild() {
     if (!childId) throw new Error("NO_ACTIVE_CHILD");
     const child = await prisma.childProfile.findFirst({ where: { id: childId, ownerId: adultSession.adultId }, include: { owner: true } });
     if (!child) throw new Error("NO_ACTIVE_CHILD");
+    // A reset ends the parent's route into a child's data as well, not just
+    // the pages behind requireAdult().
+    if (isSessionStale(adultSession.issuedAt, child.owner.passwordChangedAt)) throw new Error("NO_ACTIVE_CHILD");
     const { owner, ...rest } = child;
     return { adult: owner, child: rest };
   }

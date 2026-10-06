@@ -22,20 +22,32 @@ const config: Config = {
           800: "#0c5391",
           900: "#0f4676"
         },
+        // 50/100 are the banner tints and 700 the text shade that reads at
+        // 4.5:1 on white; both are used across the app, and a Tailwind class
+        // naming a shade that is not here silently produces no style at all.
         sunny: {
+          50: "#fff8e6",
+          100: "#ffefc2",
           400: "#ffcb47",
           500: "#ffb800",
-          600: "#e69f00"
+          600: "#e69f00",
+          700: "#b87d00"
         },
         leaf: {
+          50: "#ecfaf0",
+          100: "#d4f3de",
           400: "#6cd68a",
           500: "#3fbf68",
-          600: "#2ea656"
+          600: "#2ea656",
+          700: "#1f7a3f"
         },
         berry: {
+          50: "#fff0f3",
+          100: "#ffdfe5",
           400: "#ff8fa3",
           500: "#ff6b85",
-          600: "#e6506b"
+          600: "#e6506b",
+          700: "#b83351"
         }
       },
       borderRadius: {

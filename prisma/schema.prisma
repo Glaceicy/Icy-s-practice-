@@ -39,6 +39,9 @@ model AdultUser {
   emailVerified  Boolean  @default(false) // login is blocked until this is true (see verifyEmailAction)
   emailVerificationTokenHash String? @unique // sha256 of the one-time link token sent by email; never the raw token
   emailVerificationExpiresAt DateTime?
+  passwordResetTokenHash     String? @unique // sha256 of the one-time reset link token; never the raw token
+  passwordResetExpiresAt     DateTime?
+  passwordChangedAt          DateTime? // adult sessions issued before this are refused, so a reset ends any session the old password left behind (see requireAdult)
 
   children     ChildProfile[]
   learningGoals LearningGoal[]

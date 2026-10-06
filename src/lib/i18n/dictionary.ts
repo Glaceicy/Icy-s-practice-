@@ -32,6 +32,7 @@ export const dictionary = {
       submit: "Sign in",
       submitting: "Signing in...",
       demoAccountLabel: "Demo account:",
+      forgotPasswordLink: "Forgot your password?",
       newHere: "New here?",
       createAccountLink: "Create an account"
     },
@@ -81,6 +82,25 @@ export const dictionary = {
       subtitle: "Click below to confirm this is your email address and activate your account.",
       confirmButton: "Confirm my email address",
       missingToken: "This link is missing its verification code. Please use the link from your email, or request a new one from the login page."
+    },
+    forgotPassword: {
+      title: "Reset your password",
+      subtitle: "Enter the email address on your account and we'll send you a link to choose a new password.",
+      emailLabel: "Email address",
+      submit: "Email me a reset link",
+      submitting: "Sending...",
+      confirmation: "If that address has an account, a reset link is on its way. The link expires in one hour.",
+      backToLogin: "Back to sign in"
+    },
+    resetPassword: {
+      title: "Choose a new password",
+      subtitle: "Pick a new password for your account. You'll be signed in straight away.",
+      passwordLabel: "New password (at least 10 characters)",
+      passwordConfirmLabel: "Confirm new password",
+      submit: "Save new password",
+      submitting: "Saving...",
+      missingToken: "This link is missing its reset code. Please use the link from your email, or request a new one.",
+      requestNewLink: "Request a new reset link"
     },
     profiles: {
       heading: "Who's learning today?",
@@ -521,6 +541,7 @@ export const dictionary = {
       submit: "Se connecter",
       submitting: "Connexion en cours...",
       demoAccountLabel: "Compte de démonstration :",
+      forgotPasswordLink: "Mot de passe oublié ?",
       newHere: "Nouveau ici ?",
       createAccountLink: "Créer un compte"
     },
@@ -570,6 +591,25 @@ export const dictionary = {
       subtitle: "Cliquez ci-dessous pour confirmer que c'est bien votre adresse e-mail et activer votre compte.",
       confirmButton: "Confirmer mon adresse e-mail",
       missingToken: "Ce lien n'a pas de code de vérification. Veuillez utiliser le lien de votre e-mail, ou en demander un nouveau depuis la page de connexion."
+    },
+    forgotPassword: {
+      title: "Réinitialiser votre mot de passe",
+      subtitle: "Saisissez l'adresse e-mail de votre compte et nous vous enverrons un lien pour choisir un nouveau mot de passe.",
+      emailLabel: "Adresse e-mail",
+      submit: "M'envoyer un lien",
+      submitting: "Envoi en cours...",
+      confirmation: "Si cette adresse a un compte, un lien de réinitialisation est en route. Le lien expire dans une heure.",
+      backToLogin: "Retour à la connexion"
+    },
+    resetPassword: {
+      title: "Choisissez un nouveau mot de passe",
+      subtitle: "Choisissez un nouveau mot de passe pour votre compte. Vous serez connecté immédiatement.",
+      passwordLabel: "Nouveau mot de passe (au moins 10 caractères)",
+      passwordConfirmLabel: "Confirmer le nouveau mot de passe",
+      submit: "Enregistrer le mot de passe",
+      submitting: "Enregistrement...",
+      missingToken: "Ce lien n'a pas de code de réinitialisation. Veuillez utiliser le lien de votre e-mail, ou en demander un nouveau.",
+      requestNewLink: "Demander un nouveau lien"
     },
     profiles: {
       heading: "Qui apprend aujourd’hui ?",

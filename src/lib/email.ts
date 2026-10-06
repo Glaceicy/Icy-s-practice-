@@ -48,6 +48,34 @@ export async function sendVerificationEmail(to: string, fullName: string, token:
   });
 }
 
+export function passwordResetUrl(token: string): string {
+  return `${getSiteUrl()}/reset-password?token=${encodeURIComponent(token)}`;
+}
+
+/** Sends the "choose a new password" link. Deliberately says nothing about the
+ * account beyond the name already on it: the request form answers the same way
+ * whether or not an address is registered, and an email that confirmed "yes,
+ * this address has an account" would give that away to anyone who could see
+ * it. The closing line is the one safeguard that matters — somebody who did
+ * not ask for this needs to know the link exists and that ignoring it leaves
+ * their password untouched. */
+export async function sendPasswordResetEmail(to: string, fullName: string, token: string): Promise<void> {
+  const url = passwordResetUrl(token);
+  await getResendClient().emails.send({
+    from: FROM_ADDRESS,
+    to,
+    subject: "Reset your Maths Journey UK password",
+    html: `
+      <p>Hi ${escapeHtml(fullName)},</p>
+      <p>Someone asked to reset the password for your Maths Journey UK account. Choose a new one here:</p>
+      <p><a href="${url}">Set a new password</a></p>
+      <p>This link expires in one hour and can only be used once. Setting a new password will sign you out everywhere else.</p>
+      <p>If you didn't ask for this, you can ignore this email — your password will not change, and nobody can use this link without your inbox.</p>
+    `,
+    text: `Hi ${fullName},\n\nSomeone asked to reset the password for your Maths Journey UK account. Choose a new one by visiting:\n${url}\n\nThis link expires in one hour and can only be used once. Setting a new password will sign you out everywhere else.\n\nIf you didn't ask for this, you can ignore this email — your password will not change, and nobody can use this link without your inbox.`
+  });
+}
+
 function escapeHtml(s: string): string {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }

@@ -42,6 +42,19 @@ additional `SchoolYear` sets without a schema change.
   including the email-verification flow, lives in `src/lib/auth.ts` and the
   "Authentication and sessions" section of the companion technical
   reference published alongside this document.
+- **Password reset**: `/forgot-password` emails a one-time link (SHA-256
+  hashed in `AdultUser.passwordResetTokenHash`, never stored raw, valid one
+  hour, single use) and `/reset-password` spends it. The request form returns
+  the same response whether or not the address is registered, so it does not
+  tell a caller which families have accounts (its *timing* still does — see
+  §14 — but the response body never does). Setting a new password stamps
+  `passwordChangedAt`, and `requireAdult()` refuses any session issued before
+  that stamp — sessions are stateless JWTs with nothing to delete server-side,
+  so this is what makes a reset actually sign out whoever the forgotten
+  password had left logged in (`isSessionStale` in
+  `src/lib/sessionFreshness.ts`, unit tested for the second-boundary case).
+  Following the link also marks the address verified, since clicking it proves
+  the same thing the verification email asks.
 - **API surface**: Next.js Server Actions (`src/lib/actions/*`), not a
   separate REST/GraphQL layer. Business logic lives in `src/lib/services/*`,
   independent of the web framework, so it is directly unit-testable (see
@@ -390,7 +403,8 @@ Plus the two scripted end-to-end journeys described in §5 and the README.
 
 ## 13. Required screens
 
-All 20 screens from spec §13 are implemented and linked:
+All 20 screens from spec §13 are implemented and linked, plus the password
+reset pair (23–24) added since:
 
 1. Landing — `/`
 2. Adult registration — `/register`
@@ -417,6 +431,8 @@ All 20 screens from spec §13 are implemented and linked:
 21. Accessibility settings — `/settings/accessibility`
 22. Admin curriculum/question area — `/admin`, `/admin/questions`,
     `/admin/curriculum`, `/admin/import-export`
+23. Forgotten password (request a reset link) — `/forgot-password`
+24. Choose a new password (spend the link) — `/reset-password`
 
 Wrong-answer explanations in guided/independent practice remain an inline
 view within the flow (not a separate URL — reviewing an explanation
@@ -444,7 +460,26 @@ are no placeholder controls.
   a framework version bump hasn't been scheduled.
 - No automated end-to-end test yet covers the independent child-login path
   or the email-verification flow against a real mailbox; both were verified
-  manually against the live Vercel deployment.
+  manually against the live Vercel deployment. The same applies to the
+  password reset flow: the staleness rule that ends old sessions is unit
+  tested (`tests/auth.test.ts`), but the link itself has only been exercised
+  by hand.
+- `requestPasswordResetAction` returns an identical response for a registered
+  and an unregistered address, but not in identical time: the registered path
+  hashes a token, writes it and calls Resend. A caller measuring response time
+  can therefore still distinguish the two. Closing that properly means doing
+  the same work either way (or queueing the send), which is worth doing
+  alongside the throttle below rather than on its own.
+- Neither `requestPasswordResetAction` nor the login form is rate limited, so
+  nothing stops an attacker asking for reset emails repeatedly for an address
+  they do not own. That is noise in somebody's inbox rather than a route into
+  the account — the link still only ever goes to the registered address — but
+  it wants a per-address throttle before launch, which needs a store the app
+  does not currently have.
+- A child's PIN still cannot be changed once set (`pinHash` is written only
+  by `createChildAction`), so a forgotten PIN has no recovery path short of
+  recreating the profile and losing that child's progress. The parent-side
+  equivalent of the reset flow below.
 
 ## 15. Internationalization (EN/FR)
 
