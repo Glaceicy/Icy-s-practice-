@@ -82,6 +82,10 @@ interface Options {
   cut: 45 | 15;
   landscape: boolean;
   fps: number;
+  /** Render only the app screen, on transparent, one clip per scene. These
+   * are the overlays an editor corner-pins onto the tablet in live-action
+   * footage, so the device in shot shows the real app rather than a mock-up. */
+  screens: boolean;
 }
 
 function parseArgs(argv: string[]): Options {
@@ -91,7 +95,12 @@ function parseArgs(argv: string[]): Options {
   };
   const cut = Number(get("--cut") ?? 45);
   if (cut !== 45 && cut !== 15) throw new Error("--cut must be 45 or 15");
-  return { cut, landscape: argv.includes("--landscape"), fps: Number(get("--fps") ?? FPS) };
+  return {
+    cut,
+    landscape: argv.includes("--landscape"),
+    fps: Number(get("--fps") ?? FPS),
+    screens: argv.includes("--screens")
+  };
 }
 
 function questionFor(scene: (typeof SCENES)[number]) {
@@ -123,6 +132,7 @@ function buildHtml(opts: {
   height: number;
   questions: ReturnType<typeof questionFor>[];
   mascots: Record<string, string>;
+  screensOnly?: boolean;
 }): string {
   const [q5, q8, q11, q15] = opts.questions;
   const landscape = opts.width > opts.height;
@@ -134,6 +144,19 @@ function buildHtml(opts: {
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html, body { width: ${opts.width}px; height: ${opts.height}px; overflow: hidden; }
+  ${opts.screensOnly ? `
+  /* Overlay mode: the app screen alone on transparent, filling the frame.
+     setT() still drives the content, so the timing matches the cut exactly;
+     !important is what stops it also re-applying the device's own framing. */
+  html, body { background: transparent !important; }
+  .bg, .path-layer, .chip, .caption, .age-badge, #endCard, #confettiLayer { display: none !important; }
+  .device {
+    left: 0 !important; top: 0 !important; width: 100% !important; height: 100% !important;
+    padding: 0 !important; border-radius: 0 !important; background: transparent !important;
+    box-shadow: none !important; opacity: 1 !important; transform: none !important;
+  }
+  .screen { border-radius: 0 !important; }
+  ` : ""}
   body {
     font-family: Nunito, system-ui, sans-serif;
     background: ${BRAND.navy};
@@ -688,9 +711,89 @@ function timingSheet(opts: Options): string {
   return lines.join("\n");
 }
 
+/** The window of the timeline each scene occupies, for the per-scene overlay
+ * clips. These match the beats in BEATS, minus the hand-over frames at each
+ * end where the next scene is already fading in. */
+const SCENE_WINDOWS = [
+  { from: 0.6, to: 7.9 },
+  { from: 8.6, to: 17.9 },
+  { from: 18.6, to: 27.9 },
+  { from: 28.6, to: 37.9 }
+];
+
+/** Renders each scene's app screen on transparent, as a PNG sequence and a
+ * WebM with an alpha channel. WebM/VP9 rather than mp4 because h.264 has no
+ * alpha, and an overlay without transparency is just a rectangle stuck over
+ * the footage. The PNG sequence is there for editors whose tool would rather
+ * import frames (and for a still of each scene's final state). */
+async function renderScreens(opts: Options, questions: ReturnType<typeof questionFor>[], mascots: Record<string, string>) {
+  // 3:4, the proportion of a tablet screen held in portrait — the shape the
+  // live-action shots have it in.
+  const width = 1200;
+  const height = 1600;
+  const outDir = path.join(process.cwd(), "out", "ad", "screens");
+  await rm(outDir, { recursive: true, force: true });
+  await mkdir(outDir, { recursive: true });
+
+  const html = buildHtml({ width, height, questions, mascots, screensOnly: true });
+  await writeFile(path.join(outDir, "screens.html"), html, "utf8");
+
+  const browser = await launchChromium();
+  const made: string[] = [];
+  try {
+    const context = await browser.newContext({ viewport: { width, height }, deviceScaleFactor: 1 });
+    const page = await context.newPage();
+    await page.setContent(html, { waitUntil: "load" });
+    await page.waitForFunction("window.__ready === true");
+    await page.evaluate("document.fonts.ready");
+    await page.waitForTimeout(900);
+
+    for (let i = 0; i < SCENES.length; i++) {
+      const scene = SCENES[i]!;
+      const win = SCENE_WINDOWS[i]!;
+      const name = `age${scene.age}-y${scene.year}l${scene.levelNo}`;
+      const dir = path.join(outDir, name);
+      await mkdir(dir, { recursive: true });
+
+      const step = 1 / opts.fps;
+      let f = 0;
+      for (let t = win.from; t < win.to - 1e-9; t += step, f++) {
+        await page.evaluate((x) => (window as unknown as { setT: (n: number) => void }).setT(x), t);
+        await page.screenshot({ path: path.join(dir, `f${String(f).padStart(5, "0")}.png`), omitBackground: true });
+      }
+
+      const webm = path.join(outDir, `${name}.webm`);
+      await run("ffmpeg", [
+        "-y",
+        "-framerate", String(opts.fps),
+        "-i", path.join(dir, "f%05d.png"),
+        "-c:v", "libvpx-vp9",
+        "-pix_fmt", "yuva420p",   // the "a" is the whole point: alpha survives
+        "-b:v", "0", "-crf", "28",
+        webm
+      ]);
+      made.push(webm);
+      console.log(`  ${name}: ${f} frames -> ${path.relative(process.cwd(), webm)}`);
+    }
+    await context.close();
+  } finally {
+    await browser.close();
+  }
+  return made;
+}
+
 async function main() {
   const opts = parseArgs(process.argv.slice(2));
   loadAllTemplates();
+
+  if (opts.screens) {
+    const questions = SCENES.map(questionFor);
+    const mascots = { cheer: await mascot("cheer"), think: await mascot("think") };
+    const made = await renderScreens(opts, questions, mascots);
+    console.log(`\n${made.length} transparent overlay clips in out/ad/screens/`);
+    console.log("Corner-pin each onto the tablet in the matching live-action shot.");
+    return;
+  }
 
   const width = opts.landscape ? 1920 : 1080;
   const height = opts.landscape ? 1080 : 1920;
