@@ -8,8 +8,16 @@ invented for the script — each one names the template key it came from, so you
 can regenerate it or pull a different seed with:
 
 ```
-npx tsx --tsconfig scripts/tsconfig.json scripts/export-brand-assets.ts   # brand images
+# brand images (profile avatars, mascot exports)
+npx tsx --tsconfig scripts/tsconfig.json scripts/export-brand-assets.ts
+
+# video cards + scripts for any live level, straight from the question banks
+npx tsx --tsconfig scripts/tsconfig.json scripts/tiktok-content.ts --level Y4L4 --count 3
 ```
+
+There is also a `tiktok` subagent (`.claude/agents/tiktok.md`) that knows the
+brand, the banks and the rules below — ask it for content rather than writing
+questions by hand.
 
 ---
 
