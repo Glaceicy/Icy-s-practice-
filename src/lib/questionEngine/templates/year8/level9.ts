@@ -37,14 +37,14 @@ export const level: QuestionTemplateDef[] = [
     derive: (v) => ({ total: v[0]! + v[1]! + v[2]! }),
     promptTemplates: [
       "A frequency table of {total} trials shows {a} and {b} for two outcomes. What is the frequency of the third outcome?",
-      "Out of {total} results, {a} were red and {b} were blue. How many were a third colour?"
+      "Out of {total} results, {a} {a#were|was} red and {b} {b#were|was} blue. How many were a third colour?"
     ],
     explain: (v, r) => [`All the frequencies add to the number of trials.`, `${v[0]! + v[1]! + v[2]!} - ${v[0]} - ${v[1]} = ${r}.`],
     hints: () => ["Subtract the known frequencies from the total."],
     fr: {
       promptTemplates: [
         "Un tableau d'effectifs de {total} essais indique {a} et {b} pour deux issues. Quel est l'effectif de la troisième ?",
-        "Sur {total} résultats, {a} étaient rouges et {b} bleus. Combien étaient d'une troisième couleur ?"
+        "Sur {total} résultats, il y en avait {a} de rouge et {b} de bleu. Combien étaient d'une troisième couleur ?"
       ],
       explain: (v, r) => [`Tous les effectifs s'additionnent pour donner le nombre d'essais.`, `${v[0]! + v[1]! + v[2]!} - ${v[0]} - ${v[1]} = ${r}.`],
       hints: () => ["Retire les effectifs connus du total."]
@@ -80,8 +80,8 @@ export const level: QuestionTemplateDef[] = [
     ranges: [[10, 200], [1, 190]], constraint: (v) => v[1]! < v[0]!,
     compute: (v) => v[0]! - v[1]!,
     promptTemplates: [
-      "In {a} trials an outcome happened {b} times. How many times did it not happen?",
-      "Out of {a} spins, {b} landed on red. How many did not land on red?",
+      "In {a} trials an outcome happened {b} {b#times|time}. How many times did it not happen?",
+      "Out of {a} spins, {b} {b#landed|landed} on red. How many did not land on red?",
       "{a} results were recorded and {b} were successes. How many were not successes?"
     ],
     explain: (v, r) => [`Everything that is not that outcome is the rest of the trials.`, `${v[0]} - ${v[1]} = ${r}.`],
@@ -89,7 +89,7 @@ export const level: QuestionTemplateDef[] = [
     fr: {
       promptTemplates: [
         "Sur {a} essais, une issue s'est produite {b} fois. Combien de fois ne s'est-elle pas produite ?",
-        "Sur {a} tours, {b} sont tombés sur le rouge. Combien ne sont pas tombés sur le rouge ?",
+        "Sur {a} tours, il y en a {b} de tombé sur le rouge. Combien ne sont pas tombés sur le rouge ?",
         "{a} résultats ont été relevés et {b} étaient des réussites. Combien n'en étaient pas ?"
       ],
       explain: (v, r) => [`Tout ce qui n'est pas cette issue constitue le reste des essais.`, `${v[0]} - ${v[1]} = ${r}.`],

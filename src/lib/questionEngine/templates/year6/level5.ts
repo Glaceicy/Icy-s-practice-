@@ -1,4 +1,4 @@
-import { arithmeticTemplate, categoricalPoolTemplate, matchingTemplate } from "../../builders";
+import { arithmeticTemplate, categoricalPoolTemplate, matchingTemplate, plural } from "../../builders";
 import type { QuestionTemplateDef } from "../../types";
 
 // Year 6, Level 5 — "Ratio and proportion"
@@ -173,7 +173,7 @@ export const level: QuestionTemplateDef[] = [
       "{total} {ctx} are shared in the ratio {a}:{b}. How many more does the larger share have than the smaller?",
       "Sharing {total} in the ratio {a}:{b}, what is the difference between the two shares?"
     ],
-    explain: (v, r) => [`One part is ${v[2]}.`, `The shares differ by ${v[0]} - ${v[1]} = ${v[0]! - v[1]!} parts, so ${v[0]! - v[1]!} x ${v[2]} = ${r}.`],
+    explain: (v, r) => [`One part is ${v[2]}.`, `The shares differ by ${v[0]} - ${v[1]} = ${v[0]! - v[1]!} ${plural(v[0]! - v[1]!, "parts", "part")}, so ${v[0]! - v[1]!} x ${v[2]} = ${r}.`],
     hints: () => ["Work out the value of one part, then multiply by the difference in the ratio numbers."],
     fr: {
       contextPool: CTX_FR,
@@ -181,7 +181,7 @@ export const level: QuestionTemplateDef[] = [
         "{total} {ctx} sont partagés dans le rapport {a}:{b}. Combien la plus grande part en a-t-elle de plus que la plus petite ?",
         "En partageant {total} dans le rapport {a}:{b}, quelle est la différence entre les deux parts ?"
       ],
-      explain: (v, r) => [`Une part vaut ${v[2]}.`, `Les parts diffèrent de ${v[0]} - ${v[1]} = ${v[0]! - v[1]!} parts, donc ${v[0]! - v[1]!} x ${v[2]} = ${r}.`],
+      explain: (v, r) => [`Une part vaut ${v[2]}.`, `Les parts diffèrent de ${v[0]} - ${v[1]} = ${v[0]! - v[1]!} ${plural(v[0]! - v[1]!, "parts", "part")}, donc ${v[0]! - v[1]!} x ${v[2]} = ${r}.`],
       hints: () => ["Calcule la valeur d'une part, puis multiplie par la différence des termes du rapport."]
     },
     declaredVariationSpace: 9 * 9 * 11 * (1 + CTX.length)

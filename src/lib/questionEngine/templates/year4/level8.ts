@@ -1,4 +1,4 @@
-import { arithmeticTemplate, categoricalPoolTemplate, orderingTemplate } from "../../builders";
+import { arithmeticTemplate, categoricalPoolTemplate, orderingTemplate, plural } from "../../builders";
 import type { QuestionTemplateDef } from "../../types";
 
 // Year 4, Level 8 — "Angles, symmetry, shapes and coordinates"
@@ -283,8 +283,8 @@ export const level: QuestionTemplateDef[] = [
     misconceptionTags: ["COORDINATE_ERROR"], type: "MULTI_STEP", contextPool: GRIDS,
     ranges: [[0, 20], [0, 20], [1, 12]], compute: (v) => v[0]! + v[2]!,
     promptTemplates: [
-      "A point at ({a}, {b}) moves {c} squares to the right. What is its new x-coordinate?",
-      "On {ctx}, a counter at ({a}, {b}) slides {c} squares right. What is its new x-coordinate?"
+      "A point at ({a}, {b}) moves {c} {c#squares|square} to the right. What is its new x-coordinate?",
+      "On {ctx}, a counter at ({a}, {b}) slides {c} {c#squares|square} right. What is its new x-coordinate?"
     ],
     explain: (v, r) => [`Moving right increases the first coordinate.`, `${v[0]} + ${v[2]} = ${r}.`],
     hints: () => ["The first number is how far across, so only that one changes."],
@@ -304,8 +304,8 @@ export const level: QuestionTemplateDef[] = [
     misconceptionTags: ["COORDINATE_ERROR"], type: "MULTI_STEP", contextPool: GRIDS,
     ranges: [[0, 20], [0, 20], [1, 12]], compute: (v) => v[1]! + v[2]!,
     promptTemplates: [
-      "A point at ({a}, {b}) moves {c} squares up. What is its new y-coordinate?",
-      "On {ctx}, a marker at ({a}, {b}) moves {c} squares up. What is its new y-coordinate?"
+      "A point at ({a}, {b}) moves {c} {c#squares|square} up. What is its new y-coordinate?",
+      "On {ctx}, a marker at ({a}, {b}) moves {c} {c#squares|square} up. What is its new y-coordinate?"
     ],
     explain: (v, r) => [`Moving up increases the second coordinate.`, `${v[1]} + ${v[2]} = ${r}.`],
     hints: () => ["The second number is how far up, so only that one changes."],
@@ -379,7 +379,7 @@ export const level: QuestionTemplateDef[] = [
       const correct = `(${x}, ${y})`;
       const wrong = [`(${y}, ${x})`, `(${x}, ${y + 1})`, `(${x + 1}, ${y})`];
       return {
-        prompt: `A point is ${x} squares across and ${y} squares up from the origin. What are its coordinates?`,
+        prompt: `A point is ${x} ${plural(x, "squares", "square")} across and ${y} ${plural(y, "squares", "square")} up from the origin. What are its coordinates?`,
         correctLabel: correct,
         distractorLabels: wrong.filter((w) => w !== correct).slice(0, 3),
         explanationSteps: [`Coordinates are written (across, up).`, `${x} across and ${y} up gives ${correct}.`],

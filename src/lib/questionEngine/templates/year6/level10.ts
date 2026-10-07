@@ -192,7 +192,7 @@ export const level: QuestionTemplateDef[] = [
     ranges: [[2, 12], [1, 25], [1, 25]], compute: (v) => v[0]! * v[1]! + v[2]!,
     promptTemplates: [
       "Using y = {a}n + {c}, what is y when n = {b}?",
-      "The cost of {ctx} is {a}n + {c} pence for n items. What is the cost of {b} items?"
+      "The cost of {ctx} is {a}n + {c} pence for n items. What is the cost of {b} {b#items|item}?"
     ],
     explain: (v, r) => [`${v[0]} x ${v[1]} = ${v[0]! * v[1]!}.`, `${v[0]! * v[1]!} + ${v[2]} = ${r}.`],
     hints: () => ["Substitute, then multiply before adding."],
@@ -200,7 +200,7 @@ export const level: QuestionTemplateDef[] = [
       contextPool: CTX_FR,
       promptTemplates: [
         "Avec y = {a}n + {c}, que vaut y quand n = {b} ?",
-        "Le coût {de:ctx} est {a}n + {c} pence pour n articles. Quel est le coût de {b} articles ?"
+        "Le coût {de:ctx} est {a}n + {c} pence pour n articles. Quel est le coût de {b} {b#articles|article} ?"
       ],
       explain: (v, r) => [`${v[0]} x ${v[1]} = ${v[0]! * v[1]!}.`, `${v[0]! * v[1]!} + ${v[2]} = ${r}.`],
       hints: () => ["Remplace, puis multiplie avant d'additionner."]

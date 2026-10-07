@@ -1,4 +1,4 @@
-import { arithmeticTemplate, categoricalPoolTemplate, numericDistractors } from "../../builders";
+import { arithmeticTemplate, categoricalPoolTemplate, numericDistractors, plural } from "../../builders";
 import type { QuestionTemplateDef } from "../../types";
 
 // Year 9, Level 2 — "Proportion, rates and compound measures"
@@ -188,12 +188,12 @@ export const level: QuestionTemplateDef[] = [
     misconceptionTags: ["COMPOUND_MEASURE_FORMULA_ERROR"], type: "NUMBER_ENTRY",
     ranges: [[10, 100], [1, 10]], compute: (v) => v[0]!,
     derive: (v) => ({ distance: v[0]! * v[1]!, time: v[1]! }),
-    promptTemplates: ["A car travels {distance} miles in {time} hours. What is its average speed, in mph?"],
+    promptTemplates: ["A car travels {distance} miles in {time} {time#hours|hour}. What is its average speed, in mph?"],
     explain: (v, r) => [`${v[0]! * v[1]!} ÷ ${v[1]} = ${r} mph.`],
     hints: () => ["Speed = distance ÷ time."],
     declaredVariationSpace: 91 * 10,
     fr: {
-      promptTemplates: ["Une voiture parcourt {distance} miles en {time} heures. Quelle est sa vitesse moyenne, en mph ?"],
+      promptTemplates: ["Une voiture parcourt {distance} miles en {time} {time#heures|heure}. Quelle est sa vitesse moyenne, en mph ?"],
       explain: (v, r) => [`${v[0]! * v[1]!} ÷ ${v[1]} = ${r} mph.`],
       hints: () => ["Vitesse = distance ÷ temps."]
     }
@@ -202,12 +202,12 @@ export const level: QuestionTemplateDef[] = [
     key: "y9l2.calculateDistance", levelKey: "Y9L2", objectiveCode: "Y9-L2-2", difficulty: "FLUENCY",
     misconceptionTags: ["COMPOUND_MEASURE_FORMULA_ERROR"], type: "NUMBER_ENTRY",
     ranges: [[10, 100], [1, 10]], compute: (v) => v[0]! * v[1]!,
-    promptTemplates: ["A car travels at {a} mph for {b} hours. How far does it travel, in miles?"],
+    promptTemplates: ["A car travels at {a} mph for {b} {b#hours|hour}. How far does it travel, in miles?"],
     explain: (v, r) => [`${v[0]} x ${v[1]} = ${r} miles.`],
     hints: () => ["Distance = speed x time."],
     declaredVariationSpace: 91 * 10,
     fr: {
-      promptTemplates: ["Une voiture roule à {a} mph pendant {b} heures. Quelle distance parcourt-elle, en miles ?"],
+      promptTemplates: ["Une voiture roule à {a} mph pendant {b} {b#heures|heure}. Quelle distance parcourt-elle, en miles ?"],
       explain: (v, r) => [`${v[0]} x ${v[1]} = ${r} miles.`],
       hints: () => ["Distance = vitesse x temps."]
     }
@@ -218,12 +218,12 @@ export const level: QuestionTemplateDef[] = [
     ranges: [[10, 100], [1, 10]], compute: (v) => v[1]!,
     derive: (v) => ({ distance: v[0]! * v[1]!, speed: v[0]! }),
     promptTemplates: ["A car travels {distance} miles at an average speed of {speed} mph. How long does the journey take, in hours?"],
-    explain: (v, r) => [`${v[0]! * v[1]!} ÷ ${v[0]} = ${r} hours.`],
+    explain: (v, r) => [`${v[0]! * v[1]!} ÷ ${v[0]} = ${r} ${plural(r, "hours", "hour")}.`],
     hints: () => ["Time = distance ÷ speed."],
     declaredVariationSpace: 91 * 10,
     fr: {
       promptTemplates: ["Une voiture parcourt {distance} miles à une vitesse moyenne de {speed} mph. Combien de temps dure le trajet, en heures ?"],
-      explain: (v, r) => [`${v[0]! * v[1]!} ÷ ${v[0]} = ${r} hours.`],
+      explain: (v, r) => [`${v[0]! * v[1]!} ÷ ${v[0]} = ${r} ${plural(r, "heures", "heure")}.`],
       hints: () => ["Temps = distance ÷ vitesse."]
     }
   }),
@@ -314,8 +314,8 @@ export const level: QuestionTemplateDef[] = [
       const d1 = speed1 * time1;
       let d2 = speed2 * time2;
       if (d1 === d2) { speed2 = speed2 + 5; d2 = speed2 * time2; }
-      const optionA = `${d1} miles in ${time1} hours`;
-      const optionB = `${d2} miles in ${time2} hours`;
+      const optionA = `${d1} miles in ${time1} ${plural(time1, "hours", "hour")}`;
+      const optionB = `${d2} miles in ${time2} ${plural(time2, "hours", "hour")}`;
       return {
         prompt: `Which journey has the faster average speed: ${optionA}, or ${optionB}?`,
         correctLabel: d1 / time1 > d2 / time2 ? optionA : optionB,
@@ -326,14 +326,14 @@ export const level: QuestionTemplateDef[] = [
     },
     fr: {
       translate: (drawn) => {
-        const m = drawn.prompt.match(/^Which journey has the faster average speed: (\d+) miles in (\d+) hours, or (\d+) miles in (\d+) hours\?$/);
+        const m = drawn.prompt.match(/^Which journey has the faster average speed: (\d+) miles in (\d+) hours?, or (\d+) miles in (\d+) hours?\?$/);
         const d1 = m ? m[1]! : "";
         const time1 = m ? m[2]! : "";
         const d2 = m ? m[3]! : "";
         const time2 = m ? m[4]! : "";
-        const optionAEn = m ? `${d1} miles in ${time1} hours` : "";
-        const optionAFr = `${d1} miles en ${time1} heures`;
-        const optionBFr = `${d2} miles en ${time2} heures`;
+        const optionAEn = m ? `${d1} miles in ${time1} ${plural(Number(time1), "hours", "hour")}` : "";
+        const optionAFr = `${d1} miles en ${time1} ${plural(Number(time1), "heures", "heure")}`;
+        const optionBFr = `${d2} miles en ${time2} ${plural(Number(time2), "heures", "heure")}`;
         const correctLabel = drawn.correctLabel === optionAEn ? optionAFr : optionBFr;
         const distractorLabels = drawn.distractorLabels.map((d) => (d === optionAEn ? optionAFr : optionBFr));
         const speed1 = time1 ? Number(d1) / Number(time1) : 0;

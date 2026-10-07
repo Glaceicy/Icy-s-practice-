@@ -1,4 +1,4 @@
-import { arithmeticTemplate, categoricalPoolTemplate } from "../../builders";
+import { arithmeticTemplate, categoricalPoolTemplate, plural } from "../../builders";
 import type { QuestionTemplateDef } from "../../types";
 
 // Year 7, Level 4 — "Decimals, percentages and conversions"
@@ -225,7 +225,7 @@ export const level: QuestionTemplateDef[] = [
     misconceptionTags: ["PERCENTAGE_DEFINITION_ERROR"], type: "NUMBER_ENTRY",
     ranges: [[1, 99]], compute: (v) => v[0]!,
     promptTemplates: ["{a}% means how many parts out of 100?", "In {a}%, how many parts per hundred are there?"],
-    explain: (v, r) => [`Percent means "per hundred", so ${v[0]}% is ${r} parts out of 100.`],
+    explain: (v, r) => [`Percent means "per hundred", so ${v[0]}% is ${r} ${plural(r, "parts", "part")} out of 100.`],
     hints: () => ["'Per cent' literally means 'per hundred'."],
     fr: {
       promptTemplates: ["{a} % signifie combien de parties sur 100 ?", "Dans {a} %, combien y a-t-il de parties par centaine ?"],

@@ -12,14 +12,14 @@ export const level: QuestionTemplateDef[] = [
     key: "y1l5.bondsTo10FromAddition", levelKey: "Y1L5", objectiveCode: "Y1-L5-1", difficulty: "FLUENCY",
     misconceptionTags: ["NUMBER_BOND_RECALL"], type: "MISSING_NUMBER",
     ranges: [[0, 10]], compute: (v) => 10 - v[0]!, contextPool: CTX,
-    promptTemplates: ["___ + {a} = 10", "What number bonds with {a} to make 10?", "Counting {ctx}: what number pairs with {a} to make 10?", "There are {ctx} to make 10 in total — {a} are counted. How many more {ctx} are needed?"],
+    promptTemplates: ["___ + {a} = 10", "What number bonds with {a} to make 10?", "Counting {ctx}: what number pairs with {a} to make 10?", "There are 10 {ctx} in total and {a} {a#are|is} counted. How many more {ctx} are needed?"],
     explain: (v, r) => [`10 - ${v[0]} = ${r}.`],
     hints: () => ["Think about what pairs with this number to make 10."],
     visualAid: (v) => visuals.tenFrame(v[0]!),
     declaredVariationSpace: 11 * 2 + 11 * CTX.length * 2,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["___ + {a} = 10", "Quel nombre s'associe avec {a} pour faire 10 ?", "En comptant les {ctx} : quel nombre se combine avec {a} pour faire 10 ?", "Il faut {ctx} pour faire 10 en tout — {a} sont déjà comptés. Combien {de:ctx} de plus faut-il ?"],
+      promptTemplates: ["___ + {a} = 10", "Quel nombre s'associe avec {a} pour faire 10 ?", "En comptant les {ctx} : quel nombre se combine avec {a} pour faire 10 ?", "Il y a 10 {ctx} en tout et on en a déjà compté {a}. Combien {de:ctx} de plus faut-il ?"],
       hints: () => ["Réfléchis à ce qui s'associe avec ce nombre pour faire 10."]
     }
   }),
@@ -27,14 +27,14 @@ export const level: QuestionTemplateDef[] = [
     key: "y1l5.bondsTo10FromSubtraction", levelKey: "Y1L5", objectiveCode: "Y1-L5-1", difficulty: "FLUENCY",
     misconceptionTags: ["NUMBER_BOND_RECALL"], type: "NUMBER_ENTRY",
     ranges: [[0, 10]], compute: (v) => 10 - v[0]!, contextPool: CTX,
-    promptTemplates: ["10 - {a} = ?", "What is 10 - {a}?", "Counting {ctx}: what is 10 - {a}?", "There are 10 {ctx}. {a} are taken away. How many {ctx} are left?"],
+    promptTemplates: ["10 - {a} = ?", "What is 10 - {a}?", "Counting {ctx}: what is 10 - {a}?", "There are 10 {ctx}. {a} {a#are|is} taken away. How many {ctx} are left?"],
     explain: (v, r) => [`10 - ${v[0]} = ${r}.`],
     hints: () => ["Use the matching addition fact to help: what plus this number makes 10?"],
     visualAid: (v) => visuals.tenFrame(v[0]!),
     declaredVariationSpace: 11 * 2 + 11 * CTX.length * 2,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["10 - {a} = ?", "Combien fait 10 - {a} ?", "En comptant les {ctx} : combien fait 10 - {a} ?", "Il y a 10 {ctx}. {a} sont enlevés. Combien {de:ctx} reste-t-il ?"],
+      promptTemplates: ["10 - {a} = ?", "Combien fait 10 - {a} ?", "En comptant les {ctx} : combien fait 10 - {a} ?", "Il y a 10 {ctx}. On en enlève {a}. Combien {de:ctx} reste-t-il ?"],
       hints: () => ["Utilise le fait d'addition correspondant pour t'aider : combien de plus fait 10 ?"]
     }
   }),
@@ -184,13 +184,13 @@ export const level: QuestionTemplateDef[] = [
     key: "y1l5.wordProblemBondsTo10", levelKey: "Y1L5", objectiveCode: "Y1-L5-3", difficulty: "APPLICATION",
     misconceptionTags: ["NUMBER_BOND_RECALL"], type: "WORD_PROBLEM",
     ranges: [[0, 10]], compute: (v) => 10 - v[0]!, contextPool: CTX,
-    promptTemplates: ["A box holds 10 {ctx}. {a} are already inside. How many more are needed to fill the box?", "A tray has space for 10 {ctx}. {a} {ctx} are on it so far. How many more {ctx} will fill the tray?"],
+    promptTemplates: ["A box holds 10 {ctx}. {a} {a#are|is} already inside. How many more are needed to fill the box?", "A tray has space for 10 {ctx}. So far it holds {a}. How many more {ctx} will fill the tray?"],
     explain: (v, r) => [`10 - ${v[0]} = ${r}.`],
     hints: () => ["Think about what is needed to reach 10 altogether."],
     declaredVariationSpace: 11 * CTX.length * 2,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Une boîte contient 10 {ctx}. {a} sont déjà dedans. Combien de plus faut-il pour remplir la boîte ?", "Un plateau a de la place pour 10 {ctx}. {a} {ctx} y sont pour l'instant. Combien {de:ctx} de plus rempliront le plateau ?"],
+      promptTemplates: ["Une boîte contient 10 {ctx}. On en a déjà mis {a}. Combien de plus faut-il pour remplir la boîte ?", "Un plateau a de la place pour 10 {ctx}. Il y en a {a} pour l'instant. Combien {de:ctx} de plus rempliront le plateau ?"],
       hints: () => ["Réfléchis à ce qu'il faut pour atteindre 10 en tout."]
     }
   }),
@@ -233,7 +233,7 @@ export const level: QuestionTemplateDef[] = [
     declaredVariationSpace: 11 * CTX.length * 2,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Le cadre de dix montre {a} cases remplies, chacune représentant un(e) des {ctx}. Combien de cases vides reste-t-il ?", "{a} {ctx} remplissent certaines cases d'un cadre de dix. Combien de cases vides reste-t-il ?"],
+      promptTemplates: ["Le cadre de dix montre {a} {a#cases remplies|case remplie}, chacune représentant un des {ctx}. Combien de cases vides reste-t-il ?", "{a} {ctx} remplissent certaines cases d'un cadre de dix. Combien de cases vides reste-t-il ?"],
       hints: () => ["Compte les cases vides dans le cadre de dix."]
     }
   })

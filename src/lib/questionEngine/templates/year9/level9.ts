@@ -60,7 +60,7 @@ export const level: QuestionTemplateDef[] = [
     ranges: [[10, 120], [1, 110]], constraint: (v) => v[1]! < v[0]!,
     compute: (v) => v[0]! - v[1]!,
     promptTemplates: [
-      "A sample space has {a} equally likely outcomes, of which {b} are favourable. How many outcomes are not favourable?",
+      "A sample space has {a} equally likely outcomes, of which {b} {b#are|is} favourable. How many outcomes are not favourable?",
       "Out of {a} possible results, {b} count as a win. How many do not count as a win?",
       "{a} tickets are in a draw and {b} of them win a prize. How many tickets do not win?"
     ],
@@ -68,7 +68,7 @@ export const level: QuestionTemplateDef[] = [
     hints: () => ["The favourable and unfavourable outcomes together make the whole sample space."],
     fr: {
       promptTemplates: [
-        "Un univers compte {a} issues équiprobables, dont {b} sont favorables. Combien d'issues ne sont pas favorables ?",
+        "Un univers compte {a} issues équiprobables, dont {b} {b#sont|est} {b#favorables|favorable}. Combien d'issues ne sont pas favorables ?",
         "Sur {a} résultats possibles, {b} comptent comme une victoire. Combien n'en sont pas une ?",
         "{a} billets sont dans un tirage et {b} d'entre eux gagnent un lot. Combien de billets ne gagnent pas ?"
       ],

@@ -1,4 +1,4 @@
-import { arithmeticTemplate, categoricalPoolTemplate, orderingTemplate } from "../../builders";
+import { arithmeticTemplate, categoricalPoolTemplate, orderingTemplate, plural } from "../../builders";
 import type { QuestionTemplateDef } from "../../types";
 
 // Year 5, Level 6 — "Decimals and percentages"
@@ -256,24 +256,24 @@ export const level: QuestionTemplateDef[] = [
       const wrongDenoms = [10, 1000];
       const shownDenom = isTrueCase ? 100 : rng.pick(wrongDenoms);
       return {
-        prompt: `${a}% means ${a} parts out of ${shownDenom}.`,
+        prompt: `${a}% means ${a} ${plural(a, "parts", "part")} out of ${shownDenom}.`,
         correctLabel: isTrueCase ? "True" : "False",
         distractorLabels: [isTrueCase ? "False" : "True"],
-        explanationSteps: [`The % symbol always means "out of 100", so ${a}% is ${a} parts out of 100.`],
+        explanationSteps: [`The % symbol always means "out of 100", so ${a}% is ${a} ${plural(a, "parts", "part")} out of 100.`],
         hints: ["Per cent always means 'out of 100', whatever number comes before the % sign."]
       };
     },
     fr: {
       translate: (drawn) => {
-        const m = drawn.prompt.match(/^(\d+)% means \d+ parts out of (\d+)\.$/);
+        const m = drawn.prompt.match(/^(\d+)% means \d+ parts? out of (\d+)\.$/);
         const a = m ? m[1] : "";
         const shownDenom = m ? m[2] : "";
         const isTrue = drawn.correctLabel === "True";
         return {
-          prompt: `${a} % signifie ${a} parts sur ${shownDenom}.`,
+          prompt: `${a} % signifie ${a} ${plural(Number(a), "parts", "part")} sur ${shownDenom}.`,
           correctLabel: isTrue ? "Vrai" : "Faux",
           distractorLabels: [isTrue ? "Faux" : "Vrai"],
-          explanationSteps: [`Le symbole % signifie toujours « sur 100 », donc ${a} % correspond à ${a} parts sur 100.`],
+          explanationSteps: [`Le symbole % signifie toujours « sur 100 », donc ${a} % correspond à ${a} ${plural(Number(a), "parts", "part")} sur 100.`],
           hints: ["Pour cent signifie toujours « sur 100 », quel que soit le nombre devant le signe %."]
         };
       }
@@ -287,16 +287,16 @@ export const level: QuestionTemplateDef[] = [
     derive: (v) => ({ count: v[0]! }), formatValue: (n) => `${n}%`,
     promptTemplates: [
       "A 10x10 grid has {count} out of 100 squares shaded. What percentage is shaded?",
-      "Out of a 10x10 grid of 100 squares, {count} are shaded. What percentage does that represent?",
-      "{count} squares out of a 100-square grid are coloured in. What percentage is coloured?"
+      "Out of a 10x10 grid of 100 squares, {count} {count#are|is} shaded. What percentage does that represent?",
+      "{count} {count#squares|square} out of a 100-square grid {count#are|is} coloured in. What percentage is coloured?"
     ],
     explain: (v, r) => [`${v[0]} shaded out of 100 total squares is ${r}.`],
     hints: () => ["The percentage shaded is just the number of shaded squares, since there are 100 squares in total."],
     fr: {
       promptTemplates: [
         "Une grille de 10x10 a {count} cases sur 100 coloriées. Quel pourcentage est colorié ?",
-        "Sur une grille de 10x10 de 100 cases, {count} sont coloriées. Quel pourcentage cela représente-t-il ?",
-        "{count} cases sur une grille de 100 cases sont coloriées. Quel pourcentage est colorié ?"
+        "Sur une grille de 10x10 de 100 cases, on en colorie {count}. Quel pourcentage cela représente-t-il ?",
+        "{count} {count#cases|case} sur une grille de 100 cases {count#sont coloriées|est coloriée}. Quel pourcentage est colorié ?"
       ],
       explain: (v, r) => [`${v[0]} coloriées sur 100 cases au total, cela fait ${r}.`],
       hints: () => ["Le pourcentage colorié est simplement le nombre de cases coloriées, puisqu'il y a 100 cases au total."]
@@ -379,16 +379,16 @@ export const level: QuestionTemplateDef[] = [
     derive: (v) => ({ count: v[0]! }), formatValue: (n) => `${n}%`,
     promptTemplates: [
       "{count} out of 100 squares in a grid are shaded. What percentage is NOT shaded?",
-      "In a grid of 100 squares, {count} are shaded. What percentage of the grid is left unshaded?",
-      "A 100-square grid has {count} squares coloured in. What percentage stays blank?"
+      "In a grid of 100 squares, {count} {count#are|is} shaded. What percentage of the grid is left unshaded?",
+      "A 100-square grid has {count} {count#squares|square} coloured in. What percentage stays blank?"
     ],
     explain: (v, r) => [`100 - ${v[0]} = ${100 - v[0]!}, so ${r} of the grid is not shaded.`],
     hints: () => ["Subtract the shaded percentage from 100%."],
     fr: {
       promptTemplates: [
         "{count} cases sur 100 dans une grille sont coloriées. Quel pourcentage n'est PAS colorié ?",
-        "Dans une grille de 100 cases, {count} sont coloriées. Quel pourcentage de la grille reste non colorié ?",
-        "Une grille de 100 cases a {count} cases coloriées. Quel pourcentage reste vierge ?"
+        "Dans une grille de 100 cases, on en colorie {count}. Quel pourcentage de la grille reste non colorié ?",
+        "Une grille de 100 cases a {count} {count#cases coloriées|case coloriée}. Quel pourcentage reste vierge ?"
       ],
       explain: (v, r) => [`100 - ${v[0]} = ${100 - v[0]!}, donc ${r} de la grille n'est pas colorié.`],
       hints: () => ["Soustrais le pourcentage colorié de 100 %."]
@@ -407,7 +407,7 @@ export const level: QuestionTemplateDef[] = [
     hints: () => ["A number out of 100 converts directly to a percentage."],
     fr: {
       contextPool: ["préfèrent la glace au chocolat", "préfèrent le football aux autres sports", "vont à l'école à pied", "ont un animal de compagnie à la maison", "lisent tous les jours", "jouent d'un instrument de musique"],
-      promptTemplates: ["Dans un sondage auprès de 100 personnes, {count} ont dit qu'elles {ctx}. Quel pourcentage cela représente-t-il ?"],
+      promptTemplates: ["Dans un sondage auprès de 100 personnes, {count} {count#ont|a} répondu {ctx}. Quel pourcentage cela représente-t-il ?"],
       explain: (v, r) => [`${v[0]} sur 100 personnes, cela fait ${r}.`],
       hints: () => ["Un nombre sur 100 se convertit directement en pourcentage."]
     },

@@ -41,14 +41,17 @@ const checks: Check[] = [
   },
   {
     // A range that reaches 1 dropped a singular into a plural sentence.
+    // A 1 at the end of a list is not this: "readings of 3, 14 and 1 are
+    // taken" has a plural subject and reads correctly, so the lookbehind
+    // skips a count the word "and" introduces.
     name: "singular in a plural sentence",
     locale: "en",
-    find: match(/\b1 (are|were|of them are|of them were|have|do|parts|items|people|squares|hours|units|times|more were)\b/)
+    find: match(/(?<!and )\b1 (are|were|of them are|of them were|have|do|parts|items|people|squares|hours|units|times|more were)\b/)
   },
   {
     name: "singular in a plural sentence",
     locale: "fr",
-    find: match(/\b1 (sont|étaient|ont|parts|articles|personnes|cases|heures|fois|d'entre)\b/)
+    find: match(/(?<!et )\b1 (sont|étaient|ont|parts|articles|personnes|cases|heures|d'entre)\b/)
   },
   {
     // French elides de/que/le/la before a vowel sound. A single letter after

@@ -1,4 +1,4 @@
-import { arithmeticTemplate, categoricalPoolTemplate } from "../../builders";
+import { arithmeticTemplate, categoricalPoolTemplate, plural } from "../../builders";
 import type { QuestionTemplateDef } from "../../types";
 
 // Year 4, Level 4 — "Written multiplication and division"
@@ -227,7 +227,7 @@ export const level: QuestionTemplateDef[] = [
     ],
     explain: (v, r) => [
       `${v[0]} ÷ ${v[1]} = ${r} remainder ${v[0]! % v[1]!}.`,
-      `Only complete ${v[1]}s count here, so the answer is ${r} and ${v[0]! % v[1]!} are left over.`
+      `Only complete ${v[1]}s count here, so the answer is ${r} and ${v[0]! % v[1]!} ${plural(v[0]! % v[1]!, "are", "is")} left over.`
     ],
     hints: () => ["\"Completely filled\" means you ignore the remainder and round down."],
     fr: {
@@ -372,7 +372,7 @@ export const level: QuestionTemplateDef[] = [
     ranges: [[3, 12], [3, 12], [1, 20]], constraint: (v) => v[0]! * v[1]! > v[2]!,
     compute: (v) => v[0]! * v[1]! - v[2]!,
     promptTemplates: [
-      "{a} boxes each hold {b} {ctx}, but {c} are broken. How many good ones are there?",
+      "{a} boxes each hold {b} {ctx}, but {c} {c#are|is} broken. How many good ones are there?",
       "Work out {a} x {b} - {c}."
     ],
     explain: (v, r) => [`${v[0]} x ${v[1]} = ${v[0]! * v[1]!}.`, `${v[0]! * v[1]!} - ${v[2]} = ${r}.`],
@@ -380,7 +380,7 @@ export const level: QuestionTemplateDef[] = [
     fr: {
       contextPool: THINGS_FR,
       promptTemplates: [
-        "{a} boîtes contiennent chacune {b} {ctx}, mais {c} sont cassés. Combien y en a-t-il de bons ?",
+        "{a} boîtes contiennent chacune {b} {ctx}, mais il y en a {c} de cassé. Combien y en a-t-il de bons ?",
         "Calcule {a} x {b} - {c}."
       ],
       explain: (v, r) => [`${v[0]} x ${v[1]} = ${v[0]! * v[1]!}.`, `${v[0]! * v[1]!} - ${v[2]} = ${r}.`],

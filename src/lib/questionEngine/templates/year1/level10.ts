@@ -1,4 +1,4 @@
-import { arithmeticTemplate, categoricalPoolTemplate, matchingTemplate, orderingTemplate } from "../../builders";
+import { arithmeticTemplate, categoricalPoolTemplate, matchingTemplate, orderingTemplate, plural } from "../../builders";
 import { visuals } from "../../visuals";
 import type { QuestionTemplateDef } from "../../types";
 
@@ -62,14 +62,14 @@ export const level: QuestionTemplateDef[] = [
     key: "y1l10.subWithin20", levelKey: "Y1L10", objectiveCode: "Y1-L10-1", difficulty: "FLUENCY",
     misconceptionTags: ["SUBTRACTION_MISCOUNT"], type: "NUMBER_ENTRY",
     ranges: [[5, 20], [1, 15]], constraint: (v) => v[1]! < v[0]!, compute: (v) => v[0]! - v[1]!, contextPool: CTX,
-    promptTemplates: ["{a} - {b} = ?", "What is {a} take away {b}?", "There are {a} {ctx}. {b} are given away. How many are left?"],
+    promptTemplates: ["{a} - {b} = ?", "What is {a} take away {b}?", "There are {a} {ctx}. {b} {b#are|is} given away. How many are left?"],
     explain: (v, r) => [`${v[0]} - ${v[1]} = ${r}.`, "Count back from the first number."],
     hints: () => ["Count back from the bigger number."],
     visualAid: (v, r) => visuals.barModel([r, v[1]!], v[0]!),
     declaredVariationSpace: 200 * (2 + CTX.length),
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["{a} - {b} = ?", "Combien font {a} moins {b} ?", "Il y a {a} {ctx}. {b} sont donnés. Combien en reste-t-il ?"],
+      promptTemplates: ["{a} - {b} = ?", "Combien font {a} moins {b} ?", "Il y a {a} {ctx}. On en donne {b}. Combien en reste-t-il ?"],
       explain: (v, r) => [`${v[0]} - ${v[1]} = ${r}.`, "Compte à rebours à partir du premier nombre."],
       hints: () => ["Compte à rebours à partir du plus grand nombre."]
     }
@@ -402,15 +402,15 @@ export const level: QuestionTemplateDef[] = [
       translate: (drawn, picked) => {
         const toFr = (label: string): string => {
           let m = label.match(/^(\d+)\s*o'clock$/);
-          if (m) return `${m[1]} heures`;
+          if (m) return `${m[1]} ${m[1] === "1" ? "heure" : "heures"}`;
           m = label.match(/^half past (\d+)$/);
-          if (m) return `${m[1]} heures et demie`;
+          if (m) return `${m[1]} ${m[1] === "1" ? "heure" : "heures"} et demie`;
           m = label.match(/^(\d+)\s*half past$/);
-          if (m) return `${m[1]} heures et demie`;
+          if (m) return `${m[1]} ${m[1] === "1" ? "heure" : "heures"} et demie`;
           return label;
         };
         return {
-          prompt: `L'horloge montre ${picked.hour} heures ${picked.half === "o'clock" ? "avec les deux aiguilles réunies en haut" : "avec la grande aiguille en bas"}. Quelle heure est indiquée ?`,
+          prompt: `L'horloge montre ${picked.hour} ${picked.hour === "1" ? "heure" : "heures"} ${picked.half === "o'clock" ? "avec les deux aiguilles réunies en haut" : "avec la grande aiguille en bas"}. Quelle heure est indiquée ?`,
           correctLabel: toFr(drawn.correctLabel),
           distractorLabels: drawn.distractorLabels.map(toFr),
           explanationSteps: [`Cette horloge indique ${toFr(drawn.correctLabel)}.`],
@@ -427,20 +427,20 @@ export const level: QuestionTemplateDef[] = [
     contextPool: ["film", "lesson", "football match", "art class", "walk", "swimming lesson", "story time", "bus journey"],
     derive: (v) => ({ start: v[0]!, duration: v[1]! }),
     promptTemplates: [
-      "A {ctx} starts at {start} o'clock and lasts {duration} hour(s). What time does it finish?",
-      "A {ctx} begins at {start} o'clock. It lasts {duration} hour(s). What time does it end?"
+      "A {ctx} starts at {start} o'clock and lasts {duration} {duration#hours|hour}. What time does it finish?",
+      "A {ctx} begins at {start} o'clock. It lasts {duration} {duration#hours|hour}. What time does it end?"
     ],
-    explain: (v, r) => [`${v[0]} o'clock plus ${v[1]} hour(s) is ${r} o'clock.`],
+    explain: (v, r) => [`${v[0]} o'clock plus ${v[1]} ${plural(v[1]!, "hours", "hour")} is ${r} o'clock.`],
     hints: () => ["Add the number of hours to the start time."],
     formatValue: (n) => `${n} o'clock`,
     declaredVariationSpace: 18 * 2 * 8,
     fr: {
       contextPool: ["film", "leçon", "match de football", "cours de dessin", "promenade", "cours de natation", "heure du conte", "trajet en bus"],
       promptTemplates: [
-        "Activité : {ctx}. Elle commence à {start} heures et dure {duration} heure(s). À quelle heure se termine-t-elle ?",
-        "Activité : {ctx}. Elle débute à {start} heures et dure {duration} heure(s). À quelle heure finit-elle ?"
+        "Activité : {ctx}. Elle commence à {start} {start#heures|heure} et dure {duration} {duration#heures|heure}. À quelle heure se termine-t-elle ?",
+        "Activité : {ctx}. Elle débute à {start} {start#heures|heure} et dure {duration} {duration#heures|heure}. À quelle heure finit-elle ?"
       ],
-      explain: (v, r) => [`${v[0]} heures plus ${v[1]} heure(s) donne ${r} heures.`],
+      explain: (v, r) => [`${v[0]} ${plural(v[0]!, "heures", "heure")} plus ${v[1]} ${plural(v[1]!, "heures", "heure")} donne ${r} ${plural(r, "heures", "heure")}.`],
       hints: () => ["Ajoute le nombre d'heures à l'heure de début."]
     }
   }),

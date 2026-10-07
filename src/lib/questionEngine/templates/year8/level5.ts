@@ -312,15 +312,15 @@ export const level: QuestionTemplateDef[] = [
     misconceptionTags: ["SUBSTITUTION_ERROR"], type: "MULTI_STEP", contextPool: SITUATIONS,
     ranges: [[2, 15], [1, 40], [1, 25]], compute: (v) => v[0]! * v[2]! + v[1]!,
     promptTemplates: [
-      "{Ctx} costs a fixed £{b} plus £{a} per hour. What is the total cost for {c} hours, in pounds?",
-      "A charge is £{b} to start plus £{a} for each extra unit. What is the charge for {c} units, in pounds?"
+      "{Ctx} costs a fixed £{b} plus £{a} per hour. What is the total cost for {c} {c#hours|hour}, in pounds?",
+      "A charge is £{b} to start plus £{a} for each extra unit. What is the charge for {c} {c#units|unit}, in pounds?"
     ],
     explain: (v, r) => [`The rule is C = ${v[0]}n + ${v[1]}.`, `${v[0]} x ${v[2]} + ${v[1]} = ${r}.`],
     hints: () => ["The fixed charge is the number on its own; the per-unit charge multiplies the number of units."],
     fr: {
       contextPool: SITUATIONS_FR,
       promptTemplates: [
-        "{Ctx} coûte un fixe de {b} £ plus {a} £ par heure. Quel est le coût total pour {c} heures, en livres ?",
+        "{Ctx} coûte un fixe de {b} £ plus {a} £ par heure. Quel est le coût total pour {c} {c#heures|heure}, en livres ?",
         "Un tarif est de {b} £ au départ plus {a} £ par unité supplémentaire. Quel est le tarif pour {c} unités, en livres ?"
       ],
       explain: (v, r) => [`La règle est C = ${v[0]}n + ${v[1]}.`, `${v[0]} x ${v[2]} + ${v[1]} = ${r}.`],

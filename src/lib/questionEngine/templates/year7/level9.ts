@@ -202,7 +202,7 @@ export const level: QuestionTemplateDef[] = [
     visualAid: (v) => visuals.graph("pie", [{ label: "chosen", value: v[0]! }, { label: "other", value: v[1]! * 30 - v[0]! }]),
     fr: {
       contextPool: SUBJECTS_FR,
-      promptTemplates: ["Dans un sondage auprès de {total} personnes, {a} ont choisi {ctx}. Quel angle, en degrés, représente {ctx} sur un diagramme circulaire ?"],
+      promptTemplates: ["Dans un sondage auprès de {total} personnes, {a} {a#ont|a} choisi {ctx}. Quel angle, en degrés, représente {ctx} sur un diagramme circulaire ?"],
       explain: (v, r) => [`${v[0]} ÷ ${v[1]! * 30} x 360 = ${r}°.`],
       hints: () => ["Divise l'effectif de la catégorie par le total, puis multiplie par 360°."]
     },

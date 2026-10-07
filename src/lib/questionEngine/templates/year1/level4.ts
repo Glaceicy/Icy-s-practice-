@@ -76,7 +76,7 @@ export const level: QuestionTemplateDef[] = [
     visualAid: (v) => visuals.numberLine(0, 20, v[0]! + v[1]!, v[0]!),
     declaredVariationSpace: 16 * 8 * 2,
     fr: {
-      promptTemplates: ["Pars de {a} sur la droite numérique et saute de {b}. Où atterris-tu ?", "Tu es à {a} sur la droite numérique. Saute en avant de {b} cases. Sur quel nombre atterris-tu ?"],
+      promptTemplates: ["Pars de {a} sur la droite numérique et saute de {b}. Où atterris-tu ?", "Tu es à {a} sur la droite numérique. Saute en avant de {b} {b#cases|case}. Sur quel nombre atterris-tu ?"],
       hints: () => ["Compte vers l'avant à partir du nombre de départ."]
     }
   }),
@@ -165,7 +165,7 @@ export const level: QuestionTemplateDef[] = [
     visualAid: (v) => visuals.numberLine(0, 20, v[0]! - v[1]!, v[0]!),
     declaredVariationSpace: 16 * 8 * 2,
     fr: {
-      promptTemplates: ["Pars de {a} sur la droite numérique et saute en arrière de {b}. Où atterris-tu ?", "Tu es à {a} sur la droite numérique. Saute en arrière de {b} cases. Sur quel nombre atterris-tu ?"],
+      promptTemplates: ["Pars de {a} sur la droite numérique et saute en arrière de {b}. Où atterris-tu ?", "Tu es à {a} sur la droite numérique. Saute en arrière de {b} {b#cases|case}. Sur quel nombre atterris-tu ?"],
       hints: () => ["Compte à rebours à partir du nombre de départ."]
     }
   }),
@@ -181,7 +181,7 @@ export const level: QuestionTemplateDef[] = [
     declaredVariationSpace: 210 * CTX.length,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Il y a {a} {ctx} dans une boîte. {b} de plus sont ajoutés. Combien {de:ctx} y a-t-il maintenant ?"],
+      promptTemplates: ["Il y a {a} {ctx} dans une boîte. On en ajoute {b} de plus. Combien {de:ctx} y a-t-il maintenant ?"],
       hints: () => ["Imagine les groupes réunis, puis compte-les tous."]
     }
   }),
@@ -189,13 +189,13 @@ export const level: QuestionTemplateDef[] = [
     key: "y1l4.subtractWordProblem20", levelKey: "Y1L4", objectiveCode: "Y1-L4-3", difficulty: "APPLICATION",
     misconceptionTags: ["SUBTRACTION_MISCOUNT"], type: "WORD_PROBLEM",
     ranges: [[0, 20], [0, 20]], constraint: (v) => v[0]! >= v[1]!, compute: (v) => v[0]! - v[1]!, contextPool: CTX,
-    promptTemplates: ["There are {a} {ctx} on a shelf. {b} are taken away. How many {ctx} are left?"],
+    promptTemplates: ["There are {a} {ctx} on a shelf. {b} {b#are|is} taken away. How many {ctx} are left?"],
     explain: (v, r) => [`${v[0]} - ${v[1]} = ${r}.`],
     hints: () => ["Imagine taking some away, then count what is left."],
     declaredVariationSpace: 231 * CTX.length,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Il y a {a} {ctx} sur une étagère. {b} sont enlevés. Combien {de:ctx} reste-t-il ?"],
+      promptTemplates: ["Il y a {a} {ctx} sur une étagère. On en enlève {b}. Combien {de:ctx} reste-t-il ?"],
       hints: () => ["Imagine qu'on en enlève quelques-uns, puis compte ce qu'il reste."]
     }
   }),
@@ -203,7 +203,7 @@ export const level: QuestionTemplateDef[] = [
     key: "y1l4.mcWordProblem20", levelKey: "Y1L4", objectiveCode: "Y1-L4-3", difficulty: "APPLICATION",
     misconceptionTags: ["ADDITION_MISCOUNT"], type: "MULTIPLE_CHOICE",
     ranges: [[0, 19], [0, 19]], constraint: (v) => v[0]! + v[1]! <= 20, compute: (v) => v[0]! + v[1]!, contextPool: CTX,
-    promptTemplates: ["A jar had {a} {ctx}. {b} more were added. How many {ctx} are in the jar now?"],
+    promptTemplates: ["A jar had {a} {ctx}. {b} more {b#were|was} added. How many {ctx} are in the jar now?"],
     explain: (v, r) => [`${v[0]} + ${v[1]} = ${r}.`],
     hints: () => ["Add the two amounts together."],
     distractorSpread: 3,

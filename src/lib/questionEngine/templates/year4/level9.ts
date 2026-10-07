@@ -36,8 +36,8 @@ export const level: QuestionTemplateDef[] = [
     misconceptionTags: ["CHART_SCALE_ERROR"], type: "MULTI_STEP", contextPool: CATEGORIES,
     ranges: [[2, 10], [1, 20]], compute: (v) => v[0]! * v[1]!,
     promptTemplates: [
-      "On a bar chart each square stands for {a}. A bar is {b} squares tall. What value does it show?",
-      "The scale of a chart goes up in {a}s. The bar for {ctx} reaches {b} squares. How many is that?"
+      "On a bar chart each square stands for {a}. A bar is {b} {b#squares|square} tall. What value does it show?",
+      "The scale of a chart goes up in {a}s. The bar for {ctx} reaches {b} {b#squares|square}. How many is that?"
     ],
     explain: (v, r) => [`Each square is worth ${v[0]}, and there are ${v[1]} of them.`, `${v[0]} x ${v[1]} = ${r}.`],
     hints: () => ["Always check the scale before reading a bar — one square is not always one."],

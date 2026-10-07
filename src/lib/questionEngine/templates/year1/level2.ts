@@ -1,4 +1,4 @@
-import { arithmeticTemplate, categoricalPoolTemplate, matchingTemplate, orderingTemplate } from "../../builders";
+import { arithmeticTemplate, categoricalPoolTemplate, matchingTemplate, orderingTemplate, plural } from "../../builders";
 import { visuals } from "../../visuals";
 import type { QuestionTemplateDef } from "../../types";
 
@@ -473,7 +473,7 @@ export const level: QuestionTemplateDef[] = [
       const n = rng.int(1, 100);
       const isMultiple = n % 10 === 0;
       return {
-        prompt: `In the ${picked.place}, there are ${n} items. ${n} is a multiple of 10.`,
+        prompt: `In the ${picked.place}, there are ${n} ${plural(n, "items", "item")}. ${n} is a multiple of 10.`,
         correctLabel: isMultiple ? "True" : "False",
         distractorLabels: [isMultiple ? "False" : "True"],
         explanationSteps: [isMultiple ? `${n} ends in 0, so it is a multiple of 10.` : `${n} does not end in 0, so it is not a multiple of 10.`],
@@ -488,7 +488,7 @@ export const level: QuestionTemplateDef[] = [
         const placeFr = placeMap[picked.place!] ?? picked.place!;
         const isTrue = drawn.correctLabel === "True";
         return {
-          prompt: `Dans ${placeFr}, il y a ${n} objets. ${n} est un multiple de 10.`,
+          prompt: `Dans ${placeFr}, il y a ${n} ${plural(Number(n), "objets", "objet")}. ${n} est un multiple de 10.`,
           correctLabel: isTrue ? "Vrai" : "Faux",
           distractorLabels: [isTrue ? "Faux" : "Vrai"],
           explanationSteps: [isTrue ? `${n} se termine par 0, donc c'est un multiple de 10.` : `${n} ne se termine pas par 0, donc ce n'est pas un multiple de 10.`],

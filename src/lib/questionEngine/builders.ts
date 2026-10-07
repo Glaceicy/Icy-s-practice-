@@ -60,6 +60,15 @@ export function pickValues(rng: Rng, ranges: Array<[number, number]>, constraint
 const ELIDE_PLACEHOLDER = /\{([Dd]e|[Dd]u|[Ll]e|[Ll]a|[Nn]e|[Qq]ue|[Ss]i):(\w+)\}/g;
 const ELIDES_BEFORE = /^[aàâäeéèêëiîïoôöuùû]/i;
 
+/** Picks the plural or singular wording for a count, for sentences assembled
+ * in code — an explain step or a hint — rather than from a template string.
+ * `plural(n, "hours", "hour")` gives "hours" unless n is exactly 1. The
+ * `{n#hours|hour}` placeholder does the same job inside a template. */
+export function plural(n: number, many: string, one: string): string {
+  // Magnitude, not value: "-1 unit" is as singular as "1 unit".
+  return Math.abs(n) === 1 ? one : many;
+}
+
 /** French elision, for sentences assembled in code rather than from a template
  * string: elide("de", "un rectangle") gives "d'un rectangle". Same rule as the
  * `{de:ctx}` placeholder below, including leaving h and y alone. */
@@ -80,7 +89,7 @@ export function fillTemplate(template: string, values: Record<string, string | n
     if (v === undefined) return whole;
     if (plural !== undefined && singular !== undefined) {
       // Values arrive formatted, so "£1" and "1.0" both have to read as one.
-      return Number.parseFloat(String(v).replace(/[^0-9.-]/g, "")) === 1 ? singular : plural;
+      return Math.abs(Number.parseFloat(String(v).replace(/[^0-9.-]/g, ""))) === 1 ? singular : plural;
     }
     const filled = String(v);
     return raise ? filled.charAt(0).toUpperCase() + filled.slice(1) : filled;

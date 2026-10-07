@@ -113,13 +113,13 @@ export const level: QuestionTemplateDef[] = [
     key: "y2l3.wordProblemAddOnes", levelKey: "Y2L3", objectiveCode: "Y2-L3-1", difficulty: "APPLICATION",
     misconceptionTags: ["ADDITION_MISCOUNT"], type: "WORD_PROBLEM",
     ranges: [[10, 89], [1, 9]], compute: (v) => v[0]! + v[1]!, contextPool: CTX,
-    promptTemplates: ["There are {a} {ctx} in a box. {b} more are added. How many {ctx} are there now?"],
+    promptTemplates: ["There are {a} {ctx} in a box. {b} more {b#are|is} added. How many {ctx} are there now?"],
     explain: (v, r) => [`${v[0]} + ${v[1]} = ${r}.`],
     hints: () => ["Add the ones on to the two-digit number."],
     declaredVariationSpace: 80 * 9 * CTX.length,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Il y a {a} {ctx} dans une boîte. {b} de plus sont ajoutés. Combien y a-t-il {de:ctx} maintenant ?"],
+      promptTemplates: ["Il y a {a} {ctx} dans une boîte. On en ajoute {b} de plus. Combien y a-t-il {de:ctx} maintenant ?"],
       explain: (v, r) => [`${v[0]} + ${v[1]} = ${r}.`],
       hints: () => ["Ajoute les unités au nombre à deux chiffres."]
     }
@@ -267,13 +267,13 @@ export const level: QuestionTemplateDef[] = [
     key: "y2l3.wordProblemTwoStepSubtractAdd", levelKey: "Y2L3", objectiveCode: "Y2-L3-3", difficulty: "REASONING",
     misconceptionTags: ["SUBTRACTION_MISCOUNT"], type: "WORD_PROBLEM",
     ranges: [[20, 60], [1, 20], [1, 20]], constraint: (v) => v[0]! >= v[1]!, compute: (v) => v[0]! - v[1]! + v[2]!, contextPool: CTX,
-    promptTemplates: ["You start with {a} {ctx}. {b} are used up, then {c} more are added. How many {ctx} do you have now?"],
+    promptTemplates: ["You start with {a} {ctx}. {b} {b#are|is} used up, then {c} more {c#are|is} added. How many {ctx} do you have now?"],
     explain: (v, r) => [`${v[0]} - ${v[1]} + ${v[2]} = ${r}.`],
     hints: () => ["Subtract the amount used up first, then add the new amount."],
     declaredVariationSpace: 40 * 20 * 20 * CTX.length,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Tu commences avec {a} {ctx}. {b} sont utilisés, puis {c} de plus sont ajoutés. Combien {de:ctx} as-tu maintenant ?"],
+      promptTemplates: ["Tu commences avec {a} {ctx}. On en utilise {b}, puis on en ajoute {c} de plus. Combien {de:ctx} as-tu maintenant ?"],
       explain: (v, r) => [`${v[0]} - ${v[1]} + ${v[2]} = ${r}.`],
       hints: () => ["Soustrais d'abord la quantité utilisée, puis ajoute la nouvelle quantité."]
     }
@@ -282,14 +282,14 @@ export const level: QuestionTemplateDef[] = [
     key: "y2l3.mcTwoStepWordProblem", levelKey: "Y2L3", objectiveCode: "Y2-L3-3", difficulty: "REASONING",
     misconceptionTags: ["ADDITION_MISCOUNT"], type: "MULTIPLE_CHOICE",
     ranges: [[10, 40], [1, 20], [1, 20]], compute: (v) => v[0]! + v[1]! + v[2]!, contextPool: CTX,
-    promptTemplates: ["A jar has {a} {ctx}. {b} more are added, then {c} more are added. How many {ctx} in total?"],
+    promptTemplates: ["A jar has {a} {ctx}. {b} more {b#are|is} added, then {c} more {c#are|is} added. How many {ctx} in total?"],
     explain: (v, r) => [`${v[0]} + ${v[1]} + ${v[2]} = ${r}.`],
     hints: () => ["Add all three amounts together."],
     distractorSpread: 10,
     declaredVariationSpace: 30 * 20 * 20 * CTX.length,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Un pot contient {a} {ctx}. {b} de plus sont ajoutés, puis {c} de plus sont ajoutés. Combien {de:ctx} au total ?"],
+      promptTemplates: ["Un pot contient {a} {ctx}. On en ajoute {b} de plus, puis {c} de plus encore. Combien {de:ctx} au total ?"],
       explain: (v, r) => [`${v[0]} + ${v[1]} + ${v[2]} = ${r}.`],
       hints: () => ["Additionne les trois quantités."]
     }

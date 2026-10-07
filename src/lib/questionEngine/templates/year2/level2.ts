@@ -270,7 +270,7 @@ export const level: QuestionTemplateDef[] = [
     visualAid: (v) => visuals.numberLine(0, 20, v[0]! + v[1]!, v[0]!),
     declaredVariationSpace: 15 * 8 * 2,
     fr: {
-      promptTemplates: ["Pars de {a} sur la droite numérique et saute de {b}. Où atterris-tu ?", "Tu es à {a} sur la droite numérique. Saute en avant de {b} cases. Sur quel nombre atterris-tu ?"],
+      promptTemplates: ["Pars de {a} sur la droite numérique et saute de {b}. Où atterris-tu ?", "Tu es à {a} sur la droite numérique. Saute en avant de {b} {b#cases|case}. Sur quel nombre atterris-tu ?"],
       explain: (v, r) => [`En partant de ${v[0]} et en sautant de ${v[1]}, on atterrit sur ${r}.`],
       hints: () => ["Compte vers l'avant à partir du nombre de départ."]
     }
@@ -285,7 +285,7 @@ export const level: QuestionTemplateDef[] = [
     visualAid: (v) => visuals.numberLine(0, 20, v[0]! - v[1]!, v[0]!),
     declaredVariationSpace: 16 * 8 * 2,
     fr: {
-      promptTemplates: ["Pars de {a} sur la droite numérique et saute en arrière de {b}. Où atterris-tu ?", "Tu es à {a} sur la droite numérique. Saute en arrière de {b} cases. Sur quel nombre atterris-tu ?"],
+      promptTemplates: ["Pars de {a} sur la droite numérique et saute en arrière de {b}. Où atterris-tu ?", "Tu es à {a} sur la droite numérique. Saute en arrière de {b} {b#cases|case}. Sur quel nombre atterris-tu ?"],
       explain: (v, r) => [`En partant de ${v[0]} et en sautant en arrière de ${v[1]}, on atterrit sur ${r}.`],
       hints: () => ["Compte à rebours à partir du nombre de départ."]
     }
@@ -358,7 +358,7 @@ export const level: QuestionTemplateDef[] = [
     declaredVariationSpace: 15 * 8 * CTX.length,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Il y a {a} {ctx} dans un pot. {b} de plus sont ajoutés. Combien {de:ctx} y a-t-il maintenant ?"],
+      promptTemplates: ["Il y a {a} {ctx} dans un pot. On en ajoute {b} de plus. Combien {de:ctx} y a-t-il maintenant ?"],
       hints: () => ["Imagine que tu sautes vers l'avant sur une droite numérique à partir du montant de départ."]
     }
   })

@@ -1,4 +1,4 @@
-import { arithmeticTemplate, matchingTemplate, orderingTemplate } from "../../builders";
+import { arithmeticTemplate, matchingTemplate, orderingTemplate, plural } from "../../builders";
 import { visuals } from "../../visuals";
 import type { QuestionTemplateDef } from "../../types";
 
@@ -151,14 +151,14 @@ export const level: QuestionTemplateDef[] = [
     misconceptionTags: ["MISCOUNTS_SEQUENCE"], type: "VISUAL_COUNT",
     ranges: [[1, 20]], compute: (v) => v[0]!, contextPool: CTX,
     promptTemplates: ["How many {ctx} are shown in the ten frames?", "Count the {ctx} in the ten frames. How many are there?"],
-    explain: (v) => [`Each square in a ten frame holds one counter.`, `${v[0]} squares are filled, so there are ${v[0]}.`],
+    explain: (v) => [`Each square in a ten frame holds one counter.`, `${v[0]} ${plural(v[0]!, "squares are", "square is")} filled, so there are ${v[0]}.`],
     hints: () => ["Count the filled squares one at a time, ten frame by ten frame."],
     visualAid: (v) => visuals.tenFrame(v[0]!),
     declaredVariationSpace: 20 * 2 * CTX.length,
     fr: {
       contextPool: CTX_FR,
       promptTemplates: ["Combien {de:ctx} sont montrés dans les cadres de dix ?", "Compte les {ctx} dans les cadres de dix. Combien y en a-t-il ?"],
-      explain: (v) => [`Chaque case d'un cadre de dix contient un jeton.`, `${v[0]} cases sont remplies, donc il y en a ${v[0]}.`],
+      explain: (v) => [`Chaque case d'un cadre de dix contient un jeton.`, `${v[0]} ${plural(v[0]!, "cases sont remplies", "case est remplie")}, donc il y en a ${v[0]}.`],
       hints: () => ["Compte les cases remplies une par une, cadre de dix par cadre de dix."]
     }
   }),

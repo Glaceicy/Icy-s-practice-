@@ -1,4 +1,4 @@
-import { arithmeticTemplate, categoricalPoolTemplate, orderingTemplate } from "../../builders";
+import { arithmeticTemplate, categoricalPoolTemplate, orderingTemplate, plural } from "../../builders";
 import type { QuestionTemplateDef } from "../../types";
 
 // Year 5, Level 8 — "Angles, shapes, coordinates and transformations"
@@ -437,7 +437,7 @@ export const level: QuestionTemplateDef[] = [
       const correct = `(${x + dx}, ${y + dy})`;
       const distractors = [`(${x + dx}, ${y})`, `(${x}, ${y + dy})`, `(${x - dx}, ${y - dy})`];
       return {
-        prompt: `A robot starts at (${x}, ${y}) on a grid. It moves ${dx} squares right and ${dy} squares up. What are its new coordinates?`,
+        prompt: `A robot starts at (${x}, ${y}) on a grid. It moves ${dx} ${plural(dx, "squares", "square")} right and ${dy} ${plural(dy, "squares", "square")} up. What are its new coordinates?`,
         correctLabel: correct,
         distractorLabels: distractors,
         explanationSteps: [`(${x}+${dx}, ${y}+${dy}) = ${correct}.`],
@@ -446,13 +446,13 @@ export const level: QuestionTemplateDef[] = [
     },
     fr: {
       translate: (drawn) => {
-        const m = drawn.prompt.match(/^A robot starts at \((\d+), (\d+)\) on a grid\. It moves (\d+) squares right and (\d+) squares up\. What are its new coordinates\?$/);
+        const m = drawn.prompt.match(/^A robot starts at \((\d+), (\d+)\) on a grid\. It moves (\d+) squares? right and (\d+) squares? up\. What are its new coordinates\?$/);
         const x = m ? m[1] : "";
         const y = m ? m[2] : "";
         const dx = m ? m[3] : "";
         const dy = m ? m[4] : "";
         return {
-          prompt: `Un robot part de (${x}, ${y}) sur une grille. Il se déplace de ${dx} cases vers la droite et ${dy} cases vers le haut. Quelles sont ses nouvelles coordonnées ?`,
+          prompt: `Un robot part de (${x}, ${y}) sur une grille. Il se déplace de ${dx} ${plural(Number(dx), "cases", "case")} vers la droite et ${dy} ${plural(Number(dy), "cases", "case")} vers le haut. Quelles sont ses nouvelles coordonnées ?`,
           explanationSteps: [`(${x}+${dx}, ${y}+${dy}) = ${drawn.correctLabel}.`],
           hints: ["Ajoute le déplacement vers la droite à la coordonnée x et le déplacement vers le haut à la coordonnée y."]
         };

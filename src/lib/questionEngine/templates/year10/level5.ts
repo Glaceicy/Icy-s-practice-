@@ -170,7 +170,7 @@ export const level: QuestionTemplateDef[] = [
     key: "y10l5.totalCostFromGraphRule", levelKey: "Y10L5", objectiveCode: "Y10-L5-2", difficulty: "REASONING",
     misconceptionTags: ["RATE_OF_CHANGE_ERROR"], type: "WORD_PROBLEM", contextPool: CONTEXTS,
     ranges: [[2, 20], [5, 50], [1, 25]], compute: (v) => v[0]! * v[2]! + v[1]!,
-    promptTemplates: ["{Ctx} charges a fixed fee of £{b} plus £{a} per unit. What is the total cost for {c} units, in pounds?"],
+    promptTemplates: ["{Ctx} charges a fixed fee of £{b} plus £{a} per unit. What is the total cost for {c} {c#units|unit}, in pounds?"],
     explain: (v, r) => [`${v[0]} x ${v[2]} = ${v[0]! * v[2]!}.`, `${v[0]! * v[2]!} + ${v[1]} = ${r}.`],
     hints: () => ["The fixed fee is the intercept; the rate per unit is the gradient."],
     fr: {

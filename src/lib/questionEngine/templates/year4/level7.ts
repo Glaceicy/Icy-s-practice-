@@ -1,4 +1,4 @@
-import { arithmeticTemplate, categoricalPoolTemplate } from "../../builders";
+import { arithmeticTemplate, categoricalPoolTemplate, plural } from "../../builders";
 import type { QuestionTemplateDef } from "../../types";
 
 // Year 4, Level 7 — "Measurement, conversion, perimeter and area"
@@ -80,16 +80,16 @@ export const level: QuestionTemplateDef[] = [
     key: "y4l7.hoursToMinutes", levelKey: "Y4L7", objectiveCode: "Y4-L7-1", difficulty: "FLUENCY",
     misconceptionTags: ["UNIT_CONVERSION_ERROR"], type: "NUMBER_ENTRY",
     ranges: [[1, 60], [0, 1]], compute: (v) => v[0]! * 60,
-    derive: (v) => ({ big: v[1]! === 0 ? "hours" : "minutes", small: v[1]! === 0 ? "minutes" : "seconds" }),
+    derive: (v) => ({ big: plural(v[0]!, v[1]! === 0 ? "hours" : "minutes", v[1]! === 0 ? "hour" : "minute"), small: v[1]! === 0 ? "minutes" : "seconds" }),
     promptTemplates: [
       "How many {small} are there in {a} {big}?",
       "Convert {a} {big} into {small}.",
-      "A activity lasts {a} {big}. How many {small} is that?"
+      "An activity lasts {a} {big}. How many {small} is that?"
     ],
     explain: (v, r) => [`There are 60 ${v[1]! === 0 ? "minutes in an hour" : "seconds in a minute"}.`, `${v[0]} x 60 = ${r}.`],
     hints: () => ["Time units of 60: 60 seconds in a minute and 60 minutes in an hour."],
     fr: {
-      derive: (v) => ({ big: v[1]! === 0 ? "heures" : "minutes", small: v[1]! === 0 ? "minutes" : "secondes" }),
+      derive: (v) => ({ big: plural(v[0]!, v[1]! === 0 ? "heures" : "minutes", v[1]! === 0 ? "heure" : "minute"), small: v[1]! === 0 ? "minutes" : "secondes" }),
       promptTemplates: [
         "Combien y a-t-il de {small} dans {a} {big} ?",
         "Convertis {a} {big} en {small}.",

@@ -1,4 +1,4 @@
-import { arithmeticTemplate, categoricalPoolTemplate } from "../../builders";
+import { arithmeticTemplate, categoricalPoolTemplate, plural } from "../../builders";
 import type { QuestionTemplateDef } from "../../types";
 
 // Year 4, Level 10 — "Year 4 mixed mastery"
@@ -312,7 +312,10 @@ export const level: QuestionTemplateDef[] = [
     ranges: [[1, 99], [0, 2]],
     compute: (v) => (v[1]! === 0 ? v[0]! * 1000 : v[1]! === 1 ? v[0]! * 100 : v[0]! * 60),
     derive: (v) => ({
-      big: v[1]! === 0 ? "kilometres" : v[1]! === 1 ? "metres" : "hours",
+      // The unit is part of the sentence, so it has to agree with the count:
+      // "in 1 hour", not "in 1 hours".
+      big: plural(v[0]!, v[1]! === 0 ? "kilometres" : v[1]! === 1 ? "metres" : "hours",
+                        v[1]! === 0 ? "kilometre" : v[1]! === 1 ? "metre" : "hour"),
       small: v[1]! === 0 ? "metres" : v[1]! === 1 ? "centimetres" : "minutes"
     }),
     promptTemplates: [
@@ -326,7 +329,8 @@ export const level: QuestionTemplateDef[] = [
     hints: () => ["Remember the key facts: 1,000 m in a km, 100 cm in a m and 60 minutes in an hour."],
     fr: {
       derive: (v) => ({
-        big: v[1]! === 0 ? "kilomètres" : v[1]! === 1 ? "mètres" : "heures",
+        big: plural(v[0]!, v[1]! === 0 ? "kilomètres" : v[1]! === 1 ? "mètres" : "heures",
+                           v[1]! === 0 ? "kilomètre" : v[1]! === 1 ? "mètre" : "heure"),
         small: v[1]! === 0 ? "mètres" : v[1]! === 1 ? "centimètres" : "minutes"
       }),
       promptTemplates: [

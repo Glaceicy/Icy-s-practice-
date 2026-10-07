@@ -1,4 +1,4 @@
-import { arithmeticTemplate, categoricalPoolTemplate } from "../../builders";
+import { arithmeticTemplate, categoricalPoolTemplate, plural } from "../../builders";
 import { visuals } from "../../visuals";
 import type { QuestionTemplateDef } from "../../types";
 
@@ -227,13 +227,13 @@ export const level: QuestionTemplateDef[] = [
     misconceptionTags: ["RATE_OF_CHANGE_ERROR"], type: "WORD_PROBLEM", contextPool: JOURNEYS,
     ranges: [[1, 12], [2, 10], [1, 20]], compute: (v) => v[1]!,
     derive: (v) => ({ start: v[2]!, end: v[2]! + v[0]! * v[1]!, hours: v[0]! }),
-    promptTemplates: ["A graph shows {ctx} at {start} km after the first reading and {end} km after {hours} more hours. What is the rate of change, in km per hour?"],
-    explain: (v, r) => [`Change in distance = ${v[0]! * v[1]!} km over ${v[0]} hours.`, `${v[0]! * v[1]!} ÷ ${v[0]} = ${r}.`],
+    promptTemplates: ["A graph shows {ctx} at {start} km after the first reading and {end} km after {hours} more {hours#hours|hour}. What is the rate of change, in km per hour?"],
+    explain: (v, r) => [`Change in distance = ${v[0]! * v[1]!} km over ${v[0]} ${plural(v[0]!, "hours", "hour")}.`, `${v[0]! * v[1]!} ÷ ${v[0]} = ${r}.`],
     hints: () => ["Divide the change in distance by the change in time."],
     fr: {
       contextPool: JOURNEYS_FR,
-      promptTemplates: ["Un graphique montre {ctx} à {start} km après la première lecture et à {end} km après {hours} heures de plus. Quel est le taux de variation, en km par heure ?"],
-      explain: (v, r) => [`Variation de distance = ${v[0]! * v[1]!} km en ${v[0]} heures.`, `${v[0]! * v[1]!} ÷ ${v[0]} = ${r}.`],
+      promptTemplates: ["Un graphique montre {ctx} à {start} km après la première lecture et à {end} km après {hours} {hours#heures|heure} de plus. Quel est le taux de variation, en km par heure ?"],
+      explain: (v, r) => [`Variation de distance = ${v[0]! * v[1]!} km en ${v[0]} ${plural(v[0]!, "heures", "heure")}.`, `${v[0]! * v[1]!} ÷ ${v[0]} = ${r}.`],
       hints: () => ["Divise la variation de distance par la variation de temps."]
     },
     declaredVariationSpace: 12 * 9 * 20 * JOURNEYS.length

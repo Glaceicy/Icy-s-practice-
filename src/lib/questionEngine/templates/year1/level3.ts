@@ -257,7 +257,7 @@ export const level: QuestionTemplateDef[] = [
     declaredVariationSpace: 66 * CTX.length,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Il y a {a} {ctx} dans un panier. {b} de plus sont ajoutés. Combien {de:ctx} y a-t-il maintenant ?"],
+      promptTemplates: ["Il y a {a} {ctx} dans un panier. On en ajoute {b} de plus. Combien {de:ctx} y a-t-il maintenant ?"],
       hints: () => ["Imagine les objets tous ensemble, puis compte-les."]
     }
   }),
@@ -324,14 +324,14 @@ export const level: QuestionTemplateDef[] = [
     key: "y1l3.subtractWithin10VisualCount", levelKey: "Y1L3", objectiveCode: "Y1-L3-3", difficulty: "FLUENCY",
     misconceptionTags: ["SUBTRACTION_MISCOUNT"], type: "VISUAL_COUNT",
     ranges: [[0, 10], [0, 10]], constraint: (v) => v[0]! >= v[1]!, compute: (v) => v[0]! - v[1]!, contextPool: CTX,
-    promptTemplates: ["There were {a} {ctx} shown in the ten frame. {b} are crossed out. How many {ctx} are left?"],
+    promptTemplates: ["There were {a} {ctx} shown in the ten frame. {b} {b#are|is} crossed out. How many {ctx} are left?"],
     explain: (v, r) => [`${v[0]} - ${v[1]} = ${r}.`],
     hints: () => ["Count what is left after crossing some out."],
     visualAid: (v, r) => visuals.tenFrame(r),
     declaredVariationSpace: 66 * CTX.length,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Il y avait {a} {ctx} montrés dans le cadre de dix. {b} sont rayés. Combien {de:ctx} reste-t-il ?"],
+      promptTemplates: ["Il y avait {a} {ctx} montrés dans le cadre de dix. On en raye {b}. Combien {de:ctx} reste-t-il ?"],
       hints: () => ["Compte ce qu'il reste après en avoir rayé quelques-uns."]
     }
   }),
@@ -339,14 +339,14 @@ export const level: QuestionTemplateDef[] = [
     key: "y1l3.subtractWithin10WordProblem", levelKey: "Y1L3", objectiveCode: "Y1-L3-3", difficulty: "APPLICATION",
     misconceptionTags: ["SUBTRACTION_MISCOUNT"], type: "WORD_PROBLEM",
     ranges: [[0, 10], [0, 10]], constraint: (v) => v[0]! >= v[1]!, compute: (v) => v[0]! - v[1]!, contextPool: CTX,
-    promptTemplates: ["There are {a} {ctx} on the table. {b} are given away. How many {ctx} are left?"],
+    promptTemplates: ["There are {a} {ctx} on the table. {b} {b#are|is} given away. How many {ctx} are left?"],
     explain: (v, r) => [`${v[0]} - ${v[1]} = ${r}.`],
     hints: () => ["Picture taking some away, then count what is left."],
     visualAid: (v, r) => visuals.counters(r),
     declaredVariationSpace: 66 * CTX.length,
     fr: {
       contextPool: CTX_FR,
-      promptTemplates: ["Il y a {a} {ctx} sur la table. {b} sont donnés. Combien {de:ctx} reste-t-il ?"],
+      promptTemplates: ["Il y a {a} {ctx} sur la table. On en donne {b}. Combien {de:ctx} reste-t-il ?"],
       hints: () => ["Imagine qu'on en enlève quelques-uns, puis compte ce qu'il reste."]
     }
   }),
