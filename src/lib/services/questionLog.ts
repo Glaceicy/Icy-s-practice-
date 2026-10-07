@@ -124,6 +124,11 @@ export interface StoredQuestionView {
   difficulty: string;
   choices?: Array<{ id: string; label: string }>;
   visualAid?: { kind: string; data: Record<string, unknown> };
+  /** The template's own hints, in the order it wrote them — only populated
+   * where the mode actually offers hints. Absent for the Mastery Challenge:
+   * a hint like "sin 30° = 1/2" would hand over a true/false answer, and
+   * sending it to the browser unused would be giving it away for free. */
+  hints?: string[];
 }
 
 /** Converts a persisted GeneratedQuestionLog row into the shape sent to the
@@ -143,19 +148,25 @@ export function logToView(
     choicesJsonFr: string | null;
     visualAidJson: string | null;
     visualAidJsonFr: string | null;
+    hints: string;
+    hintsFr: string | null;
   },
-  locale: Locale = "en"
+  locale: Locale = "en",
+  /** Opt-in, because only guided practice offers hints — see StoredQuestionView. */
+  includeHints = false
 ): StoredQuestionView {
   const prompt = locale === "fr" ? (log.promptFr ?? log.prompt) : log.prompt;
   const choicesJson = locale === "fr" ? (log.choicesJsonFr ?? log.choicesJson) : log.choicesJson;
   const visualAidJson = locale === "fr" ? (log.visualAidJsonFr ?? log.visualAidJson) : log.visualAidJson;
+  const hintsJson = locale === "fr" ? (log.hintsFr ?? log.hints) : log.hints;
   return {
     logId: log.id,
     prompt,
     type: log.questionType,
     difficulty: log.difficulty,
     choices: choicesJson ? JSON.parse(choicesJson) : undefined,
-    visualAid: visualAidJson ? JSON.parse(visualAidJson) : undefined
+    visualAid: visualAidJson ? JSON.parse(visualAidJson) : undefined,
+    hints: includeHints ? JSON.parse(hintsJson) : undefined
   };
 }
 

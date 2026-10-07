@@ -87,7 +87,9 @@ export async function fetchNextPracticeQuestionAction(attemptId: string): Promis
     done: false,
     position: next.position,
     totalQuestions: next.totalQuestions,
-    question: logToView(log, locale),
+    // Guided practice is the only mode with a hint button, so it is the only
+    // one that gets the hints.
+    question: logToView(log, locale, attempt.mode === "GUIDED"),
     triesSoFar: next.triesSoFar,
     remaining: next.remaining
   };

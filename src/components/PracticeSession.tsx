@@ -24,7 +24,7 @@ export default function PracticeSession({
   const [state, setState] = useState<PracticeQuestionPayload | null>(null);
   const [support, setSupport] = useState<WrongAnswerSupportView | null>(null);
   const [hintsUsed, setHintsUsed] = useState(0);
-  const [hintShown, setHintShown] = useState(false);
+  const [hintsShown, setHintsShown] = useState(0);
   const [loading, setLoading] = useState(true);
   const [celebrating, setCelebrating] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -34,7 +34,7 @@ export default function PracticeSession({
   const load = useCallback(async () => {
     setLoading(true);
     setSupport(null);
-    setHintShown(false);
+    setHintsShown(0);
     setHintsUsed(0);
     const next = await fetchNextPracticeQuestionAction(attemptId);
     setState(next);
@@ -69,7 +69,7 @@ export default function PracticeSession({
 
   async function tryAgain() {
     setSupport(null);
-    setHintShown(false);
+    setHintsShown(0);
     await load();
   }
 
@@ -82,6 +82,10 @@ export default function PracticeSession({
   }
 
   const progress = Math.round((state.position / state.totalQuestions) * 100);
+  // The template's own hints. The generic line is the fallback for a question
+  // whose template wrote none, not the thing every question gets.
+  const availableHints = state.question.hints?.length ? state.question.hints : [t("practiceSession.genericHint")];
+  const shownHints = availableHints.slice(0, hintsShown);
 
   return (
     <div>
@@ -110,20 +114,25 @@ export default function PracticeSession({
         <p className="text-xl font-semibold text-slate-800">{state.question.prompt}</p>
 
         {mode === "GUIDED" && !support && (
-          <div className="mt-3">
-            {!hintShown ? (
+          <div className="mt-3 space-y-2">
+            {/* Each hint the child asked for stays on screen, so a second one
+                builds on the first rather than replacing it mid-thought. */}
+            {shownHints.map((hint, i) => (
+              <p key={i} className="rounded-lg bg-brand-50 p-3 text-sm text-brand-800">
+                {hint}
+              </p>
+            ))}
+            {hintsShown < availableHints.length && (
               <button
                 type="button"
                 onClick={() => {
-                  setHintShown(true);
+                  setHintsShown((n) => n + 1);
                   setHintsUsed((h) => h + 1);
                 }}
                 className="touch-target rounded-lg border border-brand-300 px-3 py-2 text-sm font-semibold text-brand-700 hover:bg-brand-50"
               >
-                {t("practiceSession.getHint")}
+                {hintsShown === 0 ? t("practiceSession.getHint") : t("practiceSession.anotherHint")}
               </button>
-            ) : (
-              <p className="rounded-lg bg-brand-50 p-3 text-sm text-brand-800">{t("practiceSession.genericHint")}</p>
             )}
           </div>
         )}

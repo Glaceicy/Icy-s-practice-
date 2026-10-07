@@ -181,6 +181,7 @@ export const dictionary = {
       remaining: "{count} remaining",
       wellDone: "🎉 Well done!",
       getHint: "💡 Get a hint",
+      anotherHint: "💡 Another hint",
       genericHint: "Take it one step at a time — think about what the question is really asking.",
       tryAgain: "Try a similar question"
     },
@@ -690,6 +691,7 @@ export const dictionary = {
       remaining: "{count} restante(s)",
       wellDone: "🎉 Bien joué !",
       getHint: "💡 Obtenir un indice",
+      anotherHint: "💡 Un autre indice",
       genericHint: "Allez-y étape par étape — réfléchissez à ce que la question demande vraiment.",
       tryAgain: "Essayer une question similaire"
     },
