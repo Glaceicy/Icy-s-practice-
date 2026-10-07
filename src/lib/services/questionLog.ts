@@ -5,6 +5,21 @@ import type { GeneratedQuestionInstance, Locale, QuestionTemplateDef } from "@/l
 
 loadAllTemplates();
 
+/** QuestionTemplate.minVariations is an INT4 column, and a few templates have
+ * a combinatorial space in the tens of billions — y4l2.totalOfThreeAmounts is
+ * nearly 43 billion. Writing one of those raw makes Postgres reject the insert,
+ * which took out the whole question: the template row is created lazily the
+ * first time a child reaches it, so the question could never be served at all.
+ *
+ * The column is a recorded sanity figure, not something the engine reads back,
+ * and anything past two billion means the same thing in practice, so it is
+ * capped at the write rather than widened to a BigInt the rest of the code
+ * would then have to handle. */
+export const MAX_RECORDED_VARIATIONS = 2_147_483_647;
+export function recordableVariationSpace(space: number): number {
+  return Math.min(space, MAX_RECORDED_VARIATIONS);
+}
+
 let templateIndex: Map<string, QuestionTemplateDef> | null = null;
 function getTemplateIndex(): Map<string, QuestionTemplateDef> {
   if (!templateIndex) {
@@ -80,7 +95,7 @@ export async function ensureQuestionLog(
         questionType: def.type,
         difficulty: def.difficulty,
         misconceptionTags: def.misconceptionTags.join(","),
-        minVariations: def.variationSpace
+        minVariations: recordableVariationSpace(def.variationSpace)
       }
     });
   }

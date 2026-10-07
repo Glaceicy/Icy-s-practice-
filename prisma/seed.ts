@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs";
 import { COMPLETE_LEVEL_KEYS, loadAllTemplates } from "../src/lib/questionEngine/templates/all";
 import { getTemplatesForLevel } from "../src/lib/questionEngine/registry";
 import { syncCurriculumFromCode, syncLessonsFromCode } from "../src/lib/services/curriculumSync";
+import { recordableVariationSpace } from "../src/lib/services/questionLog";
 
 const prisma = new PrismaClient();
 
@@ -41,7 +42,7 @@ async function warmQuestionBank() {
           questionType: template.type,
           difficulty: template.difficulty,
           misconceptionTags: template.misconceptionTags.join(","),
-          minVariations: template.variationSpace
+          minVariations: recordableVariationSpace(template.variationSpace)
         },
         update: {}
       });
