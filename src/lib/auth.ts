@@ -1,5 +1,6 @@
 import "server-only";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import { SignJWT, jwtVerify } from "jose";
 import bcrypt from "bcryptjs";
 import { createHash, randomBytes } from "crypto";
@@ -191,12 +192,17 @@ export async function requireActiveChild() {
   const adultSession = await getAdultSession();
   if (adultSession) {
     const childId = cookies().get(CHILD_COOKIE)?.value;
-    if (!childId) throw new Error("NO_ACTIVE_CHILD");
+    // Signed in, but no profile picked — or the picked one is gone, belongs to
+    // another family, or predates a password change. Sending the parent to the
+    // profile picker is what they would do next anyway; throwing here rendered
+    // a bare "server-side exception" with no way back, which is how someone
+    // opening an old /learn link in a new tab met the app.
+    if (!childId) redirect("/profiles");
     const child = await prisma.childProfile.findFirst({ where: { id: childId, ownerId: adultSession.adultId }, include: { owner: true } });
-    if (!child) throw new Error("NO_ACTIVE_CHILD");
+    if (!child) redirect("/profiles");
     // A reset ends the parent's route into a child's data as well, not just
     // the pages behind requireAdult().
-    if (isSessionStale(adultSession.issuedAt, child.owner.passwordChangedAt)) throw new Error("NO_ACTIVE_CHILD");
+    if (isSessionStale(adultSession.issuedAt, child.owner.passwordChangedAt)) redirect("/login");
     const { owner, ...rest } = child;
     return { adult: owner, child: rest };
   }
@@ -204,12 +210,12 @@ export async function requireActiveChild() {
   const childSession = await getChildSessionToken();
   if (childSession) {
     const child = await prisma.childProfile.findUnique({ where: { id: childSession.childId }, include: { owner: true } });
-    if (!child) throw new Error("NO_ACTIVE_CHILD");
+    if (!child) redirect("/child-login");
     const { owner, ...rest } = child;
     return { adult: owner, child: rest };
   }
 
-  throw new Error("NO_ACTIVE_CHILD");
+  redirect("/login");
 }
 
 /** Guards a /learn/[childId]/* route: the active child (verified above) must
@@ -217,7 +223,10 @@ export async function requireActiveChild() {
  * act on another child's data even within the same family. */
 export async function assertChildAccess(childId: string) {
   const { adult, child } = await requireActiveChild();
-  if (child.id !== childId) throw new Error("FORBIDDEN");
+  // A link for a sibling, a bookmark from before switching profile, a second
+  // tab. The parent is legitimately signed in, so this is a wrong-profile
+  // problem rather than an access violation: send them to pick, do not error.
+  if (child.id !== childId) redirect("/profiles");
   return { adult, child };
 }
 
@@ -229,6 +238,11 @@ export async function getActiveChildSoft() {
     const { child } = await requireActiveChild();
     return child;
   } catch {
+    // Everything is swallowed here, redirects included. This runs in the root
+    // layout on every request, so letting a redirect escape would bounce the
+    // landing page to /login — and /login's own layout would bounce it again.
+    // The page being rendered does its own guarding; this call only decides
+    // whether there is a child to theme the page for.
     return null;
   }
 }
