@@ -3,14 +3,30 @@
 // so the same seed always reproduces an identical, replayable question — required
 // so stored answer keys and admin "frequently missed question" analytics stay valid.
 
+/** A stable 31-bit hash of a string, used to seed a selection or a question.
+ *
+ * 31 bits rather than 32 because a seed does not only stay in memory — the
+ * redo round writes one to GeneratedQuestionLog.seed, a signed 32-bit column.
+ * An unsigned 32-bit hash overflows it about half the time, and Postgres
+ * rejects the whole query rather than truncating: a child who failed a Mastery
+ * Challenge could not reopen it, because the redo round threw on every load
+ * and left the attempt in progress forever.
+ *
+ * Masking costs one bit of range out of two billion and nothing in
+ * distribution, since the multiply-and-rotate above has already mixed the low
+ * bits thoroughly. */
 export function hashSeed(input: string): number {
   let h = 1779033703 ^ input.length;
   for (let i = 0; i < input.length; i++) {
     h = Math.imul(h ^ input.charCodeAt(i), 3432918353);
     h = (h << 13) | (h >>> 19);
   }
-  return h >>> 0;
+  return (h >>> 0) & 0x7fffffff;
 }
+
+/** The largest value a PostgreSQL `Int` column holds. Anything written to
+ * GeneratedQuestionLog.seed has to stay inside it. */
+export const MAX_SEED = 0x7fffffff;
 
 export function mulberry32(seed: number): () => number {
   let a = seed >>> 0;

@@ -102,21 +102,33 @@ async function injectRedoRoundIfNeeded(attemptId: string): Promise<boolean> {
   if (isMasteryPass(correctCount, mainAnswers.length)) return false; // passed outright — no redo needed
 
   const wrongAnswers = mainAnswers.filter((a) => a.isCorrect === false);
-  for (let i = 0; i < wrongAnswers.length; i++) {
-    const wrong = wrongAnswers[i]!;
+
+  // Every question is prepared before any of it is recorded. The guard above
+  // treats "a redo question exists" as "the redo round is done", so a failure
+  // part-way through would leave a short round that is never completed and a
+  // totalQuestions that never matches the slots — permanently, since the next
+  // load skips the injection entirely.
+  const logIds: string[] = [];
+  for (const wrong of wrongAnswers) {
     const generatorKey = wrong.questionLog.template.generatorKey;
     // A fresh seed for the same template/objective — tests the same skill
     // without the child simply having memorised the original question.
     const redoSeed = hashSeed(`${attemptId}:redo:${generatorKey}:${wrong.questionLog.seed}`);
     const { logId } = await ensureQuestionLog(attempt.levelId, generatorKey, redoSeed);
-    await prisma.assessmentAnswer.create({
-      data: { attemptId, questionLogId: logId, roundNumber: MASTERY_REDO_ROUND_NUMBER, positionInRound: i + 1 }
-    });
+    logIds.push(logId);
   }
-  await prisma.assessmentAttempt.update({
-    where: { id: attemptId },
-    data: { totalQuestions: { increment: wrongAnswers.length } }
-  });
+
+  await prisma.$transaction([
+    ...logIds.map((questionLogId, i) =>
+      prisma.assessmentAnswer.create({
+        data: { attemptId, questionLogId, roundNumber: MASTERY_REDO_ROUND_NUMBER, positionInRound: i + 1 }
+      })
+    ),
+    prisma.assessmentAttempt.update({
+      where: { id: attemptId },
+      data: { totalQuestions: { increment: wrongAnswers.length } }
+    })
+  ]);
   return true;
 }
 
